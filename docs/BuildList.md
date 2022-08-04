@@ -9,5 +9,7 @@ Name | Type | Notes
 **status** | **str** | [optional] [readonly] 
 **error_message** | **str** | [optional] 
 **trigger** | **str** | [optional] 
+**has_request_method** | **bool** | 
+**has_requests_method** | **bool** | 
 
 

@@ -4,6 +4,6 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **destination_name** | **str** | 
-**sources** | [**list[AttachmentSourcesCreate]**](AttachmentSourcesCreate.md) | 
+**sources** | [**list[AttachmentSourcesList]**](AttachmentSourcesList.md) | 
 
 

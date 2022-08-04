@@ -26,5 +26,8 @@ Name | Type | Notes
 **default_notification_group** | **str** | [optional] [readonly] 
 **maximum_queue_size_express** | **int** | [optional] 
 **maximum_queue_size_batch** | **int** | [optional] 
+**has_request_method** | **bool** | [optional] [readonly] 
+**has_requests_method** | **bool** | [optional] [readonly] 
+**static_ip** | **bool** | [optional] 
 
 

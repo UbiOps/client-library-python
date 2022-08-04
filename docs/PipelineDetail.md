@@ -8,9 +8,9 @@ Name | Type | Notes
 **project** | **str** | 
 **description** | **str** | [optional] 
 **input_type** | **str** | 
-**input_fields** | [**list[PipelineInputFieldDetail]**](PipelineInputFieldDetail.md) | [optional] [readonly] 
+**input_fields** | [**list[InputOutputFieldDetail]**](InputOutputFieldDetail.md) | [optional] [readonly] 
 **output_type** | **str** | 
-**output_fields** | [**list[PipelineOutputFieldDetail]**](PipelineOutputFieldDetail.md) | [optional] [readonly] 
+**output_fields** | [**list[InputOutputFieldDetail]**](InputOutputFieldDetail.md) | [optional] [readonly] 
 **labels** | **dict(str, str)** | [optional] 
 **creation_date** | **datetime** | [optional] 
 **last_updated** | **datetime** | [optional] 

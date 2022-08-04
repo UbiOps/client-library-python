@@ -35,7 +35,7 @@ class PipelineOutputFieldCreate(object):
     openapi_types = {
         'name': 'str',
         'data_type': 'str',
-        'widget': 'PipelineOutputFieldWidgetCreate'
+        'widget': 'OutputFieldWidgetCreate'
     }
 
     attribute_map = {
@@ -131,7 +131,7 @@ class PipelineOutputFieldCreate(object):
 
 
         :return: The widget of this PipelineOutputFieldCreate.  # noqa: E501
-        :rtype: PipelineOutputFieldWidgetCreate
+        :rtype: OutputFieldWidgetCreate
         """
         return self._widget
 
@@ -141,14 +141,14 @@ class PipelineOutputFieldCreate(object):
 
 
         :param widget: The widget of this PipelineOutputFieldCreate.  # noqa: E501
-        :type: PipelineOutputFieldWidgetCreate
+        :type: OutputFieldWidgetCreate
         """
 
         if self.local_vars_configuration.client_side_validation and widget is not None:
             if isinstance(widget, dict):  # noqa: E501
-                from ubiops.models.pipeline_output_field_widget_create import PipelineOutputFieldWidgetCreate
+                from ubiops.models.output_field_widget_create import OutputFieldWidgetCreate
 
-                widget = PipelineOutputFieldWidgetCreate(**widget)  # noqa: E501
+                widget = OutputFieldWidgetCreate(**widget)  # noqa: E501
 
         self._widget = widget
 

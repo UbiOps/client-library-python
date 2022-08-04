@@ -1344,7 +1344,7 @@ class CoreApi(object):
     def builds_get(self, project_name, build_id, deployment_name, version, **kwargs):  # noqa: E501
         """Get build  # noqa: E501
 
-         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\" } ```   # noqa: E501
+         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_get(project_name, build_id, deployment_name, version, async_req=True)
@@ -1372,7 +1372,7 @@ class CoreApi(object):
     def builds_get_with_http_info(self, project_name, build_id, deployment_name, version, **kwargs):  # noqa: E501
         """Get build  # noqa: E501
 
-         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\" } ```   # noqa: E501
+         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_get_with_http_info(project_name, build_id, deployment_name, version, async_req=True)
@@ -1492,7 +1492,7 @@ class CoreApi(object):
     def builds_list(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """List builds  # noqa: E501
 
-         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\"   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\"   } ] ```   # noqa: E501
+         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_list(project_name, deployment_name, version, async_req=True)
@@ -1519,7 +1519,7 @@ class CoreApi(object):
     def builds_list_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """List builds  # noqa: E501
 
-         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\"   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\"   } ] ```   # noqa: E501
+         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_list_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -5688,7 +5688,7 @@ class CoreApi(object):
     def deployment_versions_create(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create deployment versions  # noqa: E501
 
-         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000 } ```   # noqa: E501
+         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_create(project_name, deployment_name, data, async_req=True)
@@ -5715,7 +5715,7 @@ class CoreApi(object):
     def deployment_versions_create_with_http_info(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create deployment versions  # noqa: E501
 
-         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000 } ```   # noqa: E501
+         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_create_with_http_info(project_name, deployment_name, data, async_req=True)
@@ -5962,7 +5962,7 @@ class CoreApi(object):
     def deployment_versions_get(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """Get deployment version  # noqa: E501
 
-         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000 } ```   # noqa: E501
+         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_get(project_name, deployment_name, version, async_req=True)
@@ -5989,7 +5989,7 @@ class CoreApi(object):
     def deployment_versions_get_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """Get deployment version  # noqa: E501
 
-         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000 } ```   # noqa: E501
+         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_get_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -6230,7 +6230,7 @@ class CoreApi(object):
     def deployment_versions_update(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Update deployment version  # noqa: E501
 
-         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000 } ```   # noqa: E501
+         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_update(project_name, deployment_name, version, data, async_req=True)
@@ -6258,7 +6258,7 @@ class CoreApi(object):
     def deployment_versions_update_with_http_info(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Update deployment version  # noqa: E501
 
-         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000 } ```   # noqa: E501
+         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_update_with_http_info(project_name, deployment_name, version, data, async_req=True)
@@ -8409,17 +8409,17 @@ class CoreApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def instance_types_list(self, organization_name, **kwargs):  # noqa: E501
+    def instance_types_list(self, project_name, **kwargs):  # noqa: E501
         """List instance types  # noqa: E501
 
-         ### Description  Get list of available deployment instance types for an organization  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_enabled`: Boolean indicating if the GPU resource is enabled for this instance type   - `gpu_type`: Type of the GPU enabled for this instance type    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_enabled\": false,     \"gpu_type\": null   } ] ```   # noqa: E501
+         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_type`: Type of the GPU enabled for this instance type    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_type\": null   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.instance_types_list(organization_name, async_req=True)
+        >>> thread = api.instance_types_list(project_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str organization_name: (required)
+        :param str project_name: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -8432,19 +8432,19 @@ class CoreApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.instance_types_list_with_http_info(organization_name, **kwargs)  # noqa: E501
+        return self.instance_types_list_with_http_info(project_name, **kwargs)  # noqa: E501
 
-    def instance_types_list_with_http_info(self, organization_name, **kwargs):  # noqa: E501
+    def instance_types_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
         """List instance types  # noqa: E501
 
-         ### Description  Get list of available deployment instance types for an organization  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_enabled`: Boolean indicating if the GPU resource is enabled for this instance type   - `gpu_type`: Type of the GPU enabled for this instance type    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_enabled\": false,     \"gpu_type\": null   } ] ```   # noqa: E501
+         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_type`: Type of the GPU enabled for this instance type    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_type\": null   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.instance_types_list_with_http_info(organization_name, async_req=True)
+        >>> thread = api.instance_types_list_with_http_info(project_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str organization_name: (required)
+        :param str project_name: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -8461,7 +8461,7 @@ class CoreApi(object):
 
         local_var_params = locals()
 
-        all_params = ['organization_name']  # noqa: E501
+        all_params = ['project_name']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -8475,20 +8475,20 @@ class CoreApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `organization_name` when calling `instance_types_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `organization_name` must be a string when calling `instance_types_list`")  # noqa: E501
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `instance_types_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `instance_types_list`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'organization_name' in local_var_params:
-            path_params['organization_name'] = local_var_params['organization_name']  # noqa: E501
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
 
         query_params = []
 
@@ -8506,7 +8506,7 @@ class CoreApi(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/instance-types', 'GET',
+            '/projects/{project_name}/instance-types', 'GET',
             path_params,
             query_params,
             header_params,
@@ -11802,736 +11802,6 @@ class CoreApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def pipeline_version_object_attachments_create(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
-        """Create object attachments  # noqa: E501
-
-         ### Description  Create an attachment between objects in a pipeline version. An attachment can only be made between objects that have already been added to the pipeline version.  The objects where the attachment starts is called the source objects. The object that is linked is called the destination object. When attaching source objects to a destination object, one must also define which source object output fields map to which destination object input fields. All the input fields in the destination object must be provided in the mapping. In contrast, not all output fields of all source objects need to be used in the mapping. It is also possible that one source output field links to multiple destination input fields.  The *pipeline_start* object can only be a source object. The *pipeline_end* object can only be a destination object.  In case of plain type of objects, the mapping `source_field_name` and `destination_field_name` must be omitted or given as null.  ### Required Parameters  - `destination_name`: Name of the destination object in the pipeline version - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name). Each item in the sources list must contain source_field_name and destination_field_name keys. The source and destination fields should match in data type, e.g. integer source fields can only be mapped to integer type destination fields.  #### Request Examples  An attachment between two structured deployments ``` {   \"destination_name\": \"deployment-2-v1\",   \"sources\": [     {       \"source_name\": \"deployment-1-v1\",       \"mapping\": [         {           \"source_field_name\": \"deployment-output-field-1\",           \"destination_field_name\": \"deployment-2-input-field-1\"         },         {           \"source_field_name\": \"deployment-output-field-2\",           \"destination_field_name\": \"deployment-2-input-field-2\"         },         {           \"source_field_name\": \"deployment-output-field-3\",           \"destination_field_name\": \"deployment-2-input-field-3\"         }       ]     },   ] } ``` An attachment between two plain input/output type deployments ``` {   \"destination_name\": \"plain-deployment-v4\",   \"sources\": [     {       \"source_name\": \"plain-deployment-v3\",       \"mapping\": []     }   ] } ```  An attachment between a pipeline_start object and deployment ``` {   \"destination_name\": \"deployment-2-v2\",   \"sources\": [     {       \"source_name\": \"pipeline_start\",       \"mapping\": [         {           \"source_field_name\": \"pipeline-input-field-1\",           \"destination_field_name\": \"deployment-input-field-1\"         },         {           \"source_field_name\": \"pipeline-input-field-2\",           \"destination_field_name\": \"deployment-input-field-2\"         }       ]     }   ] } ```  An attachment between a deployment and a pipeline_end object ``` {   \"destination_name\": \"pipeline_end\",   \"sources\": [     {       \"source_name\": \"deployment-3-v1\",       \"mapping\": [         {           \"source_field_name\": \"deployment-3-output-field-1\",           \"destination_field_name\": \"pipeline-output-field-1\"         },         {           \"source_field_name\": \"deployment-3-output-field-2\",           \"destination_field_name\": \"pipeline-output-field-2\"         }       ]     }   ] } ```  ### Response Structure  Details of the created attachment - `destination_name`: Name of the destination pipeline object - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)  #### Response Examples  ``` {   \"destination_name\": \"deployment-2-v2\",   \"sources\": [     {       \"source_name\": \"pipeline_start\",       \"mapping\": [         {           \"source_field_name\": \"pipeline-input-field-1\",           \"destination_field_name\": \"deployment-input-field-1\"         },         {           \"source_field_name\": \"pipeline-input-field-2\",           \"destination_field_name\": \"deployment-input-field-2\"         }       ]     }   ] } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_create(project_name, pipeline_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param AttachmentsCreate data: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: AttachmentsList
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_object_attachments_create_with_http_info(project_name, pipeline_name, version, data, **kwargs)  # noqa: E501
-
-    def pipeline_version_object_attachments_create_with_http_info(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
-        """Create object attachments  # noqa: E501
-
-         ### Description  Create an attachment between objects in a pipeline version. An attachment can only be made between objects that have already been added to the pipeline version.  The objects where the attachment starts is called the source objects. The object that is linked is called the destination object. When attaching source objects to a destination object, one must also define which source object output fields map to which destination object input fields. All the input fields in the destination object must be provided in the mapping. In contrast, not all output fields of all source objects need to be used in the mapping. It is also possible that one source output field links to multiple destination input fields.  The *pipeline_start* object can only be a source object. The *pipeline_end* object can only be a destination object.  In case of plain type of objects, the mapping `source_field_name` and `destination_field_name` must be omitted or given as null.  ### Required Parameters  - `destination_name`: Name of the destination object in the pipeline version - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name). Each item in the sources list must contain source_field_name and destination_field_name keys. The source and destination fields should match in data type, e.g. integer source fields can only be mapped to integer type destination fields.  #### Request Examples  An attachment between two structured deployments ``` {   \"destination_name\": \"deployment-2-v1\",   \"sources\": [     {       \"source_name\": \"deployment-1-v1\",       \"mapping\": [         {           \"source_field_name\": \"deployment-output-field-1\",           \"destination_field_name\": \"deployment-2-input-field-1\"         },         {           \"source_field_name\": \"deployment-output-field-2\",           \"destination_field_name\": \"deployment-2-input-field-2\"         },         {           \"source_field_name\": \"deployment-output-field-3\",           \"destination_field_name\": \"deployment-2-input-field-3\"         }       ]     },   ] } ``` An attachment between two plain input/output type deployments ``` {   \"destination_name\": \"plain-deployment-v4\",   \"sources\": [     {       \"source_name\": \"plain-deployment-v3\",       \"mapping\": []     }   ] } ```  An attachment between a pipeline_start object and deployment ``` {   \"destination_name\": \"deployment-2-v2\",   \"sources\": [     {       \"source_name\": \"pipeline_start\",       \"mapping\": [         {           \"source_field_name\": \"pipeline-input-field-1\",           \"destination_field_name\": \"deployment-input-field-1\"         },         {           \"source_field_name\": \"pipeline-input-field-2\",           \"destination_field_name\": \"deployment-input-field-2\"         }       ]     }   ] } ```  An attachment between a deployment and a pipeline_end object ``` {   \"destination_name\": \"pipeline_end\",   \"sources\": [     {       \"source_name\": \"deployment-3-v1\",       \"mapping\": [         {           \"source_field_name\": \"deployment-3-output-field-1\",           \"destination_field_name\": \"pipeline-output-field-1\"         },         {           \"source_field_name\": \"deployment-3-output-field-2\",           \"destination_field_name\": \"pipeline-output-field-2\"         }       ]     }   ] } ```  ### Response Structure  Details of the created attachment - `destination_name`: Name of the destination pipeline object - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)  #### Response Examples  ``` {   \"destination_name\": \"deployment-2-v2\",   \"sources\": [     {       \"source_name\": \"pipeline_start\",       \"mapping\": [         {           \"source_field_name\": \"pipeline-input-field-1\",           \"destination_field_name\": \"deployment-input-field-1\"         },         {           \"source_field_name\": \"pipeline-input-field-2\",           \"destination_field_name\": \"deployment-input-field-2\"         }       ]     }   ] } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_create_with_http_info(project_name, pipeline_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param AttachmentsCreate data: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(AttachmentsList, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'pipeline_name', 'version', 'data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_object_attachments_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_attachments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
-            if isinstance(local_var_params['data'], dict):  # noqa: E501
-                from ubiops.models.attachments_create import AttachmentsCreate
-
-                local_var_params['data'] = AttachmentsCreate(**local_var_params['data'])  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='AttachmentsList',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_object_attachments_delete(self, project_name, attachment_id, pipeline_name, version, **kwargs):  # noqa: E501
-        """Delete object attachment  # noqa: E501
-
-         ### Description  Delete an attachment in a pipeline version. The referenced and original objects of the attachment still exist in the pipeline version, only the link between them is deleted.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_delete(project_name, attachment_id, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str attachment_id: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_object_attachments_delete_with_http_info(project_name, attachment_id, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_object_attachments_delete_with_http_info(self, project_name, attachment_id, pipeline_name, version, **kwargs):  # noqa: E501
-        """Delete object attachment  # noqa: E501
-
-         ### Description  Delete an attachment in a pipeline version. The referenced and original objects of the attachment still exist in the pipeline version, only the link between them is deleted.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_delete_with_http_info(project_name, attachment_id, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str attachment_id: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'attachment_id', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_object_attachments_delete" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        # verify the required parameter 'attachment_id' is set
-        if self.api_client.client_side_validation and ('attachment_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['attachment_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `attachment_id` when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'attachment_id' in local_var_params
-            and local_var_params['attachment_id'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['attachment_id'], str):  # noqa: E501
-                raise ApiValueError("Parameter `attachment_id` must be a string when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_attachments_delete`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'attachment_id' in local_var_params:
-            path_params['attachment_id'] = local_var_params['attachment_id']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments/{attachment_id}', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type=None,  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_object_attachments_destination_get(self, project_name, destination_name, pipeline_name, version, **kwargs):  # noqa: E501
-        """List the attachments of a destination object  # noqa: E501
-
-         ### Description  List attachments of a destination object in a pipeline version  ### Response Structure  A list of details of the attachments of the given destination object in the pipeline version - `destination_name`: Name of the destination object - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)  #### Response Examples  ``` [   {     \"destination_name\": \"deployment-3-v1\",     \"sources\": [       {         \"source_name\": \"deployment-2-v1\",         \"mapping\": [           {             \"source_field_name\": \"deployment-2-output-field-1\",             \"destination_field_name\": \"deployment-3-input-field-1\"           },           {             \"source_field_name\": \"deployment-2-output-field-2\",             \"destination_field_name\": \"deployment-3-input-field-2\"           }         ]       }     ]   },   {     \"destination_name\": \"deployment-3-v1\",     \"sources\": [       {         \"source_name\": \"deployment-2-v2\",         \"mapping\": [           {             \"source_field_name\": \"deployment-2-output-field-1\",             \"destination_field_name\": \"deployment-3-input-field-1\"           },           {             \"source_field_name\": \"deployment-2-output-field-2\",             \"destination_field_name\": \"deployment-3-input-field-2\"           }         ]       }     ]   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_destination_get(project_name, destination_name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str destination_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: list[AttachmentsList]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_object_attachments_destination_get_with_http_info(project_name, destination_name, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_object_attachments_destination_get_with_http_info(self, project_name, destination_name, pipeline_name, version, **kwargs):  # noqa: E501
-        """List the attachments of a destination object  # noqa: E501
-
-         ### Description  List attachments of a destination object in a pipeline version  ### Response Structure  A list of details of the attachments of the given destination object in the pipeline version - `destination_name`: Name of the destination object - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)  #### Response Examples  ``` [   {     \"destination_name\": \"deployment-3-v1\",     \"sources\": [       {         \"source_name\": \"deployment-2-v1\",         \"mapping\": [           {             \"source_field_name\": \"deployment-2-output-field-1\",             \"destination_field_name\": \"deployment-3-input-field-1\"           },           {             \"source_field_name\": \"deployment-2-output-field-2\",             \"destination_field_name\": \"deployment-3-input-field-2\"           }         ]       }     ]   },   {     \"destination_name\": \"deployment-3-v1\",     \"sources\": [       {         \"source_name\": \"deployment-2-v2\",         \"mapping\": [           {             \"source_field_name\": \"deployment-2-output-field-1\",             \"destination_field_name\": \"deployment-3-input-field-1\"           },           {             \"source_field_name\": \"deployment-2-output-field-2\",             \"destination_field_name\": \"deployment-3-input-field-2\"           }         ]       }     ]   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_destination_get_with_http_info(project_name, destination_name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str destination_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(list[AttachmentsList], status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'destination_name', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_object_attachments_destination_get" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        # verify the required parameter 'destination_name' is set
-        if self.api_client.client_side_validation and ('destination_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['destination_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `destination_name` when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'destination_name' in local_var_params
-            and local_var_params['destination_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['destination_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `destination_name` must be a string when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_attachments_destination_get`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'destination_name' in local_var_params:
-            path_params['destination_name'] = local_var_params['destination_name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{destination_name}/attachments', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[AttachmentsList]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_object_attachments_get(self, project_name, attachment_id, pipeline_name, version, **kwargs):  # noqa: E501
-        """Get object attachment  # noqa: E501
-
-         ### Description  Get the details of a single attachment in a pipeline  ### Response Structure  Details of the attachment - `destination_name`: Name of the destination pipeline object - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)  #### Response Examples  ``` {   \"destination_name\": \"deployment-3-v1\",   \"sources\": [     {       \"source_name\": \"deployment-2-v2\",       \"mapping\": [         {           \"source_field_name\": \"deployment-2-output-field-1\",           \"destination_field_name\": \"deployment-3-input-field-1\"         },         {           \"source_field_name\": \"deployment-2-output-field-2\",           \"destination_field_name\": \"deployment-3-input-field-2\"         }       ]     }   ] } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_get(project_name, attachment_id, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str attachment_id: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: AttachmentsList
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_object_attachments_get_with_http_info(project_name, attachment_id, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_object_attachments_get_with_http_info(self, project_name, attachment_id, pipeline_name, version, **kwargs):  # noqa: E501
-        """Get object attachment  # noqa: E501
-
-         ### Description  Get the details of a single attachment in a pipeline  ### Response Structure  Details of the attachment - `destination_name`: Name of the destination pipeline object - `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)  #### Response Examples  ``` {   \"destination_name\": \"deployment-3-v1\",   \"sources\": [     {       \"source_name\": \"deployment-2-v2\",       \"mapping\": [         {           \"source_field_name\": \"deployment-2-output-field-1\",           \"destination_field_name\": \"deployment-3-input-field-1\"         },         {           \"source_field_name\": \"deployment-2-output-field-2\",           \"destination_field_name\": \"deployment-3-input-field-2\"         }       ]     }   ] } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_get_with_http_info(project_name, attachment_id, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str attachment_id: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(AttachmentsList, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'attachment_id', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_object_attachments_get" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        # verify the required parameter 'attachment_id' is set
-        if self.api_client.client_side_validation and ('attachment_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['attachment_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `attachment_id` when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'attachment_id' in local_var_params
-            and local_var_params['attachment_id'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['attachment_id'], str):  # noqa: E501
-                raise ApiValueError("Parameter `attachment_id` must be a string when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_attachments_get`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'attachment_id' in local_var_params:
-            path_params['attachment_id'] = local_var_params['attachment_id']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments/{attachment_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='AttachmentsList',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_object_attachments_list(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
-        """List object attachments  # noqa: E501
-
-         ### Description  List all attachments in a pipeline version  ### Response Structure  A list of details of the attachments in the pipeline - `destination_name`: Name of the destination pipeline object - `sources`: A list of dictionaries containing the source object(s) and mapping of the fields. One attachment can have multiple source objects.  #### Response Examples  ``` [   {     \"destination_name\": \"deployment-2-v2\",     \"sources\": [       {         \"source_name\": \"pipeline_start\",         \"mapping\": [           {             \"source_field_name\": \"pipeline-input-field-1\",             \"destination_field_name\": \"deployment-input-field-1\"           },           {             \"source_field_name\": \"pipeline-input-field-2\",             \"destination_field_name\": \"deployment-input-field-2\"           }         ]       }     ]   },   {     \"destination_name\": \"deployment-3-v1\",     \"sources\": [       {          \"source_name\": \"deployment-2-v2\",         \"mapping\": [           {             \"source_field_name\": \"deployment-output-field-1\",             \"destination_field_name\": \"deployment-3-input-field-1\"           },           {             \"source_field_name\": \"deployment-output-field-2\",             \"destination_field_name\": \"deployment-3-input-field-2\"           },           {             \"source_field_name\": \"deployment-output-field-3\",             \"destination_field_name\": \"deployment-3-input-field-3\"           }         ]       }     ]   },   {     \"destination_name\": \"pipeline_end\",     \"sources\": [       {         \"source_name\": \"deployment-3-v1\",         \"mapping\": [           {             \"source_field_name\": \"deployment-3-output-field-1\",             \"destination_field_name\": \"pipeline-output-field-1\"           },           {             \"source_field_name\": \"deployment-3-output-field-2\",             \"destination_field_name\": \"pipeline-output-field-2\"           }         ]       }     ]   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_list(project_name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: list[AttachmentsList]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_object_attachments_list_with_http_info(project_name, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_object_attachments_list_with_http_info(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
-        """List object attachments  # noqa: E501
-
-         ### Description  List all attachments in a pipeline version  ### Response Structure  A list of details of the attachments in the pipeline - `destination_name`: Name of the destination pipeline object - `sources`: A list of dictionaries containing the source object(s) and mapping of the fields. One attachment can have multiple source objects.  #### Response Examples  ``` [   {     \"destination_name\": \"deployment-2-v2\",     \"sources\": [       {         \"source_name\": \"pipeline_start\",         \"mapping\": [           {             \"source_field_name\": \"pipeline-input-field-1\",             \"destination_field_name\": \"deployment-input-field-1\"           },           {             \"source_field_name\": \"pipeline-input-field-2\",             \"destination_field_name\": \"deployment-input-field-2\"           }         ]       }     ]   },   {     \"destination_name\": \"deployment-3-v1\",     \"sources\": [       {          \"source_name\": \"deployment-2-v2\",         \"mapping\": [           {             \"source_field_name\": \"deployment-output-field-1\",             \"destination_field_name\": \"deployment-3-input-field-1\"           },           {             \"source_field_name\": \"deployment-output-field-2\",             \"destination_field_name\": \"deployment-3-input-field-2\"           },           {             \"source_field_name\": \"deployment-output-field-3\",             \"destination_field_name\": \"deployment-3-input-field-3\"           }         ]       }     ]   },   {     \"destination_name\": \"pipeline_end\",     \"sources\": [       {         \"source_name\": \"deployment-3-v1\",         \"mapping\": [           {             \"source_field_name\": \"deployment-3-output-field-1\",             \"destination_field_name\": \"pipeline-output-field-1\"           },           {             \"source_field_name\": \"deployment-3-output-field-2\",             \"destination_field_name\": \"pipeline-output-field-2\"           }         ]       }     ]   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_object_attachments_list_with_http_info(project_name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(list[AttachmentsList], status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_object_attachments_list" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_attachments_list`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_attachments_list`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_attachments_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_attachments_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_attachments_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_attachments_list`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[AttachmentsList]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
     def pipeline_version_object_environment_variables_list(self, project_name, name, pipeline_name, version, **kwargs):  # noqa: E501
         """List pipeline object environment variables  # noqa: E501
 
@@ -12673,753 +11943,6 @@ class CoreApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='list[InheritedEnvironmentVariableList]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_objects_create(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
-        """Create pipeline object  # noqa: E501
-
-         ### Description  Create a pipeline object for a pipeline version. The pipeline object that is added is a reference to the real object. In this way, multiple references to the same object may be added to a pipeline version. The reference_name refers to the deployment name and the version is the version of the deployment which will be added to the pipeline version as an object.  ### Required Parameters  - `name`: Name of the pipeline object. It is unique within a pipeline version. - `reference_name`: Name of the object it will reference - `version`: Version name of reference object. Do not provide this field to refer to the default version of the reference.  #### Request Examples  ``` {   \"name\": \"deployment-1-v1\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-1\" } ```  ### Response Structure  Details of the created pipeline object - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it will reference - `version`: Version name of reference object  #### Response Examples  ``` {   \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",   \"name\": \"deployment-1-v1\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-1\" } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_create(project_name, pipeline_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param PipelineVersionObjectCreate data: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: PipelineVersionObjectList
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_objects_create_with_http_info(project_name, pipeline_name, version, data, **kwargs)  # noqa: E501
-
-    def pipeline_version_objects_create_with_http_info(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
-        """Create pipeline object  # noqa: E501
-
-         ### Description  Create a pipeline object for a pipeline version. The pipeline object that is added is a reference to the real object. In this way, multiple references to the same object may be added to a pipeline version. The reference_name refers to the deployment name and the version is the version of the deployment which will be added to the pipeline version as an object.  ### Required Parameters  - `name`: Name of the pipeline object. It is unique within a pipeline version. - `reference_name`: Name of the object it will reference - `version`: Version name of reference object. Do not provide this field to refer to the default version of the reference.  #### Request Examples  ``` {   \"name\": \"deployment-1-v1\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-1\" } ```  ### Response Structure  Details of the created pipeline object - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it will reference - `version`: Version name of reference object  #### Response Examples  ``` {   \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",   \"name\": \"deployment-1-v1\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-1\" } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_create_with_http_info(project_name, pipeline_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param PipelineVersionObjectCreate data: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(PipelineVersionObjectList, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'pipeline_name', 'version', 'data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_objects_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_objects_create`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_objects_create`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_objects_create`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `pipeline_version_objects_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_objects_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_objects_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_objects_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
-            if isinstance(local_var_params['data'], dict):  # noqa: E501
-                from ubiops.models.pipeline_version_object_create import PipelineVersionObjectCreate
-
-                local_var_params['data'] = PipelineVersionObjectCreate(**local_var_params['data'])  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='PipelineVersionObjectList',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_objects_delete(self, project_name, name, pipeline_name, version, **kwargs):  # noqa: E501
-        """Delete pipeline object  # noqa: E501
-
-         ### Description  Delete a pipeline object. Only the reference in the pipeline version is deleted. The original object (deployment and version) still exists. If the object is attached to another object, the attachment is also deleted.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_delete(project_name, name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_objects_delete_with_http_info(project_name, name, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_objects_delete_with_http_info(self, project_name, name, pipeline_name, version, **kwargs):  # noqa: E501
-        """Delete pipeline object  # noqa: E501
-
-         ### Description  Delete a pipeline object. Only the reference in the pipeline version is deleted. The original object (deployment and version) still exists. If the object is attached to another object, the attachment is also deleted.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_delete_with_http_info(project_name, name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'name', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_objects_delete" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_objects_delete`")  # noqa: E501
-        # verify the required parameter 'name' is set
-        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `name` when calling `pipeline_version_objects_delete`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_objects_delete`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_objects_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_objects_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'name' in local_var_params
-            and local_var_params['name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `name` must be a string when calling `pipeline_version_objects_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_objects_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_objects_delete`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'name' in local_var_params:
-            path_params['name'] = local_var_params['name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type=None,  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_objects_get(self, project_name, name, pipeline_name, version, **kwargs):  # noqa: E501
-        """Get pipeline object  # noqa: E501
-
-         ### Description  Retrieve the details of a single pipeline object  ### Response Structure  Details of the pipeline object - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it references - `version`: Version name of reference object  #### Response Examples  A dictionary containing details of the pipeline object ``` {   \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",   \"name\": \"deployment-1-v1\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-1\" } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_get(project_name, name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: PipelineVersionObjectList
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_objects_get_with_http_info(project_name, name, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_objects_get_with_http_info(self, project_name, name, pipeline_name, version, **kwargs):  # noqa: E501
-        """Get pipeline object  # noqa: E501
-
-         ### Description  Retrieve the details of a single pipeline object  ### Response Structure  Details of the pipeline object - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it references - `version`: Version name of reference object  #### Response Examples  A dictionary containing details of the pipeline object ``` {   \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",   \"name\": \"deployment-1-v1\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-1\" } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_get_with_http_info(project_name, name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(PipelineVersionObjectList, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'name', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_objects_get" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_objects_get`")  # noqa: E501
-        # verify the required parameter 'name' is set
-        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `name` when calling `pipeline_version_objects_get`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_objects_get`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_objects_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_objects_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'name' in local_var_params
-            and local_var_params['name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `name` must be a string when calling `pipeline_version_objects_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_objects_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_objects_get`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'name' in local_var_params:
-            path_params['name'] = local_var_params['name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='PipelineVersionObjectList',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_objects_list(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
-        """List pipeline objects  # noqa: E501
-
-         ### Description  List all pipeline objects in a pipeline version  ### Response Structure  A list of details of the pipeline objects in the pipeline version - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it references - `version`: Version name of reference object  #### Response Examples  A list of pipeline objects ``` [   {     \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",     \"name\": \"deployment-1-v1\",     \"reference_name\": \"deployment-1\",     \"version\": \"version-1\"   },   {     \"id\": \"1a4b0e28-3de1-442a-b1eb-947f22a69381\",     \"name\": \"deployment-2-v1\",     \"reference_name\": \"deployment-2\",     \"version\": \"v1\"   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_list(project_name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: list[PipelineVersionObjectList]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_objects_list_with_http_info(project_name, pipeline_name, version, **kwargs)  # noqa: E501
-
-    def pipeline_version_objects_list_with_http_info(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
-        """List pipeline objects  # noqa: E501
-
-         ### Description  List all pipeline objects in a pipeline version  ### Response Structure  A list of details of the pipeline objects in the pipeline version - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it references - `version`: Version name of reference object  #### Response Examples  A list of pipeline objects ``` [   {     \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",     \"name\": \"deployment-1-v1\",     \"reference_name\": \"deployment-1\",     \"version\": \"version-1\"   },   {     \"id\": \"1a4b0e28-3de1-442a-b1eb-947f22a69381\",     \"name\": \"deployment-2-v1\",     \"reference_name\": \"deployment-2\",     \"version\": \"v1\"   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_list_with_http_info(project_name, pipeline_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(list[PipelineVersionObjectList], status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'pipeline_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_objects_list" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_objects_list`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_objects_list`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_objects_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_objects_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_objects_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_objects_list`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[PipelineVersionObjectList]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pipeline_version_objects_update(self, project_name, name, pipeline_name, version, data, **kwargs):  # noqa: E501
-        """Update pipeline object  # noqa: E501
-
-         ### Description  Update a pipeline object. It is not possible to update the reference_name. All necessary fields are validated again.  ### Optional Parameters  - `name`: New name for the pipeline object - `version`: New version for the pipeline object. Since the input/output fields of different versions are the same, the version of a deployment pipeline object can be changed with another version of the same deployment. To use the default version of the reference deployment, provide NULL for this field.  #### Request Examples  ``` {   \"name\": \"new-pipeline-object-name\" } ```  ``` {   \"name\": \"deployment-1-v2\"   \"version\": \"version-2\" } ```  ### Response Structure  Details of the updated pipeline object - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it references - `version`: Version name of reference object  #### Response Examples  ``` {   \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",   \"name\": \"deployment-1-v2\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-2\" } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_update(project_name, name, pipeline_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param PipelineVersionObjectUpdate data: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: PipelineVersionObjectList
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.pipeline_version_objects_update_with_http_info(project_name, name, pipeline_name, version, data, **kwargs)  # noqa: E501
-
-    def pipeline_version_objects_update_with_http_info(self, project_name, name, pipeline_name, version, data, **kwargs):  # noqa: E501
-        """Update pipeline object  # noqa: E501
-
-         ### Description  Update a pipeline object. It is not possible to update the reference_name. All necessary fields are validated again.  ### Optional Parameters  - `name`: New name for the pipeline object - `version`: New version for the pipeline object. Since the input/output fields of different versions are the same, the version of a deployment pipeline object can be changed with another version of the same deployment. To use the default version of the reference deployment, provide NULL for this field.  #### Request Examples  ``` {   \"name\": \"new-pipeline-object-name\" } ```  ``` {   \"name\": \"deployment-1-v2\"   \"version\": \"version-2\" } ```  ### Response Structure  Details of the updated pipeline object - `id`: Unique identifier for the pipeline object (UUID) - `name`: Name of the pipeline object - `reference_name`: Name of the object it references - `version`: Version name of reference object  #### Response Examples  ``` {   \"id\": \"c91724b6-d73c-4933-b2aa-aefd9e34ce3e\",   \"name\": \"deployment-1-v2\",   \"reference_name\": \"deployment-1\",   \"version\": \"version-2\" } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pipeline_version_objects_update_with_http_info(project_name, name, pipeline_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str name: (required)
-        :param str pipeline_name: (required)
-        :param str version: (required)
-        :param PipelineVersionObjectUpdate data: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(PipelineVersionObjectList, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'name', 'pipeline_name', 'version', 'data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pipeline_version_objects_update" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_objects_update`")  # noqa: E501
-        # verify the required parameter 'name' is set
-        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `name` when calling `pipeline_version_objects_update`")  # noqa: E501
-        # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_objects_update`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_objects_update`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `pipeline_version_objects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_objects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'name' in local_var_params
-            and local_var_params['name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `name` must be a string when calling `pipeline_version_objects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_objects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_objects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
-            if isinstance(local_var_params['data'], dict):  # noqa: E501
-                from ubiops.models.pipeline_version_object_update import PipelineVersionObjectUpdate
-
-                local_var_params['data'] = PipelineVersionObjectUpdate(**local_var_params['data'])  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'name' in local_var_params:
-            path_params['name'] = local_var_params['name']  # noqa: E501
-        if 'pipeline_name' in local_var_params:
-            path_params['pipeline_name'] = local_var_params['pipeline_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}', 'PATCH',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='PipelineVersionObjectList',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -14399,7 +12922,7 @@ class CoreApi(object):
     def pipeline_versions_create(self, project_name, pipeline_name, data, **kwargs):  # noqa: E501
         """Create pipeline versions  # noqa: E501
 
-         ### Description  Create a version for a pipeline. The first version of a pipeline is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the pipeline  ### Optional Parameters - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\" } ```  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\",   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\" } ```  A pipeline version with objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```  ### Response Structure  Details of the created pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Create a version for a pipeline. The first version of a pipeline is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the pipeline  ### Optional Parameters - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\" } ```  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\",   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\" } ```  A pipeline version with objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  ### Response Structure  Details of the created pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_create(project_name, pipeline_name, data, async_req=True)
@@ -14426,7 +12949,7 @@ class CoreApi(object):
     def pipeline_versions_create_with_http_info(self, project_name, pipeline_name, data, **kwargs):  # noqa: E501
         """Create pipeline versions  # noqa: E501
 
-         ### Description  Create a version for a pipeline. The first version of a pipeline is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the pipeline  ### Optional Parameters - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\" } ```  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\",   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\" } ```  A pipeline version with objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```  ### Response Structure  Details of the created pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Create a version for a pipeline. The first version of a pipeline is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the pipeline  ### Optional Parameters - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\" } ```  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\",   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\" } ```  A pipeline version with objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  ### Response Structure  Details of the created pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_create_with_http_info(project_name, pipeline_name, data, async_req=True)
@@ -14673,7 +13196,7 @@ class CoreApi(object):
     def pipeline_versions_get(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
         """Get pipeline version  # noqa: E501
 
-         ### Description  Get the details of a single pipeline version  ### Response Structure  Details of the pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Get the details of a single pipeline version  ### Response Structure  Details of the pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_get(project_name, pipeline_name, version, async_req=True)
@@ -14700,7 +13223,7 @@ class CoreApi(object):
     def pipeline_versions_get_with_http_info(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
         """Get pipeline version  # noqa: E501
 
-         ### Description  Get the details of a single pipeline version  ### Response Structure  Details of the pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Get the details of a single pipeline version  ### Response Structure  Details of the pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_get_with_http_info(project_name, pipeline_name, version, async_req=True)
@@ -14941,7 +13464,7 @@ class CoreApi(object):
     def pipeline_versions_update(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
         """Update pipeline version  # noqa: E501
 
-         ### Description  Update a pipeline version. When updating labels, the labels will replace the existing value for labels.  Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*  ### Optional Parameters - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\" } ```  Updating a pipeline version with new objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```  Updating a pipeline version by removing objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"objects\": null,   \"attachments\": null } ```  ### Response Structure  Details of the created pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Update a pipeline version. When updating labels, the labels will replace the existing value for labels.  Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*  ### Optional Parameters - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\" } ```  Updating a pipeline version with new objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  Updating a pipeline version by removing objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"objects\": null,   \"attachments\": null } ```  ### Response Structure  Details of the created pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_update(project_name, pipeline_name, version, data, async_req=True)
@@ -14969,7 +13492,7 @@ class CoreApi(object):
     def pipeline_versions_update_with_http_info(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
         """Update pipeline version  # noqa: E501
 
-         ### Description  Update a pipeline version. When updating labels, the labels will replace the existing value for labels.  Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*  ### Optional Parameters - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\" } ```  Updating a pipeline version with new objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```  Updating a pipeline version by removing objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"objects\": null,   \"attachments\": null } ```  ### Response Structure  Details of the created pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"example-field\",               \"destination_field_name\": \"example-field\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Update a pipeline version. When updating labels, the labels will replace the existing value for labels.  Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*  ### Optional Parameters - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\" } ```  Updating a pipeline version with new objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  Updating a pipeline version by removing objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"objects\": null,   \"attachments\": null } ```  ### Response Structure  Details of the created pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_update_with_http_info(project_name, pipeline_name, version, data, async_req=True)
@@ -18424,7 +16947,7 @@ class CoreApi(object):
     def request_schedules_list(self, project_name, **kwargs):  # noqa: E501
         """List request schedules  # noqa: E501
 
-         ### Description  List the request schedules in a project. The user has to have 'requests.list' permission on either 'deployments.versions' or 'pipelines.versions' to list the request schedules.  ### Response Structure  A list of details of all request schedules in a project - `name`: Name of the request   - `object_type`: Type of object for which the request is made   - `object_name`: Name of deployment/pipeline for which the request is made   - `schedule`: Schedule in crontab format   - `version`: Name of version for which the request schedule is made    - `request_data`: Input data for the request schedule   - `timeout`: Timeout of the request in seconds   - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled   - `creation_date`: The date when the request schedule was created   - `description`: Description of the request schedule   - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label    #### Response Examples  ``` [   {     \"id\": \"b4a06aed-f7ab-48b3-b579-b12b62db8058\",     \"name\": \"test-request\",     \"object_type\": \"deployment\",     \"object_name\": \"test-deployment\",     \"version\": \"v1\",     \"schedule\": \"0 * 3 * *\",     \"request_data\": {       \"input_field_1\": 2345,       \"input_field_2\": 8765     },     \"timeout\": 200\",     \"enabled\": true,     \"creation_date\": \"2020-09-16T08:06:34.457679Z\",     \"description\": \"Daily request schedule\",     \"labels\": {       \"type\": \"daily\"     }   } ] ```   # noqa: E501
+         ### Description  List the request schedules in a project. The user has to have 'requests.list' permission on either 'deployments.versions' or 'pipelines.versions' to list the request schedules.  ### Optional Parameters - `labels`: Filter on labels of the request schedules. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of all request schedules in a project - `name`: Name of the request   - `object_type`: Type of object for which the request is made   - `object_name`: Name of deployment/pipeline for which the request is made   - `schedule`: Schedule in crontab format   - `version`: Name of version for which the request schedule is made    - `request_data`: Input data for the request schedule   - `timeout`: Timeout of the request in seconds   - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled   - `creation_date`: The date when the request schedule was created   - `description`: Description of the request schedule   - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label    #### Response Examples  ``` [   {     \"id\": \"b4a06aed-f7ab-48b3-b579-b12b62db8058\",     \"name\": \"test-request\",     \"object_type\": \"deployment\",     \"object_name\": \"test-deployment\",     \"version\": \"v1\",     \"schedule\": \"0 * 3 * *\",     \"request_data\": {       \"input_field_1\": 2345,       \"input_field_2\": 8765     },     \"timeout\": 200\",     \"enabled\": true,     \"creation_date\": \"2020-09-16T08:06:34.457679Z\",     \"description\": \"Daily request schedule\",     \"labels\": {       \"type\": \"daily\"     }   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.request_schedules_list(project_name, async_req=True)
@@ -18432,6 +16955,7 @@ class CoreApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str project_name: (required)
+        :param str labels:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -18449,7 +16973,7 @@ class CoreApi(object):
     def request_schedules_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
         """List request schedules  # noqa: E501
 
-         ### Description  List the request schedules in a project. The user has to have 'requests.list' permission on either 'deployments.versions' or 'pipelines.versions' to list the request schedules.  ### Response Structure  A list of details of all request schedules in a project - `name`: Name of the request   - `object_type`: Type of object for which the request is made   - `object_name`: Name of deployment/pipeline for which the request is made   - `schedule`: Schedule in crontab format   - `version`: Name of version for which the request schedule is made    - `request_data`: Input data for the request schedule   - `timeout`: Timeout of the request in seconds   - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled   - `creation_date`: The date when the request schedule was created   - `description`: Description of the request schedule   - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label    #### Response Examples  ``` [   {     \"id\": \"b4a06aed-f7ab-48b3-b579-b12b62db8058\",     \"name\": \"test-request\",     \"object_type\": \"deployment\",     \"object_name\": \"test-deployment\",     \"version\": \"v1\",     \"schedule\": \"0 * 3 * *\",     \"request_data\": {       \"input_field_1\": 2345,       \"input_field_2\": 8765     },     \"timeout\": 200\",     \"enabled\": true,     \"creation_date\": \"2020-09-16T08:06:34.457679Z\",     \"description\": \"Daily request schedule\",     \"labels\": {       \"type\": \"daily\"     }   } ] ```   # noqa: E501
+         ### Description  List the request schedules in a project. The user has to have 'requests.list' permission on either 'deployments.versions' or 'pipelines.versions' to list the request schedules.  ### Optional Parameters - `labels`: Filter on labels of the request schedules. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of all request schedules in a project - `name`: Name of the request   - `object_type`: Type of object for which the request is made   - `object_name`: Name of deployment/pipeline for which the request is made   - `schedule`: Schedule in crontab format   - `version`: Name of version for which the request schedule is made    - `request_data`: Input data for the request schedule   - `timeout`: Timeout of the request in seconds   - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled   - `creation_date`: The date when the request schedule was created   - `description`: Description of the request schedule   - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label    #### Response Examples  ``` [   {     \"id\": \"b4a06aed-f7ab-48b3-b579-b12b62db8058\",     \"name\": \"test-request\",     \"object_type\": \"deployment\",     \"object_name\": \"test-deployment\",     \"version\": \"v1\",     \"schedule\": \"0 * 3 * *\",     \"request_data\": {       \"input_field_1\": 2345,       \"input_field_2\": 8765     },     \"timeout\": 200\",     \"enabled\": true,     \"creation_date\": \"2020-09-16T08:06:34.457679Z\",     \"description\": \"Daily request schedule\",     \"labels\": {       \"type\": \"daily\"     }   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.request_schedules_list_with_http_info(project_name, async_req=True)
@@ -18457,6 +16981,7 @@ class CoreApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str project_name: (required)
+        :param str labels:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -18473,7 +16998,7 @@ class CoreApi(object):
 
         local_var_params = locals()
 
-        all_params = ['project_name']  # noqa: E501
+        all_params = ['project_name', 'labels']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -18495,6 +17020,10 @@ class CoreApi(object):
             and local_var_params['project_name'] is not None):  # noqa: E501
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `request_schedules_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'labels' in local_var_params
+            and local_var_params['labels'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['labels'], str):  # noqa: E501
+                raise ApiValueError("Parameter `labels` must be a string when calling `request_schedules_list`")  # noqa: E501
 
         collection_formats = {}
 
@@ -18503,6 +17032,8 @@ class CoreApi(object):
             path_params['project_name'] = local_var_params['project_name']  # noqa: E501
 
         query_params = []
+        if 'labels' in local_var_params and local_var_params['labels'] is not None:  # noqa: E501
+            query_params.append(('labels', local_var_params['labels']))  # noqa: E501
 
         header_params = {}
 

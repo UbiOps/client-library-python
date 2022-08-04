@@ -39,8 +39,8 @@ class DeploymentCreateResponse(object):
         'description': 'str',
         'input_type': 'str',
         'output_type': 'str',
-        'input_fields': 'list[DeploymentInputFieldDetail]',
-        'output_fields': 'list[DeploymentOutputFieldDetail]',
+        'input_fields': 'list[InputOutputFieldDetail]',
+        'output_fields': 'list[InputOutputFieldDetail]',
         'labels': 'dict(str, str)',
         'creation_date': 'datetime',
         'last_updated': 'datetime'
@@ -278,7 +278,7 @@ class DeploymentCreateResponse(object):
 
 
         :return: The input_fields of this DeploymentCreateResponse.  # noqa: E501
-        :rtype: list[DeploymentInputFieldDetail]
+        :rtype: list[InputOutputFieldDetail]
         """
         return self._input_fields
 
@@ -288,16 +288,16 @@ class DeploymentCreateResponse(object):
 
 
         :param input_fields: The input_fields of this DeploymentCreateResponse.  # noqa: E501
-        :type: list[DeploymentInputFieldDetail]
+        :type: list[InputOutputFieldDetail]
         """
         if (self.local_vars_configuration.client_side_validation and
                 input_fields is not None and not isinstance(input_fields, list)):
             raise ValueError("Parameter `input_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_fields is not None:
-            from ubiops.models.deployment_input_field_detail import DeploymentInputFieldDetail
+            from ubiops.models.input_output_field_detail import InputOutputFieldDetail
 
             input_fields = [
-                DeploymentInputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
+                InputOutputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in input_fields
             ]
 
@@ -309,7 +309,7 @@ class DeploymentCreateResponse(object):
 
 
         :return: The output_fields of this DeploymentCreateResponse.  # noqa: E501
-        :rtype: list[DeploymentOutputFieldDetail]
+        :rtype: list[InputOutputFieldDetail]
         """
         return self._output_fields
 
@@ -319,16 +319,16 @@ class DeploymentCreateResponse(object):
 
 
         :param output_fields: The output_fields of this DeploymentCreateResponse.  # noqa: E501
-        :type: list[DeploymentOutputFieldDetail]
+        :type: list[InputOutputFieldDetail]
         """
         if (self.local_vars_configuration.client_side_validation and
                 output_fields is not None and not isinstance(output_fields, list)):
             raise ValueError("Parameter `output_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_fields is not None:
-            from ubiops.models.deployment_output_field_detail import DeploymentOutputFieldDetail
+            from ubiops.models.input_output_field_detail import InputOutputFieldDetail
 
             output_fields = [
-                DeploymentOutputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
+                InputOutputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in output_fields
             ]
 

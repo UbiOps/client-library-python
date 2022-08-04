@@ -1,4 +1,4 @@
-# PipelineWidgetList
+# InputOutputWidgetList
 
 ## Properties
 Name | Type | Notes

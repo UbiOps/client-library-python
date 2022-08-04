@@ -1,4 +1,4 @@
-# PipelineInputFieldWidgetCreate
+# InputFieldWidgetCreate
 
 ## Properties
 Name | Type | Notes

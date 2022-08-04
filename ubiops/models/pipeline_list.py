@@ -38,9 +38,9 @@ class PipelineList(object):
         'project': 'str',
         'description': 'str',
         'input_type': 'str',
-        'input_fields': 'list[PipelineInputFieldList]',
+        'input_fields': 'list[InputOutputFieldList]',
         'output_type': 'str',
-        'output_fields': 'list[PipelineOutputFieldList]',
+        'output_fields': 'list[InputOutputFieldList]',
         'labels': 'dict(str, str)',
         'creation_date': 'datetime',
         'last_updated': 'datetime'
@@ -246,7 +246,7 @@ class PipelineList(object):
 
 
         :return: The input_fields of this PipelineList.  # noqa: E501
-        :rtype: list[PipelineInputFieldList]
+        :rtype: list[InputOutputFieldList]
         """
         return self._input_fields
 
@@ -256,7 +256,7 @@ class PipelineList(object):
 
 
         :param input_fields: The input_fields of this PipelineList.  # noqa: E501
-        :type: list[PipelineInputFieldList]
+        :type: list[InputOutputFieldList]
         """
         if self.local_vars_configuration.client_side_validation and input_fields is None:  # noqa: E501
             raise ValueError("Invalid value for `input_fields`, must not be `None`")  # noqa: E501
@@ -264,10 +264,10 @@ class PipelineList(object):
                 input_fields is not None and not isinstance(input_fields, list)):
             raise ValueError("Parameter `input_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_fields is not None:
-            from ubiops.models.pipeline_input_field_list import PipelineInputFieldList
+            from ubiops.models.input_output_field_list import InputOutputFieldList
 
             input_fields = [
-                PipelineInputFieldList(**item) if isinstance(item, dict) else item  # noqa: E501
+                InputOutputFieldList(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in input_fields
             ]
 
@@ -309,7 +309,7 @@ class PipelineList(object):
 
 
         :return: The output_fields of this PipelineList.  # noqa: E501
-        :rtype: list[PipelineOutputFieldList]
+        :rtype: list[InputOutputFieldList]
         """
         return self._output_fields
 
@@ -319,7 +319,7 @@ class PipelineList(object):
 
 
         :param output_fields: The output_fields of this PipelineList.  # noqa: E501
-        :type: list[PipelineOutputFieldList]
+        :type: list[InputOutputFieldList]
         """
         if self.local_vars_configuration.client_side_validation and output_fields is None:  # noqa: E501
             raise ValueError("Invalid value for `output_fields`, must not be `None`")  # noqa: E501
@@ -327,10 +327,10 @@ class PipelineList(object):
                 output_fields is not None and not isinstance(output_fields, list)):
             raise ValueError("Parameter `output_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_fields is not None:
-            from ubiops.models.pipeline_output_field_list import PipelineOutputFieldList
+            from ubiops.models.input_output_field_list import InputOutputFieldList
 
             output_fields = [
-                PipelineOutputFieldList(**item) if isinstance(item, dict) else item  # noqa: E501
+                InputOutputFieldList(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in output_fields
             ]
 

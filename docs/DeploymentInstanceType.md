@@ -9,7 +9,6 @@ Name | Type | Notes
 **memory_allocation** | **int** | [optional] 
 **cpu_allocation** | **int** | [optional] 
 **gpu_allocation** | **int** | [optional] 
-**gpu_enabled** | **str** | [optional] [readonly] 
 **gpu_memory_allocation** | **int** | [optional] 
 **gpu_type** | **str** | [optional] 
 

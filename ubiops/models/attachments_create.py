@@ -34,7 +34,7 @@ class AttachmentsCreate(object):
     """
     openapi_types = {
         'destination_name': 'str',
-        'sources': 'list[AttachmentSourcesCreate]'
+        'sources': 'list[AttachmentSourcesList]'
     }
 
     attribute_map = {
@@ -91,7 +91,7 @@ class AttachmentsCreate(object):
 
 
         :return: The sources of this AttachmentsCreate.  # noqa: E501
-        :rtype: list[AttachmentSourcesCreate]
+        :rtype: list[AttachmentSourcesList]
         """
         return self._sources
 
@@ -101,7 +101,7 @@ class AttachmentsCreate(object):
 
 
         :param sources: The sources of this AttachmentsCreate.  # noqa: E501
-        :type: list[AttachmentSourcesCreate]
+        :type: list[AttachmentSourcesList]
         """
         if self.local_vars_configuration.client_side_validation and sources is None:  # noqa: E501
             raise ValueError("Invalid value for `sources`, must not be `None`")  # noqa: E501
@@ -109,10 +109,10 @@ class AttachmentsCreate(object):
                 sources is not None and not isinstance(sources, list)):
             raise ValueError("Parameter `sources` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and sources is not None:
-            from ubiops.models.attachment_sources_create import AttachmentSourcesCreate
+            from ubiops.models.attachment_sources_list import AttachmentSourcesList
 
             sources = [
-                AttachmentSourcesCreate(**item) if isinstance(item, dict) else item  # noqa: E501
+                AttachmentSourcesList(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in sources
             ]
 

@@ -1,9 +1,9 @@
-# PipelineVersionObjectUpdate
+# InputOutputFieldList
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
 **name** | **str** | [optional] 
-**version** | **str** | [optional] 
+**data_type** | **str** | [optional] 
 
 

@@ -35,7 +35,7 @@ class DeploymentInputFieldCreate(object):
     openapi_types = {
         'name': 'str',
         'data_type': 'str',
-        'widget': 'DeploymentInputFieldWidgetCreate'
+        'widget': 'InputFieldWidgetCreate'
     }
 
     attribute_map = {
@@ -131,7 +131,7 @@ class DeploymentInputFieldCreate(object):
 
 
         :return: The widget of this DeploymentInputFieldCreate.  # noqa: E501
-        :rtype: DeploymentInputFieldWidgetCreate
+        :rtype: InputFieldWidgetCreate
         """
         return self._widget
 
@@ -141,14 +141,14 @@ class DeploymentInputFieldCreate(object):
 
 
         :param widget: The widget of this DeploymentInputFieldCreate.  # noqa: E501
-        :type: DeploymentInputFieldWidgetCreate
+        :type: InputFieldWidgetCreate
         """
 
         if self.local_vars_configuration.client_side_validation and widget is not None:
             if isinstance(widget, dict):  # noqa: E501
-                from ubiops.models.deployment_input_field_widget_create import DeploymentInputFieldWidgetCreate
+                from ubiops.models.input_field_widget_create import InputFieldWidgetCreate
 
-                widget = DeploymentInputFieldWidgetCreate(**widget)  # noqa: E501
+                widget = InputFieldWidgetCreate(**widget)  # noqa: E501
 
         self._widget = widget
 

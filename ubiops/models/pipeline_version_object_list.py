@@ -36,9 +36,11 @@ class PipelineVersionObjectList(object):
         'id': 'str',
         'name': 'str',
         'reference_name': 'str',
+        'reference_type': 'str',
         'version': 'str',
         'input_type': 'str',
         'output_type': 'str',
+        'configuration': 'dict(str, str)',
         'input_fields': 'list[DeploymentInputFieldCreate]',
         'output_fields': 'list[DeploymentOutputFieldCreate]'
     }
@@ -47,14 +49,16 @@ class PipelineVersionObjectList(object):
         'id': 'id',
         'name': 'name',
         'reference_name': 'reference_name',
+        'reference_type': 'reference_type',
         'version': 'version',
         'input_type': 'input_type',
         'output_type': 'output_type',
+        'configuration': 'configuration',
         'input_fields': 'input_fields',
         'output_fields': 'output_fields'
     }
 
-    def __init__(self, id=None, name=None, reference_name=None, version=None, input_type=None, output_type=None, input_fields=None, output_fields=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, name=None, reference_name=None, reference_type=None, version=None, input_type=None, output_type=None, configuration=None, input_fields=None, output_fields=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """PipelineVersionObjectList - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -63,9 +67,11 @@ class PipelineVersionObjectList(object):
         self._id = None
         self._name = None
         self._reference_name = None
+        self._reference_type = None
         self._version = None
         self._input_type = None
         self._output_type = None
+        self._configuration = None
         self._input_fields = None
         self._output_fields = None
         self.discriminator = None
@@ -73,15 +79,16 @@ class PipelineVersionObjectList(object):
         self.id = id
         self.name = name
         self.reference_name = reference_name
+        if reference_type is not None:
+            self.reference_type = reference_type
         self.version = version
         if input_type is not None:
             self.input_type = input_type
         if output_type is not None:
             self.output_type = output_type
-        if input_fields is not None:
-            self.input_fields = input_fields
-        if output_fields is not None:
-            self.output_fields = output_fields
+        self.configuration = configuration
+        self.input_fields = input_fields
+        self.output_fields = output_fields
 
     @property
     def id(self):
@@ -170,6 +177,34 @@ class PipelineVersionObjectList(object):
         self._reference_name = reference_name
 
     @property
+    def reference_type(self):
+        """Gets the reference_type of this PipelineVersionObjectList.  # noqa: E501
+
+
+        :return: The reference_type of this PipelineVersionObjectList.  # noqa: E501
+        :rtype: str
+        """
+        return self._reference_type
+
+    @reference_type.setter
+    def reference_type(self, reference_type):
+        """Sets the reference_type of this PipelineVersionObjectList.
+
+
+        :param reference_type: The reference_type of this PipelineVersionObjectList.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                reference_type is not None and not isinstance(reference_type, str)):
+            raise ValueError("Parameter `reference_type` must be a string")  # noqa: E501
+
+        if (self.local_vars_configuration.client_side_validation and
+                reference_type is not None and len(reference_type) < 1):
+            raise ValueError("Invalid value for `reference_type`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._reference_type = reference_type
+
+    @property
     def version(self):
         """Gets the version of this PipelineVersionObjectList.  # noqa: E501
 
@@ -248,6 +283,30 @@ class PipelineVersionObjectList(object):
             raise ValueError("Invalid value for `output_type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._output_type = output_type
+
+    @property
+    def configuration(self):
+        """Gets the configuration of this PipelineVersionObjectList.  # noqa: E501
+
+
+        :return: The configuration of this PipelineVersionObjectList.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._configuration
+
+    @configuration.setter
+    def configuration(self, configuration):
+        """Sets the configuration of this PipelineVersionObjectList.
+
+
+        :param configuration: The configuration of this PipelineVersionObjectList.  # noqa: E501
+        :type: dict(str, str)
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                configuration is not None and not isinstance(configuration, dict)):
+            raise ValueError("Parameter `configuration` must be a dictionary")  # noqa: E501
+
+        self._configuration = configuration
 
     @property
     def input_fields(self):

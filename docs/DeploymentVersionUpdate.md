@@ -17,5 +17,6 @@ Name | Type | Notes
 **default_notification_group** | **str** | [optional] 
 **maximum_queue_size_express** | **int** | [optional] 
 **maximum_queue_size_batch** | **int** | [optional] 
+**static_ip** | **bool** | [optional] [default to False]
 
 

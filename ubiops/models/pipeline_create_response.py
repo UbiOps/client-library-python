@@ -38,9 +38,9 @@ class PipelineCreateResponse(object):
         'project': 'str',
         'description': 'str',
         'input_type': 'str',
-        'input_fields': 'list[PipelineInputFieldDetail]',
+        'input_fields': 'list[InputOutputFieldDetail]',
         'output_type': 'str',
-        'output_fields': 'list[PipelineOutputFieldDetail]',
+        'output_fields': 'list[InputOutputFieldDetail]',
         'labels': 'dict(str, str)',
         'creation_date': 'datetime',
         'last_updated': 'datetime'
@@ -248,7 +248,7 @@ class PipelineCreateResponse(object):
 
 
         :return: The input_fields of this PipelineCreateResponse.  # noqa: E501
-        :rtype: list[PipelineInputFieldDetail]
+        :rtype: list[InputOutputFieldDetail]
         """
         return self._input_fields
 
@@ -258,16 +258,16 @@ class PipelineCreateResponse(object):
 
 
         :param input_fields: The input_fields of this PipelineCreateResponse.  # noqa: E501
-        :type: list[PipelineInputFieldDetail]
+        :type: list[InputOutputFieldDetail]
         """
         if (self.local_vars_configuration.client_side_validation and
                 input_fields is not None and not isinstance(input_fields, list)):
             raise ValueError("Parameter `input_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_fields is not None:
-            from ubiops.models.pipeline_input_field_detail import PipelineInputFieldDetail
+            from ubiops.models.input_output_field_detail import InputOutputFieldDetail
 
             input_fields = [
-                PipelineInputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
+                InputOutputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in input_fields
             ]
 
@@ -309,7 +309,7 @@ class PipelineCreateResponse(object):
 
 
         :return: The output_fields of this PipelineCreateResponse.  # noqa: E501
-        :rtype: list[PipelineOutputFieldDetail]
+        :rtype: list[InputOutputFieldDetail]
         """
         return self._output_fields
 
@@ -319,16 +319,16 @@ class PipelineCreateResponse(object):
 
 
         :param output_fields: The output_fields of this PipelineCreateResponse.  # noqa: E501
-        :type: list[PipelineOutputFieldDetail]
+        :type: list[InputOutputFieldDetail]
         """
         if (self.local_vars_configuration.client_side_validation and
                 output_fields is not None and not isinstance(output_fields, list)):
             raise ValueError("Parameter `output_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_fields is not None:
-            from ubiops.models.pipeline_output_field_detail import PipelineOutputFieldDetail
+            from ubiops.models.input_output_field_detail import InputOutputFieldDetail
 
             output_fields = [
-                PipelineOutputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
+                InputOutputFieldDetail(**item) if isinstance(item, dict) else item  # noqa: E501
                 for item in output_fields
             ]
 

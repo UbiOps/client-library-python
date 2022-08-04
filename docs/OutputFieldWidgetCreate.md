@@ -1,4 +1,4 @@
-# PipelineOutputFieldWidgetCreate
+# OutputFieldWidgetCreate
 
 ## Properties
 Name | Type | Notes

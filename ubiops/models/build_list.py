@@ -38,7 +38,9 @@ class BuildList(object):
         'creation_date': 'datetime',
         'status': 'str',
         'error_message': 'str',
-        'trigger': 'str'
+        'trigger': 'str',
+        'has_request_method': 'bool',
+        'has_requests_method': 'bool'
     }
 
     attribute_map = {
@@ -47,10 +49,12 @@ class BuildList(object):
         'creation_date': 'creation_date',
         'status': 'status',
         'error_message': 'error_message',
-        'trigger': 'trigger'
+        'trigger': 'trigger',
+        'has_request_method': 'has_request_method',
+        'has_requests_method': 'has_requests_method'
     }
 
-    def __init__(self, id=None, revision=None, creation_date=None, status=None, error_message=None, trigger=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, revision=None, creation_date=None, status=None, error_message=None, trigger=None, has_request_method=None, has_requests_method=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """BuildList - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +66,8 @@ class BuildList(object):
         self._status = None
         self._error_message = None
         self._trigger = None
+        self._has_request_method = None
+        self._has_requests_method = None
         self.discriminator = None
 
         if id is not None:
@@ -74,6 +80,8 @@ class BuildList(object):
         self.error_message = error_message
         if trigger is not None:
             self.trigger = trigger
+        self.has_request_method = has_request_method
+        self.has_requests_method = has_requests_method
 
     @property
     def id(self):
@@ -225,6 +233,54 @@ class BuildList(object):
             raise ValueError("Invalid value for `trigger`, length must be less than or equal to `200`")  # noqa: E501
 
         self._trigger = trigger
+
+    @property
+    def has_request_method(self):
+        """Gets the has_request_method of this BuildList.  # noqa: E501
+
+
+        :return: The has_request_method of this BuildList.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_request_method
+
+    @has_request_method.setter
+    def has_request_method(self, has_request_method):
+        """Sets the has_request_method of this BuildList.
+
+
+        :param has_request_method: The has_request_method of this BuildList.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                has_request_method is not None and not isinstance(has_request_method, bool)):
+            raise ValueError("Parameter `has_request_method` must be a boolean")  # noqa: E501
+
+        self._has_request_method = has_request_method
+
+    @property
+    def has_requests_method(self):
+        """Gets the has_requests_method of this BuildList.  # noqa: E501
+
+
+        :return: The has_requests_method of this BuildList.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_requests_method
+
+    @has_requests_method.setter
+    def has_requests_method(self, has_requests_method):
+        """Sets the has_requests_method of this BuildList.
+
+
+        :param has_requests_method: The has_requests_method of this BuildList.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                has_requests_method is not None and not isinstance(has_requests_method, bool)):
+            raise ValueError("Parameter `has_requests_method` must be a boolean")  # noqa: E501
+
+        self._has_requests_method = has_requests_method
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -55,7 +55,10 @@ class DeploymentVersionDetail(object):
         'request_retention_mode': 'str',
         'default_notification_group': 'str',
         'maximum_queue_size_express': 'int',
-        'maximum_queue_size_batch': 'int'
+        'maximum_queue_size_batch': 'int',
+        'has_request_method': 'bool',
+        'has_requests_method': 'bool',
+        'static_ip': 'bool'
     }
 
     attribute_map = {
@@ -81,10 +84,13 @@ class DeploymentVersionDetail(object):
         'request_retention_mode': 'request_retention_mode',
         'default_notification_group': 'default_notification_group',
         'maximum_queue_size_express': 'maximum_queue_size_express',
-        'maximum_queue_size_batch': 'maximum_queue_size_batch'
+        'maximum_queue_size_batch': 'maximum_queue_size_batch',
+        'has_request_method': 'has_request_method',
+        'has_requests_method': 'has_requests_method',
+        'static_ip': 'static_ip'
     }
 
-    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -113,6 +119,9 @@ class DeploymentVersionDetail(object):
         self._default_notification_group = None
         self._maximum_queue_size_express = None
         self._maximum_queue_size_batch = None
+        self._has_request_method = None
+        self._has_requests_method = None
+        self._static_ip = None
         self.discriminator = None
 
         if id is not None:
@@ -156,6 +165,12 @@ class DeploymentVersionDetail(object):
             self.maximum_queue_size_express = maximum_queue_size_express
         if maximum_queue_size_batch is not None:
             self.maximum_queue_size_batch = maximum_queue_size_batch
+        if has_request_method is not None:
+            self.has_request_method = has_request_method
+        if has_requests_method is not None:
+            self.has_requests_method = has_requests_method
+        if static_ip is not None:
+            self.static_ip = static_ip
 
     @property
     def id(self):
@@ -737,6 +752,78 @@ class DeploymentVersionDetail(object):
             raise ValueError("Parameter `maximum_queue_size_batch` must be an integer")  # noqa: E501
 
         self._maximum_queue_size_batch = maximum_queue_size_batch
+
+    @property
+    def has_request_method(self):
+        """Gets the has_request_method of this DeploymentVersionDetail.  # noqa: E501
+
+
+        :return: The has_request_method of this DeploymentVersionDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_request_method
+
+    @has_request_method.setter
+    def has_request_method(self, has_request_method):
+        """Sets the has_request_method of this DeploymentVersionDetail.
+
+
+        :param has_request_method: The has_request_method of this DeploymentVersionDetail.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                has_request_method is not None and not isinstance(has_request_method, bool)):
+            raise ValueError("Parameter `has_request_method` must be a boolean")  # noqa: E501
+
+        self._has_request_method = has_request_method
+
+    @property
+    def has_requests_method(self):
+        """Gets the has_requests_method of this DeploymentVersionDetail.  # noqa: E501
+
+
+        :return: The has_requests_method of this DeploymentVersionDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_requests_method
+
+    @has_requests_method.setter
+    def has_requests_method(self, has_requests_method):
+        """Sets the has_requests_method of this DeploymentVersionDetail.
+
+
+        :param has_requests_method: The has_requests_method of this DeploymentVersionDetail.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                has_requests_method is not None and not isinstance(has_requests_method, bool)):
+            raise ValueError("Parameter `has_requests_method` must be a boolean")  # noqa: E501
+
+        self._has_requests_method = has_requests_method
+
+    @property
+    def static_ip(self):
+        """Gets the static_ip of this DeploymentVersionDetail.  # noqa: E501
+
+
+        :return: The static_ip of this DeploymentVersionDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._static_ip
+
+    @static_ip.setter
+    def static_ip(self, static_ip):
+        """Sets the static_ip of this DeploymentVersionDetail.
+
+
+        :param static_ip: The static_ip of this DeploymentVersionDetail.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                static_ip is not None and not isinstance(static_ip, bool)):
+            raise ValueError("Parameter `static_ip` must be a boolean")  # noqa: E501
+
+        self._static_ip = static_ip
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -63,7 +63,7 @@ Method | HTTP request | Description
 [**imports_get**](CoreApi.md#imports_get) | **GET** /projects/{project_name}/imports/{import_id} | Get an import
 [**imports_list**](CoreApi.md#imports_list) | **GET** /projects/{project_name}/imports | List imports
 [**imports_update**](CoreApi.md#imports_update) | **PATCH** /projects/{project_name}/imports/{import_id} | Confirm an import
-[**instance_types_list**](CoreApi.md#instance_types_list) | **GET** /organizations/{organization_name}/instance-types | List instance types
+[**instance_types_list**](CoreApi.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**metrics_get**](CoreApi.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric} | Get metrics
 [**notification_groups_create**](CoreApi.md#notification_groups_create) | **POST** /projects/{project_name}/monitoring/notification-groups | Create notification groups
 [**notification_groups_delete**](CoreApi.md#notification_groups_delete) | **DELETE** /projects/{project_name}/monitoring/notification-groups/{notification_group_name} | Delete notification group
@@ -89,17 +89,7 @@ Method | HTTP request | Description
 [**pipeline_requests_delete**](CoreApi.md#pipeline_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Delete a pipeline request
 [**pipeline_requests_get**](CoreApi.md#pipeline_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Get a pipeline request
 [**pipeline_requests_list**](CoreApi.md#pipeline_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests | List pipeline requests
-[**pipeline_version_object_attachments_create**](CoreApi.md#pipeline_version_object_attachments_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments | Create object attachments
-[**pipeline_version_object_attachments_delete**](CoreApi.md#pipeline_version_object_attachments_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments/{attachment_id} | Delete object attachment
-[**pipeline_version_object_attachments_destination_get**](CoreApi.md#pipeline_version_object_attachments_destination_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{destination_name}/attachments | List the attachments of a destination object
-[**pipeline_version_object_attachments_get**](CoreApi.md#pipeline_version_object_attachments_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments/{attachment_id} | Get object attachment
-[**pipeline_version_object_attachments_list**](CoreApi.md#pipeline_version_object_attachments_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/attachments | List object attachments
 [**pipeline_version_object_environment_variables_list**](CoreApi.md#pipeline_version_object_environment_variables_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}/environment-variables | List pipeline object environment variables
-[**pipeline_version_objects_create**](CoreApi.md#pipeline_version_objects_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects | Create pipeline object
-[**pipeline_version_objects_delete**](CoreApi.md#pipeline_version_objects_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name} | Delete pipeline object
-[**pipeline_version_objects_get**](CoreApi.md#pipeline_version_objects_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name} | Get pipeline object
-[**pipeline_version_objects_list**](CoreApi.md#pipeline_version_objects_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects | List pipeline objects
-[**pipeline_version_objects_update**](CoreApi.md#pipeline_version_objects_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name} | Update pipeline object
 [**pipeline_version_requests_batch_delete**](CoreApi.md#pipeline_version_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete | Delete multiple pipeline version requests
 [**pipeline_version_requests_batch_get**](CoreApi.md#pipeline_version_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect | Retrieve multiple pipeline version requests
 [**pipeline_version_requests_create**](CoreApi.md#pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | Create a pipeline version request
@@ -1078,6 +1068,8 @@ A dictionary containing details of the build
 - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
+- `has_request_method`: Whether the build has a 'request' method
+- `has_requests_method`: Whether the build has a 'requests' method
 
 ## Response Examples
 
@@ -1088,7 +1080,9 @@ A dictionary containing details of the build
   "creation_date": "2020-12-23T16:15:11.200+00:00",
   "status": "building",
   "error_message": "",
-  "trigger": "Deployment file upload"
+  "trigger": "Deployment file upload",
+  "has_request_method": true,
+  "has_requests_method": false
 }
 ```
 
@@ -1159,6 +1153,8 @@ A list of details of the builds
 - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
+- `has_request_method`: Whether the build has a 'request' method
+- `has_requests_method`: Whether the build has a 'requests' method
 
 ## Response Examples
 
@@ -1170,7 +1166,9 @@ A list of details of the builds
     "creation_date": "2020-12-23T16:15:11.200+00:00",
     "status": "failed",
     "error_message": "Could not find the deployment file",
-    "trigger": "Deployment file upload"
+    "trigger": "Deployment file upload",
+    "has_request_method": true,
+    "has_requests_method": false
   },
   {
     "id": "baf88570-d884-4bc6-9308-01068b051f5f",
@@ -1178,7 +1176,9 @@ A list of details of the builds
     "creation_date": "2020-12-23T16:35:13.088+00:00",
     "status": "queued",
     "error_message": "",
-    "trigger": "Deployment file upload"
+    "trigger": "Deployment file upload",
+    "has_request_method": true,
+    "has_requests_method": false
   }
 ]
 ```
@@ -3800,6 +3800,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -3863,6 +3864,7 @@ Details of the created version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 
 ## Response Examples
 
@@ -3891,7 +3893,8 @@ Details of the created version
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
-  "maximum_queue_size_batch": 100000
+  "maximum_queue_size_batch": 100000,
+  "static_ip": false
 }
 ```
 
@@ -4037,6 +4040,9 @@ Details of a version
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `has_request_method`: Whether the latest build of the version has a 'request' method
+- `has_requests_method`: Whether the latest build of the version has a 'requests' method
+- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 
 ## Response Examples
 
@@ -4066,7 +4072,10 @@ Details of a version
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
-  "maximum_queue_size_batch": 100000
+  "maximum_queue_size_batch": 100000,
+  "has_request_method": true,
+  "has_requests_method": false,
+  "static_ip": false
 }
 ```
 
@@ -4295,6 +4304,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 
 ## Request Examples
 
@@ -4340,6 +4350,9 @@ Details of the updated version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `has_request_method`: Whether the latest build of the version has a 'request' method
+- `has_requests_method`: Whether the latest build of the version has a 'requests' method
+- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 
 ## Response Examples
 
@@ -4369,7 +4382,10 @@ Details of the updated version
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
-  "maximum_queue_size_batch": 100000
+  "maximum_queue_size_batch": 100000,
+  "has_request_method": true,
+  "has_requests_method": false,
+  "static_ip": false
 }
 ```
 
@@ -6073,12 +6089,12 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **instance_types_list**
-> list[DeploymentInstanceType] instance_types_list(organization_name)
+> list[DeploymentInstanceType] instance_types_list(project_name)
 
 List instance types
 
 ## Description
-Get list of available deployment instance types for an organization
+Get list of available deployment instance types for a project
 
 ### Response Structure
 Details of the instance type
@@ -6095,8 +6111,6 @@ Details of the instance type
 
 - `gpu_allocation`: Integer indicating number of GPU cores for this instance type
 
-- `gpu_enabled`: Boolean indicating if the GPU resource is enabled for this instance type
-
 - `gpu_type`: Type of the GPU enabled for this instance type
 
 ## Response Examples
@@ -6110,7 +6124,6 @@ Details of the instance type
     "memory_allocation": 512,
     "cpu_allocation": 125,
     "gpu_allocation": 0,
-    "gpu_enabled": false,
     "gpu_type": null
   }
 ]
@@ -6132,10 +6145,10 @@ api_client = ubiops.ApiClient(configuration)
 # Create an instance of the API class
 api_instance = ubiops.CoreApi(api_client)
 
-organization_name = 'organization_name_example' # str 
+project_name = 'project_name_example' # str 
 
 # List instance types
-api_response = api_instance.instance_types_list(organization_name)
+api_response = api_instance.instance_types_list(project_name)
 print(api_response)
 
 # Close the connection
@@ -6148,7 +6161,7 @@ api_client.close()
 
 Name | Type | Notes
 ------------- | ------------- | -------------
- **organization_name** | **str** | 
+ **project_name** | **str** | 
 
 ### Return type
 
@@ -8566,570 +8579,6 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
-# **pipeline_version_object_attachments_create**
-> AttachmentsList pipeline_version_object_attachments_create(project_name, pipeline_name, version, data)
-
-Create object attachments
-
-## Description
-Create an attachment between objects in a pipeline version. An attachment can only be made between objects that have already been added to the pipeline version.
-The objects where the attachment starts is called the source objects. The object that is linked is called the destination object. When attaching source objects to a destination object, one must also define which source object output fields map to which destination object input fields.
-All the input fields in the destination object must be provided in the mapping. In contrast, not all output fields of all source objects need to be used in the mapping. It is also possible that one source output field links to multiple destination input fields.
-
-The *pipeline_start* object can only be a source object.
-The *pipeline_end* object can only be a destination object.
-
-In case of plain type of objects, the mapping `source_field_name` and `destination_field_name` must be omitted or given as null.
-
-### Required Parameters
-
-- `destination_name`: Name of the destination object in the pipeline version
-- `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name).
-Each item in the sources list must contain source_field_name and destination_field_name keys. The source and destination fields should match in data type, e.g. integer source fields can only be mapped to integer type destination fields.
-
-## Request Examples
-An attachment between two structured deployments
-
-```
-{
-  "destination_name": "deployment-2-v1",
-  "sources": [
-    {
-      "source_name": "deployment-1-v1",
-      "mapping": [
-        {
-          "source_field_name": "deployment-output-field-1",
-          "destination_field_name": "deployment-2-input-field-1"
-        },
-        {
-          "source_field_name": "deployment-output-field-2",
-          "destination_field_name": "deployment-2-input-field-2"
-        },
-        {
-          "source_field_name": "deployment-output-field-3",
-          "destination_field_name": "deployment-2-input-field-3"
-        }
-      ]
-    },
-  ]
-}
-```
-An attachment between two plain input/output type deployments
-
-```
-{
-  "destination_name": "plain-deployment-v4",
-  "sources": [
-    {
-      "source_name": "plain-deployment-v3",
-      "mapping": []
-    }
-  ]
-}
-```
-
-An attachment between a pipeline_start object and deployment
-
-```
-{
-  "destination_name": "deployment-2-v2",
-  "sources": [
-    {
-      "source_name": "pipeline_start",
-      "mapping": [
-        {
-          "source_field_name": "pipeline-input-field-1",
-          "destination_field_name": "deployment-input-field-1"
-        },
-        {
-          "source_field_name": "pipeline-input-field-2",
-          "destination_field_name": "deployment-input-field-2"
-        }
-      ]
-    }
-  ]
-}
-```
-
-An attachment between a deployment and a pipeline_end object
-```
-{
-  "destination_name": "pipeline_end",
-  "sources": [
-    {
-      "source_name": "deployment-3-v1",
-      "mapping": [
-        {
-          "source_field_name": "deployment-3-output-field-1",
-          "destination_field_name": "pipeline-output-field-1"
-        },
-        {
-          "source_field_name": "deployment-3-output-field-2",
-          "destination_field_name": "pipeline-output-field-2"
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Response Structure
-Details of the created attachment
-
-- `destination_name`: Name of the destination pipeline object
-- `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)
-
-## Response Examples
-
-```
-{
-  "destination_name": "deployment-2-v2",
-  "sources": [
-    {
-      "source_name": "pipeline_start",
-      "mapping": [
-        {
-          "source_field_name": "pipeline-input-field-1",
-          "destination_field_name": "deployment-input-field-1"
-        },
-        {
-          "source_field_name": "pipeline-input-field-2",
-          "destination_field_name": "deployment-input-field-2"
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-data = ubiops.AttachmentsCreate() # AttachmentsCreate 
-
-# Create object attachments
-api_response = api_instance.pipeline_version_object_attachments_create(project_name, pipeline_name, version, data)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
- **data** | [**AttachmentsCreate**](AttachmentsCreate.md) | 
-
-### Return type
-
-[**AttachmentsList**](AttachmentsList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_object_attachments_delete**
-> pipeline_version_object_attachments_delete(project_name, attachment_id, pipeline_name, version)
-
-Delete object attachment
-
-## Description
-Delete an attachment in a pipeline version. The referenced and original objects of the attachment still exist in the pipeline version, only the link between them is deleted.
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-attachment_id = 'attachment_id_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# Delete object attachment
-api_instance.pipeline_version_object_attachments_delete(project_name, attachment_id, pipeline_name, version)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **attachment_id** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_object_attachments_destination_get**
-> list[AttachmentsList] pipeline_version_object_attachments_destination_get(project_name, destination_name, pipeline_name, version)
-
-List the attachments of a destination object
-
-## Description
-List attachments of a destination object in a pipeline version
-
-### Response Structure
-A list of details of the attachments of the given destination object in the pipeline version
-
-- `destination_name`: Name of the destination object
-- `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)
-
-## Response Examples
-
-```
-[
-  {
-    "destination_name": "deployment-3-v1",
-    "sources": [
-      {
-        "source_name": "deployment-2-v1",
-        "mapping": [
-          {
-            "source_field_name": "deployment-2-output-field-1",
-            "destination_field_name": "deployment-3-input-field-1"
-          },
-          {
-            "source_field_name": "deployment-2-output-field-2",
-            "destination_field_name": "deployment-3-input-field-2"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "destination_name": "deployment-3-v1",
-    "sources": [
-      {
-        "source_name": "deployment-2-v2",
-        "mapping": [
-          {
-            "source_field_name": "deployment-2-output-field-1",
-            "destination_field_name": "deployment-3-input-field-1"
-          },
-          {
-            "source_field_name": "deployment-2-output-field-2",
-            "destination_field_name": "deployment-3-input-field-2"
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-destination_name = 'destination_name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# List the attachments of a destination object
-api_response = api_instance.pipeline_version_object_attachments_destination_get(project_name, destination_name, pipeline_name, version)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **destination_name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-[**list[AttachmentsList]**](AttachmentsList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_object_attachments_get**
-> AttachmentsList pipeline_version_object_attachments_get(project_name, attachment_id, pipeline_name, version)
-
-Get object attachment
-
-## Description
-Get the details of a single attachment in a pipeline
-
-### Response Structure
-Details of the attachment
-
-- `destination_name`: Name of the destination pipeline object
-- `sources`: A list of dictionaries containing the link between a source object (source_name) and mapping of the source output field (source_field_name) and destination object input field (destination_field_name)
-
-## Response Examples
-
-```
-{
-  "destination_name": "deployment-3-v1",
-  "sources": [
-    {
-      "source_name": "deployment-2-v2",
-      "mapping": [
-        {
-          "source_field_name": "deployment-2-output-field-1",
-          "destination_field_name": "deployment-3-input-field-1"
-        },
-        {
-          "source_field_name": "deployment-2-output-field-2",
-          "destination_field_name": "deployment-3-input-field-2"
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-attachment_id = 'attachment_id_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# Get object attachment
-api_response = api_instance.pipeline_version_object_attachments_get(project_name, attachment_id, pipeline_name, version)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **attachment_id** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-[**AttachmentsList**](AttachmentsList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_object_attachments_list**
-> list[AttachmentsList] pipeline_version_object_attachments_list(project_name, pipeline_name, version)
-
-List object attachments
-
-## Description
-List all attachments in a pipeline version
-
-### Response Structure
-A list of details of the attachments in the pipeline
-
-- `destination_name`: Name of the destination pipeline object
-- `sources`: A list of dictionaries containing the source object(s) and mapping of the fields. One attachment can have multiple source objects.
-
-## Response Examples
-
-```
-[
-  {
-    "destination_name": "deployment-2-v2",
-    "sources": [
-      {
-        "source_name": "pipeline_start",
-        "mapping": [
-          {
-            "source_field_name": "pipeline-input-field-1",
-            "destination_field_name": "deployment-input-field-1"
-          },
-          {
-            "source_field_name": "pipeline-input-field-2",
-            "destination_field_name": "deployment-input-field-2"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "destination_name": "deployment-3-v1",
-    "sources": [
-      {
-        "source_name": "deployment-2-v2",
-        "mapping": [
-          {
-            "source_field_name": "deployment-output-field-1",
-            "destination_field_name": "deployment-3-input-field-1"
-          },
-          {
-            "source_field_name": "deployment-output-field-2",
-            "destination_field_name": "deployment-3-input-field-2"
-          },
-          {
-            "source_field_name": "deployment-output-field-3",
-            "destination_field_name": "deployment-3-input-field-3"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "destination_name": "pipeline_end",
-    "sources": [
-      {
-        "source_name": "deployment-3-v1",
-        "mapping": [
-          {
-            "source_field_name": "deployment-3-output-field-1",
-            "destination_field_name": "pipeline-output-field-1"
-          },
-          {
-            "source_field_name": "deployment-3-output-field-2",
-            "destination_field_name": "pipeline-output-field-2"
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# List object attachments
-api_response = api_instance.pipeline_version_object_attachments_list(project_name, pipeline_name, version)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-[**list[AttachmentsList]**](AttachmentsList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
 # **pipeline_version_object_environment_variables_list**
 > list[InheritedEnvironmentVariableList] pipeline_version_object_environment_variables_list(project_name, name, pipeline_name, version)
 
@@ -9214,420 +8663,6 @@ Name | Type | Notes
 ### Return type
 
 [**list[InheritedEnvironmentVariableList]**](InheritedEnvironmentVariableList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_objects_create**
-> PipelineVersionObjectList pipeline_version_objects_create(project_name, pipeline_name, version, data)
-
-Create pipeline object
-
-## Description
-Create a pipeline object for a pipeline version. The pipeline object that is added is a reference to the real object. In this way, multiple references to the same object may be added to a pipeline version.
-The reference_name refers to the deployment name and the version is the version of the deployment which will be added to the pipeline version as an object.
-
-### Required Parameters
-
-- `name`: Name of the pipeline object. It is unique within a pipeline version.
-- `reference_name`: Name of the object it will reference
-- `version`: Version name of reference object. Do not provide this field to refer to the default version of the reference.
-
-## Request Examples
-
-```
-{
-  "name": "deployment-1-v1",
-  "reference_name": "deployment-1",
-  "version": "version-1"
-}
-```
-
-### Response Structure
-Details of the created pipeline object
-
-- `id`: Unique identifier for the pipeline object (UUID)
-- `name`: Name of the pipeline object
-- `reference_name`: Name of the object it will reference
-- `version`: Version name of reference object
-
-## Response Examples
-
-```
-{
-  "id": "c91724b6-d73c-4933-b2aa-aefd9e34ce3e",
-  "name": "deployment-1-v1",
-  "reference_name": "deployment-1",
-  "version": "version-1"
-}
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-data = ubiops.PipelineVersionObjectCreate() # PipelineVersionObjectCreate 
-
-# Create pipeline object
-api_response = api_instance.pipeline_version_objects_create(project_name, pipeline_name, version, data)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
- **data** | [**PipelineVersionObjectCreate**](PipelineVersionObjectCreate.md) | 
-
-### Return type
-
-[**PipelineVersionObjectList**](PipelineVersionObjectList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_objects_delete**
-> pipeline_version_objects_delete(project_name, name, pipeline_name, version)
-
-Delete pipeline object
-
-## Description
-Delete a pipeline object. Only the reference in the pipeline version is deleted. The original object (deployment and version) still exists.
-If the object is attached to another object, the attachment is also deleted.
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-name = 'name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# Delete pipeline object
-api_instance.pipeline_version_objects_delete(project_name, name, pipeline_name, version)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_objects_get**
-> PipelineVersionObjectList pipeline_version_objects_get(project_name, name, pipeline_name, version)
-
-Get pipeline object
-
-## Description
-Retrieve the details of a single pipeline object
-
-### Response Structure
-Details of the pipeline object
-
-- `id`: Unique identifier for the pipeline object (UUID)
-- `name`: Name of the pipeline object
-- `reference_name`: Name of the object it references
-- `version`: Version name of reference object
-
-## Response Examples
-A dictionary containing details of the pipeline object
-
-```
-{
-  "id": "c91724b6-d73c-4933-b2aa-aefd9e34ce3e",
-  "name": "deployment-1-v1",
-  "reference_name": "deployment-1",
-  "version": "version-1"
-}
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-name = 'name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# Get pipeline object
-api_response = api_instance.pipeline_version_objects_get(project_name, name, pipeline_name, version)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-[**PipelineVersionObjectList**](PipelineVersionObjectList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_objects_list**
-> list[PipelineVersionObjectList] pipeline_version_objects_list(project_name, pipeline_name, version)
-
-List pipeline objects
-
-## Description
-List all pipeline objects in a pipeline version
-
-### Response Structure
-A list of details of the pipeline objects in the pipeline version
-
-- `id`: Unique identifier for the pipeline object (UUID)
-- `name`: Name of the pipeline object
-- `reference_name`: Name of the object it references
-- `version`: Version name of reference object
-
-## Response Examples
-A list of pipeline objects
-
-```
-[
-  {
-    "id": "c91724b6-d73c-4933-b2aa-aefd9e34ce3e",
-    "name": "deployment-1-v1",
-    "reference_name": "deployment-1",
-    "version": "version-1"
-  },
-  {
-    "id": "1a4b0e28-3de1-442a-b1eb-947f22a69381",
-    "name": "deployment-2-v1",
-    "reference_name": "deployment-2",
-    "version": "v1"
-  }
-]
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-
-# List pipeline objects
-api_response = api_instance.pipeline_version_objects_list(project_name, pipeline_name, version)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-[**list[PipelineVersionObjectList]**](PipelineVersionObjectList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **pipeline_version_objects_update**
-> PipelineVersionObjectList pipeline_version_objects_update(project_name, name, pipeline_name, version, data)
-
-Update pipeline object
-
-## Description
-Update a pipeline object. It is not possible to update the reference_name. All necessary fields are validated again.
-
-### Optional Parameters
-
-- `name`: New name for the pipeline object
-- `version`: New version for the pipeline object. Since the input/output fields of different versions are the same, the version of a deployment pipeline object can be changed with another version of the same deployment. To use the default version of the reference deployment, provide NULL for this field.
-
-## Request Examples
-
-```
-{
-  "name": "new-pipeline-object-name"
-}
-```
-
-
-```
-{
-  "name": "deployment-1-v2"
-  "version": "version-2"
-}
-```
-
-### Response Structure
-Details of the updated pipeline object
-
-- `id`: Unique identifier for the pipeline object (UUID)
-- `name`: Name of the pipeline object
-- `reference_name`: Name of the object it references
-- `version`: Version name of reference object
-
-## Response Examples
-
-```
-{
-  "id": "c91724b6-d73c-4933-b2aa-aefd9e34ce3e",
-  "name": "deployment-1-v2",
-  "reference_name": "deployment-1",
-  "version": "version-2"
-}
-```
-
-### Example
-
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
-
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
-
-# Create an instance of the API class
-api_instance = ubiops.CoreApi(api_client)
-
-project_name = 'project_name_example' # str 
-name = 'name_example' # str 
-pipeline_name = 'pipeline_name_example' # str 
-version = 'version_example' # str 
-data = ubiops.PipelineVersionObjectUpdate() # PipelineVersionObjectUpdate 
-
-# Update pipeline object
-api_response = api_instance.pipeline_version_objects_update(project_name, name, pipeline_name, version, data)
-print(api_response)
-
-# Close the connection
-api_client.close()
-```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **name** | **str** | 
- **pipeline_name** | **str** | 
- **version** | **str** | 
- **data** | [**PipelineVersionObjectUpdate**](PipelineVersionObjectUpdate.md) | 
-
-### Return type
-
-[**PipelineVersionObjectList**](PipelineVersionObjectList.md)
 
 ### Authorization
 
@@ -10338,6 +9373,7 @@ A pipeline version with objects and attachments
     {
       "name": "object-1",
       "reference_name": "deployment-1",
+      "reference_type": "deployment",
       "version": "v1"
     }
   ],
@@ -10349,8 +9385,8 @@ A pipeline version with objects and attachments
           "source_name": "pipeline_start",
           "mapping": [
             {
-              "source_field_name": "example-field",
-              "destination_field_name": "example-field"
+              "source_field_name": "pipeline-input",
+              "destination_field_name": "input"
             }
           ]
         }
@@ -10416,9 +9452,26 @@ Details of the created pipeline version
   "request_retention_mode": "full",
   "objects": [
     {
+      "id": "38549ff5-5bf0-4803-8571-236077c77e62",
       "name": "object-1",
       "reference_name": "deployment-1",
-      "version": "v1"
+      "reference_type": "deployment",
+      "version": "v1",
+      "input_type": "structured",
+      "output_type": "structured",
+      "configuration": {},
+      "input_fields": [
+        {
+          "name": "input",
+          "data_type": "int"
+        }
+      ],
+      "output_fields": [
+        {
+          "name": "output",
+          "data_type": "int"
+        }
+      ]
     }
   ],
   "attachments": [
@@ -10429,8 +9482,8 @@ Details of the created pipeline version
           "source_name": "pipeline_start",
           "mapping": [
             {
-              "source_field_name": "example-field",
-              "destination_field_name": "example-field"
+              "source_field_name": "pipeline-input",
+              "destination_field_name": "input"
             }
           ]
         }
@@ -10610,9 +9663,26 @@ Details of the pipeline version
   "request_retention_mode": "full",
   "objects": [
     {
+      "id": "38549ff5-5bf0-4803-8571-236077c77e62",
       "name": "object-1",
       "reference_name": "deployment-1",
-      "version": "v1"
+      "reference_type": "deployment",
+      "version": "v1",
+      "input_type": "structured",
+      "output_type": "structured",
+      "configuration": {},
+      "input_fields": [
+        {
+          "name": "input",
+          "data_type": "int"
+        }
+      ],
+      "output_fields": [
+        {
+          "name": "output",
+          "data_type": "int"
+        }
+      ]
     }
   ],
   "attachments": [
@@ -10623,8 +9693,8 @@ Details of the pipeline version
           "source_name": "pipeline_start",
           "mapping": [
             {
-              "source_field_name": "example-field",
-              "destination_field_name": "example-field"
+              "source_field_name": "pipeline-input",
+              "destination_field_name": "input"
             }
           ]
         }
@@ -10853,6 +9923,7 @@ Updating a pipeline version with new objects and attachments
     {
       "name": "object-1",
       "reference_name": "deployment-1",
+      "reference_type": "deployment",
       "version": "v1"
     }
   ],
@@ -10864,8 +9935,8 @@ Updating a pipeline version with new objects and attachments
           "source_name": "pipeline_start",
           "mapping": [
             {
-              "source_field_name": "example-field",
-              "destination_field_name": "example-field"
+              "source_field_name": "pipeline-input",
+              "destination_field_name": "input"
             }
           ]
         }
@@ -10946,9 +10017,26 @@ Details of the created pipeline
   "request_retention_mode": "full",
   "objects": [
     {
+      "id": "38549ff5-5bf0-4803-8571-236077c77e62",
       "name": "object-1",
       "reference_name": "deployment-1",
-      "version": "v1"
+      "reference_type": "deployment",
+      "version": "v1",
+      "input_type": "structured",
+      "output_type": "structured",
+      "configuration": {},
+      "input_fields": [
+        {
+          "name": "input",
+          "data_type": "int"
+        }
+      ],
+      "output_fields": [
+        {
+          "name": "output",
+          "data_type": "int"
+        }
+      ]
     }
   ],
   "attachments": [
@@ -10959,8 +10047,8 @@ Details of the created pipeline
           "source_name": "pipeline_start",
           "mapping": [
             {
-              "source_field_name": "example-field",
-              "destination_field_name": "example-field"
+              "source_field_name": "pipeline-input",
+              "destination_field_name": "input"
             }
           ]
         }
@@ -13798,12 +12886,16 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **request_schedules_list**
-> list[ScheduleList] request_schedules_list(project_name)
+> list[ScheduleList] request_schedules_list(project_name, labels=labels)
 
 List request schedules
 
 ## Description
 List the request schedules in a project. The user has to have 'requests.list' permission on either 'deployments.versions' or 'pipelines.versions' to list the request schedules.
+
+### Optional Parameters
+
+- `labels`: Filter on labels of the request schedules. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.
 
 ### Response Structure
 A list of details of all request schedules in a project
@@ -13873,9 +12965,10 @@ api_client = ubiops.ApiClient(configuration)
 api_instance = ubiops.CoreApi(api_client)
 
 project_name = 'project_name_example' # str 
+labels = 'labels_example' # str  (optional)
 
 # List request schedules
-api_response = api_instance.request_schedules_list(project_name)
+api_response = api_instance.request_schedules_list(project_name, labels=labels)
 print(api_response)
 
 # Close the connection
@@ -13889,6 +12982,7 @@ api_client.close()
 Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
+ **labels** | **str** | [optional] 
 
 ### Return type
 

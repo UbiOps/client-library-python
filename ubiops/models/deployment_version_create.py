@@ -47,7 +47,8 @@ class DeploymentVersionCreate(object):
         'request_retention_mode': 'str',
         'default_notification_group': 'str',
         'maximum_queue_size_express': 'int',
-        'maximum_queue_size_batch': 'int'
+        'maximum_queue_size_batch': 'int',
+        'static_ip': 'bool'
     }
 
     attribute_map = {
@@ -65,10 +66,11 @@ class DeploymentVersionCreate(object):
         'request_retention_mode': 'request_retention_mode',
         'default_notification_group': 'default_notification_group',
         'maximum_queue_size_express': 'maximum_queue_size_express',
-        'maximum_queue_size_batch': 'maximum_queue_size_batch'
+        'maximum_queue_size_batch': 'maximum_queue_size_batch',
+        'static_ip': 'static_ip'
     }
 
-    def __init__(self, version=None, language='python3.7', memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode='full', default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, version=None, language='python3.7', memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode='full', default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionCreate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -89,6 +91,7 @@ class DeploymentVersionCreate(object):
         self._default_notification_group = None
         self._maximum_queue_size_express = None
         self._maximum_queue_size_batch = None
+        self._static_ip = None
         self.discriminator = None
 
         self.version = version
@@ -117,6 +120,8 @@ class DeploymentVersionCreate(object):
             self.maximum_queue_size_express = maximum_queue_size_express
         if maximum_queue_size_batch is not None:
             self.maximum_queue_size_batch = maximum_queue_size_batch
+        if static_ip is not None:
+            self.static_ip = static_ip
 
     @property
     def version(self):
@@ -505,6 +510,30 @@ class DeploymentVersionCreate(object):
             raise ValueError("Parameter `maximum_queue_size_batch` must be an integer")  # noqa: E501
 
         self._maximum_queue_size_batch = maximum_queue_size_batch
+
+    @property
+    def static_ip(self):
+        """Gets the static_ip of this DeploymentVersionCreate.  # noqa: E501
+
+
+        :return: The static_ip of this DeploymentVersionCreate.  # noqa: E501
+        :rtype: bool
+        """
+        return self._static_ip
+
+    @static_ip.setter
+    def static_ip(self, static_ip):
+        """Sets the static_ip of this DeploymentVersionCreate.
+
+
+        :param static_ip: The static_ip of this DeploymentVersionCreate.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                static_ip is not None and not isinstance(static_ip, bool)):
+            raise ValueError("Parameter `static_ip` must be a boolean")  # noqa: E501
+
+        self._static_ip = static_ip
 
     def to_dict(self):
         """Returns the model properties as a dict"""
