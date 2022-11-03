@@ -34,41 +34,47 @@ class RoleAssignmentList(object):
     """
     openapi_types = {
         'id': 'str',
-        'user_id': 'str',
+        'assignee': 'str',
+        'assignee_type': 'str',
         'role': 'str',
-        'object_name': 'str',
-        'object_type': 'str'
+        'resource': 'str',
+        'resource_type': 'str'
     }
 
     attribute_map = {
         'id': 'id',
-        'user_id': 'user_id',
+        'assignee': 'assignee',
+        'assignee_type': 'assignee_type',
         'role': 'role',
-        'object_name': 'object_name',
-        'object_type': 'object_type'
+        'resource': 'resource',
+        'resource_type': 'resource_type'
     }
 
-    def __init__(self, id=None, user_id=None, role=None, object_name=None, object_type=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, assignee=None, assignee_type=None, role=None, resource=None, resource_type=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """RoleAssignmentList - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._user_id = None
+        self._assignee = None
+        self._assignee_type = None
         self._role = None
-        self._object_name = None
-        self._object_type = None
+        self._resource = None
+        self._resource_type = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
-        self.user_id = user_id
+        if assignee is not None:
+            self.assignee = assignee
+        if assignee_type is not None:
+            self.assignee_type = assignee_type
         self.role = role
-        if object_name is not None:
-            self.object_name = object_name
-        if object_type is not None:
-            self.object_type = object_type
+        if resource is not None:
+            self.resource = resource
+        if resource_type is not None:
+            self.resource_type = resource_type
 
     @property
     def id(self):
@@ -95,34 +101,52 @@ class RoleAssignmentList(object):
         self._id = id
 
     @property
-    def user_id(self):
-        """Gets the user_id of this RoleAssignmentList.  # noqa: E501
+    def assignee(self):
+        """Gets the assignee of this RoleAssignmentList.  # noqa: E501
 
 
-        :return: The user_id of this RoleAssignmentList.  # noqa: E501
+        :return: The assignee of this RoleAssignmentList.  # noqa: E501
         :rtype: str
         """
-        return self._user_id
+        return self._assignee
 
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this RoleAssignmentList.
+    @assignee.setter
+    def assignee(self, assignee):
+        """Sets the assignee of this RoleAssignmentList.
 
 
-        :param user_id: The user_id of this RoleAssignmentList.  # noqa: E501
+        :param assignee: The assignee of this RoleAssignmentList.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                user_id is not None and not isinstance(user_id, str)):
-            raise ValueError("Parameter `user_id` must be a string")  # noqa: E501
+                assignee is not None and not isinstance(assignee, str)):
+            raise ValueError("Parameter `assignee` must be a string")  # noqa: E501
 
+        self._assignee = assignee
+
+    @property
+    def assignee_type(self):
+        """Gets the assignee_type of this RoleAssignmentList.  # noqa: E501
+
+
+        :return: The assignee_type of this RoleAssignmentList.  # noqa: E501
+        :rtype: str
+        """
+        return self._assignee_type
+
+    @assignee_type.setter
+    def assignee_type(self, assignee_type):
+        """Sets the assignee_type of this RoleAssignmentList.
+
+
+        :param assignee_type: The assignee_type of this RoleAssignmentList.  # noqa: E501
+        :type: str
+        """
         if (self.local_vars_configuration.client_side_validation and
-                user_id is not None and len(user_id) < 1):
-            raise ValueError("Invalid value for `user_id`, length must be greater than or equal to `1`")  # noqa: E501
+                assignee_type is not None and not isinstance(assignee_type, str)):
+            raise ValueError("Parameter `assignee_type` must be a string")  # noqa: E501
 
-        self._user_id = user_id
+        self._assignee_type = assignee_type
 
     @property
     def role(self):
@@ -155,52 +179,52 @@ class RoleAssignmentList(object):
         self._role = role
 
     @property
-    def object_name(self):
-        """Gets the object_name of this RoleAssignmentList.  # noqa: E501
+    def resource(self):
+        """Gets the resource of this RoleAssignmentList.  # noqa: E501
 
 
-        :return: The object_name of this RoleAssignmentList.  # noqa: E501
+        :return: The resource of this RoleAssignmentList.  # noqa: E501
         :rtype: str
         """
-        return self._object_name
+        return self._resource
 
-    @object_name.setter
-    def object_name(self, object_name):
-        """Sets the object_name of this RoleAssignmentList.
+    @resource.setter
+    def resource(self, resource):
+        """Sets the resource of this RoleAssignmentList.
 
 
-        :param object_name: The object_name of this RoleAssignmentList.  # noqa: E501
+        :param resource: The resource of this RoleAssignmentList.  # noqa: E501
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                object_name is not None and not isinstance(object_name, str)):
-            raise ValueError("Parameter `object_name` must be a string")  # noqa: E501
+                resource is not None and not isinstance(resource, str)):
+            raise ValueError("Parameter `resource` must be a string")  # noqa: E501
 
-        self._object_name = object_name
+        self._resource = resource
 
     @property
-    def object_type(self):
-        """Gets the object_type of this RoleAssignmentList.  # noqa: E501
+    def resource_type(self):
+        """Gets the resource_type of this RoleAssignmentList.  # noqa: E501
 
 
-        :return: The object_type of this RoleAssignmentList.  # noqa: E501
+        :return: The resource_type of this RoleAssignmentList.  # noqa: E501
         :rtype: str
         """
-        return self._object_type
+        return self._resource_type
 
-    @object_type.setter
-    def object_type(self, object_type):
-        """Sets the object_type of this RoleAssignmentList.
+    @resource_type.setter
+    def resource_type(self, resource_type):
+        """Sets the resource_type of this RoleAssignmentList.
 
 
-        :param object_type: The object_type of this RoleAssignmentList.  # noqa: E501
+        :param resource_type: The resource_type of this RoleAssignmentList.  # noqa: E501
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                object_type is not None and not isinstance(object_type, str)):
-            raise ValueError("Parameter `object_type` must be a string")  # noqa: E501
+                resource_type is not None and not isinstance(resource_type, str)):
+            raise ValueError("Parameter `resource_type` must be a string")  # noqa: E501
 
-        self._object_type = object_type
+        self._resource_type = resource_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

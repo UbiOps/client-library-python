@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** | [optional] [readonly] 
-**created_by** | **str** | [optional] [readonly] 
-**creation_date** | **str** | [optional] [readonly] 
-**last_updated** | **str** | [optional] [readonly] 
+**id** | **str** | 
+**created_by** | **str** | [optional] 
+**creation_date** | **str** | [optional] 
+**last_updated** | **str** | [optional] 
 **filename** | **str** | 
 **size** | **int** | 
-**ttl** | **int** | [optional] [readonly] 
+**ttl** | **int** | [optional] 
 
 

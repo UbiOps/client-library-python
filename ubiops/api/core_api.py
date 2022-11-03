@@ -39,7 +39,7 @@ class CoreApi(object):
     def batch_deployment_requests_create(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create a batch deployment request  # noqa: E501
 
-         ### Description Request multiple predictions from the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. In case of a **blob** field, the uuid of a previously uploaded blob must be provided.  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
+         ### Description Request multiple predictions from the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods.  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.batch_deployment_requests_create(project_name, deployment_name, data, async_req=True)
@@ -68,7 +68,7 @@ class CoreApi(object):
     def batch_deployment_requests_create_with_http_info(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create a batch deployment request  # noqa: E501
 
-         ### Description Request multiple predictions from the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. In case of a **blob** field, the uuid of a previously uploaded blob must be provided.  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
+         ### Description Request multiple predictions from the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods.  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.batch_deployment_requests_create_with_http_info(project_name, deployment_name, data, async_req=True)
@@ -197,7 +197,7 @@ class CoreApi(object):
     def batch_deployment_version_requests_create(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Create a batch deployment version request  # noqa: E501
 
-         ### Description Request multiple predictions from a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state). In case of a **blob** field, the uuid of a previously uploaded blob must be provided.  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
+         ### Description Request multiple predictions from a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state).  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, async_req=True)
@@ -227,7 +227,7 @@ class CoreApi(object):
     def batch_deployment_version_requests_create_with_http_info(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Create a batch deployment version request  # noqa: E501
 
-         ### Description Request multiple predictions from a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state). In case of a **blob** field, the uuid of a previously uploaded blob must be provided.  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
+         ### Description Request multiple predictions from a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state).  If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.  ### Required Parameters  In case of structured input deployment: A list of dictionaries, where each dictionary contains the input fields of the deployment as keys. It is also possible to send a single dictionary as input. In case of plain input deployment: A list of strings. It is also possible to send a single string as input.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours). - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Request Examples  Multiple structured batch deployment requests ``` [   {     \"input-field-1\": 5.0,     \"input-field-2\": \"N\",     \"input-field-3\": [0.25, 0.25, 2.1, 16.3]   },   {     \"input-field-1\": 3.0,     \"input-field-2\": \"S\",     \"input-field-3\": [4.23, 3.27, 2.41, 12.4]   } ] ```  Multiple plain batch deployment requests ``` [   \"plain-data-goes-here\", \"plain-example-data\" ] ```  ### Response Structure  A list of dictionaries containing the details of the created deployment requests with the following fields:  - `id`: Unique identifier for the deployment request, which can be used to collect the result  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Always 'pending' when initialised, later it can be 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `time_created`: Server time that the request was made (current time)  #### Response Examples  ``` [   {     \"id\": \"69eca481-8576-49e8-8e20-ea56f2005bcb\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   },   {     \"id\": \"2521378e-263e-4e2e-85e9-a96254b36536\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"time_created\": \"2020-03-28T20:00:26.613+00:00\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.batch_deployment_version_requests_create_with_http_info(project_name, deployment_name, version, data, async_req=True)
@@ -1341,10 +1341,645 @@ class CoreApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def buckets_create(self, project_name, data, **kwargs):  # noqa: E501
+        """Create bucket  # noqa: E501
+
+         ### Description  Create a bucket in a project  ### Required Parameters  - `name`: Name of the bucket. It is unique within a project.  ### Optional Parameters - `provider`: Provider of the bucket. It can be 'ubiops', 'google_cloud_storage', 'amazon_s3' or 'azure_blob_storage'. The default is **ubiops**. - `credentials`: A dictionary for credentials to connect to the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `access_key` and `secret_key`.   - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.   - For Google Cloud Storage, provide the field `json_key_file`. - `configuration`: A dictionary for additional configuration details for the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `region`, `bucket` and `prefix`.   - For Azure Blob Storage, provide the fields `container` and `prefix`.   - For Google Cloud Storage, provide the fields `bucket` and `prefix`.   UbiOps always makes sure that the prefix ends with a '/'. - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).  #### Request Examples ``` {   \"name\": \"bucket-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\" } ```  ### Response Structure  Details of the created bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is created - `provider`: Provider of the bucket - `credentials`: Credentials to connect to the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"bucket-1\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_create(project_name, data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param BucketCreate data: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: BucketList
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.buckets_create_with_http_info(project_name, data, **kwargs)  # noqa: E501
+
+    def buckets_create_with_http_info(self, project_name, data, **kwargs):  # noqa: E501
+        """Create bucket  # noqa: E501
+
+         ### Description  Create a bucket in a project  ### Required Parameters  - `name`: Name of the bucket. It is unique within a project.  ### Optional Parameters - `provider`: Provider of the bucket. It can be 'ubiops', 'google_cloud_storage', 'amazon_s3' or 'azure_blob_storage'. The default is **ubiops**. - `credentials`: A dictionary for credentials to connect to the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `access_key` and `secret_key`.   - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.   - For Google Cloud Storage, provide the field `json_key_file`. - `configuration`: A dictionary for additional configuration details for the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `region`, `bucket` and `prefix`.   - For Azure Blob Storage, provide the fields `container` and `prefix`.   - For Google Cloud Storage, provide the fields `bucket` and `prefix`.   UbiOps always makes sure that the prefix ends with a '/'. - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).  #### Request Examples ``` {   \"name\": \"bucket-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\" } ```  ### Response Structure  Details of the created bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is created - `provider`: Provider of the bucket - `credentials`: Credentials to connect to the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"bucket-1\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_create_with_http_info(project_name, data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param BucketCreate data: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(BucketList, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'data']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method buckets_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_create`")  # noqa: E501
+        # verify the required parameter 'data' is set
+        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
+                                                        local_var_params['data'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `data` when calling `buckets_create`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_create`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'data' in local_var_params
+            and local_var_params['data'] is not None):  # noqa: E501
+            if isinstance(local_var_params['data'], dict):  # noqa: E501
+                from ubiops.models.bucket_create import BucketCreate
+
+                local_var_params['data'] = BucketCreate(**local_var_params['data'])  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'data' in local_var_params:
+            body_params = local_var_params['data']
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='BucketList',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def buckets_delete(self, project_name, bucket_name, **kwargs):  # noqa: E501
+        """Delete a bucket  # noqa: E501
+
+         ### Description  Delete a bucket. If the bucket provider is UbiOps, the files in the bucket will be deleted together with the bucket. For other providers, the files in the bucket are not removed but just the connection from UbiOps to the bucket.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_delete(project_name, bucket_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.buckets_delete_with_http_info(project_name, bucket_name, **kwargs)  # noqa: E501
+
+    def buckets_delete_with_http_info(self, project_name, bucket_name, **kwargs):  # noqa: E501
+        """Delete a bucket  # noqa: E501
+
+         ### Description  Delete a bucket. If the bucket provider is UbiOps, the files in the bucket will be deleted together with the bucket. For other providers, the files in the bucket are not removed but just the connection from UbiOps to the bucket.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_delete_with_http_info(project_name, bucket_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method buckets_delete" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_delete`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `buckets_delete`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_delete`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `buckets_delete`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def buckets_get(self, project_name, bucket_name, **kwargs):  # noqa: E501
+        """Get details of a bucket  # noqa: E501
+
+         ### Description  Retrieve details of a bucket in a project  ### Response Structure  Details of a bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is defined - `provider`: Provider of the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket - `size`: Size of the bucket according to the last measurement date - `size_measurement_date`: Last measurement date of the size of the bucket  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"bucket-1\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null,   \"size\": 2048,   \"size_measurement_date\": \"2022-05-24T02:23:15.456812Z\", } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_get(project_name, bucket_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: BucketDetail
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.buckets_get_with_http_info(project_name, bucket_name, **kwargs)  # noqa: E501
+
+    def buckets_get_with_http_info(self, project_name, bucket_name, **kwargs):  # noqa: E501
+        """Get details of a bucket  # noqa: E501
+
+         ### Description  Retrieve details of a bucket in a project  ### Response Structure  Details of a bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is defined - `provider`: Provider of the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket - `size`: Size of the bucket according to the last measurement date - `size_measurement_date`: Last measurement date of the size of the bucket  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"bucket-1\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null,   \"size\": 2048,   \"size_measurement_date\": \"2022-05-24T02:23:15.456812Z\", } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_get_with_http_info(project_name, bucket_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(BucketDetail, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method buckets_get" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_get`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `buckets_get`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_get`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `buckets_get`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='BucketDetail',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def buckets_list(self, project_name, **kwargs):  # noqa: E501
+        """List buckets  # noqa: E501
+
+         ### Description List buckets in a project  ### Optional Parameters - `labels`: Filter on labels of the buckets. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). Buckets that have at least one of the labels in the filter are returned. This parameter should be given as query parameter.  ### Response Structure  A list of details of the buckets in the project - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is defined - `provider`: Provider of the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket  #### Response Examples  ``` [   {     \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",     \"name\": \"bucket-1\",     \"project\": \"project-1\",     \"provider\": \"ubiops\",     \"creation_date\": \"2022-05-12T16:23:15.456812Z\",     \"configuration\": {},     \"labels\": {       \"type\": \"bucket\"     },     \"description\": \"My bucket description\",     \"ttl\": null   },   {     \"id\": \"5f4e942f-d5b8-4d62-99b2-870c15a82127\",     \"name\": \"bucket-2\",     \"project\": \"project-1\",     \"provider\": \"ubiops\",     \"creation_date\": \"2022-05-12T16:23:15.456812Z\",     \"configuration\": {},     \"labels\": {},     \"description\": \"My bucket 2 description\",     \"ttl\": null   } ] ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_list(project_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str labels:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: list[BucketList]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.buckets_list_with_http_info(project_name, **kwargs)  # noqa: E501
+
+    def buckets_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
+        """List buckets  # noqa: E501
+
+         ### Description List buckets in a project  ### Optional Parameters - `labels`: Filter on labels of the buckets. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). Buckets that have at least one of the labels in the filter are returned. This parameter should be given as query parameter.  ### Response Structure  A list of details of the buckets in the project - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is defined - `provider`: Provider of the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket  #### Response Examples  ``` [   {     \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",     \"name\": \"bucket-1\",     \"project\": \"project-1\",     \"provider\": \"ubiops\",     \"creation_date\": \"2022-05-12T16:23:15.456812Z\",     \"configuration\": {},     \"labels\": {       \"type\": \"bucket\"     },     \"description\": \"My bucket description\",     \"ttl\": null   },   {     \"id\": \"5f4e942f-d5b8-4d62-99b2-870c15a82127\",     \"name\": \"bucket-2\",     \"project\": \"project-1\",     \"provider\": \"ubiops\",     \"creation_date\": \"2022-05-12T16:23:15.456812Z\",     \"configuration\": {},     \"labels\": {},     \"description\": \"My bucket 2 description\",     \"ttl\": null   } ] ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_list_with_http_info(project_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str labels:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(list[BucketList], status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'labels']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method buckets_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'labels' in local_var_params
+            and local_var_params['labels'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['labels'], str):  # noqa: E501
+                raise ApiValueError("Parameter `labels` must be a string when calling `buckets_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+
+        query_params = []
+        if 'labels' in local_var_params and local_var_params['labels'] is not None:  # noqa: E501
+            query_params.append(('labels', local_var_params['labels']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[BucketList]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def buckets_update(self, project_name, bucket_name, data, **kwargs):  # noqa: E501
+        """Update a bucket  # noqa: E501
+
+         ### Description  Update a bucket  ### Optional Parameters - `credentials`: Credentials to connect to the bucket - `configuration`: Additional configuration details for the bucket  - `description`: New description for the bucket - `labels`: New dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).  #### Request Examples ``` {   \"description\": \"New description for the bucket\" } ```  ### Response Structure  Details of the updated bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is defined - `provider`: Provider of the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket - `size`: Size of the bucket according to the last measurement date - `size_measurement_date`: Last measurement date of the size of the bucket  #### Response Examples ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"new-bucket-name\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null,   \"size\": 2048,   \"size_measurement_date\": \"2022-05-24T02:23:15.456812Z\", } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_update(project_name, bucket_name, data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param BucketUpdate data: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: BucketDetail
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.buckets_update_with_http_info(project_name, bucket_name, data, **kwargs)  # noqa: E501
+
+    def buckets_update_with_http_info(self, project_name, bucket_name, data, **kwargs):  # noqa: E501
+        """Update a bucket  # noqa: E501
+
+         ### Description  Update a bucket  ### Optional Parameters - `credentials`: Credentials to connect to the bucket - `configuration`: Additional configuration details for the bucket  - `description`: New description for the bucket - `labels`: New dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).  #### Request Examples ``` {   \"description\": \"New description for the bucket\" } ```  ### Response Structure  Details of the updated bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is defined - `provider`: Provider of the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket - `size`: Size of the bucket according to the last measurement date - `size_measurement_date`: Last measurement date of the size of the bucket  #### Response Examples ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"new-bucket-name\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null,   \"size\": 2048,   \"size_measurement_date\": \"2022-05-24T02:23:15.456812Z\", } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.buckets_update_with_http_info(project_name, bucket_name, data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param BucketUpdate data: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(BucketDetail, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name', 'data']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method buckets_update" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_update`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `buckets_update`")  # noqa: E501
+        # verify the required parameter 'data' is set
+        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
+                                                        local_var_params['data'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `data` when calling `buckets_update`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_update`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `buckets_update`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'data' in local_var_params
+            and local_var_params['data'] is not None):  # noqa: E501
+            if isinstance(local_var_params['data'], dict):  # noqa: E501
+                from ubiops.models.bucket_update import BucketUpdate
+
+                local_var_params['data'] = BucketUpdate(**local_var_params['data'])  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'data' in local_var_params:
+            body_params = local_var_params['data']
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}', 'PATCH',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='BucketDetail',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def builds_get(self, project_name, build_id, deployment_name, version, **kwargs):  # noqa: E501
         """Get build  # noqa: E501
 
-         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
+         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_get(project_name, build_id, deployment_name, version, async_req=True)
@@ -1372,7 +2007,7 @@ class CoreApi(object):
     def builds_get_with_http_info(self, project_name, build_id, deployment_name, version, **kwargs):  # noqa: E501
         """Get build  # noqa: E501
 
-         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
+         ### Description  Retrieve details of a single build of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_get_with_http_info(project_name, build_id, deployment_name, version, async_req=True)
@@ -1492,7 +2127,7 @@ class CoreApi(object):
     def builds_list(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """List builds  # noqa: E501
 
-         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
+         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_list(project_name, deployment_name, version, async_req=True)
@@ -1519,7 +2154,7 @@ class CoreApi(object):
     def builds_list_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """List builds  # noqa: E501
 
-         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
+         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.builds_list_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -2882,7 +3517,7 @@ class CoreApi(object):
     def deployment_requests_create(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create a direct deployment request  # noqa: E501
 
-         ### Description  Request a prediction from a deployment. Deployment requests are made for the default version of a deployment. In case of a **blob** type field, the uuid of a previously uploaded blob must be provided.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a blob field ``` {   \"input-field-1\": 5.0,   \"blob-input-field\": \"f52ff875-4980-4d71-9798-a469ef8cece2\" } ```  A plain deployment request ``` \"example-plain-data\" ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": null } ```   # noqa: E501
+         ### Description  Request a prediction from a deployment. Deployment requests are made for the default version of a deployment. When using the 'requests' function of a deployment a list should be provided as input, see the example below.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a file field ``` {   \"input-field-1\": 5.0,   \"file-input-field\": \"ubiops-file://my-bucket/file-1.jpg\" } ```  A plain deployment request ``` \"example-plain-data\" ```  Multiple structured deployment requests using the 'requests' function of a deployment ``` [     {         \"input-field-1\": 5.0     },     {         \"input-field-1\": 10.0     } ] ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": null } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_requests_create(project_name, deployment_name, data, async_req=True)
@@ -2910,7 +3545,7 @@ class CoreApi(object):
     def deployment_requests_create_with_http_info(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create a direct deployment request  # noqa: E501
 
-         ### Description  Request a prediction from a deployment. Deployment requests are made for the default version of a deployment. In case of a **blob** type field, the uuid of a previously uploaded blob must be provided.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a blob field ``` {   \"input-field-1\": 5.0,   \"blob-input-field\": \"f52ff875-4980-4d71-9798-a469ef8cece2\" } ```  A plain deployment request ``` \"example-plain-data\" ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": null } ```   # noqa: E501
+         ### Description  Request a prediction from a deployment. Deployment requests are made for the default version of a deployment. When using the 'requests' function of a deployment a list should be provided as input, see the example below.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a file field ``` {   \"input-field-1\": 5.0,   \"file-input-field\": \"ubiops-file://my-bucket/file-1.jpg\" } ```  A plain deployment request ``` \"example-plain-data\" ```  Multiple structured deployment requests using the 'requests' function of a deployment ``` [     {         \"input-field-1\": 5.0     },     {         \"input-field-1\": 10.0     } ] ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": null } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_requests_create_with_http_info(project_name, deployment_name, data, async_req=True)
@@ -4705,7 +5340,7 @@ class CoreApi(object):
     def deployment_version_requests_batch_get(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Retrieve multiple deployment version requests  # noqa: E501
 
-         ### Description Retrieve multiple deployment requests for a deployment version. If one of the given deployment requests does not exist, an error message is given and no request is returned. A maximum of 250 deployment requests can be retrieved with this method. The deployment requests are NOT returned in the order they are given in.  ### Required Parameters  A list of ids for the requests  #### Request Examples  ``` [\"2f909aeb-5c7e-4974-970d-cd0a6a073aca\", \"85711124-54db-4794-b83d-24492247c6e1\"] ```  ### Response Structure  A list of dictionaries containing the details of the retrieved deployment requests with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.   #### Response Examples  ``` [   {     \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-03-29T08:09:10.729+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 82.2     },     \"result\": null,     \"error_message\": null   },   {     \"id\": \"85711124-54db-4794-b83d-24492247c6e1\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-06-25T09:37:17.765+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 52.4     },     \"result\": null,     \"error_message\": null   } ] ```   # noqa: E501
+         ### Description Retrieve multiple deployment requests for a deployment version. If one of the given deployment requests does not exist, an error message is given and no request is returned. A maximum of 250 deployment requests can be retrieved with this method. The deployment requests are NOT returned in the order they are given in.  ### Required Parameters  A list of ids for the requests  #### Request Examples  ``` [\"2f909aeb-5c7e-4974-970d-cd0a6a073aca\", \"85711124-54db-4794-b83d-24492247c6e1\"] ```  ### Response Structure  A list of dictionaries containing the details of the retrieved deployment requests with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.   - `retries`: Number of times that the request has been retried  #### Response Examples  ``` [   {     \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-03-29T08:09:10.729+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 82.2     },     \"result\": null,     \"error_message\": null,     \"retries\": 0   },   {     \"id\": \"85711124-54db-4794-b83d-24492247c6e1\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-06-25T09:37:17.765+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 52.4     },     \"result\": null,     \"error_message\": null,     \"retries\": 1   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_version_requests_batch_get(project_name, deployment_name, version, data, async_req=True)
@@ -4733,7 +5368,7 @@ class CoreApi(object):
     def deployment_version_requests_batch_get_with_http_info(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Retrieve multiple deployment version requests  # noqa: E501
 
-         ### Description Retrieve multiple deployment requests for a deployment version. If one of the given deployment requests does not exist, an error message is given and no request is returned. A maximum of 250 deployment requests can be retrieved with this method. The deployment requests are NOT returned in the order they are given in.  ### Required Parameters  A list of ids for the requests  #### Request Examples  ``` [\"2f909aeb-5c7e-4974-970d-cd0a6a073aca\", \"85711124-54db-4794-b83d-24492247c6e1\"] ```  ### Response Structure  A list of dictionaries containing the details of the retrieved deployment requests with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.   #### Response Examples  ``` [   {     \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-03-29T08:09:10.729+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 82.2     },     \"result\": null,     \"error_message\": null   },   {     \"id\": \"85711124-54db-4794-b83d-24492247c6e1\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-06-25T09:37:17.765+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 52.4     },     \"result\": null,     \"error_message\": null   } ] ```   # noqa: E501
+         ### Description Retrieve multiple deployment requests for a deployment version. If one of the given deployment requests does not exist, an error message is given and no request is returned. A maximum of 250 deployment requests can be retrieved with this method. The deployment requests are NOT returned in the order they are given in.  ### Required Parameters  A list of ids for the requests  #### Request Examples  ``` [\"2f909aeb-5c7e-4974-970d-cd0a6a073aca\", \"85711124-54db-4794-b83d-24492247c6e1\"] ```  ### Response Structure  A list of dictionaries containing the details of the retrieved deployment requests with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.   - `retries`: Number of times that the request has been retried  #### Response Examples  ``` [   {     \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-03-29T08:09:10.729+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 82.2     },     \"result\": null,     \"error_message\": null,     \"retries\": 0   },   {     \"id\": \"85711124-54db-4794-b83d-24492247c6e1\",     \"deployment\": \"deployment-1\",     \"version\": \"v1\",     \"status\": \"pending\",     \"success\": false,     \"time_created\": \"2020-06-25T09:37:17.765+00:00\",     \"time_started\": \"2020-03-28T20:00:41.276+00:00\",     \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",     \"request_data\": {       \"input\": 52.4     },     \"result\": null,     \"error_message\": null,     \"retries\": 1   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_version_requests_batch_get_with_http_info(project_name, deployment_name, version, data, async_req=True)
@@ -4856,7 +5491,7 @@ class CoreApi(object):
     def deployment_version_requests_create(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Create a direct deployment version request  # noqa: E501
 
-         ### Description  Request a prediction from a deployment version. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state). In case of a **blob** type field, the uuid of a previously uploaded blob must be provided.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a blob field ``` {   \"input-field-1\": 5.0,   \"blob-input-field\": \"f52ff875-4980-4d71-9798-a469ef8cece2\" } ```  A plain deployment request ``` \"example-plain-data\" ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": None } ```   # noqa: E501
+         ### Description  Request a prediction from a deployment version. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state). When using the 'requests' function of a deployment a list should be provided as input, see the example below.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a file field ``` {   \"input-field-1\": 5.0,   \"file-input-field\": \"ubiops-file://my-bucket/file-1.jpg\" } ```  A plain deployment request ``` \"example-plain-data\" ```  Multiple structured deployment requests using the 'requests' function of a deployment version ``` [     {         \"input-field-1\": 5.0     },     {         \"input-field-1\": 10.0     } ] ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": None } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_version_requests_create(project_name, deployment_name, version, data, async_req=True)
@@ -4885,7 +5520,7 @@ class CoreApi(object):
     def deployment_version_requests_create_with_http_info(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Create a direct deployment version request  # noqa: E501
 
-         ### Description  Request a prediction from a deployment version. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state). In case of a **blob** type field, the uuid of a previously uploaded blob must be provided.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a blob field ``` {   \"input-field-1\": 5.0,   \"blob-input-field\": \"f52ff875-4980-4d71-9798-a469ef8cece2\" } ```  A plain deployment request ``` \"example-plain-data\" ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": None } ```   # noqa: E501
+         ### Description  Request a prediction from a deployment version. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state). When using the 'requests' function of a deployment a list should be provided as input, see the example below.  ### Required Parameters The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.  ### Optional Parameters These parameters should be given as query parameters - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).  #### Request Examples A structured deployment request ``` {   \"input-field-1\": 5.0,   \"input-field-2\": \"N\",   \"input-field-3\": [0.25, 0.25, 2.1, 16.3] } ```  A structured deployment request with a file field ``` {   \"input-field-1\": 5.0,   \"file-input-field\": \"ubiops-file://my-bucket/file-1.jpg\" } ```  A plain deployment request ``` \"example-plain-data\" ```  Multiple structured deployment requests using the 'requests' function of a deployment version ``` [     {         \"input-field-1\": 5.0     },     {         \"input-field-1\": 10.0     } ] ```  ### Response Structure  Details of the created deployment request - `id`: Unique identifier for the deployment request - `deployment`: Name of the deployment the request was made to - `version`: Name of the version the request was made to - `success`: A boolean value that indicates whether the deployment request was successful - `result`: Deployment request result value. NULL if the request failed. - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  #### Response Examples A failed deployment request ``` {   \"id\": \"85ae32a7-fe3a-4a55-be27-9db88ae68501\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"success\": false,   \"result\": None,   \"error_message\": \"Asset ID not supported\" } ```  A successful deployment request ``` {   \"id\": \"ffce45da-1562-419a-89a0-0a0837e55392\",   \"deployment\": \"deployment-1\",   \"version\": \"v2\",   \"success\": true,   \"result\": {     \"output-field-1\": \"2.1369\",     \"output-field-2\": \"5.5832\",   },   \"error_message\": None } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_version_requests_create_with_http_info(project_name, deployment_name, version, data, async_req=True)
@@ -5159,7 +5794,7 @@ class CoreApi(object):
     def deployment_version_requests_get(self, project_name, deployment_name, request_id, version, **kwargs):  # noqa: E501
         """Get a deployment version request  # noqa: E501
 
-         ### Description Get a request for a deployment version. With this method, the result of a request may be retrieved.  ### Optional Parameters The following parameters should be given as query parameters:  - `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.  ### Response Structure  A dictionary containing the details of the deployment request with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  - `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a \"UbiOps\" value.  - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Response Examples  ``` {   \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"status\": \"pending\",   \"success\": false,   \"time_created\": \"2020-03-29T08:09:10.729+00:00\",   \"time_started\": \"2020-03-28T20:00:41.276+00:00\",   \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",   \"request_data\": {     \"input\": 82.3   },   \"result\": null,   \"error_message\": null,   \"created_by\": \"my.example.user@ubiops.com\",   \"notification_group\": \"notification-group-1\" } ```   # noqa: E501
+         ### Description Get a request for a deployment version. With this method, the result of a request may be retrieved.  ### Optional Parameters The following parameters should be given as query parameters:  - `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.  ### Response Structure  A dictionary containing the details of the deployment request with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  - `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a \"UbiOps\" value.  - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  - `retries`: Number of times that the request has been retried  #### Response Examples  ``` {   \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"status\": \"pending\",   \"success\": false,   \"time_created\": \"2020-03-29T08:09:10.729+00:00\",   \"time_started\": \"2020-03-28T20:00:41.276+00:00\",   \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",   \"request_data\": {     \"input\": 82.3   },   \"result\": null,   \"error_message\": null,   \"created_by\": \"my.example.user@ubiops.com\",   \"notification_group\": \"notification-group-1\",   \"retries\": 0 } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_version_requests_get(project_name, deployment_name, request_id, version, async_req=True)
@@ -5188,7 +5823,7 @@ class CoreApi(object):
     def deployment_version_requests_get_with_http_info(self, project_name, deployment_name, request_id, version, **kwargs):  # noqa: E501
         """Get a deployment version request  # noqa: E501
 
-         ### Description Get a request for a deployment version. With this method, the result of a request may be retrieved.  ### Optional Parameters The following parameters should be given as query parameters:  - `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.  ### Response Structure  A dictionary containing the details of the deployment request with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  - `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a \"UbiOps\" value.  - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  #### Response Examples  ``` {   \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"status\": \"pending\",   \"success\": false,   \"time_created\": \"2020-03-29T08:09:10.729+00:00\",   \"time_started\": \"2020-03-28T20:00:41.276+00:00\",   \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",   \"request_data\": {     \"input\": 82.3   },   \"result\": null,   \"error_message\": null,   \"created_by\": \"my.example.user@ubiops.com\",   \"notification_group\": \"notification-group-1\" } ```   # noqa: E501
+         ### Description Get a request for a deployment version. With this method, the result of a request may be retrieved.  ### Optional Parameters The following parameters should be given as query parameters:  - `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.  ### Response Structure  A dictionary containing the details of the deployment request with the following fields:  - `id`: Unique identifier for the deployment request  - `deployment`: Name of the deployment the request was made to  - `version`: Name of the version the request was made to  - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.  - `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.  - `time_created`: Server time that the request was made (current time)  - `time_started`: Server time that the processing of the request was started  - `time_completed`: Server time that the processing of the request was completed  - `request_data`: A dictionary containing the data that was sent when the request was created  - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.  - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.  - `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a \"UbiOps\" value.  - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed  - `retries`: Number of times that the request has been retried  #### Response Examples  ``` {   \"id\": \"2f909aeb-5c7e-4974-970d-cd0a6a073aca\",   \"deployment\": \"deployment-1\",   \"version\": \"v1\",   \"status\": \"pending\",   \"success\": false,   \"time_created\": \"2020-03-29T08:09:10.729+00:00\",   \"time_started\": \"2020-03-28T20:00:41.276+00:00\",   \"time_completed\": \"2020-03-28T20:00:42.241+00:00\",   \"request_data\": {     \"input\": 82.3   },   \"result\": null,   \"error_message\": null,   \"created_by\": \"my.example.user@ubiops.com\",   \"notification_group\": \"notification-group-1\",   \"retries\": 0 } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_version_requests_get_with_http_info(project_name, deployment_name, request_id, version, async_req=True)
@@ -5688,7 +6323,7 @@ class CoreApi(object):
     def deployment_versions_create(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create deployment versions  # noqa: E501
 
-         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false } ```   # noqa: E501
+         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.10, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda, python3.10_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False. - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_create(project_name, deployment_name, data, async_req=True)
@@ -5715,7 +6350,7 @@ class CoreApi(object):
     def deployment_versions_create_with_http_info(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create deployment versions  # noqa: E501
 
-         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false } ```   # noqa: E501
+         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.10, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda, python3.10_cuda or r4.0. The default value is python3.7. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False. - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_create_with_http_info(project_name, deployment_name, data, async_req=True)
@@ -5962,7 +6597,7 @@ class CoreApi(object):
     def deployment_versions_get(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """Get deployment version  # noqa: E501
 
-         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
+         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_get(project_name, deployment_name, version, async_req=True)
@@ -5989,7 +6624,7 @@ class CoreApi(object):
     def deployment_versions_get_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """Get deployment version  # noqa: E501
 
-         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
+         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_get_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -6098,7 +6733,7 @@ class CoreApi(object):
     def deployment_versions_list(self, project_name, deployment_name, **kwargs):  # noqa: E501
         """List deployment versions  # noqa: E501
 
-         ### Description  Versions can be filtered according to the labels they have by giving labels as a query parameter. Versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory usage for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples ``` [   {     \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",     \"deployment\": \"deployment-1\",     \"version\": \"version-1\",     \"description\": \"\",     \"language\": \"python3.8\",     \"status\": \"available\",     \"active_revision\": \"da27ef7c-aa3f-4963-a815-6ebf1865638e\",     \"latest_build\": \"0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75\",     \"memory_allocation\": 512,     \"instance_type\": \"512mb\",     \"maximum_instances\": 4,     \"minimum_instances\": 1,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-06-18T08:32:14.876451Z\",     \"last_updated\": \"2020-06-19T10:52:23.124784Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000   },   {     \"id\": \"24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6\",     \"deployment\": \"deployment-1\",     \"version\": \"version-2\",     \"description\": \"\",     \"language\": \"r4.0\",     \"status\": \"available\",     \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"latest_build\": \"4534e479-ea2e-4161-876a-1d382191a031\",     \"memory_allocation\": 256,     \"instance_type\": \"256mb\",     \"maximum_instances\": 5,     \"minimum_instances\": 0,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000   } ] ```   # noqa: E501
+         ### Description  Versions can be filtered according to the labels they have by giving labels as a query parameter. Versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory usage for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` [   {     \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",     \"deployment\": \"deployment-1\",     \"version\": \"version-1\",     \"description\": \"\",     \"language\": \"python3.8\",     \"status\": \"available\",     \"active_revision\": \"da27ef7c-aa3f-4963-a815-6ebf1865638e\",     \"latest_build\": \"0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75\",     \"memory_allocation\": 512,     \"instance_type\": \"512mb\",     \"maximum_instances\": 4,     \"minimum_instances\": 1,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-06-18T08:32:14.876451Z\",     \"last_updated\": \"2020-06-19T10:52:23.124784Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": false,     \"restart_request_interruption\": false   },   {     \"id\": \"24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6\",     \"deployment\": \"deployment-1\",     \"version\": \"version-2\",     \"description\": \"\",     \"language\": \"r4.0\",     \"status\": \"available\",     \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"latest_build\": \"4534e479-ea2e-4161-876a-1d382191a031\",     \"memory_allocation\": 256,     \"instance_type\": \"256mb\",     \"maximum_instances\": 5,     \"minimum_instances\": 0,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": true,     \"restart_request_interruption\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_list(project_name, deployment_name, async_req=True)
@@ -6125,7 +6760,7 @@ class CoreApi(object):
     def deployment_versions_list_with_http_info(self, project_name, deployment_name, **kwargs):  # noqa: E501
         """List deployment versions  # noqa: E501
 
-         ### Description  Versions can be filtered according to the labels they have by giving labels as a query parameter. Versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory usage for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version  #### Response Examples ``` [   {     \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",     \"deployment\": \"deployment-1\",     \"version\": \"version-1\",     \"description\": \"\",     \"language\": \"python3.8\",     \"status\": \"available\",     \"active_revision\": \"da27ef7c-aa3f-4963-a815-6ebf1865638e\",     \"latest_build\": \"0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75\",     \"memory_allocation\": 512,     \"instance_type\": \"512mb\",     \"maximum_instances\": 4,     \"minimum_instances\": 1,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-06-18T08:32:14.876451Z\",     \"last_updated\": \"2020-06-19T10:52:23.124784Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000   },   {     \"id\": \"24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6\",     \"deployment\": \"deployment-1\",     \"version\": \"version-2\",     \"description\": \"\",     \"language\": \"r4.0\",     \"status\": \"available\",     \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"latest_build\": \"4534e479-ea2e-4161-876a-1d382191a031\",     \"memory_allocation\": 256,     \"instance_type\": \"256mb\",     \"maximum_instances\": 5,     \"minimum_instances\": 0,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000   } ] ```   # noqa: E501
+         ### Description  Versions can be filtered according to the labels they have by giving labels as a query parameter. Versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory usage for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` [   {     \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",     \"deployment\": \"deployment-1\",     \"version\": \"version-1\",     \"description\": \"\",     \"language\": \"python3.8\",     \"status\": \"available\",     \"active_revision\": \"da27ef7c-aa3f-4963-a815-6ebf1865638e\",     \"latest_build\": \"0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75\",     \"memory_allocation\": 512,     \"instance_type\": \"512mb\",     \"maximum_instances\": 4,     \"minimum_instances\": 1,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-06-18T08:32:14.876451Z\",     \"last_updated\": \"2020-06-19T10:52:23.124784Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": false,     \"restart_request_interruption\": false   },   {     \"id\": \"24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6\",     \"deployment\": \"deployment-1\",     \"version\": \"version-2\",     \"description\": \"\",     \"language\": \"r4.0\",     \"status\": \"available\",     \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"latest_build\": \"4534e479-ea2e-4161-876a-1d382191a031\",     \"memory_allocation\": 256,     \"instance_type\": \"256mb\",     \"maximum_instances\": 5,     \"minimum_instances\": 0,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": true,     \"restart_request_interruption\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_list_with_http_info(project_name, deployment_name, async_req=True)
@@ -6230,7 +6865,7 @@ class CoreApi(object):
     def deployment_versions_update(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Update deployment version  # noqa: E501
 
-         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
+         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_update(project_name, deployment_name, version, data, async_req=True)
@@ -6258,7 +6893,7 @@ class CoreApi(object):
     def deployment_versions_update_with_http_info(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Update deployment version  # noqa: E501
 
-         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false } ```   # noqa: E501
+         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `memory_allocation`: (deprecated) New reserved memory for the version in MiB - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `memory_allocation`: (deprecated) Reserved memory for the version in MiB - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"memory_allocation\": 512,   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_update_with_http_info(project_name, deployment_name, version, data, async_req=True)
@@ -6383,7 +7018,7 @@ class CoreApi(object):
     def deployments_create(self, project_name, data, **kwargs):  # noqa: E501
         """Create deployments  # noqa: E501
 
-         ### Description  Create a deployment by defining the input/output type and input/output fields. In case of **plain** type of input or output, input and output fields should not be given or passed as an empty list.  Possible data types for the input and output fields are: - **int**: integer - **string**: string - **double**: double precision floating point - **bool**: boolean value (False/True) - **timestamp**: timestamp - **array_int**: an array of integers - **array_double**: an array of double precision floating points - **array_string**: an array of strings - **blob**: a blob field. This type of field can be used to pass blobs to the deployment. In deployment and pipeline requests, the uuid of a previously uploaded blob must be provided for this field.  Possible widgets for the input fields are: - **textbox**: textbox - **numberbox**: numberbox - **slider**: slider - **dropdown**: dropdown - **switch**: switch - **button**: upload button - **drawer**: drawer - **image_preview**: image upload with preview  Possible widgets for the output fields are: - **textbox**: textbox - **button**: download button - **image_preview**: image preview  ### Required Parameters  - `name`: Name of the deployment. It is unique within a project. - `input_type`: Type of the input of the deployment. It can be either structured or plain. - `output_type`: Type of the output of the deployment. It can be either structured or plain. - `input_fields`: The list of required deployment input fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an input field is unique for a deployment. - `output_fields`: The list of required deployment output fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an output field is unique for a deployment.  ### Optional Parameters - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples A deployment with structured input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\"     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\"     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input type ``` {   \"name\": \"deployment-1\",   \"description\": \"Deployment one\"   \"input_type\": \"plain\",   \"output_type\": \"structured\",   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"plain\",   \"output_type\": \"plain\"   \"labels\": {     \"type\": \"deployment\"   } } ```  A deployment with structured input and output type and field widgets ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {         \"type\": \"slider\",         \"configuration\": {\"min\": 0, \"max\": 10, \"default\": 4, \"step\": 2}       }     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"numberbox\",         \"configuration\": {\"min\": 0, \"max\": 1, \"default\": 0.5, \"step\": 0.1}       }     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"textbox\",         \"configuration\": {}       }     }   ] } ```  ### Response Structure  Details of the created deployment - `id`: Unique identifier for the deployment (UUID) - `name`: Name of the deployment - `project`: Project name in which the deployment is created - `input_type`: Type of the input of the deployment - `output_type`: Type of the output of the deployment - `input_fields`: The list of deployment input fields containing name and data_type - `output_fields`: The list of deployment output fields containing name and data_type - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the deployment was created - `last_updated`: The date when the deployment was last updated  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"deployment-1\",   \"project\": \"project-1\",   \"description\": \"\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {}     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"labels\": {     \"type\": \"deployment\"   },   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"last_updated\": \"2020-06-18T08:32:14.876451Z\" } ```   # noqa: E501
+         ### Description  Create a deployment by defining the input/output type and input/output fields. In case of **plain** type of input or output, input and output fields should not be given or passed as an empty list.  Possible data types for the input and output fields are: - **int**: integer - **string**: string - **double**: double precision floating point - **bool**: boolean value (False/True) - **timestamp**: timestamp - **array_int**: an array of integers - **array_double**: an array of double precision floating points - **array_string**: an array of strings - **file**: a file field. This type of field can be used to pass files to the deployment. In deployment and pipeline requests, the path to the file in the bucket must be provided for this field.  Possible widgets for the input fields are: - **textbox**: textbox - **numberbox**: numberbox - **slider**: slider - **dropdown**: dropdown - **switch**: switch - **button**: upload button - **drawer**: drawer - **image_preview**: image upload with preview  Possible widgets for the output fields are: - **textbox**: textbox - **button**: download button - **image_preview**: image preview  ### Required Parameters  - `name`: Name of the deployment. It is unique within a project. - `input_type`: Type of the input of the deployment. It can be either structured or plain. - `output_type`: Type of the output of the deployment. It can be either structured or plain. - `input_fields`: The list of required deployment input fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an input field is unique for a deployment. - `output_fields`: The list of required deployment output fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an output field is unique for a deployment.  ### Optional Parameters - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples A deployment with structured input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\"     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\"     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input type ``` {   \"name\": \"deployment-1\",   \"description\": \"Deployment one\"   \"input_type\": \"plain\",   \"output_type\": \"structured\",   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"plain\",   \"output_type\": \"plain\"   \"labels\": {     \"type\": \"deployment\"   } } ```  A deployment with structured input and output type and field widgets ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {         \"type\": \"slider\",         \"configuration\": {\"min\": 0, \"max\": 10, \"default\": 4, \"step\": 2}       }     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"numberbox\",         \"configuration\": {\"min\": 0, \"max\": 1, \"default\": 0.5, \"step\": 0.1}       }     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"textbox\",         \"configuration\": {}       }     }   ] } ```  ### Response Structure  Details of the created deployment - `id`: Unique identifier for the deployment (UUID) - `name`: Name of the deployment - `project`: Project name in which the deployment is created - `input_type`: Type of the input of the deployment - `output_type`: Type of the output of the deployment - `input_fields`: The list of deployment input fields containing name and data_type - `output_fields`: The list of deployment output fields containing name and data_type - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the deployment was created - `last_updated`: The date when the deployment was last updated  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"deployment-1\",   \"project\": \"project-1\",   \"description\": \"\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {}     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"labels\": {     \"type\": \"deployment\"   },   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"last_updated\": \"2020-06-18T08:32:14.876451Z\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployments_create(project_name, data, async_req=True)
@@ -6409,7 +7044,7 @@ class CoreApi(object):
     def deployments_create_with_http_info(self, project_name, data, **kwargs):  # noqa: E501
         """Create deployments  # noqa: E501
 
-         ### Description  Create a deployment by defining the input/output type and input/output fields. In case of **plain** type of input or output, input and output fields should not be given or passed as an empty list.  Possible data types for the input and output fields are: - **int**: integer - **string**: string - **double**: double precision floating point - **bool**: boolean value (False/True) - **timestamp**: timestamp - **array_int**: an array of integers - **array_double**: an array of double precision floating points - **array_string**: an array of strings - **blob**: a blob field. This type of field can be used to pass blobs to the deployment. In deployment and pipeline requests, the uuid of a previously uploaded blob must be provided for this field.  Possible widgets for the input fields are: - **textbox**: textbox - **numberbox**: numberbox - **slider**: slider - **dropdown**: dropdown - **switch**: switch - **button**: upload button - **drawer**: drawer - **image_preview**: image upload with preview  Possible widgets for the output fields are: - **textbox**: textbox - **button**: download button - **image_preview**: image preview  ### Required Parameters  - `name`: Name of the deployment. It is unique within a project. - `input_type`: Type of the input of the deployment. It can be either structured or plain. - `output_type`: Type of the output of the deployment. It can be either structured or plain. - `input_fields`: The list of required deployment input fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an input field is unique for a deployment. - `output_fields`: The list of required deployment output fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an output field is unique for a deployment.  ### Optional Parameters - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples A deployment with structured input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\"     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\"     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input type ``` {   \"name\": \"deployment-1\",   \"description\": \"Deployment one\"   \"input_type\": \"plain\",   \"output_type\": \"structured\",   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"plain\",   \"output_type\": \"plain\"   \"labels\": {     \"type\": \"deployment\"   } } ```  A deployment with structured input and output type and field widgets ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {         \"type\": \"slider\",         \"configuration\": {\"min\": 0, \"max\": 10, \"default\": 4, \"step\": 2}       }     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"numberbox\",         \"configuration\": {\"min\": 0, \"max\": 1, \"default\": 0.5, \"step\": 0.1}       }     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"textbox\",         \"configuration\": {}       }     }   ] } ```  ### Response Structure  Details of the created deployment - `id`: Unique identifier for the deployment (UUID) - `name`: Name of the deployment - `project`: Project name in which the deployment is created - `input_type`: Type of the input of the deployment - `output_type`: Type of the output of the deployment - `input_fields`: The list of deployment input fields containing name and data_type - `output_fields`: The list of deployment output fields containing name and data_type - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the deployment was created - `last_updated`: The date when the deployment was last updated  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"deployment-1\",   \"project\": \"project-1\",   \"description\": \"\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {}     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"labels\": {     \"type\": \"deployment\"   },   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"last_updated\": \"2020-06-18T08:32:14.876451Z\" } ```   # noqa: E501
+         ### Description  Create a deployment by defining the input/output type and input/output fields. In case of **plain** type of input or output, input and output fields should not be given or passed as an empty list.  Possible data types for the input and output fields are: - **int**: integer - **string**: string - **double**: double precision floating point - **bool**: boolean value (False/True) - **timestamp**: timestamp - **array_int**: an array of integers - **array_double**: an array of double precision floating points - **array_string**: an array of strings - **file**: a file field. This type of field can be used to pass files to the deployment. In deployment and pipeline requests, the path to the file in the bucket must be provided for this field.  Possible widgets for the input fields are: - **textbox**: textbox - **numberbox**: numberbox - **slider**: slider - **dropdown**: dropdown - **switch**: switch - **button**: upload button - **drawer**: drawer - **image_preview**: image upload with preview  Possible widgets for the output fields are: - **textbox**: textbox - **button**: download button - **image_preview**: image preview  ### Required Parameters  - `name`: Name of the deployment. It is unique within a project. - `input_type`: Type of the input of the deployment. It can be either structured or plain. - `output_type`: Type of the output of the deployment. It can be either structured or plain. - `input_fields`: The list of required deployment input fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an input field is unique for a deployment. - `output_fields`: The list of required deployment output fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an output field is unique for a deployment.  ### Optional Parameters - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples A deployment with structured input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\"     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\"     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input type ``` {   \"name\": \"deployment-1\",   \"description\": \"Deployment one\"   \"input_type\": \"plain\",   \"output_type\": \"structured\",   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\"     }   ] } ```  A deployment with plain input and output type ``` {   \"name\": \"deployment-1\",   \"input_type\": \"plain\",   \"output_type\": \"plain\"   \"labels\": {     \"type\": \"deployment\"   } } ```  A deployment with structured input and output type and field widgets ``` {   \"name\": \"deployment-1\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {         \"type\": \"slider\",         \"configuration\": {\"min\": 0, \"max\": 10, \"default\": 4, \"step\": 2}       }     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"numberbox\",         \"configuration\": {\"min\": 0, \"max\": 1, \"default\": 0.5, \"step\": 0.1}       }     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {         \"type\": \"textbox\",         \"configuration\": {}       }     }   ] } ```  ### Response Structure  Details of the created deployment - `id`: Unique identifier for the deployment (UUID) - `name`: Name of the deployment - `project`: Project name in which the deployment is created - `input_type`: Type of the input of the deployment - `output_type`: Type of the output of the deployment - `input_fields`: The list of deployment input fields containing name and data_type - `output_fields`: The list of deployment output fields containing name and data_type - `description`: Description of the deployment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the deployment was created - `last_updated`: The date when the deployment was last updated  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"deployment-1\",   \"project\": \"project-1\",   \"description\": \"\",   \"input_type\": \"structured\",   \"output_type\": \"structured\",   \"input_fields\": [     {       \"name\": \"input-field-1\",       \"data_type\": \"int\",       \"widget\": {}     },     {       \"name\": \"input-field-2\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"output_fields\": [     {       \"name\": \"output-field\",       \"data_type\": \"double\",       \"widget\": {}     }   ],   \"labels\": {     \"type\": \"deployment\"   },   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"last_updated\": \"2020-06-18T08:32:14.876451Z\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployments_create_with_http_info(project_name, data, async_req=True)
@@ -7635,6 +8270,827 @@ class CoreApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def expressions_evaluate(self, data, **kwargs):  # noqa: E501
+        """Evaluate expression  # noqa: E501
+
+         ### Description Evaluate a pipeline version operator expression.  ### Required Parameters  - `expression`: The expression to evaluate. - `input_fields`: A list of input fields with name, data_type. - `request_data`: Data to test the expression with. All its keys must be defined in 'input_fields'.  #### Request Examples ``` {   \"expression\": \"var1 + 10\",   \"input_fields\": [     {       \"name\": \"var1\",       \"data_type\": \"int\"     }   ],   \"request_data\": {     \"var1\": 123   } } ```  ### Response Structure - `result`: The result of the expression  #### Response Examples ``` {   \"result\": 133 } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.expressions_evaluate(data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param ExpressionEvaluate data: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: ExpressionEvaluateResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.expressions_evaluate_with_http_info(data, **kwargs)  # noqa: E501
+
+    def expressions_evaluate_with_http_info(self, data, **kwargs):  # noqa: E501
+        """Evaluate expression  # noqa: E501
+
+         ### Description Evaluate a pipeline version operator expression.  ### Required Parameters  - `expression`: The expression to evaluate. - `input_fields`: A list of input fields with name, data_type. - `request_data`: Data to test the expression with. All its keys must be defined in 'input_fields'.  #### Request Examples ``` {   \"expression\": \"var1 + 10\",   \"input_fields\": [     {       \"name\": \"var1\",       \"data_type\": \"int\"     }   ],   \"request_data\": {     \"var1\": 123   } } ```  ### Response Structure - `result`: The result of the expression  #### Response Examples ``` {   \"result\": 133 } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.expressions_evaluate_with_http_info(data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param ExpressionEvaluate data: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(ExpressionEvaluateResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['data']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method expressions_evaluate" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'data' is set
+        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
+                                                        local_var_params['data'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `data` when calling `expressions_evaluate`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'data' in local_var_params
+            and local_var_params['data'] is not None):  # noqa: E501
+            if isinstance(local_var_params['data'], dict):  # noqa: E501
+                from ubiops.models.expression_evaluate import ExpressionEvaluate
+
+                local_var_params['data'] = ExpressionEvaluate(**local_var_params['data'])  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'data' in local_var_params:
+            body_params = local_var_params['data']
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/expressions/evaluate', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='ExpressionEvaluateResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def files_delete(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Delete a file  # noqa: E501
+
+         ### Description Delete a file from a bucket   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_delete(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.files_delete_with_http_info(project_name, bucket_name, file, **kwargs)  # noqa: E501
+
+    def files_delete_with_http_info(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Delete a file  # noqa: E501
+
+         ### Description Delete a file from a bucket   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_delete_with_http_info(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name', 'file']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method files_delete" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `files_delete`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_delete`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file` when calling `files_delete`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `files_delete`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_delete`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'file' in local_var_params
+            and local_var_params['file'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['file'], str):  # noqa: E501
+                raise ApiValueError("Parameter `file` must be a string when calling `files_delete`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+        if 'file' in local_var_params:
+            path_params['file'] = local_var_params['file']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def files_download(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Download a file  # noqa: E501
+
+         ### Description Generate a signed url to download a file. Request body should be an empty dictionary.  ### Response Structure  - `url`: A url which can be used to download the file from bucket. Make a GET request to this url to download the file. - `provider`: Provider of the bucket where the file will be uploaded  #### Response Examples ``` {   \"url\": \"https://storage.apis.com/my-bucket/my-file.jpg...\",   \"provider\": \"ubiops\" } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_download(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: FileUploadResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.files_download_with_http_info(project_name, bucket_name, file, **kwargs)  # noqa: E501
+
+    def files_download_with_http_info(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Download a file  # noqa: E501
+
+         ### Description Generate a signed url to download a file. Request body should be an empty dictionary.  ### Response Structure  - `url`: A url which can be used to download the file from bucket. Make a GET request to this url to download the file. - `provider`: Provider of the bucket where the file will be uploaded  #### Response Examples ``` {   \"url\": \"https://storage.apis.com/my-bucket/my-file.jpg...\",   \"provider\": \"ubiops\" } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_download_with_http_info(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(FileUploadResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name', 'file']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method files_download" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `files_download`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_download`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file` when calling `files_download`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `files_download`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_download`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'file' in local_var_params
+            and local_var_params['file'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['file'], str):  # noqa: E501
+                raise ApiValueError("Parameter `file` must be a string when calling `files_download`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+        if 'file' in local_var_params:
+            path_params['file'] = local_var_params['file']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}/download', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FileUploadResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def files_get(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Get a file  # noqa: E501
+
+         ### Description Get the details of a file in the bucket  ### Response Structure  - `file`: Name of the file - `size`: Size of the file - `time_created`: The time that the file was created  #### Response Examples ``` {   \"file\": \"my-file-1\",   \"size\": 123,   \"time_created\": \"2022-05-12T16:23:15.456812Z\" } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_get(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: FileItem
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.files_get_with_http_info(project_name, bucket_name, file, **kwargs)  # noqa: E501
+
+    def files_get_with_http_info(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Get a file  # noqa: E501
+
+         ### Description Get the details of a file in the bucket  ### Response Structure  - `file`: Name of the file - `size`: Size of the file - `time_created`: The time that the file was created  #### Response Examples ``` {   \"file\": \"my-file-1\",   \"size\": 123,   \"time_created\": \"2022-05-12T16:23:15.456812Z\" } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_get_with_http_info(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(FileItem, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name', 'file']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method files_get" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `files_get`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_get`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file` when calling `files_get`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `files_get`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_get`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'file' in local_var_params
+            and local_var_params['file'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['file'], str):  # noqa: E501
+                raise ApiValueError("Parameter `file` must be a string when calling `files_get`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+        if 'file' in local_var_params:
+            path_params['file'] = local_var_params['file']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FileItem',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def files_list(self, project_name, bucket_name, **kwargs):  # noqa: E501
+        """List files  # noqa: E501
+
+         ### Description List files in a bucket  ### Optional Parameters The following parameters should be given as query parameters: - `prefix`: Prefix to filter files - `delimiter`: Delimiter used with prefix to emulate hierarchy to filter files - `limit`: The maximum number of files returned, default is 100 - `continuation_token`: A token that indicates the start point of the returned the files  ### Response Structure  A dictionary containing the details of files and prefixes in the bucket - `continuation_token`: Next token to get the next set of files - `files`: A list of dictionaries containing the details of the files. It contains the file name ('file'), size of the file ('size') and the creation time of the file ('time_created'). - `prefixes`: A list of directories  #### Response Examples ``` {   \"continuation_token\": \"1234\",   \"files\": [     {       \"file\": \"my-file-1\",       \"size\": 123,       \"time_created\": \"2022-05-12T16:23:15.456812Z\"     },     {       \"file\": \"my-file-2\",       \"size\": 456,       \"time_created\": \"2022-06-05T10:56:12.186046Z\"     }   ],   \"prefixes\": [     \"my-dir-1\",     \"my-dir-2\"   ] } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_list(project_name, bucket_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str prefix:
+        :param str delimiter:
+        :param str continuation_token:
+        :param int limit:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: FileDetail
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.files_list_with_http_info(project_name, bucket_name, **kwargs)  # noqa: E501
+
+    def files_list_with_http_info(self, project_name, bucket_name, **kwargs):  # noqa: E501
+        """List files  # noqa: E501
+
+         ### Description List files in a bucket  ### Optional Parameters The following parameters should be given as query parameters: - `prefix`: Prefix to filter files - `delimiter`: Delimiter used with prefix to emulate hierarchy to filter files - `limit`: The maximum number of files returned, default is 100 - `continuation_token`: A token that indicates the start point of the returned the files  ### Response Structure  A dictionary containing the details of files and prefixes in the bucket - `continuation_token`: Next token to get the next set of files - `files`: A list of dictionaries containing the details of the files. It contains the file name ('file'), size of the file ('size') and the creation time of the file ('time_created'). - `prefixes`: A list of directories  #### Response Examples ``` {   \"continuation_token\": \"1234\",   \"files\": [     {       \"file\": \"my-file-1\",       \"size\": 123,       \"time_created\": \"2022-05-12T16:23:15.456812Z\"     },     {       \"file\": \"my-file-2\",       \"size\": 456,       \"time_created\": \"2022-06-05T10:56:12.186046Z\"     }   ],   \"prefixes\": [     \"my-dir-1\",     \"my-dir-2\"   ] } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_list_with_http_info(project_name, bucket_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str prefix:
+        :param str delimiter:
+        :param str continuation_token:
+        :param int limit:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(FileDetail, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name', 'prefix', 'delimiter', 'continuation_token', 'limit']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method files_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `files_list`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `files_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'prefix' in local_var_params
+            and local_var_params['prefix'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['prefix'], str):  # noqa: E501
+                raise ApiValueError("Parameter `prefix` must be a string when calling `files_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'delimiter' in local_var_params
+            and local_var_params['delimiter'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['delimiter'], str):  # noqa: E501
+                raise ApiValueError("Parameter `delimiter` must be a string when calling `files_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'continuation_token' in local_var_params
+            and local_var_params['continuation_token'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['continuation_token'], str):  # noqa: E501
+                raise ApiValueError("Parameter `continuation_token` must be a string when calling `files_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'limit' in local_var_params
+            and local_var_params['limit'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['limit'], int):  # noqa: E501
+                raise ApiValueError("Parameter `limit` must be an integer when calling `files_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+
+        query_params = []
+        if 'prefix' in local_var_params and local_var_params['prefix'] is not None:  # noqa: E501
+            query_params.append(('prefix', local_var_params['prefix']))  # noqa: E501
+        if 'delimiter' in local_var_params and local_var_params['delimiter'] is not None:  # noqa: E501
+            query_params.append(('delimiter', local_var_params['delimiter']))  # noqa: E501
+        if 'continuation_token' in local_var_params and local_var_params['continuation_token'] is not None:  # noqa: E501
+            query_params.append(('continuation_token', local_var_params['continuation_token']))  # noqa: E501
+        if 'limit' in local_var_params and local_var_params['limit'] is not None:  # noqa: E501
+            query_params.append(('limit', local_var_params['limit']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}/files', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FileDetail',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def files_upload(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Upload a file  # noqa: E501
+
+         ### Description Generate a signed url to upload a file. Request body should be an empty dictionary.  ### Response Structure  - `url`: A url which can be used to upload the file to bucket. Make a PUT request to this url with the file content to upload the file. - `provider`: Provider of the bucket where the file will be uploaded  #### Response Examples ``` {   \"url\": \"https://storage.apis.com/my-bucket/my-file.jpg...\",   \"provider\": \"ubiops\" } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_upload(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param object data:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: FileUploadResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.files_upload_with_http_info(project_name, bucket_name, file, **kwargs)  # noqa: E501
+
+    def files_upload_with_http_info(self, project_name, bucket_name, file, **kwargs):  # noqa: E501
+        """Upload a file  # noqa: E501
+
+         ### Description Generate a signed url to upload a file. Request body should be an empty dictionary.  ### Response Structure  - `url`: A url which can be used to upload the file to bucket. Make a PUT request to this url with the file content to upload the file. - `provider`: Provider of the bucket where the file will be uploaded  #### Response Examples ``` {   \"url\": \"https://storage.apis.com/my-bucket/my-file.jpg...\",   \"provider\": \"ubiops\" } ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.files_upload_with_http_info(project_name, bucket_name, file, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param object data:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(FileUploadResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'bucket_name', 'file', 'data']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method files_upload" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `files_upload`")  # noqa: E501
+        # verify the required parameter 'bucket_name' is set
+        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_upload`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file` when calling `files_upload`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `files_upload`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
+            and local_var_params['bucket_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_upload`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'file' in local_var_params
+            and local_var_params['file'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['file'], str):  # noqa: E501
+                raise ApiValueError("Parameter `file` must be a string when calling `files_upload`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'bucket_name' in local_var_params:
+            path_params['bucket_name'] = local_var_params['bucket_name']  # noqa: E501
+        if 'file' in local_var_params:
+            path_params['file'] = local_var_params['file']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'data' in local_var_params:
+            body_params = local_var_params['data']
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FileUploadResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def imports_create(self, project_name, **kwargs):  # noqa: E501
         """Create an import  # noqa: E501
 
@@ -8412,7 +9868,7 @@ class CoreApi(object):
     def instance_types_list(self, project_name, **kwargs):  # noqa: E501
         """List instance types  # noqa: E501
 
-         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_type`: Type of the GPU enabled for this instance type    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_type\": null   } ] ```   # noqa: E501
+         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_allocation_type`: Type of the GPU allocation. Normally, this is nvidia.com/gpu, but in case of mixed mode MIG  this can change to nvidia.com/mig-1g.10gb or alike    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_allocation_type\": null   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.instance_types_list(project_name, async_req=True)
@@ -8437,7 +9893,7 @@ class CoreApi(object):
     def instance_types_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
         """List instance types  # noqa: E501
 
-         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_type`: Type of the GPU enabled for this instance type    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_type\": null   } ] ```   # noqa: E501
+         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_allocation_type`: Type of the GPU allocation. Normally, this is nvidia.com/gpu, but in case of mixed mode MIG  this can change to nvidia.com/mig-1g.10gb or alike    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_allocation_type\": null   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.instance_types_list_with_http_info(project_name, async_req=True)
@@ -10289,7 +11745,7 @@ class CoreApi(object):
             collection_formats=collection_formats)
 
     def organizations_resource_usage(self, organization_name, **kwargs):  # noqa: E501
-        """List resource usage of an organization  # noqa: E501
+        """Get resource usage  # noqa: E501
 
          ### Description  List the total number of resources used by this organization  ### Response Structure A list containing the number of - projects   - users   - deployments   - deployment_versions   - pipelines   - pipeline_versions   currently used by the organization.  #### Response Examples ``` {   \"projects\": 5,   \"users\": 3,   \"deployments\": 30,   \"deployment_versions\": 47,   \"pipelines\": 2,   \"pipeline_versions\": 4 } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -10314,7 +11770,7 @@ class CoreApi(object):
         return self.organizations_resource_usage_with_http_info(organization_name, **kwargs)  # noqa: E501
 
     def organizations_resource_usage_with_http_info(self, organization_name, **kwargs):  # noqa: E501
-        """List resource usage of an organization  # noqa: E501
+        """Get resource usage  # noqa: E501
 
          ### Description  List the total number of resources used by this organization  ### Response Structure A list containing the number of - projects   - users   - deployments   - deployment_versions   - pipelines   - pipeline_versions   currently used by the organization.  #### Response Examples ``` {   \"projects\": 5,   \"users\": 3,   \"deployments\": 30,   \"deployment_versions\": 47,   \"pipelines\": 2,   \"pipeline_versions\": 4 } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -10530,7 +11986,7 @@ class CoreApi(object):
             collection_formats=collection_formats)
 
     def organizations_usage_get(self, organization_name, **kwargs):  # noqa: E501
-        """Get resource usage  # noqa: E501
+        """Get organization usage  # noqa: E501
 
          ### Description  Get resource usage for the organization. It contains **the details of each metric aggregated per month.**   ### Optional Parameters  - `start_date`: date indicating the start date to fetch usage data from. If omitted, results are generated for current subscription period. - `end_date`: date indicating the end date to fetch usage data until. If omitted, results are generated for current subscription period. - `interval`: interval for which the usage data is fetched. It can be 'day' or 'month'. It defaults to 'month'.  If no **start_date** or **end_date** is given, the current subscription period is used, e.g. if the usage details are requested on 01-12-2020 and the subscription started on 20-11-2020, the results will contain data from 20-11-2020 to 20-12-2020. When **start_date** and **end_date** are given, this month period is used, e.g. if 12-11-2020 is given as start date and 12-12-2020 as end date, the results will contain data from 12-11-2020 to 12-12-2020.  ### Response Structure - `metric`: Metric name - `object_type`: Type of object the metric was measured for (deployment_version or pipeline_version) - `usage`: an array of objects each containing the following:   - `start_date`: Timestamp denoting the start of the current subscription period or the provided date   - `end_date`: Timestamp denoting the end of the current subscription period or the provided date   - `value`: Aggregated metric value for the given unit over the given month   #### Response Examples 2019-08-01 as start date and 2019-09-01 as end date ``` [   {     \"object_type\": \"deployment_version\",     \"metric\": \"credits\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1484124       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1204       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1598       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1840       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 400       }       ]   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -10558,7 +12014,7 @@ class CoreApi(object):
         return self.organizations_usage_get_with_http_info(organization_name, **kwargs)  # noqa: E501
 
     def organizations_usage_get_with_http_info(self, organization_name, **kwargs):  # noqa: E501
-        """Get resource usage  # noqa: E501
+        """Get organization usage  # noqa: E501
 
          ### Description  Get resource usage for the organization. It contains **the details of each metric aggregated per month.**   ### Optional Parameters  - `start_date`: date indicating the start date to fetch usage data from. If omitted, results are generated for current subscription period. - `end_date`: date indicating the end date to fetch usage data until. If omitted, results are generated for current subscription period. - `interval`: interval for which the usage data is fetched. It can be 'day' or 'month'. It defaults to 'month'.  If no **start_date** or **end_date** is given, the current subscription period is used, e.g. if the usage details are requested on 01-12-2020 and the subscription started on 20-11-2020, the results will contain data from 20-11-2020 to 20-12-2020. When **start_date** and **end_date** are given, this month period is used, e.g. if 12-11-2020 is given as start date and 12-12-2020 as end date, the results will contain data from 12-11-2020 to 12-12-2020.  ### Response Structure - `metric`: Metric name - `object_type`: Type of object the metric was measured for (deployment_version or pipeline_version) - `usage`: an array of objects each containing the following:   - `start_date`: Timestamp denoting the start of the current subscription period or the provided date   - `end_date`: Timestamp denoting the end of the current subscription period or the provided date   - `value`: Aggregated metric value for the given unit over the given month   #### Response Examples 2019-08-01 as start date and 2019-09-01 as end date ``` [   {     \"object_type\": \"deployment_version\",     \"metric\": \"credits\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1484124       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1204       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1598       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1840       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 400       }       ]   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -17809,9 +19265,9 @@ class CoreApi(object):
             collection_formats=collection_formats)
 
     def role_assignments_create(self, project_name, data, **kwargs):  # noqa: E501
-        """Assign a role to a user in a project  # noqa: E501
+        """Assign role to user/object  # noqa: E501
 
-         ### Description  Assign a role to a user in the scope of a project. This role can be assigned on either project level or on object level, which can be a deployment or pipeline. The user making the request must have appropriate permissions.  ### Required Parameters  - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role to be assigned to the user    ### Optional Parameters - `object_name`: Name of the object for which the role will be assigned   - `object_type`: Type of the object for which the role will be assigned. It can be project, deployment or pipeline.  **object_name and object_type must be provided together. If neither of them is provided, the role is set on project level.**  #### Request Examples Setting the role deployment-admin on project level for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-admin\" } ```  Setting the role deployment-viewer on deployment-1 for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-viewer\",   \"object_name\": \"deployment-1\",   \"object_type\": \"deployment\" } ```  ### Response Structure  Details of the created role assignment - `id`: Unique identifier for the role assignment (UUID)   - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role assigned to the user   - `object_name`: Name of the object for which the role is assigned   - `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.  #### Response Examples ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-admin\",   \"object_name\": \"project-1\",   \"object_type\": \"project\" } ```  ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-viewer\",   \"object_name\": \"deployment-1\",   \"object_type\": \"deployment\" } ```   # noqa: E501
+         ### Description  Assign a role to a user or an object in the scope of a project. This role can be assigned on either project level or on object level, which can be a deployment, pipeline or bucket.  ### Required Parameters  - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role to be assigned to the user   - `assignee`: UUID of the user or the name of the object for which the role will be assigned   - `assignee_type`: Type of the assignee. It can be user or deployment. - `resource`: Name of the object for which the role will be assigned   - `resource_type`: Type of the object for which the role will be assigned. It can be project, deployment, pipeline or bucket.  **resource and resource_type must be provided together. If neither of them is provided, the role is set on project level.**  #### Request Examples Setting the role deployment-admin on project level for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-admin\" } ```  Setting the role deployment-viewer on deployment-1 for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-viewer\",   \"resource\": \"deployment-1\",   \"resource_type\": \"deployment\" } ```  Setting the role files-reader on bucket-1 for deployment-1 ``` {   \"assignee\": \"deployment-1\",   \"assignee_type\": \"deployment\",   \"role\": \"file-reader\",   \"resource\": \"bucket-1\",   \"resource_type\": \"bucket\" } ```  ### Response Structure  Details of the created role assignment - `id`: Unique identifier for the role assignment (UUID) - `assignee`: UUID of the user or the name of the object - `assignee_type`: Type of the assignee - `role`: Name of the role assigned to the user - `resource`: Name of the object for which the role is assigned - `resource_type`: Type of the object for which the role is assigned  #### Response Examples ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-admin\",   \"resource\": \"project-1\",   \"resource_type\": \"project\" } ```  ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"assignee\": \"deployment-1\",   \"assignee_type\": \"deployment\",   \"role\": \"file-reader\",   \"resource\": \"bucket-1\",   \"resource_type\": \"bucket\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.role_assignments_create(project_name, data, async_req=True)
@@ -17835,9 +19291,9 @@ class CoreApi(object):
         return self.role_assignments_create_with_http_info(project_name, data, **kwargs)  # noqa: E501
 
     def role_assignments_create_with_http_info(self, project_name, data, **kwargs):  # noqa: E501
-        """Assign a role to a user in a project  # noqa: E501
+        """Assign role to user/object  # noqa: E501
 
-         ### Description  Assign a role to a user in the scope of a project. This role can be assigned on either project level or on object level, which can be a deployment or pipeline. The user making the request must have appropriate permissions.  ### Required Parameters  - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role to be assigned to the user    ### Optional Parameters - `object_name`: Name of the object for which the role will be assigned   - `object_type`: Type of the object for which the role will be assigned. It can be project, deployment or pipeline.  **object_name and object_type must be provided together. If neither of them is provided, the role is set on project level.**  #### Request Examples Setting the role deployment-admin on project level for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-admin\" } ```  Setting the role deployment-viewer on deployment-1 for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-viewer\",   \"object_name\": \"deployment-1\",   \"object_type\": \"deployment\" } ```  ### Response Structure  Details of the created role assignment - `id`: Unique identifier for the role assignment (UUID)   - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role assigned to the user   - `object_name`: Name of the object for which the role is assigned   - `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.  #### Response Examples ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-admin\",   \"object_name\": \"project-1\",   \"object_type\": \"project\" } ```  ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-viewer\",   \"object_name\": \"deployment-1\",   \"object_type\": \"deployment\" } ```   # noqa: E501
+         ### Description  Assign a role to a user or an object in the scope of a project. This role can be assigned on either project level or on object level, which can be a deployment, pipeline or bucket.  ### Required Parameters  - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role to be assigned to the user   - `assignee`: UUID of the user or the name of the object for which the role will be assigned   - `assignee_type`: Type of the assignee. It can be user or deployment. - `resource`: Name of the object for which the role will be assigned   - `resource_type`: Type of the object for which the role will be assigned. It can be project, deployment, pipeline or bucket.  **resource and resource_type must be provided together. If neither of them is provided, the role is set on project level.**  #### Request Examples Setting the role deployment-admin on project level for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-admin\" } ```  Setting the role deployment-viewer on deployment-1 for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` {   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-viewer\",   \"resource\": \"deployment-1\",   \"resource_type\": \"deployment\" } ```  Setting the role files-reader on bucket-1 for deployment-1 ``` {   \"assignee\": \"deployment-1\",   \"assignee_type\": \"deployment\",   \"role\": \"file-reader\",   \"resource\": \"bucket-1\",   \"resource_type\": \"bucket\" } ```  ### Response Structure  Details of the created role assignment - `id`: Unique identifier for the role assignment (UUID) - `assignee`: UUID of the user or the name of the object - `assignee_type`: Type of the assignee - `role`: Name of the role assigned to the user - `resource`: Name of the object for which the role is assigned - `resource_type`: Type of the object for which the role is assigned  #### Response Examples ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-admin\",   \"resource\": \"project-1\",   \"resource_type\": \"project\" } ```  ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"assignee\": \"deployment-1\",   \"assignee_type\": \"deployment\",   \"role\": \"file-reader\",   \"resource\": \"bucket-1\",   \"resource_type\": \"bucket\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.role_assignments_create_with_http_info(project_name, data, async_req=True)
@@ -17938,9 +19394,9 @@ class CoreApi(object):
             collection_formats=collection_formats)
 
     def role_assignments_delete(self, project_name, id, **kwargs):  # noqa: E501
-        """Delete a role from a user with the given role assignment id  # noqa: E501
+        """Delete role of user  # noqa: E501
 
-         ### Description  Delete a role of a user. The user making the request must have appropriate permissions. It is possible for a user to delete their own role if they have permissions to do so.   # noqa: E501
+         ### Description  Delete a role of a user.  It is possible for a user to delete their own role if they have permissions to do so.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.role_assignments_delete(project_name, id, async_req=True)
@@ -17964,9 +19420,9 @@ class CoreApi(object):
         return self.role_assignments_delete_with_http_info(project_name, id, **kwargs)  # noqa: E501
 
     def role_assignments_delete_with_http_info(self, project_name, id, **kwargs):  # noqa: E501
-        """Delete a role from a user with the given role assignment id  # noqa: E501
+        """Delete role of user  # noqa: E501
 
-         ### Description  Delete a role of a user. The user making the request must have appropriate permissions. It is possible for a user to delete their own role if they have permissions to do so.   # noqa: E501
+         ### Description  Delete a role of a user.  It is possible for a user to delete their own role if they have permissions to do so.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.role_assignments_delete_with_http_info(project_name, id, async_req=True)
@@ -18059,9 +19515,9 @@ class CoreApi(object):
             collection_formats=collection_formats)
 
     def role_assignments_get(self, project_name, id, **kwargs):  # noqa: E501
-        """Get details of a role assignment  # noqa: E501
+        """Get role assignment  # noqa: E501
 
-         ### Description  Get the details of a role assignment of a user. The user making the request must have appropriate permissions.  ### Response Structure  Details of the role assignment - `id`: Unique identifier for the role assignment (UUID)   - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role assigned to the user   - `object_name`: Name of the object for which the role is assigned   - `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.  #### Response Examples  ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-viewer\",   \"object_name\": \"deployment-1\",   \"object_type\": \"deployment\" } ```   # noqa: E501
+         ### Description  Get the details of a role assignment of a user/deployment.  ### Response Structure Details of the role assignment - `id`: Unique identifier for the role assignment (UUID) - `assignee`: UUID of the user or the name of the object - `assignee_type`: Type of the assignee - `role`: Name of the role assigned to the user/object - `resource`: Name of the object for which the role is assigned - `resource_type`: Type of the object for which the role is assigned  #### Response Examples ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-admin\",   \"resource\": \"project-1\",   \"resource_type\": \"project\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.role_assignments_get(project_name, id, async_req=True)
@@ -18085,9 +19541,9 @@ class CoreApi(object):
         return self.role_assignments_get_with_http_info(project_name, id, **kwargs)  # noqa: E501
 
     def role_assignments_get_with_http_info(self, project_name, id, **kwargs):  # noqa: E501
-        """Get details of a role assignment  # noqa: E501
+        """Get role assignment  # noqa: E501
 
-         ### Description  Get the details of a role assignment of a user. The user making the request must have appropriate permissions.  ### Response Structure  Details of the role assignment - `id`: Unique identifier for the role assignment (UUID)   - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role assigned to the user   - `object_name`: Name of the object for which the role is assigned   - `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.  #### Response Examples  ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"role\": \"deployment-viewer\",   \"object_name\": \"deployment-1\",   \"object_type\": \"deployment\" } ```   # noqa: E501
+         ### Description  Get the details of a role assignment of a user/deployment.  ### Response Structure Details of the role assignment - `id`: Unique identifier for the role assignment (UUID) - `assignee`: UUID of the user or the name of the object - `assignee_type`: Type of the assignee - `role`: Name of the role assigned to the user/object - `resource`: Name of the object for which the role is assigned - `resource_type`: Type of the object for which the role is assigned  #### Response Examples ``` {   \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",   \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",   \"assignee_type\": \"user\",   \"role\": \"deployment-admin\",   \"resource\": \"project-1\",   \"resource_type\": \"project\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.role_assignments_get_with_http_info(project_name, id, async_req=True)
@@ -18182,18 +19638,21 @@ class CoreApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def role_assignments_per_user_list(self, project_name, user_id, **kwargs):  # noqa: E501
-        """List the roles assigned to a specific user in a project  # noqa: E501
+    def role_assignments_per_object_list(self, project_name, **kwargs):  # noqa: E501
+        """List roles on object/user  # noqa: E501
 
-         ### Description  List the roles assigned to a user in the scope of a project.   ### Response Structure - `id`: Unique identifier for the role assignment (UUID)   - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role assigned to the user   - `object_name`: Name of the object for which the role is assigned   - `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.  #### Response Examples ``` [   {     \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",     \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"role\": \"deployment-viewer\",     \"object_name\": \"deployment-1\",     \"object_type\": \"deployment\"   },   {     \"id\": \"13cf9dd7-7356-4797-b453-e0cb6b416162\",     \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"role\": \"pipeline-admin\",     \"object_name\": \"pipeline-1\",     \"object_type\": \"pipeline\"   } ] ```   # noqa: E501
+         ### Description  List the roles assigned to a user or on an object in the scope of a project.   ### Optional Parameters These parameters should be given as query parameters - `resource`: Name of the object on which the assigned roles will be listed - `resource_type`: Type of the object on which the assigned roles will be listed - `assignee`: UUID of the user or the name of the object for which the assigned roles will be listed - `assignee_type`: Type of the assignee for which the assigned roles will be listed  ### Response Structure - `id`: Unique identifier for the role assignment (UUID) - `assignee`: UUID of the user or the name of the object - `assignee_type`: Type of the assignee - `role`: Name of the role assigned to the user/object - `resource`: Name of the object for which the role is assigned - `resource_type`: Type of the object for which the role is assigned  #### Response Examples Roles assigned to user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` [   {     \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",     \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"assignee_type\": \"user\",     \"role\": \"deployment-admin\",     \"resource\": \"project-1\",     \"resource_type\": \"project\"   },   {     \"id\": \"13cf9dd7-7356-4797-b453-e0cb6b416162\",     \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"assignee_type\": \"user\",     \"role\": \"pipeline-admin\",     \"resource\": \"pipeline-1\",     \"resource_type\": \"pipeline\"   } ] ```  Roles assigned on deployment with name deployment-1 ``` [   {     \"id\": \"a24aabc2-c7df-4f7b-b177-f80827aea1bb\",     \"assignee\": \"258771bb-1bc4-4f2f-a3f4-9309cc64d1dd\",     \"assignee_type\": \"user\",     \"role\": \"deployment-admin\",     \"resource\": \"deployment-1\",     \"resource_type\": \"deployment\"   },   {     \"id\": \"dfd4e714-9c2d-446e-ae96-4db18f91d3de\",     \"assignee\": \"0ca8a61d-962e-48e3-b558-61e8ca2dae88\",     \"assignee_type\": \"user\",     \"role\": \"deployment-viewer\",     \"resource\": \"deployment-1\",     \"resource_type\": \"deployment\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.role_assignments_per_user_list(project_name, user_id, async_req=True)
+        >>> thread = api.role_assignments_per_object_list(project_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
         :param str project_name: (required)
-        :param str user_id: (required)
+        :param str resource:
+        :param str resource_type:
+        :param str assignee:
+        :param str assignee_type:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -18206,20 +19665,23 @@ class CoreApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.role_assignments_per_user_list_with_http_info(project_name, user_id, **kwargs)  # noqa: E501
+        return self.role_assignments_per_object_list_with_http_info(project_name, **kwargs)  # noqa: E501
 
-    def role_assignments_per_user_list_with_http_info(self, project_name, user_id, **kwargs):  # noqa: E501
-        """List the roles assigned to a specific user in a project  # noqa: E501
+    def role_assignments_per_object_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
+        """List roles on object/user  # noqa: E501
 
-         ### Description  List the roles assigned to a user in the scope of a project.   ### Response Structure - `id`: Unique identifier for the role assignment (UUID)   - `user_id`: Unique identifier for the user (UUID)   - `role`: Name of the role assigned to the user   - `object_name`: Name of the object for which the role is assigned   - `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.  #### Response Examples ``` [   {     \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",     \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"role\": \"deployment-viewer\",     \"object_name\": \"deployment-1\",     \"object_type\": \"deployment\"   },   {     \"id\": \"13cf9dd7-7356-4797-b453-e0cb6b416162\",     \"user_id\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"role\": \"pipeline-admin\",     \"object_name\": \"pipeline-1\",     \"object_type\": \"pipeline\"   } ] ```   # noqa: E501
+         ### Description  List the roles assigned to a user or on an object in the scope of a project.   ### Optional Parameters These parameters should be given as query parameters - `resource`: Name of the object on which the assigned roles will be listed - `resource_type`: Type of the object on which the assigned roles will be listed - `assignee`: UUID of the user or the name of the object for which the assigned roles will be listed - `assignee_type`: Type of the assignee for which the assigned roles will be listed  ### Response Structure - `id`: Unique identifier for the role assignment (UUID) - `assignee`: UUID of the user or the name of the object - `assignee_type`: Type of the assignee - `role`: Name of the role assigned to the user/object - `resource`: Name of the object for which the role is assigned - `resource_type`: Type of the object for which the role is assigned  #### Response Examples Roles assigned to user with id 02b77d8f-b312-47ef-990f-4685a7ab9363 ``` [   {     \"id\": \"e988ddc0-3ef1-42d2-ab30-9f810a5e7063\",     \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"assignee_type\": \"user\",     \"role\": \"deployment-admin\",     \"resource\": \"project-1\",     \"resource_type\": \"project\"   },   {     \"id\": \"13cf9dd7-7356-4797-b453-e0cb6b416162\",     \"assignee\": \"02b77d8f-b312-47ef-990f-4685a7ab9363\",     \"assignee_type\": \"user\",     \"role\": \"pipeline-admin\",     \"resource\": \"pipeline-1\",     \"resource_type\": \"pipeline\"   } ] ```  Roles assigned on deployment with name deployment-1 ``` [   {     \"id\": \"a24aabc2-c7df-4f7b-b177-f80827aea1bb\",     \"assignee\": \"258771bb-1bc4-4f2f-a3f4-9309cc64d1dd\",     \"assignee_type\": \"user\",     \"role\": \"deployment-admin\",     \"resource\": \"deployment-1\",     \"resource_type\": \"deployment\"   },   {     \"id\": \"dfd4e714-9c2d-446e-ae96-4db18f91d3de\",     \"assignee\": \"0ca8a61d-962e-48e3-b558-61e8ca2dae88\",     \"assignee_type\": \"user\",     \"role\": \"deployment-viewer\",     \"resource\": \"deployment-1\",     \"resource_type\": \"deployment\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.role_assignments_per_user_list_with_http_info(project_name, user_id, async_req=True)
+        >>> thread = api.role_assignments_per_object_list_with_http_info(project_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
         :param str project_name: (required)
-        :param str user_id: (required)
+        :param str resource:
+        :param str resource_type:
+        :param str assignee:
+        :param str assignee_type:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -18236,7 +19698,7 @@ class CoreApi(object):
 
         local_var_params = locals()
 
-        all_params = ['project_name', 'user_id']  # noqa: E501
+        all_params = ['project_name', 'resource', 'resource_type', 'assignee', 'assignee_type']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -18246,36 +19708,50 @@ class CoreApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method role_assignments_per_user_list" % key
+                    " to method role_assignments_per_object_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
         if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
                                                         local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `role_assignments_per_user_list`")  # noqa: E501
-        # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `user_id` when calling `role_assignments_per_user_list`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `role_assignments_per_object_list`")  # noqa: E501
         if (self.api_client.client_side_validation and 'project_name' in local_var_params
             and local_var_params['project_name'] is not None):  # noqa: E501
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `role_assignments_per_user_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['user_id'], str):  # noqa: E501
-                raise ApiValueError("Parameter `user_id` must be a string when calling `role_assignments_per_user_list`")  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'resource' in local_var_params
+            and local_var_params['resource'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['resource'], str):  # noqa: E501
+                raise ApiValueError("Parameter `resource` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'resource_type' in local_var_params
+            and local_var_params['resource_type'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['resource_type'], str):  # noqa: E501
+                raise ApiValueError("Parameter `resource_type` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'assignee' in local_var_params
+            and local_var_params['assignee'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['assignee'], str):  # noqa: E501
+                raise ApiValueError("Parameter `assignee` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'assignee_type' in local_var_params
+            and local_var_params['assignee_type'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['assignee_type'], str):  # noqa: E501
+                raise ApiValueError("Parameter `assignee_type` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
         if 'project_name' in local_var_params:
             path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'user_id' in local_var_params:
-            path_params['user_id'] = local_var_params['user_id']  # noqa: E501
 
         query_params = []
+        if 'resource' in local_var_params and local_var_params['resource'] is not None:  # noqa: E501
+            query_params.append(('resource', local_var_params['resource']))  # noqa: E501
+        if 'resource_type' in local_var_params and local_var_params['resource_type'] is not None:  # noqa: E501
+            query_params.append(('resource_type', local_var_params['resource_type']))  # noqa: E501
+        if 'assignee' in local_var_params and local_var_params['assignee'] is not None:  # noqa: E501
+            query_params.append(('assignee', local_var_params['assignee']))  # noqa: E501
+        if 'assignee_type' in local_var_params and local_var_params['assignee_type'] is not None:  # noqa: E501
+            query_params.append(('assignee_type', local_var_params['assignee_type']))  # noqa: E501
 
         header_params = {}
 
@@ -18291,7 +19767,7 @@ class CoreApi(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/users/{user_id}/role-assignments', 'GET',
+            '/projects/{project_name}/role-assignments', 'GET',
             path_params,
             query_params,
             header_params,

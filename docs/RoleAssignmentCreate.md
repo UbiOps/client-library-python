@@ -3,9 +3,10 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**user_id** | **str** | 
 **role** | **str** | 
-**object_name** | **str** | [optional] 
-**object_type** | **str** | [optional] 
+**assignee** | **str** | [optional] 
+**assignee_type** | **str** | [optional] 
+**resource** | **str** | [optional] 
+**resource_type** | **str** | [optional] 
 
 

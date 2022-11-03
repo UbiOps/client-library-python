@@ -58,7 +58,8 @@ class DeploymentVersionDetail(object):
         'maximum_queue_size_batch': 'int',
         'has_request_method': 'bool',
         'has_requests_method': 'bool',
-        'static_ip': 'bool'
+        'static_ip': 'bool',
+        'restart_request_interruption': 'bool'
     }
 
     attribute_map = {
@@ -87,10 +88,11 @@ class DeploymentVersionDetail(object):
         'maximum_queue_size_batch': 'maximum_queue_size_batch',
         'has_request_method': 'has_request_method',
         'has_requests_method': 'has_requests_method',
-        'static_ip': 'static_ip'
+        'static_ip': 'static_ip',
+        'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -122,6 +124,7 @@ class DeploymentVersionDetail(object):
         self._has_request_method = None
         self._has_requests_method = None
         self._static_ip = None
+        self._restart_request_interruption = None
         self.discriminator = None
 
         if id is not None:
@@ -171,6 +174,8 @@ class DeploymentVersionDetail(object):
             self.has_requests_method = has_requests_method
         if static_ip is not None:
             self.static_ip = static_ip
+        if restart_request_interruption is not None:
+            self.restart_request_interruption = restart_request_interruption
 
     @property
     def id(self):
@@ -824,6 +829,30 @@ class DeploymentVersionDetail(object):
             raise ValueError("Parameter `static_ip` must be a boolean")  # noqa: E501
 
         self._static_ip = static_ip
+
+    @property
+    def restart_request_interruption(self):
+        """Gets the restart_request_interruption of this DeploymentVersionDetail.  # noqa: E501
+
+
+        :return: The restart_request_interruption of this DeploymentVersionDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._restart_request_interruption
+
+    @restart_request_interruption.setter
+    def restart_request_interruption(self, restart_request_interruption):
+        """Sets the restart_request_interruption of this DeploymentVersionDetail.
+
+
+        :param restart_request_interruption: The restart_request_interruption of this DeploymentVersionDetail.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                restart_request_interruption is not None and not isinstance(restart_request_interruption, bool)):
+            raise ValueError("Parameter `restart_request_interruption` must be a boolean")  # noqa: E501
+
+        self._restart_request_interruption = restart_request_interruption
 
     def to_dict(self):
         """Returns the model properties as a dict"""

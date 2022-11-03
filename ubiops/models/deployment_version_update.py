@@ -47,7 +47,8 @@ class DeploymentVersionUpdate(object):
         'default_notification_group': 'str',
         'maximum_queue_size_express': 'int',
         'maximum_queue_size_batch': 'int',
-        'static_ip': 'bool'
+        'static_ip': 'bool',
+        'restart_request_interruption': 'bool'
     }
 
     attribute_map = {
@@ -65,10 +66,11 @@ class DeploymentVersionUpdate(object):
         'default_notification_group': 'default_notification_group',
         'maximum_queue_size_express': 'maximum_queue_size_express',
         'maximum_queue_size_batch': 'maximum_queue_size_batch',
-        'static_ip': 'static_ip'
+        'static_ip': 'static_ip',
+        'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, version=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, version=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionUpdate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -89,6 +91,7 @@ class DeploymentVersionUpdate(object):
         self._maximum_queue_size_express = None
         self._maximum_queue_size_batch = None
         self._static_ip = None
+        self._restart_request_interruption = None
         self.discriminator = None
 
         if version is not None:
@@ -119,6 +122,8 @@ class DeploymentVersionUpdate(object):
             self.maximum_queue_size_batch = maximum_queue_size_batch
         if static_ip is not None:
             self.static_ip = static_ip
+        if restart_request_interruption is not None:
+            self.restart_request_interruption = restart_request_interruption
 
     @property
     def version(self):
@@ -498,6 +503,30 @@ class DeploymentVersionUpdate(object):
             raise ValueError("Parameter `static_ip` must be a boolean")  # noqa: E501
 
         self._static_ip = static_ip
+
+    @property
+    def restart_request_interruption(self):
+        """Gets the restart_request_interruption of this DeploymentVersionUpdate.  # noqa: E501
+
+
+        :return: The restart_request_interruption of this DeploymentVersionUpdate.  # noqa: E501
+        :rtype: bool
+        """
+        return self._restart_request_interruption
+
+    @restart_request_interruption.setter
+    def restart_request_interruption(self, restart_request_interruption):
+        """Sets the restart_request_interruption of this DeploymentVersionUpdate.
+
+
+        :param restart_request_interruption: The restart_request_interruption of this DeploymentVersionUpdate.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                restart_request_interruption is not None and not isinstance(restart_request_interruption, bool)):
+            raise ValueError("Parameter `restart_request_interruption` must be a boolean")  # noqa: E501
+
+        self._restart_request_interruption = restart_request_interruption
 
     def to_dict(self):
         """Returns the model properties as a dict"""

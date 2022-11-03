@@ -10,6 +10,5 @@ Name | Type | Notes
 **cpu_allocation** | **int** | [optional] 
 **gpu_allocation** | **int** | [optional] 
 **gpu_memory_allocation** | **int** | [optional] 
-**gpu_type** | **str** | [optional] 
 
 

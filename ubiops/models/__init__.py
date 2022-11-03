@@ -20,6 +20,10 @@ from ubiops.models.attachments_create import AttachmentsCreate
 from ubiops.models.attachments_list import AttachmentsList
 from ubiops.models.audit_list import AuditList
 from ubiops.models.blob_list import BlobList
+from ubiops.models.bucket_create import BucketCreate
+from ubiops.models.bucket_detail import BucketDetail
+from ubiops.models.bucket_list import BucketList
+from ubiops.models.bucket_update import BucketUpdate
 from ubiops.models.build_list import BuildList
 from ubiops.models.deployment_create import DeploymentCreate
 from ubiops.models.deployment_create_response import DeploymentCreateResponse
@@ -47,6 +51,12 @@ from ubiops.models.environment_variable_list import EnvironmentVariableList
 from ubiops.models.export_create import ExportCreate
 from ubiops.models.export_detail import ExportDetail
 from ubiops.models.export_list import ExportList
+from ubiops.models.expression_evaluate import ExpressionEvaluate
+from ubiops.models.expression_evaluate_response import ExpressionEvaluateResponse
+from ubiops.models.expression_input_field_create import ExpressionInputFieldCreate
+from ubiops.models.file_detail import FileDetail
+from ubiops.models.file_item import FileItem
+from ubiops.models.file_upload_response import FileUploadResponse
 from ubiops.models.import_detail import ImportDetail
 from ubiops.models.import_list import ImportList
 from ubiops.models.import_update import ImportUpdate

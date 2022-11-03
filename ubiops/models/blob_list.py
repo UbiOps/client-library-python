@@ -67,8 +67,7 @@ class BlobList(object):
         self._ttl = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        self.id = id
         if created_by is not None:
             self.created_by = created_by
         if creation_date is not None:
@@ -98,6 +97,8 @@ class BlobList(object):
         :param id: The id of this BlobList.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 id is not None and not isinstance(id, str)):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
@@ -126,6 +127,10 @@ class BlobList(object):
                 created_by is not None and not isinstance(created_by, str)):
             raise ValueError("Parameter `created_by` must be a string")  # noqa: E501
 
+        if (self.local_vars_configuration.client_side_validation and
+                created_by is not None and len(created_by) < 1):
+            raise ValueError("Invalid value for `created_by`, length must be greater than or equal to `1`")  # noqa: E501
+
         self._created_by = created_by
 
     @property
@@ -150,6 +155,10 @@ class BlobList(object):
                 creation_date is not None and not isinstance(creation_date, str)):
             raise ValueError("Parameter `creation_date` must be a string")  # noqa: E501
 
+        if (self.local_vars_configuration.client_side_validation and
+                creation_date is not None and len(creation_date) < 1):
+            raise ValueError("Invalid value for `creation_date`, length must be greater than or equal to `1`")  # noqa: E501
+
         self._creation_date = creation_date
 
     @property
@@ -173,6 +182,10 @@ class BlobList(object):
         if (self.local_vars_configuration.client_side_validation and
                 last_updated is not None and not isinstance(last_updated, str)):
             raise ValueError("Parameter `last_updated` must be a string")  # noqa: E501
+
+        if (self.local_vars_configuration.client_side_validation and
+                last_updated is not None and len(last_updated) < 1):
+            raise ValueError("Invalid value for `last_updated`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._last_updated = last_updated
 
@@ -200,9 +213,6 @@ class BlobList(object):
                 filename is not None and not isinstance(filename, str)):
             raise ValueError("Parameter `filename` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                filename is not None and len(filename) > 512):
-            raise ValueError("Invalid value for `filename`, length must be less than or equal to `512`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 filename is not None and len(filename) < 1):
             raise ValueError("Invalid value for `filename`, length must be greater than or equal to `1`")  # noqa: E501

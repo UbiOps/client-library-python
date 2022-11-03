@@ -29,5 +29,6 @@ Name | Type | Notes
 **has_request_method** | **bool** | [optional] [readonly] 
 **has_requests_method** | **bool** | [optional] [readonly] 
 **static_ip** | **bool** | [optional] 
+**restart_request_interruption** | **bool** | [optional] 
 
 

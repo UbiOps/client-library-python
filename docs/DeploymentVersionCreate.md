@@ -19,5 +19,6 @@ Name | Type | Notes
 **maximum_queue_size_express** | **int** | [optional] 
 **maximum_queue_size_batch** | **int** | [optional] 
 **static_ip** | **bool** | [optional] [default to False]
+**restart_request_interruption** | **bool** | [optional] [default to False]
 
 

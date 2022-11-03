@@ -4,9 +4,10 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** | [optional] [readonly] 
-**user_id** | **str** | 
+**assignee** | **str** | [optional] [readonly] 
+**assignee_type** | **str** | [optional] [readonly] 
 **role** | **str** | 
-**object_name** | **str** | [optional] [readonly] 
-**object_type** | **str** | [optional] [readonly] 
+**resource** | **str** | [optional] [readonly] 
+**resource_type** | **str** | [optional] [readonly] 
 
 

@@ -13,6 +13,11 @@ Method | HTTP request | Description
 [**blobs_get**](CoreApi.md#blobs_get) | **GET** /projects/{project_name}/blobs/{blob_id} | Get a blob
 [**blobs_list**](CoreApi.md#blobs_list) | **GET** /projects/{project_name}/blobs | List blobs
 [**blobs_update**](CoreApi.md#blobs_update) | **PUT** /projects/{project_name}/blobs/{blob_id} | Update a blob
+[**buckets_create**](CoreApi.md#buckets_create) | **POST** /projects/{project_name}/buckets | Create bucket
+[**buckets_delete**](CoreApi.md#buckets_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name} | Delete a bucket
+[**buckets_get**](CoreApi.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket
+[**buckets_list**](CoreApi.md#buckets_list) | **GET** /projects/{project_name}/buckets | List buckets
+[**buckets_update**](CoreApi.md#buckets_update) | **PATCH** /projects/{project_name}/buckets/{bucket_name} | Update a bucket
 [**builds_get**](CoreApi.md#builds_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Get build
 [**builds_list**](CoreApi.md#builds_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds | List builds
 [**deployment_audit_events_list**](CoreApi.md#deployment_audit_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/audit | List audit events for a deployment
@@ -57,6 +62,12 @@ Method | HTTP request | Description
 [**exports_download**](CoreApi.md#exports_download) | **GET** /projects/{project_name}/exports/{export_id}/download | Download an export
 [**exports_get**](CoreApi.md#exports_get) | **GET** /projects/{project_name}/exports/{export_id} | Get an export
 [**exports_list**](CoreApi.md#exports_list) | **GET** /projects/{project_name}/exports | List exports
+[**expressions_evaluate**](CoreApi.md#expressions_evaluate) | **POST** /expressions/evaluate | Evaluate expression
+[**files_delete**](CoreApi.md#files_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Delete a file
+[**files_download**](CoreApi.md#files_download) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file}/download | Download a file
+[**files_get**](CoreApi.md#files_get) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Get a file
+[**files_list**](CoreApi.md#files_list) | **GET** /projects/{project_name}/buckets/{bucket_name}/files | List files
+[**files_upload**](CoreApi.md#files_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Upload a file
 [**imports_create**](CoreApi.md#imports_create) | **POST** /projects/{project_name}/imports | Create an import
 [**imports_delete**](CoreApi.md#imports_delete) | **DELETE** /projects/{project_name}/imports/{import_id} | Delete an import
 [**imports_download**](CoreApi.md#imports_download) | **GET** /projects/{project_name}/imports/{import_id}/download | Download an import
@@ -78,9 +89,9 @@ Method | HTTP request | Description
 [**organizations_create**](CoreApi.md#organizations_create) | **POST** /organizations | Create organizations
 [**organizations_get**](CoreApi.md#organizations_get) | **GET** /organizations/{organization_name} | Get details of an organization
 [**organizations_list**](CoreApi.md#organizations_list) | **GET** /organizations | List organizations
-[**organizations_resource_usage**](CoreApi.md#organizations_resource_usage) | **GET** /organizations/{organization_name}/resources | List resource usage of an organization
+[**organizations_resource_usage**](CoreApi.md#organizations_resource_usage) | **GET** /organizations/{organization_name}/resources | Get resource usage
 [**organizations_update**](CoreApi.md#organizations_update) | **PATCH** /organizations/{organization_name} | Update details of an organization
-[**organizations_usage_get**](CoreApi.md#organizations_usage_get) | **GET** /organizations/{organization_name}/usage | Get resource usage
+[**organizations_usage_get**](CoreApi.md#organizations_usage_get) | **GET** /organizations/{organization_name}/usage | Get organization usage
 [**permissions_list**](CoreApi.md#permissions_list) | **GET** /permissions | List the available permissions
 [**pipeline_audit_events_list**](CoreApi.md#pipeline_audit_events_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/audit | List audit events for a pipeline
 [**pipeline_requests_batch_delete**](CoreApi.md#pipeline_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/delete | Delete multiple pipeline requests
@@ -134,10 +145,10 @@ Method | HTTP request | Description
 [**revisions_file_upload**](CoreApi.md#revisions_file_upload) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | Upload deployment file
 [**revisions_get**](CoreApi.md#revisions_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id} | Get revision
 [**revisions_list**](CoreApi.md#revisions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | List revisions
-[**role_assignments_create**](CoreApi.md#role_assignments_create) | **POST** /projects/{project_name}/role-assignments | Assign a role to a user in a project
-[**role_assignments_delete**](CoreApi.md#role_assignments_delete) | **DELETE** /projects/{project_name}/role-assignments/{id} | Delete a role from a user with the given role assignment id
-[**role_assignments_get**](CoreApi.md#role_assignments_get) | **GET** /projects/{project_name}/role-assignments/{id} | Get details of a role assignment
-[**role_assignments_per_user_list**](CoreApi.md#role_assignments_per_user_list) | **GET** /projects/{project_name}/users/{user_id}/role-assignments | List the roles assigned to a specific user in a project
+[**role_assignments_create**](CoreApi.md#role_assignments_create) | **POST** /projects/{project_name}/role-assignments | Assign role to user/object
+[**role_assignments_delete**](CoreApi.md#role_assignments_delete) | **DELETE** /projects/{project_name}/role-assignments/{id} | Delete role of user
+[**role_assignments_get**](CoreApi.md#role_assignments_get) | **GET** /projects/{project_name}/role-assignments/{id} | Get role assignment
+[**role_assignments_per_object_list**](CoreApi.md#role_assignments_per_object_list) | **GET** /projects/{project_name}/role-assignments | List roles on object/user
 [**roles_create**](CoreApi.md#roles_create) | **POST** /projects/{project_name}/roles | Create a custom role scoped in a project
 [**roles_delete**](CoreApi.md#roles_delete) | **DELETE** /projects/{project_name}/roles/{role_name} | Delete a role from a project
 [**roles_get**](CoreApi.md#roles_get) | **GET** /projects/{project_name}/roles/{role_name} | Get details of a role
@@ -161,7 +172,6 @@ Create a batch deployment request
 
 ## Description
 Request multiple predictions from the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods.
-In case of a **blob** field, the uuid of a previously uploaded blob must be provided.
 
 If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.
 
@@ -290,7 +300,6 @@ Create a batch deployment version request
 
 ## Description
 Request multiple predictions from a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state).
-In case of a **blob** field, the uuid of a previously uploaded blob must be provided.
 
 If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.
 
@@ -1051,6 +1060,479 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
+# **buckets_create**
+> BucketList buckets_create(project_name, data)
+
+Create bucket
+
+## Description
+Create a bucket in a project
+
+### Required Parameters
+
+- `name`: Name of the bucket. It is unique within a project.
+
+### Optional Parameters
+
+- `provider`: Provider of the bucket. It can be 'ubiops', 'google_cloud_storage', 'amazon_s3' or 'azure_blob_storage'. The default is **ubiops**.
+- `credentials`: A dictionary for credentials to connect to the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:
+  - For Amazon S3, provide the fields `access_key` and `secret_key`.
+  - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.
+  - For Google Cloud Storage, provide the field `json_key_file`.
+- `configuration`: A dictionary for additional configuration details for the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:
+  - For Amazon S3, provide the fields `region`, `bucket` and `prefix`.
+  - For Azure Blob Storage, provide the fields `container` and `prefix`.
+  - For Google Cloud Storage, provide the fields `bucket` and `prefix`.
+  UbiOps always makes sure that the prefix ends with a '/'.
+- `description`: Description of the bucket
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
+- `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).
+
+## Request Examples
+
+```
+{
+  "name": "bucket-1",
+  "provider": "ubiops",
+  "credentials": {},
+  "configuration": {},
+  "labels": {
+    "type": "bucket"
+  },
+  "description": "My bucket description"
+}
+```
+
+### Response Structure
+Details of the created bucket
+
+- `id`: Unique identifier for the bucket (UUID)
+- `name`: Name of the bucket
+- `project`: Project name in which the bucket is created
+- `provider`: Provider of the bucket
+- `credentials`: Credentials to connect to the bucket
+- `configuration`: Additional configuration details for the bucket
+- `creation_date`: The date when the bucket was created
+- `description`: Description of the bucket
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
+- `ttl`: Time to live for the files in the bucket
+
+## Response Examples
+
+```
+{
+  "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
+  "name": "bucket-1",
+  "project": "project-1",
+  "provider": "ubiops",
+  "credentials": {},
+  "configuration": {},
+  "creation_date": "2022-05-12T16:23:15.456812Z",
+  "labels": {
+    "type": "bucket"
+  },
+  "description": "My bucket description",
+  "ttl": null
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+data = ubiops.BucketCreate() # BucketCreate 
+
+# Create bucket
+api_response = api_instance.buckets_create(project_name, data)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **data** | [**BucketCreate**](BucketCreate.md) | 
+
+### Return type
+
+[**BucketList**](BucketList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **buckets_delete**
+> buckets_delete(project_name, bucket_name)
+
+Delete a bucket
+
+## Description
+Delete a bucket. If the bucket provider is UbiOps, the files in the bucket will be deleted together with the bucket. For other providers, the files in the bucket are not removed but just the connection from UbiOps to the bucket.
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+
+# Delete a bucket
+api_instance.buckets_delete(project_name, bucket_name)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **buckets_get**
+> BucketDetail buckets_get(project_name, bucket_name)
+
+Get details of a bucket
+
+## Description
+Retrieve details of a bucket in a project
+
+### Response Structure
+Details of a bucket
+
+- `id`: Unique identifier for the bucket (UUID)
+- `name`: Name of the bucket
+- `project`: Project name in which the bucket is defined
+- `provider`: Provider of the bucket
+- `configuration`: Additional configuration details for the bucket
+- `creation_date`: The date when the bucket was created
+- `description`: Description of the bucket
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
+- `ttl`: Time to live for the files in the bucket
+- `size`: Size of the bucket according to the last measurement date
+- `size_measurement_date`: Last measurement date of the size of the bucket
+
+## Response Examples
+
+```
+{
+  "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
+  "name": "bucket-1",
+  "project": "project-1",
+  "provider": "ubiops",
+  "configuration": {},
+  "creation_date": "2022-05-12T16:23:15.456812Z",
+  "labels": {
+    "type": "bucket"
+  },
+  "description": "My bucket description",
+  "ttl": null,
+  "size": 2048,
+  "size_measurement_date": "2022-05-24T02:23:15.456812Z",
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+
+# Get details of a bucket
+api_response = api_instance.buckets_get(project_name, bucket_name)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+
+### Return type
+
+[**BucketDetail**](BucketDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **buckets_list**
+> list[BucketList] buckets_list(project_name, labels=labels)
+
+List buckets
+
+## Description
+List buckets in a project
+
+### Optional Parameters
+
+- `labels`: Filter on labels of the buckets. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). Buckets that have at least one of the labels in the filter are returned. This parameter should be given as query parameter.
+
+### Response Structure
+A list of details of the buckets in the project
+
+- `id`: Unique identifier for the bucket (UUID)
+- `name`: Name of the bucket
+- `project`: Project name in which the bucket is defined
+- `provider`: Provider of the bucket
+- `configuration`: Additional configuration details for the bucket
+- `creation_date`: The date when the bucket was created
+- `description`: Description of the bucket
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
+- `ttl`: Time to live for the files in the bucket
+
+## Response Examples
+
+```
+[
+  {
+    "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
+    "name": "bucket-1",
+    "project": "project-1",
+    "provider": "ubiops",
+    "creation_date": "2022-05-12T16:23:15.456812Z",
+    "configuration": {},
+    "labels": {
+      "type": "bucket"
+    },
+    "description": "My bucket description",
+    "ttl": null
+  },
+  {
+    "id": "5f4e942f-d5b8-4d62-99b2-870c15a82127",
+    "name": "bucket-2",
+    "project": "project-1",
+    "provider": "ubiops",
+    "creation_date": "2022-05-12T16:23:15.456812Z",
+    "configuration": {},
+    "labels": {},
+    "description": "My bucket 2 description",
+    "ttl": null
+  }
+]
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+labels = 'labels_example' # str  (optional)
+
+# List buckets
+api_response = api_instance.buckets_list(project_name, labels=labels)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **labels** | **str** | [optional] 
+
+### Return type
+
+[**list[BucketList]**](BucketList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **buckets_update**
+> BucketDetail buckets_update(project_name, bucket_name, data)
+
+Update a bucket
+
+## Description
+Update a bucket
+
+### Optional Parameters
+
+- `credentials`: Credentials to connect to the bucket
+- `configuration`: Additional configuration details for the bucket
+- `description`: New description for the bucket
+- `labels`: New dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels.
+- `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).
+
+## Request Examples
+
+```
+{
+  "description": "New description for the bucket"
+}
+```
+
+### Response Structure
+Details of the updated bucket
+
+- `id`: Unique identifier for the bucket (UUID)
+- `name`: Name of the bucket
+- `project`: Project name in which the bucket is defined
+- `provider`: Provider of the bucket
+- `configuration`: Additional configuration details for the bucket
+- `creation_date`: The date when the bucket was created
+- `description`: Description of the bucket
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
+- `ttl`: Time to live for the files in the bucket
+- `size`: Size of the bucket according to the last measurement date
+- `size_measurement_date`: Last measurement date of the size of the bucket
+
+## Response Examples
+
+```
+{
+  "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
+  "name": "new-bucket-name",
+  "project": "project-1",
+  "provider": "ubiops",
+  "configuration": {},
+  "creation_date": "2022-05-12T16:23:15.456812Z",
+  "labels": {
+    "type": "bucket"
+  },
+  "description": "My bucket description",
+  "ttl": null,
+  "size": 2048,
+  "size_measurement_date": "2022-05-24T02:23:15.456812Z",
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+data = ubiops.BucketUpdate() # BucketUpdate 
+
+# Update a bucket
+api_response = api_instance.buckets_update(project_name, bucket_name, data)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **data** | [**BucketUpdate**](BucketUpdate.md) | 
+
+### Return type
+
+[**BucketDetail**](BucketDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
 # **builds_get**
 > BuildList builds_get(project_name, build_id, deployment_name, version)
 
@@ -1065,7 +1547,7 @@ A dictionary containing details of the build
 - `id`: Unique identifier for the build (UUID)
 - `revision`: UUID of the revision to which the build is linked
 - `creation_date`: The date when the build was created
-- `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'.
+- `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
 - `has_request_method`: Whether the build has a 'request' method
@@ -1150,7 +1632,7 @@ A list of details of the builds
 - `id`: Unique identifier for the build (UUID)
 - `revision`: UUID of the revision to which the build is linked
 - `creation_date`: The date when the build was created
-- `status`: Status of the build. Can be 'queued', 'building', 'deploying', 'validating', 'success' or 'failed'.
+- `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
 - `has_request_method`: Whether the build has a 'request' method
@@ -2049,7 +2531,7 @@ Create a direct deployment request
 
 ## Description
 Request a prediction from a deployment. Deployment requests are made for the default version of a deployment.
-In case of a **blob** type field, the uuid of a previously uploaded blob must be provided.
+When using the 'requests' function of a deployment a list should be provided as input, see the example below.
 
 ### Required Parameters
 The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.
@@ -2070,12 +2552,12 @@ A structured deployment request
 }
 ```
 
-A structured deployment request with a blob field
+A structured deployment request with a file field
 
 ```
 {
   "input-field-1": 5.0,
-  "blob-input-field": "f52ff875-4980-4d71-9798-a469ef8cece2"
+  "file-input-field": "ubiops-file://my-bucket/file-1.jpg"
 }
 ```
 
@@ -2083,6 +2565,18 @@ A plain deployment request
 
 ```
 "example-plain-data"
+```
+
+Multiple structured deployment requests using the 'requests' function of a deployment
+```
+[
+    {
+        "input-field-1": 5.0
+    },
+    {
+        "input-field-1": 10.0
+    }
+]
 ```
 
 ### Response Structure
@@ -3181,6 +3675,7 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `request_data`: A dictionary containing the data that was sent when the request was created
 - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `retries`: Number of times that the request has been retried
 
 ## Response Examples
 
@@ -3199,7 +3694,8 @@ A list of dictionaries containing the details of the retrieved deployment reques
       "input": 82.2
     },
     "result": null,
-    "error_message": null
+    "error_message": null,
+    "retries": 0
   },
   {
     "id": "85711124-54db-4794-b83d-24492247c6e1",
@@ -3214,7 +3710,8 @@ A list of dictionaries containing the details of the retrieved deployment reques
       "input": 52.4
     },
     "result": null,
-    "error_message": null
+    "error_message": null,
+    "retries": 1
   }
 ]
 ```
@@ -3276,7 +3773,7 @@ Create a direct deployment version request
 
 ## Description
 Request a prediction from a deployment version. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state).
-In case of a **blob** type field, the uuid of a previously uploaded blob must be provided.
+When using the 'requests' function of a deployment a list should be provided as input, see the example below.
 
 ### Required Parameters
 The input for the request. In case of a structured deployment, this is a dictionary which contains the input fields of the deployment as keys. In case of a plain deployment, give a string or list of strings.
@@ -3297,12 +3794,12 @@ A structured deployment request
 }
 ```
 
-A structured deployment request with a blob field
+A structured deployment request with a file field
 
 ```
 {
   "input-field-1": 5.0,
-  "blob-input-field": "f52ff875-4980-4d71-9798-a469ef8cece2"
+  "file-input-field": "ubiops-file://my-bucket/file-1.jpg"
 }
 ```
 
@@ -3310,6 +3807,18 @@ A plain deployment request
 
 ```
 "example-plain-data"
+```
+
+Multiple structured deployment requests using the 'requests' function of a deployment version
+```
+[
+    {
+        "input-field-1": 5.0
+    },
+    {
+        "input-field-1": 10.0
+    }
+]
 ```
 
 ### Response Structure
@@ -3490,6 +3999,7 @@ A dictionary containing the details of the deployment request with the following
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
+- `retries`: Number of times that the request has been retried
 
 ## Response Examples
 
@@ -3509,7 +4019,8 @@ A dictionary containing the details of the deployment request with the following
   "result": null,
   "error_message": null,
   "created_by": "my.example.user@ubiops.com",
-  "notification_group": "notification-group-1"
+  "notification_group": "notification-group-1",
+  "retries": 0
 }
 ```
 
@@ -3782,7 +4293,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 
 ### Optional Parameters
 
-- `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda or r4.0. The default value is python3.7.
+- `language`: Language in which the version is provided. It can be python3.6, python3.7, python3.8, python3.9, python3.10, python3.6_cuda, python3.7_cuda, python3.8_cuda, python3.9_cuda, python3.10_cuda or r4.0. The default value is python3.7.
 - `memory_allocation`: (deprecated) Reserved memory for the version in MiB. This value determines the memory allocated to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048. The minimum and maximum values are 256 and 16384 respectively.
 - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively.
 - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times.
@@ -3801,6 +4312,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
+- `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -3865,6 +4377,7 @@ Details of the created version
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
+- `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 
 ## Response Examples
 
@@ -3894,7 +4407,8 @@ Details of the created version
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
   "maximum_queue_size_batch": 100000,
-  "static_ip": false
+  "static_ip": false,
+  "restart_request_interruption": false
 }
 ```
 
@@ -4043,6 +4557,7 @@ Details of a version
 - `has_request_method`: Whether the latest build of the version has a 'request' method
 - `has_requests_method`: Whether the latest build of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
+- `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 
 ## Response Examples
 
@@ -4075,7 +4590,8 @@ Details of a version
   "maximum_queue_size_batch": 100000,
   "has_request_method": true,
   "has_requests_method": false,
-  "static_ip": false
+  "static_ip": false,
+  "restart_request_interruption": false
 }
 ```
 
@@ -4167,6 +4683,8 @@ A list of details of the versions
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `static_ip`: A boolean indicating whether the deployment version should get a static IP
+- `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 
 ## Response Examples
 
@@ -4196,7 +4714,9 @@ A list of details of the versions
     "request_retention_time": 604800,
     "request_retention_mode": "full",
     "maximum_queue_size_express": 100,
-    "maximum_queue_size_batch": 100000
+    "maximum_queue_size_batch": 100000,
+    "static_ip": false,
+    "restart_request_interruption": false
   },
   {
     "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
@@ -4222,7 +4742,9 @@ A list of details of the versions
     "request_retention_time": 86400,
     "request_retention_mode": "metadata",
     "maximum_queue_size_express": 100,
-    "maximum_queue_size_batch": 100000
+    "maximum_queue_size_batch": 100000,
+    "static_ip": true,
+    "restart_request_interruption": false
   }
 ]
 ```
@@ -4305,6 +4827,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
+- `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 
 ## Request Examples
 
@@ -4353,6 +4876,7 @@ Details of the updated version
 - `has_request_method`: Whether the latest build of the version has a 'request' method
 - `has_requests_method`: Whether the latest build of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
+- `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 
 ## Response Examples
 
@@ -4385,7 +4909,8 @@ Details of the updated version
   "maximum_queue_size_batch": 100000,
   "has_request_method": true,
   "has_requests_method": false,
-  "static_ip": false
+  "static_ip": false,
+  "restart_request_interruption": false
 }
 ```
 
@@ -4456,7 +4981,7 @@ Possible data types for the input and output fields are:
 - **array_int**: an array of integers
 - **array_double**: an array of double precision floating points
 - **array_string**: an array of strings
-- **blob**: a blob field. This type of field can be used to pass blobs to the deployment. In deployment and pipeline requests, the uuid of a previously uploaded blob must be provided for this field.
+- **file**: a file field. This type of field can be used to pass files to the deployment. In deployment and pipeline requests, the path to the file in the bucket must be provided for this field.
 
 Possible widgets for the input fields are:
 - **textbox**: textbox
@@ -5505,6 +6030,463 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
+# **expressions_evaluate**
+> ExpressionEvaluateResponse expressions_evaluate(data)
+
+Evaluate expression
+
+## Description
+Evaluate a pipeline version operator expression.
+
+### Required Parameters
+
+- `expression`: The expression to evaluate.
+- `input_fields`: A list of input fields with name, data_type.
+- `request_data`: Data to test the expression with. All its keys must be defined in 'input_fields'.
+
+## Request Examples
+
+```
+{
+  "expression": "var1 + 10",
+  "input_fields": [
+    {
+      "name": "var1",
+      "data_type": "int"
+    }
+  ],
+  "request_data": {
+    "var1": 123
+  }
+}
+```
+
+### Response Structure
+
+- `result`: The result of the expression
+
+## Response Examples
+
+```
+{
+  "result": 133
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+data = ubiops.ExpressionEvaluate() # ExpressionEvaluate 
+
+# Evaluate expression
+api_response = api_instance.expressions_evaluate(data)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **data** | [**ExpressionEvaluate**](ExpressionEvaluate.md) | 
+
+### Return type
+
+[**ExpressionEvaluateResponse**](ExpressionEvaluateResponse.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **files_delete**
+> files_delete(project_name, bucket_name, file)
+
+Delete a file
+
+## Description
+Delete a file from a bucket
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+file = 'file_example' # str 
+
+# Delete a file
+api_instance.files_delete(project_name, bucket_name, file)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **file** | **str** | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **files_download**
+> FileUploadResponse files_download(project_name, bucket_name, file)
+
+Download a file
+
+## Description
+Generate a signed url to download a file. Request body should be an empty dictionary.
+
+### Response Structure
+
+- `url`: A url which can be used to download the file from bucket. Make a GET request to this url to download the file.
+- `provider`: Provider of the bucket where the file will be uploaded
+
+## Response Examples
+
+```
+{
+  "url": "https://storage.apis.com/my-bucket/my-file.jpg...",
+  "provider": "ubiops"
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+file = 'file_example' # str 
+
+# Download a file
+api_response = api_instance.files_download(project_name, bucket_name, file)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **file** | **str** | 
+
+### Return type
+
+[**FileUploadResponse**](FileUploadResponse.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **files_get**
+> FileItem files_get(project_name, bucket_name, file)
+
+Get a file
+
+## Description
+Get the details of a file in the bucket
+
+### Response Structure
+
+- `file`: Name of the file
+- `size`: Size of the file
+- `time_created`: The time that the file was created
+
+## Response Examples
+
+```
+{
+  "file": "my-file-1",
+  "size": 123,
+  "time_created": "2022-05-12T16:23:15.456812Z"
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+file = 'file_example' # str 
+
+# Get a file
+api_response = api_instance.files_get(project_name, bucket_name, file)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **file** | **str** | 
+
+### Return type
+
+[**FileItem**](FileItem.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **files_list**
+> FileDetail files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
+
+List files
+
+## Description
+List files in a bucket
+
+### Optional Parameters
+The following parameters should be given as query parameters:
+
+- `prefix`: Prefix to filter files
+- `delimiter`: Delimiter used with prefix to emulate hierarchy to filter files
+- `limit`: The maximum number of files returned, default is 100
+- `continuation_token`: A token that indicates the start point of the returned the files
+
+### Response Structure
+A dictionary containing the details of files and prefixes in the bucket
+
+- `continuation_token`: Next token to get the next set of files
+- `files`: A list of dictionaries containing the details of the files. It contains the file name ('file'), size of the file ('size') and the creation time of the file ('time_created').
+- `prefixes`: A list of directories
+
+## Response Examples
+
+```
+{
+  "continuation_token": "1234",
+  "files": [
+    {
+      "file": "my-file-1",
+      "size": 123,
+      "time_created": "2022-05-12T16:23:15.456812Z"
+    },
+    {
+      "file": "my-file-2",
+      "size": 456,
+      "time_created": "2022-06-05T10:56:12.186046Z"
+    }
+  ],
+  "prefixes": [
+    "my-dir-1",
+    "my-dir-2"
+  ]
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+prefix = 'prefix_example' # str  (optional)
+delimiter = 'delimiter_example' # str  (optional)
+continuation_token = 'continuation_token_example' # str  (optional)
+limit = 56 # int  (optional)
+
+# List files
+api_response = api_instance.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **prefix** | **str** | [optional] 
+ **delimiter** | **str** | [optional] 
+ **continuation_token** | **str** | [optional] 
+ **limit** | **int** | [optional] 
+
+### Return type
+
+[**FileDetail**](FileDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **files_upload**
+> FileUploadResponse files_upload(project_name, bucket_name, file, data=data)
+
+Upload a file
+
+## Description
+Generate a signed url to upload a file. Request body should be an empty dictionary.
+
+### Response Structure
+
+- `url`: A url which can be used to upload the file to bucket. Make a PUT request to this url with the file content to upload the file.
+- `provider`: Provider of the bucket where the file will be uploaded
+
+## Response Examples
+
+```
+{
+  "url": "https://storage.apis.com/my-bucket/my-file.jpg...",
+  "provider": "ubiops"
+}
+```
+
+### Example
+
+```python
+import ubiops
+configuration = ubiops.Configuration()
+# Configure API token authorization
+configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+
+# Defining host is optional and default to https://api.ubiops.com/v2.1
+configuration.host = "https://api.ubiops.com/v2.1"
+# Enter a context with an instance of the API client
+api_client = ubiops.ApiClient(configuration)
+
+# Create an instance of the API class
+api_instance = ubiops.CoreApi(api_client)
+
+project_name = 'project_name_example' # str 
+bucket_name = 'bucket_name_example' # str 
+file = 'file_example' # str 
+data = None # object  (optional)
+
+# Upload a file
+api_response = api_instance.files_upload(project_name, bucket_name, file, data=data)
+print(api_response)
+
+# Close the connection
+api_client.close()
+```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **file** | **str** | 
+ **data** | **object** | [optional] 
+
+### Return type
+
+[**FileUploadResponse**](FileUploadResponse.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
 # **imports_create**
 > ImportList imports_create(project_name, file=file, import_link=import_link, export_id=export_id, skip_confirmation=skip_confirmation)
 
@@ -6111,7 +7093,8 @@ Details of the instance type
 
 - `gpu_allocation`: Integer indicating number of GPU cores for this instance type
 
-- `gpu_type`: Type of the GPU enabled for this instance type
+- `gpu_allocation_type`: Type of the GPU allocation. Normally, this is nvidia.com/gpu, but in case of mixed mode MIG
+this can change to nvidia.com/mig-1g.10gb or alike
 
 ## Response Examples
 
@@ -6124,7 +7107,7 @@ Details of the instance type
     "memory_allocation": 512,
     "cpu_allocation": 125,
     "gpu_allocation": 0,
-    "gpu_type": null
+    "gpu_allocation_type": null
   }
 ]
 ```
@@ -7465,7 +8448,7 @@ This endpoint does not need any parameter.
 # **organizations_resource_usage**
 > ResourceUsage organizations_resource_usage(organization_name)
 
-List resource usage of an organization
+Get resource usage
 
 ## Description
 List the total number of resources used by this organization
@@ -7518,7 +8501,7 @@ api_instance = ubiops.CoreApi(api_client)
 
 organization_name = 'organization_name_example' # str 
 
-# List resource usage of an organization
+# Get resource usage
 api_response = api_instance.organizations_resource_usage(organization_name)
 print(api_response)
 
@@ -7656,7 +8639,7 @@ Name | Type | Notes
 # **organizations_usage_get**
 > list[Usage] organizations_usage_get(organization_name, start_date=start_date, end_date=end_date, interval=interval)
 
-Get resource usage
+Get organization usage
 
 ## Description
 Get resource usage for the organization. It contains **the details of each metric aggregated per month.**
@@ -7763,7 +8746,7 @@ start_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datet
 end_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime  (optional)
 interval = 'month' # str  (optional) (default to 'month')
 
-# Get resource usage
+# Get organization usage
 api_response = api_instance.organizations_usage_get(organization_name, start_date=start_date, end_date=end_date, interval=interval)
 print(api_response)
 
@@ -13438,11 +14421,10 @@ Name | Type | Notes
 # **role_assignments_create**
 > RoleAssignmentList role_assignments_create(project_name, data)
 
-Assign a role to a user in a project
+Assign role to user/object
 
 ## Description
-Assign a role to a user in the scope of a project. This role can be assigned on either project level or on object level, which can be a deployment or pipeline.
-The user making the request must have appropriate permissions.
+Assign a role to a user or an object in the scope of a project. This role can be assigned on either project level or on object level, which can be a deployment, pipeline or bucket.
 
 ### Required Parameters
 
@@ -13450,20 +14432,22 @@ The user making the request must have appropriate permissions.
 
 - `role`: Name of the role to be assigned to the user
 
-### Optional Parameters
+- `assignee`: UUID of the user or the name of the object for which the role will be assigned
 
-- `object_name`: Name of the object for which the role will be assigned
+- `assignee_type`: Type of the assignee. It can be user or deployment.
+- `resource`: Name of the object for which the role will be assigned
 
-- `object_type`: Type of the object for which the role will be assigned. It can be project, deployment or pipeline.
+- `resource_type`: Type of the object for which the role will be assigned. It can be project, deployment, pipeline or bucket.
 
-**object_name and object_type must be provided together. If neither of them is provided, the role is set on project level.**
+**resource and resource_type must be provided together. If neither of them is provided, the role is set on project level.**
 
 ## Request Examples
 Setting the role deployment-admin on project level for user with id 02b77d8f-b312-47ef-990f-4685a7ab9363
 
 ```
 {
-  "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee_type": "user",
   "role": "deployment-admin"
 }
 ```
@@ -13472,10 +14456,23 @@ Setting the role deployment-viewer on deployment-1 for user with id 02b77d8f-b31
 
 ```
 {
-  "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee_type": "user",
   "role": "deployment-viewer",
-  "object_name": "deployment-1",
-  "object_type": "deployment"
+  "resource": "deployment-1",
+  "resource_type": "deployment"
+}
+```
+
+Setting the role files-reader on bucket-1 for deployment-1
+
+```
+{
+  "assignee": "deployment-1",
+  "assignee_type": "deployment",
+  "role": "file-reader",
+  "resource": "bucket-1",
+  "resource_type": "bucket"
 }
 ```
 
@@ -13483,24 +14480,22 @@ Setting the role deployment-viewer on deployment-1 for user with id 02b77d8f-b31
 Details of the created role assignment
 
 - `id`: Unique identifier for the role assignment (UUID)
-
-- `user_id`: Unique identifier for the user (UUID)
-
+- `assignee`: UUID of the user or the name of the object
+- `assignee_type`: Type of the assignee
 - `role`: Name of the role assigned to the user
-
-- `object_name`: Name of the object for which the role is assigned
-
-- `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.
+- `resource`: Name of the object for which the role is assigned
+- `resource_type`: Type of the object for which the role is assigned
 
 ## Response Examples
 
 ```
 {
   "id": "e988ddc0-3ef1-42d2-ab30-9f810a5e7063",
-  "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee_type": "user",
   "role": "deployment-admin",
-  "object_name": "project-1",
-  "object_type": "project"
+  "resource": "project-1",
+  "resource_type": "project"
 }
 ```
 
@@ -13508,10 +14503,11 @@ Details of the created role assignment
 ```
 {
   "id": "e988ddc0-3ef1-42d2-ab30-9f810a5e7063",
-  "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
-  "role": "deployment-viewer",
-  "object_name": "deployment-1",
-  "object_type": "deployment"
+  "assignee": "deployment-1",
+  "assignee_type": "deployment",
+  "role": "file-reader",
+  "resource": "bucket-1",
+  "resource_type": "bucket"
 }
 ```
 
@@ -13534,7 +14530,7 @@ api_instance = ubiops.CoreApi(api_client)
 project_name = 'project_name_example' # str 
 data = ubiops.RoleAssignmentCreate() # RoleAssignmentCreate 
 
-# Assign a role to a user in a project
+# Assign role to user/object
 api_response = api_instance.role_assignments_create(project_name, data)
 print(api_response)
 
@@ -13564,10 +14560,10 @@ Name | Type | Notes
 # **role_assignments_delete**
 > role_assignments_delete(project_name, id)
 
-Delete a role from a user with the given role assignment id
+Delete role of user
 
 ## Description
-Delete a role of a user. The user making the request must have appropriate permissions. It is possible for a user to delete their own role if they have permissions to do so.
+Delete a role of a user.  It is possible for a user to delete their own role if they have permissions to do so.
 
 ### Example
 
@@ -13588,7 +14584,7 @@ api_instance = ubiops.CoreApi(api_client)
 project_name = 'project_name_example' # str 
 id = 'id_example' # str 
 
-# Delete a role from a user with the given role assignment id
+# Delete role of user
 api_instance.role_assignments_delete(project_name, id)
 
 # Close the connection
@@ -13617,33 +14613,31 @@ void (empty response body)
 # **role_assignments_get**
 > RoleAssignmentList role_assignments_get(project_name, id)
 
-Get details of a role assignment
+Get role assignment
 
 ## Description
-Get the details of a role assignment of a user. The user making the request must have appropriate permissions.
+Get the details of a role assignment of a user/deployment.
 
 ### Response Structure
 Details of the role assignment
 
 - `id`: Unique identifier for the role assignment (UUID)
-
-- `user_id`: Unique identifier for the user (UUID)
-
-- `role`: Name of the role assigned to the user
-
-- `object_name`: Name of the object for which the role is assigned
-
-- `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.
+- `assignee`: UUID of the user or the name of the object
+- `assignee_type`: Type of the assignee
+- `role`: Name of the role assigned to the user/object
+- `resource`: Name of the object for which the role is assigned
+- `resource_type`: Type of the object for which the role is assigned
 
 ## Response Examples
 
 ```
 {
   "id": "e988ddc0-3ef1-42d2-ab30-9f810a5e7063",
-  "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
-  "role": "deployment-viewer",
-  "object_name": "deployment-1",
-  "object_type": "deployment"
+  "assignee": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+  "assignee_type": "user",
+  "role": "deployment-admin",
+  "resource": "project-1",
+  "resource_type": "project"
 }
 ```
 
@@ -13666,7 +14660,7 @@ api_instance = ubiops.CoreApi(api_client)
 project_name = 'project_name_example' # str 
 id = 'id_example' # str 
 
-# Get details of a role assignment
+# Get role assignment
 api_response = api_instance.role_assignments_get(project_name, id)
 print(api_response)
 
@@ -13693,43 +14687,74 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
-# **role_assignments_per_user_list**
-> list[RoleAssignmentList] role_assignments_per_user_list(project_name, user_id)
+# **role_assignments_per_object_list**
+> list[RoleAssignmentList] role_assignments_per_object_list(project_name, resource=resource, resource_type=resource_type, assignee=assignee, assignee_type=assignee_type)
 
-List the roles assigned to a specific user in a project
+List roles on object/user
 
 ## Description
-List the roles assigned to a user in the scope of a project.
+List the roles assigned to a user or on an object in the scope of a project.
+
+### Optional Parameters
+These parameters should be given as query parameters
+
+- `resource`: Name of the object on which the assigned roles will be listed
+- `resource_type`: Type of the object on which the assigned roles will be listed
+- `assignee`: UUID of the user or the name of the object for which the assigned roles will be listed
+- `assignee_type`: Type of the assignee for which the assigned roles will be listed
 
 ### Response Structure
 
 - `id`: Unique identifier for the role assignment (UUID)
-
-- `user_id`: Unique identifier for the user (UUID)
-
-- `role`: Name of the role assigned to the user
-
-- `object_name`: Name of the object for which the role is assigned
-
-- `object_type`: Type of the object for which the role is assigned. It can be project, deployment or pipeline.
+- `assignee`: UUID of the user or the name of the object
+- `assignee_type`: Type of the assignee
+- `role`: Name of the role assigned to the user/object
+- `resource`: Name of the object for which the role is assigned
+- `resource_type`: Type of the object for which the role is assigned
 
 ## Response Examples
+Roles assigned to user with id 02b77d8f-b312-47ef-990f-4685a7ab9363
 
 ```
 [
   {
     "id": "e988ddc0-3ef1-42d2-ab30-9f810a5e7063",
-    "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
-    "role": "deployment-viewer",
-    "object_name": "deployment-1",
-    "object_type": "deployment"
+    "assignee": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+    "assignee_type": "user",
+    "role": "deployment-admin",
+    "resource": "project-1",
+    "resource_type": "project"
   },
   {
     "id": "13cf9dd7-7356-4797-b453-e0cb6b416162",
-    "user_id": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+    "assignee": "02b77d8f-b312-47ef-990f-4685a7ab9363",
+    "assignee_type": "user",
     "role": "pipeline-admin",
-    "object_name": "pipeline-1",
-    "object_type": "pipeline"
+    "resource": "pipeline-1",
+    "resource_type": "pipeline"
+  }
+]
+```
+
+Roles assigned on deployment with name deployment-1
+
+```
+[
+  {
+    "id": "a24aabc2-c7df-4f7b-b177-f80827aea1bb",
+    "assignee": "258771bb-1bc4-4f2f-a3f4-9309cc64d1dd",
+    "assignee_type": "user",
+    "role": "deployment-admin",
+    "resource": "deployment-1",
+    "resource_type": "deployment"
+  },
+  {
+    "id": "dfd4e714-9c2d-446e-ae96-4db18f91d3de",
+    "assignee": "0ca8a61d-962e-48e3-b558-61e8ca2dae88",
+    "assignee_type": "user",
+    "role": "deployment-viewer",
+    "resource": "deployment-1",
+    "resource_type": "deployment"
   }
 ]
 ```
@@ -13751,10 +14776,13 @@ api_client = ubiops.ApiClient(configuration)
 api_instance = ubiops.CoreApi(api_client)
 
 project_name = 'project_name_example' # str 
-user_id = 'user_id_example' # str 
+resource = 'resource_example' # str  (optional)
+resource_type = 'resource_type_example' # str  (optional)
+assignee = 'assignee_example' # str  (optional)
+assignee_type = 'assignee_type_example' # str  (optional)
 
-# List the roles assigned to a specific user in a project
-api_response = api_instance.role_assignments_per_user_list(project_name, user_id)
+# List roles on object/user
+api_response = api_instance.role_assignments_per_object_list(project_name, resource=resource, resource_type=resource_type, assignee=assignee, assignee_type=assignee_type)
 print(api_response)
 
 # Close the connection
@@ -13768,7 +14796,10 @@ api_client.close()
 Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
- **user_id** | **str** | 
+ **resource** | **str** | [optional] 
+ **resource_type** | **str** | [optional] 
+ **assignee** | **str** | [optional] 
+ **assignee_type** | **str** | [optional] 
 
 ### Return type
 

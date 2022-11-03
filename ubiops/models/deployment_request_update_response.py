@@ -42,6 +42,7 @@ class DeploymentRequestUpdateResponse(object):
         'time_started': 'datetime',
         'time_completed': 'datetime',
         'error_message': 'str',
+        'retries': 'int',
         'request_data': 'object',
         'result': 'object',
         'notification_group': 'str'
@@ -57,12 +58,13 @@ class DeploymentRequestUpdateResponse(object):
         'time_started': 'time_started',
         'time_completed': 'time_completed',
         'error_message': 'error_message',
+        'retries': 'retries',
         'request_data': 'request_data',
         'result': 'result',
         'notification_group': 'notification_group'
     }
 
-    def __init__(self, id=None, deployment=None, version=None, status=None, success=None, time_created=None, time_started=None, time_completed=None, error_message=None, request_data=None, result=None, notification_group=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, deployment=None, version=None, status=None, success=None, time_created=None, time_started=None, time_completed=None, error_message=None, retries=None, request_data=None, result=None, notification_group=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentRequestUpdateResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -77,6 +79,7 @@ class DeploymentRequestUpdateResponse(object):
         self._time_started = None
         self._time_completed = None
         self._error_message = None
+        self._retries = None
         self._request_data = None
         self._result = None
         self._notification_group = None
@@ -91,6 +94,8 @@ class DeploymentRequestUpdateResponse(object):
         self.time_started = time_started
         self.time_completed = time_completed
         self.error_message = error_message
+        if retries is not None:
+            self.retries = retries
         self.request_data = request_data
         self.result = result
         self.notification_group = notification_group
@@ -317,6 +322,30 @@ class DeploymentRequestUpdateResponse(object):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
         self._error_message = error_message
+
+    @property
+    def retries(self):
+        """Gets the retries of this DeploymentRequestUpdateResponse.  # noqa: E501
+
+
+        :return: The retries of this DeploymentRequestUpdateResponse.  # noqa: E501
+        :rtype: int
+        """
+        return self._retries
+
+    @retries.setter
+    def retries(self, retries):
+        """Sets the retries of this DeploymentRequestUpdateResponse.
+
+
+        :param retries: The retries of this DeploymentRequestUpdateResponse.  # noqa: E501
+        :type: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                retries is not None and not isinstance(retries, int)):
+            raise ValueError("Parameter `retries` must be an integer")  # noqa: E501
+
+        self._retries = retries
 
     @property
     def request_data(self):

@@ -39,8 +39,7 @@ class DeploymentInstanceType(object):
         'memory_allocation': 'int',
         'cpu_allocation': 'int',
         'gpu_allocation': 'int',
-        'gpu_memory_allocation': 'int',
-        'gpu_type': 'str'
+        'gpu_memory_allocation': 'int'
     }
 
     attribute_map = {
@@ -50,11 +49,10 @@ class DeploymentInstanceType(object):
         'memory_allocation': 'memory_allocation',
         'cpu_allocation': 'cpu_allocation',
         'gpu_allocation': 'gpu_allocation',
-        'gpu_memory_allocation': 'gpu_memory_allocation',
-        'gpu_type': 'gpu_type'
+        'gpu_memory_allocation': 'gpu_memory_allocation'
     }
 
-    def __init__(self, id=None, name=None, display_name=None, memory_allocation=None, cpu_allocation=None, gpu_allocation=None, gpu_memory_allocation=None, gpu_type=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, name=None, display_name=None, memory_allocation=None, cpu_allocation=None, gpu_allocation=None, gpu_memory_allocation=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentInstanceType - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -67,7 +65,6 @@ class DeploymentInstanceType(object):
         self._cpu_allocation = None
         self._gpu_allocation = None
         self._gpu_memory_allocation = None
-        self._gpu_type = None
         self.discriminator = None
 
         if id is not None:
@@ -82,7 +79,6 @@ class DeploymentInstanceType(object):
             self.gpu_allocation = gpu_allocation
         if gpu_memory_allocation is not None:
             self.gpu_memory_allocation = gpu_memory_allocation
-        self.gpu_type = gpu_type
 
     @property
     def id(self):
@@ -264,34 +260,6 @@ class DeploymentInstanceType(object):
             raise ValueError("Parameter `gpu_memory_allocation` must be an integer")  # noqa: E501
 
         self._gpu_memory_allocation = gpu_memory_allocation
-
-    @property
-    def gpu_type(self):
-        """Gets the gpu_type of this DeploymentInstanceType.  # noqa: E501
-
-
-        :return: The gpu_type of this DeploymentInstanceType.  # noqa: E501
-        :rtype: str
-        """
-        return self._gpu_type
-
-    @gpu_type.setter
-    def gpu_type(self, gpu_type):
-        """Sets the gpu_type of this DeploymentInstanceType.
-
-
-        :param gpu_type: The gpu_type of this DeploymentInstanceType.  # noqa: E501
-        :type: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                gpu_type is not None and not isinstance(gpu_type, str)):
-            raise ValueError("Parameter `gpu_type` must be a string")  # noqa: E501
-
-        if (self.local_vars_configuration.client_side_validation and
-                gpu_type is not None and len(gpu_type) > 64):
-            raise ValueError("Invalid value for `gpu_type`, length must be less than or equal to `64`")  # noqa: E501
-
-        self._gpu_type = gpu_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

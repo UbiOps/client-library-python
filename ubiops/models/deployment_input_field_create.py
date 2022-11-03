@@ -116,7 +116,7 @@ class DeploymentInputFieldCreate(object):
         if (self.local_vars_configuration.client_side_validation and
                 data_type is not None and not isinstance(data_type, str)):
             raise ValueError("Parameter `data_type` must be a string")  # noqa: E501
-        allowed_values = ["int", "string", "double", "bool", "array_int", "array_double", "array_string", "blob"]  # noqa: E501
+        allowed_values = ["int", "string", "double", "bool", "array_int", "array_double", "array_string", "blob", "file"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and data_type not in allowed_values:  # noqa: E501
             raise ValueError(
                 "Invalid value for `data_type` ({0}), must be one of {1}"  # noqa: E501
