@@ -38,7 +38,8 @@ class DirectPipelineRequestDeploymentRequest(object):
         'deployment': 'str',
         'version': 'str',
         'success': 'bool',
-        'error_message': 'str'
+        'error_message': 'str',
+        'sequence_id': 'str'
     }
 
     attribute_map = {
@@ -47,10 +48,11 @@ class DirectPipelineRequestDeploymentRequest(object):
         'deployment': 'deployment',
         'version': 'version',
         'success': 'success',
-        'error_message': 'error_message'
+        'error_message': 'error_message',
+        'sequence_id': 'sequence_id'
     }
 
-    def __init__(self, id=None, pipeline_object=None, deployment=None, version=None, success=None, error_message=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, pipeline_object=None, deployment=None, version=None, success=None, error_message=None, sequence_id=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DirectPipelineRequestDeploymentRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class DirectPipelineRequestDeploymentRequest(object):
         self._version = None
         self._success = None
         self._error_message = None
+        self._sequence_id = None
         self.discriminator = None
 
         self.id = id
@@ -70,6 +73,7 @@ class DirectPipelineRequestDeploymentRequest(object):
         self.version = version
         self.success = success
         self.error_message = error_message
+        self.sequence_id = sequence_id
 
     @property
     def id(self):
@@ -222,6 +226,32 @@ class DirectPipelineRequestDeploymentRequest(object):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
         self._error_message = error_message
+
+    @property
+    def sequence_id(self):
+        """Gets the sequence_id of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
+
+
+        :return: The sequence_id of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._sequence_id
+
+    @sequence_id.setter
+    def sequence_id(self, sequence_id):
+        """Sets the sequence_id of this DirectPipelineRequestDeploymentRequest.
+
+
+        :param sequence_id: The sequence_id of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and sequence_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `sequence_id`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                sequence_id is not None and not isinstance(sequence_id, str)):
+            raise ValueError("Parameter `sequence_id` must be a string")  # noqa: E501
+
+        self._sequence_id = sequence_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

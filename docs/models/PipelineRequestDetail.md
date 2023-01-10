@@ -1,4 +1,4 @@
-# PipelineRequestSingleDetail
+# PipelineRequestDetail
 
 ## Properties
 Name | Type | Notes
@@ -14,8 +14,7 @@ Name | Type | Notes
 **request_data** | **str** or **dict(str, str)** | [optional] 
 **result** | **str** or **dict(str, str)** | [optional] 
 **deployment_requests** | [**list[PipelineRequestDeploymentRequest]**](PipelineRequestDeploymentRequest.md) | 
+**operator_requests** | [**list[PipelineRequestOperatorRequest]**](PipelineRequestOperatorRequest.md) | 
 **error_message** | **str** | [optional] 
-**notification_group** | **str** | [optional] 
-**origin** | **dict(str, str)** | [optional] [readonly] 
 
 

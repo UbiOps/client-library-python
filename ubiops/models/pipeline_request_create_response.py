@@ -37,6 +37,7 @@ class PipelineRequestCreateResponse(object):
         'pipeline': 'str',
         'version': 'str',
         'deployment_requests': 'list[DirectPipelineRequestDeploymentRequest]',
+        'operator_requests': 'list[DirectPipelineRequestOperatorRequest]',
         'result': 'object',
         'success': 'bool',
         'error_message': 'str'
@@ -47,12 +48,13 @@ class PipelineRequestCreateResponse(object):
         'pipeline': 'pipeline',
         'version': 'version',
         'deployment_requests': 'deployment_requests',
+        'operator_requests': 'operator_requests',
         'result': 'result',
         'success': 'success',
         'error_message': 'error_message'
     }
 
-    def __init__(self, id=None, pipeline=None, version=None, deployment_requests=None, result=None, success=None, error_message=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, pipeline=None, version=None, deployment_requests=None, operator_requests=None, result=None, success=None, error_message=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """PipelineRequestCreateResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class PipelineRequestCreateResponse(object):
         self._pipeline = None
         self._version = None
         self._deployment_requests = None
+        self._operator_requests = None
         self._result = None
         self._success = None
         self._error_message = None
@@ -71,6 +74,7 @@ class PipelineRequestCreateResponse(object):
         self.pipeline = pipeline
         self.version = version
         self.deployment_requests = deployment_requests
+        self.operator_requests = operator_requests
         self.result = result
         self.success = success
         self.error_message = error_message
@@ -183,6 +187,37 @@ class PipelineRequestCreateResponse(object):
             ]
 
         self._deployment_requests = deployment_requests
+
+    @property
+    def operator_requests(self):
+        """Gets the operator_requests of this PipelineRequestCreateResponse.  # noqa: E501
+
+
+        :return: The operator_requests of this PipelineRequestCreateResponse.  # noqa: E501
+        :rtype: list[DirectPipelineRequestOperatorRequest]
+        """
+        return self._operator_requests
+
+    @operator_requests.setter
+    def operator_requests(self, operator_requests):
+        """Sets the operator_requests of this PipelineRequestCreateResponse.
+
+
+        :param operator_requests: The operator_requests of this PipelineRequestCreateResponse.  # noqa: E501
+        :type: list[DirectPipelineRequestOperatorRequest]
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                operator_requests is not None and not isinstance(operator_requests, list)):
+            raise ValueError("Parameter `operator_requests` must be a list")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and operator_requests is not None:
+            from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
+
+            operator_requests = [
+                DirectPipelineRequestOperatorRequest(**item) if isinstance(item, dict) else item  # noqa: E501
+                for item in operator_requests
+            ]
+
+        self._operator_requests = operator_requests
 
     @property
     def result(self):

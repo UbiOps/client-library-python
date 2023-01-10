@@ -13,7 +13,7 @@ Name | Type | Notes
 **description** | **str** | [optional] 
 **labels** | **str** or **dict(str, str)** | [optional] 
 **last_updated** | **datetime** | [optional] 
-**size** | **str** | [optional] [readonly] 
-**size_measurement_date** | **str** | [optional] [readonly] 
+**size** | **int** | [optional] [readonly] 
+**size_measurement_date** | **datetime** | [optional] [readonly] 
 
 

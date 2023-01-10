@@ -74,6 +74,7 @@ target/
 .openapi-generator-ignore
 .openapi-generator/
 test/
+tests/
 test-requirements.txt
 tox.ini
 git_push.sh
@@ -81,3 +82,6 @@ git_push.sh
 *.py.orig
 pypi_push.sh
 pypi_test_push.sh
+
+# OS
+*.DS_Store

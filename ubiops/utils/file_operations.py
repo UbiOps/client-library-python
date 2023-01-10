@@ -2,8 +2,8 @@ from os import path
 
 import requests
 
-import ubiops
-import ubiops.exceptions
+from ubiops import CoreApi
+from ubiops.exceptions import ApiException
 
 
 def upload_file(client, project_name, file_path, bucket_name='default', file_name=None):
@@ -18,7 +18,7 @@ def upload_file(client, project_name, file_path, bucket_name='default', file_nam
     :return: ubiops file uri, which you can use in your request data for file input fields
     """
 
-    core_api = ubiops.api.CoreApi(client)
+    core_api = CoreApi(client)
 
     # Use the basename of the file_path if not a more specific name is provided for the file in the bucket.
     file_name = path.basename(file_path) if file_name is None else file_name
@@ -43,7 +43,7 @@ def upload_file(client, project_name, file_path, bucket_name='default', file_nam
             response = requests.put(url=response.url, headers=headers, data=filestream)
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            raise ubiops.exceptions.ApiException(
+            raise ApiException(
                 status=e.response.status_code,
                 reason=str(e)
             )
@@ -71,7 +71,7 @@ def download_file(client, project_name, bucket_name='default', file_name=None, f
     assert not (bucket_name and file_name and file_uri), "Please, use either bucket_name and file_name or file_uri, " \
                                                          "not both"
 
-    core_api = ubiops.api.CoreApi(client)
+    core_api = CoreApi(client)
 
     if file_uri:
         assert str(file_uri).startswith("ubiops-file://"), "Wrong format given for file_uri"
@@ -89,7 +89,7 @@ def download_file(client, project_name, bucket_name='default', file_name=None, f
         response = requests.get(url=response.url, stream=stream)
         response.raise_for_status()
     except requests.exceptions.HTTPError as e:
-        raise ubiops.exceptions.ApiException(
+        raise ApiException(
             status=e.response.status_code,
             reason=str(e)
         )

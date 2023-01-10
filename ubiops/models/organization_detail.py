@@ -69,8 +69,7 @@ class OrganizationDetail(object):
         self.name = name
         if creation_date is not None:
             self.creation_date = creation_date
-        if subscription is not None:
-            self.subscription = subscription
+        self.subscription = subscription
         self.status = status
         if subscription_self_service is not None:
             self.subscription_self_service = subscription_self_service
@@ -171,9 +170,15 @@ class OrganizationDetail(object):
         :param subscription: The subscription of this OrganizationDetail.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and subscription is None:  # noqa: E501
+            raise ValueError("Invalid value for `subscription`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 subscription is not None and not isinstance(subscription, str)):
             raise ValueError("Parameter `subscription` must be a string")  # noqa: E501
+
+        if (self.local_vars_configuration.client_side_validation and
+                subscription is not None and len(subscription) < 1):
+            raise ValueError("Invalid value for `subscription`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._subscription = subscription
 

@@ -38,6 +38,7 @@ class DeploymentVersionDetail(object):
         'version': 'str',
         'description': 'str',
         'language': 'str',
+        'language_description': 'str',
         'status': 'str',
         'active_revision': 'str',
         'latest_build': 'str',
@@ -68,6 +69,7 @@ class DeploymentVersionDetail(object):
         'version': 'version',
         'description': 'description',
         'language': 'language',
+        'language_description': 'language_description',
         'status': 'status',
         'active_revision': 'active_revision',
         'latest_build': 'latest_build',
@@ -92,7 +94,7 @@ class DeploymentVersionDetail(object):
         'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, language_description=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -103,6 +105,7 @@ class DeploymentVersionDetail(object):
         self._version = None
         self._description = None
         self._language = None
+        self._language_description = None
         self._status = None
         self._active_revision = None
         self._latest_build = None
@@ -135,6 +138,8 @@ class DeploymentVersionDetail(object):
             self.description = description
         if language is not None:
             self.language = language
+        if language_description is not None:
+            self.language_description = language_description
         if status is not None:
             self.status = status
         if active_revision is not None:
@@ -322,6 +327,30 @@ class DeploymentVersionDetail(object):
             raise ValueError("Invalid value for `language`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._language = language
+
+    @property
+    def language_description(self):
+        """Gets the language_description of this DeploymentVersionDetail.  # noqa: E501
+
+
+        :return: The language_description of this DeploymentVersionDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._language_description
+
+    @language_description.setter
+    def language_description(self, language_description):
+        """Sets the language_description of this DeploymentVersionDetail.
+
+
+        :param language_description: The language_description of this DeploymentVersionDetail.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                language_description is not None and not isinstance(language_description, str)):
+            raise ValueError("Parameter `language_description` must be a string")  # noqa: E501
+
+        self._language_description = language_description
 
     @property
     def status(self):

@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ubiops"
-VERSION = "3.12.0"
+VERSION = "3.13.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -27,7 +27,7 @@ def readme():
         return f.read()
 
 
-REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
+REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil", "requests >= 2.25.1"]
 
 setup(
     name=NAME,

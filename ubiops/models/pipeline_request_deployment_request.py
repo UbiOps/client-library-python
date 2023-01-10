@@ -36,17 +36,23 @@ class PipelineRequestDeploymentRequest(object):
         'id': 'str',
         'pipeline_object': 'str',
         'deployment': 'str',
-        'version': 'str'
+        'version': 'str',
+        'success': 'bool',
+        'error_message': 'str',
+        'sequence_id': 'str'
     }
 
     attribute_map = {
         'id': 'id',
         'pipeline_object': 'pipeline_object',
         'deployment': 'deployment',
-        'version': 'version'
+        'version': 'version',
+        'success': 'success',
+        'error_message': 'error_message',
+        'sequence_id': 'sequence_id'
     }
 
-    def __init__(self, id=None, pipeline_object=None, deployment=None, version=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, pipeline_object=None, deployment=None, version=None, success=None, error_message=None, sequence_id=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """PipelineRequestDeploymentRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -56,12 +62,18 @@ class PipelineRequestDeploymentRequest(object):
         self._pipeline_object = None
         self._deployment = None
         self._version = None
+        self._success = None
+        self._error_message = None
+        self._sequence_id = None
         self.discriminator = None
 
         self.id = id
         self.pipeline_object = pipeline_object
         self.deployment = deployment
         self.version = version
+        self.success = success
+        self.error_message = error_message
+        self.sequence_id = sequence_id
 
     @property
     def id(self):
@@ -81,6 +93,8 @@ class PipelineRequestDeploymentRequest(object):
         :param id: The id of this PipelineRequestDeploymentRequest.  # noqa: E501
         :type: str
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 id is not None and not isinstance(id, str)):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
@@ -170,6 +184,80 @@ class PipelineRequestDeploymentRequest(object):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
+
+    @property
+    def success(self):
+        """Gets the success of this PipelineRequestDeploymentRequest.  # noqa: E501
+
+
+        :return: The success of this PipelineRequestDeploymentRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """Sets the success of this PipelineRequestDeploymentRequest.
+
+
+        :param success: The success of this PipelineRequestDeploymentRequest.  # noqa: E501
+        :type: bool
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                success is not None and not isinstance(success, bool)):
+            raise ValueError("Parameter `success` must be a boolean")  # noqa: E501
+
+        self._success = success
+
+    @property
+    def error_message(self):
+        """Gets the error_message of this PipelineRequestDeploymentRequest.  # noqa: E501
+
+
+        :return: The error_message of this PipelineRequestDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._error_message
+
+    @error_message.setter
+    def error_message(self, error_message):
+        """Sets the error_message of this PipelineRequestDeploymentRequest.
+
+
+        :param error_message: The error_message of this PipelineRequestDeploymentRequest.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                error_message is not None and not isinstance(error_message, str)):
+            raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
+
+        self._error_message = error_message
+
+    @property
+    def sequence_id(self):
+        """Gets the sequence_id of this PipelineRequestDeploymentRequest.  # noqa: E501
+
+
+        :return: The sequence_id of this PipelineRequestDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._sequence_id
+
+    @sequence_id.setter
+    def sequence_id(self, sequence_id):
+        """Sets the sequence_id of this PipelineRequestDeploymentRequest.
+
+
+        :param sequence_id: The sequence_id of this PipelineRequestDeploymentRequest.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and sequence_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `sequence_id`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                sequence_id is not None and not isinstance(sequence_id, str)):
+            raise ValueError("Parameter `sequence_id` must be a string")  # noqa: E501
+
+        self._sequence_id = sequence_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

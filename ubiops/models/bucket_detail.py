@@ -43,8 +43,8 @@ class BucketDetail(object):
         'description': 'str',
         'labels': 'object',
         'last_updated': 'datetime',
-        'size': 'str',
-        'size_measurement_date': 'str'
+        'size': 'int',
+        'size_measurement_date': 'datetime'
     }
 
     attribute_map = {
@@ -283,10 +283,6 @@ class BucketDetail(object):
                 ttl is not None and not isinstance(ttl, int)):
             raise ValueError("Parameter `ttl` must be an integer")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                ttl is not None and ttl < 0):  # noqa: E501
-            raise ValueError("Invalid value for `ttl`, must be a value greater than or equal to `0`")  # noqa: E501
-
         self._ttl = ttl
 
     @property
@@ -365,7 +361,7 @@ class BucketDetail(object):
 
 
         :return: The size of this BucketDetail.  # noqa: E501
-        :rtype: str
+        :rtype: int
         """
         return self._size
 
@@ -375,11 +371,11 @@ class BucketDetail(object):
 
 
         :param size: The size of this BucketDetail.  # noqa: E501
-        :type: str
+        :type: int
         """
         if (self.local_vars_configuration.client_side_validation and
-                size is not None and not isinstance(size, str)):
-            raise ValueError("Parameter `size` must be a string")  # noqa: E501
+                size is not None and not isinstance(size, int)):
+            raise ValueError("Parameter `size` must be an integer")  # noqa: E501
 
         self._size = size
 
@@ -389,7 +385,7 @@ class BucketDetail(object):
 
 
         :return: The size_measurement_date of this BucketDetail.  # noqa: E501
-        :rtype: str
+        :rtype: datetime
         """
         return self._size_measurement_date
 
@@ -399,11 +395,8 @@ class BucketDetail(object):
 
 
         :param size_measurement_date: The size_measurement_date of this BucketDetail.  # noqa: E501
-        :type: str
+        :type: datetime
         """
-        if (self.local_vars_configuration.client_side_validation and
-                size_measurement_date is not None and not isinstance(size_measurement_date, str)):
-            raise ValueError("Parameter `size_measurement_date` must be a string")  # noqa: E501
 
         self._size_measurement_date = size_measurement_date
 

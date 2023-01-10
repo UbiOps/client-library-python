@@ -9,5 +9,6 @@ Name | Type | Notes
 **version** | **str** | [optional] 
 **success** | **bool** | 
 **error_message** | **str** | [optional] 
+**sequence_id** | **str** | 
 
 

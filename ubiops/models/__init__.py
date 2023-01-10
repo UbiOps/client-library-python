@@ -25,6 +25,7 @@ from ubiops.models.bucket_detail import BucketDetail
 from ubiops.models.bucket_list import BucketList
 from ubiops.models.bucket_update import BucketUpdate
 from ubiops.models.build_list import BuildList
+from ubiops.models.build_update import BuildUpdate
 from ubiops.models.deployment_create import DeploymentCreate
 from ubiops.models.deployment_create_response import DeploymentCreateResponse
 from ubiops.models.deployment_detail import DeploymentDetail
@@ -45,6 +46,7 @@ from ubiops.models.deployment_version_detail import DeploymentVersionDetail
 from ubiops.models.deployment_version_list import DeploymentVersionList
 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
+from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 from ubiops.models.environment_variable_list import EnvironmentVariableList
@@ -72,6 +74,7 @@ from ubiops.models.notification_group_contact import NotificationGroupContact
 from ubiops.models.notification_group_create import NotificationGroupCreate
 from ubiops.models.notification_group_list import NotificationGroupList
 from ubiops.models.notification_group_update import NotificationGroupUpdate
+from ubiops.models.operator_request_detail import OperatorRequestDetail
 from ubiops.models.organization_create import OrganizationCreate
 from ubiops.models.organization_detail import OrganizationDetail
 from ubiops.models.organization_list import OrganizationList
@@ -92,6 +95,7 @@ from ubiops.models.pipeline_request_create_response import PipelineRequestCreate
 from ubiops.models.pipeline_request_deployment_request import PipelineRequestDeploymentRequest
 from ubiops.models.pipeline_request_detail import PipelineRequestDetail
 from ubiops.models.pipeline_request_list import PipelineRequestList
+from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
 from ubiops.models.pipeline_request_single_detail import PipelineRequestSingleDetail
 from ubiops.models.pipeline_update import PipelineUpdate
 from ubiops.models.pipeline_version_create import PipelineVersionCreate

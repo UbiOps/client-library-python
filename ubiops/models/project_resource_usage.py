@@ -37,7 +37,8 @@ class ProjectResourceUsage(object):
         'deployment_versions': 'int',
         'pipelines': 'int',
         'pipeline_versions': 'int',
-        'gpus': 'int'
+        'gpus': 'int',
+        'buckets': 'int'
     }
 
     attribute_map = {
@@ -45,10 +46,11 @@ class ProjectResourceUsage(object):
         'deployment_versions': 'deployment_versions',
         'pipelines': 'pipelines',
         'pipeline_versions': 'pipeline_versions',
-        'gpus': 'gpus'
+        'gpus': 'gpus',
+        'buckets': 'buckets'
     }
 
-    def __init__(self, deployments=None, deployment_versions=None, pipelines=None, pipeline_versions=None, gpus=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, deployments=None, deployment_versions=None, pipelines=None, pipeline_versions=None, gpus=None, buckets=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """ProjectResourceUsage - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +61,7 @@ class ProjectResourceUsage(object):
         self._pipelines = None
         self._pipeline_versions = None
         self._gpus = None
+        self._buckets = None
         self.discriminator = None
 
         if deployments is not None:
@@ -71,6 +74,8 @@ class ProjectResourceUsage(object):
             self.pipeline_versions = pipeline_versions
         if gpus is not None:
             self.gpus = gpus
+        if buckets is not None:
+            self.buckets = buckets
 
     @property
     def deployments(self):
@@ -191,6 +196,30 @@ class ProjectResourceUsage(object):
             raise ValueError("Parameter `gpus` must be an integer")  # noqa: E501
 
         self._gpus = gpus
+
+    @property
+    def buckets(self):
+        """Gets the buckets of this ProjectResourceUsage.  # noqa: E501
+
+
+        :return: The buckets of this ProjectResourceUsage.  # noqa: E501
+        :rtype: int
+        """
+        return self._buckets
+
+    @buckets.setter
+    def buckets(self, buckets):
+        """Sets the buckets of this ProjectResourceUsage.
+
+
+        :param buckets: The buckets of this ProjectResourceUsage.  # noqa: E501
+        :type: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                buckets is not None and not isinstance(buckets, int)):
+            raise ValueError("Parameter `buckets` must be an integer")  # noqa: E501
+
+        self._buckets = buckets
 
     def to_dict(self):
         """Returns the model properties as a dict"""

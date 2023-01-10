@@ -44,6 +44,7 @@ class PipelineRequestSingleDetail(object):
         'request_data': 'object',
         'result': 'object',
         'deployment_requests': 'list[PipelineRequestDeploymentRequest]',
+        'operator_requests': 'list[PipelineRequestOperatorRequest]',
         'error_message': 'str',
         'notification_group': 'str',
         'origin': 'dict(str, str)'
@@ -61,12 +62,13 @@ class PipelineRequestSingleDetail(object):
         'request_data': 'request_data',
         'result': 'result',
         'deployment_requests': 'deployment_requests',
+        'operator_requests': 'operator_requests',
         'error_message': 'error_message',
         'notification_group': 'notification_group',
         'origin': 'origin'
     }
 
-    def __init__(self, id=None, pipeline=None, version=None, status=None, success=None, time_created=None, time_started=None, time_completed=None, request_data=None, result=None, deployment_requests=None, error_message=None, notification_group=None, origin=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, pipeline=None, version=None, status=None, success=None, time_created=None, time_started=None, time_completed=None, request_data=None, result=None, deployment_requests=None, operator_requests=None, error_message=None, notification_group=None, origin=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """PipelineRequestSingleDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -83,6 +85,7 @@ class PipelineRequestSingleDetail(object):
         self._request_data = None
         self._result = None
         self._deployment_requests = None
+        self._operator_requests = None
         self._error_message = None
         self._notification_group = None
         self._origin = None
@@ -99,6 +102,7 @@ class PipelineRequestSingleDetail(object):
         self.request_data = request_data
         self.result = result
         self.deployment_requests = deployment_requests
+        self.operator_requests = operator_requests
         self.error_message = error_message
         self.notification_group = notification_group
         self.origin = origin
@@ -374,6 +378,37 @@ class PipelineRequestSingleDetail(object):
             ]
 
         self._deployment_requests = deployment_requests
+
+    @property
+    def operator_requests(self):
+        """Gets the operator_requests of this PipelineRequestSingleDetail.  # noqa: E501
+
+
+        :return: The operator_requests of this PipelineRequestSingleDetail.  # noqa: E501
+        :rtype: list[PipelineRequestOperatorRequest]
+        """
+        return self._operator_requests
+
+    @operator_requests.setter
+    def operator_requests(self, operator_requests):
+        """Sets the operator_requests of this PipelineRequestSingleDetail.
+
+
+        :param operator_requests: The operator_requests of this PipelineRequestSingleDetail.  # noqa: E501
+        :type: list[PipelineRequestOperatorRequest]
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                operator_requests is not None and not isinstance(operator_requests, list)):
+            raise ValueError("Parameter `operator_requests` must be a list")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and operator_requests is not None:
+            from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
+
+            operator_requests = [
+                PipelineRequestOperatorRequest(**item) if isinstance(item, dict) else item  # noqa: E501
+                for item in operator_requests
+            ]
+
+        self._operator_requests = operator_requests
 
     @property
     def error_message(self):
