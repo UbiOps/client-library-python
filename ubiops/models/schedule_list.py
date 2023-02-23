@@ -94,14 +94,14 @@ class ScheduleList(object):
         if schedule is not None:
             self.schedule = schedule
         self.request_data = request_data
-        if timeout is not None:
-            self.timeout = timeout
+        self.timeout = timeout
         self.enabled = enabled
         if creation_date is not None:
             self.creation_date = creation_date
         if description is not None:
             self.description = description
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
 
     @property
     def id(self):

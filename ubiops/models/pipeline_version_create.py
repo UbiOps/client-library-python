@@ -76,7 +76,8 @@ class PipelineVersionCreate(object):
         self.version = version
         if description is not None:
             self.description = description
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
         self.monitoring = monitoring
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time

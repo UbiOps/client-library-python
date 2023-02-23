@@ -9,7 +9,7 @@ Name | Type | Notes
 **input_fields** | [**list[PipelineInputFieldCreate]**](PipelineInputFieldCreate.md) | [optional] 
 **output_type** | **str** | [optional] 
 **output_fields** | [**list[PipelineOutputFieldCreate]**](PipelineOutputFieldCreate.md) | [optional] 
-**labels** | **str** or **dict(str, str)** | [optional] 
+**labels** | **dict(str, str)** | [optional] 
 **default_version** | **str** | [optional] 
 
 

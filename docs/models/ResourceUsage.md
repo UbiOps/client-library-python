@@ -9,7 +9,6 @@ Name | Type | Notes
 **deployment_versions** | **int** | [optional] [readonly] 
 **pipelines** | **int** | [optional] [readonly] 
 **pipeline_versions** | **int** | [optional] [readonly] 
-**gpus** | **int** | [optional] [readonly] 
 **buckets** | **int** | [optional] [readonly] 
 
 

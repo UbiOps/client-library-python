@@ -97,10 +97,8 @@ class BucketDetail(object):
         self.labels = labels
         if last_updated is not None:
             self.last_updated = last_updated
-        if size is not None:
-            self.size = size
-        if size_measurement_date is not None:
-            self.size_measurement_date = size_measurement_date
+        self.size = size
+        self.size_measurement_date = size_measurement_date
 
     @property
     def id(self):

@@ -78,7 +78,8 @@ class ScheduleUpdate(object):
             self.enabled = enabled
         if description is not None:
             self.description = description
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
 
     @property
     def name(self):

@@ -39,7 +39,7 @@ class PipelineUpdate(object):
         'input_fields': 'list[PipelineInputFieldCreate]',
         'output_type': 'str',
         'output_fields': 'list[PipelineOutputFieldCreate]',
-        'labels': 'object',
+        'labels': 'dict(str, str)',
         'default_version': 'str'
     }
 
@@ -267,7 +267,7 @@ class PipelineUpdate(object):
 
 
         :return: The labels of this PipelineUpdate.  # noqa: E501
-        :rtype: object
+        :rtype: dict(str, str)
         """
         return self._labels
 
@@ -277,8 +277,11 @@ class PipelineUpdate(object):
 
 
         :param labels: The labels of this PipelineUpdate.  # noqa: E501
-        :type: object
+        :type: dict(str, str)
         """
+        if (self.local_vars_configuration.client_side_validation and
+                labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
 

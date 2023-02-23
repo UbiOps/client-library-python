@@ -74,7 +74,8 @@ class DeploymentUpdate(object):
             self.input_fields = input_fields
         if output_fields is not None:
             self.output_fields = output_fields
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
 
     @property
     def name(self):

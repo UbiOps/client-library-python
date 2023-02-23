@@ -42,7 +42,6 @@ class DeploymentVersionDetail(object):
         'status': 'str',
         'active_revision': 'str',
         'latest_build': 'str',
-        'memory_allocation': 'int',
         'instance_type': 'str',
         'maximum_instances': 'int',
         'minimum_instances': 'int',
@@ -73,7 +72,6 @@ class DeploymentVersionDetail(object):
         'status': 'status',
         'active_revision': 'active_revision',
         'latest_build': 'latest_build',
-        'memory_allocation': 'memory_allocation',
         'instance_type': 'instance_type',
         'maximum_instances': 'maximum_instances',
         'minimum_instances': 'minimum_instances',
@@ -94,7 +92,7 @@ class DeploymentVersionDetail(object):
         'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, language_description=None, status=None, active_revision=None, latest_build=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, deployment=None, version=None, description=None, language=None, language_description=None, status=None, active_revision=None, latest_build=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -109,7 +107,6 @@ class DeploymentVersionDetail(object):
         self._status = None
         self._active_revision = None
         self._latest_build = None
-        self._memory_allocation = None
         self._instance_type = None
         self._maximum_instances = None
         self._minimum_instances = None
@@ -146,8 +143,6 @@ class DeploymentVersionDetail(object):
             self.active_revision = active_revision
         if latest_build is not None:
             self.latest_build = latest_build
-        if memory_allocation is not None:
-            self.memory_allocation = memory_allocation
         self.instance_type = instance_type
         if maximum_instances is not None:
             self.maximum_instances = maximum_instances
@@ -155,13 +150,13 @@ class DeploymentVersionDetail(object):
             self.minimum_instances = minimum_instances
         if maximum_idle_time is not None:
             self.maximum_idle_time = maximum_idle_time
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
         if creation_date is not None:
             self.creation_date = creation_date
         if last_updated is not None:
             self.last_updated = last_updated
-        if last_file_upload is not None:
-            self.last_file_upload = last_file_upload
+        self.last_file_upload = last_file_upload
         if monitoring is not None:
             self.monitoring = monitoring
         if request_retention_time is not None:
@@ -173,10 +168,8 @@ class DeploymentVersionDetail(object):
             self.maximum_queue_size_express = maximum_queue_size_express
         if maximum_queue_size_batch is not None:
             self.maximum_queue_size_batch = maximum_queue_size_batch
-        if has_request_method is not None:
-            self.has_request_method = has_request_method
-        if has_requests_method is not None:
-            self.has_requests_method = has_requests_method
+        self.has_request_method = has_request_method
+        self.has_requests_method = has_requests_method
         if static_ip is not None:
             self.static_ip = static_ip
         if restart_request_interruption is not None:
@@ -319,13 +312,6 @@ class DeploymentVersionDetail(object):
                 language is not None and not isinstance(language, str)):
             raise ValueError("Parameter `language` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                language is not None and len(language) > 30):
-            raise ValueError("Invalid value for `language`, length must be less than or equal to `30`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                language is not None and len(language) < 1):
-            raise ValueError("Invalid value for `language`, length must be greater than or equal to `1`")  # noqa: E501
-
         self._language = language
 
     @property
@@ -423,30 +409,6 @@ class DeploymentVersionDetail(object):
             raise ValueError("Parameter `latest_build` must be a string")  # noqa: E501
 
         self._latest_build = latest_build
-
-    @property
-    def memory_allocation(self):
-        """Gets the memory_allocation of this DeploymentVersionDetail.  # noqa: E501
-
-
-        :return: The memory_allocation of this DeploymentVersionDetail.  # noqa: E501
-        :rtype: int
-        """
-        return self._memory_allocation
-
-    @memory_allocation.setter
-    def memory_allocation(self, memory_allocation):
-        """Sets the memory_allocation of this DeploymentVersionDetail.
-
-
-        :param memory_allocation: The memory_allocation of this DeploymentVersionDetail.  # noqa: E501
-        :type: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                memory_allocation is not None and not isinstance(memory_allocation, int)):
-            raise ValueError("Parameter `memory_allocation` must be an integer")  # noqa: E501
-
-        self._memory_allocation = memory_allocation
 
     @property
     def instance_type(self):

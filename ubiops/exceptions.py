@@ -13,6 +13,8 @@
 import json
 import six
 
+from xml.etree import cElementTree
+
 
 class OpenApiException(Exception):
     """The base exception class for all OpenAPIExceptions"""
@@ -84,39 +86,61 @@ class ApiKeyError(OpenApiException, KeyError):
 
 class ApiException(OpenApiException):
 
-    def __init__(self, status=None, reason=None, http_resp=None):
-        if http_resp:
+    def __init__(self, status=None, reason=None, body=None, http_resp=None, requests_resp=None):
+        if http_resp is not None:
             self.status = http_resp.status
             self.reason = http_resp.reason
             self.body = http_resp.data
             self.headers = http_resp.getheaders()
+        elif requests_resp is not None:
+            self.status = requests_resp.status_code
+            self.reason = requests_resp.reason
+            self.body = requests_resp.text
+            self.headers = requests_resp.headers
         else:
             self.status = status
             self.reason = reason
-            self.body = None
+            self.body = body
             self.headers = None
+
+    def get_body_message(self):
+        """Retrieve the error from the HTTP response body"""
+
+        # Parse body as JSON
+        try:
+            body_content = json.loads(self.body)
+
+            if isinstance(body_content, dict) and 'error' in body_content:
+                return body_content['error']
+
+            elif isinstance(body_content, dict) and 'error_message' in body_content:
+                return body_content['error_message']
+
+        except (ValueError, TypeError, KeyError):
+            pass
+
+        # Parse body as XML
+        try:
+            content = cElementTree.fromstring(self.body)
+            if content.find("Details") is not None:
+                return content.find("Details").text
+            if content.find("Message") is not None:
+                return content.find("Message").text
+
+        except (cElementTree.ParseError, ValueError, TypeError, AttributeError):
+            pass
+
+        return ""
 
     def __str__(self):
         """Custom error messages for exception"""
         error_message = "{0} ({1})\n".format(self.reason, self.status)
 
         if self.body:
-            body_message = ""
-
-            try:
-                body_content = json.loads(self.body)
-
-                if isinstance(body_content, dict) and 'error' in body_content:
-                    body_message = "Error: {0}\n".format(body_content['error'])
-
-                elif isinstance(body_content, dict) and 'error_message' in body_content:
-                    body_message = "Error: {0}\n".format(body_content['error_message'])
-
-            except (ValueError, TypeError, KeyError):
-                pass
+            body_message = self.get_body_message()
 
             if body_message:
-                error_message += body_message
+                error_message += "Error: {0}\n".format(body_message)
             else:
                 if self.headers:
                     error_message += "HTTP response headers: {0}\n".format(

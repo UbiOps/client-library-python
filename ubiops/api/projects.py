@@ -39,7 +39,7 @@ class Projects(object):
     def instance_types_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
         """List instance types  # noqa: E501
 
-         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `gpu_allocation_type`: Type of the GPU allocation. Normally, this is nvidia.com/gpu, but in case of mixed mode MIG  this can change to nvidia.com/mig-1g.10gb or alike    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"gpu_allocation_type\": null   } ] ```   # noqa: E501
+         ### Description  Get list of available deployment instance types for a project  ### Response Structure  Details of the instance type - `id`: Unique identifier for the instance type (UUID)   - `name`: Name of the deployment instance type   - `display_name`: Readable name of the deployment instance type   - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)   - `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)   - `gpu_allocation`: Integer indicating number of GPU cores for this instance type   - `storage_allocation`: Integer indicating the maximum storage that can be used by this instance type (MB)    #### Response Examples  ``` [   {     \"id\": \"abe2e406-fae5-4bcf-a3bc-956d756e4ecb\",     \"name\": \"512mb\",     \"display_name\": \"512 MB\",     \"memory_allocation\": 512,     \"cpu_allocation\": 125,     \"gpu_allocation\": 0,     \"storage_allocation\": 2048   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.instance_types_list_with_http_info(project_name, async_req=True)
@@ -2166,6 +2166,93 @@ class Projects(object):
             post_params=form_params,
             files=local_var_files,
             response_type='list[Usage]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def quotas_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
+        """List quotas  # noqa: E501
+
+         ### Description  List the quotas defined for a project. Project members can see quotas.  ### Response Structure - `resource`: The resource for the quota - `quota`: Limit of how much the resource can be used in the project  #### Response Examples ``` [   {     \"resource\": \"memory_standard\",     \"quota\": 274877906944   },   {     \"resource\": \"cpu_standard\",     \"quota\": 62   },   {     \"resource\": \"gpu_standard\",     \"quota\": 0   } ] ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.quotas_list_with_http_info(project_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(list[QuotaDetail], status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method quotas_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['project_name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `project_name` when calling `quotas_list`")  # noqa: E501
+        if (self.api_client.client_side_validation and 'project_name' in local_var_params
+            and local_var_params['project_name'] is not None):  # noqa: E501
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `quotas_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/quotas', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[QuotaDetail]',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

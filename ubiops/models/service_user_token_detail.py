@@ -38,7 +38,7 @@ class ServiceUserTokenDetail(object):
         'token': 'str',
         'name': 'str',
         'creation_date': 'str',
-        'allowed_cors_origins': 'str',
+        'allowed_cors_origins': 'list[str]',
         'expiry_date': 'str'
     }
 
@@ -75,10 +75,8 @@ class ServiceUserTokenDetail(object):
         self.name = name
         if creation_date is not None:
             self.creation_date = creation_date
-        if allowed_cors_origins is not None:
-            self.allowed_cors_origins = allowed_cors_origins
-        if expiry_date is not None:
-            self.expiry_date = expiry_date
+        self.allowed_cors_origins = allowed_cors_origins
+        self.expiry_date = expiry_date
 
     @property
     def id(self):
@@ -219,7 +217,7 @@ class ServiceUserTokenDetail(object):
 
 
         :return: The allowed_cors_origins of this ServiceUserTokenDetail.  # noqa: E501
-        :rtype: str
+        :rtype: list[str]
         """
         return self._allowed_cors_origins
 
@@ -229,11 +227,11 @@ class ServiceUserTokenDetail(object):
 
 
         :param allowed_cors_origins: The allowed_cors_origins of this ServiceUserTokenDetail.  # noqa: E501
-        :type: str
+        :type: list[str]
         """
         if (self.local_vars_configuration.client_side_validation and
-                allowed_cors_origins is not None and not isinstance(allowed_cors_origins, str)):
-            raise ValueError("Parameter `allowed_cors_origins` must be a string")  # noqa: E501
+                allowed_cors_origins is not None and not isinstance(allowed_cors_origins, list)):
+            raise ValueError("Parameter `allowed_cors_origins` must be a list")  # noqa: E501
 
         self._allowed_cors_origins = allowed_cors_origins
 
@@ -258,6 +256,10 @@ class ServiceUserTokenDetail(object):
         if (self.local_vars_configuration.client_side_validation and
                 expiry_date is not None and not isinstance(expiry_date, str)):
             raise ValueError("Parameter `expiry_date` must be a string")  # noqa: E501
+
+        if (self.local_vars_configuration.client_side_validation and
+                expiry_date is not None and len(expiry_date) < 1):
+            raise ValueError("Invalid value for `expiry_date`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._expiry_date = expiry_date
 

@@ -22,24 +22,17 @@ Create a new request schedule with the provided name
 ### Required Parameters
 
 - `name`: Name of the request. The name is unique per project. It can only consist of lowercase letters, numbers and dashes (-), and must start with a lowercase letter.
-
 - `object_type`: Type of object for which the request is made. Can be either 'deployment' or 'pipeline'.
-
 - `object_name`: Name of deployment or pipeline for which the request is made
-
 - `schedule`: Schedule in crontab format
 
 ### Optional Parameters
 
 - `version`: Name of version for which the request schedule is made. If not provided, default version of the deployment/pipeline will be used.
-
 - `request_data`: Input data for the request schedule. For structured deployments/pipelines, it must be a dictionary.
-
-- `timeout`: Timeout of the request in seconds. The maximum and default values depend on the object (deployment or pipeline) and the type of request (batch or direct).
+- `timeout`: Timeout of the request in seconds
 - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled. Default is 'True'.
-
 - `description`: Description of the request schedule
-
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Request Examples
@@ -68,25 +61,15 @@ Create a new request schedule with the provided name
 Details of the created request schedule
 
 - `name`: Name of the request
-
 - `object_type`: Type of object for which the request is made
-
 - `object_name`: Name of deployment/pipeline for which the request schedule is made
-
 - `schedule`: Schedule in crontab format
-
 - `version`: Name of version for which the request schedule is made
-
 - `request_data`: Input data for the request schedule
-
 - `timeout`: Timeout of the request in seconds
-
 - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled
-
 - `creation_date`: The date when the request schedule was created
-
 - `description`: Description of the request schedule
-
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
@@ -115,30 +98,49 @@ Details of the created request schedule
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.ScheduleCreate() # ScheduleCreate
 
-project_name = 'project_name_example' # str 
-data = ubiops.ScheduleCreate() # ScheduleCreate 
+    # Create request schedules
+    api_response = core_api.request_schedules_create(project_name, data)
+    print(api_response)
 
-# Create request schedules
-api_response = api.request_schedules_create(project_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.ScheduleCreate() # ScheduleCreate
+
+    # Create request schedules
+    api_response = core_api.request_schedules_create(project_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -171,29 +173,47 @@ If you want to temporarily disable a request schedule, update the request with `
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    schedule_name = 'schedule_name_example' # str
 
-project_name = 'project_name_example' # str 
-schedule_name = 'schedule_name_example' # str 
+    # Delete a request schedule
+    core_api.request_schedules_delete(project_name, schedule_name)
 
-# Delete a request schedule
-api.request_schedules_delete(project_name, schedule_name)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    schedule_name = 'schedule_name_example' # str
+
+    # Delete a request schedule
+    core_api.request_schedules_delete(project_name, schedule_name)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -226,25 +246,15 @@ Retrieve details of a single request schedule
 Details of a request schedule
 
 - `name`: Name of the request
-
 - `object_type`: Type of object for which the request is made
-
 - `object_name`: Name of deployment/pipeline for which the request is made
-
 - `schedule`: Schedule in crontab format
-
 - `version`: Name of version for which the request schedule is made
-
 - `request_data`: Input data for the request schedule
-
 - `timeout`: Timeout of the request in seconds
-
 - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled
-
 - `creation_date`: The date when the request schedule was created
-
 - `description`: Description of the request schedule
-
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
@@ -273,30 +283,49 @@ Details of a request schedule
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    schedule_name = 'schedule_name_example' # str
 
-project_name = 'project_name_example' # str 
-schedule_name = 'schedule_name_example' # str 
+    # Get details of a request schedule
+    api_response = core_api.request_schedules_get(project_name, schedule_name)
+    print(api_response)
 
-# Get details of a request schedule
-api_response = api.request_schedules_get(project_name, schedule_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    schedule_name = 'schedule_name_example' # str
+
+    # Get details of a request schedule
+    api_response = core_api.request_schedules_get(project_name, schedule_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -333,25 +362,15 @@ List the request schedules in a project. The user has to have 'requests.list' pe
 A list of details of all request schedules in a project
 
 - `name`: Name of the request
-
 - `object_type`: Type of object for which the request is made
-
 - `object_name`: Name of deployment/pipeline for which the request is made
-
 - `schedule`: Schedule in crontab format
-
-- `version`: Name of version for which the request schedule is made 
-
+- `version`: Name of version for which the request schedule is made
 - `request_data`: Input data for the request schedule
-
 - `timeout`: Timeout of the request in seconds
-
 - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled
-
 - `creation_date`: The date when the request schedule was created
-
 - `description`: Description of the request schedule
-
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
@@ -369,7 +388,7 @@ A list of details of all request schedules in a project
       "input_field_1": 2345,
       "input_field_2": 8765
     },
-    "timeout": 200",
+    "timeout": 200,
     "enabled": true,
     "creation_date": "2020-09-16T08:06:34.457679Z",
     "description": "Daily request schedule",
@@ -382,30 +401,49 @@ A list of details of all request schedules in a project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    labels = 'labels_example' # str (optional)
 
-project_name = 'project_name_example' # str 
-labels = 'labels_example' # str  (optional)
+    # List request schedules
+    api_response = core_api.request_schedules_list(project_name, labels=labels)
+    print(api_response)
 
-# List request schedules
-api_response = api.request_schedules_list(project_name, labels=labels)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    labels = 'labels_example' # str (optional)
+
+    # List request schedules
+    api_response = core_api.request_schedules_list(project_name, labels=labels)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -432,22 +470,16 @@ Name | Type | Notes
 Update a request schedule
 
 ## Description
-Update a request schedule in a project. Create permissions on the object are necessary for this action.
+Update a request schedule in a project
 
 ### Optional Parameters
 
 - `name`: Name of the request. The name is unique per project. It can only consist of lowercase letters, numbers and dashes (-), and must start with a lowercase letter.
-
 - `schedule`: Schedule in crontab format
-
 - `request_data`: Input data for the request schedule. For structured deployments/pipelines, it must be a dictionary.
-
-- `timeout`: Timeout of the request in seconds. The maximum and default values depend on the object (deployment or pipeline) and the type of request (batch or direct).
-
+- `timeout`: Timeout of the request in seconds
 - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled. Default is 'True'.
-
 - `description`: Description of the request schedule
-
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Request Examples
@@ -469,25 +501,15 @@ Update a request schedule in a project. Create permissions on the object are nec
 Details of the updated request schedule
 
 - `name`: Name of the request
-
 - `object_type`: Type of object for which the request is made
-
 - `object_name`: Name of deployment/pipeline for which the request is made
-
 - `schedule`: Schedule in crontab format
-
 - `version`: Name of version for which the request schedule is made
-
 - `request_data`: Input data for the request schedule
-
 - `timeout`: Timeout of the request in seconds
-
 - `enabled`: Boolean value indicating whether the request schedule is enabled or disabled
-
 - `creation_date`: The date when the request schedule was created
-
 - `description`: Description of the request schedule
-
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
@@ -516,31 +538,51 @@ Details of the updated request schedule
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    schedule_name = 'schedule_name_example' # str
+    data = ubiops.ScheduleUpdate() # ScheduleUpdate
 
-project_name = 'project_name_example' # str 
-schedule_name = 'schedule_name_example' # str 
-data = ubiops.ScheduleUpdate() # ScheduleUpdate 
+    # Update a request schedule
+    api_response = core_api.request_schedules_update(project_name, schedule_name, data)
+    print(api_response)
 
-# Update a request schedule
-api_response = api.request_schedules_update(project_name, schedule_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    schedule_name = 'schedule_name_example' # str
+    data = ubiops.ScheduleUpdate() # ScheduleUpdate
+
+    # Update a request schedule
+    api_response = core_api.request_schedules_update(project_name, schedule_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters

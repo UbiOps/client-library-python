@@ -14,6 +14,7 @@ from __future__ import absolute_import
 
 import logging
 import multiprocessing
+import os
 import sys
 import urllib3
 
@@ -97,19 +98,34 @@ class Configuration(object):
       )
     """
 
-    def __init__(self, host="https://api.ubiops.com/v2.1",
-                 api_key=None, api_key_prefix=None,
-                 username=None, password=None,
-                 signing_info=None):
+    def __init__(self, host=None, api_key=None, api_key_prefix=None, username=None, password=None, signing_info=None):
         """Constructor
         """
-        self.host = host
+        if not host:
+            host = os.environ.get("UBIOPS_API_HOST", "https://api.ubiops.com/v2.1")
+
+        if host:
+            # Remove trailing / if present
+            if str(host).endswith("/"):
+                host = str(host)[:-1]
+            self.host = host
         """Default Base url
         """
         self.temp_folder_path = None
         """Temp file folder for downloading files
         """
         # Authentication Settings
+        if not api_key:
+            key = os.environ.get('UBIOPS_API_TOKEN', '').strip()
+            if key:
+                api_key = {'Authorization': key}
+
+        # If api_key doesn't contain prefix. Automatically add "Token" as prefix.
+        if api_key and not api_key_prefix:
+            key = api_key.get('Authorization', '')
+            if len(str(key).split(' ')) < 2:
+                api_key_prefix = {'Authorization': 'Token'}
+
         self.api_key = {}
         if api_key:
             self.api_key = api_key
@@ -336,7 +352,7 @@ class Configuration(object):
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: v2.1\n"\
-               "SDK Package Version: 3.13.0".\
+               "SDK Package Version: 3.14.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

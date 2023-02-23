@@ -34,7 +34,7 @@ class AuditList(object):
     """
     openapi_types = {
         'id': 'str',
-        'date': 'str',
+        'date': 'datetime',
         'action': 'str',
         'user': 'str',
         'event': 'str',
@@ -110,7 +110,7 @@ class AuditList(object):
 
 
         :return: The date of this AuditList.  # noqa: E501
-        :rtype: str
+        :rtype: datetime
         """
         return self._date
 
@@ -120,11 +120,8 @@ class AuditList(object):
 
 
         :param date: The date of this AuditList.  # noqa: E501
-        :type: str
+        :type: datetime
         """
-        if (self.local_vars_configuration.client_side_validation and
-                date is not None and not isinstance(date, str)):
-            raise ValueError("Parameter `date` must be a string")  # noqa: E501
 
         self._date = date
 
