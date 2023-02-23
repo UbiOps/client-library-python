@@ -53,7 +53,8 @@ class OutputFieldWidgetCreate(object):
         self.discriminator = None
 
         self.type = type
-        self.configuration = configuration
+        if configuration is not None:
+            self.configuration = configuration
 
     @property
     def type(self):

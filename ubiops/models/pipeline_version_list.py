@@ -85,7 +85,8 @@ class PipelineVersionList(object):
         self.pipeline = pipeline
         if description is not None:
             self.description = description
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
         if creation_date is not None:
             self.creation_date = creation_date
         if last_updated is not None:

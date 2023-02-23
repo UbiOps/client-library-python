@@ -35,7 +35,6 @@ class DeploymentVersionCreate(object):
     openapi_types = {
         'version': 'str',
         'language': 'str',
-        'memory_allocation': 'int',
         'instance_type': 'str',
         'maximum_instances': 'int',
         'minimum_instances': 'int',
@@ -55,7 +54,6 @@ class DeploymentVersionCreate(object):
     attribute_map = {
         'version': 'version',
         'language': 'language',
-        'memory_allocation': 'memory_allocation',
         'instance_type': 'instance_type',
         'maximum_instances': 'maximum_instances',
         'minimum_instances': 'minimum_instances',
@@ -72,7 +70,7 @@ class DeploymentVersionCreate(object):
         'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, version=None, language='python3.7', memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode='full', default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, version=None, language='python3.7', instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode='full', default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionCreate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -80,7 +78,6 @@ class DeploymentVersionCreate(object):
 
         self._version = None
         self._language = None
-        self._memory_allocation = None
         self._instance_type = None
         self._maximum_instances = None
         self._minimum_instances = None
@@ -100,8 +97,6 @@ class DeploymentVersionCreate(object):
         self.version = version
         if language is not None:
             self.language = language
-        if memory_allocation is not None:
-            self.memory_allocation = memory_allocation
         if instance_type is not None:
             self.instance_type = instance_type
         if maximum_instances is not None:
@@ -112,7 +107,8 @@ class DeploymentVersionCreate(object):
             self.maximum_idle_time = maximum_idle_time
         if description is not None:
             self.description = description
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
         self.monitoring = monitoring
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time
@@ -185,30 +181,6 @@ class DeploymentVersionCreate(object):
             raise ValueError("Invalid value for `language`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._language = language
-
-    @property
-    def memory_allocation(self):
-        """Gets the memory_allocation of this DeploymentVersionCreate.  # noqa: E501
-
-
-        :return: The memory_allocation of this DeploymentVersionCreate.  # noqa: E501
-        :rtype: int
-        """
-        return self._memory_allocation
-
-    @memory_allocation.setter
-    def memory_allocation(self, memory_allocation):
-        """Sets the memory_allocation of this DeploymentVersionCreate.
-
-
-        :param memory_allocation: The memory_allocation of this DeploymentVersionCreate.  # noqa: E501
-        :type: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                memory_allocation is not None and not isinstance(memory_allocation, int)):
-            raise ValueError("Parameter `memory_allocation` must be an integer")  # noqa: E501
-
-        self._memory_allocation = memory_allocation
 
     @property
     def instance_type(self):

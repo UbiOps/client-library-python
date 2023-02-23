@@ -1,6 +1,6 @@
-from os import path
-
 import requests
+
+from os import path
 
 from ubiops import CoreApi
 from ubiops.exceptions import ApiException
@@ -41,14 +41,20 @@ def upload_file(client, project_name, file_path, bucket_name='default', file_nam
     with open(file_path, "rb") as filestream:
         try:
             response = requests.put(url=response.url, headers=headers, data=filestream)
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            raise ApiException(
-                status=e.response.status_code,
-                reason=str(e)
-            )
 
-    return f"ubiops-file://{bucket_name}/{file_name}"
+        except requests.exceptions.ConnectionError as e:
+            raise ApiException(status=502, reason="Failed to connect to bucket", body=str(e))
+
+        except requests.exceptions.Timeout:
+            raise ApiException(status=504, reason="Failed to upload file", body="Connection timeout")
+
+        except requests.exceptions.RequestException as e:
+            raise ApiException(status=502, reason="Failed to upload file", body=str(e))
+
+        if response.status_code < 200 or response.status_code > 300:
+            raise ApiException(requests_resp=response)
+
+    return "ubiops-file://%s/%s" % (bucket_name, file_name)
 
 
 def download_file(client, project_name, bucket_name='default', file_name=None, file_uri=None, output_path='.',
@@ -87,12 +93,18 @@ def download_file(client, project_name, bucket_name='default', file_name=None, f
     )
     try:
         response = requests.get(url=response.url, stream=stream)
-        response.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        raise ApiException(
-            status=e.response.status_code,
-            reason=str(e)
-        )
+
+    except requests.exceptions.ConnectionError as e:
+        raise ApiException(status=502, reason="Failed to connect to bucket", body=str(e))
+
+    except requests.exceptions.Timeout:
+        raise ApiException(status=504, reason="Failed to download file", body="Connection timeout")
+
+    except requests.exceptions.RequestException as e:
+        raise ApiException(status=502, reason="Failed to download file", body=str(e))
+
+    if response.status_code < 200 or response.status_code > 300:
+        raise ApiException(requests_resp=response)
 
     if path.isdir(output_path):
         output_path = path.join(output_path, path.basename(file_name))

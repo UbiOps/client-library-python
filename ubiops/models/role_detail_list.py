@@ -36,7 +36,7 @@ class RoleDetailList(object):
         'id': 'str',
         'name': 'str',
         'default': 'str',
-        'permissions': 'str'
+        'permissions': 'list[str]'
     }
 
     attribute_map = {
@@ -153,7 +153,7 @@ class RoleDetailList(object):
 
 
         :return: The permissions of this RoleDetailList.  # noqa: E501
-        :rtype: str
+        :rtype: list[str]
         """
         return self._permissions
 
@@ -163,11 +163,11 @@ class RoleDetailList(object):
 
 
         :param permissions: The permissions of this RoleDetailList.  # noqa: E501
-        :type: str
+        :type: list[str]
         """
         if (self.local_vars_configuration.client_side_validation and
-                permissions is not None and not isinstance(permissions, str)):
-            raise ValueError("Parameter `permissions` must be a string")  # noqa: E501
+                permissions is not None and not isinstance(permissions, list)):
+            raise ValueError("Parameter `permissions` must be a list")  # noqa: E501
 
         self._permissions = permissions
 

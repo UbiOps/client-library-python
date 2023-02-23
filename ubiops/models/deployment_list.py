@@ -43,8 +43,7 @@ class DeploymentList(object):
         'output_fields': 'list[InputOutputFieldList]',
         'labels': 'dict(str, str)',
         'creation_date': 'datetime',
-        'last_updated': 'datetime',
-        'number_of_versions': 'int'
+        'last_updated': 'datetime'
     }
 
     attribute_map = {
@@ -58,11 +57,10 @@ class DeploymentList(object):
         'output_fields': 'output_fields',
         'labels': 'labels',
         'creation_date': 'creation_date',
-        'last_updated': 'last_updated',
-        'number_of_versions': 'number_of_versions'
+        'last_updated': 'last_updated'
     }
 
-    def __init__(self, id=None, name=None, project=None, description=None, input_type=None, output_type=None, input_fields=None, output_fields=None, labels=None, creation_date=None, last_updated=None, number_of_versions=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, name=None, project=None, description=None, input_type=None, output_type=None, input_fields=None, output_fields=None, labels=None, creation_date=None, last_updated=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentList - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -79,7 +77,6 @@ class DeploymentList(object):
         self._labels = None
         self._creation_date = None
         self._last_updated = None
-        self._number_of_versions = None
         self.discriminator = None
 
         if id is not None:
@@ -94,13 +91,12 @@ class DeploymentList(object):
             self.input_fields = input_fields
         if output_fields is not None:
             self.output_fields = output_fields
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
         if creation_date is not None:
             self.creation_date = creation_date
         if last_updated is not None:
             self.last_updated = last_updated
-        if number_of_versions is not None:
-            self.number_of_versions = number_of_versions
 
     @property
     def id(self):
@@ -404,30 +400,6 @@ class DeploymentList(object):
         """
 
         self._last_updated = last_updated
-
-    @property
-    def number_of_versions(self):
-        """Gets the number_of_versions of this DeploymentList.  # noqa: E501
-
-
-        :return: The number_of_versions of this DeploymentList.  # noqa: E501
-        :rtype: int
-        """
-        return self._number_of_versions
-
-    @number_of_versions.setter
-    def number_of_versions(self, number_of_versions):
-        """Sets the number_of_versions of this DeploymentList.
-
-
-        :param number_of_versions: The number_of_versions of this DeploymentList.  # noqa: E501
-        :type: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                number_of_versions is not None and not isinstance(number_of_versions, int)):
-            raise ValueError("Parameter `number_of_versions` must be an integer")  # noqa: E501
-
-        self._number_of_versions = number_of_versions
 
     def to_dict(self):
         """Returns the model properties as a dict"""

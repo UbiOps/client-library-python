@@ -94,30 +94,49 @@ Details of the created bucket
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.BucketCreate() # BucketCreate
 
-project_name = 'project_name_example' # str 
-data = ubiops.BucketCreate() # BucketCreate 
+    # Create bucket
+    api_response = core_api.buckets_create(project_name, data)
+    print(api_response)
 
-# Create bucket
-api_response = api.buckets_create(project_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.BucketCreate() # BucketCreate
+
+    # Create bucket
+    api_response = core_api.buckets_create(project_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -148,29 +167,47 @@ Delete a bucket. If the bucket provider is UbiOps, the files in the bucket will 
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
+    # Delete a bucket
+    core_api.buckets_delete(project_name, bucket_name)
 
-# Delete a bucket
-api.buckets_delete(project_name, bucket_name)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+
+    # Delete a bucket
+    core_api.buckets_delete(project_name, bucket_name)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -236,30 +273,49 @@ Details of a bucket
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
+    # Get details of a bucket
+    api_response = core_api.buckets_get(project_name, bucket_name)
+    print(api_response)
 
-# Get details of a bucket
-api_response = api.buckets_get(project_name, bucket_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+
+    # Get details of a bucket
+    api_response = core_api.buckets_get(project_name, bucket_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -338,30 +394,49 @@ A list of details of the buckets in the project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    labels = 'labels_example' # str (optional)
 
-project_name = 'project_name_example' # str 
-labels = 'labels_example' # str  (optional)
+    # List buckets
+    api_response = core_api.buckets_list(project_name, labels=labels)
+    print(api_response)
 
-# List buckets
-api_response = api.buckets_list(project_name, labels=labels)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    labels = 'labels_example' # str (optional)
+
+    # List buckets
+    api_response = core_api.buckets_list(project_name, labels=labels)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -443,31 +518,51 @@ Details of the updated bucket
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    data = ubiops.BucketUpdate() # BucketUpdate
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
-data = ubiops.BucketUpdate() # BucketUpdate 
+    # Update a bucket
+    api_response = core_api.buckets_update(project_name, bucket_name, data)
+    print(api_response)
 
-# Update a bucket
-api_response = api.buckets_update(project_name, bucket_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    data = ubiops.BucketUpdate() # BucketUpdate
+
+    # Update a bucket
+    api_response = core_api.buckets_update(project_name, bucket_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -499,30 +594,49 @@ Delete a file from a bucket
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
-file = 'file_example' # str 
+    # Delete a file
+    core_api.files_delete(project_name, bucket_name, file)
 
-# Delete a file
-api.files_delete(project_name, bucket_name, file)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+
+    # Delete a file
+    core_api.files_delete(project_name, bucket_name, file)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -568,31 +682,51 @@ Generate a signed url to download a file. Request body should be an empty dictio
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
-file = 'file_example' # str 
+    # Download a file
+    api_response = core_api.files_download(project_name, bucket_name, file)
+    print(api_response)
 
-# Download a file
-api_response = api.files_download(project_name, bucket_name, file)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+
+    # Download a file
+    api_response = core_api.files_download(project_name, bucket_name, file)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -640,31 +774,51 @@ Get the details of a file in the bucket
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
-file = 'file_example' # str 
+    # Get a file
+    api_response = core_api.files_get(project_name, bucket_name, file)
+    print(api_response)
 
-# Get a file
-api_response = api.files_get(project_name, bucket_name, file)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+
+    # Get a file
+    api_response = core_api.files_get(project_name, bucket_name, file)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -735,34 +889,57 @@ A dictionary containing the details of files and prefixes in the bucket
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    prefix = 'prefix_example' # str (optional)
+    delimiter = 'delimiter_example' # str (optional)
+    continuation_token = 'continuation_token_example' # str (optional)
+    limit = 56 # int (optional)
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
-prefix = 'prefix_example' # str  (optional)
-delimiter = 'delimiter_example' # str  (optional)
-continuation_token = 'continuation_token_example' # str  (optional)
-limit = 56 # int  (optional)
+    # List files
+    api_response = core_api.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
+    print(api_response)
 
-# List files
-api_response = api.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    prefix = 'prefix_example' # str (optional)
+    delimiter = 'delimiter_example' # str (optional)
+    continuation_token = 'continuation_token_example' # str (optional)
+    limit = 56 # int (optional)
+
+    # List files
+    api_response = core_api.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -815,32 +992,53 @@ Note: When using the url generated by this endpoint for Azure Blob Storage, the 
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+    data = None # object (optional)
 
-project_name = 'project_name_example' # str 
-bucket_name = 'bucket_name_example' # str 
-file = 'file_example' # str 
-data = None # object  (optional)
+    # Upload a file
+    api_response = core_api.files_upload(project_name, bucket_name, file, data=data)
+    print(api_response)
 
-# Upload a file
-api_response = api.files_upload(project_name, bucket_name, file, data=data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+    data = None # object (optional)
+
+    # Upload a file
+    api_response = core_api.files_upload(project_name, bucket_name, file, data=data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters

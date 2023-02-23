@@ -14,6 +14,5 @@ Name | Type | Notes
 **labels** | **dict(str, str)** | [optional] 
 **creation_date** | **datetime** | [optional] 
 **last_updated** | **datetime** | [optional] 
-**number_of_versions** | **int** | [optional] 
 
 

@@ -49,31 +49,51 @@ The details of the uploaded blob
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    file = '/path/to/file' # file
+    blob_ttl = 56 # int (optional)
 
-project_name = 'project_name_example' # str 
-file = '/path/to/file' # file 
-blob_ttl = 56 # int  (optional)
+    # Upload a blob
+    api_response = core_api.blobs_create(project_name, file, blob_ttl=blob_ttl)
+    print(api_response)
 
-# Upload a blob
-api_response = api.blobs_create(project_name, file, blob_ttl=blob_ttl)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    file = '/path/to/file' # file
+    blob_ttl = 56 # int (optional)
+
+    # Upload a blob
+    api_response = core_api.blobs_create(project_name, file, blob_ttl=blob_ttl)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -105,29 +125,47 @@ Delete a blob from a project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    blob_id = 'blob_id_example' # str
 
-project_name = 'project_name_example' # str 
-blob_id = 'blob_id_example' # str 
+    # Delete a blob
+    core_api.blobs_delete(project_name, blob_id)
 
-# Delete a blob
-api.blobs_delete(project_name, blob_id)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    blob_id = 'blob_id_example' # str
+
+    # Delete a blob
+    core_api.blobs_delete(project_name, blob_id)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -162,31 +200,51 @@ Download a blob file in a project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    blob_id = 'blob_id_example' # str
 
-project_name = 'project_name_example' # str 
-blob_id = 'blob_id_example' # str 
+    # Get a blob
+    with core_api.blobs_get(project_name, blob_id) as response:
+        filename = response.getfilename()
+        content = response.read()
+    
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Get a blob
-with api.blobs_get(project_name, blob_id) as response:
-    filename = response.getfilename()
-    content = response.read()
+- Use authorization parameters
+    ```python
+    import ubiops
 
-# Close the connection
-api_client.close()
-```
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    blob_id = 'blob_id_example' # str
+
+    # Get a blob
+    with core_api.blobs_get(project_name, blob_id) as response:
+        filename = response.getfilename()
+        content = response.read()
+    
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -256,31 +314,51 @@ A list of details of the blobs in the project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    range = 56 # int (optional)
+    creation_date = 'creation_date_example' # str (optional)
 
-project_name = 'project_name_example' # str 
-range = 56 # int  (optional)
-creation_date = 'creation_date_example' # str  (optional)
+    # List blobs
+    api_response = core_api.blobs_list(project_name, range=range, creation_date=creation_date)
+    print(api_response)
 
-# List blobs
-api_response = api.blobs_list(project_name, range=range, creation_date=creation_date)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    range = 56 # int (optional)
+    creation_date = 'creation_date_example' # str (optional)
+
+    # List blobs
+    api_response = core_api.blobs_list(project_name, range=range, creation_date=creation_date)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -340,32 +418,53 @@ The details of the uploaded blob
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    blob_id = 'blob_id_example' # str
+    file = '/path/to/file' # file
+    blob_ttl = 56 # int (optional)
 
-project_name = 'project_name_example' # str 
-blob_id = 'blob_id_example' # str 
-file = '/path/to/file' # file 
-blob_ttl = 56 # int  (optional)
+    # Update a blob
+    api_response = core_api.blobs_update(project_name, blob_id, file, blob_ttl=blob_ttl)
+    print(api_response)
 
-# Update a blob
-api_response = api.blobs_update(project_name, blob_id, file, blob_ttl=blob_ttl)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    blob_id = 'blob_id_example' # str
+    file = '/path/to/file' # file
+    blob_ttl = 56 # int (optional)
+
+    # Update a blob
+    api_response = core_api.blobs_update(project_name, blob_id, file, blob_ttl=blob_ttl)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters

@@ -34,13 +34,12 @@ class DeploymentVersionUpdate(object):
     """
     openapi_types = {
         'version': 'str',
-        'memory_allocation': 'int',
         'instance_type': 'str',
         'maximum_instances': 'int',
         'minimum_instances': 'int',
         'maximum_idle_time': 'int',
         'description': 'str',
-        'labels': 'object',
+        'labels': 'dict(str, str)',
         'monitoring': 'str',
         'request_retention_time': 'int',
         'request_retention_mode': 'str',
@@ -53,7 +52,6 @@ class DeploymentVersionUpdate(object):
 
     attribute_map = {
         'version': 'version',
-        'memory_allocation': 'memory_allocation',
         'instance_type': 'instance_type',
         'maximum_instances': 'maximum_instances',
         'minimum_instances': 'minimum_instances',
@@ -70,14 +68,13 @@ class DeploymentVersionUpdate(object):
         'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, version=None, memory_allocation=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, version=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionUpdate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._version = None
-        self._memory_allocation = None
         self._instance_type = None
         self._maximum_instances = None
         self._minimum_instances = None
@@ -96,8 +93,6 @@ class DeploymentVersionUpdate(object):
 
         if version is not None:
             self.version = version
-        if memory_allocation is not None:
-            self.memory_allocation = memory_allocation
         if instance_type is not None:
             self.instance_type = instance_type
         if maximum_instances is not None:
@@ -152,30 +147,6 @@ class DeploymentVersionUpdate(object):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
-
-    @property
-    def memory_allocation(self):
-        """Gets the memory_allocation of this DeploymentVersionUpdate.  # noqa: E501
-
-
-        :return: The memory_allocation of this DeploymentVersionUpdate.  # noqa: E501
-        :rtype: int
-        """
-        return self._memory_allocation
-
-    @memory_allocation.setter
-    def memory_allocation(self, memory_allocation):
-        """Sets the memory_allocation of this DeploymentVersionUpdate.
-
-
-        :param memory_allocation: The memory_allocation of this DeploymentVersionUpdate.  # noqa: E501
-        :type: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                memory_allocation is not None and not isinstance(memory_allocation, int)):
-            raise ValueError("Parameter `memory_allocation` must be an integer")  # noqa: E501
-
-        self._memory_allocation = memory_allocation
 
     @property
     def instance_type(self):
@@ -307,7 +278,7 @@ class DeploymentVersionUpdate(object):
 
 
         :return: The labels of this DeploymentVersionUpdate.  # noqa: E501
-        :rtype: object
+        :rtype: dict(str, str)
         """
         return self._labels
 
@@ -317,8 +288,11 @@ class DeploymentVersionUpdate(object):
 
 
         :param labels: The labels of this DeploymentVersionUpdate.  # noqa: E501
-        :type: object
+        :type: dict(str, str)
         """
+        if (self.local_vars_configuration.client_side_validation and
+                labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
 

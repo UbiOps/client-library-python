@@ -39,7 +39,7 @@ class BucketCreate(object):
         'configuration': 'dict(str, str)',
         'ttl': 'int',
         'description': 'str',
-        'labels': 'object'
+        'labels': 'dict(str, str)'
     }
 
     attribute_map = {
@@ -241,7 +241,7 @@ class BucketCreate(object):
 
 
         :return: The labels of this BucketCreate.  # noqa: E501
-        :rtype: object
+        :rtype: dict(str, str)
         """
         return self._labels
 
@@ -251,8 +251,11 @@ class BucketCreate(object):
 
 
         :param labels: The labels of this BucketCreate.  # noqa: E501
-        :type: object
+        :type: dict(str, str)
         """
+        if (self.local_vars_configuration.client_side_validation and
+                labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
 

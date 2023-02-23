@@ -142,6 +142,7 @@ Method | HTTP request | Description
 [**projects_resource_usage**](./Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
 [**projects_update**](./Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
 [**projects_usage_get**](./Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
+[**quotas_list**](./Projects.md#quotas_list) | **GET** /projects/{project_name}/quotas | List quotas
 [**request_schedules_create**](./RequestSchedules.md#request_schedules_create) | **POST** /projects/{project_name}/schedules | Create request schedules
 [**request_schedules_delete**](./RequestSchedules.md#request_schedules_delete) | **DELETE** /projects/{project_name}/schedules/{schedule_name} | Delete a request schedule
 [**request_schedules_get**](./RequestSchedules.md#request_schedules_get) | **GET** /projects/{project_name}/schedules/{schedule_name} | Get details of a request schedule

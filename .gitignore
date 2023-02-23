@@ -84,4 +84,4 @@ pypi_push.sh
 pypi_test_push.sh
 
 # OS
-*.DS_Store
+.DS_Store

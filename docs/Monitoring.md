@@ -83,30 +83,49 @@ Details of the created notification group
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.NotificationGroupCreate() # NotificationGroupCreate
 
-project_name = 'project_name_example' # str 
-data = ubiops.NotificationGroupCreate() # NotificationGroupCreate 
+    # Create notification groups
+    api_response = core_api.notification_groups_create(project_name, data)
+    print(api_response)
 
-# Create notification groups
-api_response = api.notification_groups_create(project_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.NotificationGroupCreate() # NotificationGroupCreate
+
+    # Create notification groups
+    api_response = core_api.notification_groups_create(project_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -137,29 +156,47 @@ Delete a notification group
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    notification_group_name = 'notification_group_name_example' # str
 
-project_name = 'project_name_example' # str 
-notification_group_name = 'notification_group_name_example' # str 
+    # Delete notification group
+    core_api.notification_groups_delete(project_name, notification_group_name)
 
-# Delete notification group
-api.notification_groups_delete(project_name, notification_group_name)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    notification_group_name = 'notification_group_name_example' # str
+
+    # Delete notification group
+    core_api.notification_groups_delete(project_name, notification_group_name)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -220,30 +257,49 @@ Details of a notification group
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    notification_group_name = 'notification_group_name_example' # str
 
-project_name = 'project_name_example' # str 
-notification_group_name = 'notification_group_name_example' # str 
+    # Get notification group
+    api_response = core_api.notification_groups_get(project_name, notification_group_name)
+    print(api_response)
 
-# Get notification group
-api_response = api.notification_groups_get(project_name, notification_group_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    notification_group_name = 'notification_group_name_example' # str
+
+    # Get notification group
+    api_response = core_api.notification_groups_get(project_name, notification_group_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -318,29 +374,47 @@ A list of details of the notification groups in the project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
 
-project_name = 'project_name_example' # str 
+    # List notification groups
+    api_response = core_api.notification_groups_list(project_name)
+    print(api_response)
 
-# List notification groups
-api_response = api.notification_groups_list(project_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # List notification groups
+    api_response = core_api.notification_groups_list(project_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -415,31 +489,51 @@ Details of the updated notification group
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    notification_group_name = 'notification_group_name_example' # str
+    data = ubiops.NotificationGroupUpdate() # NotificationGroupUpdate
 
-project_name = 'project_name_example' # str 
-notification_group_name = 'notification_group_name_example' # str 
-data = ubiops.NotificationGroupUpdate() # NotificationGroupUpdate 
+    # Update notification group
+    api_response = core_api.notification_groups_update(project_name, notification_group_name, data)
+    print(api_response)
 
-# Update notification group
-api_response = api.notification_groups_update(project_name, notification_group_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    notification_group_name = 'notification_group_name_example' # str
+    data = ubiops.NotificationGroupUpdate() # NotificationGroupUpdate
+
+    # Update notification group
+    api_response = core_api.notification_groups_update(project_name, notification_group_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters

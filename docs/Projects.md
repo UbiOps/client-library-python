@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**projects_resource_usage**](Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
 [**projects_update**](Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
 [**projects_usage_get**](Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
+[**quotas_list**](Projects.md#quotas_list) | **GET** /projects/{project_name}/quotas | List quotas
 
 
 # **instance_types_list**
@@ -50,8 +51,7 @@ Details of the instance type
 
 - `gpu_allocation`: Integer indicating number of GPU cores for this instance type
 
-- `gpu_allocation_type`: Type of the GPU allocation. Normally, this is nvidia.com/gpu, but in case of mixed mode MIG
-this can change to nvidia.com/mig-1g.10gb or alike
+- `storage_allocation`: Integer indicating the maximum storage that can be used by this instance type (MB)
 
 ## Response Examples
 
@@ -64,36 +64,54 @@ this can change to nvidia.com/mig-1g.10gb or alike
     "memory_allocation": 512,
     "cpu_allocation": 125,
     "gpu_allocation": 0,
-    "gpu_allocation_type": null
+    "storage_allocation": 2048
   }
 ]
 ```
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
 
-project_name = 'project_name_example' # str 
+    # List instance types
+    api_response = core_api.instance_types_list(project_name)
+    print(api_response)
 
-# List instance types
-api_response = api.instance_types_list(project_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # List instance types
+    api_response = core_api.instance_types_list(project_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -239,36 +257,61 @@ With interval as month, start_date as 2019-11-13 12:00:00 and end_date as 2019-1
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    metric = 'metric_example' # str
+    start_date = 'start_date_example' # str
+    end_date = 'end_date_example' # str
+    object_type = 'object_type_example' # str
+    interval = 'interval_example' # str (optional)
+    object_id = 'object_id_example' # str (optional)
+    user_id = 'user_id_example' # str (optional)
 
-project_name = 'project_name_example' # str 
-metric = 'metric_example' # str 
-start_date = 'start_date_example' # str 
-end_date = 'end_date_example' # str 
-object_type = 'object_type_example' # str 
-interval = 'interval_example' # str  (optional)
-object_id = 'object_id_example' # str  (optional)
-user_id = 'user_id_example' # str  (optional)
+    # Get metrics
+    api_response = core_api.metrics_get(project_name, metric, start_date, end_date, object_type, interval=interval, object_id=object_id, user_id=user_id)
+    print(api_response)
 
-# Get metrics
-api_response = api.metrics_get(project_name, metric, start_date, end_date, object_type, interval=interval, object_id=object_id, user_id=user_id)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    metric = 'metric_example' # str
+    start_date = 'start_date_example' # str
+    end_date = 'end_date_example' # str
+    object_type = 'object_type_example' # str
+    interval = 'interval_example' # str (optional)
+    object_id = 'object_id_example' # str (optional)
+    user_id = 'user_id_example' # str (optional)
+
+    # Get metrics
+    api_response = core_api.metrics_get(project_name, metric, start_date, end_date, object_type, interval=interval, object_id=object_id, user_id=user_id)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -348,32 +391,53 @@ A list of details of the audit events in the project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    action = 'action_example' # str (optional)
+    limit = 56 # int (optional)
+    offset = 56 # int (optional)
 
-project_name = 'project_name_example' # str 
-action = 'action_example' # str  (optional)
-limit = 56 # int  (optional)
-offset = 56 # int  (optional)
+    # List audit events in a project
+    api_response = core_api.project_audit_events_list(project_name, action=action, limit=limit, offset=offset)
+    print(api_response)
 
-# List audit events in a project
-api_response = api.project_audit_events_list(project_name, action=action, limit=limit, offset=offset)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    action = 'action_example' # str (optional)
+    limit = 56 # int (optional)
+    offset = 56 # int (optional)
+
+    # List audit events in a project
+    api_response = core_api.project_audit_events_list(project_name, action=action, limit=limit, offset=offset)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -460,30 +524,49 @@ A list of variables described by the following fields:
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
 
-project_name = 'project_name_example' # str 
-data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate 
+    # Create project environment variable
+    api_response = core_api.project_environment_variables_create(project_name, data)
+    print(api_response)
 
-# Create project environment variable
-api_response = api.project_environment_variables_create(project_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
+
+    # Create project environment variable
+    api_response = core_api.project_environment_variables_create(project_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -514,29 +597,47 @@ Delete an environment variable of the project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    id = 'id_example' # str
 
-project_name = 'project_name_example' # str 
-id = 'id_example' # str 
+    # Delete project environment variable
+    core_api.project_environment_variables_delete(project_name, id)
 
-# Delete project environment variable
-api.project_environment_variables_delete(project_name, id)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    id = 'id_example' # str
+
+    # Delete project environment variable
+    core_api.project_environment_variables_delete(project_name, id)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -588,30 +689,49 @@ A list of variables described by the following fields:
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    id = 'id_example' # str
 
-project_name = 'project_name_example' # str 
-id = 'id_example' # str 
+    # Get project environment variable
+    api_response = core_api.project_environment_variables_get(project_name, id)
+    print(api_response)
 
-# Get project environment variable
-api_response = api.project_environment_variables_get(project_name, id)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    id = 'id_example' # str
+
+    # Get project environment variable
+    api_response = core_api.project_environment_variables_get(project_name, id)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -669,29 +789,47 @@ A list of variables described by the following fields:
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
 
-project_name = 'project_name_example' # str 
+    # List project environment variables
+    api_response = core_api.project_environment_variables_list(project_name)
+    print(api_response)
 
-# List project environment variables
-api_response = api.project_environment_variables_list(project_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # List project environment variables
+    api_response = core_api.project_environment_variables_list(project_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -756,31 +894,51 @@ A list of variables described by the following fields:
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    id = 'id_example' # str
+    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
 
-project_name = 'project_name_example' # str 
-id = 'id_example' # str 
-data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate 
+    # Update project environment variable
+    api_response = core_api.project_environment_variables_update(project_name, id, data)
+    print(api_response)
 
-# Update project environment variable
-api_response = api.project_environment_variables_update(project_name, id, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    id = 'id_example' # str
+    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
+
+    # Update project environment variable
+    api_response = core_api.project_environment_variables_update(project_name, id, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -871,40 +1029,69 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    object_type = 'object_type_example' # str
+    status = 'status_example' # str (optional)
+    success = True # bool (optional)
+    limit = 56 # int (optional)
+    offset = 56 # int (optional)
+    sort = 'sort_example' # str (optional)
+    pipeline = True # bool (optional)
+    request_schedule = 'request_schedule_example' # str (optional)
+    start_date = 'start_date_example' # str (optional)
+    end_date = 'end_date_example' # str (optional)
+    search_id = 'search_id_example' # str (optional)
 
-project_name = 'project_name_example' # str 
-object_type = 'object_type_example' # str 
-status = 'status_example' # str  (optional)
-success = True # bool  (optional)
-limit = 56 # int  (optional)
-offset = 56 # int  (optional)
-sort = 'sort_example' # str  (optional)
-pipeline = True # bool  (optional)
-request_schedule = 'request_schedule_example' # str  (optional)
-start_date = 'start_date_example' # str  (optional)
-end_date = 'end_date_example' # str  (optional)
-search_id = 'search_id_example' # str  (optional)
+    # List requests in project
+    api_response = core_api.project_requests_list(project_name, object_type, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    print(api_response)
 
-# List requests in project
-api_response = api.project_requests_list(project_name, object_type, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    object_type = 'object_type_example' # str
+    status = 'status_example' # str (optional)
+    success = True # bool (optional)
+    limit = 56 # int (optional)
+    offset = 56 # int (optional)
+    sort = 'sort_example' # str (optional)
+    pipeline = True # bool (optional)
+    request_schedule = 'request_schedule_example' # str (optional)
+    start_date = 'start_date_example' # str (optional)
+    end_date = 'end_date_example' # str (optional)
+    search_id = 'search_id_example' # str (optional)
+
+    # List requests in project
+    api_response = core_api.project_requests_list(project_name, object_type, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -979,30 +1166,49 @@ Details of the added user
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.ProjectUserCreate() # ProjectUserCreate
 
-project_name = 'project_name_example' # str 
-data = ubiops.ProjectUserCreate() # ProjectUserCreate 
+    # Add user to a project
+    api_response = core_api.project_users_create(project_name, data)
+    print(api_response)
 
-# Add user to a project
-api_response = api.project_users_create(project_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.ProjectUserCreate() # ProjectUserCreate
+
+    # Add user to a project
+    api_response = core_api.project_users_create(project_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1035,29 +1241,47 @@ Delete a user from a project. The user making the request must be admin of the o
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    user_id = 'user_id_example' # str
 
-project_name = 'project_name_example' # str 
-user_id = 'user_id_example' # str 
+    # Delete user from a project
+    core_api.project_users_delete(project_name, user_id)
 
-# Delete user from a project
-api.project_users_delete(project_name, user_id)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    user_id = 'user_id_example' # str
+
+    # Delete user from a project
+    core_api.project_users_delete(project_name, user_id)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1110,30 +1334,49 @@ Details of the user
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    user_id = 'user_id_example' # str
 
-project_name = 'project_name_example' # str 
-user_id = 'user_id_example' # str 
+    # Get user in a project
+    api_response = core_api.project_users_get(project_name, user_id)
+    print(api_response)
 
-# Get user in a project
-api_response = api.project_users_get(project_name, user_id)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    user_id = 'user_id_example' # str
+
+    # Get user in a project
+    api_response = core_api.project_users_get(project_name, user_id)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1194,30 +1437,49 @@ List of users
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    user_type = 'user_type_example' # str (optional)
 
-project_name = 'project_name_example' # str 
-user_type = 'user_type_example' # str  (optional)
+    # List users in a project
+    api_response = core_api.project_users_list(project_name, user_type=user_type)
+    print(api_response)
 
-# List users in a project
-api_response = api.project_users_list(project_name, user_type=user_type)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    user_type = 'user_type_example' # str (optional)
+
+    # List users in a project
+    api_response = core_api.project_users_list(project_name, user_type=user_type)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1295,29 +1557,47 @@ Details of the created project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    data = ubiops.ProjectCreate() # ProjectCreate
 
-data = ubiops.ProjectCreate() # ProjectCreate 
+    # Create projects
+    api_response = core_api.projects_create(data)
+    print(api_response)
 
-# Create projects
-api_response = api.projects_create(data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    data = ubiops.ProjectCreate() # ProjectCreate
+
+    # Create projects
+    api_response = core_api.projects_create(data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1348,28 +1628,45 @@ Delete a project. The user making the request must have appropriate permissions.
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
 
-project_name = 'project_name_example' # str 
+    # Delete a project
+    core_api.projects_delete(project_name)
 
-# Delete a project
-api.projects_delete(project_name)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # Delete a project
+    core_api.projects_delete(project_name)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1426,29 +1723,47 @@ Details of a project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
 
-project_name = 'project_name_example' # str 
+    # Get details of a project
+    api_response = core_api.projects_get(project_name)
+    print(api_response)
 
-# Get details of a project
-api_response = api.projects_get(project_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # Get details of a project
+    api_response = core_api.projects_get(project_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1517,29 +1832,47 @@ These parameters should be given as query parameters
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    organization = 'organization_example' # str (optional)
 
-organization = 'organization_example' # str  (optional)
+    # List projects
+    api_response = core_api.projects_list(organization=organization)
+    print(api_response)
 
-# List projects
-api_response = api.projects_list(organization=organization)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    organization = 'organization_example' # str (optional)
+
+    # List projects
+    api_response = core_api.projects_list(organization=organization)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1727,30 +2060,49 @@ Logs for a specific pipeline
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.LogsCreate() # LogsCreate (optional)
 
-project_name = 'project_name_example' # str 
-data = ubiops.LogsCreate() # LogsCreate  (optional)
+    # List logs for a project
+    api_response = core_api.projects_log_list(project_name, data=data)
+    print(api_response)
 
-# List logs for a project
-api_response = api.projects_log_list(project_name, data=data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.LogsCreate() # LogsCreate (optional)
+
+    # List logs for a project
+    api_response = core_api.projects_log_list(project_name, data=data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1805,29 +2157,47 @@ currently defined in the project.
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
 
-project_name = 'project_name_example' # str 
+    # List resource usage of a project
+    api_response = core_api.projects_resource_usage(project_name)
+    print(api_response)
 
-# List resource usage of a project
-api_response = api.projects_resource_usage(project_name)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # List resource usage of a project
+    api_response = core_api.projects_resource_usage(project_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -1899,30 +2269,49 @@ Details of a project
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    data = ubiops.ProjectUpdate() # ProjectUpdate
 
-project_name = 'project_name_example' # str 
-data = ubiops.ProjectUpdate() # ProjectUpdate 
+    # Update a project
+    api_response = core_api.projects_update(project_name, data)
+    print(api_response)
 
-# Update a project
-api_response = api.projects_update(project_name, data)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    data = ubiops.ProjectUpdate() # ProjectUpdate
+
+    # Update a project
+    api_response = core_api.projects_update(project_name, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -2034,32 +2423,53 @@ When **start_date** and **end_date** are given, this month period is used, e.g. 
 
 ### Example
 
-```python
-import ubiops
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+- Use system environment variables
+    ```python
+    import ubiops
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
 
-# Create an instance of the API class
-api = ubiops.CoreApi(api_client)
+    project_name = 'project_name_example' # str
+    start_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime (optional)
+    end_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime (optional)
+    interval = 'month' # str (optional) (default to 'month')
 
-project_name = 'project_name_example' # str 
-start_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime  (optional)
-end_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime  (optional)
-interval = 'month' # str  (optional) (default to 'month')
+    # Get resource usage
+    api_response = core_api.projects_usage_get(project_name, start_date=start_date, end_date=end_date, interval=interval)
+    print(api_response)
 
-# Get resource usage
-api_response = api.projects_usage_get(project_name, start_date=start_date, end_date=end_date, interval=interval)
-print(api_response)
+    # Close the connection
+    core_api.api_client.close()
+    ```
 
-# Close the connection
-api_client.close()
-```
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    start_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime (optional)
+    end_date = str(datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')) # datetime (optional)
+    interval = 'month' # str (optional) (default to 'month')
+
+    # Get resource usage
+    api_response = core_api.projects_usage_get(project_name, start_date=start_date, end_date=end_date, interval=interval)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
 
 
 ### Parameters
@@ -2075,6 +2485,100 @@ Name | Type | Notes
 ### Return type
 
 [**list[Usage]**](./models/Usage.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **quotas_list**
+> list[QuotaDetail] quotas_list(project_name)
+
+List quotas
+
+## Description
+List the quotas defined for a project. Project members can see quotas.
+
+### Response Structure
+
+- `resource`: The resource for the quota
+- `quota`: Limit of how much the resource can be used in the project
+
+## Response Examples
+
+```
+[
+  {
+    "resource": "memory_standard",
+    "quota": 274877906944
+  },
+  {
+    "resource": "cpu_standard",
+    "quota": 62
+  },
+  {
+    "resource": "gpu_standard",
+    "quota": 0
+  }
+]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+
+    # List quotas
+    api_response = core_api.quotas_list(project_name)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+
+    # List quotas
+    api_response = core_api.quotas_list(project_name)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+
+### Return type
+
+[**list[QuotaDetail]**](./models/QuotaDetail.md)
 
 ### Authorization
 

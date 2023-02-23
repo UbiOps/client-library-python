@@ -91,7 +91,8 @@ class PipelineCreateResponse(object):
         self.output_type = output_type
         if output_fields is not None:
             self.output_fields = output_fields
-        self.labels = labels
+        if labels is not None:
+            self.labels = labels
         if creation_date is not None:
             self.creation_date = creation_date
         if last_updated is not None:

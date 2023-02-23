@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "3.13.0"
+__version__ = "3.14.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -125,6 +125,7 @@ from ubiops.models.project_resource_usage import ProjectResourceUsage
 from ubiops.models.project_update import ProjectUpdate
 from ubiops.models.project_user_create import ProjectUserCreate
 from ubiops.models.project_user_list import ProjectUserList
+from ubiops.models.quota_detail import QuotaDetail
 from ubiops.models.requests_overview import RequestsOverview
 from ubiops.models.resource_usage import ResourceUsage
 from ubiops.models.revision_create import RevisionCreate

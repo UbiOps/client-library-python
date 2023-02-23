@@ -5,7 +5,6 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **version** | **str** | 
 **language** | **str** | [optional] [default to 'python3.7']
-**memory_allocation** | **int** | [optional] 
 **instance_type** | **str** | [optional] 
 **maximum_instances** | **int** | [optional] 
 **minimum_instances** | **int** | [optional] 

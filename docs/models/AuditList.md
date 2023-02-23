@@ -4,7 +4,7 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** | [optional] [readonly] 
-**date** | **str** | [optional] [readonly] 
+**date** | **datetime** | [optional] [readonly] 
 **action** | **str** | 
 **user** | **str** | [optional] [readonly] 
 **event** | **str** | [optional] [readonly] 
