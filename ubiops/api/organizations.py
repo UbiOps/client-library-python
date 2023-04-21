@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -79,19 +79,23 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organization_users_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `organization_users_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organization_users_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.organization_user_create import OrganizationUserCreate
 
@@ -124,7 +128,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/users', 'POST',
+            '/organizations/{organization_name}/users', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -182,19 +186,23 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organization_users_delete`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' not in local_var_params or local_var_params['user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `user_id` when calling `organization_users_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organization_users_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' in local_var_params and local_var_params['user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_id` must be a string when calling `organization_users_delete`")  # noqa: E501
 
@@ -219,7 +227,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/users/{user_id}', 'DELETE',
+            '/organizations/{organization_name}/users/{user_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -277,19 +285,23 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organization_users_get`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' not in local_var_params or local_var_params['user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `user_id` when calling `organization_users_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organization_users_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' in local_var_params and local_var_params['user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_id` must be a string when calling `organization_users_get`")  # noqa: E501
 
@@ -317,7 +329,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/users/{user_id}', 'GET',
+            '/organizations/{organization_name}/users/{user_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -374,11 +386,13 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organization_users_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organization_users_list`")  # noqa: E501
 
@@ -404,7 +418,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/users', 'GET',
+            '/organizations/{organization_name}/users', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -463,27 +477,33 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organization_users_update`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' not in local_var_params or local_var_params['user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `user_id` when calling `organization_users_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `organization_users_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organization_users_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' in local_var_params and local_var_params['user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_id` must be a string when calling `organization_users_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.organization_user_update import OrganizationUserUpdate
 
@@ -518,7 +538,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/users/{user_id}', 'PATCH',
+            '/organizations/{organization_name}/users/{user_id}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -575,11 +595,13 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `organizations_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.organization_create import OrganizationCreate
 
@@ -610,7 +632,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations', 'POST',
+            '/organizations', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -667,11 +689,13 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organizations_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organizations_get`")  # noqa: E501
 
@@ -697,7 +721,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}', 'GET',
+            '/organizations/{organization_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -773,7 +797,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations', 'GET',
+            '/organizations', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -830,11 +854,13 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organizations_resource_usage`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organizations_resource_usage`")  # noqa: E501
 
@@ -860,7 +886,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/resources', 'GET',
+            '/organizations/{organization_name}/resources', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -918,19 +944,23 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organizations_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `organizations_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organizations_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.organization_update import OrganizationUpdate
 
@@ -963,7 +993,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}', 'PATCH',
+            '/organizations/{organization_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1023,15 +1053,18 @@ class Organizations(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'organization_name' is set
-        if self.api_client.client_side_validation and ('organization_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['organization_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' not in local_var_params or local_var_params['organization_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `organization_name` when calling `organizations_usage_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'organization_name' in local_var_params
-            and local_var_params['organization_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization_name' in local_var_params and local_var_params['organization_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organizations_usage_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'interval' in local_var_params
-            and local_var_params['interval'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'interval' in local_var_params and local_var_params['interval'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['interval'], str):  # noqa: E501
                 raise ApiValueError("Parameter `interval` must be a string when calling `organizations_usage_get`")  # noqa: E501
 
@@ -1063,7 +1096,7 @@ class Organizations(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/organizations/{organization_name}/usage', 'GET',
+            '/organizations/{organization_name}/usage', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,

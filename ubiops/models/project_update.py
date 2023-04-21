@@ -84,12 +84,14 @@ class ProjectUpdate(object):
         :param name: The name of this ProjectUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -112,8 +114,9 @@ class ProjectUpdate(object):
         :param advanced_permissions: The advanced_permissions of this ProjectUpdate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                advanced_permissions is not None and not isinstance(advanced_permissions, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            advanced_permissions is not None and not isinstance(advanced_permissions, bool)
+        ):
             raise ValueError("Parameter `advanced_permissions` must be a boolean")  # noqa: E501
 
         self._advanced_permissions = advanced_permissions
@@ -136,8 +139,9 @@ class ProjectUpdate(object):
         :param credits: The credits of this ProjectUpdate.  # noqa: E501
         :type: float
         """
-        if (self.local_vars_configuration.client_side_validation and
-                credits is not None and not isinstance(credits, float)):
+        if self.local_vars_configuration.client_side_validation and (
+            credits is not None and not isinstance(credits, float)
+        ):
             raise ValueError("Parameter `credits` must be a float")  # noqa: E501
 
         self._credits = credits
@@ -160,8 +164,9 @@ class ProjectUpdate(object):
         :param suspend: The suspend of this ProjectUpdate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                suspend is not None and not isinstance(suspend, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            suspend is not None and not isinstance(suspend, bool)
+        ):
             raise ValueError("Parameter `suspend` must be a boolean")  # noqa: E501
 
         self._suspend = suspend

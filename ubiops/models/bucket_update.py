@@ -87,8 +87,9 @@ class BucketUpdate(object):
         :param credentials: The credentials of this BucketUpdate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                credentials is not None and not isinstance(credentials, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            credentials is not None and not isinstance(credentials, dict)
+        ):
             raise ValueError("Parameter `credentials` must be a dictionary")  # noqa: E501
 
         self._credentials = credentials
@@ -111,8 +112,9 @@ class BucketUpdate(object):
         :param configuration: The configuration of this BucketUpdate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                configuration is not None and not isinstance(configuration, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            configuration is not None and not isinstance(configuration, dict)
+        ):
             raise ValueError("Parameter `configuration` must be a dictionary")  # noqa: E501
 
         self._configuration = configuration
@@ -135,8 +137,9 @@ class BucketUpdate(object):
         :param ttl: The ttl of this BucketUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                ttl is not None and not isinstance(ttl, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            ttl is not None and not isinstance(ttl, int)
+        ):
             raise ValueError("Parameter `ttl` must be an integer")  # noqa: E501
 
         self._ttl = ttl
@@ -159,8 +162,9 @@ class BucketUpdate(object):
         :param description: The description of this BucketUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -183,8 +187,9 @@ class BucketUpdate(object):
         :param labels: The labels of this BucketUpdate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels

@@ -109,12 +109,14 @@ class PipelineVersionCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and version is None:  # noqa: E501
             raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and len(version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and len(version) < 1
+        ):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
@@ -137,8 +139,9 @@ class PipelineVersionCreate(object):
         :param description: The description of this PipelineVersionCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -161,8 +164,9 @@ class PipelineVersionCreate(object):
         :param labels: The labels of this PipelineVersionCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
@@ -185,12 +189,14 @@ class PipelineVersionCreate(object):
         :param monitoring: The monitoring of this PipelineVersionCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                monitoring is not None and not isinstance(monitoring, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            monitoring is not None and not isinstance(monitoring, str)
+        ):
             raise ValueError("Parameter `monitoring` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                monitoring is not None and len(monitoring) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            monitoring is not None and len(monitoring) < 1
+        ):
             raise ValueError("Invalid value for `monitoring`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._monitoring = monitoring
@@ -213,8 +219,9 @@ class PipelineVersionCreate(object):
         :param request_retention_time: The request_retention_time of this PipelineVersionCreate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                request_retention_time is not None and not isinstance(request_retention_time, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            request_retention_time is not None and not isinstance(request_retention_time, int)
+        ):
             raise ValueError("Parameter `request_retention_time` must be an integer")  # noqa: E501
 
         self._request_retention_time = request_retention_time
@@ -237,8 +244,9 @@ class PipelineVersionCreate(object):
         :param request_retention_mode: The request_retention_mode of this PipelineVersionCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                request_retention_mode is not None and not isinstance(request_retention_mode, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            request_retention_mode is not None and not isinstance(request_retention_mode, str)
+        ):
             raise ValueError("Parameter `request_retention_mode` must be a string")  # noqa: E501
         allowed_values = ["none", "metadata", "full"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and request_retention_mode not in allowed_values:  # noqa: E501
@@ -267,12 +275,14 @@ class PipelineVersionCreate(object):
         :param default_notification_group: The default_notification_group of this PipelineVersionCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                default_notification_group is not None and not isinstance(default_notification_group, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            default_notification_group is not None and not isinstance(default_notification_group, str)
+        ):
             raise ValueError("Parameter `default_notification_group` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                default_notification_group is not None and len(default_notification_group) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            default_notification_group is not None and len(default_notification_group) < 1
+        ):
             raise ValueError("Invalid value for `default_notification_group`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._default_notification_group = default_notification_group
@@ -295,8 +305,9 @@ class PipelineVersionCreate(object):
         :param objects: The objects of this PipelineVersionCreate.  # noqa: E501
         :type: list[PipelineVersionObjectCreate]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                objects is not None and not isinstance(objects, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            objects is not None and not isinstance(objects, list)
+        ):
             raise ValueError("Parameter `objects` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and objects is not None:
             from ubiops.models.pipeline_version_object_create import PipelineVersionObjectCreate
@@ -326,8 +337,9 @@ class PipelineVersionCreate(object):
         :param attachments: The attachments of this PipelineVersionCreate.  # noqa: E501
         :type: list[AttachmentsCreate]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                attachments is not None and not isinstance(attachments, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            attachments is not None and not isinstance(attachments, list)
+        ):
             raise ValueError("Parameter `attachments` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and attachments is not None:
             from ubiops.models.attachments_create import AttachmentsCreate

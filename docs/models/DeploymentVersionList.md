@@ -7,11 +7,11 @@ Name | Type | Notes
 **deployment** | **str** | 
 **version** | **str** | 
 **description** | **str** | [optional] 
-**language** | **str** | [optional] [readonly] 
-**language_description** | **str** | [optional] [readonly] 
+**environment** | **str** | [optional] 
+**environment_display_name** | **str** | [optional] 
 **status** | **str** | [optional] [readonly] 
 **active_revision** | **str** | [optional] [readonly] 
-**latest_build** | **str** | [optional] [readonly] 
+**latest_revision** | **str** | [optional] [readonly] 
 **instance_type** | **str** | 
 **maximum_instances** | **int** | [optional] 
 **minimum_instances** | **int** | [optional] 

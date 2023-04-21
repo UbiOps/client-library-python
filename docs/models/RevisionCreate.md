@@ -5,6 +5,6 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **success** | **bool** | 
 **revision** | **str** | 
-**build** | **str** | 
+**build** | **str** | [optional] 
 
 

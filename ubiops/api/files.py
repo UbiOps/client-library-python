@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -39,7 +39,7 @@ class Files(object):
     def buckets_create_with_http_info(self, project_name, data, **kwargs):  # noqa: E501
         """Create bucket  # noqa: E501
 
-         ### Description  Create a bucket in a project  ### Required Parameters  - `name`: Name of the bucket. It is unique within a project.  ### Optional Parameters - `provider`: Provider of the bucket. It can be 'ubiops', 'google_cloud_storage', 'amazon_s3' or 'azure_blob_storage'. The default is **ubiops**. - `credentials`: A dictionary for credentials to connect to the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `access_key` and `secret_key`.   - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.   - For Google Cloud Storage, provide the field `json_key_file`. - `configuration`: A dictionary for additional configuration details for the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `bucket` and `prefix`. One of the fields `region` or `endpoint_url` needs to be provided. The fields `verify` and `use_ssl` are optional.   - For Azure Blob Storage, provide the fields `container` and `prefix`.   - For Google Cloud Storage, provide the fields `bucket` and `prefix`.   UbiOps always makes sure that the prefix ends with a '/'. - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week). Pass `null` to keep them forever.  #### Request Examples ``` {   \"name\": \"bucket-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\" } ```  ### Response Structure  Details of the created bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is created - `provider`: Provider of the bucket - `credentials`: Credentials to connect to the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"bucket-1\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null } ```   # noqa: E501
+         ### Description  Create a bucket in a project  ### Required Parameters  - `name`: Name of the bucket. It is unique within a project.  ### Optional Parameters - `provider`: Provider of the bucket. It can be 'ubiops', 'google_cloud_storage', 'amazon_s3' or 'azure_blob_storage'. The default is **ubiops**. - `credentials`: A dictionary for credentials to connect to the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `access_key` and `secret_key`.   - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.   - For Google Cloud Storage, provide the field `json_key_file`. - `configuration`: A dictionary for additional configuration details for the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:   - For Amazon S3, provide the fields `bucket` and `prefix`. One of the fields `region` or `endpoint_url` needs to be provided. The fields `signature_version`, `verify` and `use_ssl` are optional.   - For Azure Blob Storage, provide the fields `container` and `prefix`.   - For Google Cloud Storage, provide the fields `bucket` and `prefix`.   UbiOps always makes sure that the prefix ends with a '/'. - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week). Pass `null` to keep them forever.  #### Request Examples ``` {   \"name\": \"bucket-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\" } ```  ### Response Structure  Details of the created bucket - `id`: Unique identifier for the bucket (UUID) - `name`: Name of the bucket - `project`: Project name in which the bucket is created - `provider`: Provider of the bucket - `credentials`: Credentials to connect to the bucket - `configuration`: Additional configuration details for the bucket - `creation_date`: The date when the bucket was created - `description`: Description of the bucket - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `ttl`: Time to live for the files in the bucket  #### Response Examples  ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"name\": \"bucket-1\",   \"project\": \"project-1\",   \"provider\": \"ubiops\",   \"credentials\": {},   \"configuration\": {},   \"creation_date\": \"2022-05-12T16:23:15.456812Z\",   \"labels\": {     \"type\": \"bucket\"   },   \"description\": \"My bucket description\",   \"ttl\": null } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.buckets_create_with_http_info(project_name, data, async_req=True)
@@ -79,19 +79,23 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `buckets_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.bucket_create import BucketCreate
 
@@ -124,7 +128,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets', 'POST',
+            '/projects/{project_name}/buckets', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -182,19 +186,23 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_delete`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `buckets_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `buckets_delete`")  # noqa: E501
 
@@ -219,7 +227,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}', 'DELETE',
+            '/projects/{project_name}/buckets/{bucket_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -277,19 +285,23 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_get`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `buckets_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `buckets_get`")  # noqa: E501
 
@@ -317,7 +329,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}', 'GET',
+            '/projects/{project_name}/buckets/{bucket_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -375,15 +387,18 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'labels' in local_var_params
-            and local_var_params['labels'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'labels' in local_var_params and local_var_params['labels'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['labels'], str):  # noqa: E501
                 raise ApiValueError("Parameter `labels` must be a string when calling `buckets_list`")  # noqa: E501
 
@@ -411,7 +426,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets', 'GET',
+            '/projects/{project_name}/buckets', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -470,27 +485,33 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `buckets_update`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `buckets_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `buckets_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `buckets_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `buckets_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.bucket_update import BucketUpdate
 
@@ -525,7 +546,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}', 'PATCH',
+            '/projects/{project_name}/buckets/{bucket_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -584,27 +605,33 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `files_delete`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_delete`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' not in local_var_params or local_var_params['file'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `file` when calling `files_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `files_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'file' in local_var_params
-            and local_var_params['file'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' in local_var_params and local_var_params['file'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['file'], str):  # noqa: E501
                 raise ApiValueError("Parameter `file` must be a string when calling `files_delete`")  # noqa: E501
 
@@ -631,7 +658,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'DELETE',
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -690,27 +717,33 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `files_download`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_download`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' not in local_var_params or local_var_params['file'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `file` when calling `files_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `files_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'file' in local_var_params
-            and local_var_params['file'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' in local_var_params and local_var_params['file'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['file'], str):  # noqa: E501
                 raise ApiValueError("Parameter `file` must be a string when calling `files_download`")  # noqa: E501
 
@@ -740,7 +773,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}/files/{file}/download', 'GET',
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}/download', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -799,27 +832,33 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `files_get`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_get`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' not in local_var_params or local_var_params['file'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `file` when calling `files_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `files_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'file' in local_var_params
-            and local_var_params['file'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' in local_var_params and local_var_params['file'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['file'], str):  # noqa: E501
                 raise ApiValueError("Parameter `file` must be a string when calling `files_get`")  # noqa: E501
 
@@ -849,7 +888,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'GET',
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -911,35 +950,43 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `files_list`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `files_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'prefix' in local_var_params
-            and local_var_params['prefix'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'prefix' in local_var_params and local_var_params['prefix'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['prefix'], str):  # noqa: E501
                 raise ApiValueError("Parameter `prefix` must be a string when calling `files_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'delimiter' in local_var_params
-            and local_var_params['delimiter'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'delimiter' in local_var_params and local_var_params['delimiter'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['delimiter'], str):  # noqa: E501
                 raise ApiValueError("Parameter `delimiter` must be a string when calling `files_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'continuation_token' in local_var_params
-            and local_var_params['continuation_token'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'continuation_token' in local_var_params and local_var_params['continuation_token'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['continuation_token'], str):  # noqa: E501
                 raise ApiValueError("Parameter `continuation_token` must be a string when calling `files_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `files_list`")  # noqa: E501
 
@@ -975,7 +1022,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}/files', 'GET',
+            '/projects/{project_name}/buckets/{bucket_name}/files', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1035,27 +1082,33 @@ class Files(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `files_upload`")  # noqa: E501
         # verify the required parameter 'bucket_name' is set
-        if self.api_client.client_side_validation and ('bucket_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['bucket_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' not in local_var_params or local_var_params['bucket_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `bucket_name` when calling `files_upload`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' not in local_var_params or local_var_params['file'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `file` when calling `files_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `files_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'bucket_name' in local_var_params
-            and local_var_params['bucket_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'bucket_name' in local_var_params and local_var_params['bucket_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['bucket_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `bucket_name` must be a string when calling `files_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'file' in local_var_params
-            and local_var_params['file'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' in local_var_params and local_var_params['file'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['file'], str):  # noqa: E501
                 raise ApiValueError("Parameter `file` must be a string when calling `files_upload`")  # noqa: E501
 
@@ -1090,7 +1143,7 @@ class Files(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'POST',
+            '/projects/{project_name}/buckets/{bucket_name}/files/{file}', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,

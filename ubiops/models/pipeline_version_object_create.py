@@ -89,12 +89,14 @@ class PipelineVersionObjectCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -117,8 +119,9 @@ class PipelineVersionObjectCreate(object):
         :param reference_type: The reference_type of this PipelineVersionObjectCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                reference_type is not None and not isinstance(reference_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            reference_type is not None and not isinstance(reference_type, str)
+        ):
             raise ValueError("Parameter `reference_type` must be a string")  # noqa: E501
         allowed_values = ["deployment", "operator", "pipeline"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and reference_type not in allowed_values:  # noqa: E501
@@ -149,12 +152,14 @@ class PipelineVersionObjectCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and reference_name is None:  # noqa: E501
             raise ValueError("Invalid value for `reference_name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                reference_name is not None and not isinstance(reference_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            reference_name is not None and not isinstance(reference_name, str)
+        ):
             raise ValueError("Parameter `reference_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                reference_name is not None and len(reference_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            reference_name is not None and len(reference_name) < 1
+        ):
             raise ValueError("Invalid value for `reference_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._reference_name = reference_name
@@ -177,12 +182,14 @@ class PipelineVersionObjectCreate(object):
         :param version: The version of this PipelineVersionObjectCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and len(version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and len(version) < 1
+        ):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
@@ -205,8 +212,9 @@ class PipelineVersionObjectCreate(object):
         :param configuration: The configuration of this PipelineVersionObjectCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                configuration is not None and not isinstance(configuration, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            configuration is not None and not isinstance(configuration, dict)
+        ):
             raise ValueError("Parameter `configuration` must be a dictionary")  # noqa: E501
 
         self._configuration = configuration

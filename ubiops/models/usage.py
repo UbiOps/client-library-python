@@ -79,12 +79,14 @@ class Usage(object):
         """
         if self.local_vars_configuration.client_side_validation and object_type is None:  # noqa: E501
             raise ValueError("Invalid value for `object_type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                object_type is not None and not isinstance(object_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            object_type is not None and not isinstance(object_type, str)
+        ):
             raise ValueError("Parameter `object_type` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                object_type is not None and len(object_type) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            object_type is not None and len(object_type) < 1
+        ):
             raise ValueError("Invalid value for `object_type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._object_type = object_type
@@ -109,12 +111,14 @@ class Usage(object):
         """
         if self.local_vars_configuration.client_side_validation and metric is None:  # noqa: E501
             raise ValueError("Invalid value for `metric`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                metric is not None and not isinstance(metric, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            metric is not None and not isinstance(metric, str)
+        ):
             raise ValueError("Parameter `metric` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                metric is not None and len(metric) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            metric is not None and len(metric) < 1
+        ):
             raise ValueError("Invalid value for `metric`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._metric = metric
@@ -139,8 +143,9 @@ class Usage(object):
         """
         if self.local_vars_configuration.client_side_validation and usage is None:  # noqa: E501
             raise ValueError("Invalid value for `usage`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                usage is not None and not isinstance(usage, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            usage is not None and not isinstance(usage, list)
+        ):
             raise ValueError("Parameter `usage` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and usage is not None:
             from ubiops.models.usage_metric import UsageMetric

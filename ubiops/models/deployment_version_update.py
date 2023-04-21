@@ -34,6 +34,7 @@ class DeploymentVersionUpdate(object):
     """
     openapi_types = {
         'version': 'str',
+        'environment': 'str',
         'instance_type': 'str',
         'maximum_instances': 'int',
         'minimum_instances': 'int',
@@ -52,6 +53,7 @@ class DeploymentVersionUpdate(object):
 
     attribute_map = {
         'version': 'version',
+        'environment': 'environment',
         'instance_type': 'instance_type',
         'maximum_instances': 'maximum_instances',
         'minimum_instances': 'minimum_instances',
@@ -68,13 +70,14 @@ class DeploymentVersionUpdate(object):
         'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, version=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, version=None, environment=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionUpdate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._version = None
+        self._environment = None
         self._instance_type = None
         self._maximum_instances = None
         self._minimum_instances = None
@@ -93,6 +96,8 @@ class DeploymentVersionUpdate(object):
 
         if version is not None:
             self.version = version
+        if environment is not None:
+            self.environment = environment
         if instance_type is not None:
             self.instance_type = instance_type
         if maximum_instances is not None:
@@ -138,15 +143,47 @@ class DeploymentVersionUpdate(object):
         :param version: The version of this DeploymentVersionUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and len(version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and len(version) < 1
+        ):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
+
+    @property
+    def environment(self):
+        """Gets the environment of this DeploymentVersionUpdate.  # noqa: E501
+
+
+        :return: The environment of this DeploymentVersionUpdate.  # noqa: E501
+        :rtype: str
+        """
+        return self._environment
+
+    @environment.setter
+    def environment(self, environment):
+        """Sets the environment of this DeploymentVersionUpdate.
+
+
+        :param environment: The environment of this DeploymentVersionUpdate.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            environment is not None and not isinstance(environment, str)
+        ):
+            raise ValueError("Parameter `environment` must be a string")  # noqa: E501
+
+        if self.local_vars_configuration.client_side_validation and (
+            environment is not None and len(environment) < 1
+        ):
+            raise ValueError("Invalid value for `environment`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._environment = environment
 
     @property
     def instance_type(self):
@@ -166,12 +203,14 @@ class DeploymentVersionUpdate(object):
         :param instance_type: The instance_type of this DeploymentVersionUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                instance_type is not None and not isinstance(instance_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            instance_type is not None and not isinstance(instance_type, str)
+        ):
             raise ValueError("Parameter `instance_type` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                instance_type is not None and len(instance_type) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            instance_type is not None and len(instance_type) < 1
+        ):
             raise ValueError("Invalid value for `instance_type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._instance_type = instance_type
@@ -194,8 +233,9 @@ class DeploymentVersionUpdate(object):
         :param maximum_instances: The maximum_instances of this DeploymentVersionUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                maximum_instances is not None and not isinstance(maximum_instances, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            maximum_instances is not None and not isinstance(maximum_instances, int)
+        ):
             raise ValueError("Parameter `maximum_instances` must be an integer")  # noqa: E501
 
         self._maximum_instances = maximum_instances
@@ -218,8 +258,9 @@ class DeploymentVersionUpdate(object):
         :param minimum_instances: The minimum_instances of this DeploymentVersionUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                minimum_instances is not None and not isinstance(minimum_instances, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            minimum_instances is not None and not isinstance(minimum_instances, int)
+        ):
             raise ValueError("Parameter `minimum_instances` must be an integer")  # noqa: E501
 
         self._minimum_instances = minimum_instances
@@ -242,8 +283,9 @@ class DeploymentVersionUpdate(object):
         :param maximum_idle_time: The maximum_idle_time of this DeploymentVersionUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                maximum_idle_time is not None and not isinstance(maximum_idle_time, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            maximum_idle_time is not None and not isinstance(maximum_idle_time, int)
+        ):
             raise ValueError("Parameter `maximum_idle_time` must be an integer")  # noqa: E501
 
         self._maximum_idle_time = maximum_idle_time
@@ -266,8 +308,9 @@ class DeploymentVersionUpdate(object):
         :param description: The description of this DeploymentVersionUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -290,8 +333,9 @@ class DeploymentVersionUpdate(object):
         :param labels: The labels of this DeploymentVersionUpdate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
@@ -314,12 +358,14 @@ class DeploymentVersionUpdate(object):
         :param monitoring: The monitoring of this DeploymentVersionUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                monitoring is not None and not isinstance(monitoring, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            monitoring is not None and not isinstance(monitoring, str)
+        ):
             raise ValueError("Parameter `monitoring` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                monitoring is not None and len(monitoring) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            monitoring is not None and len(monitoring) < 1
+        ):
             raise ValueError("Invalid value for `monitoring`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._monitoring = monitoring
@@ -342,8 +388,9 @@ class DeploymentVersionUpdate(object):
         :param request_retention_time: The request_retention_time of this DeploymentVersionUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                request_retention_time is not None and not isinstance(request_retention_time, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            request_retention_time is not None and not isinstance(request_retention_time, int)
+        ):
             raise ValueError("Parameter `request_retention_time` must be an integer")  # noqa: E501
 
         self._request_retention_time = request_retention_time
@@ -366,8 +413,9 @@ class DeploymentVersionUpdate(object):
         :param request_retention_mode: The request_retention_mode of this DeploymentVersionUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                request_retention_mode is not None and not isinstance(request_retention_mode, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            request_retention_mode is not None and not isinstance(request_retention_mode, str)
+        ):
             raise ValueError("Parameter `request_retention_mode` must be a string")  # noqa: E501
         allowed_values = ["none", "metadata", "full"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and request_retention_mode not in allowed_values:  # noqa: E501
@@ -396,12 +444,14 @@ class DeploymentVersionUpdate(object):
         :param default_notification_group: The default_notification_group of this DeploymentVersionUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                default_notification_group is not None and not isinstance(default_notification_group, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            default_notification_group is not None and not isinstance(default_notification_group, str)
+        ):
             raise ValueError("Parameter `default_notification_group` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                default_notification_group is not None and len(default_notification_group) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            default_notification_group is not None and len(default_notification_group) < 1
+        ):
             raise ValueError("Invalid value for `default_notification_group`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._default_notification_group = default_notification_group
@@ -424,8 +474,9 @@ class DeploymentVersionUpdate(object):
         :param maximum_queue_size_express: The maximum_queue_size_express of this DeploymentVersionUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                maximum_queue_size_express is not None and not isinstance(maximum_queue_size_express, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            maximum_queue_size_express is not None and not isinstance(maximum_queue_size_express, int)
+        ):
             raise ValueError("Parameter `maximum_queue_size_express` must be an integer")  # noqa: E501
 
         self._maximum_queue_size_express = maximum_queue_size_express
@@ -448,8 +499,9 @@ class DeploymentVersionUpdate(object):
         :param maximum_queue_size_batch: The maximum_queue_size_batch of this DeploymentVersionUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                maximum_queue_size_batch is not None and not isinstance(maximum_queue_size_batch, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            maximum_queue_size_batch is not None and not isinstance(maximum_queue_size_batch, int)
+        ):
             raise ValueError("Parameter `maximum_queue_size_batch` must be an integer")  # noqa: E501
 
         self._maximum_queue_size_batch = maximum_queue_size_batch
@@ -472,8 +524,9 @@ class DeploymentVersionUpdate(object):
         :param static_ip: The static_ip of this DeploymentVersionUpdate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                static_ip is not None and not isinstance(static_ip, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            static_ip is not None and not isinstance(static_ip, bool)
+        ):
             raise ValueError("Parameter `static_ip` must be a boolean")  # noqa: E501
 
         self._static_ip = static_ip
@@ -496,8 +549,9 @@ class DeploymentVersionUpdate(object):
         :param restart_request_interruption: The restart_request_interruption of this DeploymentVersionUpdate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                restart_request_interruption is not None and not isinstance(restart_request_interruption, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            restart_request_interruption is not None and not isinstance(restart_request_interruption, bool)
+        ):
             raise ValueError("Parameter `restart_request_interruption` must be a boolean")  # noqa: E501
 
         self._restart_request_interruption = restart_request_interruption

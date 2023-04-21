@@ -76,12 +76,14 @@ class AttachmentSourcesList(object):
         """
         if self.local_vars_configuration.client_side_validation and source_name is None:  # noqa: E501
             raise ValueError("Invalid value for `source_name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                source_name is not None and not isinstance(source_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            source_name is not None and not isinstance(source_name, str)
+        ):
             raise ValueError("Parameter `source_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                source_name is not None and len(source_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            source_name is not None and len(source_name) < 1
+        ):
             raise ValueError("Invalid value for `source_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._source_name = source_name
@@ -104,8 +106,9 @@ class AttachmentSourcesList(object):
         :param mapping: The mapping of this AttachmentSourcesList.  # noqa: E501
         :type: list[AttachmentFieldsList]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                mapping is not None and not isinstance(mapping, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            mapping is not None and not isinstance(mapping, list)
+        ):
             raise ValueError("Parameter `mapping` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and mapping is not None:
             from ubiops.models.attachment_fields_list import AttachmentFieldsList

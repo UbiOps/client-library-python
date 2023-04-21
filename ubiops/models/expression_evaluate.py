@@ -79,8 +79,9 @@ class ExpressionEvaluate(object):
         """
         if self.local_vars_configuration.client_side_validation and expression is None:  # noqa: E501
             raise ValueError("Invalid value for `expression`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                expression is not None and not isinstance(expression, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            expression is not None and not isinstance(expression, str)
+        ):
             raise ValueError("Parameter `expression` must be a string")  # noqa: E501
 
         self._expression = expression
@@ -105,8 +106,9 @@ class ExpressionEvaluate(object):
         """
         if self.local_vars_configuration.client_side_validation and input_fields is None:  # noqa: E501
             raise ValueError("Invalid value for `input_fields`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                input_fields is not None and not isinstance(input_fields, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            input_fields is not None and not isinstance(input_fields, list)
+        ):
             raise ValueError("Parameter `input_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_fields is not None:
             from ubiops.models.expression_input_field_create import ExpressionInputFieldCreate

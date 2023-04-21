@@ -79,12 +79,14 @@ class ServiceUserCreate(object):
         :param name: The name of this ServiceUserCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -107,8 +109,9 @@ class ServiceUserCreate(object):
         :param allowed_cors_origins: The allowed_cors_origins of this ServiceUserCreate.  # noqa: E501
         :type: list[str]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                allowed_cors_origins is not None and not isinstance(allowed_cors_origins, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            allowed_cors_origins is not None and not isinstance(allowed_cors_origins, list)
+        ):
             raise ValueError("Parameter `allowed_cors_origins` must be a list")  # noqa: E501
 
         self._allowed_cors_origins = allowed_cors_origins

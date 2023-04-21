@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -80,19 +80,23 @@ class Blobs(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `blobs_create`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' not in local_var_params or local_var_params['file'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `file` when calling `blobs_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `blobs_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'blob_ttl' in local_var_params
-            and local_var_params['blob_ttl'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_ttl' in local_var_params and local_var_params['blob_ttl'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['blob_ttl'], int):  # noqa: E501
                 raise ApiValueError("Parameter `blob_ttl` must be an integer when calling `blobs_create`")  # noqa: E501
 
@@ -125,7 +129,7 @@ class Blobs(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/blobs', 'POST',
+            '/projects/{project_name}/blobs', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -183,19 +187,23 @@ class Blobs(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `blobs_delete`")  # noqa: E501
         # verify the required parameter 'blob_id' is set
-        if self.api_client.client_side_validation and ('blob_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['blob_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_id' not in local_var_params or local_var_params['blob_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `blob_id` when calling `blobs_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `blobs_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'blob_id' in local_var_params
-            and local_var_params['blob_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_id' in local_var_params and local_var_params['blob_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['blob_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `blob_id` must be a string when calling `blobs_delete`")  # noqa: E501
 
@@ -220,7 +228,7 @@ class Blobs(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/blobs/{blob_id}', 'DELETE',
+            '/projects/{project_name}/blobs/{blob_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -279,19 +287,23 @@ class Blobs(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `blobs_get`")  # noqa: E501
         # verify the required parameter 'blob_id' is set
-        if self.api_client.client_side_validation and ('blob_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['blob_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_id' not in local_var_params or local_var_params['blob_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `blob_id` when calling `blobs_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `blobs_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'blob_id' in local_var_params
-            and local_var_params['blob_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_id' in local_var_params and local_var_params['blob_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['blob_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `blob_id` must be a string when calling `blobs_get`")  # noqa: E501
 
@@ -319,7 +331,7 @@ class Blobs(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/blobs/{blob_id}', 'GET',
+            '/projects/{project_name}/blobs/{blob_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -378,19 +390,23 @@ class Blobs(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `blobs_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `blobs_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'range' in local_var_params
-            and local_var_params['range'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'range' in local_var_params and local_var_params['range'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['range'], int):  # noqa: E501
                 raise ApiValueError("Parameter `range` must be an integer when calling `blobs_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'creation_date' in local_var_params
-            and local_var_params['creation_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'creation_date' in local_var_params and local_var_params['creation_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['creation_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `creation_date` must be a string when calling `blobs_list`")  # noqa: E501
 
@@ -420,7 +436,7 @@ class Blobs(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/blobs', 'GET',
+            '/projects/{project_name}/blobs', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -480,27 +496,33 @@ class Blobs(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `blobs_update`")  # noqa: E501
         # verify the required parameter 'blob_id' is set
-        if self.api_client.client_side_validation and ('blob_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['blob_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_id' not in local_var_params or local_var_params['blob_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `blob_id` when calling `blobs_update`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'file' not in local_var_params or local_var_params['file'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `file` when calling `blobs_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `blobs_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'blob_id' in local_var_params
-            and local_var_params['blob_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_id' in local_var_params and local_var_params['blob_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['blob_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `blob_id` must be a string when calling `blobs_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'blob_ttl' in local_var_params
-            and local_var_params['blob_ttl'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'blob_ttl' in local_var_params and local_var_params['blob_ttl'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['blob_ttl'], int):  # noqa: E501
                 raise ApiValueError("Parameter `blob_ttl` must be an integer when calling `blobs_update`")  # noqa: E501
 
@@ -535,7 +557,7 @@ class Blobs(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/blobs/{blob_id}', 'PUT',
+            '/projects/{project_name}/blobs/{blob_id}', 'PUT',  # noqa: E501
             path_params,
             query_params,
             header_params,

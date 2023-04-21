@@ -36,17 +36,25 @@ class RevisionList(object):
         'id': 'str',
         'version': 'str',
         'creation_date': 'datetime',
-        'created_by': 'str'
+        'created_by': 'str',
+        'status': 'str',
+        'error_message': 'str',
+        'has_request_method': 'bool',
+        'has_requests_method': 'bool'
     }
 
     attribute_map = {
         'id': 'id',
         'version': 'version',
         'creation_date': 'creation_date',
-        'created_by': 'created_by'
+        'created_by': 'created_by',
+        'status': 'status',
+        'error_message': 'error_message',
+        'has_request_method': 'has_request_method',
+        'has_requests_method': 'has_requests_method'
     }
 
-    def __init__(self, id=None, version=None, creation_date=None, created_by=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, version=None, creation_date=None, created_by=None, status=None, error_message=None, has_request_method=None, has_requests_method=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """RevisionList - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -56,6 +64,10 @@ class RevisionList(object):
         self._version = None
         self._creation_date = None
         self._created_by = None
+        self._status = None
+        self._error_message = None
+        self._has_request_method = None
+        self._has_requests_method = None
         self.discriminator = None
 
         if id is not None:
@@ -65,6 +77,10 @@ class RevisionList(object):
             self.creation_date = creation_date
         if created_by is not None:
             self.created_by = created_by
+        self.status = status
+        self.error_message = error_message
+        self.has_request_method = has_request_method
+        self.has_requests_method = has_requests_method
 
     @property
     def id(self):
@@ -84,8 +100,9 @@ class RevisionList(object):
         :param id: The id of this RevisionList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -110,12 +127,14 @@ class RevisionList(object):
         """
         if self.local_vars_configuration.client_side_validation and version is None:  # noqa: E501
             raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and len(version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and len(version) < 1
+        ):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
@@ -159,11 +178,123 @@ class RevisionList(object):
         :param created_by: The created_by of this RevisionList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                created_by is not None and not isinstance(created_by, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            created_by is not None and not isinstance(created_by, str)
+        ):
             raise ValueError("Parameter `created_by` must be a string")  # noqa: E501
 
         self._created_by = created_by
+
+    @property
+    def status(self):
+        """Gets the status of this RevisionList.  # noqa: E501
+
+
+        :return: The status of this RevisionList.  # noqa: E501
+        :rtype: str
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this RevisionList.
+
+
+        :param status: The status of this RevisionList.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
+            raise ValueError("Parameter `status` must be a string")  # noqa: E501
+        allowed_values = [None, "queued", "building", "success", "failed"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `status` ({0}), must be one of {1}"  # noqa: E501
+                .format(status, allowed_values)
+            )
+
+        self._status = status
+
+    @property
+    def error_message(self):
+        """Gets the error_message of this RevisionList.  # noqa: E501
+
+
+        :return: The error_message of this RevisionList.  # noqa: E501
+        :rtype: str
+        """
+        return self._error_message
+
+    @error_message.setter
+    def error_message(self, error_message):
+        """Sets the error_message of this RevisionList.
+
+
+        :param error_message: The error_message of this RevisionList.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
+            raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
+
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and len(error_message) > 1024
+        ):
+            raise ValueError("Invalid value for `error_message`, length must be less than or equal to `1024`")  # noqa: E501
+
+        self._error_message = error_message
+
+    @property
+    def has_request_method(self):
+        """Gets the has_request_method of this RevisionList.  # noqa: E501
+
+
+        :return: The has_request_method of this RevisionList.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_request_method
+
+    @has_request_method.setter
+    def has_request_method(self, has_request_method):
+        """Sets the has_request_method of this RevisionList.
+
+
+        :param has_request_method: The has_request_method of this RevisionList.  # noqa: E501
+        :type: bool
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            has_request_method is not None and not isinstance(has_request_method, bool)
+        ):
+            raise ValueError("Parameter `has_request_method` must be a boolean")  # noqa: E501
+
+        self._has_request_method = has_request_method
+
+    @property
+    def has_requests_method(self):
+        """Gets the has_requests_method of this RevisionList.  # noqa: E501
+
+
+        :return: The has_requests_method of this RevisionList.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_requests_method
+
+    @has_requests_method.setter
+    def has_requests_method(self, has_requests_method):
+        """Sets the has_requests_method of this RevisionList.
+
+
+        :param has_requests_method: The has_requests_method of this RevisionList.  # noqa: E501
+        :type: bool
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            has_requests_method is not None and not isinstance(has_requests_method, bool)
+        ):
+            raise ValueError("Parameter `has_requests_method` must be a boolean")  # noqa: E501
+
+        self._has_requests_method = has_requests_method
 
     def to_dict(self):
         """Returns the model properties as a dict"""

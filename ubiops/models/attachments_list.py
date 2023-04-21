@@ -80,8 +80,9 @@ class AttachmentsList(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -106,12 +107,14 @@ class AttachmentsList(object):
         """
         if self.local_vars_configuration.client_side_validation and destination_name is None:  # noqa: E501
             raise ValueError("Invalid value for `destination_name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                destination_name is not None and not isinstance(destination_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            destination_name is not None and not isinstance(destination_name, str)
+        ):
             raise ValueError("Parameter `destination_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                destination_name is not None and len(destination_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            destination_name is not None and len(destination_name) < 1
+        ):
             raise ValueError("Invalid value for `destination_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._destination_name = destination_name
@@ -134,8 +137,9 @@ class AttachmentsList(object):
         :param sources: The sources of this AttachmentsList.  # noqa: E501
         :type: list[AttachmentSourcesList]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                sources is not None and not isinstance(sources, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            sources is not None and not isinstance(sources, list)
+        ):
             raise ValueError("Parameter `sources` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and sources is not None:
             from ubiops.models.attachment_sources_list import AttachmentSourcesList

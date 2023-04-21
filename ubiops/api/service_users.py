@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -79,19 +79,23 @@ class ServiceUsers(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `service_users_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `service_users_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `service_users_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.service_user_create import ServiceUserCreate
 
@@ -124,7 +128,7 @@ class ServiceUsers(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/service-users', 'POST',
+            '/projects/{project_name}/service-users', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -182,19 +186,23 @@ class ServiceUsers(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `service_users_delete`")  # noqa: E501
         # verify the required parameter 'service_user_id' is set
-        if self.api_client.client_side_validation and ('service_user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['service_user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' not in local_var_params or local_var_params['service_user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `service_user_id` when calling `service_users_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `service_users_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'service_user_id' in local_var_params
-            and local_var_params['service_user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' in local_var_params and local_var_params['service_user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['service_user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `service_user_id` must be a string when calling `service_users_delete`")  # noqa: E501
 
@@ -219,7 +227,7 @@ class ServiceUsers(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/service-users/{service_user_id}', 'DELETE',
+            '/projects/{project_name}/service-users/{service_user_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -277,19 +285,23 @@ class ServiceUsers(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `service_users_get`")  # noqa: E501
         # verify the required parameter 'service_user_id' is set
-        if self.api_client.client_side_validation and ('service_user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['service_user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' not in local_var_params or local_var_params['service_user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `service_user_id` when calling `service_users_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `service_users_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'service_user_id' in local_var_params
-            and local_var_params['service_user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' in local_var_params and local_var_params['service_user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['service_user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `service_user_id` must be a string when calling `service_users_get`")  # noqa: E501
 
@@ -317,7 +329,7 @@ class ServiceUsers(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/service-users/{service_user_id}', 'GET',
+            '/projects/{project_name}/service-users/{service_user_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -374,11 +386,13 @@ class ServiceUsers(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `service_users_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `service_users_list`")  # noqa: E501
 
@@ -404,7 +418,7 @@ class ServiceUsers(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/service-users', 'GET',
+            '/projects/{project_name}/service-users', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -463,19 +477,23 @@ class ServiceUsers(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `service_users_token`")  # noqa: E501
         # verify the required parameter 'service_user_id' is set
-        if self.api_client.client_side_validation and ('service_user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['service_user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' not in local_var_params or local_var_params['service_user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `service_user_id` when calling `service_users_token`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `service_users_token`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'service_user_id' in local_var_params
-            and local_var_params['service_user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' in local_var_params and local_var_params['service_user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['service_user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `service_user_id` must be a string when calling `service_users_token`")  # noqa: E501
 
@@ -508,7 +526,7 @@ class ServiceUsers(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/service-users/{service_user_id}/token', 'PUT',
+            '/projects/{project_name}/service-users/{service_user_id}/token', 'PUT',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -567,27 +585,33 @@ class ServiceUsers(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `service_users_update`")  # noqa: E501
         # verify the required parameter 'service_user_id' is set
-        if self.api_client.client_side_validation and ('service_user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['service_user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' not in local_var_params or local_var_params['service_user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `service_user_id` when calling `service_users_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `service_users_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `service_users_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'service_user_id' in local_var_params
-            and local_var_params['service_user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'service_user_id' in local_var_params and local_var_params['service_user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['service_user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `service_user_id` must be a string when calling `service_users_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.service_user_create import ServiceUserCreate
 
@@ -622,7 +646,7 @@ class ServiceUsers(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/service-users/{service_user_id}', 'PATCH',
+            '/projects/{project_name}/service-users/{service_user_id}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,

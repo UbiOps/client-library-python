@@ -93,8 +93,9 @@ class DirectPipelineRequestDeploymentRequest(object):
         :param id: The id of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -119,12 +120,14 @@ class DirectPipelineRequestDeploymentRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and pipeline_object is None:  # noqa: E501
             raise ValueError("Invalid value for `pipeline_object`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_object is not None and not isinstance(pipeline_object, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_object is not None and not isinstance(pipeline_object, str)
+        ):
             raise ValueError("Parameter `pipeline_object` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_object is not None and len(pipeline_object) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_object is not None and len(pipeline_object) < 1
+        ):
             raise ValueError("Invalid value for `pipeline_object`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._pipeline_object = pipeline_object
@@ -147,8 +150,9 @@ class DirectPipelineRequestDeploymentRequest(object):
         :param deployment: The deployment of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment is not None and not isinstance(deployment, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment is not None and not isinstance(deployment, str)
+        ):
             raise ValueError("Parameter `deployment` must be a string")  # noqa: E501
 
         self._deployment = deployment
@@ -171,8 +175,9 @@ class DirectPipelineRequestDeploymentRequest(object):
         :param version: The version of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
         self._version = version
@@ -197,8 +202,9 @@ class DirectPipelineRequestDeploymentRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and success is None:  # noqa: E501
             raise ValueError("Invalid value for `success`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                success is not None and not isinstance(success, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            success is not None and not isinstance(success, bool)
+        ):
             raise ValueError("Parameter `success` must be a boolean")  # noqa: E501
 
         self._success = success
@@ -221,8 +227,9 @@ class DirectPipelineRequestDeploymentRequest(object):
         :param error_message: The error_message of this DirectPipelineRequestDeploymentRequest.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
         self._error_message = error_message
@@ -247,8 +254,9 @@ class DirectPipelineRequestDeploymentRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and sequence_id is None:  # noqa: E501
             raise ValueError("Invalid value for `sequence_id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                sequence_id is not None and not isinstance(sequence_id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            sequence_id is not None and not isinstance(sequence_id, str)
+        ):
             raise ValueError("Parameter `sequence_id` must be a string")  # noqa: E501
 
         self._sequence_id = sequence_id

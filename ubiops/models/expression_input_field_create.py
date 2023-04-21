@@ -75,15 +75,18 @@ class ExpressionInputFieldCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 64):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) > 64
+        ):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `64`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -108,10 +111,11 @@ class ExpressionInputFieldCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and data_type is None:  # noqa: E501
             raise ValueError("Invalid value for `data_type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                data_type is not None and not isinstance(data_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            data_type is not None and not isinstance(data_type, str)
+        ):
             raise ValueError("Parameter `data_type` must be a string")  # noqa: E501
-        allowed_values = ["int", "string", "double", "bool", "array_int", "array_double", "array_string", "blob", "file"]  # noqa: E501
+        allowed_values = ["int", "string", "double", "bool", "dict", "array_int", "array_double", "array_string", "blob", "file", "array_file"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and data_type not in allowed_values:  # noqa: E501
             raise ValueError(
                 "Invalid value for `data_type` ({0}), must be one of {1}"  # noqa: E501

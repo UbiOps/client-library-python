@@ -26,8 +26,6 @@ Method | HTTP request | Description
 [**deployment_version_requests_list**](./DeploymentRequests.md#deployment_version_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | List deployment version requests
 [**deployment_version_requests_update**](./DeploymentRequests.md#deployment_version_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Update a deployment version request
 [**builds_get**](./Deployments.md#builds_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Get build
-[**builds_list**](./Deployments.md#builds_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds | List builds
-[**builds_update**](./Deployments.md#builds_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Update build
 [**deployment_audit_events_list**](./Deployments.md#deployment_audit_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/audit | List audit events for a deployment
 [**deployment_environment_variables_copy**](./Deployments.md#deployment_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/copy-environment-variables | Copy deployment environment variable
 [**deployment_environment_variables_create**](./Deployments.md#deployment_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/environment-variables | Create deployment environment variable
@@ -55,7 +53,21 @@ Method | HTTP request | Description
 [**revisions_file_upload**](./Deployments.md#revisions_file_upload) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | Upload deployment file
 [**revisions_get**](./Deployments.md#revisions_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id} | Get revision
 [**revisions_list**](./Deployments.md#revisions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | List revisions
-[**revisions_rebuild**](./Deployments.md#revisions_rebuild) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/rebuild | Rebuild revision
+[**template_deployments_list**](./Deployments.md#template_deployments_list) | **GET** /template-deployments | List template deployments
+[**environment_builds_get**](./Environments.md#environment_builds_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Get build
+[**environment_builds_list**](./Environments.md#environment_builds_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds | List builds
+[**environment_builds_update**](./Environments.md#environment_builds_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Update build
+[**environment_revisions_file_download**](./Environments.md#environment_revisions_file_download) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/download | Download environment file
+[**environment_revisions_file_upload**](./Environments.md#environment_revisions_file_upload) | **POST** /projects/{project_name}/environments/{environment_name}/revisions | Upload environment file
+[**environment_revisions_get**](./Environments.md#environment_revisions_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id} | Get revision
+[**environment_revisions_list**](./Environments.md#environment_revisions_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions | List revisions
+[**environment_revisions_rebuild**](./Environments.md#environment_revisions_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/rebuild | Rebuild revision
+[**environments_create**](./Environments.md#environments_create) | **POST** /projects/{project_name}/environments | Create environments
+[**environments_delete**](./Environments.md#environments_delete) | **DELETE** /projects/{project_name}/environments/{environment_name} | Delete environment
+[**environments_get**](./Environments.md#environments_get) | **GET** /projects/{project_name}/environments/{environment_name} | Get environment
+[**environments_list**](./Environments.md#environments_list) | **GET** /projects/{project_name}/environments | List environments
+[**environments_update**](./Environments.md#environments_update) | **PATCH** /projects/{project_name}/environments/{environment_name} | Update environment
+[**environments_usage**](./Environments.md#environments_usage) | **GET** /projects/{project_name}/environments/{environment_name}/usage | List usage of environment
 [**buckets_create**](./Files.md#buckets_create) | **POST** /projects/{project_name}/buckets | Create bucket
 [**buckets_delete**](./Files.md#buckets_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name} | Delete a bucket
 [**buckets_get**](./Files.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket

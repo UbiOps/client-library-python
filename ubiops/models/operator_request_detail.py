@@ -123,8 +123,9 @@ class OperatorRequestDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -149,8 +150,9 @@ class OperatorRequestDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and pipeline_request_id is None:  # noqa: E501
             raise ValueError("Invalid value for `pipeline_request_id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_request_id is not None and not isinstance(pipeline_request_id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_request_id is not None and not isinstance(pipeline_request_id, str)
+        ):
             raise ValueError("Parameter `pipeline_request_id` must be a string")  # noqa: E501
 
         self._pipeline_request_id = pipeline_request_id
@@ -173,8 +175,9 @@ class OperatorRequestDetail(object):
         :param pipeline: The pipeline of this OperatorRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline is not None and not isinstance(pipeline, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline is not None and not isinstance(pipeline, str)
+        ):
             raise ValueError("Parameter `pipeline` must be a string")  # noqa: E501
 
         self._pipeline = pipeline
@@ -197,8 +200,9 @@ class OperatorRequestDetail(object):
         :param version: The version of this OperatorRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
         self._version = version
@@ -221,8 +225,9 @@ class OperatorRequestDetail(object):
         :param pipeline_object: The pipeline_object of this OperatorRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_object is not None and not isinstance(pipeline_object, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_object is not None and not isinstance(pipeline_object, str)
+        ):
             raise ValueError("Parameter `pipeline_object` must be a string")  # noqa: E501
 
         self._pipeline_object = pipeline_object
@@ -245,8 +250,9 @@ class OperatorRequestDetail(object):
         :param operator: The operator of this OperatorRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                operator is not None and not isinstance(operator, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            operator is not None and not isinstance(operator, str)
+        ):
             raise ValueError("Parameter `operator` must be a string")  # noqa: E501
 
         self._operator = operator
@@ -271,8 +277,9 @@ class OperatorRequestDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
         allowed_values = ["pending", "processing", "completed", "failed", "cancelled_pending", "cancelled"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
@@ -301,8 +308,9 @@ class OperatorRequestDetail(object):
         :param success: The success of this OperatorRequestDetail.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                success is not None and not isinstance(success, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            success is not None and not isinstance(success, bool)
+        ):
             raise ValueError("Parameter `success` must be a boolean")  # noqa: E501
 
         self._success = success
@@ -430,8 +438,9 @@ class OperatorRequestDetail(object):
         :param error_message: The error_message of this OperatorRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
         self._error_message = error_message

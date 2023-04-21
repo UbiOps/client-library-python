@@ -75,12 +75,14 @@ class FileUploadResponse(object):
         """
         if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
             raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                url is not None and not isinstance(url, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            url is not None and not isinstance(url, str)
+        ):
             raise ValueError("Parameter `url` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                url is not None and len(url) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            url is not None and len(url) < 1
+        ):
             raise ValueError("Invalid value for `url`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._url = url
@@ -105,12 +107,14 @@ class FileUploadResponse(object):
         """
         if self.local_vars_configuration.client_side_validation and provider is None:  # noqa: E501
             raise ValueError("Invalid value for `provider`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                provider is not None and not isinstance(provider, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            provider is not None and not isinstance(provider, str)
+        ):
             raise ValueError("Parameter `provider` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                provider is not None and len(provider) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            provider is not None and len(provider) < 1
+        ):
             raise ValueError("Invalid value for `provider`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._provider = provider

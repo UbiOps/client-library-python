@@ -119,8 +119,9 @@ class PipelineRequestDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -143,8 +144,9 @@ class PipelineRequestDetail(object):
         :param pipeline: The pipeline of this PipelineRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline is not None and not isinstance(pipeline, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline is not None and not isinstance(pipeline, str)
+        ):
             raise ValueError("Parameter `pipeline` must be a string")  # noqa: E501
 
         self._pipeline = pipeline
@@ -167,12 +169,14 @@ class PipelineRequestDetail(object):
         :param version: The version of this PipelineRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and len(version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and len(version) < 1
+        ):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
@@ -197,8 +201,9 @@ class PipelineRequestDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
         allowed_values = ["pending", "processing", "completed", "failed", "cancelled_pending", "cancelled"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
@@ -227,8 +232,9 @@ class PipelineRequestDetail(object):
         :param success: The success of this PipelineRequestDetail.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                success is not None and not isinstance(success, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            success is not None and not isinstance(success, bool)
+        ):
             raise ValueError("Parameter `success` must be a boolean")  # noqa: E501
 
         self._success = success
@@ -358,8 +364,9 @@ class PipelineRequestDetail(object):
         :param deployment_requests: The deployment_requests of this PipelineRequestDetail.  # noqa: E501
         :type: list[PipelineRequestDeploymentRequest]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_requests is not None and not isinstance(deployment_requests, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_requests is not None and not isinstance(deployment_requests, list)
+        ):
             raise ValueError("Parameter `deployment_requests` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and deployment_requests is not None:
             from ubiops.models.pipeline_request_deployment_request import PipelineRequestDeploymentRequest
@@ -389,8 +396,9 @@ class PipelineRequestDetail(object):
         :param operator_requests: The operator_requests of this PipelineRequestDetail.  # noqa: E501
         :type: list[PipelineRequestOperatorRequest]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                operator_requests is not None and not isinstance(operator_requests, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            operator_requests is not None and not isinstance(operator_requests, list)
+        ):
             raise ValueError("Parameter `operator_requests` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and operator_requests is not None:
             from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
@@ -420,8 +428,9 @@ class PipelineRequestDetail(object):
         :param error_message: The error_message of this PipelineRequestDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
         self._error_message = error_message

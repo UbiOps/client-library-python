@@ -72,14 +72,15 @@ class BuildList(object):
 
         if id is not None:
             self.id = id
-        self.revision = revision
+        if revision is not None:
+            self.revision = revision
         if creation_date is not None:
             self.creation_date = creation_date
         if status is not None:
             self.status = status
-        self.error_message = error_message
-        if trigger is not None:
-            self.trigger = trigger
+        if error_message is not None:
+            self.error_message = error_message
+        self.trigger = trigger
         self.has_request_method = has_request_method
         self.has_requests_method = has_requests_method
 
@@ -101,8 +102,9 @@ class BuildList(object):
         :param id: The id of this BuildList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -125,10 +127,9 @@ class BuildList(object):
         :param revision: The revision of this BuildList.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and revision is None:  # noqa: E501
-            raise ValueError("Invalid value for `revision`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                revision is not None and not isinstance(revision, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            revision is not None and not isinstance(revision, str)
+        ):
             raise ValueError("Parameter `revision` must be a string")  # noqa: E501
 
         self._revision = revision
@@ -172,8 +173,9 @@ class BuildList(object):
         :param status: The status of this BuildList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
 
         self._status = status
@@ -196,13 +198,10 @@ class BuildList(object):
         :param error_message: The error_message of this BuildList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
-
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and len(error_message) > 1024):
-            raise ValueError("Invalid value for `error_message`, length must be less than or equal to `1024`")  # noqa: E501
 
         self._error_message = error_message
 
@@ -224,13 +223,10 @@ class BuildList(object):
         :param trigger: The trigger of this BuildList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                trigger is not None and not isinstance(trigger, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            trigger is not None and not isinstance(trigger, str)
+        ):
             raise ValueError("Parameter `trigger` must be a string")  # noqa: E501
-
-        if (self.local_vars_configuration.client_side_validation and
-                trigger is not None and len(trigger) > 200):
-            raise ValueError("Invalid value for `trigger`, length must be less than or equal to `200`")  # noqa: E501
 
         self._trigger = trigger
 
@@ -252,8 +248,9 @@ class BuildList(object):
         :param has_request_method: The has_request_method of this BuildList.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                has_request_method is not None and not isinstance(has_request_method, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            has_request_method is not None and not isinstance(has_request_method, bool)
+        ):
             raise ValueError("Parameter `has_request_method` must be a boolean")  # noqa: E501
 
         self._has_request_method = has_request_method
@@ -276,8 +273,9 @@ class BuildList(object):
         :param has_requests_method: The has_requests_method of this BuildList.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                has_requests_method is not None and not isinstance(has_requests_method, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            has_requests_method is not None and not isinstance(has_requests_method, bool)
+        ):
             raise ValueError("Parameter `has_requests_method` must be a boolean")  # noqa: E501
 
         self._has_requests_method = has_requests_method

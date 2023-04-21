@@ -77,12 +77,14 @@ class FileDetail(object):
         :param continuation_token: The continuation_token of this FileDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                continuation_token is not None and not isinstance(continuation_token, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            continuation_token is not None and not isinstance(continuation_token, str)
+        ):
             raise ValueError("Parameter `continuation_token` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                continuation_token is not None and len(continuation_token) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            continuation_token is not None and len(continuation_token) < 1
+        ):
             raise ValueError("Invalid value for `continuation_token`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._continuation_token = continuation_token
@@ -107,8 +109,9 @@ class FileDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and files is None:  # noqa: E501
             raise ValueError("Invalid value for `files`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                files is not None and not isinstance(files, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            files is not None and not isinstance(files, list)
+        ):
             raise ValueError("Parameter `files` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and files is not None:
             from ubiops.models.file_item import FileItem
@@ -140,8 +143,9 @@ class FileDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and prefixes is None:  # noqa: E501
             raise ValueError("Invalid value for `prefixes`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                prefixes is not None and not isinstance(prefixes, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            prefixes is not None and not isinstance(prefixes, list)
+        ):
             raise ValueError("Parameter `prefixes` must be a list")  # noqa: E501
 
         self._prefixes = prefixes

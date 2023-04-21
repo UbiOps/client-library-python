@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -39,7 +39,7 @@ class ImportsAndExports(object):
     def exports_create_with_http_info(self, project_name, data, **kwargs):  # noqa: E501
         """Create an export  # noqa: E501
 
-         ### Description Create an export by selecting the objects in the export  ### Optional Parameters - `deployments`: Dictionary containing the deployments to export - `pipelines`: Dictionary containing the pipelines to export - `environment_variables`: Dictionary containing the project-level environment variables to export  #### Request Examples  ``` {   \"deployments\": {     \"deployment-1\": {       \"versions\": {         \"version-1\": {           \"environment_variables\": {             \"VERSION_ENV_VAR_NAME_1\": {               \"include_value\": true             },             \"VERSION_ENV_VAR_NAME_2\": {               \"include_value\": false             }           }         },         \"version-2\": {}       },       \"environment_variables\": {         \"DEPLOYMENT_ENV_VAR_NAME_1\": {           \"include_value\": false         }       }     },     \"deployment-2\": {       \"versions\": {}     }   },   \"pipelines\": {     \"pipeline-1\": {       \"versions\": {         \"version-1\": {},         \"version-2\": {}       }     },     \"pipeline-2\": {       \"versions\": {}     }   },   \"environment_variables\": {     \"PROJECT_ENV_VAR_NAME_1\": {       \"include_value\": false     }   } } ```  ### Response Structure Details of the created export - `id`: Unique identifier for the export (UUID) - `status`: Status of the export - `error_message`: The error message in case of a failure - `creation_date`: The date when the export was created - `size`: Size of the export in bytes  #### Response Examples ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"status\": \"pending\",   \"error_message\": \"\",   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"size\": null } ```   # noqa: E501
+         ### Description Create an export by selecting the objects in the export  ### Optional Parameters - `deployments`: Dictionary containing the deployments to export - `pipelines`: Dictionary containing the pipelines to export - `environment_variables`: Dictionary containing the project-level environment variables to export - `environments`: Dictionary containing the environments to export  #### Request Examples  ``` {   \"deployments\": {     \"deployment-1\": {       \"versions\": {         \"version-1\": {           \"environment_variables\": {             \"VERSION_ENV_VAR_NAME_1\": {               \"include_value\": true             },             \"VERSION_ENV_VAR_NAME_2\": {               \"include_value\": false             }           }         },         \"version-2\": {}       },       \"environment_variables\": {         \"DEPLOYMENT_ENV_VAR_NAME_1\": {           \"include_value\": false         }       }     },     \"deployment-2\": {       \"versions\": {}     }   },   \"pipelines\": {     \"pipeline-1\": {       \"versions\": {         \"version-1\": {},         \"version-2\": {}       }     },     \"pipeline-2\": {       \"versions\": {}     }   },   \"environment_variables\": {     \"PROJECT_ENV_VAR_NAME_1\": {       \"include_value\": false     }   },   \"environments\": {     \"environment-1\": {}   } } ```  ### Response Structure Details of the created export - `id`: Unique identifier for the export (UUID) - `status`: Status of the export - `error_message`: The error message in case of a failure - `creation_date`: The date when the export was created - `size`: Size of the export in bytes  #### Response Examples ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"status\": \"pending\",   \"error_message\": \"\",   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"size\": null } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.exports_create_with_http_info(project_name, data, async_req=True)
@@ -79,19 +79,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `exports_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `exports_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `exports_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.export_create import ExportCreate
 
@@ -124,7 +128,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/exports', 'POST',
+            '/projects/{project_name}/exports', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -182,19 +186,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `exports_delete`")  # noqa: E501
         # verify the required parameter 'export_id' is set
-        if self.api_client.client_side_validation and ('export_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['export_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'export_id' not in local_var_params or local_var_params['export_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `export_id` when calling `exports_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `exports_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'export_id' in local_var_params
-            and local_var_params['export_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'export_id' in local_var_params and local_var_params['export_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['export_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `export_id` must be a string when calling `exports_delete`")  # noqa: E501
 
@@ -219,7 +227,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/exports/{export_id}', 'DELETE',
+            '/projects/{project_name}/exports/{export_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -278,19 +286,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `exports_download`")  # noqa: E501
         # verify the required parameter 'export_id' is set
-        if self.api_client.client_side_validation and ('export_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['export_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'export_id' not in local_var_params or local_var_params['export_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `export_id` when calling `exports_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `exports_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'export_id' in local_var_params
-            and local_var_params['export_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'export_id' in local_var_params and local_var_params['export_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['export_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `export_id` must be a string when calling `exports_download`")  # noqa: E501
 
@@ -318,7 +330,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/exports/{export_id}/download', 'GET',
+            '/projects/{project_name}/exports/{export_id}/download', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -336,7 +348,7 @@ class ImportsAndExports(object):
     def exports_get_with_http_info(self, project_name, export_id, **kwargs):  # noqa: E501
         """Get an export  # noqa: E501
 
-         ### Description Get the details of an export in a project  ### Response Structure - `id`: Unique identifier for the export (UUID) - `status`: Status of the export - `error_message`: The error message in case of a failure - `creation_date`: The date when the export was created - `size`: Size of the export in bytes - `deployments`: Dictionary of the deployments in the export - `pipelines`: Dictionary of the pipelines in the export - `environment_variables`: Dictionary of the environment variables in the export   # noqa: E501
+         ### Description Get the details of an export in a project  ### Response Structure - `id`: Unique identifier for the export (UUID) - `status`: Status of the export - `error_message`: The error message in case of a failure - `creation_date`: The date when the export was created - `size`: Size of the export in bytes - `deployments`: Dictionary of the deployments in the export - `pipelines`: Dictionary of the pipelines in the export - `environment_variables`: Dictionary of the environment variables in the export - `environments`: Dictionary of the environments in the export   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.exports_get_with_http_info(project_name, export_id, async_req=True)
@@ -376,19 +388,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `exports_get`")  # noqa: E501
         # verify the required parameter 'export_id' is set
-        if self.api_client.client_side_validation and ('export_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['export_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'export_id' not in local_var_params or local_var_params['export_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `export_id` when calling `exports_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `exports_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'export_id' in local_var_params
-            and local_var_params['export_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'export_id' in local_var_params and local_var_params['export_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['export_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `export_id` must be a string when calling `exports_get`")  # noqa: E501
 
@@ -416,7 +432,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/exports/{export_id}', 'GET',
+            '/projects/{project_name}/exports/{export_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -474,15 +490,18 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `exports_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `exports_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'status' in local_var_params
-            and local_var_params['status'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'status' in local_var_params and local_var_params['status'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['status'], str):  # noqa: E501
                 raise ApiValueError("Parameter `status` must be a string when calling `exports_list`")  # noqa: E501
 
@@ -510,7 +529,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/exports', 'GET',
+            '/projects/{project_name}/exports', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -571,24 +590,29 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `imports_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `imports_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'import_link' in local_var_params
-            and local_var_params['import_link'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_link' in local_var_params and local_var_params['import_link'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['import_link'], str):  # noqa: E501
                 raise ApiValueError("Parameter `import_link` must be a string when calling `imports_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'skip_confirmation' in local_var_params
-            and local_var_params['skip_confirmation'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'skip_confirmation' in local_var_params and local_var_params['skip_confirmation'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['skip_confirmation'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `skip_confirmation` must be a boolean when calling `imports_create`")  # noqa: E501
 
-        if self.api_client.client_side_validation and ('import_link' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['import_link']) < 1):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_link' in local_var_params and len(local_var_params['import_link']) < 1  # noqa: E501
+        ):
             raise ApiValueError("Invalid value for parameter `import_link` when calling `imports_create`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
@@ -623,7 +647,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/imports', 'POST',
+            '/projects/{project_name}/imports', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -681,19 +705,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `imports_delete`")  # noqa: E501
         # verify the required parameter 'import_id' is set
-        if self.api_client.client_side_validation and ('import_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['import_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' not in local_var_params or local_var_params['import_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `import_id` when calling `imports_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `imports_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'import_id' in local_var_params
-            and local_var_params['import_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' in local_var_params and local_var_params['import_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['import_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `import_id` must be a string when calling `imports_delete`")  # noqa: E501
 
@@ -718,7 +746,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/imports/{import_id}', 'DELETE',
+            '/projects/{project_name}/imports/{import_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -777,19 +805,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `imports_download`")  # noqa: E501
         # verify the required parameter 'import_id' is set
-        if self.api_client.client_side_validation and ('import_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['import_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' not in local_var_params or local_var_params['import_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `import_id` when calling `imports_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `imports_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'import_id' in local_var_params
-            and local_var_params['import_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' in local_var_params and local_var_params['import_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['import_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `import_id` must be a string when calling `imports_download`")  # noqa: E501
 
@@ -817,7 +849,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/imports/{import_id}/download', 'GET',
+            '/projects/{project_name}/imports/{import_id}/download', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -835,7 +867,7 @@ class ImportsAndExports(object):
     def imports_get_with_http_info(self, project_name, import_id, **kwargs):  # noqa: E501
         """Get an import  # noqa: E501
 
-         ### Description Get the details of an import in a project  ### Response Structure - `id`: Unique identifier for the import (UUID) - `status`: Status of the import - `error_message`: The error message in case of a failure - `creation_date`: The date when the import was created - `size`: Size of the import in bytes - `deployments`: Dictionary of the deployments in the import - `pipelines`: Dictionary of the pipelines in the import - `environment_variables`: Dictionary of the environment variables in the import   # noqa: E501
+         ### Description Get the details of an import in a project  ### Response Structure - `id`: Unique identifier for the import (UUID) - `status`: Status of the import - `error_message`: The error message in case of a failure - `creation_date`: The date when the import was created - `size`: Size of the import in bytes - `deployments`: Dictionary of the deployments in the import - `pipelines`: Dictionary of the pipelines in the import - `environment_variables`: Dictionary of the environment variables in the import - `environments`: Dictionary of the environments in the import   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.imports_get_with_http_info(project_name, import_id, async_req=True)
@@ -875,19 +907,23 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `imports_get`")  # noqa: E501
         # verify the required parameter 'import_id' is set
-        if self.api_client.client_side_validation and ('import_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['import_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' not in local_var_params or local_var_params['import_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `import_id` when calling `imports_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `imports_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'import_id' in local_var_params
-            and local_var_params['import_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' in local_var_params and local_var_params['import_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['import_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `import_id` must be a string when calling `imports_get`")  # noqa: E501
 
@@ -915,7 +951,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/imports/{import_id}', 'GET',
+            '/projects/{project_name}/imports/{import_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -973,15 +1009,18 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `imports_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `imports_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'status' in local_var_params
-            and local_var_params['status'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'status' in local_var_params and local_var_params['status'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['status'], str):  # noqa: E501
                 raise ApiValueError("Parameter `status` must be a string when calling `imports_list`")  # noqa: E501
 
@@ -1009,7 +1048,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/imports', 'GET',
+            '/projects/{project_name}/imports', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1027,7 +1066,7 @@ class ImportsAndExports(object):
     def imports_update_with_http_info(self, project_name, import_id, data, **kwargs):  # noqa: E501
         """Confirm an import  # noqa: E501
 
-         ### Description Confirm (and update) an import by selecting the objects in the import  ### Optional Parameters - `deployments`: Dictionary containing the deployments to create - `pipelines`: Dictionary containing the pipelines to create - `environment_variables`: Dictionary containing the project-level environment variables to create  #### Request Examples  ``` {     \"deployments\": {     \"deployment-1: {       \"description\": \"\",       \"labels\": {         \"my-label\": \"my-value\"       },       \"default_version\": \"v1\",       \"versions\": {         \"v1\": {           \"zip\": \"deployments/deployment_deployment-1/versions/deployment_deployment-1_version_v1.zip\",           \"description\": \"\",           \"labels\": {},           \"language\": \"python3.7\",           \"maximum_idle_time\": 300,           \"maximum_instances\": 5,           \"instance_type\": \"256mb\",           \"minimum_instances\": 0,           \"environment_variables\": {             \"VERSION_ENV_VAR_1\": {               \"value\": \"my-secret-value\",               \"secret\": true             },             \"VERSION_ENV_VAR_2\": {               \"value\": \"test2\"             }           },           \"request_retention_mode\": \"full\",           \"request_retention_time\": 604800         }       },       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"double\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"double\"         }       ],       \"environment_variables\": {         \"DEPLOYMENT_ENV_VAR_1\": {           \"value\": \"my-secret-value\",           \"secret\": true         },         \"DEPLOYMENT_ENV_VAR_2\": {           \"value\": \"test\"         }       }     }   },   \"pipelines\": {     \"pipeline-1: {       \"description\": \"\",       \"labels\": {         \"test\": \"label\"       },       \"default_version\": \"v1\",       \"versions\": {         \"v1\": {           \"description\": \"\",           \"labels\": {},           \"objects\": [             {               \"name\": \"obj-1\",               \"reference_name\": \"deployment-1\",               \"reference_version\": \"v1\"             }           ],           \"attachments\": [             {               \"sources\": [                 {                   \"mapping\": [                     {                       \"source_field_name\": \"input\",                       \"destination_field_name\": \"input\"                     }                   ],                   \"source_name\": \"pipeline_start\"                 }               ],               \"destination_name\": \"obj-1\"             },             {               \"sources\": [                 {                   \"mapping\": [                     {                       \"source_field_name\": \"output\",                       \"destination_field_name\": \"output\"                     }                   ],                   \"source_name\": \"obj-1\"                 }               ],               \"destination_name\": \"pipeline_end\"             }           ],           \"request_retention_mode\": \"full\",           \"request_retention_time\": 604800         }       },       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"double\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"double\"         }       ]     }   },   \"environment_variables\": {     \"PROJECT_ENV_VAR_1\": {       \"value\": \"value1\",       \"secret\": true     },     \"PROJECT_ENV_VAR_2\": {       \"value\": \"value2\"     }   } } ```  ### Response Structure Details of the updated import - `id`: Unique identifier for the import (UUID) - `status`: Status of the import - `error_message`: The error message in case of a failure - `creation_date`: The date when the import was created - `size`: Size of the import in bytes  #### Response Examples ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"status\": \"pending\",   \"error_message\": \"\",   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"size\": null } ```   # noqa: E501
+         ### Description Confirm (and update) an import by selecting the objects in the import  ### Optional Parameters - `deployments`: Dictionary containing the deployments to create - `pipelines`: Dictionary containing the pipelines to create - `environment_variables`: Dictionary containing the project-level environment variables to create - `environments`: Dictionary containing the environments to create  #### Request Examples  ``` {     \"deployments\": {     \"deployment-1: {       \"description\": \"\",       \"labels\": {         \"my-label\": \"my-value\"       },       \"default_version\": \"v1\",       \"versions\": {         \"v1\": {           \"zip\": \"deployments/deployment_deployment-1/versions/deployment_deployment-1_version_v1.zip\",           \"description\": \"\",           \"labels\": {},           \"environment\": \"python3-7\",           \"maximum_idle_time\": 300,           \"maximum_instances\": 5,           \"instance_type\": \"256mb\",           \"minimum_instances\": 0,           \"environment_variables\": {             \"VERSION_ENV_VAR_1\": {               \"value\": \"my-secret-value\",               \"secret\": true             },             \"VERSION_ENV_VAR_2\": {               \"value\": \"test2\"             }           },           \"request_retention_mode\": \"full\",           \"request_retention_time\": 604800         }       },       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"double\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"double\"         }       ],       \"environment_variables\": {         \"DEPLOYMENT_ENV_VAR_1\": {           \"value\": \"my-secret-value\",           \"secret\": true         },         \"DEPLOYMENT_ENV_VAR_2\": {           \"value\": \"test\"         }       }     }   },   \"pipelines\": {     \"pipeline-1: {       \"description\": \"\",       \"labels\": {         \"test\": \"label\"       },       \"default_version\": \"v1\",       \"versions\": {         \"v1\": {           \"description\": \"\",           \"labels\": {},           \"objects\": [             {               \"name\": \"obj-1\",               \"reference_name\": \"deployment-1\",               \"reference_version\": \"v1\"             }           ],           \"attachments\": [             {               \"sources\": [                 {                   \"mapping\": [                     {                       \"source_field_name\": \"input\",                       \"destination_field_name\": \"input\"                     }                   ],                   \"source_name\": \"pipeline_start\"                 }               ],               \"destination_name\": \"obj-1\"             },             {               \"sources\": [                 {                   \"mapping\": [                     {                       \"source_field_name\": \"output\",                       \"destination_field_name\": \"output\"                     }                   ],                   \"source_name\": \"obj-1\"                 }               ],               \"destination_name\": \"pipeline_end\"             }           ],           \"request_retention_mode\": \"full\",           \"request_retention_time\": 604800         }       },       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"double\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"double\"         }       ]     }   },   \"environment_variables\": {     \"PROJECT_ENV_VAR_1\": {       \"value\": \"value1\",       \"secret\": true     },     \"PROJECT_ENV_VAR_2\": {       \"value\": \"value2\"     }   },   \"environments\": {     \"environment-1\": {         \"display_name\": \"Environment 1\",         \"description\": \"\",         \"labels\": {},         \"base_environment\": \"python3-8\"     }   } } ```  ### Response Structure Details of the updated import - `id`: Unique identifier for the import (UUID) - `status`: Status of the import - `error_message`: The error message in case of a failure - `creation_date`: The date when the import was created - `size`: Size of the import in bytes  #### Response Examples ``` {   \"id\": \"903ccd12-81d1-46e1-9ac9-b9d70af118de\",   \"status\": \"pending\",   \"error_message\": \"\",   \"creation_date\": \"2020-06-18T08:32:14.876451Z\",   \"size\": null } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.imports_update_with_http_info(project_name, import_id, data, async_req=True)
@@ -1068,27 +1107,33 @@ class ImportsAndExports(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `imports_update`")  # noqa: E501
         # verify the required parameter 'import_id' is set
-        if self.api_client.client_side_validation and ('import_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['import_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' not in local_var_params or local_var_params['import_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `import_id` when calling `imports_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `imports_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `imports_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'import_id' in local_var_params
-            and local_var_params['import_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'import_id' in local_var_params and local_var_params['import_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['import_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `import_id` must be a string when calling `imports_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.import_update import ImportUpdate
 
@@ -1123,7 +1168,7 @@ class ImportsAndExports(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/imports/{import_id}', 'PATCH',
+            '/projects/{project_name}/imports/{import_id}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,

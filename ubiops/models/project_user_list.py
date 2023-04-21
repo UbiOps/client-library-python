@@ -83,8 +83,9 @@ class ProjectUserList(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -109,12 +110,14 @@ class ProjectUserList(object):
         """
         if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
             raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                email is not None and not isinstance(email, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            email is not None and not isinstance(email, str)
+        ):
             raise ValueError("Parameter `email` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                email is not None and len(email) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            email is not None and len(email) < 1
+        ):
             raise ValueError("Invalid value for `email`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._email = email
@@ -137,8 +140,9 @@ class ProjectUserList(object):
         :param name: The name of this ProjectUserList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
         self._name = name
@@ -161,8 +165,9 @@ class ProjectUserList(object):
         :param surname: The surname of this ProjectUserList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                surname is not None and not isinstance(surname, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            surname is not None and not isinstance(surname, str)
+        ):
             raise ValueError("Parameter `surname` must be a string")  # noqa: E501
 
         self._surname = surname

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -78,11 +78,13 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `expressions_evaluate`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.expression_evaluate import ExpressionEvaluate
 
@@ -113,7 +115,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/expressions/evaluate', 'POST',
+            '/expressions/evaluate', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -174,31 +176,38 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_audit_events_list`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'action' in local_var_params
-            and local_var_params['action'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'action' in local_var_params and local_var_params['action'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['action'], str):  # noqa: E501
                 raise ApiValueError("Parameter `action` must be a string when calling `pipeline_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `pipeline_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'offset' in local_var_params
-            and local_var_params['offset'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'offset' in local_var_params and local_var_params['offset'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['offset'], int):  # noqa: E501
                 raise ApiValueError("Parameter `offset` must be an integer when calling `pipeline_audit_events_list`")  # noqa: E501
 
@@ -232,7 +241,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/audit', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/audit', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -292,35 +301,43 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
         # verify the required parameter 'name' is set
-        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'name' not in local_var_params or local_var_params['name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `name` when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'name' in local_var_params
-            and local_var_params['name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'name' in local_var_params and local_var_params['name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `name` must be a string when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_environment_variables_list`")  # noqa: E501
 
@@ -352,7 +369,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}/environment-variables', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}/environment-variables', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -370,7 +387,7 @@ class Pipelines(object):
     def pipeline_versions_create_with_http_info(self, project_name, pipeline_name, data, **kwargs):  # noqa: E501
         """Create pipeline versions  # noqa: E501
 
-         ### Description  Create a version for a pipeline. The first version of a pipeline is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the pipeline  ### Optional Parameters - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\" } ```  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\",   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\" } ```  A pipeline version with objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  ### Response Structure  Details of the created pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Create a version for a pipeline. The first version of a pipeline is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the pipeline  ### Optional Parameters - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\" } ```  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\",   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\" } ```  A pipeline version with objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  ### Response Structure  Details of the created pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_create_with_http_info(project_name, pipeline_name, data, async_req=True)
@@ -411,27 +428,33 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_versions_create`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_versions_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_versions_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_versions_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_versions_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.pipeline_version_create import PipelineVersionCreate
 
@@ -466,7 +489,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -525,27 +548,33 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_versions_delete`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_versions_delete`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_versions_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_versions_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_versions_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_versions_delete`")  # noqa: E501
 
@@ -572,7 +601,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}', 'DELETE',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -590,7 +619,7 @@ class Pipelines(object):
     def pipeline_versions_get_with_http_info(self, project_name, pipeline_name, version, **kwargs):  # noqa: E501
         """Get pipeline version  # noqa: E501
 
-         ### Description  Get the details of a single pipeline version  ### Response Structure  Details of the pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Get the details of a single pipeline version  ### Response Structure  Details of the pipeline version - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_get_with_http_info(project_name, pipeline_name, version, async_req=True)
@@ -631,27 +660,33 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_versions_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_versions_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_versions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_versions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_versions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_versions_get`")  # noqa: E501
 
@@ -681,7 +716,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -699,7 +734,7 @@ class Pipelines(object):
     def pipeline_versions_list_with_http_info(self, project_name, pipeline_name, **kwargs):  # noqa: E501
         """List pipeline versions  # noqa: E501
 
-         ### Description  Pipeline versions can be filtered according to the labels they have by giving labels as a query parameter. Pipeline versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the pipeline version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions of the pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored   #### Response Examples  ``` [   {     \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",     \"pipeline\": \"pipeline-1\",     \"version\": \"v1\",     \"description\": \"my description\",     \"labels\": {       \"tag\": \"production\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\"   },   {     \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",     \"pipeline\": \"pipeline-1\",     \"version\": \"v1\",     \"description\": \"my description\",     \"labels\": {       \"tag\": \"production\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\"   } ] ```   # noqa: E501
+         ### Description  Pipeline versions can be filtered according to the labels they have by giving labels as a query parameter. Pipeline versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the pipeline version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions of the pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored   #### Response Examples  ``` [   {     \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",     \"pipeline\": \"pipeline-1\",     \"version\": \"v1\",     \"description\": \"my description\",     \"labels\": {       \"tag\": \"production\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\"   },   {     \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",     \"pipeline\": \"pipeline-1\",     \"version\": \"v1\",     \"description\": \"my description\",     \"labels\": {       \"tag\": \"production\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_list_with_http_info(project_name, pipeline_name, async_req=True)
@@ -740,23 +775,28 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_versions_list`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_versions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_versions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_versions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'labels' in local_var_params
-            and local_var_params['labels'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'labels' in local_var_params and local_var_params['labels'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['labels'], str):  # noqa: E501
                 raise ApiValueError("Parameter `labels` must be a string when calling `pipeline_versions_list`")  # noqa: E501
 
@@ -786,7 +826,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -804,7 +844,7 @@ class Pipelines(object):
     def pipeline_versions_update_with_http_info(self, project_name, pipeline_name, version, data, **kwargs):  # noqa: E501
         """Update pipeline version  # noqa: E501
 
-         ### Description  Update a pipeline version. When updating labels, the labels will replace the existing value for labels.  Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*  ### Optional Parameters - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\" } ```  Updating a pipeline version with new objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  Updating a pipeline version by removing objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"objects\": null,   \"attachments\": null } ```  ### Response Structure  Details of the created pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
+         ### Description  Update a pipeline version. When updating labels, the labels will replace the existing value for labels.  Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*  ### Optional Parameters - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Request Examples  ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": \"notification-group-1\" } ```  Updating a pipeline version with new objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\"     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```  Updating a pipeline version by removing objects and attachments ``` {   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"type\": \"production\"   },   \"monitoring\": [\"test@example.com\"],   \"objects\": null,   \"attachments\": null } ```  ### Response Structure  Details of the created pipeline - `id`: Unique identifier for the pipeline version (UUID) - `pipeline`: Name of the pipeline to which the version is associated - `version`: Name of the version of the pipeline - `description`: Description of the pipeline version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the pipeline version was created - `last_updated`: The date when the pipeline version was last updated - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the pipeline version - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*. - `objects`: List of pipeline version objects - `attachments`: List of pipeline version object attachments  #### Response Examples  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [],   \"attachments\": [] } ```  ``` {   \"id\": \"6b0cea21-2657-4fa3-a331-de646e3cfdc4\",   \"pipeline\": \"pipeline-1\",   \"version\": \"v1\",   \"description\": \"my description\",   \"labels\": {     \"tag\": \"production\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"monitoring\": [\"test@example.com\"],   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"objects\": [     {       \"id\": \"38549ff5-5bf0-4803-8571-236077c77e62\",       \"name\": \"object-1\",       \"reference_name\": \"deployment-1\",       \"reference_type\": \"deployment\",       \"version\": \"v1\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"configuration\": {},       \"input_fields\": [         {           \"name\": \"input\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"output\",           \"data_type\": \"int\"         }       ]     }   ],   \"attachments\": [     {       \"destination_name\": \"object-1\",       \"sources\": [         {           \"source_name\": \"pipeline_start\",           \"mapping\": [             {               \"source_field_name\": \"pipeline-input\",               \"destination_field_name\": \"input\"             }           ]         }       ]     }   ] } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.pipeline_versions_update_with_http_info(project_name, pipeline_name, version, data, async_req=True)
@@ -846,35 +886,43 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_versions_update`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_versions_update`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_versions_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.pipeline_version_update import PipelineVersionUpdate
 
@@ -911,7 +959,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}', 'PATCH',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -969,19 +1017,23 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipelines_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipelines_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipelines_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.pipeline_create import PipelineCreate
 
@@ -1014,7 +1066,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines', 'POST',
+            '/projects/{project_name}/pipelines', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1072,19 +1124,23 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipelines_delete`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipelines_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipelines_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipelines_delete`")  # noqa: E501
 
@@ -1109,7 +1165,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}', 'DELETE',
+            '/projects/{project_name}/pipelines/{pipeline_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1167,19 +1223,23 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipelines_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipelines_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipelines_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipelines_get`")  # noqa: E501
 
@@ -1207,7 +1267,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1265,15 +1325,18 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipelines_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipelines_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'labels' in local_var_params
-            and local_var_params['labels'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'labels' in local_var_params and local_var_params['labels'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['labels'], str):  # noqa: E501
                 raise ApiValueError("Parameter `labels` must be a string when calling `pipelines_list`")  # noqa: E501
 
@@ -1301,7 +1364,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines', 'GET',
+            '/projects/{project_name}/pipelines', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1360,27 +1423,33 @@ class Pipelines(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipelines_update`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipelines_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipelines_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipelines_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipelines_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.pipeline_update import PipelineUpdate
 
@@ -1415,7 +1484,7 @@ class Pipelines(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}', 'PATCH',
+            '/projects/{project_name}/pipelines/{pipeline_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,

@@ -100,8 +100,9 @@ class ResourceUsage(object):
         :param projects: The projects of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                projects is not None and not isinstance(projects, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            projects is not None and not isinstance(projects, int)
+        ):
             raise ValueError("Parameter `projects` must be an integer")  # noqa: E501
 
         self._projects = projects
@@ -124,8 +125,9 @@ class ResourceUsage(object):
         :param users: The users of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                users is not None and not isinstance(users, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            users is not None and not isinstance(users, int)
+        ):
             raise ValueError("Parameter `users` must be an integer")  # noqa: E501
 
         self._users = users
@@ -148,8 +150,9 @@ class ResourceUsage(object):
         :param deployments: The deployments of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployments is not None and not isinstance(deployments, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployments is not None and not isinstance(deployments, int)
+        ):
             raise ValueError("Parameter `deployments` must be an integer")  # noqa: E501
 
         self._deployments = deployments
@@ -172,8 +175,9 @@ class ResourceUsage(object):
         :param deployment_versions: The deployment_versions of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_versions is not None and not isinstance(deployment_versions, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_versions is not None and not isinstance(deployment_versions, int)
+        ):
             raise ValueError("Parameter `deployment_versions` must be an integer")  # noqa: E501
 
         self._deployment_versions = deployment_versions
@@ -196,8 +200,9 @@ class ResourceUsage(object):
         :param pipelines: The pipelines of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipelines is not None and not isinstance(pipelines, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipelines is not None and not isinstance(pipelines, int)
+        ):
             raise ValueError("Parameter `pipelines` must be an integer")  # noqa: E501
 
         self._pipelines = pipelines
@@ -220,8 +225,9 @@ class ResourceUsage(object):
         :param pipeline_versions: The pipeline_versions of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_versions is not None and not isinstance(pipeline_versions, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_versions is not None and not isinstance(pipeline_versions, int)
+        ):
             raise ValueError("Parameter `pipeline_versions` must be an integer")  # noqa: E501
 
         self._pipeline_versions = pipeline_versions
@@ -244,8 +250,9 @@ class ResourceUsage(object):
         :param buckets: The buckets of this ResourceUsage.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                buckets is not None and not isinstance(buckets, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            buckets is not None and not isinstance(buckets, int)
+        ):
             raise ValueError("Parameter `buckets` must be an integer")  # noqa: E501
 
         self._buckets = buckets

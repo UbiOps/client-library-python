@@ -76,8 +76,9 @@ class InputFieldWidgetCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
             raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                type is not None and not isinstance(type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            type is not None and not isinstance(type, str)
+        ):
             raise ValueError("Parameter `type` must be a string")  # noqa: E501
 
         self._type = type
@@ -100,8 +101,9 @@ class InputFieldWidgetCreate(object):
         :param configuration: The configuration of this InputFieldWidgetCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                configuration is not None and not isinstance(configuration, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            configuration is not None and not isinstance(configuration, dict)
+        ):
             raise ValueError("Parameter `configuration` must be a dictionary")  # noqa: E501
 
         self._configuration = configuration

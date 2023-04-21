@@ -92,8 +92,9 @@ class OrganizationDetail(object):
         :param id: The id of this OrganizationDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -118,15 +119,18 @@ class OrganizationDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 64):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) > 64
+        ):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `64`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -172,12 +176,14 @@ class OrganizationDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and subscription is None:  # noqa: E501
             raise ValueError("Invalid value for `subscription`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                subscription is not None and not isinstance(subscription, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            subscription is not None and not isinstance(subscription, str)
+        ):
             raise ValueError("Parameter `subscription` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                subscription is not None and len(subscription) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            subscription is not None and len(subscription) < 1
+        ):
             raise ValueError("Invalid value for `subscription`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._subscription = subscription
@@ -202,12 +208,14 @@ class OrganizationDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and len(status) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and len(status) < 1
+        ):
             raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._status = status
@@ -230,8 +238,9 @@ class OrganizationDetail(object):
         :param subscription_self_service: The subscription_self_service of this OrganizationDetail.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                subscription_self_service is not None and not isinstance(subscription_self_service, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            subscription_self_service is not None and not isinstance(subscription_self_service, bool)
+        ):
             raise ValueError("Parameter `subscription_self_service` must be a boolean")  # noqa: E501
 
         self._subscription_self_service = subscription_self_service

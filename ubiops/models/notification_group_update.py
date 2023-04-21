@@ -75,12 +75,14 @@ class NotificationGroupUpdate(object):
         :param name: The name of this NotificationGroupUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -103,8 +105,9 @@ class NotificationGroupUpdate(object):
         :param contacts: The contacts of this NotificationGroupUpdate.  # noqa: E501
         :type: list[NotificationGroupContact]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                contacts is not None and not isinstance(contacts, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            contacts is not None and not isinstance(contacts, list)
+        ):
             raise ValueError("Parameter `contacts` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and contacts is not None:
             from ubiops.models.notification_group_contact import NotificationGroupContact

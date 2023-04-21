@@ -99,12 +99,14 @@ class ScheduleUpdate(object):
         :param name: The name of this ScheduleUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -127,12 +129,14 @@ class ScheduleUpdate(object):
         :param schedule: The schedule of this ScheduleUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                schedule is not None and not isinstance(schedule, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            schedule is not None and not isinstance(schedule, str)
+        ):
             raise ValueError("Parameter `schedule` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                schedule is not None and len(schedule) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            schedule is not None and len(schedule) < 1
+        ):
             raise ValueError("Invalid value for `schedule`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._schedule = schedule
@@ -176,8 +180,9 @@ class ScheduleUpdate(object):
         :param timeout: The timeout of this ScheduleUpdate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                timeout is not None and not isinstance(timeout, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            timeout is not None and not isinstance(timeout, int)
+        ):
             raise ValueError("Parameter `timeout` must be an integer")  # noqa: E501
 
         self._timeout = timeout
@@ -200,8 +205,9 @@ class ScheduleUpdate(object):
         :param enabled: The enabled of this ScheduleUpdate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                enabled is not None and not isinstance(enabled, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            enabled is not None and not isinstance(enabled, bool)
+        ):
             raise ValueError("Parameter `enabled` must be a boolean")  # noqa: E501
 
         self._enabled = enabled
@@ -224,8 +230,9 @@ class ScheduleUpdate(object):
         :param description: The description of this ScheduleUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -248,8 +255,9 @@ class ScheduleUpdate(object):
         :param labels: The labels of this ScheduleUpdate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels

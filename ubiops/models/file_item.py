@@ -80,8 +80,9 @@ class FileItem(object):
         """
         if self.local_vars_configuration.client_side_validation and file is None:  # noqa: E501
             raise ValueError("Invalid value for `file`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                file is not None and not isinstance(file, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            file is not None and not isinstance(file, str)
+        ):
             raise ValueError("Parameter `file` must be a string")  # noqa: E501
 
         self._file = file
@@ -104,8 +105,9 @@ class FileItem(object):
         :param size: The size of this FileItem.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                size is not None and not isinstance(size, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            size is not None and not isinstance(size, int)
+        ):
             raise ValueError("Parameter `size` must be an integer")  # noqa: E501
 
         self._size = size

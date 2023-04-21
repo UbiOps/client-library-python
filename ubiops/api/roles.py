@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -97,7 +97,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/permissions', 'GET',
+            '/permissions', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -155,19 +155,23 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `role_assignments_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `role_assignments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `role_assignments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.role_assignment_create import RoleAssignmentCreate
 
@@ -200,7 +204,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/role-assignments', 'POST',
+            '/projects/{project_name}/role-assignments', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -258,19 +262,23 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `role_assignments_delete`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `role_assignments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `role_assignments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `role_assignments_delete`")  # noqa: E501
 
@@ -295,7 +303,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/role-assignments/{id}', 'DELETE',
+            '/projects/{project_name}/role-assignments/{id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -353,19 +361,23 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `role_assignments_get`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `role_assignments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `role_assignments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `role_assignments_get`")  # noqa: E501
 
@@ -393,7 +405,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/role-assignments/{id}', 'GET',
+            '/projects/{project_name}/role-assignments/{id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -454,27 +466,33 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `role_assignments_per_object_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'resource' in local_var_params
-            and local_var_params['resource'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'resource' in local_var_params and local_var_params['resource'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['resource'], str):  # noqa: E501
                 raise ApiValueError("Parameter `resource` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'resource_type' in local_var_params
-            and local_var_params['resource_type'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'resource_type' in local_var_params and local_var_params['resource_type'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['resource_type'], str):  # noqa: E501
                 raise ApiValueError("Parameter `resource_type` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'assignee' in local_var_params
-            and local_var_params['assignee'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'assignee' in local_var_params and local_var_params['assignee'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['assignee'], str):  # noqa: E501
                 raise ApiValueError("Parameter `assignee` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'assignee_type' in local_var_params
-            and local_var_params['assignee_type'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'assignee_type' in local_var_params and local_var_params['assignee_type'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['assignee_type'], str):  # noqa: E501
                 raise ApiValueError("Parameter `assignee_type` must be a string when calling `role_assignments_per_object_list`")  # noqa: E501
 
@@ -508,7 +526,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/role-assignments', 'GET',
+            '/projects/{project_name}/role-assignments', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -566,19 +584,23 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `roles_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `roles_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `roles_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.role_create import RoleCreate
 
@@ -611,7 +633,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/roles', 'POST',
+            '/projects/{project_name}/roles', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -669,19 +691,23 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `roles_delete`")  # noqa: E501
         # verify the required parameter 'role_name' is set
-        if self.api_client.client_side_validation and ('role_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['role_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'role_name' not in local_var_params or local_var_params['role_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `role_name` when calling `roles_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `roles_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'role_name' in local_var_params
-            and local_var_params['role_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'role_name' in local_var_params and local_var_params['role_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['role_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `role_name` must be a string when calling `roles_delete`")  # noqa: E501
 
@@ -706,7 +732,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/roles/{role_name}', 'DELETE',
+            '/projects/{project_name}/roles/{role_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -764,19 +790,23 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `roles_get`")  # noqa: E501
         # verify the required parameter 'role_name' is set
-        if self.api_client.client_side_validation and ('role_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['role_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'role_name' not in local_var_params or local_var_params['role_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `role_name` when calling `roles_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `roles_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'role_name' in local_var_params
-            and local_var_params['role_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'role_name' in local_var_params and local_var_params['role_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['role_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `role_name` must be a string when calling `roles_get`")  # noqa: E501
 
@@ -804,7 +834,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/roles/{role_name}', 'GET',
+            '/projects/{project_name}/roles/{role_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -861,11 +891,13 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `roles_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `roles_list`")  # noqa: E501
 
@@ -891,7 +923,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/roles', 'GET',
+            '/projects/{project_name}/roles', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -950,27 +982,33 @@ class Roles(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `roles_update`")  # noqa: E501
         # verify the required parameter 'role_name' is set
-        if self.api_client.client_side_validation and ('role_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['role_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'role_name' not in local_var_params or local_var_params['role_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `role_name` when calling `roles_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `roles_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `roles_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'role_name' in local_var_params
-            and local_var_params['role_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'role_name' in local_var_params and local_var_params['role_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['role_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `role_name` must be a string when calling `roles_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.role_update import RoleUpdate
 
@@ -1005,7 +1043,7 @@ class Roles(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/roles/{role_name}', 'PATCH',
+            '/projects/{project_name}/roles/{role_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,

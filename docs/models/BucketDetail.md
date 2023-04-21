@@ -11,7 +11,7 @@ Name | Type | Notes
 **configuration** | **str** or **dict(str, str)** | [optional] 
 **ttl** | **int** | [optional] 
 **description** | **str** | [optional] 
-**labels** | **str** or **dict(str, str)** | [optional] 
+**labels** | **dict(str, str)** | [optional] 
 **last_updated** | **datetime** | [optional] 
 **size** | **int** | [optional] [readonly] 
 **size_measurement_date** | **datetime** | [optional] [readonly] 

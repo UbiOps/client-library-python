@@ -38,12 +38,15 @@ class Logs(object):
         'date': 'str',
         'deployment_name': 'str',
         'deployment_version': 'str',
+        'deployment_version_revision_id': 'str',
+        'build_id': 'str',
+        'environment_name': 'str',
+        'environment_build_id': 'str',
         'pipeline_name': 'str',
         'pipeline_version': 'str',
         'pipeline_object_name': 'str',
         'deployment_request_id': 'str',
         'pipeline_request_id': 'str',
-        'build_id': 'str',
         'system': 'bool',
         'level': 'str'
     }
@@ -54,17 +57,20 @@ class Logs(object):
         'date': 'date',
         'deployment_name': 'deployment_name',
         'deployment_version': 'deployment_version',
+        'deployment_version_revision_id': 'deployment_version_revision_id',
+        'build_id': 'build_id',
+        'environment_name': 'environment_name',
+        'environment_build_id': 'environment_build_id',
         'pipeline_name': 'pipeline_name',
         'pipeline_version': 'pipeline_version',
         'pipeline_object_name': 'pipeline_object_name',
         'deployment_request_id': 'deployment_request_id',
         'pipeline_request_id': 'pipeline_request_id',
-        'build_id': 'build_id',
         'system': 'system',
         'level': 'level'
     }
 
-    def __init__(self, id=None, log=None, date=None, deployment_name=None, deployment_version=None, pipeline_name=None, pipeline_version=None, pipeline_object_name=None, deployment_request_id=None, pipeline_request_id=None, build_id=None, system=None, level=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, log=None, date=None, deployment_name=None, deployment_version=None, deployment_version_revision_id=None, build_id=None, environment_name=None, environment_build_id=None, pipeline_name=None, pipeline_version=None, pipeline_object_name=None, deployment_request_id=None, pipeline_request_id=None, system=None, level=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """Logs - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -75,12 +81,15 @@ class Logs(object):
         self._date = None
         self._deployment_name = None
         self._deployment_version = None
+        self._deployment_version_revision_id = None
+        self._build_id = None
+        self._environment_name = None
+        self._environment_build_id = None
         self._pipeline_name = None
         self._pipeline_version = None
         self._pipeline_object_name = None
         self._deployment_request_id = None
         self._pipeline_request_id = None
-        self._build_id = None
         self._system = None
         self._level = None
         self.discriminator = None
@@ -95,6 +104,14 @@ class Logs(object):
             self.deployment_name = deployment_name
         if deployment_version is not None:
             self.deployment_version = deployment_version
+        if deployment_version_revision_id is not None:
+            self.deployment_version_revision_id = deployment_version_revision_id
+        if build_id is not None:
+            self.build_id = build_id
+        if environment_name is not None:
+            self.environment_name = environment_name
+        if environment_build_id is not None:
+            self.environment_build_id = environment_build_id
         if pipeline_name is not None:
             self.pipeline_name = pipeline_name
         if pipeline_version is not None:
@@ -105,8 +122,6 @@ class Logs(object):
             self.deployment_request_id = deployment_request_id
         if pipeline_request_id is not None:
             self.pipeline_request_id = pipeline_request_id
-        if build_id is not None:
-            self.build_id = build_id
         if system is not None:
             self.system = system
         if level is not None:
@@ -130,12 +145,14 @@ class Logs(object):
         :param id: The id of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and len(id) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and len(id) < 1
+        ):
             raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._id = id
@@ -158,8 +175,9 @@ class Logs(object):
         :param log: The log of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                log is not None and not isinstance(log, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            log is not None and not isinstance(log, str)
+        ):
             raise ValueError("Parameter `log` must be a string")  # noqa: E501
 
         self._log = log
@@ -182,12 +200,14 @@ class Logs(object):
         :param date: The date of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                date is not None and not isinstance(date, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            date is not None and not isinstance(date, str)
+        ):
             raise ValueError("Parameter `date` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                date is not None and len(date) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            date is not None and len(date) < 1
+        ):
             raise ValueError("Invalid value for `date`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._date = date
@@ -210,12 +230,14 @@ class Logs(object):
         :param deployment_name: The deployment_name of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_name is not None and not isinstance(deployment_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_name is not None and not isinstance(deployment_name, str)
+        ):
             raise ValueError("Parameter `deployment_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_name is not None and len(deployment_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_name is not None and len(deployment_name) < 1
+        ):
             raise ValueError("Invalid value for `deployment_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._deployment_name = deployment_name
@@ -238,15 +260,117 @@ class Logs(object):
         :param deployment_version: The deployment_version of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_version is not None and not isinstance(deployment_version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_version is not None and not isinstance(deployment_version, str)
+        ):
             raise ValueError("Parameter `deployment_version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_version is not None and len(deployment_version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_version is not None and len(deployment_version) < 1
+        ):
             raise ValueError("Invalid value for `deployment_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._deployment_version = deployment_version
+
+    @property
+    def deployment_version_revision_id(self):
+        """Gets the deployment_version_revision_id of this Logs.  # noqa: E501
+
+
+        :return: The deployment_version_revision_id of this Logs.  # noqa: E501
+        :rtype: str
+        """
+        return self._deployment_version_revision_id
+
+    @deployment_version_revision_id.setter
+    def deployment_version_revision_id(self, deployment_version_revision_id):
+        """Sets the deployment_version_revision_id of this Logs.
+
+
+        :param deployment_version_revision_id: The deployment_version_revision_id of this Logs.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_version_revision_id is not None and not isinstance(deployment_version_revision_id, str)
+        ):
+            raise ValueError("Parameter `deployment_version_revision_id` must be a string")  # noqa: E501
+
+        self._deployment_version_revision_id = deployment_version_revision_id
+
+    @property
+    def build_id(self):
+        """Gets the build_id of this Logs.  # noqa: E501
+
+
+        :return: The build_id of this Logs.  # noqa: E501
+        :rtype: str
+        """
+        return self._build_id
+
+    @build_id.setter
+    def build_id(self, build_id):
+        """Sets the build_id of this Logs.
+
+
+        :param build_id: The build_id of this Logs.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            build_id is not None and not isinstance(build_id, str)
+        ):
+            raise ValueError("Parameter `build_id` must be a string")  # noqa: E501
+
+        self._build_id = build_id
+
+    @property
+    def environment_name(self):
+        """Gets the environment_name of this Logs.  # noqa: E501
+
+
+        :return: The environment_name of this Logs.  # noqa: E501
+        :rtype: str
+        """
+        return self._environment_name
+
+    @environment_name.setter
+    def environment_name(self, environment_name):
+        """Sets the environment_name of this Logs.
+
+
+        :param environment_name: The environment_name of this Logs.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            environment_name is not None and not isinstance(environment_name, str)
+        ):
+            raise ValueError("Parameter `environment_name` must be a string")  # noqa: E501
+
+        self._environment_name = environment_name
+
+    @property
+    def environment_build_id(self):
+        """Gets the environment_build_id of this Logs.  # noqa: E501
+
+
+        :return: The environment_build_id of this Logs.  # noqa: E501
+        :rtype: str
+        """
+        return self._environment_build_id
+
+    @environment_build_id.setter
+    def environment_build_id(self, environment_build_id):
+        """Sets the environment_build_id of this Logs.
+
+
+        :param environment_build_id: The environment_build_id of this Logs.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            environment_build_id is not None and not isinstance(environment_build_id, str)
+        ):
+            raise ValueError("Parameter `environment_build_id` must be a string")  # noqa: E501
+
+        self._environment_build_id = environment_build_id
 
     @property
     def pipeline_name(self):
@@ -266,12 +390,14 @@ class Logs(object):
         :param pipeline_name: The pipeline_name of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_name is not None and not isinstance(pipeline_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_name is not None and not isinstance(pipeline_name, str)
+        ):
             raise ValueError("Parameter `pipeline_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_name is not None and len(pipeline_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_name is not None and len(pipeline_name) < 1
+        ):
             raise ValueError("Invalid value for `pipeline_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._pipeline_name = pipeline_name
@@ -294,12 +420,14 @@ class Logs(object):
         :param pipeline_version: The pipeline_version of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_version is not None and not isinstance(pipeline_version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_version is not None and not isinstance(pipeline_version, str)
+        ):
             raise ValueError("Parameter `pipeline_version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_version is not None and len(pipeline_version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_version is not None and len(pipeline_version) < 1
+        ):
             raise ValueError("Invalid value for `pipeline_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._pipeline_version = pipeline_version
@@ -322,12 +450,14 @@ class Logs(object):
         :param pipeline_object_name: The pipeline_object_name of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_object_name is not None and not isinstance(pipeline_object_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_object_name is not None and not isinstance(pipeline_object_name, str)
+        ):
             raise ValueError("Parameter `pipeline_object_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_object_name is not None and len(pipeline_object_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_object_name is not None and len(pipeline_object_name) < 1
+        ):
             raise ValueError("Invalid value for `pipeline_object_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._pipeline_object_name = pipeline_object_name
@@ -350,8 +480,9 @@ class Logs(object):
         :param deployment_request_id: The deployment_request_id of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment_request_id is not None and not isinstance(deployment_request_id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment_request_id is not None and not isinstance(deployment_request_id, str)
+        ):
             raise ValueError("Parameter `deployment_request_id` must be a string")  # noqa: E501
 
         self._deployment_request_id = deployment_request_id
@@ -374,35 +505,12 @@ class Logs(object):
         :param pipeline_request_id: The pipeline_request_id of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipeline_request_id is not None and not isinstance(pipeline_request_id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipeline_request_id is not None and not isinstance(pipeline_request_id, str)
+        ):
             raise ValueError("Parameter `pipeline_request_id` must be a string")  # noqa: E501
 
         self._pipeline_request_id = pipeline_request_id
-
-    @property
-    def build_id(self):
-        """Gets the build_id of this Logs.  # noqa: E501
-
-
-        :return: The build_id of this Logs.  # noqa: E501
-        :rtype: str
-        """
-        return self._build_id
-
-    @build_id.setter
-    def build_id(self, build_id):
-        """Sets the build_id of this Logs.
-
-
-        :param build_id: The build_id of this Logs.  # noqa: E501
-        :type: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                build_id is not None and not isinstance(build_id, str)):
-            raise ValueError("Parameter `build_id` must be a string")  # noqa: E501
-
-        self._build_id = build_id
 
     @property
     def system(self):
@@ -422,8 +530,9 @@ class Logs(object):
         :param system: The system of this Logs.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                system is not None and not isinstance(system, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            system is not None and not isinstance(system, bool)
+        ):
             raise ValueError("Parameter `system` must be a boolean")  # noqa: E501
 
         self._system = system
@@ -446,12 +555,14 @@ class Logs(object):
         :param level: The level of this Logs.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                level is not None and not isinstance(level, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            level is not None and not isinstance(level, str)
+        ):
             raise ValueError("Parameter `level` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                level is not None and len(level) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            level is not None and len(level) < 1
+        ):
             raise ValueError("Invalid value for `level`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._level = level

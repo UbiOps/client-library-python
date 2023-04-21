@@ -75,12 +75,14 @@ class InputOutputWidgetList(object):
         :param type: The type of this InputOutputWidgetList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                type is not None and not isinstance(type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            type is not None and not isinstance(type, str)
+        ):
             raise ValueError("Parameter `type` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                type is not None and len(type) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            type is not None and len(type) < 1
+        ):
             raise ValueError("Invalid value for `type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._type = type
@@ -103,8 +105,9 @@ class InputOutputWidgetList(object):
         :param configuration: The configuration of this InputOutputWidgetList.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                configuration is not None and not isinstance(configuration, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            configuration is not None and not isinstance(configuration, dict)
+        ):
             raise ValueError("Parameter `configuration` must be a dictionary")  # noqa: E501
 
         self._configuration = configuration

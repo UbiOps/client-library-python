@@ -92,15 +92,18 @@ class UserPendingCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
             raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                email is not None and not isinstance(email, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            email is not None and not isinstance(email, str)
+        ):
             raise ValueError("Parameter `email` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                email is not None and len(email) > 254):
+        if self.local_vars_configuration.client_side_validation and (
+            email is not None and len(email) > 254
+        ):
             raise ValueError("Invalid value for `email`, length must be less than or equal to `254`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                email is not None and len(email) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            email is not None and len(email) < 1
+        ):
             raise ValueError("Invalid value for `email`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._email = email
@@ -125,15 +128,18 @@ class UserPendingCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and password is None:  # noqa: E501
             raise ValueError("Invalid value for `password`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                password is not None and not isinstance(password, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            password is not None and not isinstance(password, str)
+        ):
             raise ValueError("Parameter `password` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                password is not None and len(password) > 128):
+        if self.local_vars_configuration.client_side_validation and (
+            password is not None and len(password) > 128
+        ):
             raise ValueError("Invalid value for `password`, length must be less than or equal to `128`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                password is not None and len(password) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            password is not None and len(password) < 1
+        ):
             raise ValueError("Invalid value for `password`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._password = password
@@ -156,12 +162,14 @@ class UserPendingCreate(object):
         :param name: The name of this UserPendingCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 256):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) > 256
+        ):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `256`")  # noqa: E501
 
         self._name = name
@@ -184,12 +192,14 @@ class UserPendingCreate(object):
         :param surname: The surname of this UserPendingCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                surname is not None and not isinstance(surname, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            surname is not None and not isinstance(surname, str)
+        ):
             raise ValueError("Parameter `surname` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                surname is not None and len(surname) > 256):
+        if self.local_vars_configuration.client_side_validation and (
+            surname is not None and len(surname) > 256
+        ):
             raise ValueError("Invalid value for `surname`, length must be less than or equal to `256`")  # noqa: E501
 
         self._surname = surname
@@ -214,8 +224,9 @@ class UserPendingCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and terms_conditions is None:  # noqa: E501
             raise ValueError("Invalid value for `terms_conditions`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                terms_conditions is not None and not isinstance(terms_conditions, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            terms_conditions is not None and not isinstance(terms_conditions, bool)
+        ):
             raise ValueError("Parameter `terms_conditions` must be a boolean")  # noqa: E501
 
         self._terms_conditions = terms_conditions
@@ -238,8 +249,9 @@ class UserPendingCreate(object):
         :param newsletter: The newsletter of this UserPendingCreate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                newsletter is not None and not isinstance(newsletter, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            newsletter is not None and not isinstance(newsletter, bool)
+        ):
             raise ValueError("Parameter `newsletter` must be a boolean")  # noqa: E501
 
         self._newsletter = newsletter

@@ -4,6 +4,7 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **version** | **str** | [optional] 
+**environment** | **str** | [optional] 
 **instance_type** | **str** | [optional] 
 **maximum_instances** | **int** | [optional] 
 **minimum_instances** | **int** | [optional] 
@@ -16,7 +17,7 @@ Name | Type | Notes
 **default_notification_group** | **str** | [optional] 
 **maximum_queue_size_express** | **int** | [optional] 
 **maximum_queue_size_batch** | **int** | [optional] 
-**static_ip** | **bool** | [optional] [default to False]
-**restart_request_interruption** | **bool** | [optional] [default to False]
+**static_ip** | **bool** | [optional] 
+**restart_request_interruption** | **bool** | [optional] 
 
 
