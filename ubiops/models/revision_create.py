@@ -57,7 +57,8 @@ class RevisionCreate(object):
 
         self.success = success
         self.revision = revision
-        self.build = build
+        if build is not None:
+            self.build = build
 
     @property
     def success(self):
@@ -79,8 +80,9 @@ class RevisionCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and success is None:  # noqa: E501
             raise ValueError("Invalid value for `success`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                success is not None and not isinstance(success, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            success is not None and not isinstance(success, bool)
+        ):
             raise ValueError("Parameter `success` must be a boolean")  # noqa: E501
 
         self._success = success
@@ -105,8 +107,9 @@ class RevisionCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and revision is None:  # noqa: E501
             raise ValueError("Invalid value for `revision`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                revision is not None and not isinstance(revision, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            revision is not None and not isinstance(revision, str)
+        ):
             raise ValueError("Parameter `revision` must be a string")  # noqa: E501
 
         self._revision = revision
@@ -129,10 +132,9 @@ class RevisionCreate(object):
         :param build: The build of this RevisionCreate.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and build is None:  # noqa: E501
-            raise ValueError("Invalid value for `build`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                build is not None and not isinstance(build, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            build is not None and not isinstance(build, str)
+        ):
             raise ValueError("Parameter `build` must be a string")  # noqa: E501
 
         self._build = build

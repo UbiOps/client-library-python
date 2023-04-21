@@ -41,7 +41,8 @@ class ExportDetail(object):
         'size': 'int',
         'deployments': 'dict(str, object)',
         'pipelines': 'dict(str, object)',
-        'environment_variables': 'dict(str, object)'
+        'environment_variables': 'dict(str, object)',
+        'environments': 'dict(str, object)'
     }
 
     attribute_map = {
@@ -53,10 +54,11 @@ class ExportDetail(object):
         'size': 'size',
         'deployments': 'deployments',
         'pipelines': 'pipelines',
-        'environment_variables': 'environment_variables'
+        'environment_variables': 'environment_variables',
+        'environments': 'environments'
     }
 
-    def __init__(self, id=None, exported_by=None, creation_date=None, status='pending', error_message=None, size=None, deployments=None, pipelines=None, environment_variables=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, exported_by=None, creation_date=None, status='pending', error_message=None, size=None, deployments=None, pipelines=None, environment_variables=None, environments=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """ExportDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -71,6 +73,7 @@ class ExportDetail(object):
         self._deployments = None
         self._pipelines = None
         self._environment_variables = None
+        self._environments = None
         self.discriminator = None
 
         if id is not None:
@@ -89,6 +92,8 @@ class ExportDetail(object):
             self.pipelines = pipelines
         if environment_variables is not None:
             self.environment_variables = environment_variables
+        if environments is not None:
+            self.environments = environments
 
     @property
     def id(self):
@@ -108,8 +113,9 @@ class ExportDetail(object):
         :param id: The id of this ExportDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -132,8 +138,9 @@ class ExportDetail(object):
         :param exported_by: The exported_by of this ExportDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                exported_by is not None and not isinstance(exported_by, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            exported_by is not None and not isinstance(exported_by, str)
+        ):
             raise ValueError("Parameter `exported_by` must be a string")  # noqa: E501
 
         self._exported_by = exported_by
@@ -177,8 +184,9 @@ class ExportDetail(object):
         :param status: The status of this ExportDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
         allowed_values = ["pending", "processing", "completed", "failed"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
@@ -207,12 +215,14 @@ class ExportDetail(object):
         :param error_message: The error_message of this ExportDetail.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and len(error_message) > 1024):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and len(error_message) > 1024
+        ):
             raise ValueError("Invalid value for `error_message`, length must be less than or equal to `1024`")  # noqa: E501
 
         self._error_message = error_message
@@ -235,8 +245,9 @@ class ExportDetail(object):
         :param size: The size of this ExportDetail.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                size is not None and not isinstance(size, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            size is not None and not isinstance(size, int)
+        ):
             raise ValueError("Parameter `size` must be an integer")  # noqa: E501
 
         self._size = size
@@ -259,8 +270,9 @@ class ExportDetail(object):
         :param deployments: The deployments of this ExportDetail.  # noqa: E501
         :type: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployments is not None and not isinstance(deployments, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployments is not None and not isinstance(deployments, dict)
+        ):
             raise ValueError("Parameter `deployments` must be a dictionary")  # noqa: E501
 
         self._deployments = deployments
@@ -283,8 +295,9 @@ class ExportDetail(object):
         :param pipelines: The pipelines of this ExportDetail.  # noqa: E501
         :type: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipelines is not None and not isinstance(pipelines, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipelines is not None and not isinstance(pipelines, dict)
+        ):
             raise ValueError("Parameter `pipelines` must be a dictionary")  # noqa: E501
 
         self._pipelines = pipelines
@@ -307,11 +320,37 @@ class ExportDetail(object):
         :param environment_variables: The environment_variables of this ExportDetail.  # noqa: E501
         :type: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                environment_variables is not None and not isinstance(environment_variables, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            environment_variables is not None and not isinstance(environment_variables, dict)
+        ):
             raise ValueError("Parameter `environment_variables` must be a dictionary")  # noqa: E501
 
         self._environment_variables = environment_variables
+
+    @property
+    def environments(self):
+        """Gets the environments of this ExportDetail.  # noqa: E501
+
+
+        :return: The environments of this ExportDetail.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._environments
+
+    @environments.setter
+    def environments(self, environments):
+        """Sets the environments of this ExportDetail.
+
+
+        :param environments: The environments of this ExportDetail.  # noqa: E501
+        :type: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            environments is not None and not isinstance(environments, dict)
+        ):
+            raise ValueError("Parameter `environments` must be a dictionary")  # noqa: E501
+
+        self._environments = environments
 
     def to_dict(self):
         """Returns the model properties as a dict"""

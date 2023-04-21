@@ -91,8 +91,9 @@ class DeploymentRequestCreateResponse(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -115,8 +116,9 @@ class DeploymentRequestCreateResponse(object):
         :param deployment: The deployment of this DeploymentRequestCreateResponse.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployment is not None and not isinstance(deployment, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployment is not None and not isinstance(deployment, str)
+        ):
             raise ValueError("Parameter `deployment` must be a string")  # noqa: E501
 
         self._deployment = deployment
@@ -139,8 +141,9 @@ class DeploymentRequestCreateResponse(object):
         :param version: The version of this DeploymentRequestCreateResponse.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
         self._version = version
@@ -165,8 +168,9 @@ class DeploymentRequestCreateResponse(object):
         """
         if self.local_vars_configuration.client_side_validation and success is None:  # noqa: E501
             raise ValueError("Invalid value for `success`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                success is not None and not isinstance(success, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            success is not None and not isinstance(success, bool)
+        ):
             raise ValueError("Parameter `success` must be a boolean")  # noqa: E501
 
         self._success = success
@@ -210,8 +214,9 @@ class DeploymentRequestCreateResponse(object):
         :param error_message: The error_message of this DeploymentRequestCreateResponse.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
         self._error_message = error_message

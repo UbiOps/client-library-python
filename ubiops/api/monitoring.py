@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -79,19 +79,23 @@ class Monitoring(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `notification_groups_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `notification_groups_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `notification_groups_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.notification_group_create import NotificationGroupCreate
 
@@ -124,7 +128,7 @@ class Monitoring(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/monitoring/notification-groups', 'POST',
+            '/projects/{project_name}/monitoring/notification-groups', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -182,19 +186,23 @@ class Monitoring(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `notification_groups_delete`")  # noqa: E501
         # verify the required parameter 'notification_group_name' is set
-        if self.api_client.client_side_validation and ('notification_group_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['notification_group_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group_name' not in local_var_params or local_var_params['notification_group_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `notification_group_name` when calling `notification_groups_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `notification_groups_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'notification_group_name' in local_var_params
-            and local_var_params['notification_group_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group_name' in local_var_params and local_var_params['notification_group_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['notification_group_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `notification_group_name` must be a string when calling `notification_groups_delete`")  # noqa: E501
 
@@ -219,7 +227,7 @@ class Monitoring(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/monitoring/notification-groups/{notification_group_name}', 'DELETE',
+            '/projects/{project_name}/monitoring/notification-groups/{notification_group_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -277,19 +285,23 @@ class Monitoring(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `notification_groups_get`")  # noqa: E501
         # verify the required parameter 'notification_group_name' is set
-        if self.api_client.client_side_validation and ('notification_group_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['notification_group_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group_name' not in local_var_params or local_var_params['notification_group_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `notification_group_name` when calling `notification_groups_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `notification_groups_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'notification_group_name' in local_var_params
-            and local_var_params['notification_group_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group_name' in local_var_params and local_var_params['notification_group_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['notification_group_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `notification_group_name` must be a string when calling `notification_groups_get`")  # noqa: E501
 
@@ -317,7 +329,7 @@ class Monitoring(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/monitoring/notification-groups/{notification_group_name}', 'GET',
+            '/projects/{project_name}/monitoring/notification-groups/{notification_group_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -374,11 +386,13 @@ class Monitoring(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `notification_groups_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `notification_groups_list`")  # noqa: E501
 
@@ -404,7 +418,7 @@ class Monitoring(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/monitoring/notification-groups', 'GET',
+            '/projects/{project_name}/monitoring/notification-groups', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -463,27 +477,33 @@ class Monitoring(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `notification_groups_update`")  # noqa: E501
         # verify the required parameter 'notification_group_name' is set
-        if self.api_client.client_side_validation and ('notification_group_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['notification_group_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group_name' not in local_var_params or local_var_params['notification_group_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `notification_group_name` when calling `notification_groups_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `notification_groups_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `notification_groups_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'notification_group_name' in local_var_params
-            and local_var_params['notification_group_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group_name' in local_var_params and local_var_params['notification_group_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['notification_group_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `notification_group_name` must be a string when calling `notification_groups_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.notification_group_update import NotificationGroupUpdate
 
@@ -518,7 +538,7 @@ class Monitoring(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/monitoring/notification-groups/{notification_group_name}', 'PATCH',
+            '/projects/{project_name}/monitoring/notification-groups/{notification_group_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,

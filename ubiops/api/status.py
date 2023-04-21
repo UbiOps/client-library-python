@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -97,7 +97,7 @@ class Status(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/status', 'GET',
+            '/status', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,

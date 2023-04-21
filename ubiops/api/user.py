@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -78,11 +78,13 @@ class User(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `user_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.user_pending_create import UserPendingCreate
 
@@ -113,7 +115,7 @@ class User(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/user', 'POST',
+            '/user', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -186,7 +188,7 @@ class User(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/user', 'DELETE',
+            '/user', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,

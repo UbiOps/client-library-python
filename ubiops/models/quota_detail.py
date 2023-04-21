@@ -73,8 +73,9 @@ class QuotaDetail(object):
         :param quota: The quota of this QuotaDetail.  # noqa: E501
         :type: float
         """
-        if (self.local_vars_configuration.client_side_validation and
-                quota is not None and not isinstance(quota, float)):
+        if self.local_vars_configuration.client_side_validation and (
+            quota is not None and not isinstance(quota, float)
+        ):
             raise ValueError("Parameter `quota` must be a float")  # noqa: E501
 
         self._quota = quota
@@ -99,12 +100,14 @@ class QuotaDetail(object):
         """
         if self.local_vars_configuration.client_side_validation and resource is None:  # noqa: E501
             raise ValueError("Invalid value for `resource`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                resource is not None and not isinstance(resource, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            resource is not None and not isinstance(resource, str)
+        ):
             raise ValueError("Parameter `resource` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                resource is not None and len(resource) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            resource is not None and len(resource) < 1
+        ):
             raise ValueError("Invalid value for `resource`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._resource = resource

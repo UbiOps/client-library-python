@@ -25,7 +25,6 @@ from ubiops.models.bucket_detail import BucketDetail
 from ubiops.models.bucket_list import BucketList
 from ubiops.models.bucket_update import BucketUpdate
 from ubiops.models.build_list import BuildList
-from ubiops.models.build_update import BuildUpdate
 from ubiops.models.deployment_create import DeploymentCreate
 from ubiops.models.deployment_create_response import DeploymentCreateResponse
 from ubiops.models.deployment_detail import DeploymentDetail
@@ -47,6 +46,15 @@ from ubiops.models.deployment_version_list import DeploymentVersionList
 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
 from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
+from ubiops.models.environment_build_list import EnvironmentBuildList
+from ubiops.models.environment_build_update import EnvironmentBuildUpdate
+from ubiops.models.environment_create import EnvironmentCreate
+from ubiops.models.environment_detail import EnvironmentDetail
+from ubiops.models.environment_list import EnvironmentList
+from ubiops.models.environment_revision_create import EnvironmentRevisionCreate
+from ubiops.models.environment_revision_detail import EnvironmentRevisionDetail
+from ubiops.models.environment_update import EnvironmentUpdate
+from ubiops.models.environment_usage import EnvironmentUsage
 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 from ubiops.models.environment_variable_list import EnvironmentVariableList
@@ -130,6 +138,7 @@ from ubiops.models.service_user_list import ServiceUserList
 from ubiops.models.service_user_token_detail import ServiceUserTokenDetail
 from ubiops.models.service_user_token_list import ServiceUserTokenList
 from ubiops.models.status import Status
+from ubiops.models.template_deployment_list import TemplateDeploymentList
 from ubiops.models.usage import Usage
 from ubiops.models.usage_metric import UsageMetric
 from ubiops.models.user_pending_create import UserPendingCreate

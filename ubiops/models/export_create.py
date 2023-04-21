@@ -35,16 +35,18 @@ class ExportCreate(object):
     openapi_types = {
         'deployments': 'dict(str, object)',
         'pipelines': 'dict(str, object)',
-        'environment_variables': 'dict(str, object)'
+        'environment_variables': 'dict(str, object)',
+        'environments': 'dict(str, object)'
     }
 
     attribute_map = {
         'deployments': 'deployments',
         'pipelines': 'pipelines',
-        'environment_variables': 'environment_variables'
+        'environment_variables': 'environment_variables',
+        'environments': 'environments'
     }
 
-    def __init__(self, deployments=None, pipelines=None, environment_variables=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, deployments=None, pipelines=None, environment_variables=None, environments=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """ExportCreate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -53,6 +55,7 @@ class ExportCreate(object):
         self._deployments = None
         self._pipelines = None
         self._environment_variables = None
+        self._environments = None
         self.discriminator = None
 
         if deployments is not None:
@@ -61,6 +64,8 @@ class ExportCreate(object):
             self.pipelines = pipelines
         if environment_variables is not None:
             self.environment_variables = environment_variables
+        if environments is not None:
+            self.environments = environments
 
     @property
     def deployments(self):
@@ -80,8 +85,9 @@ class ExportCreate(object):
         :param deployments: The deployments of this ExportCreate.  # noqa: E501
         :type: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                deployments is not None and not isinstance(deployments, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            deployments is not None and not isinstance(deployments, dict)
+        ):
             raise ValueError("Parameter `deployments` must be a dictionary")  # noqa: E501
 
         self._deployments = deployments
@@ -104,8 +110,9 @@ class ExportCreate(object):
         :param pipelines: The pipelines of this ExportCreate.  # noqa: E501
         :type: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                pipelines is not None and not isinstance(pipelines, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            pipelines is not None and not isinstance(pipelines, dict)
+        ):
             raise ValueError("Parameter `pipelines` must be a dictionary")  # noqa: E501
 
         self._pipelines = pipelines
@@ -128,11 +135,37 @@ class ExportCreate(object):
         :param environment_variables: The environment_variables of this ExportCreate.  # noqa: E501
         :type: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                environment_variables is not None and not isinstance(environment_variables, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            environment_variables is not None and not isinstance(environment_variables, dict)
+        ):
             raise ValueError("Parameter `environment_variables` must be a dictionary")  # noqa: E501
 
         self._environment_variables = environment_variables
+
+    @property
+    def environments(self):
+        """Gets the environments of this ExportCreate.  # noqa: E501
+
+
+        :return: The environments of this ExportCreate.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._environments
+
+    @environments.setter
+    def environments(self, environments):
+        """Sets the environments of this ExportCreate.
+
+
+        :param environments: The environments of this ExportCreate.  # noqa: E501
+        :type: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            environments is not None and not isinstance(environments, dict)
+        ):
+            raise ValueError("Parameter `environments` must be a dictionary")  # noqa: E501
+
+        self._environments = environments
 
     def to_dict(self):
         """Returns the model properties as a dict"""

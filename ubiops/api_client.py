@@ -81,7 +81,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'UbiOps/python/3.14.0'
+        self.user_agent = 'UbiOps/python/3.15.0'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):
@@ -659,7 +659,7 @@ class ApiClient(object):
 
 
 def getfilename(self):
-    content_disposition = self.getheader('Content-Disposition')
+    content_disposition = self.headers.get('Content-Disposition')
     if content_disposition:
         # Remove quotes added by the API
         decoded_content_disposition = urllib.parse.unquote(content_disposition)

@@ -98,8 +98,9 @@ class DeploymentInstanceType(object):
         :param id: The id of this DeploymentInstanceType.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -124,15 +125,18 @@ class DeploymentInstanceType(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 256):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) > 256
+        ):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `256`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -155,12 +159,14 @@ class DeploymentInstanceType(object):
         :param display_name: The display_name of this DeploymentInstanceType.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                display_name is not None and not isinstance(display_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            display_name is not None and not isinstance(display_name, str)
+        ):
             raise ValueError("Parameter `display_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                display_name is not None and len(display_name) > 256):
+        if self.local_vars_configuration.client_side_validation and (
+            display_name is not None and len(display_name) > 256
+        ):
             raise ValueError("Invalid value for `display_name`, length must be less than or equal to `256`")  # noqa: E501
 
         self._display_name = display_name
@@ -183,8 +189,9 @@ class DeploymentInstanceType(object):
         :param memory_allocation: The memory_allocation of this DeploymentInstanceType.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                memory_allocation is not None and not isinstance(memory_allocation, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            memory_allocation is not None and not isinstance(memory_allocation, int)
+        ):
             raise ValueError("Parameter `memory_allocation` must be an integer")  # noqa: E501
 
         self._memory_allocation = memory_allocation
@@ -207,8 +214,9 @@ class DeploymentInstanceType(object):
         :param cpu_allocation: The cpu_allocation of this DeploymentInstanceType.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                cpu_allocation is not None and not isinstance(cpu_allocation, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            cpu_allocation is not None and not isinstance(cpu_allocation, int)
+        ):
             raise ValueError("Parameter `cpu_allocation` must be an integer")  # noqa: E501
 
         self._cpu_allocation = cpu_allocation
@@ -231,8 +239,9 @@ class DeploymentInstanceType(object):
         :param gpu_allocation: The gpu_allocation of this DeploymentInstanceType.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                gpu_allocation is not None and not isinstance(gpu_allocation, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            gpu_allocation is not None and not isinstance(gpu_allocation, int)
+        ):
             raise ValueError("Parameter `gpu_allocation` must be an integer")  # noqa: E501
 
         self._gpu_allocation = gpu_allocation
@@ -255,8 +264,9 @@ class DeploymentInstanceType(object):
         :param storage_allocation: The storage_allocation of this DeploymentInstanceType.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                storage_allocation is not None and not isinstance(storage_allocation, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            storage_allocation is not None and not isinstance(storage_allocation, int)
+        ):
             raise ValueError("Parameter `storage_allocation` must be an integer")  # noqa: E501
 
         self._storage_allocation = storage_allocation

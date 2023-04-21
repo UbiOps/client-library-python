@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -78,11 +78,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `instance_types_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `instance_types_list`")  # noqa: E501
 
@@ -108,7 +110,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/instance-types', 'GET',
+            '/projects/{project_name}/instance-types', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -172,55 +174,68 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `metrics_get`")  # noqa: E501
         # verify the required parameter 'metric' is set
-        if self.api_client.client_side_validation and ('metric' not in local_var_params or  # noqa: E501
-                                                        local_var_params['metric'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'metric' not in local_var_params or local_var_params['metric'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `metric` when calling `metrics_get`")  # noqa: E501
         # verify the required parameter 'start_date' is set
-        if self.api_client.client_side_validation and ('start_date' not in local_var_params or  # noqa: E501
-                                                        local_var_params['start_date'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'start_date' not in local_var_params or local_var_params['start_date'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `start_date` when calling `metrics_get`")  # noqa: E501
         # verify the required parameter 'end_date' is set
-        if self.api_client.client_side_validation and ('end_date' not in local_var_params or  # noqa: E501
-                                                        local_var_params['end_date'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'end_date' not in local_var_params or local_var_params['end_date'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `end_date` when calling `metrics_get`")  # noqa: E501
         # verify the required parameter 'object_type' is set
-        if self.api_client.client_side_validation and ('object_type' not in local_var_params or  # noqa: E501
-                                                        local_var_params['object_type'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'object_type' not in local_var_params or local_var_params['object_type'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `object_type` when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'metric' in local_var_params
-            and local_var_params['metric'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'metric' in local_var_params and local_var_params['metric'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['metric'], str):  # noqa: E501
                 raise ApiValueError("Parameter `metric` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'start_date' in local_var_params
-            and local_var_params['start_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'start_date' in local_var_params and local_var_params['start_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['start_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `start_date` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'end_date' in local_var_params
-            and local_var_params['end_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'end_date' in local_var_params and local_var_params['end_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['end_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `end_date` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'object_type' in local_var_params
-            and local_var_params['object_type'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'object_type' in local_var_params and local_var_params['object_type'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['object_type'], str):  # noqa: E501
                 raise ApiValueError("Parameter `object_type` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'interval' in local_var_params
-            and local_var_params['interval'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'interval' in local_var_params and local_var_params['interval'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['interval'], str):  # noqa: E501
                 raise ApiValueError("Parameter `interval` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'object_id' in local_var_params
-            and local_var_params['object_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'object_id' in local_var_params and local_var_params['object_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['object_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `object_id` must be a string when calling `metrics_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' in local_var_params and local_var_params['user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_id` must be a string when calling `metrics_get`")  # noqa: E501
 
@@ -260,7 +275,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/metrics/{metric}', 'GET',
+            '/projects/{project_name}/metrics/{metric}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -320,23 +335,28 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'action' in local_var_params
-            and local_var_params['action'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'action' in local_var_params and local_var_params['action'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['action'], str):  # noqa: E501
                 raise ApiValueError("Parameter `action` must be a string when calling `project_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `project_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'offset' in local_var_params
-            and local_var_params['offset'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'offset' in local_var_params and local_var_params['offset'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['offset'], int):  # noqa: E501
                 raise ApiValueError("Parameter `offset` must be an integer when calling `project_audit_events_list`")  # noqa: E501
 
@@ -368,7 +388,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/audit', 'GET',
+            '/projects/{project_name}/audit', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -426,19 +446,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_environment_variables_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `project_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 
@@ -471,7 +495,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/environment-variables', 'POST',
+            '/projects/{project_name}/environment-variables', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -529,19 +553,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_environment_variables_delete`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `project_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `project_environment_variables_delete`")  # noqa: E501
 
@@ -566,7 +594,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/environment-variables/{id}', 'DELETE',
+            '/projects/{project_name}/environment-variables/{id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -624,19 +652,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_environment_variables_get`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `project_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `project_environment_variables_get`")  # noqa: E501
 
@@ -664,7 +696,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/environment-variables/{id}', 'GET',
+            '/projects/{project_name}/environment-variables/{id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -721,11 +753,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_environment_variables_list`")  # noqa: E501
 
@@ -751,7 +785,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/environment-variables', 'GET',
+            '/projects/{project_name}/environment-variables', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -810,27 +844,33 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `project_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `project_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `project_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 
@@ -865,7 +905,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/environment-variables/{id}', 'PATCH',
+            '/projects/{project_name}/environment-variables/{id}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -933,59 +973,73 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_requests_list`")  # noqa: E501
         # verify the required parameter 'object_type' is set
-        if self.api_client.client_side_validation and ('object_type' not in local_var_params or  # noqa: E501
-                                                        local_var_params['object_type'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'object_type' not in local_var_params or local_var_params['object_type'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `object_type` when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'object_type' in local_var_params
-            and local_var_params['object_type'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'object_type' in local_var_params and local_var_params['object_type'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['object_type'], str):  # noqa: E501
                 raise ApiValueError("Parameter `object_type` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'status' in local_var_params
-            and local_var_params['status'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'status' in local_var_params and local_var_params['status'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['status'], str):  # noqa: E501
                 raise ApiValueError("Parameter `status` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'success' in local_var_params
-            and local_var_params['success'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'success' in local_var_params and local_var_params['success'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['success'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `success` must be a boolean when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'offset' in local_var_params
-            and local_var_params['offset'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'offset' in local_var_params and local_var_params['offset'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['offset'], int):  # noqa: E501
                 raise ApiValueError("Parameter `offset` must be an integer when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'sort' in local_var_params
-            and local_var_params['sort'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'sort' in local_var_params and local_var_params['sort'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['sort'], str):  # noqa: E501
                 raise ApiValueError("Parameter `sort` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline' in local_var_params
-            and local_var_params['pipeline'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline' in local_var_params and local_var_params['pipeline'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline` must be a boolean when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_schedule' in local_var_params
-            and local_var_params['request_schedule'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_schedule' in local_var_params and local_var_params['request_schedule'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_schedule'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_schedule` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'start_date' in local_var_params
-            and local_var_params['start_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'start_date' in local_var_params and local_var_params['start_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['start_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `start_date` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'end_date' in local_var_params
-            and local_var_params['end_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'end_date' in local_var_params and local_var_params['end_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['end_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `end_date` must be a string when calling `project_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'search_id' in local_var_params
-            and local_var_params['search_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'search_id' in local_var_params and local_var_params['search_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['search_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `search_id` must be a string when calling `project_requests_list`")  # noqa: E501
 
@@ -1033,7 +1087,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/requests', 'GET',
+            '/projects/{project_name}/requests', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1091,19 +1145,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_users_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `project_users_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_users_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.project_user_create import ProjectUserCreate
 
@@ -1136,7 +1194,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/users', 'POST',
+            '/projects/{project_name}/users', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1194,19 +1252,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_users_delete`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' not in local_var_params or local_var_params['user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `user_id` when calling `project_users_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_users_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' in local_var_params and local_var_params['user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_id` must be a string when calling `project_users_delete`")  # noqa: E501
 
@@ -1231,7 +1293,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/users/{user_id}', 'DELETE',
+            '/projects/{project_name}/users/{user_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1289,19 +1351,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_users_get`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' not in local_var_params or local_var_params['user_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `user_id` when calling `project_users_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_users_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_id' in local_var_params
-            and local_var_params['user_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_id' in local_var_params and local_var_params['user_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_id` must be a string when calling `project_users_get`")  # noqa: E501
 
@@ -1329,7 +1395,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/users/{user_id}', 'GET',
+            '/projects/{project_name}/users/{user_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1387,15 +1453,18 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `project_users_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `project_users_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'user_type' in local_var_params
-            and local_var_params['user_type'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'user_type' in local_var_params and local_var_params['user_type'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['user_type'], str):  # noqa: E501
                 raise ApiValueError("Parameter `user_type` must be a string when calling `project_users_list`")  # noqa: E501
 
@@ -1423,7 +1492,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/users', 'GET',
+            '/projects/{project_name}/users', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1480,11 +1549,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `projects_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.project_create import ProjectCreate
 
@@ -1515,7 +1586,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects', 'POST',
+            '/projects', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1572,11 +1643,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `projects_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `projects_delete`")  # noqa: E501
 
@@ -1599,7 +1672,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}', 'DELETE',
+            '/projects/{project_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1656,11 +1729,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `projects_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `projects_get`")  # noqa: E501
 
@@ -1686,7 +1761,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}', 'GET',
+            '/projects/{project_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1742,8 +1817,9 @@ class Projects(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        if (self.api_client.client_side_validation and 'organization' in local_var_params
-            and local_var_params['organization'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'organization' in local_var_params and local_var_params['organization'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['organization'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization` must be a string when calling `projects_list`")  # noqa: E501
 
@@ -1769,7 +1845,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects', 'GET',
+            '/projects', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1787,7 +1863,7 @@ class Projects(object):
     def projects_log_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
         """List logs for a project  # noqa: E501
 
-         ### Description  Retrieve the logs of all objects in a project, including deployments, pipelines and requests. Using filters you can filter the logs on the objects and information of your choice.   ### Optional Parameters - `filters`: A dictionary containing information to filter logs on. It may contain zero or more of the following fields:       - `deployment_name`: name of a deployment       - `deployment_version`: name of a deployment version. If this field is present in the request, deployment_name must also be given. The deployment versions are only meaningful in combination with the deployments they are defined for.       - `build_id`: the UUID of a build. It does not have to be given in combination with the version and deployment name.       - `pipeline_name`: name of a pipeline       - `pipeline_version`: name of a pipeline version. If this field is present in the request, pipeline_name must also be given. The pipeline versions are only meaningful in combination with the pipelines they are defined for.       - `pipeline_object_name`: name of a pipeline object. If this field is present in the request, pipeline_name and pipeline_version must also be given. The pipeline objects are only meaningful in combination with the pipeline versions they are defined in.       - `deployment_request_id`: the UUID of a deployment request       - `pipeline_request_id`: the UUID of a pipeline request       - `system`: whether the log was generated by the system or user code (true / false)       - `level`: the level of the log (info / error)    Any combination of filters may be given in the request. For example, if only a deployment_name is provided, all logs for that deployment are returned. These logs can contain information from all the pipelines that deployment is referenced in. If the filters dictionary is empty, all logs for all objects in the project are returned. Either `date` or `id` should be provided, as they both refer to a starting point of the logs. If no `date` or `id` is specified, the API will use the current time as a starting point and try to fetch the logs starting from now minus date range seconds into the past.  - `date`: Starting date for the logs. If it is not provided and the `id` parameter is not set, the most recent logs are returned. It should be provided in ISO 8601 format. The results are inclusive of the given date.   - `id`: identifier for log lines. If specified, it will act as a starting point for the interval in which to query the logs. This can be useful when making multiple queries to obtain consecutive logs      It will include the log having the log id equal to the id value in the response, regardless of whether the date_range is positive or negative. - `limit`: Limit for the logs response. If specified, it will limit the total number of logs returned from the query to the specified number. Defaults to 50, the maximum is 500.   - `date_range`: The date range parameter sets the interval of time in which to query the logs, specified in seconds. It may be a positive or a negative value.       If it is positive, logs starting from the specified date / log id (both inclusive) plus date range seconds towards the present time are returned.       Otherwise, logs starting from the specified date / log id (both inclusive) minus date range seconds towards the past are returned.       The default value is -21600 (6 hours). The maximum value is -/+ 86400 seconds (24 hours).   #### Request Examples  ``` {   \"filters\": {     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\"   },   \"date\": \"2020-01-01T00:00:00.000000Z\" } ```  ``` {   \"filters\": {     \"pipeline_name\": \"pipeline-1\",     \"pipeline_version\": \"v1\"   },   \"id\": \"41d7a7c5cd025e3501a00000\",   \"date_range\": -100 } ```  ``` {   \"filters\": {     \"pipeline_name\": \"pipeline-1\",     \"pipeline_version\": \"v1\",     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\"   },   \"date\": \"2020-01-01T00:00:00.000000Z\",   \"date_range\": -86400,   \"limit\": 5 } ```  ### Response Structure  A list of log details - `id`: Unique UUID of the log line   - `log`: Log line text   - `date`: Time the log line was created  The following fields will be returned on response if they are set for the log line: - `deployment_name`:  The deployment which the log is related to   - `deployment_version`:  The deployment version which the log is related to   - `build_id`: The UUID of the build   - `pipeline_name`: The pipeline which the log is related to   - `pipeline_version`: The pipeline version which the log is related to   - `pipeline_object_name`: The pipeline object which the log is related to   - `deployment_request_id`:  The deployment request the log is related to   - `pipeline_request_id`:  The pipeline request the log is related to   - `system`:  Whether the log was generated by the system (true / false)   - `level`: The level of the log (info / error)   #### Response Examples  Logs for a specific deployment and version ``` [   {     \"id\": \"5dcad12ba76a2c6e4331f180\",     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\",     \"date\": \"2020-01-01T00:00:00.000000Z\",     \"log\": \"[Info] Prediction result 0.14981\"   },   {     \"id\": \"5dcad12ba76a2c6e4331f181\",     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\",     \"deployment_request_id\": \"ee63f938-ba81-438e-8482-9ac76037895f\",     \"pipeline_name\": \"pipeline-2\",     \"pipeline_version\": \"v2\",     \"pipeline_object_name\": \"deployment-1-v1-object\",     \"pipeline_request_id\": \"8bb6ed79-8606-4acf-acd2-90507130523c\",     \"date\": \"2020-01-01T00:00:01.000000Z\",     \"log\": \"[Error] Deployment call result (failed)\"   } ] ```  Logs for a specific pipeline ``` [   {     \"id\": \"5dcad12ba76a2c6e4331f192\",     \"deployment_name\": \"deployment-2\",     \"deployment_version\": \"v2\",     \"deployment_request_id\": \"6ee941d3-9905-49f5-95b4-cd9c4c23bb03\",     \"pipeline_name\": \"pipeline-1\",     \"pipeline_version\": \"v1\",     \"pipeline_object_name\": \"deployment-2-v2-object\",     \"pipeline_request_id\": \"4f75b10d-6012-47ab-ae68-cc9e69f35841\",     \"date\": \"2020-01-01T00:00:00.000000Z\",     \"log\": \"[Info] Deployment call result (success): 0.2316\"   } ] ```   # noqa: E501
+         ### Description  Retrieve the logs of all objects in a project, including deployments, pipelines and requests. Using filters you can filter the logs on the objects and information of your choice.   ### Optional Parameters - `filters`: A dictionary containing information to filter logs on. It may contain zero or more of the following fields:       - `deployment_name`: name of a deployment       - `deployment_version`: name of a deployment version. If this field is present in the request, deployment_name must also be given. The deployment versions are only meaningful in combination with the deployments they are defined for.       - `deployment_version_revision_id`: the UUID of a deployment version revision. It does not have to be given in combination with the deployment and version name.       - `environment_name`: name of an environment       - `environment_build_id`: the UUID of an environment build. It does not have to be given in combination with the environment name.       - `pipeline_name`: name of a pipeline       - `pipeline_version`: name of a pipeline version. If this field is present in the request, pipeline_name must also be given. The pipeline versions are only meaningful in combination with the pipelines they are defined for.       - `pipeline_object_name`: name of a pipeline object. If this field is present in the request, pipeline_name and pipeline_version must also be given. The pipeline objects are only meaningful in combination with the pipeline versions they are defined in.       - `deployment_request_id`: the UUID of a deployment request       - `pipeline_request_id`: the UUID of a pipeline request       - `system`: whether the log was generated by the system or user code (true / false)       - `level`: the level of the log (info / error)    Any combination of filters may be given in the request. For example, if only a deployment_name is provided, all logs for that deployment are returned. These logs can contain information from all the pipelines that deployment is referenced in. If the filters dictionary is empty, all logs for all objects in the project are returned. Either `date` or `id` should be provided, as they both refer to a starting point of the logs. If no `date` or `id` is specified, the API will use the current time as a starting point and try to fetch the logs starting from now minus date range seconds into the past.  - `date`: Starting date for the logs. If it is not provided and the `id` parameter is not set, the most recent logs are returned. It should be provided in ISO 8601 format. The results are inclusive of the given date.   - `id`: identifier for log lines. If specified, it will act as a starting point for the interval in which to query the logs. This can be useful when making multiple queries to obtain consecutive logs      It will include the log having the log id equal to the id value in the response, regardless of whether the date_range is positive or negative. - `limit`: Limit for the logs response. If specified, it will limit the total number of logs returned from the query to the specified number. Defaults to 50, the maximum is 500.   - `date_range`: The date range parameter sets the interval of time in which to query the logs, specified in seconds. It may be a positive or a negative value.       If it is positive, logs starting from the specified date / log id (both inclusive) plus date range seconds towards the present time are returned.       Otherwise, logs starting from the specified date / log id (both inclusive) minus date range seconds towards the past are returned.       The default value is -21600 (6 hours). The maximum value is -/+ 86400 seconds (24 hours).   #### Request Examples  ``` {   \"filters\": {     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\"   },   \"date\": \"2020-01-01T00:00:00.000000Z\" } ```  ``` {   \"filters\": {     \"pipeline_name\": \"pipeline-1\",     \"pipeline_version\": \"v1\"   },   \"id\": \"41d7a7c5cd025e3501a00000\",   \"date_range\": -100 } ```  ``` {   \"filters\": {     \"pipeline_name\": \"pipeline-1\",     \"pipeline_version\": \"v1\",     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\"   },   \"date\": \"2020-01-01T00:00:00.000000Z\",   \"date_range\": -86400,   \"limit\": 5 } ```  ### Response Structure  A list of log details - `id`: Unique UUID of the log line   - `log`: Log line text   - `date`: Time the log line was created  The following fields will be returned on response if they are set for the log line: - `deployment_name`:  The deployment which the log is related to   - `deployment_version`:  The deployment version which the log is related to   - `deployment_version_revision_id`: The UUID of the deployment version revision   - `environment_name`:  The environment which the log is related to   - `environment_build_id`: The UUID of the environment build   - `pipeline_name`: The pipeline which the log is related to   - `pipeline_version`: The pipeline version which the log is related to   - `pipeline_object_name`: The pipeline object which the log is related to   - `deployment_request_id`:  The deployment request the log is related to   - `pipeline_request_id`:  The pipeline request the log is related to   - `system`:  Whether the log was generated by the system (true / false)   - `level`: The level of the log (info / error)   #### Response Examples  Logs for a specific deployment and version ``` [   {     \"id\": \"5dcad12ba76a2c6e4331f180\",     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\",     \"date\": \"2020-01-01T00:00:00.000000Z\",     \"log\": \"[Info] Prediction result 0.14981\"   },   {     \"id\": \"5dcad12ba76a2c6e4331f181\",     \"deployment_name\": \"deployment-1\",     \"deployment_version\": \"v1\",     \"deployment_request_id\": \"ee63f938-ba81-438e-8482-9ac76037895f\",     \"pipeline_name\": \"pipeline-2\",     \"pipeline_version\": \"v2\",     \"pipeline_object_name\": \"deployment-1-v1-object\",     \"pipeline_request_id\": \"8bb6ed79-8606-4acf-acd2-90507130523c\",     \"date\": \"2020-01-01T00:00:01.000000Z\",     \"log\": \"[Error] Deployment call result (failed)\"   } ] ```  Logs for a specific pipeline ``` [   {     \"id\": \"5dcad12ba76a2c6e4331f192\",     \"deployment_name\": \"deployment-2\",     \"deployment_version\": \"v2\",     \"deployment_request_id\": \"6ee941d3-9905-49f5-95b4-cd9c4c23bb03\",     \"pipeline_name\": \"pipeline-1\",     \"pipeline_version\": \"v1\",     \"pipeline_object_name\": \"deployment-2-v2-object\",     \"pipeline_request_id\": \"4f75b10d-6012-47ab-ae68-cc9e69f35841\",     \"date\": \"2020-01-01T00:00:00.000000Z\",     \"log\": \"[Info] Deployment call result (success): 0.2316\"   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.projects_log_list_with_http_info(project_name, async_req=True)
@@ -1827,15 +1903,18 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `projects_log_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `projects_log_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.logs_create import LogsCreate
 
@@ -1868,7 +1947,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/logs', 'POST',
+            '/projects/{project_name}/logs', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1925,11 +2004,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `projects_resource_usage`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `projects_resource_usage`")  # noqa: E501
 
@@ -1955,7 +2036,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/resources', 'GET',
+            '/projects/{project_name}/resources', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2013,19 +2094,23 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `projects_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `projects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `projects_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.project_update import ProjectUpdate
 
@@ -2058,7 +2143,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}', 'PATCH',
+            '/projects/{project_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2118,15 +2203,18 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `projects_usage_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `projects_usage_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'interval' in local_var_params
-            and local_var_params['interval'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'interval' in local_var_params and local_var_params['interval'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['interval'], str):  # noqa: E501
                 raise ApiValueError("Parameter `interval` must be a string when calling `projects_usage_get`")  # noqa: E501
 
@@ -2158,7 +2246,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/usage', 'GET',
+            '/projects/{project_name}/usage', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2215,11 +2303,13 @@ class Projects(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `quotas_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `quotas_list`")  # noqa: E501
 
@@ -2245,7 +2335,7 @@ class Projects(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/quotas', 'GET',
+            '/projects/{project_name}/quotas', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,

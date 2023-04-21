@@ -105,12 +105,14 @@ class PipelineUpdate(object):
         :param name: The name of this PipelineUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -133,8 +135,9 @@ class PipelineUpdate(object):
         :param description: The description of this PipelineUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -157,8 +160,9 @@ class PipelineUpdate(object):
         :param input_type: The input_type of this PipelineUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                input_type is not None and not isinstance(input_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            input_type is not None and not isinstance(input_type, str)
+        ):
             raise ValueError("Parameter `input_type` must be a string")  # noqa: E501
         allowed_values = ["structured", "plain"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_type not in allowed_values:  # noqa: E501
@@ -187,8 +191,9 @@ class PipelineUpdate(object):
         :param input_fields: The input_fields of this PipelineUpdate.  # noqa: E501
         :type: list[PipelineInputFieldCreate]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                input_fields is not None and not isinstance(input_fields, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            input_fields is not None and not isinstance(input_fields, list)
+        ):
             raise ValueError("Parameter `input_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_fields is not None:
             from ubiops.models.pipeline_input_field_create import PipelineInputFieldCreate
@@ -218,8 +223,9 @@ class PipelineUpdate(object):
         :param output_type: The output_type of this PipelineUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                output_type is not None and not isinstance(output_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            output_type is not None and not isinstance(output_type, str)
+        ):
             raise ValueError("Parameter `output_type` must be a string")  # noqa: E501
         allowed_values = ["structured", "plain"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_type not in allowed_values:  # noqa: E501
@@ -248,8 +254,9 @@ class PipelineUpdate(object):
         :param output_fields: The output_fields of this PipelineUpdate.  # noqa: E501
         :type: list[PipelineOutputFieldCreate]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                output_fields is not None and not isinstance(output_fields, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            output_fields is not None and not isinstance(output_fields, list)
+        ):
             raise ValueError("Parameter `output_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_fields is not None:
             from ubiops.models.pipeline_output_field_create import PipelineOutputFieldCreate
@@ -279,8 +286,9 @@ class PipelineUpdate(object):
         :param labels: The labels of this PipelineUpdate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
@@ -303,12 +311,14 @@ class PipelineUpdate(object):
         :param default_version: The default_version of this PipelineUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                default_version is not None and not isinstance(default_version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            default_version is not None and not isinstance(default_version, str)
+        ):
             raise ValueError("Parameter `default_version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                default_version is not None and len(default_version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            default_version is not None and len(default_version) < 1
+        ):
             raise ValueError("Invalid value for `default_version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._default_version = default_version

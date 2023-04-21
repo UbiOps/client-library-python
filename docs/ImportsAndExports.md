@@ -30,6 +30,7 @@ Create an export by selecting the objects in the export
 - `deployments`: Dictionary containing the deployments to export
 - `pipelines`: Dictionary containing the pipelines to export
 - `environment_variables`: Dictionary containing the project-level environment variables to export
+- `environments`: Dictionary containing the environments to export
 
 ## Request Examples
 
@@ -76,6 +77,9 @@ Create an export by selecting the objects in the export
     "PROJECT_ENV_VAR_NAME_1": {
       "include_value": false
     }
+  },
+  "environments": {
+    "environment-1": {}
   }
 }
 ```
@@ -334,6 +338,7 @@ Get the details of an export in a project
 - `deployments`: Dictionary of the deployments in the export
 - `pipelines`: Dictionary of the pipelines in the export
 - `environment_variables`: Dictionary of the environment variables in the export
+- `environments`: Dictionary of the environments in the export
 
 ### Example
 
@@ -792,6 +797,7 @@ Get the details of an import in a project
 - `deployments`: Dictionary of the deployments in the import
 - `pipelines`: Dictionary of the pipelines in the import
 - `environment_variables`: Dictionary of the environment variables in the import
+- `environments`: Dictionary of the environments in the import
 
 ### Example
 
@@ -979,6 +985,7 @@ Confirm (and update) an import by selecting the objects in the import
 - `deployments`: Dictionary containing the deployments to create
 - `pipelines`: Dictionary containing the pipelines to create
 - `environment_variables`: Dictionary containing the project-level environment variables to create
+- `environments`: Dictionary containing the environments to create
 
 ## Request Examples
 
@@ -997,7 +1004,7 @@ Confirm (and update) an import by selecting the objects in the import
           "zip": "deployments/deployment_deployment-1/versions/deployment_deployment-1_version_v1.zip",
           "description": "",
           "labels": {},
-          "language": "python3.7",
+          "environment": "python3-7",
           "maximum_idle_time": 300,
           "maximum_instances": 5,
           "instance_type": "256mb",
@@ -1115,6 +1122,14 @@ Confirm (and update) an import by selecting the objects in the import
     },
     "PROJECT_ENV_VAR_2": {
       "value": "value2"
+    }
+  },
+  "environments": {
+    "environment-1": {
+        "display_name": "Environment 1",
+        "description": "",
+        "labels": {},
+        "base_environment": "python3-8"
     }
   }
 }

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -82,35 +82,43 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `batch_pipeline_requests_create`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `batch_pipeline_requests_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `batch_pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `batch_pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `batch_pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['data'], list):  # noqa: E501
                 raise ApiValueError("Parameter `data` must be a list when calling `batch_pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'timeout' in local_var_params
-            and local_var_params['timeout'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'timeout' in local_var_params and local_var_params['timeout'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['timeout'], int):  # noqa: E501
                 raise ApiValueError("Parameter `timeout` must be an integer when calling `batch_pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'notification_group' in local_var_params
-            and local_var_params['notification_group'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group' in local_var_params and local_var_params['notification_group'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['notification_group'], str):  # noqa: E501
                 raise ApiValueError("Parameter `notification_group` must be a string when calling `batch_pipeline_requests_create`")  # noqa: E501
 
@@ -150,7 +158,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests/batch', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests/batch', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -212,43 +220,53 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `batch_pipeline_version_requests_create`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `batch_pipeline_version_requests_create`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `batch_pipeline_version_requests_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `batch_pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `batch_pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `batch_pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `batch_pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['data'], list):  # noqa: E501
                 raise ApiValueError("Parameter `data` must be a list when calling `batch_pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'timeout' in local_var_params
-            and local_var_params['timeout'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'timeout' in local_var_params and local_var_params['timeout'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['timeout'], int):  # noqa: E501
                 raise ApiValueError("Parameter `timeout` must be an integer when calling `batch_pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'notification_group' in local_var_params
-            and local_var_params['notification_group'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'notification_group' in local_var_params and local_var_params['notification_group'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['notification_group'], str):  # noqa: E501
                 raise ApiValueError("Parameter `notification_group` must be a string when calling `batch_pipeline_version_requests_create`")  # noqa: E501
 
@@ -290,7 +308,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -349,27 +367,33 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_requests_batch_delete`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_requests_batch_delete`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['data'], list):  # noqa: E501
                 raise ApiValueError("Parameter `data` must be a list when calling `pipeline_requests_batch_delete`")  # noqa: E501
 
@@ -402,7 +426,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests/delete', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests/delete', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -461,27 +485,33 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_requests_batch_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_requests_batch_get`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['data'], list):  # noqa: E501
                 raise ApiValueError("Parameter `data` must be a list when calling `pipeline_requests_batch_get`")  # noqa: E501
 
@@ -514,7 +544,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests/collect', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests/collect', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -575,31 +605,38 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_requests_create`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_requests_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_timeout' in local_var_params
-            and local_var_params['pipeline_timeout'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_timeout' in local_var_params and local_var_params['pipeline_timeout'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_timeout'], int):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_timeout` must be an integer when calling `pipeline_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_timeout' in local_var_params
-            and local_var_params['deployment_timeout'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_timeout' in local_var_params and local_var_params['deployment_timeout'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_timeout'], int):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_timeout` must be an integer when calling `pipeline_requests_create`")  # noqa: E501
 
@@ -639,7 +676,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -698,27 +735,33 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_requests_delete`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_requests_delete`")  # noqa: E501
         # verify the required parameter 'request_id' is set
-        if self.api_client.client_side_validation and ('request_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['request_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' not in local_var_params or local_var_params['request_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `request_id` when calling `pipeline_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_id' in local_var_params
-            and local_var_params['request_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' in local_var_params and local_var_params['request_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_id` must be a string when calling `pipeline_requests_delete`")  # noqa: E501
 
@@ -745,7 +788,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id}', 'DELETE',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -805,31 +848,38 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_requests_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_requests_get`")  # noqa: E501
         # verify the required parameter 'request_id' is set
-        if self.api_client.client_side_validation and ('request_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['request_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' not in local_var_params or local_var_params['request_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `request_id` when calling `pipeline_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_id' in local_var_params
-            and local_var_params['request_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' in local_var_params and local_var_params['request_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_id` must be a string when calling `pipeline_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'metadata_only' in local_var_params
-            and local_var_params['metadata_only'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'metadata_only' in local_var_params and local_var_params['metadata_only'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['metadata_only'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `metadata_only` must be a boolean when calling `pipeline_requests_get`")  # noqa: E501
 
@@ -861,7 +911,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id}', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -928,55 +978,68 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_requests_list`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'status' in local_var_params
-            and local_var_params['status'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'status' in local_var_params and local_var_params['status'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['status'], str):  # noqa: E501
                 raise ApiValueError("Parameter `status` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'success' in local_var_params
-            and local_var_params['success'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'success' in local_var_params and local_var_params['success'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['success'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `success` must be a boolean when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'offset' in local_var_params
-            and local_var_params['offset'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'offset' in local_var_params and local_var_params['offset'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['offset'], int):  # noqa: E501
                 raise ApiValueError("Parameter `offset` must be an integer when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'sort' in local_var_params
-            and local_var_params['sort'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'sort' in local_var_params and local_var_params['sort'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['sort'], str):  # noqa: E501
                 raise ApiValueError("Parameter `sort` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_schedule' in local_var_params
-            and local_var_params['request_schedule'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_schedule' in local_var_params and local_var_params['request_schedule'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_schedule'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_schedule` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'start_date' in local_var_params
-            and local_var_params['start_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'start_date' in local_var_params and local_var_params['start_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['start_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `start_date` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'end_date' in local_var_params
-            and local_var_params['end_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'end_date' in local_var_params and local_var_params['end_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['end_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `end_date` must be a string when calling `pipeline_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'search_id' in local_var_params
-            and local_var_params['search_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'search_id' in local_var_params and local_var_params['search_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['search_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `search_id` must be a string when calling `pipeline_requests_list`")  # noqa: E501
 
@@ -1022,7 +1085,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/requests', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/requests', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1083,39 +1146,48 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_object_requests_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_object_requests_get`")  # noqa: E501
         # verify the required parameter 'request_id' is set
-        if self.api_client.client_side_validation and ('request_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['request_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' not in local_var_params or local_var_params['request_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `request_id` when calling `pipeline_version_object_requests_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_object_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_object_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_object_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_id' in local_var_params
-            and local_var_params['request_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' in local_var_params and local_var_params['request_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_id` must be a string when calling `pipeline_version_object_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_object_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'metadata_only' in local_var_params
-            and local_var_params['metadata_only'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'metadata_only' in local_var_params and local_var_params['metadata_only'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['metadata_only'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `metadata_only` must be a boolean when calling `pipeline_version_object_requests_get`")  # noqa: E501
 
@@ -1149,7 +1221,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id}', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1209,35 +1281,43 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['data'], list):  # noqa: E501
                 raise ApiValueError("Parameter `data` must be a list when calling `pipeline_version_requests_batch_delete`")  # noqa: E501
 
@@ -1272,7 +1352,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1332,35 +1412,43 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_requests_batch_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_requests_batch_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_requests_batch_get`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_version_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_requests_batch_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['data'], list):  # noqa: E501
                 raise ApiValueError("Parameter `data` must be a list when calling `pipeline_version_requests_batch_get`")  # noqa: E501
 
@@ -1395,7 +1483,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1457,39 +1545,48 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_requests_create`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_requests_create`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_requests_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_timeout' in local_var_params
-            and local_var_params['pipeline_timeout'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_timeout' in local_var_params and local_var_params['pipeline_timeout'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_timeout'], int):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_timeout` must be an integer when calling `pipeline_version_requests_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_timeout' in local_var_params
-            and local_var_params['deployment_timeout'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_timeout' in local_var_params and local_var_params['deployment_timeout'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_timeout'], int):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_timeout` must be an integer when calling `pipeline_version_requests_create`")  # noqa: E501
 
@@ -1531,7 +1628,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests', 'POST',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1591,35 +1688,43 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_requests_delete`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_requests_delete`")  # noqa: E501
         # verify the required parameter 'request_id' is set
-        if self.api_client.client_side_validation and ('request_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['request_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' not in local_var_params or local_var_params['request_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `request_id` when calling `pipeline_version_requests_delete`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_id' in local_var_params
-            and local_var_params['request_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' in local_var_params and local_var_params['request_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_id` must be a string when calling `pipeline_version_requests_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_requests_delete`")  # noqa: E501
 
@@ -1648,7 +1753,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id}', 'DELETE',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1709,39 +1814,48 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_requests_get`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_requests_get`")  # noqa: E501
         # verify the required parameter 'request_id' is set
-        if self.api_client.client_side_validation and ('request_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['request_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' not in local_var_params or local_var_params['request_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `request_id` when calling `pipeline_version_requests_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_id' in local_var_params
-            and local_var_params['request_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_id' in local_var_params and local_var_params['request_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_id` must be a string when calling `pipeline_version_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_requests_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'metadata_only' in local_var_params
-            and local_var_params['metadata_only'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'metadata_only' in local_var_params and local_var_params['metadata_only'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['metadata_only'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `metadata_only` must be a boolean when calling `pipeline_version_requests_get`")  # noqa: E501
 
@@ -1775,7 +1889,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id}', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1843,63 +1957,78 @@ class PipelineRequests(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `pipeline_version_requests_list`")  # noqa: E501
         # verify the required parameter 'pipeline_name' is set
-        if self.api_client.client_side_validation and ('pipeline_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pipeline_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' not in local_var_params or local_var_params['pipeline_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `pipeline_name` when calling `pipeline_version_requests_list`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'pipeline_name' in local_var_params
-            and local_var_params['pipeline_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'pipeline_name' in local_var_params and local_var_params['pipeline_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['pipeline_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `pipeline_name` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'status' in local_var_params
-            and local_var_params['status'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'status' in local_var_params and local_var_params['status'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['status'], str):  # noqa: E501
                 raise ApiValueError("Parameter `status` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'success' in local_var_params
-            and local_var_params['success'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'success' in local_var_params and local_var_params['success'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['success'], bool):  # noqa: E501
                 raise ApiValueError("Parameter `success` must be a boolean when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'offset' in local_var_params
-            and local_var_params['offset'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'offset' in local_var_params and local_var_params['offset'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['offset'], int):  # noqa: E501
                 raise ApiValueError("Parameter `offset` must be an integer when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'sort' in local_var_params
-            and local_var_params['sort'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'sort' in local_var_params and local_var_params['sort'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['sort'], str):  # noqa: E501
                 raise ApiValueError("Parameter `sort` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'request_schedule' in local_var_params
-            and local_var_params['request_schedule'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'request_schedule' in local_var_params and local_var_params['request_schedule'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['request_schedule'], str):  # noqa: E501
                 raise ApiValueError("Parameter `request_schedule` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'start_date' in local_var_params
-            and local_var_params['start_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'start_date' in local_var_params and local_var_params['start_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['start_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `start_date` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'end_date' in local_var_params
-            and local_var_params['end_date'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'end_date' in local_var_params and local_var_params['end_date'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['end_date'], str):  # noqa: E501
                 raise ApiValueError("Parameter `end_date` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'search_id' in local_var_params
-            and local_var_params['search_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'search_id' in local_var_params and local_var_params['search_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['search_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `search_id` must be a string when calling `pipeline_version_requests_list`")  # noqa: E501
 
@@ -1947,7 +2076,7 @@ class PipelineRequests(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests', 'GET',
+            '/projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,

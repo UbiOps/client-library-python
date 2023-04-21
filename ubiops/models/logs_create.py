@@ -90,8 +90,9 @@ class LogsCreate(object):
         :param filters: The filters of this LogsCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                filters is not None and not isinstance(filters, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            filters is not None and not isinstance(filters, dict)
+        ):
             raise ValueError("Parameter `filters` must be a dictionary")  # noqa: E501
 
         self._filters = filters
@@ -114,8 +115,9 @@ class LogsCreate(object):
         :param date_range: The date_range of this LogsCreate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                date_range is not None and not isinstance(date_range, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            date_range is not None and not isinstance(date_range, int)
+        ):
             raise ValueError("Parameter `date_range` must be an integer")  # noqa: E501
 
         self._date_range = date_range
@@ -138,12 +140,14 @@ class LogsCreate(object):
         :param date: The date of this LogsCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                date is not None and not isinstance(date, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            date is not None and not isinstance(date, str)
+        ):
             raise ValueError("Parameter `date` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                date is not None and len(date) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            date is not None and len(date) < 1
+        ):
             raise ValueError("Invalid value for `date`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._date = date
@@ -166,15 +170,18 @@ class LogsCreate(object):
         :param id: The id of this LogsCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and len(id) > 24):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and len(id) > 24
+        ):
             raise ValueError("Invalid value for `id`, length must be less than or equal to `24`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and len(id) < 24):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and len(id) < 24
+        ):
             raise ValueError("Invalid value for `id`, length must be greater than or equal to `24`")  # noqa: E501
 
         self._id = id
@@ -197,8 +204,9 @@ class LogsCreate(object):
         :param limit: The limit of this LogsCreate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                limit is not None and not isinstance(limit, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            limit is not None and not isinstance(limit, int)
+        ):
             raise ValueError("Parameter `limit` must be an integer")  # noqa: E501
 
         self._limit = limit

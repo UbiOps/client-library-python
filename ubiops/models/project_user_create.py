@@ -71,8 +71,9 @@ class ProjectUserCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
             raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                user_id is not None and not isinstance(user_id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            user_id is not None and not isinstance(user_id, str)
+        ):
             raise ValueError("Parameter `user_id` must be a string")  # noqa: E501
 
         self._user_id = user_id

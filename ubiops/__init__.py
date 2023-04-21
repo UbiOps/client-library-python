@@ -14,19 +14,29 @@
 
 from __future__ import absolute_import
 
-__version__ = "3.14.0"
+__version__ = "3.15.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
 
+# import Training
+from ubiops.training.training import Training
+from ubiops.training.experiment_create import ExperimentCreate
+from ubiops.training.experiment_detail import ExperimentDetail
+from ubiops.training.experiment_list import ExperimentList
+from ubiops.training.experiment_update import ExperimentUpdate
+from ubiops.training.experiment_run_create import ExperimentRunCreate
+from ubiops.training.experiment_run_create_response import ExperimentRunCreateResponse
+from ubiops.training.experiment_run_detail import ExperimentRunDetail
+from ubiops.training.experiment_run_list import ExperimentRunList
+from ubiops.training.experiment_run_update import ExperimentRunUpdate
+from ubiops.training.experiment_run_update_response import ExperimentRunUpdateResponse
+
 # import ApiClient
 from ubiops.api_client import ApiClient
 from ubiops.configuration import Configuration
-from ubiops.exceptions import OpenApiException
-from ubiops.exceptions import ApiTypeError
-from ubiops.exceptions import ApiValueError
-from ubiops.exceptions import ApiKeyError
-from ubiops.exceptions import ApiException
+from ubiops.exceptions import UbiOpsException, OpenApiException, ApiTypeError, ApiValueError, ApiKeyError, ApiException
+
 # import models into sdk package
 from ubiops.models.attachment_fields_list import AttachmentFieldsList
 from ubiops.models.attachment_sources_list import AttachmentSourcesList
@@ -39,7 +49,6 @@ from ubiops.models.bucket_detail import BucketDetail
 from ubiops.models.bucket_list import BucketList
 from ubiops.models.bucket_update import BucketUpdate
 from ubiops.models.build_list import BuildList
-from ubiops.models.build_update import BuildUpdate
 from ubiops.models.deployment_create import DeploymentCreate
 from ubiops.models.deployment_create_response import DeploymentCreateResponse
 from ubiops.models.deployment_detail import DeploymentDetail
@@ -61,6 +70,15 @@ from ubiops.models.deployment_version_list import DeploymentVersionList
 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
 from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
+from ubiops.models.environment_build_list import EnvironmentBuildList
+from ubiops.models.environment_build_update import EnvironmentBuildUpdate
+from ubiops.models.environment_create import EnvironmentCreate
+from ubiops.models.environment_detail import EnvironmentDetail
+from ubiops.models.environment_list import EnvironmentList
+from ubiops.models.environment_revision_create import EnvironmentRevisionCreate
+from ubiops.models.environment_revision_detail import EnvironmentRevisionDetail
+from ubiops.models.environment_update import EnvironmentUpdate
+from ubiops.models.environment_usage import EnvironmentUsage
 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 from ubiops.models.environment_variable_list import EnvironmentVariableList
@@ -144,6 +162,7 @@ from ubiops.models.service_user_list import ServiceUserList
 from ubiops.models.service_user_token_detail import ServiceUserTokenDetail
 from ubiops.models.service_user_token_list import ServiceUserTokenList
 from ubiops.models.status import Status
+from ubiops.models.template_deployment_list import TemplateDeploymentList
 from ubiops.models.usage import Usage
 from ubiops.models.usage_metric import UsageMetric
 from ubiops.models.user_pending_create import UserPendingCreate

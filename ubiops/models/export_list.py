@@ -93,8 +93,9 @@ class ExportList(object):
         :param id: The id of this ExportList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -117,8 +118,9 @@ class ExportList(object):
         :param exported_by: The exported_by of this ExportList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                exported_by is not None and not isinstance(exported_by, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            exported_by is not None and not isinstance(exported_by, str)
+        ):
             raise ValueError("Parameter `exported_by` must be a string")  # noqa: E501
 
         self._exported_by = exported_by
@@ -162,8 +164,9 @@ class ExportList(object):
         :param status: The status of this ExportList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
         allowed_values = ["pending", "processing", "completed", "failed"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
@@ -192,12 +195,14 @@ class ExportList(object):
         :param error_message: The error_message of this ExportList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and not isinstance(error_message, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and not isinstance(error_message, str)
+        ):
             raise ValueError("Parameter `error_message` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                error_message is not None and len(error_message) > 1024):
+        if self.local_vars_configuration.client_side_validation and (
+            error_message is not None and len(error_message) > 1024
+        ):
             raise ValueError("Invalid value for `error_message`, length must be less than or equal to `1024`")  # noqa: E501
 
         self._error_message = error_message
@@ -220,8 +225,9 @@ class ExportList(object):
         :param size: The size of this ExportList.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                size is not None and not isinstance(size, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            size is not None and not isinstance(size, int)
+        ):
             raise ValueError("Parameter `size` must be an integer")  # noqa: E501
 
         self._size = size

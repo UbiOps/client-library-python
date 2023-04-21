@@ -74,8 +74,9 @@ class DeploymentRequestUpdate(object):
         :param status: The status of this DeploymentRequestUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                status is not None and not isinstance(status, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            status is not None and not isinstance(status, str)
+        ):
             raise ValueError("Parameter `status` must be a string")  # noqa: E501
         allowed_values = ["cancelled"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
@@ -104,12 +105,14 @@ class DeploymentRequestUpdate(object):
         :param notification_group: The notification_group of this DeploymentRequestUpdate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                notification_group is not None and not isinstance(notification_group, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            notification_group is not None and not isinstance(notification_group, str)
+        ):
             raise ValueError("Parameter `notification_group` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                notification_group is not None and len(notification_group) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            notification_group is not None and len(notification_group) < 1
+        ):
             raise ValueError("Invalid value for `notification_group`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._notification_group = notification_group

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -81,35 +81,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `builds_get`")  # noqa: E501
         # verify the required parameter 'build_id' is set
-        if self.api_client.client_side_validation and ('build_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['build_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'build_id' not in local_var_params or local_var_params['build_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `build_id` when calling `builds_get`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `builds_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `builds_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `builds_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'build_id' in local_var_params
-            and local_var_params['build_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'build_id' in local_var_params and local_var_params['build_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['build_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `build_id` must be a string when calling `builds_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `builds_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `builds_get`")  # noqa: E501
 
@@ -141,252 +149,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='BuildList',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def builds_list_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
-        """List builds  # noqa: E501
-
-         ### Description  List all builds associated with a version. A build is triggered when a new deployment file is uploaded.  ### Response Structure  A list of details of the builds - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",     \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",     \"status\": \"failed\",     \"error_message\": \"Could not find the deployment file\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"baf88570-d884-4bc6-9308-01068b051f5f\",     \"revision\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"creation_date\": \"2020-12-23T16:35:13.088+00:00\",     \"status\": \"queued\",     \"error_message\": \"\",     \"trigger\": \"Deployment file upload\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.builds_list_with_http_info(project_name, deployment_name, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str deployment_name: (required)
-        :param str version: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(list[BuildList], status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'deployment_name', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method builds_list" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `builds_list`")  # noqa: E501
-        # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `deployment_name` when calling `builds_list`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `builds_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `builds_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `deployment_name` must be a string when calling `builds_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `builds_list`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'deployment_name' in local_var_params:
-            path_params['deployment_name'] = local_var_params['deployment_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[BuildList]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def builds_update_with_http_info(self, project_name, build_id, deployment_name, version, data, **kwargs):  # noqa: E501
-        """Update build  # noqa: E501
-
-         ### Description  Cancel a build of a version  ### Required Parameters - `status`: Status that the build will be updated to. It can only be cancelled.  #### Request Examples ``` {     \"status\": \"cancelled\" } ```  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success', 'failed' or 'cancelled'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"cancelled\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.builds_update_with_http_info(project_name, build_id, deployment_name, version, data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str build_id: (required)
-        :param str deployment_name: (required)
-        :param str version: (required)
-        :param BuildUpdate data: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(BuildList, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['project_name', 'build_id', 'deployment_name', 'version', 'data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method builds_update" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `builds_update`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if self.api_client.client_side_validation and ('build_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['build_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `build_id` when calling `builds_update`")  # noqa: E501
-        # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `deployment_name` when calling `builds_update`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `builds_update`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `builds_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `builds_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'build_id' in local_var_params
-            and local_var_params['build_id'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['build_id'], str):  # noqa: E501
-                raise ApiValueError("Parameter `build_id` must be a string when calling `builds_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `deployment_name` must be a string when calling `builds_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `builds_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
-            if isinstance(local_var_params['data'], dict):  # noqa: E501
-                from ubiops.models.build_update import BuildUpdate
-
-                local_var_params['data'] = BuildUpdate(**local_var_params['data'])  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-        if 'deployment_name' in local_var_params:
-            path_params['deployment_name'] = local_var_params['deployment_name']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id}', 'PATCH',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -447,31 +210,38 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_audit_events_list`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'action' in local_var_params
-            and local_var_params['action'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'action' in local_var_params and local_var_params['action'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['action'], str):  # noqa: E501
                 raise ApiValueError("Parameter `action` must be a string when calling `deployment_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'limit' in local_var_params
-            and local_var_params['limit'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'limit' in local_var_params and local_var_params['limit'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['limit'], int):  # noqa: E501
                 raise ApiValueError("Parameter `limit` must be an integer when calling `deployment_audit_events_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'offset' in local_var_params
-            and local_var_params['offset'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'offset' in local_var_params and local_var_params['offset'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['offset'], int):  # noqa: E501
                 raise ApiValueError("Parameter `offset` must be an integer when calling `deployment_audit_events_list`")  # noqa: E501
 
@@ -505,7 +275,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/audit', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/audit', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -564,27 +334,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_environment_variables_copy`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_environment_variables_copy`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
 
@@ -619,7 +395,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/copy-environment-variables', 'POST',
+            '/projects/{project_name}/deployments/{deployment_name}/copy-environment-variables', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -678,27 +454,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_environment_variables_create`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_environment_variables_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 
@@ -733,7 +515,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/environment-variables', 'POST',
+            '/projects/{project_name}/deployments/{deployment_name}/environment-variables', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -792,27 +574,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_environment_variables_delete`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_environment_variables_delete`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `deployment_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `deployment_environment_variables_delete`")  # noqa: E501
 
@@ -839,7 +627,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/environment-variables/{id}', 'DELETE',
+            '/projects/{project_name}/deployments/{deployment_name}/environment-variables/{id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -898,27 +686,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_environment_variables_get`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_environment_variables_get`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `deployment_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `deployment_environment_variables_get`")  # noqa: E501
 
@@ -948,7 +742,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/environment-variables/{id}', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/environment-variables/{id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1006,19 +800,23 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_environment_variables_list`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_environment_variables_list`")  # noqa: E501
 
@@ -1046,7 +844,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/environment-variables', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/environment-variables', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1106,35 +904,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `deployment_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `deployment_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 
@@ -1171,7 +977,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/environment-variables/{id}', 'PATCH',
+            '/projects/{project_name}/deployments/{deployment_name}/environment-variables/{id}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1231,35 +1037,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_version_environment_variables_copy`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_version_environment_variables_copy`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_version_environment_variables_copy`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_version_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_version_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_version_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_version_environment_variables_copy`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
 
@@ -1296,7 +1110,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/copy-environment-variables', 'POST',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/copy-environment-variables', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1356,35 +1170,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_version_environment_variables_create`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_version_environment_variables_create`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_version_environment_variables_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_version_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_version_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_version_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_version_environment_variables_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 
@@ -1421,7 +1243,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables', 'POST',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1481,35 +1303,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_version_environment_variables_delete`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_version_environment_variables_delete`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `deployment_version_environment_variables_delete`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_version_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_version_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_version_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `deployment_version_environment_variables_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_version_environment_variables_delete`")  # noqa: E501
 
@@ -1538,7 +1368,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id}', 'DELETE',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1598,35 +1428,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_version_environment_variables_get`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_version_environment_variables_get`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `deployment_version_environment_variables_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_version_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_version_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_version_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `deployment_version_environment_variables_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_version_environment_variables_get`")  # noqa: E501
 
@@ -1658,7 +1496,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id}', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1717,27 +1555,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_version_environment_variables_list`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_version_environment_variables_list`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_version_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_version_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_version_environment_variables_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_version_environment_variables_list`")  # noqa: E501
 
@@ -1767,7 +1611,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1828,43 +1672,53 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_version_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_version_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' not in local_var_params or local_var_params['id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `id` when calling `deployment_version_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_version_environment_variables_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_version_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_version_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_version_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'id' in local_var_params
-            and local_var_params['id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'id' in local_var_params and local_var_params['id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `id` must be a string when calling `deployment_version_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_version_environment_variables_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
 
@@ -1903,7 +1757,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id}', 'PATCH',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -1921,7 +1775,7 @@ class Deployments(object):
     def deployment_versions_create_with_http_info(self, project_name, deployment_name, data, **kwargs):  # noqa: E501
         """Create deployment versions  # noqa: E501
 
-         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `language`: Language in which the version is provided. Python 3.7-3.11 and R4.0 are supported. The default value is python3.7. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False. - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"language\": \"python3.8\" } ```  ``` {   \"version\": \"version-1\",   \"language\": \"r4.0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"language\": \"python3.6_cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `language_description`: Human readable name of the language - `status`: The status of the version - `active_revision`: Active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_build`: Latest build of the version. It is initialised as None since no build is triggered for the version yet. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"language_description\": \"Python 3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_build\": null,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
+         ### Description  Create a version for a deployment. The first version of a deployment is set as default. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Required Parameters  - `version`: Name of the version of the deployment  ### Optional Parameters  - `environment`: Environment of the version. It can be either a base or a custom environment. - `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively. - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times. - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version. - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.   - `description`: Description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week). - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False. - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.  If the time that a request takes does not matter, keep the default values.  #### Request Examples  ``` {   \"version\": \"version-1\",   \"environment\": \"python3-8\" } ```  ``` {   \"version\": \"version-1\",   \"environment\": \"r4-0\",   \"instance_type\": \"512mb\" } ```  ```   \"version\": \"version-1\",   \"environment\": \"python3-6-cuda\",   \"instance_type\": \"16384mb_t4\",   \"maximum_instances\": 1 ```  ``` {   \"version\": \"version-1\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the created version - `id`: Unique identifier for the deployment version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `environment`: Environment of the version - `environment_display_name`: Human readable name of the environment - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `latest_revision`: UUID of the latest revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"environment\": \"python3-8\",   \"environment_display_name\": \"Python 3.8\",   \"status\": \"unavailable\",   \"active_revision\": null,   \"latest_revision\": null,   \"instance_type\": \"512mb\",   \"maximum_instances\": 5,   \"minimum_instances\": 0,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-05-12T16:23:15.456812Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_create_with_http_info(project_name, deployment_name, data, async_req=True)
@@ -1962,27 +1816,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_versions_create`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_versions_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_versions_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_versions_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_versions_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.deployment_version_create import DeploymentVersionCreate
 
@@ -2017,7 +1877,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions', 'POST',
+            '/projects/{project_name}/deployments/{deployment_name}/versions', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2076,27 +1936,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_versions_delete`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_versions_delete`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_versions_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_versions_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_versions_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_versions_delete`")  # noqa: E501
 
@@ -2123,7 +1989,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}', 'DELETE',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2141,7 +2007,7 @@ class Deployments(object):
     def deployment_versions_get_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """Get deployment version  # noqa: E501
 
-         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `language_description`: Human readable name of the language - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.7\",   \"language_description\": \"Python 3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"9f7fd6ec-53b7-41c6-949e-09efc2ee2d31\",   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
+         ### Description  Retrieve details of a version of a deployment in a project  ### Response Structure  Details of a version - `id`: Unique identifier for the version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `environment`: Environment of the version - `environment_display_name`: Human readable name of the environment - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_revision`: UUID of the latest build of the version. If no deployment files have been uploaded yet, it is None. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of deployment pods running in parallel - `minimum_instances`: Lower bound of number of deployment pods running in parallel - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"environment\": \"python3-7\",   \"environment_display_name\": \"Python 3.7\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-22T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_get_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -2182,27 +2048,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_versions_get`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_versions_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_versions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_versions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_versions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_versions_get`")  # noqa: E501
 
@@ -2232,7 +2104,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2250,7 +2122,7 @@ class Deployments(object):
     def deployment_versions_list_with_http_info(self, project_name, deployment_name, **kwargs):  # noqa: E501
         """List deployment versions  # noqa: E501
 
-         ### Description  Versions can be filtered according to the labels they have by giving labels as a query parameter. Versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `language_description`: Human readable name of the language - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` [   {     \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",     \"deployment\": \"deployment-1\",     \"version\": \"version-1\",     \"description\": \"\",     \"language\": \"python3.8\",     \"language_description\": \"Python 3.8\",     \"status\": \"available\",     \"active_revision\": \"da27ef7c-aa3f-4963-a815-6ebf1865638e\",     \"latest_build\": \"0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75\",     \"instance_type\": \"512mb\",     \"maximum_instances\": 4,     \"minimum_instances\": 1,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-06-18T08:32:14.876451Z\",     \"last_updated\": \"2020-06-19T10:52:23.124784Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": false,     \"restart_request_interruption\": false   },   {     \"id\": \"24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6\",     \"deployment\": \"deployment-1\",     \"version\": \"version-2\",     \"description\": \"\",     \"language\": \"r4.0\",     \"language_description\": \"R 4.0\",     \"status\": \"available\",     \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"latest_build\": \"4534e479-ea2e-4161-876a-1d382191a031\",     \"instance_type\": \"256mb\",     \"maximum_instances\": 5,     \"minimum_instances\": 0,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": true,     \"restart_request_interruption\": false   } ] ```   # noqa: E501
+         ### Description  Versions can be filtered according to the labels they have by giving labels as a query parameter. Versions that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the version. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.  ### Response Structure  A list of details of the versions - `id`: Unique identifier for the deployment version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `environment`: Environment of the version - `environment_display_name`: Human readable name of the environment - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_revision`: UUID of the latest revision of the version. If no deployment files have been uploaded yet, it is None. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples ``` [   {     \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",     \"deployment\": \"deployment-1\",     \"version\": \"version-1\",     \"description\": \"\",     \"environment\": \"python3-8\",     \"environment_display_name\": \"Python 3.8\",     \"status\": \"available\",     \"active_revision\": \"da27ef7c-aa3f-4963-a815-6ebf1865638e\",     \"latest_revision\": \"0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75\",     \"instance_type\": \"512mb\",     \"maximum_instances\": 4,     \"minimum_instances\": 1,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-06-18T08:32:14.876451Z\",     \"last_updated\": \"2020-06-19T10:52:23.124784Z\",     \"monitoring\": \"notification-group-1\",     \"default_notification_group\": null,     \"request_retention_time\": 604800,     \"request_retention_mode\": \"full\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": false,     \"restart_request_interruption\": false   },   {     \"id\": \"24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6\",     \"deployment\": \"deployment-1\",     \"version\": \"version-2\",     \"description\": \"\",     \"environment\": \"r4-0\",     \"environment_display_name\": \"R 4.0\",     \"status\": \"available\",     \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"latest_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",     \"instance_type\": \"256mb\",     \"maximum_instances\": 5,     \"minimum_instances\": 0,     \"maximum_idle_time\": 10,     \"labels\": {       \"type\": \"version\"     },     \"creation_date\": \"2020-05-12T16:23:15.456812Z\",     \"last_updated\": \"2020-06-22T18:04:76.123754Z\",     \"monitoring\": \"notification-group-2\",     \"default_notification_group\": \"notification-group-2\",     \"request_retention_time\": 86400,     \"request_retention_mode\": \"metadata\",     \"maximum_queue_size_express\": 100,     \"maximum_queue_size_batch\": 100000,     \"static_ip\": true,     \"restart_request_interruption\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_list_with_http_info(project_name, deployment_name, async_req=True)
@@ -2291,23 +2163,28 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_versions_list`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_versions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_versions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_versions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'labels' in local_var_params
-            and local_var_params['labels'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'labels' in local_var_params and local_var_params['labels'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['labels'], str):  # noqa: E501
                 raise ApiValueError("Parameter `labels` must be a string when calling `deployment_versions_list`")  # noqa: E501
 
@@ -2337,7 +2214,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2355,7 +2232,7 @@ class Deployments(object):
     def deployment_versions_update_with_http_info(self, project_name, deployment_name, version, data, **kwargs):  # noqa: E501
         """Update deployment version  # noqa: E501
 
-         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `language`: Language in which the version is provided - `language_description`: Human readable name of the language - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_build`: UUID of the latest build of the version. If no build has been triggered yet, it is None. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contain contacts to send monitoring notifications - `default_notification_group`: Name of a notification group which contain contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"language\": \"python3.8\",   \"language_description\": \"Python 3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_build\": \"0d07337e-96d6-4ce6-8c63-c2f07edd2ce4\",   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
+         ### Description  Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels. Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version. Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.  ### Optional Parameters  - `version`: New name for the version - `instance_type`: New instance type for the version - `maximum_instances`: New upper bound of number of versions running - `minimum_instances`: New lower bound of number of versions running - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped - `description`: New description for the version - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels. - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:     - *none* - the requests will not be stored     - *metadata* - only the metadata of the requests will be stored     - *full* - both the metadata and input/output of the requests will be stored - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption - `environment`: New environment for the version. It can be either a base or a custom environment.  #### Request Examples  ``` {   \"version\": \"new-version\" } ```  ``` {   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"monitoring\": \"notification-group-1\" } ```  ### Response Structure  Details of the updated version - `id`: Unique identifier for the deployment version (UUID) - `deployment`: Deployment name to which the version is associated - `version`: Version name - `description`: Description of the version - `environment`: Environment of the version - `environment_display_name`: Human readable name of the environment - `status`: The status of the version - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None. - `latest_revision`: UUID of the latest build of the version. If no deployment files have been uploaded yet, it is None. - `instance_type`: The reserved instance type for the version - `maximum_instances`: Upper bound of number of versions running - `minimum_instances`: Lower bound of number of versions running - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `creation_date`: The date when the version was created - `last_updated`: The date when the version was last updated - `last_file_upload`: The date when a deployment file was last uploaded for the version - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed - `request_retention_time`: Number of seconds to store requests to the version - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*. - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version - `has_request_method`: Whether the latest build of the version has a 'request' method - `has_requests_method`: Whether the latest build of the version has a 'requests' method - `static_ip`: A boolean indicating whether the deployment version should get a static IP - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption  #### Response Examples  ``` {   \"id\": \"4ae7d14b-4803-4e16-b96d-3b18caa4b605\",   \"deployment\": \"deployment-1\",   \"version\": \"version-1\",   \"description\": \"\",   \"environment\": \"python3-8\",   \"environment_display_name\": \"Python 3.8\",   \"status\": \"available\",   \"active_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"latest_revision\": \"a74662be-c938-4104-872a-8be1b85f64ff\",   \"instance_type\": \"512mb\",   \"maximum_instances\": 4,   \"minimum_instances\": 1,   \"maximum_idle_time\": 10,   \"labels\": {     \"type\": \"version\"   },   \"creation_date\": \"2020-05-12T16:23:15.456812Z\",   \"last_updated\": \"2020-06-23T18:04:76.123754Z\",   \"last_file_uploaded\": \"2020-06-21T09:03:01.875391Z\",   \"monitoring\": \"notification-group-1\",   \"default_notification_group\": null,   \"request_retention_time\": 604800,   \"request_retention_mode\": \"full\",   \"maximum_queue_size_express\": 100,   \"maximum_queue_size_batch\": 100000,   \"has_request_method\": true,   \"has_requests_method\": false,   \"static_ip\": false,   \"restart_request_interruption\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.deployment_versions_update_with_http_info(project_name, deployment_name, version, data, async_req=True)
@@ -2397,35 +2274,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployment_versions_update`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployment_versions_update`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `deployment_versions_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployment_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployment_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployment_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `deployment_versions_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 
@@ -2462,7 +2347,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}', 'PATCH',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2520,19 +2405,23 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployments_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployments_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.deployment_create import DeploymentCreate
 
@@ -2565,7 +2454,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments', 'POST',
+            '/projects/{project_name}/deployments', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2623,19 +2512,23 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployments_delete`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployments_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployments_delete`")  # noqa: E501
 
@@ -2660,7 +2553,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}', 'DELETE',
+            '/projects/{project_name}/deployments/{deployment_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2718,19 +2611,23 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployments_get`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployments_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployments_get`")  # noqa: E501
 
@@ -2758,7 +2655,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2816,15 +2713,18 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployments_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployments_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'labels' in local_var_params
-            and local_var_params['labels'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'labels' in local_var_params and local_var_params['labels'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['labels'], str):  # noqa: E501
                 raise ApiValueError("Parameter `labels` must be a string when calling `deployments_list`")  # noqa: E501
 
@@ -2852,7 +2752,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments', 'GET',
+            '/projects/{project_name}/deployments', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -2911,27 +2811,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `deployments_update`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `deployments_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `deployments_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `deployments_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `deployments_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.deployment_update import DeploymentUpdate
 
@@ -2966,7 +2872,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}', 'PATCH',
+            '/projects/{project_name}/deployments/{deployment_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -3027,35 +2933,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `revisions_file_download`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `revisions_file_download`")  # noqa: E501
         # verify the required parameter 'revision_id' is set
-        if self.api_client.client_side_validation and ('revision_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['revision_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'revision_id' not in local_var_params or local_var_params['revision_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `revision_id` when calling `revisions_file_download`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `revisions_file_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `revisions_file_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `revisions_file_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'revision_id' in local_var_params
-            and local_var_params['revision_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'revision_id' in local_var_params and local_var_params['revision_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['revision_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `revision_id` must be a string when calling `revisions_file_download`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `revisions_file_download`")  # noqa: E501
 
@@ -3087,7 +3001,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/download', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/download', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -3105,7 +3019,7 @@ class Deployments(object):
     def revisions_file_upload_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """Upload deployment file  # noqa: E501
 
-         ### Description  Upload a deployment file for a version. Uploading a deployment file will create a new revision and trigger a build. This file should contain the deployment that will be run. It should be provided as a zip and a template can be found on https://github.com/UbiOps/deployment-template. The file is saved under a directory in the storage specified in the settings.   It is **also possible** to provide a source version from which the deployment file will be copied. This will also create a new revision and trigger a build.  ### Optional Parameters - `file`: Deployment file - `source_deployment`: Name of the deployment from which the deployment file will be copied - `source_version`: Version from which the deployment file will be copied - `template_deployment_id`: UUID of a template deployment which will be used as the source of the deployment file  Either **file** or **source_deployment** and **source_version** must be provided. source_deployment and source_version must be provided together.  ### Response Structure - `success`: Boolean indicating whether the deployment file upload/copy succeeded or not - `revision`: UUID of the created revision for the file upload - `build`: UUID of the build created for the file upload   # noqa: E501
+         ### Description  Upload a deployment file for a version. Uploading a deployment file will create a new revision and trigger a validation. This file should contain the deployment that will be run. It should be provided as a zip and a template can be found on https://github.com/UbiOps/deployment-template. The file is saved under a directory in the storage specified in the settings.   It is **also possible** to provide a source version from which the deployment file will be copied. This will also create a new revision and trigger a validation.  ### Optional Parameters - `file`: Deployment file - `source_deployment`: Name of the deployment from which the deployment file will be copied - `source_version`: Version from which the deployment file will be copied - `template_deployment_id`: UUID of a template deployment which will be used as the source of the deployment file  Either **file** or **source_deployment** and **source_version** must be provided. source_deployment and source_version must be provided together.  ### Response Structure - `success`: Boolean indicating whether the deployment file upload/copy succeeded or not - `revision`: UUID of the created revision for the file upload - `build`: [DEPRECATED] UUID of the created revision for the file upload   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.revisions_file_upload_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -3150,43 +3064,53 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `revisions_file_upload`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `revisions_file_upload`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `revisions_file_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `revisions_file_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `revisions_file_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `revisions_file_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'source_deployment' in local_var_params
-            and local_var_params['source_deployment'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'source_deployment' in local_var_params and local_var_params['source_deployment'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['source_deployment'], str):  # noqa: E501
                 raise ApiValueError("Parameter `source_deployment` must be a string when calling `revisions_file_upload`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'source_version' in local_var_params
-            and local_var_params['source_version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'source_version' in local_var_params and local_var_params['source_version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['source_version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `source_version` must be a string when calling `revisions_file_upload`")  # noqa: E501
 
-        if self.api_client.client_side_validation and ('source_deployment' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['source_deployment']) < 1):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'source_deployment' in local_var_params and len(local_var_params['source_deployment']) < 1  # noqa: E501
+        ):
             raise ApiValueError("Invalid value for parameter `source_deployment` when calling `revisions_file_upload`, length must be greater than or equal to `1`")  # noqa: E501
-        if self.api_client.client_side_validation and ('source_version' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['source_version']) < 1):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'source_version' in local_var_params and len(local_var_params['source_version']) < 1  # noqa: E501
+        ):
             raise ApiValueError("Invalid value for parameter `source_version` when calling `revisions_file_upload`, length must be greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
@@ -3225,7 +3149,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions', 'POST',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -3243,7 +3167,7 @@ class Deployments(object):
     def revisions_get_with_http_info(self, project_name, deployment_name, revision_id, version, **kwargs):  # noqa: E501
         """Get revision  # noqa: E501
 
-         ### Description  Retrieve details of a single revision of a version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the revision (UUID) - `version`: Version to which the revision is linked - `creation_date`: The date when the revision was created - `created_by`: The email of the user that uploaded the deployment file. In case the revision is created by a service, the field will have a \"UbiOps\" value.  #### Response Examples ``` {   \"id\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",   \"version\": \"v1\",   \"creation_date\": \"2020-12-23T16:35:13.069+00:00\",   \"created_by\": \"test@example.com\" } ```   # noqa: E501
+         ### Description  Retrieve details of a single revision of a version  ### Response Structure  A dictionary containing details of the revision - `id`: Unique identifier for the revision (UUID) - `version`: Version to which the revision is linked - `creation_date`: The date when the revision was created - `created_by`: The email of the user that uploaded the deployment file. In case the revision is created by a service, the field will have a \"UbiOps\" value. - `status`: Status of the revision. Can be 'queued', 'building', 'success' or 'failed'. - `error_message`: Error message which explains why the revision has failed. It is empty if the revision is successful. - `has_request_method`: Whether the deployment code corresponding to the revision has a 'request' method - `has_requests_method`: Whether the deployment code corresponding to the revision has a 'requests' method  #### Response Examples ``` {   \"id\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",   \"version\": \"v1\",   \"creation_date\": \"2020-12-23T16:35:13.069+00:00\",   \"created_by\": \"test@example.com\",   \"status\": \"success\",   \"error_message\": \"\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.revisions_get_with_http_info(project_name, deployment_name, revision_id, version, async_req=True)
@@ -3285,35 +3209,43 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `revisions_get`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `revisions_get`")  # noqa: E501
         # verify the required parameter 'revision_id' is set
-        if self.api_client.client_side_validation and ('revision_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['revision_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'revision_id' not in local_var_params or local_var_params['revision_id'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `revision_id` when calling `revisions_get`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `revisions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `revisions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `revisions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'revision_id' in local_var_params
-            and local_var_params['revision_id'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'revision_id' in local_var_params and local_var_params['revision_id'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['revision_id'], str):  # noqa: E501
                 raise ApiValueError("Parameter `revision_id` must be a string when calling `revisions_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `revisions_get`")  # noqa: E501
 
@@ -3345,7 +3277,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -3363,7 +3295,7 @@ class Deployments(object):
     def revisions_list_with_http_info(self, project_name, deployment_name, version, **kwargs):  # noqa: E501
         """List revisions  # noqa: E501
 
-         ### Description  List all revisions associated with a version. A new revision is created every time a new deployment file is uploaded for a version.  ### Response Structure  A list of details of the revisions - `id`: Unique identifier for the revision (UUID) - `version`: Version to which the revision is linked - `creation_date`: The date when the revision was created - `created_by`: The email of the user that uploaded the deployment file. In case the revision is created by a service, the field will have a \"UbiOps\" value.  #### Response Examples ``` [   {     \"id\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"version\": \"v1\",     \"creation_date\": \"2020-12-23T16:15:11.181+00:00\",     \"created_by\": \"UbiOps\"   },   {     \"id\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"version\": \"v1\",     \"creation_date\": \"2020-12-23T16:35:13.069+00:00\",     \"created_by\": \"test@example.com\"   } ] ```   # noqa: E501
+         ### Description  List all revisions associated with a version. A new revision is created every time a new deployment file is uploaded for a version.  ### Response Structure  A list of details of the revisions - `id`: Unique identifier for the revision (UUID) - `version`: Version to which the revision is linked - `creation_date`: The date when the revision was created - `created_by`: The email of the user that uploaded the deployment file. In case the revision is created by a service, the field will have a \"UbiOps\" value. - `status`: Status of the revision. Can be 'queued', 'building', 'success' or 'failed'. - `error_message`: Error message which explains why the revision has failed. It is empty if the revision is successful. - `has_request_method`: Whether the deployment code corresponding to the revision has a 'request' method - `has_requests_method`: Whether the deployment code corresponding to the revision has a 'requests' method  #### Response Examples ``` [   {     \"id\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",     \"version\": \"v1\",     \"creation_date\": \"2020-12-23T16:15:11.181+00:00\",     \"created_by\": \"UbiOps\",     \"status\": \"building\",     \"error_message\": \"\",     \"has_request_method\": true,     \"has_requests_method\": false   },   {     \"id\": \"a009d7c9-67e4-4d3c-89fd-d3c8b07c7242\",     \"version\": \"v1\",     \"creation_date\": \"2020-12-23T16:35:13.069+00:00\",     \"created_by\": \"test@example.com\",     \"status\": \"success\",     \"error_message\": \"\",     \"has_request_method\": true,     \"has_requests_method\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.revisions_list_with_http_info(project_name, deployment_name, version, async_req=True)
@@ -3404,27 +3336,33 @@ class Deployments(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `revisions_list`")  # noqa: E501
         # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' not in local_var_params or local_var_params['deployment_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `deployment_name` when calling `revisions_list`")  # noqa: E501
         # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' not in local_var_params or local_var_params['version'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `version` when calling `revisions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `revisions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'deployment_name' in local_var_params and local_var_params['deployment_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `deployment_name` must be a string when calling `revisions_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'version' in local_var_params and local_var_params['version'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['version'], str):  # noqa: E501
                 raise ApiValueError("Parameter `version` must be a string when calling `revisions_list`")  # noqa: E501
 
@@ -3454,7 +3392,7 @@ class Deployments(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions', 'GET',
+            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -3469,21 +3407,16 @@ class Deployments(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def revisions_rebuild_with_http_info(self, project_name, deployment_name, revision_id, version, **kwargs):  # noqa: E501
-        """Rebuild revision  # noqa: E501
+    def template_deployments_list_with_http_info(self, **kwargs):  # noqa: E501
+        """List template deployments  # noqa: E501
 
-         ### Description  Create a new build for a revision of a deployment version  ### Response Structure  A dictionary containing details of the build - `id`: Unique identifier for the build (UUID) - `revision`: UUID of the revision to which the build is linked - `creation_date`: The date when the build was created - `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'. - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful. - `trigger`: Action that triggered the build - `has_request_method`: Whether the build has a 'request' method - `has_requests_method`: Whether the build has a 'requests' method  #### Response Examples ``` {   \"id\": \"49d857fd-39ca-48db-9547-0d5d1a91b62d\",   \"revision\": \"7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6\",   \"creation_date\": \"2020-12-23T16:15:11.200+00:00\",   \"status\": \"building\",   \"error_message\": \"\",   \"trigger\": \"Deployment file upload\",   \"has_request_method\": true,   \"has_requests_method\": false } ```   # noqa: E501
+         ### Description Get the list of all available template deployments  ### Response Structure - `id`: Unique identifier for the template deployment (UUID)   - `details`: A dictionary containing all the required fields to create a deployment and a deployment version for the template deployment    #### Response Examples ```  [   {     \"id\": \"acb0c49a-23f8-4b04-94ed-a9c1a5a0119b\",     \"details\": {       \"name\": \"deployment-2\",       \"input_type\": \"structured\",       \"output_type\": \"structured\",       \"input_fields\": [         {           \"name\": \"field-1\",           \"data_type\": \"int\"         }       ],       \"output_fields\": [         {           \"name\": \"field-1\",           \"data_type\": \"int\"         }       ],       \"labels\": {         \"template\": \"True\"       },       \"description\": \"\",       \"version\": {         \"name\": \"v2\",         \"environment\": \"python3-7\",         \"description\": \"\",         \"labels\": {           \"template\": \"True\"         },         \"instance_type\": \"2048mb\",         \"maximum_idle_time\": \"300\",         \"maximum_instances\": \"1\",         \"minimum_instances\": \"0\",         \"request_retention_mode\": \"full\",         \"request_retention_time\": 604800       }     }   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.revisions_rebuild_with_http_info(project_name, deployment_name, revision_id, version, async_req=True)
+        >>> thread = api.template_deployments_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str project_name: (required)
-        :param str deployment_name: (required)
-        :param str revision_id: (required)
-        :param str version: (required)
-        :param object data:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3493,14 +3426,14 @@ class Deployments(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(BuildList, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[TemplateDeploymentList], status_code(int), headers(HTTPHeaderDict))
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         local_var_params = locals()
 
-        all_params = ['project_name', 'deployment_name', 'revision_id', 'version', 'data']  # noqa: E501
+        all_params = []  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -3510,54 +3443,14 @@ class Deployments(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method revisions_rebuild" % key
+                    " to method template_deployments_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `project_name` when calling `revisions_rebuild`")  # noqa: E501
-        # verify the required parameter 'deployment_name' is set
-        if self.api_client.client_side_validation and ('deployment_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['deployment_name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `deployment_name` when calling `revisions_rebuild`")  # noqa: E501
-        # verify the required parameter 'revision_id' is set
-        if self.api_client.client_side_validation and ('revision_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['revision_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `revision_id` when calling `revisions_rebuild`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `revisions_rebuild`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `project_name` must be a string when calling `revisions_rebuild`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'deployment_name' in local_var_params
-            and local_var_params['deployment_name'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['deployment_name'], str):  # noqa: E501
-                raise ApiValueError("Parameter `deployment_name` must be a string when calling `revisions_rebuild`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'revision_id' in local_var_params
-            and local_var_params['revision_id'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['revision_id'], str):  # noqa: E501
-                raise ApiValueError("Parameter `revision_id` must be a string when calling `revisions_rebuild`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'version' in local_var_params
-            and local_var_params['version'] is not None):  # noqa: E501
-            if not isinstance(local_var_params['version'], str):  # noqa: E501
-                raise ApiValueError("Parameter `version` must be a string when calling `revisions_rebuild`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_name' in local_var_params:
-            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
-        if 'deployment_name' in local_var_params:
-            path_params['deployment_name'] = local_var_params['deployment_name']  # noqa: E501
-        if 'revision_id' in local_var_params:
-            path_params['revision_id'] = local_var_params['revision_id']  # noqa: E501
-        if 'version' in local_var_params:
-            path_params['version'] = local_var_params['version']  # noqa: E501
 
         query_params = []
 
@@ -3567,27 +3460,22 @@ class Deployments(object):
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
 
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/rebuild', 'POST',
+            '/template-deployments', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BuildList',  # noqa: E501
+            response_type='list[TemplateDeploymentList]',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

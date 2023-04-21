@@ -16,7 +16,11 @@ import six
 from xml.etree import cElementTree
 
 
-class OpenApiException(Exception):
+class UbiOpsException(Exception):
+    """The base exception class"""
+
+
+class OpenApiException(UbiOpsException):
     """The base exception class for all OpenAPIExceptions"""
 
 
@@ -130,7 +134,7 @@ class ApiException(OpenApiException):
         except (cElementTree.ParseError, ValueError, TypeError, AttributeError):
             pass
 
-        return ""
+        return self.body
 
     def __str__(self):
         """Custom error messages for exception"""

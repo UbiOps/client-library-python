@@ -100,15 +100,18 @@ class PipelineCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 64):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) > 64
+        ):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `64`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -131,8 +134,9 @@ class PipelineCreate(object):
         :param description: The description of this PipelineCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -157,8 +161,9 @@ class PipelineCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and input_type is None:  # noqa: E501
             raise ValueError("Invalid value for `input_type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                input_type is not None and not isinstance(input_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            input_type is not None and not isinstance(input_type, str)
+        ):
             raise ValueError("Parameter `input_type` must be a string")  # noqa: E501
         allowed_values = ["structured", "plain"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_type not in allowed_values:  # noqa: E501
@@ -187,8 +192,9 @@ class PipelineCreate(object):
         :param input_fields: The input_fields of this PipelineCreate.  # noqa: E501
         :type: list[PipelineInputFieldCreate]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                input_fields is not None and not isinstance(input_fields, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            input_fields is not None and not isinstance(input_fields, list)
+        ):
             raise ValueError("Parameter `input_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and input_fields is not None:
             from ubiops.models.pipeline_input_field_create import PipelineInputFieldCreate
@@ -218,8 +224,9 @@ class PipelineCreate(object):
         :param output_type: The output_type of this PipelineCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                output_type is not None and not isinstance(output_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            output_type is not None and not isinstance(output_type, str)
+        ):
             raise ValueError("Parameter `output_type` must be a string")  # noqa: E501
         allowed_values = ["structured", "plain"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_type not in allowed_values:  # noqa: E501
@@ -248,8 +255,9 @@ class PipelineCreate(object):
         :param output_fields: The output_fields of this PipelineCreate.  # noqa: E501
         :type: list[PipelineOutputFieldCreate]
         """
-        if (self.local_vars_configuration.client_side_validation and
-                output_fields is not None and not isinstance(output_fields, list)):
+        if self.local_vars_configuration.client_side_validation and (
+            output_fields is not None and not isinstance(output_fields, list)
+        ):
             raise ValueError("Parameter `output_fields` must be a list")  # noqa: E501
         if self.local_vars_configuration.client_side_validation and output_fields is not None:
             from ubiops.models.pipeline_output_field_create import PipelineOutputFieldCreate
@@ -279,8 +287,9 @@ class PipelineCreate(object):
         :param labels: The labels of this PipelineCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels

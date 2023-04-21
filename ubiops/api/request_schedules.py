@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import (
+from ubiops.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -79,19 +79,23 @@ class RequestSchedules(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `request_schedules_create`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `request_schedules_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `request_schedules_create`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.schedule_create import ScheduleCreate
 
@@ -124,7 +128,7 @@ class RequestSchedules(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/schedules', 'POST',
+            '/projects/{project_name}/schedules', 'POST',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -182,19 +186,23 @@ class RequestSchedules(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `request_schedules_delete`")  # noqa: E501
         # verify the required parameter 'schedule_name' is set
-        if self.api_client.client_side_validation and ('schedule_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['schedule_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'schedule_name' not in local_var_params or local_var_params['schedule_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `schedule_name` when calling `request_schedules_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `request_schedules_delete`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'schedule_name' in local_var_params
-            and local_var_params['schedule_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'schedule_name' in local_var_params and local_var_params['schedule_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['schedule_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `schedule_name` must be a string when calling `request_schedules_delete`")  # noqa: E501
 
@@ -219,7 +227,7 @@ class RequestSchedules(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/schedules/{schedule_name}', 'DELETE',
+            '/projects/{project_name}/schedules/{schedule_name}', 'DELETE',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -277,19 +285,23 @@ class RequestSchedules(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `request_schedules_get`")  # noqa: E501
         # verify the required parameter 'schedule_name' is set
-        if self.api_client.client_side_validation and ('schedule_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['schedule_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'schedule_name' not in local_var_params or local_var_params['schedule_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `schedule_name` when calling `request_schedules_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `request_schedules_get`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'schedule_name' in local_var_params
-            and local_var_params['schedule_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'schedule_name' in local_var_params and local_var_params['schedule_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['schedule_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `schedule_name` must be a string when calling `request_schedules_get`")  # noqa: E501
 
@@ -317,7 +329,7 @@ class RequestSchedules(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/schedules/{schedule_name}', 'GET',
+            '/projects/{project_name}/schedules/{schedule_name}', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -375,15 +387,18 @@ class RequestSchedules(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `request_schedules_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `request_schedules_list`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'labels' in local_var_params
-            and local_var_params['labels'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'labels' in local_var_params and local_var_params['labels'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['labels'], str):  # noqa: E501
                 raise ApiValueError("Parameter `labels` must be a string when calling `request_schedules_list`")  # noqa: E501
 
@@ -411,7 +426,7 @@ class RequestSchedules(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/schedules', 'GET',
+            '/projects/{project_name}/schedules', 'GET',  # noqa: E501
             path_params,
             query_params,
             header_params,
@@ -470,27 +485,33 @@ class RequestSchedules(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'project_name' is set
-        if self.api_client.client_side_validation and ('project_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['project_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `project_name` when calling `request_schedules_update`")  # noqa: E501
         # verify the required parameter 'schedule_name' is set
-        if self.api_client.client_side_validation and ('schedule_name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['schedule_name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'schedule_name' not in local_var_params or local_var_params['schedule_name'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `schedule_name` when calling `request_schedules_update`")  # noqa: E501
         # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' not in local_var_params or local_var_params['data'] is None  # noqa: E501
+        ):
             raise ApiValueError("Missing the required parameter `data` when calling `request_schedules_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'project_name' in local_var_params
-            and local_var_params['project_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['project_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `project_name` must be a string when calling `request_schedules_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'schedule_name' in local_var_params
-            and local_var_params['schedule_name'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'schedule_name' in local_var_params and local_var_params['schedule_name'] is not None  # noqa: E501
+        ):
             if not isinstance(local_var_params['schedule_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `schedule_name` must be a string when calling `request_schedules_update`")  # noqa: E501
-        if (self.api_client.client_side_validation and 'data' in local_var_params
-            and local_var_params['data'] is not None):  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'data' in local_var_params and local_var_params['data'] is not None  # noqa: E501
+        ):
             if isinstance(local_var_params['data'], dict):  # noqa: E501
                 from ubiops.models.schedule_update import ScheduleUpdate
 
@@ -525,7 +546,7 @@ class RequestSchedules(object):
         auth_settings = ['api_key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/projects/{project_name}/schedules/{schedule_name}', 'PATCH',
+            '/projects/{project_name}/schedules/{schedule_name}', 'PATCH',  # noqa: E501
             path_params,
             query_params,
             header_params,

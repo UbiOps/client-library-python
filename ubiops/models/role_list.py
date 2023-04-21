@@ -79,8 +79,9 @@ class RoleList(object):
         :param id: The id of this RoleList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                id is not None and not isinstance(id, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            id is not None and not isinstance(id, str)
+        ):
             raise ValueError("Parameter `id` must be a string")  # noqa: E501
 
         self._id = id
@@ -105,15 +106,18 @@ class RoleList(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 64):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) > 64
+        ):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `64`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -136,8 +140,9 @@ class RoleList(object):
         :param default: The default of this RoleList.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                default is not None and not isinstance(default, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            default is not None and not isinstance(default, str)
+        ):
             raise ValueError("Parameter `default` must be a string")  # noqa: E501
 
         self._default = default

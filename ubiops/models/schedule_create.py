@@ -112,12 +112,14 @@ class ScheduleCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -142,12 +144,14 @@ class ScheduleCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and object_type is None:  # noqa: E501
             raise ValueError("Invalid value for `object_type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                object_type is not None and not isinstance(object_type, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            object_type is not None and not isinstance(object_type, str)
+        ):
             raise ValueError("Parameter `object_type` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                object_type is not None and len(object_type) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            object_type is not None and len(object_type) < 1
+        ):
             raise ValueError("Invalid value for `object_type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._object_type = object_type
@@ -172,12 +176,14 @@ class ScheduleCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and object_name is None:  # noqa: E501
             raise ValueError("Invalid value for `object_name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                object_name is not None and not isinstance(object_name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            object_name is not None and not isinstance(object_name, str)
+        ):
             raise ValueError("Parameter `object_name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                object_name is not None and len(object_name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            object_name is not None and len(object_name) < 1
+        ):
             raise ValueError("Invalid value for `object_name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._object_name = object_name
@@ -200,12 +206,14 @@ class ScheduleCreate(object):
         :param version: The version of this ScheduleCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and not isinstance(version, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and not isinstance(version, str)
+        ):
             raise ValueError("Parameter `version` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                version is not None and len(version) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            version is not None and len(version) < 1
+        ):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
@@ -230,12 +238,14 @@ class ScheduleCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and schedule is None:  # noqa: E501
             raise ValueError("Invalid value for `schedule`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                schedule is not None and not isinstance(schedule, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            schedule is not None and not isinstance(schedule, str)
+        ):
             raise ValueError("Parameter `schedule` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                schedule is not None and len(schedule) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            schedule is not None and len(schedule) < 1
+        ):
             raise ValueError("Invalid value for `schedule`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._schedule = schedule
@@ -279,8 +289,9 @@ class ScheduleCreate(object):
         :param timeout: The timeout of this ScheduleCreate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                timeout is not None and not isinstance(timeout, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            timeout is not None and not isinstance(timeout, int)
+        ):
             raise ValueError("Parameter `timeout` must be an integer")  # noqa: E501
 
         self._timeout = timeout
@@ -303,8 +314,9 @@ class ScheduleCreate(object):
         :param enabled: The enabled of this ScheduleCreate.  # noqa: E501
         :type: bool
         """
-        if (self.local_vars_configuration.client_side_validation and
-                enabled is not None and not isinstance(enabled, bool)):
+        if self.local_vars_configuration.client_side_validation and (
+            enabled is not None and not isinstance(enabled, bool)
+        ):
             raise ValueError("Parameter `enabled` must be a boolean")  # noqa: E501
 
         self._enabled = enabled
@@ -327,8 +339,9 @@ class ScheduleCreate(object):
         :param description: The description of this ScheduleCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -351,8 +364,9 @@ class ScheduleCreate(object):
         :param labels: The labels of this ScheduleCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels

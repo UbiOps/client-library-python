@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** | [optional] [readonly] 
-**revision** | **str** | 
-**creation_date** | **datetime** | [optional] [readonly] 
-**status** | **str** | [optional] [readonly] 
+**id** | **str** | [optional] 
+**revision** | **str** | [optional] 
+**creation_date** | **datetime** | [optional] 
+**status** | **str** | [optional] 
 **error_message** | **str** | [optional] 
 **trigger** | **str** | [optional] 
 **has_request_method** | **bool** | 

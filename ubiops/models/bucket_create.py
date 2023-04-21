@@ -97,12 +97,14 @@ class BucketCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and not isinstance(name, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and not isinstance(name, str)
+        ):
             raise ValueError("Parameter `name` must be a string")  # noqa: E501
 
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) < 1):
+        if self.local_vars_configuration.client_side_validation and (
+            name is not None and len(name) < 1
+        ):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
@@ -127,8 +129,9 @@ class BucketCreate(object):
         """
         if self.local_vars_configuration.client_side_validation and provider is None:  # noqa: E501
             raise ValueError("Invalid value for `provider`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                provider is not None and not isinstance(provider, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            provider is not None and not isinstance(provider, str)
+        ):
             raise ValueError("Parameter `provider` must be a string")  # noqa: E501
         allowed_values = ["ubiops", "google_cloud_storage", "amazon_s3", "azure_blob_storage"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and provider not in allowed_values:  # noqa: E501
@@ -157,8 +160,9 @@ class BucketCreate(object):
         :param credentials: The credentials of this BucketCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                credentials is not None and not isinstance(credentials, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            credentials is not None and not isinstance(credentials, dict)
+        ):
             raise ValueError("Parameter `credentials` must be a dictionary")  # noqa: E501
 
         self._credentials = credentials
@@ -181,8 +185,9 @@ class BucketCreate(object):
         :param configuration: The configuration of this BucketCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                configuration is not None and not isinstance(configuration, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            configuration is not None and not isinstance(configuration, dict)
+        ):
             raise ValueError("Parameter `configuration` must be a dictionary")  # noqa: E501
 
         self._configuration = configuration
@@ -205,8 +210,9 @@ class BucketCreate(object):
         :param ttl: The ttl of this BucketCreate.  # noqa: E501
         :type: int
         """
-        if (self.local_vars_configuration.client_side_validation and
-                ttl is not None and not isinstance(ttl, int)):
+        if self.local_vars_configuration.client_side_validation and (
+            ttl is not None and not isinstance(ttl, int)
+        ):
             raise ValueError("Parameter `ttl` must be an integer")  # noqa: E501
 
         self._ttl = ttl
@@ -229,8 +235,9 @@ class BucketCreate(object):
         :param description: The description of this BucketCreate.  # noqa: E501
         :type: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                description is not None and not isinstance(description, str)):
+        if self.local_vars_configuration.client_side_validation and (
+            description is not None and not isinstance(description, str)
+        ):
             raise ValueError("Parameter `description` must be a string")  # noqa: E501
 
         self._description = description
@@ -253,8 +260,9 @@ class BucketCreate(object):
         :param labels: The labels of this BucketCreate.  # noqa: E501
         :type: dict(str, str)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                labels is not None and not isinstance(labels, dict)):
+        if self.local_vars_configuration.client_side_validation and (
+            labels is not None and not isinstance(labels, dict)
+        ):
             raise ValueError("Parameter `labels` must be a dictionary")  # noqa: E501
 
         self._labels = labels
