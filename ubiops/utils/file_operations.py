@@ -155,7 +155,7 @@ def download_file(client, project_name, bucket_name='default', file_name=None, f
         raise ApiException(requests_resp=response)
 
     if path.isdir(output_path):
-        output_path = path.join(output_path, path.basename(file_name))
+        output_path = path.join(output_path, path.basename(ubiops_file.file))
 
     with open(output_path, "wb") as filestream:
         if not stream:
