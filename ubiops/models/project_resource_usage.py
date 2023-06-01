@@ -37,7 +37,8 @@ class ProjectResourceUsage(object):
         'deployment_versions': 'int',
         'pipelines': 'int',
         'pipeline_versions': 'int',
-        'buckets': 'int'
+        'buckets': 'int',
+        'environments': 'int'
     }
 
     attribute_map = {
@@ -45,10 +46,11 @@ class ProjectResourceUsage(object):
         'deployment_versions': 'deployment_versions',
         'pipelines': 'pipelines',
         'pipeline_versions': 'pipeline_versions',
-        'buckets': 'buckets'
+        'buckets': 'buckets',
+        'environments': 'environments'
     }
 
-    def __init__(self, deployments=None, deployment_versions=None, pipelines=None, pipeline_versions=None, buckets=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, deployments=None, deployment_versions=None, pipelines=None, pipeline_versions=None, buckets=None, environments=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """ProjectResourceUsage - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +61,7 @@ class ProjectResourceUsage(object):
         self._pipelines = None
         self._pipeline_versions = None
         self._buckets = None
+        self._environments = None
         self.discriminator = None
 
         if deployments is not None:
@@ -71,6 +74,8 @@ class ProjectResourceUsage(object):
             self.pipeline_versions = pipeline_versions
         if buckets is not None:
             self.buckets = buckets
+        if environments is not None:
+            self.environments = environments
 
     @property
     def deployments(self):
@@ -196,6 +201,31 @@ class ProjectResourceUsage(object):
             raise ValueError("Parameter `buckets` must be an integer")  # noqa: E501
 
         self._buckets = buckets
+
+    @property
+    def environments(self):
+        """Gets the environments of this ProjectResourceUsage.  # noqa: E501
+
+
+        :return: The environments of this ProjectResourceUsage.  # noqa: E501
+        :rtype: int
+        """
+        return self._environments
+
+    @environments.setter
+    def environments(self, environments):
+        """Sets the environments of this ProjectResourceUsage.
+
+
+        :param environments: The environments of this ProjectResourceUsage.  # noqa: E501
+        :type: int
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            environments is not None and not isinstance(environments, int)
+        ):
+            raise ValueError("Parameter `environments` must be an integer")  # noqa: E501
+
+        self._environments = environments
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -36,6 +36,134 @@ class Environments(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def environment_build_dependencies_list_with_http_info(self, project_name, build_id, environment_name, revision_id, **kwargs):  # noqa: E501
+        """List dependency files  # noqa: E501
+
+         ### Description List the dependency files and their contents in an environment build  ### Response Structure A list of details of the dependency files - `name`: Name of the dependency file - `content`: Content of the dependency file  #### Response Examples ``` [   {     \"name\": \"requirements.txt\",     \"content\": \"ubiops==3.6.1\\nrequests==2.30.0\\n\"   },   {     \"name\": \"ubiops.yaml\",     \"content\": \"environment_variables:\\n- ACCEPT_EULA=Y\\napt:\\n  packages:\\n    - python3-dev\\n\"   } ] ```   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.environment_build_dependencies_list_with_http_info(project_name, build_id, environment_name, revision_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str project_name: (required)
+        :param str build_id: (required)
+        :param str environment_name: (required)
+        :param str revision_id: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(list[EnvironmentBuildDependency], status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = ['project_name', 'build_id', 'environment_name', 'revision_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method environment_build_dependencies_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'project_name' is set
+        if self.api_client.client_side_validation and (
+            'project_name' not in local_var_params or local_var_params['project_name'] is None  # noqa: E501
+        ):
+            raise ApiValueError("Missing the required parameter `project_name` when calling `environment_build_dependencies_list`")  # noqa: E501
+        # verify the required parameter 'build_id' is set
+        if self.api_client.client_side_validation and (
+            'build_id' not in local_var_params or local_var_params['build_id'] is None  # noqa: E501
+        ):
+            raise ApiValueError("Missing the required parameter `build_id` when calling `environment_build_dependencies_list`")  # noqa: E501
+        # verify the required parameter 'environment_name' is set
+        if self.api_client.client_side_validation and (
+            'environment_name' not in local_var_params or local_var_params['environment_name'] is None  # noqa: E501
+        ):
+            raise ApiValueError("Missing the required parameter `environment_name` when calling `environment_build_dependencies_list`")  # noqa: E501
+        # verify the required parameter 'revision_id' is set
+        if self.api_client.client_side_validation and (
+            'revision_id' not in local_var_params or local_var_params['revision_id'] is None  # noqa: E501
+        ):
+            raise ApiValueError("Missing the required parameter `revision_id` when calling `environment_build_dependencies_list`")  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'project_name' in local_var_params and local_var_params['project_name'] is not None  # noqa: E501
+        ):
+            if not isinstance(local_var_params['project_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `project_name` must be a string when calling `environment_build_dependencies_list`")  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'build_id' in local_var_params and local_var_params['build_id'] is not None  # noqa: E501
+        ):
+            if not isinstance(local_var_params['build_id'], str):  # noqa: E501
+                raise ApiValueError("Parameter `build_id` must be a string when calling `environment_build_dependencies_list`")  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'environment_name' in local_var_params and local_var_params['environment_name'] is not None  # noqa: E501
+        ):
+            if not isinstance(local_var_params['environment_name'], str):  # noqa: E501
+                raise ApiValueError("Parameter `environment_name` must be a string when calling `environment_build_dependencies_list`")  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'revision_id' in local_var_params and local_var_params['revision_id'] is not None  # noqa: E501
+        ):
+            if not isinstance(local_var_params['revision_id'], str):  # noqa: E501
+                raise ApiValueError("Parameter `revision_id` must be a string when calling `environment_build_dependencies_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_name' in local_var_params:
+            path_params['project_name'] = local_var_params['project_name']  # noqa: E501
+        if 'build_id' in local_var_params:
+            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
+        if 'environment_name' in local_var_params:
+            path_params['environment_name'] = local_var_params['environment_name']  # noqa: E501
+        if 'revision_id' in local_var_params:
+            path_params['revision_id'] = local_var_params['revision_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id}/dependency-files', 'GET',  # noqa: E501
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[EnvironmentBuildDependency]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def environment_builds_get_with_http_info(self, project_name, build_id, environment_name, revision_id, **kwargs):  # noqa: E501
         """Get build  # noqa: E501
 
@@ -1002,7 +1130,7 @@ class Environments(object):
     def environments_create_with_http_info(self, project_name, data, **kwargs):  # noqa: E501
         """Create environments  # noqa: E501
 
-         ### Description Create a custom environment  ### Required Parameters - `name`: Name of the environment - `base_environment`: Base environment name on which this environment is based  ### Optional Parameters - `display_name`: Display name of the environment. If not set, 'name' is used instead. - `description`: Description for the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples ``` {   \"name\": \"python3-8-custom\",   \"base_environment\": \"python3.8\" } ```  ``` {   \"name\": \"python3-8-custom-1\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\" } ```  ### Response Structure  Details of the created environment - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `implicit`: A boolean indicating whether the environment is implicitly created  #### Response Examples  ``` {   \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",   \"name\": \"python3-8-custom\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\",   \"project\": \"project-1\",   \"creation_date\": \"2023-03-01T08:32:14.876451Z\",   \"last_updated\": \"2023-03-01T08:32:14.876451Z\",   \"description\": \"Custom environment based on Python 3.8\",   \"labels\": {     \"type\": \"environment\"   },   \"gpu_required\": false,   \"status\": \"active\",   \"implicit\": false } ```   # noqa: E501
+         ### Description Create a custom environment  ### Required Parameters - `name`: Name of the environment - `base_environment`: Base environment name on which this environment is based  ### Optional Parameters - `display_name`: Display name of the environment. If not set, 'name' is used instead. - `description`: Description for the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples ``` {   \"name\": \"python3-8-custom\",   \"base_environment\": \"python3.8\" } ```  ``` {   \"name\": \"python3-8-custom-1\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\" } ```  ### Response Structure  Details of the created environment - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `implicit`: A boolean indicating whether the environment is implicitly created - `hidden`: A boolean indicating whether the environment is hidden - `deprecated`: A boolean indicating whether the environment is deprecated  #### Response Examples  ``` {   \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",   \"name\": \"python3-8-custom\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\",   \"project\": \"project-1\",   \"creation_date\": \"2023-03-01T08:32:14.876451Z\",   \"last_updated\": \"2023-03-01T08:32:14.876451Z\",   \"description\": \"Custom environment based on Python 3.8\",   \"labels\": {     \"type\": \"environment\"   },   \"gpu_required\": false,   \"status\": \"active\",   \"implicit\": false,   \"deprecated\": false,   \"hidden\": false } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.environments_create_with_http_info(project_name, data, async_req=True)
@@ -1208,7 +1336,7 @@ class Environments(object):
     def environments_get_with_http_info(self, project_name, environment_name, **kwargs):  # noqa: E501
         """Get environment  # noqa: E501
 
-         ### Description Retrieve details of an environment  ### Response Structure Details of an environment - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `active_revision`: UUID of the active revision of the environment - `active_build`: UUID of the active build of the environment - `latest_revision`: UUID of the latest revision of the environment - `latest_build`: UUID of the latest build of the environment - `implicit`: A boolean indicating whether the environment is implicitly created  #### Response Examples ``` {   \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",   \"name\": \"python3-8-custom\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\",   \"project\": \"project-1\",   \"creation_date\": \"2023-03-01T08:32:14.876451Z\",   \"last_updated\": \"2023-03-01T10:52:23.124784Z\",   \"description\": \"Custom environment based on Python 3.8\",   \"labels\": {     \"type\": \"environment\"   },   \"gpu_required\": false,   \"status\": \"active\",   \"implicit\": false,   \"active_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"active_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\",   \"latest_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"latest_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\" } ```   # noqa: E501
+         ### Description Retrieve details of an environment  ### Response Structure Details of an environment - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `active_revision`: UUID of the active revision of the environment - `active_build`: UUID of the active build of the environment - `latest_revision`: UUID of the latest revision of the environment - `latest_build`: UUID of the latest build of the environment - `implicit`: A boolean indicating whether the environment is implicitly created - `hidden`: A boolean indicating whether the environment is hidden - `deprecated`: A boolean indicating whether the environment is deprecated  #### Response Examples ``` {   \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",   \"name\": \"python3-8-custom\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\",   \"project\": \"project-1\",   \"creation_date\": \"2023-03-01T08:32:14.876451Z\",   \"last_updated\": \"2023-03-01T10:52:23.124784Z\",   \"description\": \"Custom environment based on Python 3.8\",   \"labels\": {     \"type\": \"environment\"   },   \"gpu_required\": false,   \"status\": \"active\",   \"implicit\": false,   \"deprecated\": false,   \"hidden\": false,   \"active_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"active_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\",   \"latest_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"latest_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.environments_get_with_http_info(project_name, environment_name, async_req=True)
@@ -1310,7 +1438,7 @@ class Environments(object):
     def environments_list_with_http_info(self, project_name, **kwargs):  # noqa: E501
         """List environments  # noqa: E501
 
-         ### Description  Environments can be filtered according to the labels they have by giving labels as a query parameter. Environments that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the environment. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter. - `environment_type`: Filter on the type of the environment. It can be one of the following: 'base', 'custom' or 'all'. The default value is 'all'.  ### Response Structure  A list of details of the environments - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined. It is null for base environments. - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `implicit`: A boolean indicating whether the environment is implicitly created  #### Response Examples ``` [   {     \"id\": \"1319895f-467b-4732-9804-7de500099233\",     \"name\": \"python3-8\",     \"display_name\": \"Python 3.8\",     \"base_environment\": null,     \"project\": null,     \"creation_date\": \"2023-03-01T08:32:14.876451Z\",     \"last_updated\": \"2023-03-01T10:52:23.124784Z\",     \"description\": \"Base environment containing Python 3.8\",     \"labels\": {},     \"gpu_required\": false,     \"status\": \"active\",     \"implicit\": false   },   {     \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",     \"name\": \"python3-8-custom\",     \"display_name\": \"Custom Python 3.8\",     \"base_environment\": \"python3.8\",     \"project\": \"project-1\",     \"creation_date\": \"2023-03-02T12:15:43.124751Z\",     \"last_updated\": \"2023-03-03T13:14:23.865421Z\",     \"description\": \"Custom environment based on Python 3.8\",     \"labels\": {       \"type\": \"environment\"     },     \"gpu_required\": false,     \"status\": \"active\",     \"implicit\": false   } ] ```   # noqa: E501
+         ### Description  Environments can be filtered according to the labels they have by giving labels as a query parameter. Environments that have at least one of the labels on which is filtered, are returned.  ### Optional Parameters - `labels`: Filter on labels of the environment. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter. - `environment_type`: Filter on the type of the environment. It can be one of the following: 'base', 'custom' or 'all'. The default value is 'all'.  ### Response Structure  A list of details of the environments - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined. It is null for base environments. - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `implicit`: A boolean indicating whether the environment is implicitly created - `hidden`: A boolean indicating whether the environment is hidden - `deprecated`: A boolean indicating whether the environment is deprecated  #### Response Examples ``` [   {     \"id\": \"1319895f-467b-4732-9804-7de500099233\",     \"name\": \"python3-8\",     \"display_name\": \"Python 3.8\",     \"base_environment\": null,     \"project\": null,     \"creation_date\": \"2023-03-01T08:32:14.876451Z\",     \"last_updated\": \"2023-03-01T10:52:23.124784Z\",     \"description\": \"Base environment containing Python 3.8\",     \"labels\": {},     \"gpu_required\": false,     \"status\": \"active\",     \"implicit\": false,     \"deprecated\": false,     \"hidden\": false   },   {     \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",     \"name\": \"python3-8-custom\",     \"display_name\": \"Custom Python 3.8\",     \"base_environment\": \"python3.8\",     \"project\": \"project-1\",     \"creation_date\": \"2023-03-02T12:15:43.124751Z\",     \"last_updated\": \"2023-03-03T13:14:23.865421Z\",     \"description\": \"Custom environment based on Python 3.8\",     \"labels\": {       \"type\": \"environment\"     },     \"gpu_required\": false,     \"status\": \"active\",     \"implicit\": false,     \"deprecated\": false,     \"hidden\": false   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.environments_list_with_http_info(project_name, async_req=True)
@@ -1415,7 +1543,7 @@ class Environments(object):
     def environments_update_with_http_info(self, project_name, environment_name, data, **kwargs):  # noqa: E501
         """Update environment  # noqa: E501
 
-         ### Description Update an environment. When updating labels, the labels will replace the existing value for labels.  ### Optional Parameters - `name`: Name of the environment - `display_name`: Display name of the environment - `description`: Description for the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples  ``` {   \"name\": \"new-python3-8-custom\" } ```  ### Response Structure Details of the updated environment - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `active_revision`: UUID of the active revision of the environment - `active_build`: UUID of the active build of the environment - `latest_revision`: UUID of the latest revision of the environment - `latest_build`: UUID of the latest build of the environment - `implicit`: A boolean indicating whether the environment is implicitly created  #### Response Examples  ``` {   \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",   \"name\": \"new-python3-8-custom\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\",   \"project\": \"project-1\",   \"creation_date\": \"2023-03-01T08:32:14.876451Z\",   \"last_updated\": \"2023-03-01T10:52:23.124784Z\",   \"description\": \"Custom environment based on Python 3.8\",   \"labels\": {     \"type\": \"environment\"   },   \"gpu_required\": false,   \"status\": \"active\",   \"implicit\": false,   \"active_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"active_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\",   \"latest_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"latest_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\" } ```   # noqa: E501
+         ### Description Update an environment. When updating labels, the labels will replace the existing value for labels.  ### Optional Parameters - `name`: Name of the environment - `display_name`: Display name of the environment - `description`: Description for the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label  #### Request Examples  ``` {   \"name\": \"new-python3-8-custom\" } ```  ### Response Structure Details of the updated environment - `id`: Unique identifier for the environment - `name`: Name of the environment - `display_name`: Display name of the environment - `base_environment`: Base environment name on which this environment is based - `project`: Project name in which the environment is defined - `creation_date`: The date when the environment was created - `last_updated`: The date when the environment was last updated - `description`: Description of the environment - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label - `gpu_required`: A boolean indicating whether the environment requires GPUs - `status`: Status of the environment - `active_revision`: UUID of the active revision of the environment - `active_build`: UUID of the active build of the environment - `latest_revision`: UUID of the latest revision of the environment - `latest_build`: UUID of the latest build of the environment - `implicit`: A boolean indicating whether the environment is implicitly created - `hidden`: A boolean indicating whether the environment is hidden - `deprecated`: A boolean indicating whether the environment is deprecated  #### Response Examples  ``` {   \"id\": \"3a7d94ca-4df4-4be3-857c-d6b9995cd17a\",   \"name\": \"new-python3-8-custom\",   \"display_name\": \"Custom Python 3.8\",   \"base_environment\": \"python3.8\",   \"project\": \"project-1\",   \"creation_date\": \"2023-03-01T08:32:14.876451Z\",   \"last_updated\": \"2023-03-01T10:52:23.124784Z\",   \"description\": \"Custom environment based on Python 3.8\",   \"labels\": {     \"type\": \"environment\"   },   \"gpu_required\": false,   \"status\": \"active\",   \"implicit\": false,   \"deprecated\": false,   \"hidden\": false,   \"active_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"active_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\",   \"latest_revision\": \"8760570f-6eda-470b-99af-bde810d418d8\",   \"latest_build\": \"e3021050-b9ac-4b8e-89f4-adb9e7c9aba6\" } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.environments_update_with_http_info(project_name, environment_name, data, async_req=True)

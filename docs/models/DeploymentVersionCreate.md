@@ -5,7 +5,7 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **version** | **str** | 
 **language** | **str** | [optional] 
-**environment** | **str** | [optional] [default to 'python3-7']
+**environment** | **str** | [optional] [default to 'python3-10']
 **instance_type** | **str** | [optional] 
 **maximum_instances** | **int** | [optional] 
 **minimum_instances** | **int** | [optional] 

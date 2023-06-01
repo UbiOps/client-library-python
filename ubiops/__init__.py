@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "3.15.1"
+__version__ = "3.16.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -70,6 +70,7 @@ from ubiops.models.deployment_version_list import DeploymentVersionList
 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
 from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
+from ubiops.models.environment_build_dependency import EnvironmentBuildDependency
 from ubiops.models.environment_build_list import EnvironmentBuildList
 from ubiops.models.environment_build_update import EnvironmentBuildUpdate
 from ubiops.models.environment_create import EnvironmentCreate

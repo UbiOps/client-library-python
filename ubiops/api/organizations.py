@@ -815,7 +815,7 @@ class Organizations(object):
     def organizations_resource_usage_with_http_info(self, organization_name, **kwargs):  # noqa: E501
         """Get resource usage  # noqa: E501
 
-         ### Description  List the total number of resources used by this organization  ### Response Structure A list containing the number of - projects   - users   - deployments   - deployment_versions   - pipelines   - pipeline_versions   currently used by the organization.  #### Response Examples ``` {   \"projects\": 5,   \"users\": 3,   \"deployments\": 30,   \"deployment_versions\": 47,   \"pipelines\": 2,   \"pipeline_versions\": 4 } ```   # noqa: E501
+         ### Description  List the total number of resources used by this organization  ### Response Structure A list containing the number of - projects - users - deployments - deployment_versions - pipelines - pipeline_versions - buckets - environments currently used by the organization.  #### Response Examples ``` {   \"projects\": 5,   \"users\": 3,   \"deployments\": 30,   \"deployment_versions\": 47,   \"pipelines\": 2,   \"pipeline_versions\": 4,   \"buckets\": 2,   \"environments\": 2 } ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.organizations_resource_usage_with_http_info(organization_name, async_req=True)
@@ -1011,7 +1011,7 @@ class Organizations(object):
     def organizations_usage_get_with_http_info(self, organization_name, **kwargs):  # noqa: E501
         """Get organization usage  # noqa: E501
 
-         ### Description  Get resource usage for the organization. It contains **the details of each metric aggregated per month.**   ### Optional Parameters  - `start_date`: date indicating the start date to fetch usage data from. If omitted, results are generated for current subscription period. - `end_date`: date indicating the end date to fetch usage data until. If omitted, results are generated for current subscription period. - `interval`: interval for which the usage data is fetched. It can be 'day' or 'month'. It defaults to 'month'.  If no **start_date** or **end_date** is given, the current subscription period is used, e.g. if the usage details are requested on 01-12-2020 and the subscription started on 20-11-2020, the results will contain data from 20-11-2020 to 20-12-2020. When **start_date** and **end_date** are given, this month period is used, e.g. if 12-11-2020 is given as start date and 12-12-2020 as end date, the results will contain data from 12-11-2020 to 12-12-2020.  ### Response Structure - `metric`: Metric name - `object_type`: Type of object the metric was measured for (deployment_version or pipeline_version) - `usage`: an array of objects each containing the following:   - `start_date`: Timestamp denoting the start of the current subscription period or the provided date   - `end_date`: Timestamp denoting the end of the current subscription period or the provided date   - `value`: Aggregated metric value for the given unit over the given month   #### Response Examples 2019-08-01 as start date and 2019-09-01 as end date ``` [   {     \"object_type\": \"deployment_version\",     \"metric\": \"credits\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1484124       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1204       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1598       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1840       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 400       }       ]   } ] ```   # noqa: E501
+         ### Description  Get resource usage for the organization. It contains **the details of each metric aggregated per month.**   ### Optional Parameters  - `start_date`: Start date for the usage data to be returned. If omitted, results are generated for current subscription period. - `end_date`: End date for the usage data to be returned. If omitted, results are generated for current subscription period. - `interval`: Interval for the usage data. It can be 'day' or 'month'. It defaults to 'month'.  If no **start_date** or **end_date** is given, the current subscription period is used, e.g. if the usage details are requested on 01-12-2020 and the subscription started on 20-11-2020, the results will contain data from 20-11-2020 to 20-12-2020. When **start_date** and **end_date** are given, this month period is used, e.g. if 12-11-2020 is given as start date and 12-12-2020 as end date, the results will contain data from 12-11-2020 to 12-12-2020.  ### Response Structure - `metric`: Metric name - `object_type`: Type of object the metric was measured for (deployment_version or pipeline_version) - `usage`: an array of objects each containing the following:   - `start_date`: Start date of the current subscription period or the provided date   - `end_date`: End date of the current subscription period or the provided date   - `value`: Aggregated metric value for the given unit over the given month   #### Response Examples 2019-08-01 as start date and 2019-09-01 as end date ``` [   {     \"object_type\": \"deployment_version\",     \"metric\": \"credits\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1484124       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1204       }       ]   },   {     \"object_type\": \"deployment_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1598       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"input_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 1840       }       ]   },   {     \"object_type\": \"pipeline_version\",     \"metric\": \"output_volume\",     \"usage\": [       {         \"start_date\": \"2019-08-01T00:00:00Z\",         \"end_date\": \"2019-09-01T00:00:00Z\",         \"value\": 400       }       ]   } ] ```   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.organizations_usage_get_with_http_info(organization_name, async_req=True)
@@ -1019,8 +1019,8 @@ class Organizations(object):
 
         :param async_req bool: execute request asynchronously
         :param str organization_name: (required)
-        :param datetime start_date:
-        :param datetime end_date:
+        :param str start_date:
+        :param str end_date:
         :param str interval:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -1062,6 +1062,16 @@ class Organizations(object):
         ):
             if not isinstance(local_var_params['organization_name'], str):  # noqa: E501
                 raise ApiValueError("Parameter `organization_name` must be a string when calling `organizations_usage_get`")  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'start_date' in local_var_params and local_var_params['start_date'] is not None  # noqa: E501
+        ):
+            if not isinstance(local_var_params['start_date'], str):  # noqa: E501
+                raise ApiValueError("Parameter `start_date` must be a string when calling `organizations_usage_get`")  # noqa: E501
+        if self.api_client.client_side_validation and (
+            'end_date' in local_var_params and local_var_params['end_date'] is not None  # noqa: E501
+        ):
+            if not isinstance(local_var_params['end_date'], str):  # noqa: E501
+                raise ApiValueError("Parameter `end_date` must be a string when calling `organizations_usage_get`")  # noqa: E501
         if self.api_client.client_side_validation and (
             'interval' in local_var_params and local_var_params['interval'] is not None  # noqa: E501
         ):

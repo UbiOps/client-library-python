@@ -72,7 +72,7 @@ class DeploymentVersionCreate(object):
         'restart_request_interruption': 'restart_request_interruption'
     }
 
-    def __init__(self, version=None, language=None, environment='python3-7', instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode='full', default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, version=None, language=None, environment='python3-10', instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, description=None, labels=None, monitoring=None, request_retention_time=None, request_retention_mode='full', default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, static_ip=False, restart_request_interruption=False, local_vars_configuration=None, **kwargs):  # noqa: E501
         """DeploymentVersionCreate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()

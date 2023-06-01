@@ -48,7 +48,6 @@ class ExperimentDetail(object):
         'labels': 'dict(str, str)',
         'creation_date': 'datetime',
         'last_updated': 'datetime',
-        'last_file_upload': 'datetime',
         'monitoring': 'str',
         'request_retention_time': 'int',
         'request_retention_mode': 'str',
@@ -58,7 +57,8 @@ class ExperimentDetail(object):
         'has_request_method': 'bool',
         'has_requests_method': 'bool',
         'static_ip': 'bool',
-        'restart_request_interruption': 'bool'
+        'restart_request_interruption': 'bool',
+        'default_bucket': 'str'
     }
 
     attribute_map = {
@@ -77,7 +77,6 @@ class ExperimentDetail(object):
         'labels': 'labels',
         'creation_date': 'creation_date',
         'last_updated': 'last_updated',
-        'last_file_upload': 'last_file_upload',
         'monitoring': 'monitoring',
         'request_retention_time': 'request_retention_time',
         'request_retention_mode': 'request_retention_mode',
@@ -87,10 +86,11 @@ class ExperimentDetail(object):
         'has_request_method': 'has_request_method',
         'has_requests_method': 'has_requests_method',
         'static_ip': 'static_ip',
-        'restart_request_interruption': 'restart_request_interruption'
+        'restart_request_interruption': 'restart_request_interruption',
+        'default_bucket': 'default_bucket'
     }
 
-    def __init__(self, id=None, name=None, description=None, environment=None, environment_display_name=None, status=None, active_revision=None, latest_revision=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, last_file_upload=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, name=None, description=None, environment=None, environment_display_name=None, status=None, active_revision=None, latest_revision=None, instance_type=None, maximum_instances=None, minimum_instances=None, maximum_idle_time=None, labels=None, creation_date=None, last_updated=None, monitoring=None, request_retention_time=None, request_retention_mode=None, default_notification_group=None, maximum_queue_size_express=None, maximum_queue_size_batch=None, has_request_method=None, has_requests_method=None, static_ip=None, restart_request_interruption=None, default_bucket=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """ExperimentDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -111,7 +111,6 @@ class ExperimentDetail(object):
         self._labels = None
         self._creation_date = None
         self._last_updated = None
-        self._last_file_upload = None
         self._monitoring = None
         self._request_retention_time = None
         self._request_retention_mode = None
@@ -122,6 +121,7 @@ class ExperimentDetail(object):
         self._has_requests_method = None
         self._static_ip = None
         self._restart_request_interruption = None
+        self._default_bucket = None
         self.discriminator = None
 
         if id is not None:
@@ -153,7 +153,6 @@ class ExperimentDetail(object):
             self.creation_date = creation_date
         if last_updated is not None:
             self.last_updated = last_updated
-        self.last_file_upload = last_file_upload
         if monitoring is not None:
             self.monitoring = monitoring
         if request_retention_time is not None:
@@ -174,6 +173,8 @@ class ExperimentDetail(object):
             self.static_ip = static_ip
         if restart_request_interruption is not None:
             self.restart_request_interruption = restart_request_interruption
+        if default_bucket is not None:
+            self.default_bucket = default_bucket
 
     @property
     def id(self):
@@ -612,27 +613,6 @@ class ExperimentDetail(object):
         self._last_updated = last_updated
 
     @property
-    def last_file_upload(self):
-        """Gets the last_file_upload of this ExperimentDetail.  # noqa: E501
-
-
-        :return: The last_file_upload of this ExperimentDetail.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._last_file_upload
-
-    @last_file_upload.setter
-    def last_file_upload(self, last_file_upload):
-        """Sets the last_file_upload of this ExperimentDetail.
-
-
-        :param last_file_upload: The last_file_upload of this ExperimentDetail.  # noqa: E501
-        :type: datetime
-        """
-
-        self._last_file_upload = last_file_upload
-
-    @property
     def monitoring(self):
         """Gets the monitoring of this ExperimentDetail.  # noqa: E501
 
@@ -888,6 +868,39 @@ class ExperimentDetail(object):
             raise ValueError("Parameter `restart_request_interruption` must be a boolean")  # noqa: E501
 
         self._restart_request_interruption = restart_request_interruption
+
+    @property
+    def default_bucket(self):
+        """Gets the default_bucket of this ExperimentDetail.  # noqa: E501
+
+
+        :return: The default_bucket of this ExperimentDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._default_bucket
+
+    @default_bucket.setter
+    def default_bucket(self, default_bucket):
+        """Sets the default_bucket of this ExperimentDetail.
+
+
+        :param default_bucket: The default_bucket of this ExperimentDetail.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and default_bucket is None:  # noqa: E501
+            raise ValueError("Invalid value for `default_bucket`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and (
+                default_bucket is not None and not isinstance(default_bucket, str)
+        ):
+            raise ValueError("Parameter `default_bucket` must be a string")  # noqa: E501
+
+        if self.local_vars_configuration.client_side_validation and (
+                default_bucket is not None and len(default_bucket) < 1
+        ):
+            raise ValueError(
+                "Invalid value for `default_bucket`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._default_bucket = default_bucket
 
     def to_dict(self):
         """Returns the model properties as a dict"""
