@@ -10,5 +10,6 @@ Name | Type | Notes
 **pipelines** | **int** | [optional] [readonly] 
 **pipeline_versions** | **int** | [optional] [readonly] 
 **buckets** | **int** | [optional] [readonly] 
+**environments** | **int** | [optional] [readonly] 
 
 

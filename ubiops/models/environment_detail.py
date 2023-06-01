@@ -37,6 +37,7 @@ class EnvironmentDetail(object):
         'name': 'str',
         'display_name': 'str',
         'base_environment': 'str',
+        'base_environment_display_name': 'str',
         'project': 'str',
         'creation_date': 'datetime',
         'last_updated': 'datetime',
@@ -45,6 +46,8 @@ class EnvironmentDetail(object):
         'gpu_required': 'bool',
         'status': 'str',
         'implicit': 'bool',
+        'hidden': 'bool',
+        'deprecated': 'bool',
         'active_revision': 'str',
         'active_build': 'str',
         'latest_revision': 'str',
@@ -56,6 +59,7 @@ class EnvironmentDetail(object):
         'name': 'name',
         'display_name': 'display_name',
         'base_environment': 'base_environment',
+        'base_environment_display_name': 'base_environment_display_name',
         'project': 'project',
         'creation_date': 'creation_date',
         'last_updated': 'last_updated',
@@ -64,13 +68,15 @@ class EnvironmentDetail(object):
         'gpu_required': 'gpu_required',
         'status': 'status',
         'implicit': 'implicit',
+        'hidden': 'hidden',
+        'deprecated': 'deprecated',
         'active_revision': 'active_revision',
         'active_build': 'active_build',
         'latest_revision': 'latest_revision',
         'latest_build': 'latest_build'
     }
 
-    def __init__(self, id=None, name=None, display_name=None, base_environment=None, project=None, creation_date=None, last_updated=None, description=None, labels=None, gpu_required=None, status=None, implicit=None, active_revision=None, active_build=None, latest_revision=None, latest_build=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, id=None, name=None, display_name=None, base_environment=None, base_environment_display_name=None, project=None, creation_date=None, last_updated=None, description=None, labels=None, gpu_required=None, status=None, implicit=None, hidden=None, deprecated=None, active_revision=None, active_build=None, latest_revision=None, latest_build=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """EnvironmentDetail - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -80,6 +86,7 @@ class EnvironmentDetail(object):
         self._name = None
         self._display_name = None
         self._base_environment = None
+        self._base_environment_display_name = None
         self._project = None
         self._creation_date = None
         self._last_updated = None
@@ -88,6 +95,8 @@ class EnvironmentDetail(object):
         self._gpu_required = None
         self._status = None
         self._implicit = None
+        self._hidden = None
+        self._deprecated = None
         self._active_revision = None
         self._active_build = None
         self._latest_revision = None
@@ -100,6 +109,8 @@ class EnvironmentDetail(object):
         self.display_name = display_name
         if base_environment is not None:
             self.base_environment = base_environment
+        if base_environment_display_name is not None:
+            self.base_environment_display_name = base_environment_display_name
         if project is not None:
             self.project = project
         if creation_date is not None:
@@ -116,6 +127,10 @@ class EnvironmentDetail(object):
             self.status = status
         if implicit is not None:
             self.implicit = implicit
+        if hidden is not None:
+            self.hidden = hidden
+        if deprecated is not None:
+            self.deprecated = deprecated
         if active_revision is not None:
             self.active_revision = active_revision
         if active_build is not None:
@@ -240,6 +255,31 @@ class EnvironmentDetail(object):
             raise ValueError("Parameter `base_environment` must be a string")  # noqa: E501
 
         self._base_environment = base_environment
+
+    @property
+    def base_environment_display_name(self):
+        """Gets the base_environment_display_name of this EnvironmentDetail.  # noqa: E501
+
+
+        :return: The base_environment_display_name of this EnvironmentDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._base_environment_display_name
+
+    @base_environment_display_name.setter
+    def base_environment_display_name(self, base_environment_display_name):
+        """Sets the base_environment_display_name of this EnvironmentDetail.
+
+
+        :param base_environment_display_name: The base_environment_display_name of this EnvironmentDetail.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            base_environment_display_name is not None and not isinstance(base_environment_display_name, str)
+        ):
+            raise ValueError("Parameter `base_environment_display_name` must be a string")  # noqa: E501
+
+        self._base_environment_display_name = base_environment_display_name
 
     @property
     def project(self):
@@ -437,6 +477,56 @@ class EnvironmentDetail(object):
             raise ValueError("Parameter `implicit` must be a boolean")  # noqa: E501
 
         self._implicit = implicit
+
+    @property
+    def hidden(self):
+        """Gets the hidden of this EnvironmentDetail.  # noqa: E501
+
+
+        :return: The hidden of this EnvironmentDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._hidden
+
+    @hidden.setter
+    def hidden(self, hidden):
+        """Sets the hidden of this EnvironmentDetail.
+
+
+        :param hidden: The hidden of this EnvironmentDetail.  # noqa: E501
+        :type: bool
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            hidden is not None and not isinstance(hidden, bool)
+        ):
+            raise ValueError("Parameter `hidden` must be a boolean")  # noqa: E501
+
+        self._hidden = hidden
+
+    @property
+    def deprecated(self):
+        """Gets the deprecated of this EnvironmentDetail.  # noqa: E501
+
+
+        :return: The deprecated of this EnvironmentDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._deprecated
+
+    @deprecated.setter
+    def deprecated(self, deprecated):
+        """Sets the deprecated of this EnvironmentDetail.
+
+
+        :param deprecated: The deprecated of this EnvironmentDetail.  # noqa: E501
+        :type: bool
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            deprecated is not None and not isinstance(deprecated, bool)
+        ):
+            raise ValueError("Parameter `deprecated` must be a boolean")  # noqa: E501
+
+        self._deprecated = deprecated
 
     @property
     def active_revision(self):

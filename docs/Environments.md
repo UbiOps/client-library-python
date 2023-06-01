@@ -4,6 +4,7 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**environment_build_dependencies_list**](Environments.md#environment_build_dependencies_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id}/dependency-files | List dependency files
 [**environment_builds_get**](Environments.md#environment_builds_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Get build
 [**environment_builds_list**](Environments.md#environment_builds_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds | List builds
 [**environment_builds_update**](Environments.md#environment_builds_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Update build
@@ -19,6 +20,106 @@ Method | HTTP request | Description
 [**environments_update**](Environments.md#environments_update) | **PATCH** /projects/{project_name}/environments/{environment_name} | Update environment
 [**environments_usage**](Environments.md#environments_usage) | **GET** /projects/{project_name}/environments/{environment_name}/usage | List usage of environment
 
+
+# **environment_build_dependencies_list**
+> list[EnvironmentBuildDependency] environment_build_dependencies_list(project_name, build_id, environment_name, revision_id)
+
+List dependency files
+
+## Description
+List the dependency files and their contents in an environment build
+
+### Response Structure
+A list of details of the dependency files
+
+- `name`: Name of the dependency file
+- `content`: Content of the dependency file
+
+## Response Examples
+
+```
+[
+  {
+    "name": "requirements.txt",
+    "content": "ubiops==3.6.1\nrequests==2.30.0\n"
+  },
+  {
+    "name": "ubiops.yaml",
+    "content": "environment_variables:\n- ACCEPT_EULA=Y\napt:\n  packages:\n    - python3-dev\n"
+  }
+]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    build_id = 'build_id_example' # str
+    environment_name = 'environment_name_example' # str
+    revision_id = 'revision_id_example' # str
+
+    # List dependency files
+    api_response = core_api.environment_build_dependencies_list(project_name, build_id, environment_name, revision_id)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    build_id = 'build_id_example' # str
+    environment_name = 'environment_name_example' # str
+    revision_id = 'revision_id_example' # str
+
+    # List dependency files
+    api_response = core_api.environment_build_dependencies_list(project_name, build_id, environment_name, revision_id)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **build_id** | **str** | 
+ **environment_name** | **str** | 
+ **revision_id** | **str** | 
+
+### Return type
+
+[**list[EnvironmentBuildDependency]**](./models/EnvironmentBuildDependency.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
 
 # **environment_builds_get**
 > EnvironmentBuildList environment_builds_get(project_name, build_id, environment_name, revision_id)
@@ -878,6 +979,8 @@ Details of the created environment
 - `gpu_required`: A boolean indicating whether the environment requires GPUs
 - `status`: Status of the environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
+- `hidden`: A boolean indicating whether the environment is hidden
+- `deprecated`: A boolean indicating whether the environment is deprecated
 
 ## Response Examples
 
@@ -896,7 +999,9 @@ Details of the created environment
   },
   "gpu_required": false,
   "status": "active",
-  "implicit": false
+  "implicit": false,
+  "deprecated": false,
+  "hidden": false
 }
 ```
 
@@ -1063,6 +1168,8 @@ Details of an environment
 - `latest_revision`: UUID of the latest revision of the environment
 - `latest_build`: UUID of the latest build of the environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
+- `hidden`: A boolean indicating whether the environment is hidden
+- `deprecated`: A boolean indicating whether the environment is deprecated
 
 ## Response Examples
 
@@ -1082,6 +1189,8 @@ Details of an environment
   "gpu_required": false,
   "status": "active",
   "implicit": false,
+  "deprecated": false,
+  "hidden": false,
   "active_revision": "8760570f-6eda-470b-99af-bde810d418d8",
   "active_build": "e3021050-b9ac-4b8e-89f4-adb9e7c9aba6",
   "latest_revision": "8760570f-6eda-470b-99af-bde810d418d8",
@@ -1182,6 +1291,8 @@ A list of details of the environments
 - `gpu_required`: A boolean indicating whether the environment requires GPUs
 - `status`: Status of the environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
+- `hidden`: A boolean indicating whether the environment is hidden
+- `deprecated`: A boolean indicating whether the environment is deprecated
 
 ## Response Examples
 
@@ -1199,7 +1310,9 @@ A list of details of the environments
     "labels": {},
     "gpu_required": false,
     "status": "active",
-    "implicit": false
+    "implicit": false,
+    "deprecated": false,
+    "hidden": false
   },
   {
     "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
@@ -1215,7 +1328,9 @@ A list of details of the environments
     },
     "gpu_required": false,
     "status": "active",
-    "implicit": false
+    "implicit": false,
+    "deprecated": false,
+    "hidden": false
   }
 ]
 ```
@@ -1330,6 +1445,8 @@ Details of the updated environment
 - `latest_revision`: UUID of the latest revision of the environment
 - `latest_build`: UUID of the latest build of the environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
+- `hidden`: A boolean indicating whether the environment is hidden
+- `deprecated`: A boolean indicating whether the environment is deprecated
 
 ## Response Examples
 
@@ -1349,6 +1466,8 @@ Details of the updated environment
   "gpu_required": false,
   "status": "active",
   "implicit": false,
+  "deprecated": false,
+  "hidden": false,
   "active_revision": "8760570f-6eda-470b-99af-bde810d418d8",
   "active_build": "e3021050-b9ac-4b8e-89f4-adb9e7c9aba6",
   "latest_revision": "8760570f-6eda-470b-99af-bde810d418d8",

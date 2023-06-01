@@ -165,8 +165,7 @@ def download_file(client, project_name, bucket_name='default', file_name=None, f
                 filestream.write(chunk)
 
 
-def handle_file_input(client, project_name, file, zip_required=False,
-                      bucket_name='default', file_prefix=None, file_name=None):
+def handle_file_input(client, project_name, file, bucket_name='default', file_prefix=None, file_name=None):
     """
     Handle file input:
     - `file` can be an UbiOps file uri; validate the file exists and, if required, is a zip
@@ -176,7 +175,6 @@ def handle_file_input(client, project_name, file, zip_required=False,
     :param ubiops.ApiClient client: a preconfigured UbiOps client
     :param str project_name: the name of the project
     :param str file: the path to a local file or directory, or an ubiops uri, e.g. 'ubiops-file://default/my-file.jpg'
-    :param bool zip_required: whether the file must be a ZIP archive
     :param str bucket_name: the name of the bucket to upload the file to in case of a local file/directory
     :param str file_prefix: optional prefix of the file in the bucket
     :param str file_name: optional name of the file in the bucket in case of a local file/directory. If None, the name
@@ -204,8 +202,6 @@ def handle_file_input(client, project_name, file, zip_required=False,
             else:
                 raise
 
-        if zip_required and not file.endswith(".zip"):
-            raise ApiException(status=400, reason="Invalid", body="File %s is not a ZIP" % file)
         return file
 
     def _format_file_name(file_path):
@@ -228,19 +224,6 @@ def handle_file_input(client, project_name, file, zip_required=False,
         )
 
     if path.isfile(file):
-        if zip_required:
-            # zip only the file in the directory
-            zip_file = make_archive(
-                path.splitext(path.basename(file))[0],
-                'zip',
-                path.dirname(file),
-                path.basename(file)
-            )
-            return upload_file(
-                client=client, project_name=project_name, file_path=zip_file,
-                bucket_name=bucket_name, file_name=_format_file_name(zip_file)
-            )
-
         return upload_file(
             client=client, project_name=project_name, file_path=file,
             bucket_name=bucket_name, file_name=_format_file_name(file)

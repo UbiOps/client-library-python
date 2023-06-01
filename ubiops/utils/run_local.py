@@ -219,4 +219,4 @@ def run_local(deployment_directory, data, init_context=None, request_context=Non
             )
         return result
     else:
-        AttributeError("Deployment has no 'request' function")
+        raise AttributeError("Deployment has no 'request' function")

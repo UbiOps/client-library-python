@@ -8,11 +8,11 @@ import ubiops.exceptions
 from ubiops import CoreApi
 from ubiops.api_client import ApiClient
 from ubiops.exceptions import ApiException, ApiValueError
-from ubiops.models import DeploymentVersionCreate, DeploymentVersionUpdate
 from ubiops.utils import handle_file_input, wait_for_experiment
 
 
 DEFAULT_TRAINING_DEPLOYMENT_NAME = 'training-base-deployment'
+DEFAULT_TRAINING_BUCKET_NAME = 'SYS_DEFAULT_BUCKET'
 TEMPLATE_DEPLOYMENT_NAME = 'training-base-deployment'
 
 
@@ -165,7 +165,7 @@ class Training(object):
                 status=500, reason="Internal Error", body="Could not obtain a template training deployment"
             )
 
-    def _default_bucket(self, project_name, experiment_name):
+    def _get_default_bucket(self, project_name, experiment_name):
         """
         Get the default bucket for the experiment
 
@@ -180,13 +180,57 @@ class Training(object):
                 version=experiment_name
             )
             for env_var in env_vars:
-                if env_var.name == "SYS_DEFAULT_BUCKET":
+                if env_var.name == DEFAULT_TRAINING_BUCKET_NAME:
                     return env_var.value
 
         except ApiException as e:
             raise self.wrap_exception(e)
 
         return "default"
+
+    def _update_default_bucket(self, project_name, experiment_name, bucket_name):
+        """
+        Update the default bucket for the experiment
+
+        :param str project_name: the name of the project
+        :param str experiment_name: the name of the experiment
+        :param str bucket_name: the new bucket to use for the training experiment
+        """
+
+        try:
+            env_vars = self.core_api.deployment_version_environment_variables_list(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name
+            )
+            for env_var in env_vars:
+                if env_var.name == DEFAULT_TRAINING_BUCKET_NAME:
+                    self.core_api.deployment_version_environment_variables_update(
+                        project_name=project_name,
+                        deployment_name=self.training_deployment_name,
+                        version=experiment_name,
+                        id=env_var.id,
+                        data=ubiops.EnvironmentVariableCreate(
+                            name=DEFAULT_TRAINING_BUCKET_NAME,
+                            value=bucket_name,
+                            secret=False
+                        )
+                    )
+                    return
+
+            # Environment variable DEFAULT_TRAINING_BUCKET_NAME does not exist yet
+            self.core_api.deployment_version_environment_variables_create(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                data=ubiops.EnvironmentVariableCreate(
+                    name=DEFAULT_TRAINING_BUCKET_NAME,
+                    value=bucket_name,
+                    secret=False
+                )
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
 
     @staticmethod
     def _random_string(str_length):
@@ -199,7 +243,6 @@ class Training(object):
         return ''.join(random.choice(string.ascii_letters.lower()) for _ in range(str_length))
 
     def experiments_create(self, project_name, data, **kwargs):
-
         """
         Create a new experiment
 
@@ -233,7 +276,7 @@ class Training(object):
         template_deployment_id, _ = self._get_template_deployment()
 
         # Create a deployment version from the specified environment
-        version_template = DeploymentVersionCreate(
+        version_template = ubiops.DeploymentVersionCreate(
             version=data.name,
             environment=data.environment,
             instance_type=data.instance_type,
@@ -263,8 +306,8 @@ class Training(object):
                     project_name=project_name,
                     deployment_name=self.training_deployment_name,
                     version=data.name,
-                    data=ubiops.models.EnvironmentVariableCreate(
-                        name="SYS_DEFAULT_BUCKET",
+                    data=ubiops.EnvironmentVariableCreate(
+                        name=DEFAULT_TRAINING_BUCKET_NAME,
                         value=data.default_bucket,
                         secret=False
                     ),
@@ -312,7 +355,7 @@ class Training(object):
 
         :param str project_name: the name of the project (required)
 
-        :return: list[EnvironmentList]
+        :return: list[ExperimentList]
         """
 
         if project_name is None:
@@ -341,7 +384,7 @@ class Training(object):
         :param str project_name: the name of the project (required)
         :param str experiment_name: the name of the experiment (required)
 
-        :return: EnvironmentDetail
+        :return: ExperimentDetail
         """
 
         if project_name is None:
@@ -363,8 +406,15 @@ class Training(object):
         except ApiException as e:
             raise self.wrap_exception(e)
 
+        # Get the default bucket
+        default_bucket = self._get_default_bucket(project_name=project_name, experiment_name=experiment_name)
+
         from ubiops.training.experiment_detail import ExperimentDetail
-        return ExperimentDetail(name=deployment_version.version, **deployment_version.to_dict())
+        return ExperimentDetail(
+            name=deployment_version.version,
+            default_bucket=default_bucket,
+            **deployment_version.to_dict()
+        )
 
     def experiments_update(self, project_name, experiment_name, data, **kwargs):
         """
@@ -373,6 +423,8 @@ class Training(object):
         :param str project_name: the name of the project (required)
         :param str experiment_name: the name of the experiment (required)
         :param ExperimentUpdate data: the details of the experiment (required)
+
+        :return: ExperimentUpdate
         """
 
         if project_name is None:
@@ -394,7 +446,15 @@ class Training(object):
             elif not isinstance(data, ExperimentUpdate):
                 raise ApiValueError("Parameter `data` must be an instance of ExperimentUpdate")
 
-        version_template = DeploymentVersionUpdate(
+        if data.environment:
+            self._verify_environment_exists(project_name=project_name, environment_name=data.environment)
+        if data.default_bucket:
+            self._verify_bucket_exists(project_name=project_name, bucket=data.default_bucket)
+            self._update_default_bucket(
+                project_name=project_name, experiment_name=experiment_name, bucket_name=data.default_bucket
+            )
+
+        version_template = ubiops.DeploymentVersionUpdate(
             version=data.name,
             **data.to_dict()
         )
@@ -411,7 +471,11 @@ class Training(object):
             raise self.wrap_exception(e)
 
         from ubiops.training.experiment_detail import ExperimentDetail
-        return ExperimentDetail(name=deployment_version.version, **deployment_version.to_dict())
+        return ExperimentDetail(
+            name=deployment_version.version,
+            default_bucket=data.default_bucket,
+            **deployment_version.to_dict()
+        )
 
     def experiments_delete(self, project_name, experiment_name, **kwargs):
         """
@@ -486,21 +550,19 @@ class Training(object):
             )
 
         # Check which bucket to use
-        default_bucket = self._default_bucket(project_name=project_name, experiment_name=experiment_name)
+        default_bucket = self._get_default_bucket(project_name=project_name, experiment_name=experiment_name)
         random_run_id = self._random_string(8)
 
         # Upload training code
         data.training_code = handle_file_input(
-            client=self.api_client, project_name=project_name, file=data.training_code, zip_required=False,
-            bucket_name=default_bucket,
+            client=self.api_client, project_name=project_name, file=data.training_code, bucket_name=default_bucket,
             file_prefix="experiments/%s/runs/%s/code/" % (experiment_name, random_run_id)
         )
 
         # Upload training data
         if data.training_data is not None:
             data.training_data = handle_file_input(
-                client=self.api_client, project_name=project_name, file=data.training_data, zip_required=False,
-                bucket_name=default_bucket,
+                client=self.api_client, project_name=project_name, file=data.training_data, bucket_name=default_bucket,
                 file_prefix="experiments/%s/runs/%s/data/" % (experiment_name, random_run_id)
             )
 
@@ -568,6 +630,8 @@ class Training(object):
         :param str project_name: the name of the project (required)
         :param str experiment_name: the name of the experiment (required)
         :param str run_id: the uid of the run (required)
+
+        :return: ExperimentRunDetail
         """
 
         if project_name is None:
@@ -594,6 +658,10 @@ class Training(object):
         except ApiException as e:
             raise self.wrap_exception(e)
 
+        # Only keep the 'created_by' field in the origin of the request
+        if hasattr(request, 'origin') and type(request.origin) == dict and 'created_by' in request.origin:
+            request.origin = {'created_by': request.origin['created_by']}
+
         from ubiops.training.experiment_run_detail import ExperimentRunDetail
         return ExperimentRunDetail(experiment=request.version, **request.to_dict())
 
@@ -605,6 +673,8 @@ class Training(object):
         :param str experiment_name: the name of the experiment (required)
         :param str run_id: the uid of the run (required)
         :param ExperimentRunUpdate data: the details of the experiment run (required)
+
+        :return: ExperimentRunUpdateResponse
         """
 
         if project_name is None:
