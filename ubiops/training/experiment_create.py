@@ -38,6 +38,7 @@ class ExperimentCreate(object):
         'instance_type': 'str',
         'description': 'str',
         'labels': 'dict(str, str)',
+        'request_retention_time': 'int',
         'default_bucket': 'str'
     }
 
@@ -47,10 +48,11 @@ class ExperimentCreate(object):
         'instance_type': 'instance_type',
         'description': 'description',
         'labels': 'labels',
+        'request_retention_time': 'request_retention_time',
         'default_bucket': 'default_bucket'
     }
 
-    def __init__(self, name=None, environment='python3-7', instance_type=None, description=None, labels=None, default_bucket=None, local_vars_configuration=None, **kwargs):  # noqa: E501
+    def __init__(self, name=None, environment='python3-7', instance_type=None, description=None, labels=None, request_retention_time=31536000, default_bucket=None, local_vars_configuration=None, **kwargs):  # noqa: E501
         """ExperimentCreate - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -61,6 +63,7 @@ class ExperimentCreate(object):
         self._instance_type = None
         self._description = None
         self._labels = None
+        self._request_retention_time = None
         self._default_bucket = None
         self.discriminator = None
 
@@ -72,6 +75,8 @@ class ExperimentCreate(object):
             self.description = description
         if labels is not None:
             self.labels = labels
+        if request_retention_time is not None:
+            self.request_retention_time = request_retention_time
         if default_bucket is not None:
             self.default_bucket = default_bucket
 
@@ -138,6 +143,31 @@ class ExperimentCreate(object):
             raise ValueError("Invalid value for `environment`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._environment = environment
+
+    @property
+    def request_retention_time(self):
+        """Gets the request_retention_time of this ExperimentCreate.  # noqa: E501
+
+
+        :return: The request_retention_time of this ExperimentCreate.  # noqa: E501
+        :rtype: int
+        """
+        return self._request_retention_time
+
+    @request_retention_time.setter
+    def request_retention_time(self, request_retention_time):
+        """Sets the request_retention_time of this ExperimentCreate.
+
+
+        :param request_retention_time: The request_retention_time of this ExperimentCreate.  # noqa: E501
+        :type: int
+        """
+        if self.local_vars_configuration.client_side_validation and (
+            request_retention_time is not None and not isinstance(request_retention_time, int)
+        ):
+            raise ValueError("Parameter `request_retention_time` must be an integer")  # noqa: E501
+
+        self._request_retention_time = request_retention_time
 
     @property
     def instance_type(self):
