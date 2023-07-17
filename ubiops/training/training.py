@@ -285,7 +285,7 @@ class Training(object):
             description=data.description,
             labels=data.labels,
             request_retention_mode='full',
-            request_retention_time=31536000  # 1 normal year
+            request_retention_time=data.request_retention_time  # 1 normal year
         )
 
         try:
@@ -349,33 +349,34 @@ class Training(object):
         from ubiops.training.experiment_list import ExperimentList
         return ExperimentList(name=deployment_version.version, **deployment_version.to_dict())
 
-    def experiments_list(self, project_name, **kwargs):
+    def experiments_delete(self, project_name, experiment_name, **kwargs):
         """
-        List experiments
+        Delete experiment
 
         :param str project_name: the name of the project (required)
+        :param str experiment_name: the name of the experiment to delete (required)
 
-        :return: list[ExperimentList]
+        :return: None
         """
 
         if project_name is None:
             raise ApiValueError("Missing the required parameter `project_name`")
+        if experiment_name is None:
+            raise ApiValueError("Missing the required parameter `experiment_name`")
         if project_name is not None and not isinstance(project_name, str):
             raise ApiValueError("Parameter `project_name` must be a string")
-
-        self._verify_deployment_exists(project_name=project_name)
+        if experiment_name is not None and not isinstance(experiment_name, str):
+            raise ApiValueError("Parameter `experiment_name` must be a string")
 
         try:
-            deployment_versions = self.core_api.deployment_versions_list(
+            return self.core_api.deployment_versions_delete(
                 project_name=project_name,
                 deployment_name=self.training_deployment_name,
+                version=experiment_name,
                 **kwargs
             )
         except ApiException as e:
             raise self.wrap_exception(e)
-
-        from ubiops.training.experiment_list import ExperimentList
-        return [ExperimentList(name=version.version, **version.to_dict()) for version in deployment_versions]
 
     def experiments_get(self, project_name, experiment_name, **kwargs):
         """
@@ -415,6 +416,34 @@ class Training(object):
             default_bucket=default_bucket,
             **deployment_version.to_dict()
         )
+
+    def experiments_list(self, project_name, **kwargs):
+        """
+        List experiments
+
+        :param str project_name: the name of the project (required)
+
+        :return: list[ExperimentList]
+        """
+
+        if project_name is None:
+            raise ApiValueError("Missing the required parameter `project_name`")
+        if project_name is not None and not isinstance(project_name, str):
+            raise ApiValueError("Parameter `project_name` must be a string")
+
+        self._verify_deployment_exists(project_name=project_name)
+
+        try:
+            deployment_versions = self.core_api.deployment_versions_list(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
+
+        from ubiops.training.experiment_list import ExperimentList
+        return [ExperimentList(name=version.version, **version.to_dict()) for version in deployment_versions]
 
     def experiments_update(self, project_name, experiment_name, data, **kwargs):
         """
@@ -476,35 +505,6 @@ class Training(object):
             default_bucket=data.default_bucket,
             **deployment_version.to_dict()
         )
-
-    def experiments_delete(self, project_name, experiment_name, **kwargs):
-        """
-        Delete experiment
-
-        :param str project_name: the name of the project (required)
-        :param str experiment_name: the name of the experiment to delete (required)
-
-        :return: None
-        """
-
-        if project_name is None:
-            raise ApiValueError("Missing the required parameter `project_name`")
-        if experiment_name is None:
-            raise ApiValueError("Missing the required parameter `experiment_name`")
-        if project_name is not None and not isinstance(project_name, str):
-            raise ApiValueError("Parameter `project_name` must be a string")
-        if experiment_name is not None and not isinstance(experiment_name, str):
-            raise ApiValueError("Parameter `experiment_name` must be a string")
-
-        try:
-            return self.core_api.deployment_versions_delete(
-                project_name=project_name,
-                deployment_name=self.training_deployment_name,
-                version=experiment_name,
-                **kwargs
-            )
-        except ApiException as e:
-            raise self.wrap_exception(e)
 
     def experiment_runs_create(self, project_name, experiment_name, data, **kwargs):
         """
@@ -588,40 +588,37 @@ class Training(object):
             experiment=deployment_version_request.version, **deployment_version_request.to_dict()
         )
 
-    def experiment_runs_list(self, project_name, experiment_name, **kwargs):
+    def experiment_runs_delete(self, project_name, experiment_name, run_id, **kwargs):
         """
-        List runs
+        Delete run
 
         :param str project_name: the name of the project (required)
         :param str experiment_name: the name of the experiment (required)
+        :param str run_id: the uid of the run (required)
 
-        :return: list[EnvironmentRunList]
+        :return: None
         """
 
         if project_name is None:
             raise ApiValueError("Missing the required parameter `project_name`")
         if experiment_name is None:
             raise ApiValueError("Missing the required parameter `experiment_name`")
+        if run_id is None:
+            raise ApiValueError("Missing the required parameter `run_id`")
         if project_name is not None and not isinstance(project_name, str):
             raise ApiValueError("Parameter `project_name` must be a string")
         if experiment_name is not None and not isinstance(experiment_name, str):
             raise ApiValueError("Parameter `experiment_name` must be a string")
+        if run_id is not None and not isinstance(run_id, str):
+            raise ApiValueError("Parameter `run_id` must be a string")
 
-        try:
-            deployment_version_requests = self.core_api.deployment_version_requests_list(
-                project_name=project_name,
-                deployment_name=self.training_deployment_name,
-                version=experiment_name,
-                **kwargs
-            )
-        except ApiException as e:
-            raise self.wrap_exception(e)
-
-        from ubiops.training.experiment_run_list import ExperimentRunList
-        return [
-            ExperimentRunList(experiment=request.version, **request.to_dict())
-            for request in deployment_version_requests
-        ]
+        return self.core_api.deployment_version_requests_delete(
+            project_name=project_name,
+            deployment_name=self.training_deployment_name,
+            version=experiment_name,
+            request_id=run_id,
+            **kwargs
+        )
 
     def experiment_runs_get(self, project_name, experiment_name, run_id, **kwargs):
         """
@@ -664,6 +661,41 @@ class Training(object):
 
         from ubiops.training.experiment_run_detail import ExperimentRunDetail
         return ExperimentRunDetail(experiment=request.version, **request.to_dict())
+
+    def experiment_runs_list(self, project_name, experiment_name, **kwargs):
+        """
+        List runs
+
+        :param str project_name: the name of the project (required)
+        :param str experiment_name: the name of the experiment (required)
+
+        :return: list[EnvironmentRunList]
+        """
+
+        if project_name is None:
+            raise ApiValueError("Missing the required parameter `project_name`")
+        if experiment_name is None:
+            raise ApiValueError("Missing the required parameter `experiment_name`")
+        if project_name is not None and not isinstance(project_name, str):
+            raise ApiValueError("Parameter `project_name` must be a string")
+        if experiment_name is not None and not isinstance(experiment_name, str):
+            raise ApiValueError("Parameter `experiment_name` must be a string")
+
+        try:
+            deployment_version_requests = self.core_api.deployment_version_requests_list(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
+
+        from ubiops.training.experiment_run_list import ExperimentRunList
+        return [
+            ExperimentRunList(experiment=request.version, **request.to_dict())
+            for request in deployment_version_requests
+        ]
 
     def experiment_runs_update(self, project_name, experiment_name, run_id, data, **kwargs):
         """
@@ -715,13 +747,55 @@ class Training(object):
         from ubiops.training.experiment_run_update_response import ExperimentRunUpdateResponse
         return ExperimentRunUpdateResponse(experiment=request.version, **request.to_dict())
 
-    def experiment_runs_delete(self, project_name, experiment_name, run_id, **kwargs):
+    def experiment_environment_variables_create(self, project_name, experiment_name, data, **kwargs):
         """
-        Delete run
+        Create an environment variable for the experiment. Variables inherited from the project can be shadowed by
+        creating a variable with the same name.
 
         :param str project_name: the name of the project (required)
         :param str experiment_name: the name of the experiment (required)
-        :param str run_id: the uid of the run (required)
+        :param EnvironmentVariableCreate data: the details of the environment variable (required)
+
+        :return: EnvironmentVariableList
+        """
+
+        if project_name is None:
+            raise ApiValueError("Missing the required parameter `project_name`")
+        if experiment_name is None:
+            raise ApiValueError("Missing the required parameter `experiment_name`")
+        if data is None:
+            raise ApiValueError("Missing the required parameter `data`")
+        if project_name is not None and not isinstance(project_name, str):
+            raise ApiValueError("Parameter `project_name` must be a string")
+        if experiment_name is not None and not isinstance(experiment_name, str):
+            raise ApiValueError("Parameter `experiment_name` must be a string")
+        if data is not None:
+            from ubiops.models.environment_variable_create import EnvironmentVariableCreate
+
+            if isinstance(data, dict):
+                data = EnvironmentVariableCreate(**data)
+
+            elif not isinstance(data, EnvironmentVariableCreate):
+                raise ApiValueError("Parameter `data` must be an instance of EnvironmentVariableCreate")
+
+        try:
+            return self.core_api.deployment_version_environment_variables_create(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                data=data,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
+
+    def experiment_environment_variables_delete(self, project_name, experiment_name, id, **kwargs):
+        """
+        Delete experiment environment variable
+
+        :param str project_name: the name of the project (required)
+        :param str experiment_name: the name of the experiment (required)
+        :param str id: the id of the environment variable to delete (required)
 
         :return: None
         """
@@ -730,19 +804,134 @@ class Training(object):
             raise ApiValueError("Missing the required parameter `project_name`")
         if experiment_name is None:
             raise ApiValueError("Missing the required parameter `experiment_name`")
-        if run_id is None:
-            raise ApiValueError("Missing the required parameter `run_id`")
+        if id is None:
+            raise ApiValueError("Missing the required parameter `id`")
         if project_name is not None and not isinstance(project_name, str):
             raise ApiValueError("Parameter `project_name` must be a string")
         if experiment_name is not None and not isinstance(experiment_name, str):
             raise ApiValueError("Parameter `experiment_name` must be a string")
-        if run_id is not None and not isinstance(run_id, str):
-            raise ApiValueError("Parameter `run_id` must be a string")
+        if id is not None and not isinstance(id, str):
+            raise ApiValueError("Parameter `id` must be a string")
 
-        return self.core_api.deployment_version_requests_delete(
-            project_name=project_name,
-            deployment_name=self.training_deployment_name,
-            version=experiment_name,
-            request_id=run_id,
-            **kwargs
-        )
+        try:
+            return self.core_api.deployment_version_environment_variables_delete(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                id=id,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
+
+    def experiment_environment_variables_get(self, project_name, experiment_name, id, **kwargs):
+        """
+        Get experiment environment variable
+
+        :param str project_name: the name of the project (required)
+        :param str experiment_name: the name of the experiment (required)
+        :param str id: the id of the environment variable (required)
+
+        :return: EnvironmentVariableList
+        """
+
+        if project_name is None:
+            raise ApiValueError("Missing the required parameter `project_name`")
+        if experiment_name is None:
+            raise ApiValueError("Missing the required parameter `experiment_name`")
+        if id is None:
+            raise ApiValueError("Missing the required parameter `id`")
+        if project_name is not None and not isinstance(project_name, str):
+            raise ApiValueError("Parameter `project_name` must be a string")
+        if experiment_name is not None and not isinstance(experiment_name, str):
+            raise ApiValueError("Parameter `experiment_name` must be a string")
+        if id is not None and not isinstance(id, str):
+            raise ApiValueError("Parameter `id` must be a string")
+
+        try:
+            return self.core_api.deployment_version_environment_variables_get(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                id=id,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
+
+    def experiment_environment_variables_list(self, project_name, experiment_name, **kwargs):
+        """
+        List experiment environment variables
+
+        :param str project_name: the name of the project (required)
+        :param str experiment_name: the name of the experiment (required)
+
+        :return: InheritedEnvironmentVariableList
+        """
+
+        if project_name is None:
+            raise ApiValueError("Missing the required parameter `project_name`")
+        if experiment_name is None:
+            raise ApiValueError("Missing the required parameter `experiment_name`")
+        if project_name is not None and not isinstance(project_name, str):
+            raise ApiValueError("Parameter `project_name` must be a string")
+        if experiment_name is not None and not isinstance(experiment_name, str):
+            raise ApiValueError("Parameter `experiment_name` must be a string")
+
+        try:
+            return self.core_api.deployment_version_environment_variables_list(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
+
+    def experiment_environment_variables_update(self, project_name, experiment_name, id, data, **kwargs):
+        """
+        Update an environment variable for the experiment. This cannot be used to update inherited variables; to change
+        an inherited variable for a specific experiment you can create a variable with the same name for the experiment.
+
+        :param str project_name: the name of the project (required)
+        :param str experiment_name: the name of the experiment (required)
+        :param str id: the id of the environment variable (required)
+        :param EnvironmentVariableCreate data: the details of the environment variable (required)
+
+        :return: EnvironmentVariableList
+        """
+
+        if project_name is None:
+            raise ApiValueError("Missing the required parameter `project_name`")
+        if experiment_name is None:
+            raise ApiValueError("Missing the required parameter `experiment_name`")
+        if id is None:
+            raise ApiValueError("Missing the required parameter `id`")
+        if data is None:
+            raise ApiValueError("Missing the required parameter `data`")
+        if project_name is not None and not isinstance(project_name, str):
+            raise ApiValueError("Parameter `project_name` must be a string")
+        if experiment_name is not None and not isinstance(experiment_name, str):
+            raise ApiValueError("Parameter `experiment_name` must be a string")
+        if id is not None and not isinstance(id, str):
+            raise ApiValueError("Parameter `id` must be a string")
+        if data is not None:
+            from ubiops.models.environment_variable_create import EnvironmentVariableCreate
+
+            if isinstance(data, dict):
+                data = EnvironmentVariableCreate(**data)
+
+            elif not isinstance(data, EnvironmentVariableCreate):
+                raise ApiValueError("Parameter `data` must be an instance of EnvironmentVariableCreate")
+
+        try:
+            return self.core_api.deployment_version_environment_variables_update(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                id=id,
+                data=data,
+                **kwargs
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
