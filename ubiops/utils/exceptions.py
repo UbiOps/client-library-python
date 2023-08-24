@@ -1,7 +1,7 @@
 from ..exceptions import UbiOpsException
 
 
-class BuildStatusError(UbiOpsException, ValueError):
+class StatusError(UbiOpsException, ValueError):
     pass
 
 

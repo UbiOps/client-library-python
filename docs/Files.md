@@ -4,16 +4,16 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**buckets_create**](Files.md#buckets_create) | **POST** /projects/{project_name}/buckets | Create bucket
-[**buckets_delete**](Files.md#buckets_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name} | Delete a bucket
-[**buckets_get**](Files.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket
-[**buckets_list**](Files.md#buckets_list) | **GET** /projects/{project_name}/buckets | List buckets
-[**buckets_update**](Files.md#buckets_update) | **PATCH** /projects/{project_name}/buckets/{bucket_name} | Update a bucket
-[**files_delete**](Files.md#files_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Delete a file
-[**files_download**](Files.md#files_download) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file}/download | Download a file
-[**files_get**](Files.md#files_get) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Get a file
-[**files_list**](Files.md#files_list) | **GET** /projects/{project_name}/buckets/{bucket_name}/files | List files
-[**files_upload**](Files.md#files_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Upload a file
+[**buckets_create**](./Files.md#buckets_create) | **POST** /projects/{project_name}/buckets | Create bucket
+[**buckets_delete**](./Files.md#buckets_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name} | Delete a bucket
+[**buckets_get**](./Files.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket
+[**buckets_list**](./Files.md#buckets_list) | **GET** /projects/{project_name}/buckets | List buckets
+[**buckets_update**](./Files.md#buckets_update) | **PATCH** /projects/{project_name}/buckets/{bucket_name} | Update a bucket
+[**files_delete**](./Files.md#files_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Delete a file
+[**files_download**](./Files.md#files_download) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file}/download | Download a file
+[**files_get**](./Files.md#files_get) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Get a file
+[**files_list**](./Files.md#files_list) | **GET** /projects/{project_name}/buckets/{bucket_name}/files | List files
+[**files_upload**](./Files.md#files_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Upload a file
 
 
 # **buckets_create**

@@ -27,7 +27,7 @@ def validate_requirement_line(index, line):
 
     # Check if package starts with a number or letter
     if not package_name[0].isalnum() or not package_name[-1].isalnum():
-        raise ValidateError("Invalid package name: %s" % line)
+        raise ValidateError(f"Invalid package name: {line}")
 
     # Check if package exists on pypi and return json if so - package-json used later on
     package_json = get_package_json_from_pypi(package_name)
@@ -39,7 +39,7 @@ def validate_requirement_line(index, line):
     regex_version_and_specifier = re.compile(r"\s*([<>=!~]+)\s*([0-9_.\-*]+)")
     version_details = regex_version_and_specifier.findall(line)
     if not version_details:
-        raise ValidateError("No version details found: %s" % line)
+        raise ValidateError(f"No version details found: {line}")
 
     # Check all specifiers for validity
     validate_version_details(version_details, index)
@@ -48,15 +48,13 @@ def validate_requirement_line(index, line):
     possible_package_versions = get_possible_versions_from_pypi(version_details, package_json, index)
 
     if not possible_package_versions:
-        raise ValidateError("No valid version found for %s" % package_name)
+        raise ValidateError(f"No valid version found for {package_name}")
 
     # Check correct structure
     regex_total = re.compile(r"[a-zA-Z0-9_.\-]+(\[(.*)])?(\s*([<>=!~]+)\s*([0-9a-zA-Z+_.\-*]+),?)+")
     total_find = regex_total.match(line)
     if not total_find or total_find.group(0) != line:
-        raise ValidateError(
-            "Invalid line '%s'. Expected: '[Package name] [[specifiers] [version], ...]'" % line
-        )
+        raise ValidateError(f"Invalid line '{line}'. Expected: '[Package name] [[specifiers] [version], ...]'")
 
 
 def get_formatted_line(line, index):
@@ -75,12 +73,12 @@ def get_formatted_line(line, index):
     # Check if the line is a valid package specification
     if line.startswith("-") or line.startswith("http://") or line.startswith("https://") or line.startswith("git+"):
         if line.startswith("git+"):
-            logging.warning("Line %s: Git must be installed on the deployment environment" % (index + 1))
+            logging.warning(f"Line {index + 1}: Git must be installed on the deployment environment")
 
         raise ValidateWarning("Line will not be checked")
 
     if ";" in line:
-        logging.warning("Line %s: Conditional statement encountered, the condition will not be checked." % (index + 1))
+        logging.warning(f"Line {index + 1}: Conditional statement encountered, the condition will not be checked.")
         line = line.split(";")[0].strip()
 
     return line
@@ -93,13 +91,13 @@ def get_package_json_from_pypi(package_name):
     :param str package_name: name of the package
     """
 
-    url = "https://pypi.org/pypi/%s/json" % package_name
+    url = f"https://pypi.org/pypi/{package_name}/json"
     try:
         response = requests.get(url)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException:
-        raise ValidateError("Package %s not found on pypi.org" % package_name)
+        raise ValidateError(f"Package {package_name} not found on pypi.org")
 
 
 def validate_version_details(version_details, line_index):
@@ -115,14 +113,14 @@ def validate_version_details(version_details, line_index):
         # Check if specifiers are valid
         if specifier not in ["==", ">=", "<=", ">", "<", "~=", "!="]:
             if specifier == "===":
-                logging.warning("Line %s, Are you sure you want to use '===' ?" % (line_index + 1))
+                logging.warning(f"Line {line_index + 1}, Are you sure you want to use '===' ?")
             else:
-                logging.error("Line %s, Invalid specifiers: %s" % (line_index + 1, specifier))
+                logging.error(f"Line {line_index + 1}, Invalid specifiers: {specifier}")
                 raise_error = True
 
         # Check if version is valid
         if not (version[-1] == "*" or version[-1].isdigit() or version[-1].isalpha()):
-            logging.error("Line %s, Invalid version: %s" % (line_index + 1, version))
+            logging.error(f"Line {line_index + 1}, Invalid version: {version}")
             raise_error = True
 
     if raise_error:
@@ -164,9 +162,8 @@ def get_possible_versions_from_pypi(version_details, package_json, line_index):
         else:
             if version[-1] == "*":
                 logging.warning(
-                    "Line %s: Bigger/smaller (or equal) than a version with an asterisk"
+                    f"Line {line_index + 1}: Bigger/smaller (or equal) than a version with an asterisk"
                     " is not recommended, validate the version manually or change the version details"
-                    % (line_index + 1)
                 )
                 version = version[:-2]
 

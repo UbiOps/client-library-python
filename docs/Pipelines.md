@@ -4,19 +4,19 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**expressions_evaluate**](Pipelines.md#expressions_evaluate) | **POST** /expressions/evaluate | Evaluate expression
-[**pipeline_audit_events_list**](Pipelines.md#pipeline_audit_events_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/audit | List audit events for a pipeline
-[**pipeline_version_object_environment_variables_list**](Pipelines.md#pipeline_version_object_environment_variables_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}/environment-variables | List pipeline object environment variables
-[**pipeline_versions_create**](Pipelines.md#pipeline_versions_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions | Create pipeline versions
-[**pipeline_versions_delete**](Pipelines.md#pipeline_versions_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version} | Delete pipeline version
-[**pipeline_versions_get**](Pipelines.md#pipeline_versions_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version} | Get pipeline version
-[**pipeline_versions_list**](Pipelines.md#pipeline_versions_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions | List pipeline versions
-[**pipeline_versions_update**](Pipelines.md#pipeline_versions_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version} | Update pipeline version
-[**pipelines_create**](Pipelines.md#pipelines_create) | **POST** /projects/{project_name}/pipelines | Create pipelines
-[**pipelines_delete**](Pipelines.md#pipelines_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name} | Delete a pipeline
-[**pipelines_get**](Pipelines.md#pipelines_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name} | Get details of a pipeline
-[**pipelines_list**](Pipelines.md#pipelines_list) | **GET** /projects/{project_name}/pipelines | List pipelines
-[**pipelines_update**](Pipelines.md#pipelines_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name} | Update a pipeline
+[**expressions_evaluate**](./Pipelines.md#expressions_evaluate) | **POST** /expressions/evaluate | Evaluate expression
+[**pipeline_audit_events_list**](./Pipelines.md#pipeline_audit_events_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/audit | List audit events for a pipeline
+[**pipeline_version_object_environment_variables_list**](./Pipelines.md#pipeline_version_object_environment_variables_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}/environment-variables | List pipeline object environment variables
+[**pipeline_versions_create**](./Pipelines.md#pipeline_versions_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions | Create pipeline versions
+[**pipeline_versions_delete**](./Pipelines.md#pipeline_versions_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version} | Delete pipeline version
+[**pipeline_versions_get**](./Pipelines.md#pipeline_versions_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version} | Get pipeline version
+[**pipeline_versions_list**](./Pipelines.md#pipeline_versions_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions | List pipeline versions
+[**pipeline_versions_update**](./Pipelines.md#pipeline_versions_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version} | Update pipeline version
+[**pipelines_create**](./Pipelines.md#pipelines_create) | **POST** /projects/{project_name}/pipelines | Create pipelines
+[**pipelines_delete**](./Pipelines.md#pipelines_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name} | Delete a pipeline
+[**pipelines_get**](./Pipelines.md#pipelines_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name} | Get details of a pipeline
+[**pipelines_list**](./Pipelines.md#pipelines_list) | **GET** /projects/{project_name}/pipelines | List pipelines
+[**pipelines_update**](./Pipelines.md#pipelines_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name} | Update a pipeline
 
 
 # **expressions_evaluate**

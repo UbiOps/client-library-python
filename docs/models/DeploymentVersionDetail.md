@@ -19,16 +19,16 @@ Name | Type | Notes
 **labels** | **dict(str, str)** | [optional] 
 **creation_date** | **datetime** | [optional] 
 **last_updated** | **datetime** | [optional] 
-**last_file_upload** | **datetime** | [optional] [readonly] 
-**monitoring** | **str** | [optional] [readonly] 
 **request_retention_time** | **int** | [optional] 
 **request_retention_mode** | **str** | 
+**monitoring** | **str** | [optional] [readonly] 
 **default_notification_group** | **str** | [optional] [readonly] 
 **maximum_queue_size_express** | **int** | [optional] 
 **maximum_queue_size_batch** | **int** | [optional] 
-**has_request_method** | **bool** | [optional] [readonly] 
-**has_requests_method** | **bool** | [optional] [readonly] 
 **static_ip** | **bool** | [optional] 
 **restart_request_interruption** | **bool** | [optional] 
+**last_file_upload** | **datetime** | [optional] [readonly] 
+**has_request_method** | **bool** | [optional] [readonly] 
+**has_requests_method** | **bool** | [optional] [readonly] 
 
 

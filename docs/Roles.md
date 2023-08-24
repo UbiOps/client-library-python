@@ -4,16 +4,16 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**permissions_list**](Roles.md#permissions_list) | **GET** /permissions | List the available permissions
-[**role_assignments_create**](Roles.md#role_assignments_create) | **POST** /projects/{project_name}/role-assignments | Assign role to user/object
-[**role_assignments_delete**](Roles.md#role_assignments_delete) | **DELETE** /projects/{project_name}/role-assignments/{id} | Delete role of user
-[**role_assignments_get**](Roles.md#role_assignments_get) | **GET** /projects/{project_name}/role-assignments/{id} | Get role assignment
-[**role_assignments_per_object_list**](Roles.md#role_assignments_per_object_list) | **GET** /projects/{project_name}/role-assignments | List roles on object/user
-[**roles_create**](Roles.md#roles_create) | **POST** /projects/{project_name}/roles | Create a custom role scoped in a project
-[**roles_delete**](Roles.md#roles_delete) | **DELETE** /projects/{project_name}/roles/{role_name} | Delete a role from a project
-[**roles_get**](Roles.md#roles_get) | **GET** /projects/{project_name}/roles/{role_name} | Get details of a role
-[**roles_list**](Roles.md#roles_list) | **GET** /projects/{project_name}/roles | List the available roles in a project
-[**roles_update**](Roles.md#roles_update) | **PATCH** /projects/{project_name}/roles/{role_name} | Update a role in a project
+[**permissions_list**](./Roles.md#permissions_list) | **GET** /permissions | List the available permissions
+[**role_assignments_create**](./Roles.md#role_assignments_create) | **POST** /projects/{project_name}/role-assignments | Assign role to user/object
+[**role_assignments_delete**](./Roles.md#role_assignments_delete) | **DELETE** /projects/{project_name}/role-assignments/{id} | Delete role of user
+[**role_assignments_get**](./Roles.md#role_assignments_get) | **GET** /projects/{project_name}/role-assignments/{id} | Get role assignment
+[**role_assignments_per_object_list**](./Roles.md#role_assignments_per_object_list) | **GET** /projects/{project_name}/role-assignments | List roles on object/user
+[**roles_create**](./Roles.md#roles_create) | **POST** /projects/{project_name}/roles | Create a custom role scoped in a project
+[**roles_delete**](./Roles.md#roles_delete) | **DELETE** /projects/{project_name}/roles/{role_name} | Delete a role from a project
+[**roles_get**](./Roles.md#roles_get) | **GET** /projects/{project_name}/roles/{role_name} | Get details of a role
+[**roles_list**](./Roles.md#roles_list) | **GET** /projects/{project_name}/roles | List the available roles in a project
+[**roles_update**](./Roles.md#roles_update) | **PATCH** /projects/{project_name}/roles/{role_name} | Update a role in a project
 
 
 # **permissions_list**

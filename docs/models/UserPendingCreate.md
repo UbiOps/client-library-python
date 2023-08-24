@@ -7,7 +7,5 @@ Name | Type | Notes
 **password** | **str** | 
 **name** | **str** | [optional] 
 **surname** | **str** | [optional] 
-**terms_conditions** | **bool** | 
-**newsletter** | **bool** | [optional] 
 
 

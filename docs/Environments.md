@@ -4,21 +4,21 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**environment_build_dependencies_list**](Environments.md#environment_build_dependencies_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id}/dependency-files | List dependency files
-[**environment_builds_get**](Environments.md#environment_builds_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Get build
-[**environment_builds_list**](Environments.md#environment_builds_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds | List builds
-[**environment_builds_update**](Environments.md#environment_builds_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Update build
-[**environment_revisions_file_download**](Environments.md#environment_revisions_file_download) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/download | Download environment file
-[**environment_revisions_file_upload**](Environments.md#environment_revisions_file_upload) | **POST** /projects/{project_name}/environments/{environment_name}/revisions | Upload environment file
-[**environment_revisions_get**](Environments.md#environment_revisions_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id} | Get revision
-[**environment_revisions_list**](Environments.md#environment_revisions_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions | List revisions
-[**environment_revisions_rebuild**](Environments.md#environment_revisions_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/rebuild | Rebuild revision
-[**environments_create**](Environments.md#environments_create) | **POST** /projects/{project_name}/environments | Create environments
-[**environments_delete**](Environments.md#environments_delete) | **DELETE** /projects/{project_name}/environments/{environment_name} | Delete environment
-[**environments_get**](Environments.md#environments_get) | **GET** /projects/{project_name}/environments/{environment_name} | Get environment
-[**environments_list**](Environments.md#environments_list) | **GET** /projects/{project_name}/environments | List environments
-[**environments_update**](Environments.md#environments_update) | **PATCH** /projects/{project_name}/environments/{environment_name} | Update environment
-[**environments_usage**](Environments.md#environments_usage) | **GET** /projects/{project_name}/environments/{environment_name}/usage | List usage of environment
+[**environment_build_dependencies_list**](./Environments.md#environment_build_dependencies_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id}/dependency-files | List dependency files
+[**environment_builds_get**](./Environments.md#environment_builds_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Get build
+[**environment_builds_list**](./Environments.md#environment_builds_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds | List builds
+[**environment_builds_update**](./Environments.md#environment_builds_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Update build
+[**environment_revisions_file_download**](./Environments.md#environment_revisions_file_download) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/download | Download environment file
+[**environment_revisions_file_upload**](./Environments.md#environment_revisions_file_upload) | **POST** /projects/{project_name}/environments/{environment_name}/revisions | Upload environment file
+[**environment_revisions_get**](./Environments.md#environment_revisions_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id} | Get revision
+[**environment_revisions_list**](./Environments.md#environment_revisions_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions | List revisions
+[**environment_revisions_rebuild**](./Environments.md#environment_revisions_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/rebuild | Rebuild revision
+[**environments_create**](./Environments.md#environments_create) | **POST** /projects/{project_name}/environments | Create environments
+[**environments_delete**](./Environments.md#environments_delete) | **DELETE** /projects/{project_name}/environments/{environment_name} | Delete environment
+[**environments_get**](./Environments.md#environments_get) | **GET** /projects/{project_name}/environments/{environment_name} | Get environment
+[**environments_list**](./Environments.md#environments_list) | **GET** /projects/{project_name}/environments | List environments
+[**environments_update**](./Environments.md#environments_update) | **PATCH** /projects/{project_name}/environments/{environment_name} | Update environment
+[**environments_usage**](./Environments.md#environments_usage) | **GET** /projects/{project_name}/environments/{environment_name}/usage | List usage of environment
 
 
 # **environment_build_dependencies_list**
@@ -480,6 +480,9 @@ Download the file of a revision of an environment
     with core_api.environment_revisions_file_download(project_name, environment_name, revision_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.environment_revisions_file_download(project_name, environment_name, revision_id, _preload_content=True)
     
     # Close the connection
     core_api.api_client.close()
@@ -506,6 +509,9 @@ Download the file of a revision of an environment
     with core_api.environment_revisions_file_download(project_name, environment_name, revision_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.environment_revisions_file_download(project_name, environment_name, revision_id, _preload_content=True)
     
     # Close the connection
     api_client.close()

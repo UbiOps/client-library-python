@@ -4,28 +4,28 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**instance_types_list**](Projects.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
-[**metrics_get**](Projects.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric} | Get metrics
-[**project_audit_events_list**](Projects.md#project_audit_events_list) | **GET** /projects/{project_name}/audit | List audit events in a project
-[**project_environment_variables_create**](Projects.md#project_environment_variables_create) | **POST** /projects/{project_name}/environment-variables | Create project environment variable
-[**project_environment_variables_delete**](Projects.md#project_environment_variables_delete) | **DELETE** /projects/{project_name}/environment-variables/{id} | Delete project environment variable
-[**project_environment_variables_get**](Projects.md#project_environment_variables_get) | **GET** /projects/{project_name}/environment-variables/{id} | Get project environment variable
-[**project_environment_variables_list**](Projects.md#project_environment_variables_list) | **GET** /projects/{project_name}/environment-variables | List project environment variables
-[**project_environment_variables_update**](Projects.md#project_environment_variables_update) | **PATCH** /projects/{project_name}/environment-variables/{id} | Update project environment variable
-[**project_requests_list**](Projects.md#project_requests_list) | **GET** /projects/{project_name}/requests | List requests in project
-[**project_users_create**](Projects.md#project_users_create) | **POST** /projects/{project_name}/users | Add user to a project
-[**project_users_delete**](Projects.md#project_users_delete) | **DELETE** /projects/{project_name}/users/{user_id} | Delete user from a project
-[**project_users_get**](Projects.md#project_users_get) | **GET** /projects/{project_name}/users/{user_id} | Get user in a project
-[**project_users_list**](Projects.md#project_users_list) | **GET** /projects/{project_name}/users | List users in a project
-[**projects_create**](Projects.md#projects_create) | **POST** /projects | Create projects
-[**projects_delete**](Projects.md#projects_delete) | **DELETE** /projects/{project_name} | Delete a project
-[**projects_get**](Projects.md#projects_get) | **GET** /projects/{project_name} | Get details of a project
-[**projects_list**](Projects.md#projects_list) | **GET** /projects | List projects
-[**projects_log_list**](Projects.md#projects_log_list) | **POST** /projects/{project_name}/logs | List logs for a project
-[**projects_resource_usage**](Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
-[**projects_update**](Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
-[**projects_usage_get**](Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
-[**quotas_list**](Projects.md#quotas_list) | **GET** /projects/{project_name}/quotas | List quotas
+[**instance_types_list**](./Projects.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
+[**metrics_get**](./Projects.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric} | Get metrics
+[**project_audit_events_list**](./Projects.md#project_audit_events_list) | **GET** /projects/{project_name}/audit | List audit events in a project
+[**project_environment_variables_create**](./Projects.md#project_environment_variables_create) | **POST** /projects/{project_name}/environment-variables | Create project environment variable
+[**project_environment_variables_delete**](./Projects.md#project_environment_variables_delete) | **DELETE** /projects/{project_name}/environment-variables/{id} | Delete project environment variable
+[**project_environment_variables_get**](./Projects.md#project_environment_variables_get) | **GET** /projects/{project_name}/environment-variables/{id} | Get project environment variable
+[**project_environment_variables_list**](./Projects.md#project_environment_variables_list) | **GET** /projects/{project_name}/environment-variables | List project environment variables
+[**project_environment_variables_update**](./Projects.md#project_environment_variables_update) | **PATCH** /projects/{project_name}/environment-variables/{id} | Update project environment variable
+[**project_requests_list**](./Projects.md#project_requests_list) | **GET** /projects/{project_name}/requests | List requests in project
+[**project_users_create**](./Projects.md#project_users_create) | **POST** /projects/{project_name}/users | Add user to a project
+[**project_users_delete**](./Projects.md#project_users_delete) | **DELETE** /projects/{project_name}/users/{user_id} | Delete user from a project
+[**project_users_get**](./Projects.md#project_users_get) | **GET** /projects/{project_name}/users/{user_id} | Get user in a project
+[**project_users_list**](./Projects.md#project_users_list) | **GET** /projects/{project_name}/users | List users in a project
+[**projects_create**](./Projects.md#projects_create) | **POST** /projects | Create projects
+[**projects_delete**](./Projects.md#projects_delete) | **DELETE** /projects/{project_name} | Delete a project
+[**projects_get**](./Projects.md#projects_get) | **GET** /projects/{project_name} | Get details of a project
+[**projects_list**](./Projects.md#projects_list) | **GET** /projects | List projects
+[**projects_log_list**](./Projects.md#projects_log_list) | **POST** /projects/{project_name}/logs | List logs for a project
+[**projects_resource_usage**](./Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
+[**projects_update**](./Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
+[**projects_usage_get**](./Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
+[**quotas_list**](./Projects.md#quotas_list) | **GET** /projects/{project_name}/quotas | List quotas
 
 
 # **instance_types_list**
@@ -40,18 +40,13 @@ Get list of available deployment instance types for a project
 Details of the instance type
 
 - `id`: Unique identifier for the instance type (UUID)
-
 - `name`: Name of the deployment instance type
-
 - `display_name`: Readable name of the deployment instance type
-
 - `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)
-
-- `cpu_allocation`: Integer indicating CPU allocation for this instance type (milliCPU)
-
+- `cpu_allocation`: Float indicating vCPU allocation for this instance type
 - `gpu_allocation`: Integer indicating number of GPU cores for this instance type
-
 - `storage_allocation`: Integer indicating the maximum storage that can be used by this instance type (MB)
+- `credit_rate`: Credits used per hour for this instance type
 
 ## Response Examples
 
@@ -62,9 +57,10 @@ Details of the instance type
     "name": "512mb",
     "display_name": "512 MB",
     "memory_allocation": 512,
-    "cpu_allocation": 125,
+    "cpu_allocation": 0.125,
     "gpu_allocation": 0,
-    "storage_allocation": 2048
+    "storage_allocation": 2048,
+    "credit_rate": 0.5
   }
 ]
 ```

@@ -2,23 +2,23 @@
 
 Helper functions for training.
 
-| Method                                                                                             | Description                            |
-|----------------------------------------------------------------------------------------------------|----------------------------------------|
-| [**experiments_create**](Training.md#experiments_create)                                           | Create experiment                      |
-| [**experiments_delete**](Training.md#experiments_delete)                                           | Delete experiment                      |
-| [**experiments_get**](Training.md#experiments_get)                                                 | Get experiment                         |
-| [**experiments_list**](Training.md#experiments_list)                                               | List experiments                       |
-| [**experiments_update**](Training.md#experiments_update)                                           | Update experiment                      |
-| [**experiment_runs_create**](Training.md#experiment_runs_create)                                   | Create experiment run                  |
-| [**experiment_runs_delete**](Training.md#experiment_runs_delete)                                   | Delete experiment run                  |
-| [**experiment_runs_get**](Training.md#experiment_runs_get)                                         | Get experiment run                     |
-| [**experiment_runs_list**](Training.md#experiment_runs_list)                                       | List experiment runs                   |
-| [**experiment_runs_update**](Training.md#experiment_runs_update)                                   | Update experiment run                  |
-| [**experiment_environment_variables_create**](Training.md#experiment_environment_variables_create) | Create experiment environment variable |
-| [**experiment_environment_variables_delete**](Training.md#experiment_environment_variables_delete) | Delete experiment environment variable |
-| [**experiment_environment_variables_get**](Training.md#experiment_environment_variables_get)       | Get experiment environment variable    |
-| [**experiment_environment_variables_list**](Training.md#experiment_environment_variables_list)     | List experiment environment variables  |
-| [**experiment_environment_variables_update**](Training.md#experiment_environment_variables_update) | Update experiment environment variable |
+| Method                                                                                               | Description                            |
+|------------------------------------------------------------------------------------------------------|----------------------------------------|
+| [**experiments_create**](./Training.md#experiments_create)                                           | Create experiment                      |
+| [**experiments_delete**](./Training.md#experiments_delete)                                           | Delete experiment                      |
+| [**experiments_get**](./Training.md#experiments_get)                                                 | Get experiment                         |
+| [**experiments_list**](./Training.md#experiments_list)                                               | List experiments                       |
+| [**experiments_update**](./Training.md#experiments_update)                                           | Update experiment                      |
+| [**experiment_runs_create**](./Training.md#experiment_runs_create)                                   | Create experiment run                  |
+| [**experiment_runs_delete**](./Training.md#experiment_runs_delete)                                   | Delete experiment run                  |
+| [**experiment_runs_get**](./Training.md#experiment_runs_get)                                         | Get experiment run                     |
+| [**experiment_runs_list**](./Training.md#experiment_runs_list)                                       | List experiment runs                   |
+| [**experiment_runs_update**](./Training.md#experiment_runs_update)                                   | Update experiment run                  |
+| [**experiment_environment_variables_create**](./Training.md#experiment_environment_variables_create) | Create experiment environment variable |
+| [**experiment_environment_variables_delete**](./Training.md#experiment_environment_variables_delete) | Delete experiment environment variable |
+| [**experiment_environment_variables_get**](./Training.md#experiment_environment_variables_get)       | Get experiment environment variable    |
+| [**experiment_environment_variables_list**](./Training.md#experiment_environment_variables_list)     | List experiment environment variables  |
+| [**experiment_environment_variables_update**](./Training.md#experiment_environment_variables_update) | Update experiment environment variable |
 
 
 # **experiments_create**

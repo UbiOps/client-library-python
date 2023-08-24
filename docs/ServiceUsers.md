@@ -4,12 +4,12 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**service_users_create**](ServiceUsers.md#service_users_create) | **POST** /projects/{project_name}/service-users | Create a new service user
-[**service_users_delete**](ServiceUsers.md#service_users_delete) | **DELETE** /projects/{project_name}/service-users/{service_user_id} | Delete service user
-[**service_users_get**](ServiceUsers.md#service_users_get) | **GET** /projects/{project_name}/service-users/{service_user_id} | Retrieve details of a service user
-[**service_users_list**](ServiceUsers.md#service_users_list) | **GET** /projects/{project_name}/service-users | List service users
-[**service_users_token**](ServiceUsers.md#service_users_token) | **PUT** /projects/{project_name}/service-users/{service_user_id}/token | Reset the token of a service user
-[**service_users_update**](ServiceUsers.md#service_users_update) | **PATCH** /projects/{project_name}/service-users/{service_user_id} | Update service user details
+[**service_users_create**](./ServiceUsers.md#service_users_create) | **POST** /projects/{project_name}/service-users | Create a new service user
+[**service_users_delete**](./ServiceUsers.md#service_users_delete) | **DELETE** /projects/{project_name}/service-users/{service_user_id} | Delete service user
+[**service_users_get**](./ServiceUsers.md#service_users_get) | **GET** /projects/{project_name}/service-users/{service_user_id} | Retrieve details of a service user
+[**service_users_list**](./ServiceUsers.md#service_users_list) | **GET** /projects/{project_name}/service-users | List service users
+[**service_users_token**](./ServiceUsers.md#service_users_token) | **PUT** /projects/{project_name}/service-users/{service_user_id}/token | Reset the token of a service user
+[**service_users_update**](./ServiceUsers.md#service_users_update) | **PATCH** /projects/{project_name}/service-users/{service_user_id} | Update service user details
 
 
 # **service_users_create**

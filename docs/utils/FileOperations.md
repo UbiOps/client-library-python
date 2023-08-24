@@ -2,10 +2,10 @@
 
 Helper functions for file operations.
 
-| Method                                               | Description                   |
-|------------------------------------------------------|-------------------------------|
-| [**upload_file**](FileOperations.md#upload_file)     | Upload a file to a bucket     |
-| [**download_file**](FileOperations.md#download_file) | Download a file from a bucket |
+| Method                                                 | Description                   |
+|--------------------------------------------------------|-------------------------------|
+| [**upload_file**](./FileOperations.md#upload_file)     | Upload a file to a bucket     |
+| [**download_file**](./FileOperations.md#download_file) | Download a file from a bucket |
 
 # **upload_file**
 > upload_file(client, project_name, file_path, bucket_name='default', file_name=None)
