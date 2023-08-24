@@ -15,7 +15,10 @@ Name | Type | Notes
 **result** | **str** or **dict(str, str)** | [optional] 
 **deployment_requests** | [**list[PipelineRequestDeploymentRequest]**](PipelineRequestDeploymentRequest.md) | 
 **operator_requests** | [**list[PipelineRequestOperatorRequest]**](PipelineRequestOperatorRequest.md) | 
+**pipeline_requests** | [**list[PipelineRequestPipelineRequest]**](PipelineRequestPipelineRequest.md) | 
 **error_message** | **str** | [optional] 
+**pipeline_timeout** | **int** | [optional] 
+**deployment_timeout** | **int** | [optional] 
 **notification_group** | **str** | [optional] 
 **origin** | **dict(str, str)** | [optional] [readonly] 
 

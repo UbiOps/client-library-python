@@ -4,17 +4,17 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**organization_users_create**](Organizations.md#organization_users_create) | **POST** /organizations/{organization_name}/users | Add a user to an organization
-[**organization_users_delete**](Organizations.md#organization_users_delete) | **DELETE** /organizations/{organization_name}/users/{user_id} | Delete a user from an organization
-[**organization_users_get**](Organizations.md#organization_users_get) | **GET** /organizations/{organization_name}/users/{user_id} | Get details of a user in an organization
-[**organization_users_list**](Organizations.md#organization_users_list) | **GET** /organizations/{organization_name}/users | List the users in an organization
-[**organization_users_update**](Organizations.md#organization_users_update) | **PATCH** /organizations/{organization_name}/users/{user_id} | Update details of a user in an organization
-[**organizations_create**](Organizations.md#organizations_create) | **POST** /organizations | Create organizations
-[**organizations_get**](Organizations.md#organizations_get) | **GET** /organizations/{organization_name} | Get details of an organization
-[**organizations_list**](Organizations.md#organizations_list) | **GET** /organizations | List organizations
-[**organizations_resource_usage**](Organizations.md#organizations_resource_usage) | **GET** /organizations/{organization_name}/resources | Get resource usage
-[**organizations_update**](Organizations.md#organizations_update) | **PATCH** /organizations/{organization_name} | Update details of an organization
-[**organizations_usage_get**](Organizations.md#organizations_usage_get) | **GET** /organizations/{organization_name}/usage | Get organization usage
+[**organization_users_create**](./Organizations.md#organization_users_create) | **POST** /organizations/{organization_name}/users | Add a user to an organization
+[**organization_users_delete**](./Organizations.md#organization_users_delete) | **DELETE** /organizations/{organization_name}/users/{user_id} | Delete a user from an organization
+[**organization_users_get**](./Organizations.md#organization_users_get) | **GET** /organizations/{organization_name}/users/{user_id} | Get details of a user in an organization
+[**organization_users_list**](./Organizations.md#organization_users_list) | **GET** /organizations/{organization_name}/users | List the users in an organization
+[**organization_users_update**](./Organizations.md#organization_users_update) | **PATCH** /organizations/{organization_name}/users/{user_id} | Update details of a user in an organization
+[**organizations_create**](./Organizations.md#organizations_create) | **POST** /organizations | Create organizations
+[**organizations_get**](./Organizations.md#organizations_get) | **GET** /organizations/{organization_name} | Get details of an organization
+[**organizations_list**](./Organizations.md#organizations_list) | **GET** /organizations | List organizations
+[**organizations_resource_usage**](./Organizations.md#organizations_resource_usage) | **GET** /organizations/{organization_name}/resources | Get resource usage
+[**organizations_update**](./Organizations.md#organizations_update) | **PATCH** /organizations/{organization_name} | Update details of an organization
+[**organizations_usage_get**](./Organizations.md#organizations_usage_get) | **GET** /organizations/{organization_name}/usage | Get organization usage
 
 
 # **organization_users_create**

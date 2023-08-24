@@ -4,35 +4,36 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**builds_get**](Deployments.md#builds_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Get build
-[**deployment_audit_events_list**](Deployments.md#deployment_audit_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/audit | List audit events for a deployment
-[**deployment_environment_variables_copy**](Deployments.md#deployment_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/copy-environment-variables | Copy deployment environment variable
-[**deployment_environment_variables_create**](Deployments.md#deployment_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/environment-variables | Create deployment environment variable
-[**deployment_environment_variables_delete**](Deployments.md#deployment_environment_variables_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/environment-variables/{id} | Delete deployment environment variable
-[**deployment_environment_variables_get**](Deployments.md#deployment_environment_variables_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/environment-variables/{id} | Get deployment environment variable
-[**deployment_environment_variables_list**](Deployments.md#deployment_environment_variables_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/environment-variables | List deployment environment variables
-[**deployment_environment_variables_update**](Deployments.md#deployment_environment_variables_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/environment-variables/{id} | Update deployment environment variable
-[**deployment_version_environment_variables_copy**](Deployments.md#deployment_version_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/copy-environment-variables | Copy deployment version environment variable
-[**deployment_version_environment_variables_create**](Deployments.md#deployment_version_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables | Create deployment version environment variable
-[**deployment_version_environment_variables_delete**](Deployments.md#deployment_version_environment_variables_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id} | Delete deployment version environment variable
-[**deployment_version_environment_variables_get**](Deployments.md#deployment_version_environment_variables_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id} | Get deployment version environment variable
-[**deployment_version_environment_variables_list**](Deployments.md#deployment_version_environment_variables_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables | List deployment version environment variables
-[**deployment_version_environment_variables_update**](Deployments.md#deployment_version_environment_variables_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id} | Update deployment version environment variable
-[**deployment_versions_create**](Deployments.md#deployment_versions_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions | Create deployment versions
-[**deployment_versions_delete**](Deployments.md#deployment_versions_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/versions/{version} | Delete deployment version
-[**deployment_versions_get**](Deployments.md#deployment_versions_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version} | Get deployment version
-[**deployment_versions_list**](Deployments.md#deployment_versions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions | List deployment versions
-[**deployment_versions_update**](Deployments.md#deployment_versions_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version} | Update deployment version
-[**deployments_create**](Deployments.md#deployments_create) | **POST** /projects/{project_name}/deployments | Create deployments
-[**deployments_delete**](Deployments.md#deployments_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name} | Delete a deployment
-[**deployments_get**](Deployments.md#deployments_get) | **GET** /projects/{project_name}/deployments/{deployment_name} | Get details of a deployment
-[**deployments_list**](Deployments.md#deployments_list) | **GET** /projects/{project_name}/deployments | List deployments
-[**deployments_update**](Deployments.md#deployments_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name} | Update a deployment
-[**revisions_file_download**](Deployments.md#revisions_file_download) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/download | Download deployment file
-[**revisions_file_upload**](Deployments.md#revisions_file_upload) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | Upload deployment file
-[**revisions_get**](Deployments.md#revisions_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id} | Get revision
-[**revisions_list**](Deployments.md#revisions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | List revisions
-[**template_deployments_list**](Deployments.md#template_deployments_list) | **GET** /template-deployments | List template deployments
+[**builds_get**](./Deployments.md#builds_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Get build
+[**deployment_audit_events_list**](./Deployments.md#deployment_audit_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/audit | List audit events for a deployment
+[**deployment_environment_variables_copy**](./Deployments.md#deployment_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/copy-environment-variables | Copy deployment environment variable
+[**deployment_environment_variables_create**](./Deployments.md#deployment_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/environment-variables | Create deployment environment variable
+[**deployment_environment_variables_delete**](./Deployments.md#deployment_environment_variables_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/environment-variables/{id} | Delete deployment environment variable
+[**deployment_environment_variables_get**](./Deployments.md#deployment_environment_variables_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/environment-variables/{id} | Get deployment environment variable
+[**deployment_environment_variables_list**](./Deployments.md#deployment_environment_variables_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/environment-variables | List deployment environment variables
+[**deployment_environment_variables_update**](./Deployments.md#deployment_environment_variables_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/environment-variables/{id} | Update deployment environment variable
+[**deployment_version_environment_variables_copy**](./Deployments.md#deployment_version_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/copy-environment-variables | Copy deployment version environment variable
+[**deployment_version_environment_variables_create**](./Deployments.md#deployment_version_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables | Create deployment version environment variable
+[**deployment_version_environment_variables_delete**](./Deployments.md#deployment_version_environment_variables_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id} | Delete deployment version environment variable
+[**deployment_version_environment_variables_get**](./Deployments.md#deployment_version_environment_variables_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id} | Get deployment version environment variable
+[**deployment_version_environment_variables_list**](./Deployments.md#deployment_version_environment_variables_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables | List deployment version environment variables
+[**deployment_version_environment_variables_update**](./Deployments.md#deployment_version_environment_variables_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/environment-variables/{id} | Update deployment version environment variable
+[**deployment_versions_create**](./Deployments.md#deployment_versions_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions | Create deployment versions
+[**deployment_versions_delete**](./Deployments.md#deployment_versions_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/versions/{version} | Delete deployment version
+[**deployment_versions_get**](./Deployments.md#deployment_versions_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version} | Get deployment version
+[**deployment_versions_list**](./Deployments.md#deployment_versions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions | List deployment versions
+[**deployment_versions_update**](./Deployments.md#deployment_versions_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version} | Update deployment version
+[**deployments_create**](./Deployments.md#deployments_create) | **POST** /projects/{project_name}/deployments | Create deployments
+[**deployments_delete**](./Deployments.md#deployments_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name} | Delete a deployment
+[**deployments_get**](./Deployments.md#deployments_get) | **GET** /projects/{project_name}/deployments/{deployment_name} | Get details of a deployment
+[**deployments_list**](./Deployments.md#deployments_list) | **GET** /projects/{project_name}/deployments | List deployments
+[**deployments_update**](./Deployments.md#deployments_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name} | Update a deployment
+[**revisions_file_download**](./Deployments.md#revisions_file_download) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/download | Download deployment file
+[**revisions_file_upload**](./Deployments.md#revisions_file_upload) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | Upload deployment file
+[**revisions_get**](./Deployments.md#revisions_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id} | Get revision
+[**revisions_list**](./Deployments.md#revisions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | List revisions
+[**revisions_rebuild**](./Deployments.md#revisions_rebuild) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/rebuild | Rebuild revision
+[**template_deployments_list**](./Deployments.md#template_deployments_list) | **GET** /template-deployments | List template deployments
 
 
 # **builds_get**
@@ -2380,12 +2381,13 @@ Possible data types for the input and output fields are:
 - **int**: integer
 - **string**: string
 - **double**: double precision floating point
-- **bool**: boolean value (False/True)
-- **timestamp**: timestamp
+- **bool**: boolean value (True/False)
+- **dict**: Python dictionary
+- **file**: a file. This type of field can be used to pass files to the deployment. In deployment and pipeline requests, the path to the file in the bucket must be provided for this field.
 - **array_int**: an array of integers
 - **array_double**: an array of double precision floating points
 - **array_string**: an array of strings
-- **file**: a file field. This type of field can be used to pass files to the deployment. In deployment and pipeline requests, the path to the file in the bucket must be provided for this field.
+- **array_file**: an array of files
 
 Possible widgets for the input fields are:
 - **textbox**: textbox
@@ -3165,6 +3167,9 @@ Download the deployment file of a revision of a version
     with core_api.revisions_file_download(project_name, deployment_name, revision_id, version) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.revisions_file_download(project_name, deployment_name, revision_id, version, _preload_content=True)
     
     # Close the connection
     core_api.api_client.close()
@@ -3192,6 +3197,9 @@ Download the deployment file of a revision of a version
     with core_api.revisions_file_download(project_name, deployment_name, revision_id, version) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.revisions_file_download(project_name, deployment_name, revision_id, version, _preload_content=True)
     
     # Close the connection
     api_client.close()
@@ -3538,6 +3546,115 @@ Name | Type | Notes
 ### Return type
 
 [**list[RevisionList]**](./models/RevisionList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **revisions_rebuild**
+> RevisionList revisions_rebuild(project_name, deployment_name, revision_id, version, data)
+
+Rebuild revision
+
+## Description
+Trigger a rebuild for a revision of a deployment
+
+### Response Structure
+Details of the created revision
+
+- `id`: Unique identifier for the revision (UUID)
+- `version`: Version to which the revision is linked
+- `creation_date`: The date when the revision was created
+- `created_by`: The email of the user that created the revision
+- `status`: Status of the revision
+- `error_message`: Error message which explains why the revision has failed. It is empty if the revision is successful.
+- `has_request_method`: Whether the deployment code corresponding to the revision has a 'request' method
+- `has_requests_method`: Whether the deployment code corresponding to the revision has a 'requests' method
+
+## Response Examples
+
+```
+{
+  "id": "a009d7c9-67e4-4d3c-89fd-d3c8b07c7242",
+  "version": "v1",
+  "creation_date": "2022-12-23T16:35:13.069+00:00",
+  "created_by": "test@example.com",
+  "status": "building",
+  "error_message": "",
+  "has_request_method": true,
+  "has_requests_method": false
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    revision_id = 'revision_id_example' # str
+    version = 'version_example' # str
+    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+
+    # Rebuild revision
+    api_response = core_api.revisions_rebuild(project_name, deployment_name, revision_id, version, data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    revision_id = 'revision_id_example' # str
+    version = 'version_example' # str
+    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+
+    # Rebuild revision
+    api_response = core_api.revisions_rebuild(project_name, deployment_name, revision_id, version, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **revision_id** | **str** | 
+ **version** | **str** | 
+ **data** | **str or dict()** | 
+
+### Return type
+
+[**RevisionList**](./models/RevisionList.md)
 
 ### Authorization
 

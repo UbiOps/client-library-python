@@ -10,5 +10,6 @@ Name | Type | Notes
 **cpu_allocation** | **int** | [optional] [readonly] 
 **gpu_allocation** | **int** | [optional] [readonly] 
 **storage_allocation** | **int** | [optional] [readonly] 
+**credit_rate** | **float** | [optional] 
 
 

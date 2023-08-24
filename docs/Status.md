@@ -4,7 +4,7 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**service_status**](Status.md#service_status) | **GET** /status | Service status
+[**service_status**](./Status.md#service_status) | **GET** /status | Service status
 
 
 # **service_status**

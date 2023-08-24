@@ -4,11 +4,11 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**request_schedules_create**](RequestSchedules.md#request_schedules_create) | **POST** /projects/{project_name}/schedules | Create request schedules
-[**request_schedules_delete**](RequestSchedules.md#request_schedules_delete) | **DELETE** /projects/{project_name}/schedules/{schedule_name} | Delete a request schedule
-[**request_schedules_get**](RequestSchedules.md#request_schedules_get) | **GET** /projects/{project_name}/schedules/{schedule_name} | Get details of a request schedule
-[**request_schedules_list**](RequestSchedules.md#request_schedules_list) | **GET** /projects/{project_name}/schedules | List request schedules
-[**request_schedules_update**](RequestSchedules.md#request_schedules_update) | **PATCH** /projects/{project_name}/schedules/{schedule_name} | Update a request schedule
+[**request_schedules_create**](./RequestSchedules.md#request_schedules_create) | **POST** /projects/{project_name}/schedules | Create request schedules
+[**request_schedules_delete**](./RequestSchedules.md#request_schedules_delete) | **DELETE** /projects/{project_name}/schedules/{schedule_name} | Delete a request schedule
+[**request_schedules_get**](./RequestSchedules.md#request_schedules_get) | **GET** /projects/{project_name}/schedules/{schedule_name} | Get details of a request schedule
+[**request_schedules_list**](./RequestSchedules.md#request_schedules_list) | **GET** /projects/{project_name}/schedules | List request schedules
+[**request_schedules_update**](./RequestSchedules.md#request_schedules_update) | **PATCH** /projects/{project_name}/schedules/{schedule_name} | Update a request schedule
 
 
 # **request_schedules_create**

@@ -4,21 +4,21 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batch_pipeline_requests_create**](PipelineRequests.md#batch_pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/batch | Create a batch pipeline request
-[**batch_pipeline_version_requests_create**](PipelineRequests.md#batch_pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch | Create a batch pipeline version request
-[**pipeline_requests_batch_delete**](PipelineRequests.md#pipeline_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/delete | Delete multiple pipeline requests
-[**pipeline_requests_batch_get**](PipelineRequests.md#pipeline_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/collect | Retrieve multiple pipeline requests
-[**pipeline_requests_create**](PipelineRequests.md#pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests | Create a pipeline request
-[**pipeline_requests_delete**](PipelineRequests.md#pipeline_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Delete a pipeline request
-[**pipeline_requests_get**](PipelineRequests.md#pipeline_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Get a pipeline request
-[**pipeline_requests_list**](PipelineRequests.md#pipeline_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests | List pipeline requests
-[**pipeline_version_object_requests_get**](PipelineRequests.md#pipeline_version_object_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id} | Get an operator request
-[**pipeline_version_requests_batch_delete**](PipelineRequests.md#pipeline_version_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete | Delete multiple pipeline version requests
-[**pipeline_version_requests_batch_get**](PipelineRequests.md#pipeline_version_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect | Retrieve multiple pipeline version requests
-[**pipeline_version_requests_create**](PipelineRequests.md#pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | Create a pipeline version request
-[**pipeline_version_requests_delete**](PipelineRequests.md#pipeline_version_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Delete a pipeline version request
-[**pipeline_version_requests_get**](PipelineRequests.md#pipeline_version_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Get a pipeline version request
-[**pipeline_version_requests_list**](PipelineRequests.md#pipeline_version_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | List pipeline version requests
+[**batch_pipeline_requests_create**](./PipelineRequests.md#batch_pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/batch | Create a batch pipeline request
+[**batch_pipeline_version_requests_create**](./PipelineRequests.md#batch_pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch | Create a batch pipeline version request
+[**pipeline_requests_batch_delete**](./PipelineRequests.md#pipeline_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/delete | Delete multiple pipeline requests
+[**pipeline_requests_batch_get**](./PipelineRequests.md#pipeline_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/collect | Retrieve multiple pipeline requests
+[**pipeline_requests_create**](./PipelineRequests.md#pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests | Create a pipeline request
+[**pipeline_requests_delete**](./PipelineRequests.md#pipeline_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Delete a pipeline request
+[**pipeline_requests_get**](./PipelineRequests.md#pipeline_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Get a pipeline request
+[**pipeline_requests_list**](./PipelineRequests.md#pipeline_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests | List pipeline requests
+[**pipeline_version_object_requests_get**](./PipelineRequests.md#pipeline_version_object_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id} | Get an operator request
+[**pipeline_version_requests_batch_delete**](./PipelineRequests.md#pipeline_version_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete | Delete multiple pipeline version requests
+[**pipeline_version_requests_batch_get**](./PipelineRequests.md#pipeline_version_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect | Retrieve multiple pipeline version requests
+[**pipeline_version_requests_create**](./PipelineRequests.md#pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | Create a pipeline version request
+[**pipeline_version_requests_delete**](./PipelineRequests.md#pipeline_version_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Delete a pipeline version request
+[**pipeline_version_requests_get**](./PipelineRequests.md#pipeline_version_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Get a pipeline version request
+[**pipeline_version_requests_list**](./PipelineRequests.md#pipeline_version_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | List pipeline version requests
 
 
 # **batch_pipeline_requests_create**
@@ -443,6 +443,7 @@ A list of dictionaries containing the details of the retrieved pipeline requests
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
 - `deployment_requests`: A list of requests to the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
 - `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 
 ## Response Examples
@@ -478,6 +479,17 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "pipeline_object": "function-1",
         "operator": "function",
         "sequence_id": "16699092560130861",
+        "success": true,
+        "error_message": null
+      }
+    ],
+    "pipeline_requests": [
+      {
+        "id": "73d673b3-79e0-466e-af44-d841087a5c15",
+        "pipeline_object": "sub-pipeline-1-v1-object",
+        "pipeline": "pipeline-1",
+        "version": "v1",
+        "sequence_id": "16699092560130890",
         "success": true,
         "error_message": null
       }
@@ -589,7 +601,7 @@ Name | Type | Notes
 Create a pipeline request
 
 ## Description
-Make a direct request to the default version of a pipeline. This method returns all the results of the deployment requests made within the pipeline version.
+Make a direct request to the default version of a pipeline. This method returns all the results of the deployment/operator/sub-pipeline requests made within the pipeline version.
 
 ### Required Parameters
 The input for the request. In case of a structured pipeline, this is a dictionary which contains the input fields of the pipeline as keys. In case of a plain pipeline, give a string or list of strings.
@@ -630,6 +642,19 @@ example-plain-data
     - `version`: Name of the version the request was made to
     - `success`: A boolean value that indicates whether the deployment request was successful
     - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `operator_requests`: A list of dictionaries containing the results of the operator requests made for the version objects in the pipeline. The dictionaries contain the following fields:
+    - `id`: Unique identifier for the operator request
+    - `pipeline_object`: Name of the object in the pipeline
+    - `operator`: Name of the operator the request was made to
+    - `success`: A boolean value that indicates whether the operator request was successful
+    - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `pipeline_requests`: A list of dictionaries containing the results of the sub-pipeline requests made for the version objects in the pipeline. The dictionaries contain the following fields:
+    - `id`: Unique identifier for the sub-pipeline request
+    - `pipeline_object`: Name of the object in the pipeline
+    - `pipeline`: Name of the sub-pipeline the request was made to
+    - `version`: Name of the version the request was made to
+    - `success`: A boolean value that indicates whether the sub-pipeline request was successful
+    - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
 
 ## Response Examples
@@ -645,6 +670,8 @@ example-plain-data
     {
       "id": "a7524614-bdb7-41e1-b4c1-653bb72c30b4",
       "pipeline_object": "deployment-object-1",
+      "deployment": "deployment-1",
+      "version": "v1",
       "sequence_id": "16699092560130860",
       "success": true,
       "error_message": null
@@ -652,6 +679,8 @@ example-plain-data
     {
       "id": "fe322c50-58f8-4e67-b7d6-cba14273874e",
       "pipeline_object": "deployment-object-2",
+      "deployment": "deployment-2",
+      "version": "v1",
       "sequence_id": "16699092560130861",
       "success": false,
       "error_message": "Invalid message format"
@@ -665,6 +694,26 @@ example-plain-data
       "sequence_id": "16699092560130860",
       "success": true,
       "error_message": null
+    }
+  ],
+  "pipeline_requests": [
+    {
+      "id": "dd307a3e-6eb0-4a55-981b-52e277529df1",
+      "pipeline_object": "sub-pipeline-object-1",
+      "pipeline": "pipeline-1",
+      "version": "v1",
+      "sequence_id": "16699092560130890",
+      "success": true,
+      "error_message": null
+    },
+    {
+      "id": "411aa6f8-7706-45e7-9438-892e399947a1",
+      "pipeline_object": "sub-pipeline-object-2",
+      "pipeline": "pipeline-2",
+      "version": "v1",
+      "sequence_id": "16699092560130891",
+      "success": false,
+      "error_message": "Invalid message format"
     }
   ],
   "result": {
@@ -848,6 +897,7 @@ A dictionary containing the details of the pipeline request with the following f
 - `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
 - `deployment_requests`: A list of requests of the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
 - `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
@@ -888,6 +938,17 @@ A dictionary containing the details of the pipeline request with the following f
       "pipeline_object": "function-1",
       "operator": "function",
       "sequence_id": "16699092560130861",
+      "success": true,
+      "error_message": null
+    }
+  ],
+  "pipeline_requests": [
+    {
+      "id": "a152612e-b5d1-4f44-a04b-fe4a26849b02",
+      "pipeline_object": "sub-pipeline-1-v1-object",
+      "pipeline": "pipeline-1",
+      "version": "v1",
+      "sequence_id": "1669909256013090",
       "success": true,
       "error_message": null
     }

@@ -4,11 +4,11 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**blobs_create**](Blobs.md#blobs_create) | **POST** /projects/{project_name}/blobs | Upload a blob
-[**blobs_delete**](Blobs.md#blobs_delete) | **DELETE** /projects/{project_name}/blobs/{blob_id} | Delete a blob
-[**blobs_get**](Blobs.md#blobs_get) | **GET** /projects/{project_name}/blobs/{blob_id} | Get a blob
-[**blobs_list**](Blobs.md#blobs_list) | **GET** /projects/{project_name}/blobs | List blobs
-[**blobs_update**](Blobs.md#blobs_update) | **PUT** /projects/{project_name}/blobs/{blob_id} | Update a blob
+[**blobs_create**](./Blobs.md#blobs_create) | **POST** /projects/{project_name}/blobs | Upload a blob
+[**blobs_delete**](./Blobs.md#blobs_delete) | **DELETE** /projects/{project_name}/blobs/{blob_id} | Delete a blob
+[**blobs_get**](./Blobs.md#blobs_get) | **GET** /projects/{project_name}/blobs/{blob_id} | Get a blob
+[**blobs_list**](./Blobs.md#blobs_list) | **GET** /projects/{project_name}/blobs | List blobs
+[**blobs_update**](./Blobs.md#blobs_update) | **PUT** /projects/{project_name}/blobs/{blob_id} | Update a blob
 
 
 # **blobs_create**
@@ -216,6 +216,9 @@ Download a blob file in a project
     with core_api.blobs_get(project_name, blob_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.blobs_get(project_name, blob_id, _preload_content=True)
     
     # Close the connection
     core_api.api_client.close()
@@ -241,6 +244,9 @@ Download a blob file in a project
     with core_api.blobs_get(project_name, blob_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.blobs_get(project_name, blob_id, _preload_content=True)
     
     # Close the connection
     api_client.close()

@@ -6,9 +6,9 @@ Name | Type | Notes
 **id** | **str** | [optional] [readonly] 
 **name** | **str** | 
 **creation_date** | **date** | [optional] [readonly] 
-**organization_name** | **str** | 
 **advanced_permissions** | **bool** | [optional] 
 **credits** | **float** | [optional] 
+**organization_name** | **str** | 
 **suspended** | **str** | [optional] [readonly] 
 **suspended_reason** | **str** | [optional] [readonly] 
 

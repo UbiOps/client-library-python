@@ -2,9 +2,9 @@
 
 Function(s) to run a deployment locally
 
-| Method                                 | Description              |
-|----------------------------------------|--------------------------|
-| [**run_local**](RunLocal.md#run_local) | Run a deployment locally |
+| Method                                   | Description              |
+|------------------------------------------|--------------------------|
+| [**run_local**](./RunLocal.md#run_local) | Run a deployment locally |
 
 # **run_local**
 

@@ -23,12 +23,12 @@ def validate_requirements_file(file_path):
             try:
                 validate_requirement_line(index=index, line=line)
             except ValidateError as e:
-                logger.error("Line %s, %s" % (index + 1, e))
+                logger.error(f"Line {index + 1}, {e}")
                 return_value = False
             except ValidateWarning as e:
-                logger.warning("Line %s, %s" % (index + 1, e))
+                logger.warning(f"Line {index + 1}, {e}")
             except ValidateSkip as e:
-                logger.info("Line %s, %s" % (index + 1, e))
+                logger.info(f"Line {index + 1}, {e}")
 
     return return_value
 
@@ -65,7 +65,7 @@ def validate_yaml_file(file_path):
             logger.error("ubiops.yaml must contain a dictionary, can't continue validation")
             return False
 
-        if not all(item in ['environment_variables', 'apt'] for item in config):
+        if not all(item in ["environment_variables", "apt"] for item in config):
             logger.error("ubiops.yaml file must contain environment_variables and/or apt, can't continue validation")
             return False
 

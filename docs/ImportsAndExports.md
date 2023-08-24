@@ -4,17 +4,17 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**exports_create**](ImportsAndExports.md#exports_create) | **POST** /projects/{project_name}/exports | Create an export
-[**exports_delete**](ImportsAndExports.md#exports_delete) | **DELETE** /projects/{project_name}/exports/{export_id} | Delete an export
-[**exports_download**](ImportsAndExports.md#exports_download) | **GET** /projects/{project_name}/exports/{export_id}/download | Download an export
-[**exports_get**](ImportsAndExports.md#exports_get) | **GET** /projects/{project_name}/exports/{export_id} | Get an export
-[**exports_list**](ImportsAndExports.md#exports_list) | **GET** /projects/{project_name}/exports | List exports
-[**imports_create**](ImportsAndExports.md#imports_create) | **POST** /projects/{project_name}/imports | Create an import
-[**imports_delete**](ImportsAndExports.md#imports_delete) | **DELETE** /projects/{project_name}/imports/{import_id} | Delete an import
-[**imports_download**](ImportsAndExports.md#imports_download) | **GET** /projects/{project_name}/imports/{import_id}/download | Download an import
-[**imports_get**](ImportsAndExports.md#imports_get) | **GET** /projects/{project_name}/imports/{import_id} | Get an import
-[**imports_list**](ImportsAndExports.md#imports_list) | **GET** /projects/{project_name}/imports | List imports
-[**imports_update**](ImportsAndExports.md#imports_update) | **PATCH** /projects/{project_name}/imports/{import_id} | Confirm an import
+[**exports_create**](./ImportsAndExports.md#exports_create) | **POST** /projects/{project_name}/exports | Create an export
+[**exports_delete**](./ImportsAndExports.md#exports_delete) | **DELETE** /projects/{project_name}/exports/{export_id} | Delete an export
+[**exports_download**](./ImportsAndExports.md#exports_download) | **GET** /projects/{project_name}/exports/{export_id}/download | Download an export
+[**exports_get**](./ImportsAndExports.md#exports_get) | **GET** /projects/{project_name}/exports/{export_id} | Get an export
+[**exports_list**](./ImportsAndExports.md#exports_list) | **GET** /projects/{project_name}/exports | List exports
+[**imports_create**](./ImportsAndExports.md#imports_create) | **POST** /projects/{project_name}/imports | Create an import
+[**imports_delete**](./ImportsAndExports.md#imports_delete) | **DELETE** /projects/{project_name}/imports/{import_id} | Delete an import
+[**imports_download**](./ImportsAndExports.md#imports_download) | **GET** /projects/{project_name}/imports/{import_id}/download | Download an import
+[**imports_get**](./ImportsAndExports.md#imports_get) | **GET** /projects/{project_name}/imports/{import_id} | Get an import
+[**imports_list**](./ImportsAndExports.md#imports_list) | **GET** /projects/{project_name}/imports | List imports
+[**imports_update**](./ImportsAndExports.md#imports_update) | **PATCH** /projects/{project_name}/imports/{import_id} | Confirm an import
 
 
 # **exports_create**
@@ -271,6 +271,9 @@ Download an export in a project
     with core_api.exports_download(project_name, export_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.exports_download(project_name, export_id, _preload_content=True)
     
     # Close the connection
     core_api.api_client.close()
@@ -296,6 +299,9 @@ Download an export in a project
     with core_api.exports_download(project_name, export_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.exports_download(project_name, export_id, _preload_content=True)
     
     # Close the connection
     api_client.close()
@@ -730,6 +736,9 @@ Download an import in a project
     with core_api.imports_download(project_name, import_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.imports_download(project_name, import_id, _preload_content=True)
     
     # Close the connection
     core_api.api_client.close()
@@ -755,6 +764,9 @@ Download an import in a project
     with core_api.imports_download(project_name, import_id) as response:
         filename = response.getfilename()
         content = response.read()
+
+    # Or directly save the file in the current working directory using _preload_content=True
+    # output_path = core_api.imports_download(project_name, import_id, _preload_content=True)
     
     # Close the connection
     api_client.close()

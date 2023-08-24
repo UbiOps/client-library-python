@@ -9,5 +9,6 @@ Name | Type | Notes
 **success** | **bool** | 
 **result** | **str** or **dict(str, str)** | [optional] 
 **error_message** | **str** | [optional] 
+**timeout** | **int** | [optional] 
 
 

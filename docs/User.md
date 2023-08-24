@@ -4,8 +4,8 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**user_create**](User.md#user_create) | **POST** /user | Create a new user
-[**user_delete**](User.md#user_delete) | **DELETE** /user | Delete user
+[**user_create**](./User.md#user_create) | **POST** /user | Create a new user
+[**user_delete**](./User.md#user_delete) | **DELETE** /user | Delete user
 
 
 # **user_create**
@@ -14,19 +14,17 @@ Method | HTTP request | Description
 Create a new user
 
 ## Description
-Create a new user with the given details. After creation, an email is send to the email address to activate the account. The user is required to accept the terms and conditions. The password needs to be at least 8 characters long.
+Create a new user with the given details. After creation, an email is send to the email address to activate the account. The password needs to be at least 8 characters long.
 
 ### Required Parameters
 
 - `email`: Email of the user
 - `password`: Password of the user
-- `terms_conditions`: A boolean indicating whether the user accepts terms and conditions
 
 ### Optional Parameters
 
 - `name`: Name of the user
 - `surname`: Surname of the user
-- `newsletter`: A boolean indicating whether to subscribe to the newsletters
 
 ## Request Examples
 
@@ -35,9 +33,7 @@ Create a new user with the given details. After creation, an email is send to th
   "email": "test@example.com",
   "password": "secret-password",
   "name": "User name",
-  "surname": "User surname",
-  "terms_conditions": true,
-  "newsletter": false
+  "surname": "User surname"
 }
 ```
 
@@ -45,9 +41,7 @@ Create a new user with the given details. After creation, an email is send to th
 ```
 {
   "email": "test@example.com",
-  "password": "secret-password",
-  "terms_conditions": true,
-  "newsletter": false
+  "password": "secret-password"
 }
 ```
 

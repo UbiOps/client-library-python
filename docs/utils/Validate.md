@@ -2,10 +2,10 @@
 
 Helper functions for local file validation for the UbiOps infrastructure.
 
-| Method                                                                   | Description                        |
-|--------------------------------------------------------------------------|------------------------------------|
-| [**validate_requirements_file**](Validate.md#validate_requirements_file) | Validate a `requirements.txt` file |
-| [**validate_yaml_file**](Validate.md#validate_yaml_file)                 | Validate an `ubiops.yaml` file     |
+| Method                                                                     | Description                        |
+|----------------------------------------------------------------------------|------------------------------------|
+| [**validate_requirements_file**](./Validate.md#validate_requirements_file) | Validate a `requirements.txt` file |
+| [**validate_yaml_file**](./Validate.md#validate_yaml_file)                 | Validate an `ubiops.yaml` file     |
 
 # **validate_requirements_file**
 
