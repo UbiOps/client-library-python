@@ -66,8 +66,7 @@ class PipelineVersionObjectCreate(object):
             self.reference_type = reference_type
         self.reference_name = reference_name
         self.version = version
-        if configuration is not None:
-            self.configuration = configuration
+        self.configuration = configuration
 
     @property
     def name(self):

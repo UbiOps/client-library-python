@@ -10,8 +10,8 @@ Name | Type | Notes
 **version** | **str** | 
 **input_type** | **str** | [optional] 
 **output_type** | **str** | [optional] 
-**configuration** | **dict(str, str)** | [optional] 
-**input_fields** | [**list[DeploymentInputFieldCreate]**](DeploymentInputFieldCreate.md) | [optional] 
-**output_fields** | [**list[DeploymentOutputFieldCreate]**](DeploymentOutputFieldCreate.md) | [optional] 
+**configuration** | [**PipelineVersionObjectConfigurationList**](PipelineVersionObjectConfigurationList.md) | [optional] 
+**input_fields** | [**list[InputOutputFieldBase]**](InputOutputFieldBase.md) | [optional] 
+**output_fields** | [**list[InputOutputFieldBase]**](InputOutputFieldBase.md) | [optional] 
 
 
