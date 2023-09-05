@@ -35,9 +35,9 @@ class PipelineVersionObjectList(object):
         "version": "str",
         "input_type": "str",
         "output_type": "str",
-        "configuration": "dict(str, str)",
-        "input_fields": "list[DeploymentInputFieldCreate]",
-        "output_fields": "list[DeploymentOutputFieldCreate]",
+        "configuration": "PipelineVersionObjectConfigurationList",
+        "input_fields": "list[InputOutputFieldBase]",
+        "output_fields": "list[InputOutputFieldBase]",
     }
 
     attribute_map = {
@@ -93,10 +93,8 @@ class PipelineVersionObjectList(object):
         if reference_type is not None:
             self.reference_type = reference_type
         self.version = version
-        if input_type is not None:
-            self.input_type = input_type
-        if output_type is not None:
-            self.output_type = output_type
+        self.input_type = input_type
+        self.output_type = output_type
         self.configuration = configuration
         self.input_fields = input_fields
         self.output_fields = output_fields
@@ -303,7 +301,7 @@ class PipelineVersionObjectList(object):
         Gets the configuration of this PipelineVersionObjectList
 
         :return: the configuration of this PipelineVersionObjectList
-        :rtype: dict(str, str)
+        :rtype: PipelineVersionObjectConfigurationList
         """
 
         return self._configuration
@@ -314,11 +312,16 @@ class PipelineVersionObjectList(object):
         Sets the configuration of this PipelineVersionObjectList
 
         :param configuration: the configuration of this PipelineVersionObjectList
-        :type: dict(str, str)
+        :type: PipelineVersionObjectConfigurationList
         """
 
-        if self.client_side_validation and (configuration is not None and not isinstance(configuration, dict)):
-            raise ValueError("Parameter `configuration` must be a dictionary")
+        if self.client_side_validation and configuration is not None:
+            if isinstance(configuration, dict):
+                from ubiops.models.pipeline_version_object_configuration_list import (
+                    PipelineVersionObjectConfigurationList,
+                )
+
+                configuration = PipelineVersionObjectConfigurationList(**configuration)
 
         self._configuration = configuration
 
@@ -328,7 +331,7 @@ class PipelineVersionObjectList(object):
         Gets the input_fields of this PipelineVersionObjectList
 
         :return: the input_fields of this PipelineVersionObjectList
-        :rtype: list[DeploymentInputFieldCreate]
+        :rtype: list[InputOutputFieldBase]
         """
 
         return self._input_fields
@@ -339,17 +342,15 @@ class PipelineVersionObjectList(object):
         Sets the input_fields of this PipelineVersionObjectList
 
         :param input_fields: the input_fields of this PipelineVersionObjectList
-        :type: list[DeploymentInputFieldCreate]
+        :type: list[InputOutputFieldBase]
         """
 
         if self.client_side_validation and (input_fields is not None and not isinstance(input_fields, list)):
             raise ValueError("Parameter `input_fields` must be a list")
         if self.client_side_validation and input_fields is not None:
-            from ubiops.models.deployment_input_field_create import DeploymentInputFieldCreate
+            from ubiops.models.input_output_field_base import InputOutputFieldBase
 
-            input_fields = [
-                DeploymentInputFieldCreate(**item) if isinstance(item, dict) else item for item in input_fields
-            ]
+            input_fields = [InputOutputFieldBase(**item) if isinstance(item, dict) else item for item in input_fields]
 
         self._input_fields = input_fields
 
@@ -359,7 +360,7 @@ class PipelineVersionObjectList(object):
         Gets the output_fields of this PipelineVersionObjectList
 
         :return: the output_fields of this PipelineVersionObjectList
-        :rtype: list[DeploymentOutputFieldCreate]
+        :rtype: list[InputOutputFieldBase]
         """
 
         return self._output_fields
@@ -370,17 +371,15 @@ class PipelineVersionObjectList(object):
         Sets the output_fields of this PipelineVersionObjectList
 
         :param output_fields: the output_fields of this PipelineVersionObjectList
-        :type: list[DeploymentOutputFieldCreate]
+        :type: list[InputOutputFieldBase]
         """
 
         if self.client_side_validation and (output_fields is not None and not isinstance(output_fields, list)):
             raise ValueError("Parameter `output_fields` must be a list")
         if self.client_side_validation and output_fields is not None:
-            from ubiops.models.deployment_output_field_create import DeploymentOutputFieldCreate
+            from ubiops.models.input_output_field_base import InputOutputFieldBase
 
-            output_fields = [
-                DeploymentOutputFieldCreate(**item) if isinstance(item, dict) else item for item in output_fields
-            ]
+            output_fields = [InputOutputFieldBase(**item) if isinstance(item, dict) else item for item in output_fields]
 
         self._output_fields = output_fields
 

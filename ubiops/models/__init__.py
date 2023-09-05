@@ -72,6 +72,7 @@ from ubiops.models.import_list import ImportList
 from ubiops.models.import_update import ImportUpdate
 from ubiops.models.inherited_environment_variable_list import InheritedEnvironmentVariableList
 from ubiops.models.input_field_widget_create import InputFieldWidgetCreate
+from ubiops.models.input_output_field_base import InputOutputFieldBase
 from ubiops.models.input_output_field_detail import InputOutputFieldDetail
 from ubiops.models.input_output_field_list import InputOutputFieldList
 from ubiops.models.input_output_widget_list import InputOutputWidgetList
@@ -91,6 +92,7 @@ from ubiops.models.organization_user_create import OrganizationUserCreate
 from ubiops.models.organization_user_detail import OrganizationUserDetail
 from ubiops.models.organization_user_update import OrganizationUserUpdate
 from ubiops.models.output_field_widget_create import OutputFieldWidgetCreate
+from ubiops.models.output_value_list import OutputValueList
 from ubiops.models.permission_list import PermissionList
 from ubiops.models.pipeline_create import PipelineCreate
 from ubiops.models.pipeline_create_response import PipelineCreateResponse
@@ -110,6 +112,7 @@ from ubiops.models.pipeline_update import PipelineUpdate
 from ubiops.models.pipeline_version_create import PipelineVersionCreate
 from ubiops.models.pipeline_version_detail import PipelineVersionDetail
 from ubiops.models.pipeline_version_list import PipelineVersionList
+from ubiops.models.pipeline_version_object_configuration_list import PipelineVersionObjectConfigurationList
 from ubiops.models.pipeline_version_object_create import PipelineVersionObjectCreate
 from ubiops.models.pipeline_version_object_list import PipelineVersionObjectList
 from ubiops.models.pipeline_version_update import PipelineVersionUpdate
