@@ -430,13 +430,6 @@ class DeploymentVersionUpdate(object):
             request_retention_mode is not None and not isinstance(request_retention_mode, str)
         ):
             raise ValueError("Parameter `request_retention_mode` must be a string")
-        allowed_values = ["none", "metadata", "full"]
-        if self.client_side_validation and request_retention_mode not in allowed_values:
-            raise ValueError(
-                "Invalid value for `request_retention_mode` ({0}), must be one of {1}".format(
-                    request_retention_mode, allowed_values
-                )
-            )
 
         self._request_retention_mode = request_retention_mode
 

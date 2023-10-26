@@ -11,5 +11,6 @@ Name | Type | Notes
 **gpu_allocation** | **int** | [optional] [readonly] 
 **storage_allocation** | **int** | [optional] [readonly] 
 **credit_rate** | **float** | [optional] 
+**accelerator** | **bool** | [optional] 
 
 

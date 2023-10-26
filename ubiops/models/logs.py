@@ -42,6 +42,7 @@ class Logs(object):
         "pipeline_object_name": "str",
         "deployment_request_id": "str",
         "pipeline_request_id": "str",
+        "webhook_name": "str",
         "system": "bool",
         "level": "str",
     }
@@ -61,6 +62,7 @@ class Logs(object):
         "pipeline_object_name": "pipeline_object_name",
         "deployment_request_id": "deployment_request_id",
         "pipeline_request_id": "pipeline_request_id",
+        "webhook_name": "webhook_name",
         "system": "system",
         "level": "level",
     }
@@ -81,6 +83,7 @@ class Logs(object):
         pipeline_object_name=None,
         deployment_request_id=None,
         pipeline_request_id=None,
+        webhook_name=None,
         system=None,
         level=None,
         **kwargs,
@@ -107,6 +110,7 @@ class Logs(object):
         self._pipeline_object_name = None
         self._deployment_request_id = None
         self._pipeline_request_id = None
+        self._webhook_name = None
         self._system = None
         self._level = None
         self.discriminator = None
@@ -137,6 +141,8 @@ class Logs(object):
             self.pipeline_object_name = pipeline_object_name
         self.deployment_request_id = deployment_request_id
         self.pipeline_request_id = pipeline_request_id
+        if webhook_name is not None:
+            self.webhook_name = webhook_name
         if system is not None:
             self.system = system
         if level is not None:
@@ -522,6 +528,34 @@ class Logs(object):
             raise ValueError("Parameter `pipeline_request_id` must be a string")
 
         self._pipeline_request_id = pipeline_request_id
+
+    @property
+    def webhook_name(self):
+        """
+        Gets the webhook_name of this Logs
+
+        :return: the webhook_name of this Logs
+        :rtype: str
+        """
+
+        return self._webhook_name
+
+    @webhook_name.setter
+    def webhook_name(self, webhook_name):
+        """
+        Sets the webhook_name of this Logs
+
+        :param webhook_name: the webhook_name of this Logs
+        :type: str
+        """
+
+        if self.client_side_validation and (webhook_name is not None and not isinstance(webhook_name, str)):
+            raise ValueError("Parameter `webhook_name` must be a string")
+
+        if self.client_side_validation and (webhook_name is not None and len(webhook_name) < 1):
+            raise ValueError("Invalid value for `webhook_name`, length must be greater than or equal to `1`")
+
+        self._webhook_name = webhook_name
 
     @property
     def system(self):

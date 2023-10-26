@@ -7,7 +7,8 @@ Name | Type | Notes
 **pipeline_object** | **str** | 
 **pipeline** | **str** | [optional] 
 **version** | **str** | [optional] 
-**success** | **bool** | 
+**status** | **str** | 
+**success** | **bool** | [optional] 
 **error_message** | **str** | [optional] 
 **sequence_id** | **str** | 
 

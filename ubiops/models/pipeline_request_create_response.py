@@ -11,6 +11,7 @@
 
 
 import pprint
+import warnings
 
 
 class PipelineRequestCreateResponse(object):
@@ -35,6 +36,7 @@ class PipelineRequestCreateResponse(object):
         "operator_requests": "list[DirectPipelineRequestOperatorRequest]",
         "pipeline_requests": "list[DirectPipelineRequestPipelineRequest]",
         "result": "object",
+        "status": "str",
         "success": "bool",
         "error_message": "str",
         "pipeline_timeout": "int",
@@ -49,6 +51,7 @@ class PipelineRequestCreateResponse(object):
         "operator_requests": "operator_requests",
         "pipeline_requests": "pipeline_requests",
         "result": "result",
+        "status": "status",
         "success": "success",
         "error_message": "error_message",
         "pipeline_timeout": "pipeline_timeout",
@@ -64,6 +67,7 @@ class PipelineRequestCreateResponse(object):
         operator_requests=None,
         pipeline_requests=None,
         result=None,
+        status=None,
         success=None,
         error_message=None,
         pipeline_timeout=None,
@@ -85,6 +89,7 @@ class PipelineRequestCreateResponse(object):
         self._operator_requests = None
         self._pipeline_requests = None
         self._result = None
+        self._status = None
         self._success = None
         self._error_message = None
         self._pipeline_timeout = None
@@ -98,6 +103,7 @@ class PipelineRequestCreateResponse(object):
         self.operator_requests = operator_requests
         self.pipeline_requests = pipeline_requests
         self.result = result
+        self.status = status
         self.success = success
         self.error_message = error_message
         self.pipeline_timeout = pipeline_timeout
@@ -304,6 +310,33 @@ class PipelineRequestCreateResponse(object):
         self._result = result
 
     @property
+    def status(self):
+        """
+        Gets the status of this PipelineRequestCreateResponse
+
+        :return: the status of this PipelineRequestCreateResponse
+        :rtype: str
+        """
+
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this PipelineRequestCreateResponse
+
+        :param status: the status of this PipelineRequestCreateResponse
+        :type: str
+        """
+
+        if self.client_side_validation and status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")
+        if self.client_side_validation and (status is not None and not isinstance(status, str)):
+            raise ValueError("Parameter `status` must be a string")
+
+        self._status = status
+
+    @property
     def success(self):
         """
         Gets the success of this PipelineRequestCreateResponse
@@ -311,6 +344,11 @@ class PipelineRequestCreateResponse(object):
         :return: the success of this PipelineRequestCreateResponse
         :rtype: bool
         """
+        warnings.warn(
+            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
 
         return self._success
 
@@ -323,8 +361,6 @@ class PipelineRequestCreateResponse(object):
         :type: bool
         """
 
-        if self.client_side_validation and success is None:
-            raise ValueError("Invalid value for `success`, must not be `None`")
         if self.client_side_validation and (success is not None and not isinstance(success, bool)):
             raise ValueError("Parameter `success` must be a boolean")
 

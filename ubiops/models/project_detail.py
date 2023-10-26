@@ -34,7 +34,7 @@ class ProjectDetail(object):
         "advanced_permissions": "bool",
         "credits": "float",
         "organization_name": "str",
-        "suspended": "str",
+        "suspended": "bool",
         "suspended_reason": "str",
     }
 
@@ -260,7 +260,7 @@ class ProjectDetail(object):
         Gets the suspended of this ProjectDetail
 
         :return: the suspended of this ProjectDetail
-        :rtype: str
+        :rtype: bool
         """
 
         return self._suspended
@@ -271,11 +271,11 @@ class ProjectDetail(object):
         Sets the suspended of this ProjectDetail
 
         :param suspended: the suspended of this ProjectDetail
-        :type: str
+        :type: bool
         """
 
-        if self.client_side_validation and (suspended is not None and not isinstance(suspended, str)):
-            raise ValueError("Parameter `suspended` must be a string")
+        if self.client_side_validation and (suspended is not None and not isinstance(suspended, bool)):
+            raise ValueError("Parameter `suspended` must be a boolean")
 
         self._suspended = suspended
 

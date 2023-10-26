@@ -36,6 +36,7 @@ class DeploymentInstanceType(object):
         "gpu_allocation": "int",
         "storage_allocation": "int",
         "credit_rate": "float",
+        "accelerator": "bool",
     }
 
     attribute_map = {
@@ -47,6 +48,7 @@ class DeploymentInstanceType(object):
         "gpu_allocation": "gpu_allocation",
         "storage_allocation": "storage_allocation",
         "credit_rate": "credit_rate",
+        "accelerator": "accelerator",
     }
 
     def __init__(
@@ -59,6 +61,7 @@ class DeploymentInstanceType(object):
         gpu_allocation=None,
         storage_allocation=None,
         credit_rate=None,
+        accelerator=None,
         **kwargs,
     ):
         """
@@ -77,6 +80,7 @@ class DeploymentInstanceType(object):
         self._gpu_allocation = None
         self._storage_allocation = None
         self._credit_rate = None
+        self._accelerator = None
         self.discriminator = None
 
         if id is not None:
@@ -93,6 +97,8 @@ class DeploymentInstanceType(object):
             self.storage_allocation = storage_allocation
         if credit_rate is not None:
             self.credit_rate = credit_rate
+        if accelerator is not None:
+            self.accelerator = accelerator
 
     @property
     def id(self):
@@ -303,6 +309,31 @@ class DeploymentInstanceType(object):
             raise ValueError("Parameter `credit_rate` must be a float")
 
         self._credit_rate = credit_rate
+
+    @property
+    def accelerator(self):
+        """
+        Gets the accelerator of this DeploymentInstanceType
+
+        :return: the accelerator of this DeploymentInstanceType
+        :rtype: bool
+        """
+
+        return self._accelerator
+
+    @accelerator.setter
+    def accelerator(self, accelerator):
+        """
+        Sets the accelerator of this DeploymentInstanceType
+
+        :param accelerator: the accelerator of this DeploymentInstanceType
+        :type: bool
+        """
+
+        if self.client_side_validation and (accelerator is not None and not isinstance(accelerator, bool)):
+            raise ValueError("Parameter `accelerator` must be a boolean")
+
+        self._accelerator = accelerator
 
     def to_dict(self):
         """

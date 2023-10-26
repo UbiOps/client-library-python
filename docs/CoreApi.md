@@ -181,4 +181,11 @@ Method | HTTP request | Description
 [**service_status**](./Status.md#service_status) | **GET** /status | Service status
 [**user_create**](./User.md#user_create) | **POST** /user | Create a new user
 [**user_delete**](./User.md#user_delete) | **DELETE** /user | Delete user
+[**webhook_tests_create**](./Webhooks.md#webhook_tests_create) | **POST** /projects/{project_name}/webhooks-tests | Create webhook tests
+[**webhook_tests_get**](./Webhooks.md#webhook_tests_get) | **GET** /projects/{project_name}/webhooks-tests/{test_id} | Get webhook test
+[**webhooks_create**](./Webhooks.md#webhooks_create) | **POST** /projects/{project_name}/webhooks | Create webhooks
+[**webhooks_delete**](./Webhooks.md#webhooks_delete) | **DELETE** /projects/{project_name}/webhooks/{webhook_name} | Delete a webhook
+[**webhooks_get**](./Webhooks.md#webhooks_get) | **GET** /projects/{project_name}/webhooks/{webhook_name} | Get webhook
+[**webhooks_list**](./Webhooks.md#webhooks_list) | **GET** /projects/{project_name}/webhooks | List webhooks
+[**webhooks_update**](./Webhooks.md#webhooks_update) | **PATCH** /projects/{project_name}/webhooks/{webhook_name} | Update a webhook
 

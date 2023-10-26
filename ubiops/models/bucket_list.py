@@ -183,9 +183,6 @@ class BucketList(object):
 
         if self.client_side_validation and (provider is not None and not isinstance(provider, str)):
             raise ValueError("Parameter `provider` must be a string")
-        allowed_values = ["ubiops", "google_cloud_storage", "amazon_s3", "azure_blob_storage"]
-        if self.client_side_validation and provider not in allowed_values:
-            raise ValueError("Invalid value for `provider` ({0}), must be one of {1}".format(provider, allowed_values))
 
         self._provider = provider
 

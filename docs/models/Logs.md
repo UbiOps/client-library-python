@@ -17,6 +17,7 @@ Name | Type | Notes
 **pipeline_object_name** | **str** | [optional] 
 **deployment_request_id** | **str** | [optional] 
 **pipeline_request_id** | **str** | [optional] 
+**webhook_name** | **str** | [optional] 
 **system** | **bool** | [optional] 
 **level** | **str** | [optional] 
 

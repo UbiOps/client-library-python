@@ -11,6 +11,7 @@
 
 
 import pprint
+import warnings
 
 
 class PipelineRequestDeploymentRequest(object):
@@ -32,6 +33,7 @@ class PipelineRequestDeploymentRequest(object):
         "pipeline_object": "str",
         "deployment": "str",
         "version": "str",
+        "status": "str",
         "success": "bool",
         "error_message": "str",
         "sequence_id": "str",
@@ -42,6 +44,7 @@ class PipelineRequestDeploymentRequest(object):
         "pipeline_object": "pipeline_object",
         "deployment": "deployment",
         "version": "version",
+        "status": "status",
         "success": "success",
         "error_message": "error_message",
         "sequence_id": "sequence_id",
@@ -53,6 +56,7 @@ class PipelineRequestDeploymentRequest(object):
         pipeline_object=None,
         deployment=None,
         version=None,
+        status=None,
         success=None,
         error_message=None,
         sequence_id=None,
@@ -70,6 +74,7 @@ class PipelineRequestDeploymentRequest(object):
         self._pipeline_object = None
         self._deployment = None
         self._version = None
+        self._status = None
         self._success = None
         self._error_message = None
         self._sequence_id = None
@@ -79,6 +84,7 @@ class PipelineRequestDeploymentRequest(object):
         self.pipeline_object = pipeline_object
         self.deployment = deployment
         self.version = version
+        self.status = status
         self.success = success
         self.error_message = error_message
         self.sequence_id = sequence_id
@@ -195,6 +201,33 @@ class PipelineRequestDeploymentRequest(object):
         self._version = version
 
     @property
+    def status(self):
+        """
+        Gets the status of this PipelineRequestDeploymentRequest
+
+        :return: the status of this PipelineRequestDeploymentRequest
+        :rtype: str
+        """
+
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this PipelineRequestDeploymentRequest
+
+        :param status: the status of this PipelineRequestDeploymentRequest
+        :type: str
+        """
+
+        if self.client_side_validation and status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")
+        if self.client_side_validation and (status is not None and not isinstance(status, str)):
+            raise ValueError("Parameter `status` must be a string")
+
+        self._status = status
+
+    @property
     def success(self):
         """
         Gets the success of this PipelineRequestDeploymentRequest
@@ -202,6 +235,11 @@ class PipelineRequestDeploymentRequest(object):
         :return: the success of this PipelineRequestDeploymentRequest
         :rtype: bool
         """
+        warnings.warn(
+            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
 
         return self._success
 

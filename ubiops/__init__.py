@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.0.1"
+__version__ = "4.1.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -183,6 +183,12 @@ from ubiops.models.usage import Usage
 from ubiops.models.usage_metric import UsageMetric
 from ubiops.models.user_pending_create import UserPendingCreate
 from ubiops.models.user_pending_detail import UserPendingDetail
+from ubiops.models.webhook_create import WebhookCreate
+from ubiops.models.webhook_detail import WebhookDetail
+from ubiops.models.webhook_header import WebhookHeader
+from ubiops.models.webhook_test_create import WebhookTestCreate
+from ubiops.models.webhook_test_detail import WebhookTestDetail
+from ubiops.models.webhook_update import WebhookUpdate
 
 
 # import utils

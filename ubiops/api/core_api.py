@@ -30,6 +30,7 @@ from ubiops.api.roles import Roles
 from ubiops.api.service_users import ServiceUsers
 from ubiops.api.status import Status
 from ubiops.api.user import User
+from ubiops.api.webhooks import Webhooks
 
 
 class CoreApi(object):
@@ -61,6 +62,7 @@ class CoreApi(object):
         self.service_users = ServiceUsers(api_client=api_client)
         self.status = Status(api_client=api_client)
         self.user = User(api_client=api_client)
+        self.webhooks = Webhooks(api_client=api_client)
 
     def blobs_create(self, project_name, file, **kwargs):
         """
@@ -5372,3 +5374,202 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.user.user_delete_with_http_info(**kwargs)
+
+    def webhook_tests_create(self, project_name, data, **kwargs):
+        """
+        Create webhook tests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhook_tests_create(
+                project_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param WebhookTestCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(WebhookTestDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhook_tests_create_with_http_info(project_name, data, **kwargs)
+
+    def webhook_tests_get(self, project_name, test_id, **kwargs):
+        """
+        Get webhook test
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhook_tests_get(
+                project_name, test_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str test_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(WebhookTestDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhook_tests_get_with_http_info(project_name, test_id, **kwargs)
+
+    def webhooks_create(self, project_name, data, **kwargs):
+        """
+        Create webhooks
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhooks_create(
+                project_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param WebhookCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(WebhookDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhooks_create_with_http_info(project_name, data, **kwargs)
+
+    def webhooks_delete(self, project_name, webhook_name, **kwargs):
+        """
+        Delete a webhook
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhooks_delete(
+                project_name, webhook_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str webhook_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhooks_delete_with_http_info(project_name, webhook_name, **kwargs)
+
+    def webhooks_get(self, project_name, webhook_name, **kwargs):
+        """
+        Get webhook
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhooks_get(
+                project_name, webhook_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str webhook_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(WebhookDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhooks_get_with_http_info(project_name, webhook_name, **kwargs)
+
+    def webhooks_list(self, project_name, **kwargs):
+        """
+        List webhooks
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhooks_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str labels:
+            - str object_type:
+            - str event:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[WebhookDetail], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhooks_list_with_http_info(project_name, **kwargs)
+
+    def webhooks_update(self, project_name, webhook_name, data, **kwargs):
+        """
+        Update a webhook
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.webhooks_update(
+                project_name, webhook_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str webhook_name: (required)
+        :param WebhookUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(WebhookDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.webhooks.webhooks_update_with_http_info(project_name, webhook_name, data, **kwargs)

@@ -11,6 +11,7 @@
 
 
 import pprint
+import warnings
 
 
 class DeploymentRequestCreateResponse(object):
@@ -31,6 +32,7 @@ class DeploymentRequestCreateResponse(object):
         "id": "str",
         "deployment": "str",
         "version": "str",
+        "status": "str",
         "success": "bool",
         "result": "object",
         "error_message": "str",
@@ -41,6 +43,7 @@ class DeploymentRequestCreateResponse(object):
         "id": "id",
         "deployment": "deployment",
         "version": "version",
+        "status": "status",
         "success": "success",
         "result": "result",
         "error_message": "error_message",
@@ -52,6 +55,7 @@ class DeploymentRequestCreateResponse(object):
         id=None,
         deployment=None,
         version=None,
+        status=None,
         success=None,
         result=None,
         error_message=None,
@@ -69,6 +73,7 @@ class DeploymentRequestCreateResponse(object):
         self._id = None
         self._deployment = None
         self._version = None
+        self._status = None
         self._success = None
         self._result = None
         self._error_message = None
@@ -78,6 +83,7 @@ class DeploymentRequestCreateResponse(object):
         self.id = id
         self.deployment = deployment
         self.version = version
+        self.status = status
         self.success = success
         self.result = result
         self.error_message = error_message
@@ -161,6 +167,33 @@ class DeploymentRequestCreateResponse(object):
         self._version = version
 
     @property
+    def status(self):
+        """
+        Gets the status of this DeploymentRequestCreateResponse
+
+        :return: the status of this DeploymentRequestCreateResponse
+        :rtype: str
+        """
+
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this DeploymentRequestCreateResponse
+
+        :param status: the status of this DeploymentRequestCreateResponse
+        :type: str
+        """
+
+        if self.client_side_validation and status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")
+        if self.client_side_validation and (status is not None and not isinstance(status, str)):
+            raise ValueError("Parameter `status` must be a string")
+
+        self._status = status
+
+    @property
     def success(self):
         """
         Gets the success of this DeploymentRequestCreateResponse
@@ -168,6 +201,11 @@ class DeploymentRequestCreateResponse(object):
         :return: the success of this DeploymentRequestCreateResponse
         :rtype: bool
         """
+        warnings.warn(
+            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
 
         return self._success
 
