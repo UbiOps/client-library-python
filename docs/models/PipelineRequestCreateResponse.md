@@ -10,7 +10,8 @@ Name | Type | Notes
 **operator_requests** | [**list[DirectPipelineRequestOperatorRequest]**](DirectPipelineRequestOperatorRequest.md) | 
 **pipeline_requests** | [**list[DirectPipelineRequestPipelineRequest]**](DirectPipelineRequestPipelineRequest.md) | 
 **result** | **str** or **dict(str, str)** | [optional] 
-**success** | **bool** | 
+**status** | **str** | 
+**success** | **bool** | [optional] 
 **error_message** | **str** | [optional] 
 **pipeline_timeout** | **int** | [optional] 
 **deployment_timeout** | **int** | [optional] 

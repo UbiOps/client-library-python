@@ -117,7 +117,7 @@ Details of the created experiment
             name=experiment_name,
             instance_type='4069mb',
             description='A training experiment',
-            environment_name='python3-8',
+            environment='python3-8',
             default_bucket='default',
             labels={"type": "pytorch"}
         )
@@ -151,7 +151,7 @@ Details of the created experiment
             name=experiment_name,
             instance_type='4069mb',
             description='A training experiment',
-            environment_name='python3-8',
+            environment='python3-8',
             default_bucket='default',
             labels={"type": "pytorch"}
         )

@@ -29,7 +29,6 @@ class DeploymentVersionCreate(object):
 
     openapi_types = {
         "version": "str",
-        "language": "str",
         "environment": "str",
         "instance_type": "str",
         "maximum_instances": "int",
@@ -49,7 +48,6 @@ class DeploymentVersionCreate(object):
 
     attribute_map = {
         "version": "version",
-        "language": "language",
         "environment": "environment",
         "instance_type": "instance_type",
         "maximum_instances": "maximum_instances",
@@ -70,7 +68,6 @@ class DeploymentVersionCreate(object):
     def __init__(
         self,
         version=None,
-        language=None,
         environment="python3-10",
         instance_type=None,
         maximum_instances=None,
@@ -97,7 +94,6 @@ class DeploymentVersionCreate(object):
             self.client_side_validation = kwargs["local_vars_configuration"].client_side_validation
 
         self._version = None
-        self._language = None
         self._environment = None
         self._instance_type = None
         self._maximum_instances = None
@@ -116,8 +112,6 @@ class DeploymentVersionCreate(object):
         self.discriminator = None
 
         self.version = version
-        if language is not None:
-            self.language = language
         if environment is not None:
             self.environment = environment
         if instance_type is not None:
@@ -176,34 +170,6 @@ class DeploymentVersionCreate(object):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")
 
         self._version = version
-
-    @property
-    def language(self):
-        """
-        Gets the language of this DeploymentVersionCreate
-
-        :return: the language of this DeploymentVersionCreate
-        :rtype: str
-        """
-
-        return self._language
-
-    @language.setter
-    def language(self, language):
-        """
-        Sets the language of this DeploymentVersionCreate
-
-        :param language: the language of this DeploymentVersionCreate
-        :type: str
-        """
-
-        if self.client_side_validation and (language is not None and not isinstance(language, str)):
-            raise ValueError("Parameter `language` must be a string")
-
-        if self.client_side_validation and (language is not None and len(language) < 1):
-            raise ValueError("Invalid value for `language`, length must be greater than or equal to `1`")
-
-        self._language = language
 
     @property
     def environment(self):
@@ -465,13 +431,6 @@ class DeploymentVersionCreate(object):
             request_retention_mode is not None and not isinstance(request_retention_mode, str)
         ):
             raise ValueError("Parameter `request_retention_mode` must be a string")
-        allowed_values = ["none", "metadata", "full"]
-        if self.client_side_validation and request_retention_mode not in allowed_values:
-            raise ValueError(
-                "Invalid value for `request_retention_mode` ({0}), must be one of {1}".format(
-                    request_retention_mode, allowed_values
-                )
-            )
 
         self._request_retention_mode = request_retention_mode
 

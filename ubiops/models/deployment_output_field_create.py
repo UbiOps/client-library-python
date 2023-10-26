@@ -106,23 +106,6 @@ class DeploymentOutputFieldCreate(object):
             raise ValueError("Invalid value for `data_type`, must not be `None`")
         if self.client_side_validation and (data_type is not None and not isinstance(data_type, str)):
             raise ValueError("Parameter `data_type` must be a string")
-        allowed_values = [
-            "int",
-            "string",
-            "double",
-            "bool",
-            "dict",
-            "array_int",
-            "array_double",
-            "array_string",
-            "blob",
-            "file",
-            "array_file",
-        ]
-        if self.client_side_validation and data_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `data_type` ({0}), must be one of {1}".format(data_type, allowed_values)
-            )
 
         self._data_type = data_type
 

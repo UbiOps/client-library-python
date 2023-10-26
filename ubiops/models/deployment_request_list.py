@@ -11,6 +11,7 @@
 
 
 import pprint
+import warnings
 
 
 class DeploymentRequestList(object):
@@ -192,9 +193,6 @@ class DeploymentRequestList(object):
             raise ValueError("Invalid value for `status`, must not be `None`")
         if self.client_side_validation and (status is not None and not isinstance(status, str)):
             raise ValueError("Parameter `status` must be a string")
-        allowed_values = ["pending", "processing", "completed", "failed", "cancelled_pending", "cancelled"]
-        if self.client_side_validation and status not in allowed_values:
-            raise ValueError("Invalid value for `status` ({0}), must be one of {1}".format(status, allowed_values))
 
         self._status = status
 
@@ -206,6 +204,11 @@ class DeploymentRequestList(object):
         :return: the success of this DeploymentRequestList
         :rtype: bool
         """
+        warnings.warn(
+            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
 
         return self._success
 

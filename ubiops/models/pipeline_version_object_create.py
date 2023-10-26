@@ -120,11 +120,6 @@ class PipelineVersionObjectCreate(object):
 
         if self.client_side_validation and (reference_type is not None and not isinstance(reference_type, str)):
             raise ValueError("Parameter `reference_type` must be a string")
-        allowed_values = ["deployment", "operator", "pipeline"]
-        if self.client_side_validation and reference_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `reference_type` ({0}), must be one of {1}".format(reference_type, allowed_values)
-            )
 
         self._reference_type = reference_type
 

@@ -11,6 +11,7 @@
 
 
 import pprint
+import warnings
 
 
 class DirectPipelineRequestOperatorRequest(object):
@@ -31,6 +32,7 @@ class DirectPipelineRequestOperatorRequest(object):
         "id": "str",
         "pipeline_object": "str",
         "operator": "str",
+        "status": "str",
         "success": "bool",
         "error_message": "str",
         "sequence_id": "str",
@@ -40,13 +42,22 @@ class DirectPipelineRequestOperatorRequest(object):
         "id": "id",
         "pipeline_object": "pipeline_object",
         "operator": "operator",
+        "status": "status",
         "success": "success",
         "error_message": "error_message",
         "sequence_id": "sequence_id",
     }
 
     def __init__(
-        self, id=None, pipeline_object=None, operator=None, success=None, error_message=None, sequence_id=None, **kwargs
+        self,
+        id=None,
+        pipeline_object=None,
+        operator=None,
+        status=None,
+        success=None,
+        error_message=None,
+        sequence_id=None,
+        **kwargs,
     ):
         """
         DirectPipelineRequestOperatorRequest - a model defined in OpenAPI
@@ -59,6 +70,7 @@ class DirectPipelineRequestOperatorRequest(object):
         self._id = None
         self._pipeline_object = None
         self._operator = None
+        self._status = None
         self._success = None
         self._error_message = None
         self._sequence_id = None
@@ -67,6 +79,7 @@ class DirectPipelineRequestOperatorRequest(object):
         self.id = id
         self.pipeline_object = pipeline_object
         self.operator = operator
+        self.status = status
         self.success = success
         self.error_message = error_message
         self.sequence_id = sequence_id
@@ -152,6 +165,33 @@ class DirectPipelineRequestOperatorRequest(object):
         self._operator = operator
 
     @property
+    def status(self):
+        """
+        Gets the status of this DirectPipelineRequestOperatorRequest
+
+        :return: the status of this DirectPipelineRequestOperatorRequest
+        :rtype: str
+        """
+
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this DirectPipelineRequestOperatorRequest
+
+        :param status: the status of this DirectPipelineRequestOperatorRequest
+        :type: str
+        """
+
+        if self.client_side_validation and status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")
+        if self.client_side_validation and (status is not None and not isinstance(status, str)):
+            raise ValueError("Parameter `status` must be a string")
+
+        self._status = status
+
+    @property
     def success(self):
         """
         Gets the success of this DirectPipelineRequestOperatorRequest
@@ -159,6 +199,11 @@ class DirectPipelineRequestOperatorRequest(object):
         :return: the success of this DirectPipelineRequestOperatorRequest
         :rtype: bool
         """
+        warnings.warn(
+            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
 
         return self._success
 
@@ -171,8 +216,6 @@ class DirectPipelineRequestOperatorRequest(object):
         :type: bool
         """
 
-        if self.client_side_validation and success is None:
-            raise ValueError("Invalid value for `success`, must not be `None`")
         if self.client_side_validation and (success is not None and not isinstance(success, bool)):
             raise ValueError("Parameter `success` must be a boolean")
 

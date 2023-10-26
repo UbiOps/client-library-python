@@ -9,7 +9,7 @@ Name | Type | Notes
 **advanced_permissions** | **bool** | [optional] 
 **credits** | **float** | [optional] 
 **organization_name** | **str** | 
-**suspended** | **str** | [optional] [readonly] 
+**suspended** | **bool** | [optional] [readonly] 
 **suspended_reason** | **str** | [optional] [readonly] 
 
 

@@ -200,9 +200,6 @@ class ExportDetail(object):
 
         if self.client_side_validation and (status is not None and not isinstance(status, str)):
             raise ValueError("Parameter `status` must be a string")
-        allowed_values = ["pending", "processing", "completed", "failed"]
-        if self.client_side_validation and status not in allowed_values:
-            raise ValueError("Invalid value for `status` ({0}), must be one of {1}".format(status, allowed_values))
 
         self._status = status
 

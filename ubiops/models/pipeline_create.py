@@ -169,11 +169,6 @@ class PipelineCreate(object):
             raise ValueError("Invalid value for `input_type`, must not be `None`")
         if self.client_side_validation and (input_type is not None and not isinstance(input_type, str)):
             raise ValueError("Parameter `input_type` must be a string")
-        allowed_values = ["structured", "plain"]
-        if self.client_side_validation and input_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `input_type` ({0}), must be one of {1}".format(input_type, allowed_values)
-            )
 
         self._input_type = input_type
 
@@ -230,11 +225,6 @@ class PipelineCreate(object):
 
         if self.client_side_validation and (output_type is not None and not isinstance(output_type, str)):
             raise ValueError("Parameter `output_type` must be a string")
-        allowed_values = ["structured", "plain"]
-        if self.client_side_validation and output_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `output_type` ({0}), must be one of {1}".format(output_type, allowed_values)
-            )
 
         self._output_type = output_type
 

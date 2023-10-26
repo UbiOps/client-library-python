@@ -8,9 +8,9 @@ Name | Type | Notes
 **project** | **str** | 
 **description** | **str** | [optional] 
 **input_type** | **str** | 
-**input_fields** | [**list[InputOutputFieldList]**](InputOutputFieldList.md) | 
+**input_fields** | [**list[InputOutputFieldList]**](InputOutputFieldList.md) | [readonly] 
 **output_type** | **str** | 
-**output_fields** | [**list[InputOutputFieldList]**](InputOutputFieldList.md) | 
+**output_fields** | [**list[InputOutputFieldList]**](InputOutputFieldList.md) | [readonly] 
 **labels** | **dict(str, str)** | [optional] 
 **creation_date** | **datetime** | [optional] 
 **last_updated** | **datetime** | [optional] 
