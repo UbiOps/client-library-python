@@ -71,7 +71,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
 
         self.cookie = cookie
-        self.user_agent = "UbiOps/python/4.1.0"
+        self.user_agent = "UbiOps/python/4.2.0"
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):
@@ -668,6 +668,8 @@ class ApiClient(object):
                     value = data[klass.attribute_map[attr]]
                     kwargs[attr] = self.__deserialize(value, attr_type)
 
+        if "local_vars_configuration" not in kwargs:
+            kwargs["local_vars_configuration"] = self.configuration
         instance = klass(**kwargs)
 
         if hasattr(instance, "get_real_child_model"):

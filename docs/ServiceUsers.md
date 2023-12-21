@@ -27,8 +27,6 @@ The token is **ONLY** returned on creation and will not be accessible afterwards
 
 - `name`: Name of the service user
 
-- `allowed_cors_origins`: List of origin url's of which the service user is allowed to make a request from
-
 - `expiry_date`: Date when the service user account expires (UTC). If null is passed, the account will never expire.
 
 ## Request Examples
@@ -36,16 +34,6 @@ The token is **ONLY** returned on creation and will not be accessible afterwards
 ```
 {
   "name": "service-user-1"
-}
-```
-
-
-```
-{
-  "name": "service-user-1",
-  "allowed_cors_origins": [
-    "https://test.com"
-  ]
 }
 ```
 
@@ -70,8 +58,6 @@ Details of the created service user
 
 - `creation_date`: Date when the service user was created
 
-- `allowed_cors_origins`: List of origin url's of which the service user is allowed to make a request from
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -83,9 +69,6 @@ Details of the created service user
   "token": "e962d9190348af7fa8d233d75cff7385b4335f81",
   "name": "service-user-1",
   "creation_date": "2020-03-24T09:16:27.504+00:00",
-  "allowed_cors_origins": [
-    "https://test.com"
-  ],
   "expiry_date": "2021-03-24T00:00:00.000+00:00"
 }
 ```
@@ -245,8 +228,6 @@ Details of the service user
 
 - `creation_date`: Date when the service user was created
 
-- `allowed_cors_origins`: List of origin url's of which the service user is allowed to make a request from
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -257,9 +238,6 @@ Details of the service user
   "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
   "name": "new-service-user-name",
   "creation_date": "2020-03-26T12:18:43.123+00:00",
-  "allowed_cors_origins": [
-    "https://test.com"
-  ],
   "expiry_date": null
 }
 ```
@@ -348,8 +326,6 @@ List of details of the service users:
 
 - `creation_date`: Date when the service user was created
 
-- `allowed_cors_origins`: List of origin url's of which the service user is allowed to make a request from
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -361,9 +337,6 @@ List of details of the service users:
     "email": "537bca64-5ab6-43eb-a7ef-1638bc30b6ed.project1@serviceuser.ubiops.com",
     "name": "service-user-1",
     "creation_date": "2020-03-24T09:16:27.504+00:00",
-    "allowed_cors_origins": [
-      "https://test.com"
-    ],
     "expiry_date": "2021-03-24T00:00:00.000+00:00"
   },
   {
@@ -371,9 +344,6 @@ List of details of the service users:
     "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
     "name": "service-user-2",
     "creation_date": "2020-03-26T12:18:43.123+00:00",
-    "allowed_cors_origins": [
-      "https://test.com"
-    ],
     "expiry_date": null
   }
 ]
@@ -547,8 +517,6 @@ It is not possible to update a service user whose expiry date has been reached.
 
 - `name`: Name of the service user
 
-- `allowed_cors_origins`: List of origin url's of which the service user is allowed to make a request from
-
 - `expiry_date`: Date when the service user account will expire (UTC). If null is passed, the account will never expire.
 
 ## Request Examples
@@ -557,16 +525,6 @@ It is not possible to update a service user whose expiry date has been reached.
 ```
 {
   "name": "new-service-user-name",
-}
-```
-
-
-```
-{
-  "name": "service-user-1",
-  "allowed_cors_origins": [
-    "https://test.com"
-  ]
 }
 ```
 
@@ -588,8 +546,6 @@ Details of the updated service user
 
 - `creation_date`: Date when the service user was created
 
-- `allowed_cors_origins`: List of origin url's of which the service user is allowed to make a request from
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -600,9 +556,6 @@ Details of the updated service user
   "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
   "name": "new-service-user-name",
   "creation_date": "2020-03-26T12:18:43.123+00:00",
-  "allowed_cors_origins": [
-    "https://test.com"
-  ],
   "expiry_date": null
 }
 ```

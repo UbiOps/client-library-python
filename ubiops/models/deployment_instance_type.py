@@ -305,7 +305,7 @@ class DeploymentInstanceType(object):
         :type: float
         """
 
-        if self.client_side_validation and (credit_rate is not None and not isinstance(credit_rate, float)):
+        if self.client_side_validation and (credit_rate is not None and not isinstance(credit_rate, (int, float))):
             raise ValueError("Parameter `credit_rate` must be a float")
 
         self._credit_rate = credit_rate

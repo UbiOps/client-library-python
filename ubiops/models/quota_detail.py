@@ -67,7 +67,7 @@ class QuotaDetail(object):
         :type: float
         """
 
-        if self.client_side_validation and (quota is not None and not isinstance(quota, float)):
+        if self.client_side_validation and (quota is not None and not isinstance(quota, (int, float))):
             raise ValueError("Parameter `quota` must be a float")
 
         self._quota = quota

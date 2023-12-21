@@ -36,6 +36,7 @@ class ProjectDetail(object):
         "organization_name": "str",
         "suspended": "bool",
         "suspended_reason": "str",
+        "cors_origins": "list[str]",
     }
 
     attribute_map = {
@@ -47,6 +48,7 @@ class ProjectDetail(object):
         "organization_name": "organization_name",
         "suspended": "suspended",
         "suspended_reason": "suspended_reason",
+        "cors_origins": "cors_origins",
     }
 
     def __init__(
@@ -59,6 +61,7 @@ class ProjectDetail(object):
         organization_name=None,
         suspended=None,
         suspended_reason=None,
+        cors_origins=None,
         **kwargs,
     ):
         """
@@ -77,6 +80,7 @@ class ProjectDetail(object):
         self._organization_name = None
         self._suspended = None
         self._suspended_reason = None
+        self._cors_origins = None
         self.discriminator = None
 
         if id is not None:
@@ -92,6 +96,8 @@ class ProjectDetail(object):
             self.suspended = suspended
         if suspended_reason is not None:
             self.suspended_reason = suspended_reason
+        if cors_origins is not None:
+            self.cors_origins = cors_origins
 
     @property
     def id(self):
@@ -219,7 +225,7 @@ class ProjectDetail(object):
         :type: float
         """
 
-        if self.client_side_validation and (credits is not None and not isinstance(credits, float)):
+        if self.client_side_validation and (credits is not None and not isinstance(credits, (int, float))):
             raise ValueError("Parameter `credits` must be a float")
 
         self._credits = credits
@@ -303,6 +309,31 @@ class ProjectDetail(object):
             raise ValueError("Parameter `suspended_reason` must be a string")
 
         self._suspended_reason = suspended_reason
+
+    @property
+    def cors_origins(self):
+        """
+        Gets the cors_origins of this ProjectDetail
+
+        :return: the cors_origins of this ProjectDetail
+        :rtype: list[str]
+        """
+
+        return self._cors_origins
+
+    @cors_origins.setter
+    def cors_origins(self, cors_origins):
+        """
+        Sets the cors_origins of this ProjectDetail
+
+        :param cors_origins: the cors_origins of this ProjectDetail
+        :type: list[str]
+        """
+
+        if self.client_side_validation and (cors_origins is not None and not isinstance(cors_origins, list)):
+            raise ValueError("Parameter `cors_origins` must be a list")
+
+        self._cors_origins = cors_origins
 
     def to_dict(self):
         """

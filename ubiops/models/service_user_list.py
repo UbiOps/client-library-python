@@ -27,27 +27,17 @@ class ServiceUserList(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {
-        "id": "str",
-        "email": "str",
-        "name": "str",
-        "creation_date": "str",
-        "allowed_cors_origins": "list[str]",
-        "expiry_date": "str",
-    }
+    openapi_types = {"id": "str", "email": "str", "name": "str", "creation_date": "str", "expiry_date": "str"}
 
     attribute_map = {
         "id": "id",
         "email": "email",
         "name": "name",
         "creation_date": "creation_date",
-        "allowed_cors_origins": "allowed_cors_origins",
         "expiry_date": "expiry_date",
     }
 
-    def __init__(
-        self, id=None, email=None, name=None, creation_date=None, allowed_cors_origins=None, expiry_date=None, **kwargs
-    ):
+    def __init__(self, id=None, email=None, name=None, creation_date=None, expiry_date=None, **kwargs):
         """
         ServiceUserList - a model defined in OpenAPI
         """
@@ -60,7 +50,6 @@ class ServiceUserList(object):
         self._email = None
         self._name = None
         self._creation_date = None
-        self._allowed_cors_origins = None
         self._expiry_date = None
         self.discriminator = None
 
@@ -70,7 +59,6 @@ class ServiceUserList(object):
         self.name = name
         if creation_date is not None:
             self.creation_date = creation_date
-        self.allowed_cors_origins = allowed_cors_origins
         self.expiry_date = expiry_date
 
     @property
@@ -182,33 +170,6 @@ class ServiceUserList(object):
             raise ValueError("Parameter `creation_date` must be a string")
 
         self._creation_date = creation_date
-
-    @property
-    def allowed_cors_origins(self):
-        """
-        Gets the allowed_cors_origins of this ServiceUserList
-
-        :return: the allowed_cors_origins of this ServiceUserList
-        :rtype: list[str]
-        """
-
-        return self._allowed_cors_origins
-
-    @allowed_cors_origins.setter
-    def allowed_cors_origins(self, allowed_cors_origins):
-        """
-        Sets the allowed_cors_origins of this ServiceUserList
-
-        :param allowed_cors_origins: the allowed_cors_origins of this ServiceUserList
-        :type: list[str]
-        """
-
-        if self.client_side_validation and (
-            allowed_cors_origins is not None and not isinstance(allowed_cors_origins, list)
-        ):
-            raise ValueError("Parameter `allowed_cors_origins` must be a list")
-
-        self._allowed_cors_origins = allowed_cors_origins
 
     @property
     def expiry_date(self):

@@ -5,7 +5,7 @@ For more information, please visit [https://ubiops.com/docs/](https://ubiops.com
 
 ## Requirements.
 
-Python 3.5+
+Python 3.7+
 
 ## Installation
 

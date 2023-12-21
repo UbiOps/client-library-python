@@ -20,6 +20,7 @@ from ubiops.api.deployments import Deployments
 from ubiops.api.environments import Environments
 from ubiops.api.files import Files
 from ubiops.api.imports_and_exports import ImportsAndExports
+from ubiops.api.metrics import Metrics
 from ubiops.api.monitoring import Monitoring
 from ubiops.api.organizations import Organizations
 from ubiops.api.pipeline_requests import PipelineRequests
@@ -52,6 +53,7 @@ class CoreApi(object):
         self.environments = Environments(api_client=api_client)
         self.files = Files(api_client=api_client)
         self.imports_and_exports = ImportsAndExports(api_client=api_client)
+        self.metrics = Metrics(api_client=api_client)
         self.monitoring = Monitoring(api_client=api_client)
         self.organizations = Organizations(api_client=api_client)
         self.pipeline_requests = PipelineRequests(api_client=api_client)
@@ -2746,6 +2748,294 @@ class CoreApi(object):
 
         return self.imports_and_exports.imports_update_with_http_info(project_name, import_id, data, **kwargs)
 
+    def metrics_create(self, project_name, data, **kwargs):
+        """
+        Create metrics
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.metrics_create(
+                project_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param MetricCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(MetricDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.metrics_create_with_http_info(project_name, data, **kwargs)
+
+    def metrics_delete(self, project_name, metric_name, **kwargs):
+        """
+        Delete metric
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.metrics_delete(
+                project_name, metric_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str metric_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.metrics_delete_with_http_info(project_name, metric_name, **kwargs)
+
+    def metrics_get(self, project_name, metric_name, **kwargs):
+        """
+        Get metric
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.metrics_get(
+                project_name, metric_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str metric_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(MetricDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.metrics_get_with_http_info(project_name, metric_name, **kwargs)
+
+    def metrics_list(self, project_name, **kwargs):
+        """
+        List metrics
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.metrics_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - bool custom:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[MetricDetail], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.metrics_list_with_http_info(project_name, **kwargs)
+
+    def metrics_update(self, project_name, metric_name, data, **kwargs):
+        """
+        Update metric
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.metrics_update(
+                project_name, metric_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str metric_name: (required)
+        :param MetricUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(MetricDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.metrics_update_with_http_info(project_name, metric_name, data, **kwargs)
+
+    def time_series_data_aggregate(self, project_name, data, **kwargs):
+        """
+        Aggregate metric data
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.time_series_data_aggregate(
+                project_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param TimeSeriesDataCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.time_series_data_aggregate_with_http_info(project_name, data, **kwargs)
+
+    def time_series_data_create(self, project_name, data, **kwargs):
+        """
+        Create metric data
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.time_series_data_create(
+                project_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param TimeSeriesDataCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.time_series_data_create_with_http_info(project_name, data, **kwargs)
+
+    def time_series_data_list(self, project_name, **kwargs):
+        """
+        List time series data
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.time_series_data_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str metric:
+            - str start_date:
+            - str end_date:
+            - int aggregation_period:
+            - str labels:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(TimeSeriesDataList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.time_series_data_list_with_http_info(project_name, **kwargs)
+
+    def time_series_delete(self, project_name, time_series_id, **kwargs):
+        """
+        Delete time series
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.time_series_delete(
+                project_name, time_series_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str time_series_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.time_series_delete_with_http_info(project_name, time_series_id, **kwargs)
+
+    def time_series_search(self, project_name, **kwargs):
+        """
+        Search time series
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.time_series_search(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str metric:
+            - str labels:
+            - bool custom:
+            - bool exact_match:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[TimeSeriesSearch], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.metrics.time_series_search_with_http_info(project_name, **kwargs)
+
     def notification_groups_create(self, project_name, data, **kwargs):
         """
         Create notification groups
@@ -3187,7 +3477,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[Usage], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUsage, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -4099,42 +4389,6 @@ class CoreApi(object):
 
         return self.projects.instance_types_list_with_http_info(project_name, **kwargs)
 
-    def metrics_get(self, project_name, metric, start_date, end_date, object_type, **kwargs):
-        """
-        Get metrics
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.metrics_get(
-                project_name, metric, start_date, end_date, object_type, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param str metric: (required)
-        :param str start_date: (required)
-        :param str end_date: (required)
-        :param str object_type: (required)
-        :param kwargs:
-            - str interval:
-            - str object_id:
-            - str user_id:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(list[Metrics], status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        return self.projects.metrics_get_with_http_info(
-            project_name, metric, start_date, end_date, object_type, **kwargs
-        )
-
     def project_audit_events_list(self, project_name, **kwargs):
         """
         List audit events in a project
@@ -4668,7 +4922,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[Usage], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(ProjectUsage, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
