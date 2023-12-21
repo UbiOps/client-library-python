@@ -207,7 +207,7 @@ class ProjectList(object):
         :type: float
         """
 
-        if self.client_side_validation and (credits is not None and not isinstance(credits, float)):
+        if self.client_side_validation and (credits is not None and not isinstance(credits, (int, float))):
             raise ValueError("Parameter `credits` must be a float")
 
         self._credits = credits

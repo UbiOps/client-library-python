@@ -11,5 +11,6 @@ Name | Type | Notes
 **organization_name** | **str** | 
 **suspended** | **bool** | [optional] [readonly] 
 **suspended_reason** | **str** | [optional] [readonly] 
+**cors_origins** | **list[str]** | [optional] [readonly] 
 
 

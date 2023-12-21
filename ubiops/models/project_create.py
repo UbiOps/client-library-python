@@ -27,16 +27,25 @@ class ProjectCreate(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"name": "str", "organization_name": "str", "advanced_permissions": "bool", "credits": "float"}
+    openapi_types = {
+        "name": "str",
+        "organization_name": "str",
+        "advanced_permissions": "bool",
+        "credits": "float",
+        "cors_origins": "list[str]",
+    }
 
     attribute_map = {
         "name": "name",
         "organization_name": "organization_name",
         "advanced_permissions": "advanced_permissions",
         "credits": "credits",
+        "cors_origins": "cors_origins",
     }
 
-    def __init__(self, name=None, organization_name=None, advanced_permissions=False, credits=None, **kwargs):
+    def __init__(
+        self, name=None, organization_name=None, advanced_permissions=None, credits=None, cors_origins=None, **kwargs
+    ):
         """
         ProjectCreate - a model defined in OpenAPI
         """
@@ -49,6 +58,7 @@ class ProjectCreate(object):
         self._organization_name = None
         self._advanced_permissions = None
         self._credits = None
+        self._cors_origins = None
         self.discriminator = None
 
         self.name = name
@@ -56,6 +66,8 @@ class ProjectCreate(object):
         if advanced_permissions is not None:
             self.advanced_permissions = advanced_permissions
         self.credits = credits
+        if cors_origins is not None:
+            self.cors_origins = cors_origins
 
     @property
     def name(self):
@@ -166,10 +178,35 @@ class ProjectCreate(object):
         :type: float
         """
 
-        if self.client_side_validation and (credits is not None and not isinstance(credits, float)):
+        if self.client_side_validation and (credits is not None and not isinstance(credits, (int, float))):
             raise ValueError("Parameter `credits` must be a float")
 
         self._credits = credits
+
+    @property
+    def cors_origins(self):
+        """
+        Gets the cors_origins of this ProjectCreate
+
+        :return: the cors_origins of this ProjectCreate
+        :rtype: list[str]
+        """
+
+        return self._cors_origins
+
+    @cors_origins.setter
+    def cors_origins(self, cors_origins):
+        """
+        Sets the cors_origins of this ProjectCreate
+
+        :param cors_origins: the cors_origins of this ProjectCreate
+        :type: list[str]
+        """
+
+        if self.client_side_validation and (cors_origins is not None and not isinstance(cors_origins, list)):
+            raise ValueError("Parameter `cors_origins` must be a list")
+
+        self._cors_origins = cors_origins
 
     def to_dict(self):
         """

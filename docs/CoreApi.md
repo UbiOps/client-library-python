@@ -91,6 +91,16 @@ Method | HTTP request | Description
 [**imports_get**](./ImportsAndExports.md#imports_get) | **GET** /projects/{project_name}/imports/{import_id} | Get an import
 [**imports_list**](./ImportsAndExports.md#imports_list) | **GET** /projects/{project_name}/imports | List imports
 [**imports_update**](./ImportsAndExports.md#imports_update) | **PATCH** /projects/{project_name}/imports/{import_id} | Confirm an import
+[**metrics_create**](./Metrics.md#metrics_create) | **POST** /projects/{project_name}/metrics | Create metrics
+[**metrics_delete**](./Metrics.md#metrics_delete) | **DELETE** /projects/{project_name}/metrics/{metric_name} | Delete metric
+[**metrics_get**](./Metrics.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric_name} | Get metric
+[**metrics_list**](./Metrics.md#metrics_list) | **GET** /projects/{project_name}/metrics | List metrics
+[**metrics_update**](./Metrics.md#metrics_update) | **PATCH** /projects/{project_name}/metrics/{metric_name} | Update metric
+[**time_series_data_aggregate**](./Metrics.md#time_series_data_aggregate) | **POST** /projects/{project_name}/time-series/aggregate | Aggregate metric data
+[**time_series_data_create**](./Metrics.md#time_series_data_create) | **POST** /projects/{project_name}/time-series/data | Create metric data
+[**time_series_data_list**](./Metrics.md#time_series_data_list) | **GET** /projects/{project_name}/time-series/data | List time series data
+[**time_series_delete**](./Metrics.md#time_series_delete) | **DELETE** /projects/{project_name}/time-series/{time_series_id} | Delete time series
+[**time_series_search**](./Metrics.md#time_series_search) | **GET** /projects/{project_name}/time-series/search | Search time series
 [**notification_groups_create**](./Monitoring.md#notification_groups_create) | **POST** /projects/{project_name}/monitoring/notification-groups | Create notification groups
 [**notification_groups_delete**](./Monitoring.md#notification_groups_delete) | **DELETE** /projects/{project_name}/monitoring/notification-groups/{notification_group_name} | Delete notification group
 [**notification_groups_get**](./Monitoring.md#notification_groups_get) | **GET** /projects/{project_name}/monitoring/notification-groups/{notification_group_name} | Get notification group
@@ -136,7 +146,6 @@ Method | HTTP request | Description
 [**pipelines_list**](./Pipelines.md#pipelines_list) | **GET** /projects/{project_name}/pipelines | List pipelines
 [**pipelines_update**](./Pipelines.md#pipelines_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name} | Update a pipeline
 [**instance_types_list**](./Projects.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
-[**metrics_get**](./Projects.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric} | Get metrics
 [**project_audit_events_list**](./Projects.md#project_audit_events_list) | **GET** /projects/{project_name}/audit | List audit events in a project
 [**project_environment_variables_create**](./Projects.md#project_environment_variables_create) | **POST** /projects/{project_name}/environment-variables | Create project environment variable
 [**project_environment_variables_delete**](./Projects.md#project_environment_variables_delete) | **DELETE** /projects/{project_name}/environment-variables/{id} | Delete project environment variable

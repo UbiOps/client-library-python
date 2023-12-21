@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.1.0"
+__version__ = "4.2.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -114,7 +114,9 @@ from ubiops.models.input_output_field_list import InputOutputFieldList
 from ubiops.models.input_output_widget_list import InputOutputWidgetList
 from ubiops.models.logs import Logs
 from ubiops.models.logs_create import LogsCreate
-from ubiops.models.metrics import Metrics
+from ubiops.models.metric_create import MetricCreate
+from ubiops.models.metric_detail import MetricDetail
+from ubiops.models.metric_update import MetricUpdate
 from ubiops.models.notification_group_contact import NotificationGroupContact
 from ubiops.models.notification_group_create import NotificationGroupCreate
 from ubiops.models.notification_group_list import NotificationGroupList
@@ -123,7 +125,9 @@ from ubiops.models.operator_request_detail import OperatorRequestDetail
 from ubiops.models.organization_create import OrganizationCreate
 from ubiops.models.organization_detail import OrganizationDetail
 from ubiops.models.organization_list import OrganizationList
+from ubiops.models.organization_project_usage import OrganizationProjectUsage
 from ubiops.models.organization_update import OrganizationUpdate
+from ubiops.models.organization_usage import OrganizationUsage
 from ubiops.models.organization_user_create import OrganizationUserCreate
 from ubiops.models.organization_user_detail import OrganizationUserDetail
 from ubiops.models.organization_user_update import OrganizationUserUpdate
@@ -153,10 +157,12 @@ from ubiops.models.pipeline_version_object_create import PipelineVersionObjectCr
 from ubiops.models.pipeline_version_object_list import PipelineVersionObjectList
 from ubiops.models.pipeline_version_update import PipelineVersionUpdate
 from ubiops.models.project_create import ProjectCreate
+from ubiops.models.project_deployment_version_usage import ProjectDeploymentVersionUsage
 from ubiops.models.project_detail import ProjectDetail
 from ubiops.models.project_list import ProjectList
 from ubiops.models.project_resource_usage import ProjectResourceUsage
 from ubiops.models.project_update import ProjectUpdate
+from ubiops.models.project_usage import ProjectUsage
 from ubiops.models.project_user_create import ProjectUserCreate
 from ubiops.models.project_user_list import ProjectUserList
 from ubiops.models.quota_detail import QuotaDetail
@@ -179,8 +185,11 @@ from ubiops.models.service_user_token_detail import ServiceUserTokenDetail
 from ubiops.models.service_user_token_list import ServiceUserTokenList
 from ubiops.models.status import Status
 from ubiops.models.template_deployment_list import TemplateDeploymentList
-from ubiops.models.usage import Usage
-from ubiops.models.usage_metric import UsageMetric
+from ubiops.models.time_series_data_create import TimeSeriesDataCreate
+from ubiops.models.time_series_data_list import TimeSeriesDataList
+from ubiops.models.time_series_data_point_create import TimeSeriesDataPointCreate
+from ubiops.models.time_series_data_point_list import TimeSeriesDataPointList
+from ubiops.models.time_series_search import TimeSeriesSearch
 from ubiops.models.user_pending_create import UserPendingCreate
 from ubiops.models.user_pending_detail import UserPendingDetail
 from ubiops.models.webhook_create import WebhookCreate

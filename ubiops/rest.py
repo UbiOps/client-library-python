@@ -15,13 +15,14 @@ import logging
 import re
 import requests
 import requests_toolbelt
+import time
 import tqdm
 import urllib.parse
 
+from contextlib import nullcontext
 from requests_toolbelt.adapters.socket_options import TCPKeepAliveAdapter
 
 from ubiops.exceptions import ApiConnectionError, ApiException, ApiRequestError, ApiTimeoutError, ApiValueError
-from ubiops.nullcontext import nullcontext
 
 
 logger = logging.getLogger(__name__)
@@ -50,6 +51,8 @@ class RESTClientObject(object):
             self.cert = (configuration.cert_file, configuration.key_file)
         elif configuration.cert_file:
             self.cert = configuration.cert_file
+
+        self.auto_retry_rate_limiting = configuration.auto_retry_rate_limiting
 
     @staticmethod
     def close_files(post_params):
@@ -186,6 +189,24 @@ class RESTClientObject(object):
 
             if not stream:
                 logger.debug(f"Response body: {r.text}")
+
+            if r.status_code == 429 and self.auto_retry_rate_limiting:
+                # Add 1 extra second to be sure in case reset time was rounded down
+                reset_time = int(r.headers.get("x-ratelimit-reset", 59)) + 1
+                logger.error(f"Rate Limit Exceeded. Automatic retry in {reset_time} seconds.")
+                time.sleep(reset_time)
+                return self.request(
+                    method=method,
+                    host=host,
+                    resource_path=resource_path,
+                    query_params=query_params,
+                    headers=headers,
+                    body=body,
+                    post_params=post_params,
+                    stream=stream,
+                    _request_timeout=_request_timeout,
+                    progress_bar=progress_bar,
+                )
 
             if not 200 <= r.status_code <= 299:
                 raise ApiRequestError(requests_resp=r)

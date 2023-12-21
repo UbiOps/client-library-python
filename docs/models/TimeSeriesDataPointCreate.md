@@ -1,10 +1,9 @@
-# UsageMetric
+# TimeSeriesDataPointCreate
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**start_date** | **datetime** | 
-**end_date** | **datetime** | 
+**date** | **datetime** | 
 **value** | **float** | 
 
 

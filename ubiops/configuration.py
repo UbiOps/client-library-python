@@ -12,6 +12,7 @@
 
 import logging
 import os
+import re
 import sys
 import http.client
 
@@ -69,11 +70,7 @@ class Configuration(object):
         if not host:
             host = os.environ.get("UBIOPS_API_HOST", "https://api.ubiops.com/v2.1")
 
-        if host:
-            # Remove trailing / if present
-            if str(host).endswith("/"):
-                host = str(host)[:-1]
-            self.host = host
+        self.host = host
 
         # Initialize temp_folder_path with the current working directory
         self.temp_folder_path = "."
@@ -84,19 +81,8 @@ class Configuration(object):
             if key:
                 api_key = {"Authorization": key}
 
-        # If api_key doesn't contain prefix. Automatically add "Token" as prefix.
-        if api_key and not api_key_prefix:
-            key = api_key.get("Authorization", "")
-            if len(str(key).split(" ")) < 2:
-                api_key_prefix = {"Authorization": "Token"}
-
-        self.api_key = {}
-        if api_key:
-            self.api_key = api_key
-
-        self.api_key_prefix = {}
-        if api_key_prefix:
-            self.api_key_prefix = api_key_prefix
+        self.api_key = api_key if api_key else {}
+        self.api_key_prefix = api_key_prefix if api_key_prefix else {}
 
         self.refresh_api_key_hook = None
 
@@ -120,6 +106,9 @@ class Configuration(object):
         # Debug
         self.debug = False
         self.client_side_validation = True
+
+        # Rate limiting
+        self.auto_retry_rate_limiting = True
 
     @property
     def logger_file(self):
@@ -188,6 +177,43 @@ class Configuration(object):
             http.client.HTTPConnection.debuglevel = 0
 
     @property
+    def host(self):
+        """
+        The host
+
+        :type: str
+        """
+
+        return self.__host
+
+    @host.setter
+    def host(self, value):
+        """
+        The host
+
+        :param value: The host to use
+        :type: str
+        """
+
+        if value:
+            value = str(value)
+
+            # Remove trailing / if present
+            if value.endswith("/"):
+                value = value[:-1]
+
+            # Start with http or https, default to https
+            if not value.startswith("http"):
+                value = f"https://{value}"
+
+            # Check api version included (../v[] or ../v[].[])
+            p = re.compile(r".*/v[0-9]+\.?[0-9]*")
+            if not p.match(value):
+                value = f"{value}/v2.1"
+
+        self.__host = value
+
+    @property
     def logger_format(self):
         """
         The logger_formatter will be updated when sets logger_format.
@@ -222,6 +248,11 @@ class Configuration(object):
         key = self.api_key.get(identifier)
         if key:
             prefix = self.api_key_prefix.get(identifier)
+
+            # If key doesn't contain prefix and no prefix is given, automatically add "Token" as prefix
+            if not prefix and len(str(key).split(" ")) < 2:
+                prefix = "Token"
+
             if prefix:
                 return f"{prefix} {key}"
             else:
