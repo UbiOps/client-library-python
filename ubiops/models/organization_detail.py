@@ -27,14 +27,7 @@ class OrganizationDetail(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {
-        "id": "str",
-        "name": "str",
-        "creation_date": "datetime",
-        "subscription": "str",
-        "status": "str",
-        "subscription_self_service": "bool",
-    }
+    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime", "subscription": "str", "status": "str"}
 
     attribute_map = {
         "id": "id",
@@ -42,19 +35,9 @@ class OrganizationDetail(object):
         "creation_date": "creation_date",
         "subscription": "subscription",
         "status": "status",
-        "subscription_self_service": "subscription_self_service",
     }
 
-    def __init__(
-        self,
-        id=None,
-        name=None,
-        creation_date=None,
-        subscription=None,
-        status=None,
-        subscription_self_service=None,
-        **kwargs,
-    ):
+    def __init__(self, id=None, name=None, creation_date=None, subscription=None, status=None, **kwargs):
         """
         OrganizationDetail - a model defined in OpenAPI
         """
@@ -68,7 +51,6 @@ class OrganizationDetail(object):
         self._creation_date = None
         self._subscription = None
         self._status = None
-        self._subscription_self_service = None
         self.discriminator = None
 
         if id is not None:
@@ -78,8 +60,6 @@ class OrganizationDetail(object):
             self.creation_date = creation_date
         self.subscription = subscription
         self.status = status
-        if subscription_self_service is not None:
-            self.subscription_self_service = subscription_self_service
 
     @property
     def id(self):
@@ -219,33 +199,6 @@ class OrganizationDetail(object):
             raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")
 
         self._status = status
-
-    @property
-    def subscription_self_service(self):
-        """
-        Gets the subscription_self_service of this OrganizationDetail
-
-        :return: the subscription_self_service of this OrganizationDetail
-        :rtype: bool
-        """
-
-        return self._subscription_self_service
-
-    @subscription_self_service.setter
-    def subscription_self_service(self, subscription_self_service):
-        """
-        Sets the subscription_self_service of this OrganizationDetail
-
-        :param subscription_self_service: the subscription_self_service of this OrganizationDetail
-        :type: bool
-        """
-
-        if self.client_side_validation and (
-            subscription_self_service is not None and not isinstance(subscription_self_service, bool)
-        ):
-            raise ValueError("Parameter `subscription_self_service` must be a boolean")
-
-        self._subscription_self_service = subscription_self_service
 
     def to_dict(self):
         """

@@ -3022,6 +3022,8 @@ class CoreApi(object):
             - str labels:
             - bool custom:
             - bool exact_match:
+            - int limit:
+            - int offset:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.

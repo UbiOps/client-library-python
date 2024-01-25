@@ -988,7 +988,7 @@ void (empty response body)
 [[Back to top]](#)
 
 # **time_series_search**
-> list[TimeSeriesSearch] time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match)
+> list[TimeSeriesSearch] time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match, limit=limit, offset=offset)
 
 Search time series
 
@@ -1001,6 +1001,8 @@ Search through time series
 - `labels`: Comma-separated values for labels to filter on data points. It must be in the format: key-1:value-1,key-2:value-2.
 - `custom`: A boolean indicating whether only default or custom metrics should be returned. If this parameter is not provided, both types are returned.
 - `exact_match`: A boolean indicating whether the provided labels should match exactly or whether matching a subset is allowed. Defaults to false (matching a subset is allowed).
+- `limit`: The maximum number of time series to return. It defaults to 500.
+- `offset`: The number that indicates the starting point of the time series to return. It defaults to 0.
 
 ### Response Structure
 A list of time series
@@ -1040,9 +1042,11 @@ A list of time series
     labels = 'labels_example' # str (optional)
     custom = True # bool (optional)
     exact_match = True # bool (optional)
+    limit = 56 # int (optional)
+    offset = 56 # int (optional)
 
     # Search time series
-    api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match)
+    api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match, limit=limit, offset=offset)
     print(api_response)
 
     # Close the connection
@@ -1067,9 +1071,11 @@ A list of time series
     labels = 'labels_example' # str (optional)
     custom = True # bool (optional)
     exact_match = True # bool (optional)
+    limit = 56 # int (optional)
+    offset = 56 # int (optional)
 
     # Search time series
-    api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match)
+    api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match, limit=limit, offset=offset)
     print(api_response)
 
     # Close the connection
@@ -1087,6 +1093,8 @@ Name | Type | Notes
  **labels** | **str** | [optional] 
  **custom** | **bool** | [optional] 
  **exact_match** | **bool** | [optional] 
+ **limit** | **int** | [optional] 
+ **offset** | **int** | [optional] 
 
 ### Return type
 
