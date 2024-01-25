@@ -30,6 +30,7 @@ class PipelineVersionDetail(object):
     openapi_types = {
         "id": "str",
         "version": "str",
+        "default": "bool",
         "pipeline": "str",
         "description": "str",
         "labels": "dict(str, str)",
@@ -46,6 +47,7 @@ class PipelineVersionDetail(object):
     attribute_map = {
         "id": "id",
         "version": "version",
+        "default": "default",
         "pipeline": "pipeline",
         "description": "description",
         "labels": "labels",
@@ -63,6 +65,7 @@ class PipelineVersionDetail(object):
         self,
         id=None,
         version=None,
+        default=None,
         pipeline=None,
         description=None,
         labels=None,
@@ -86,6 +89,7 @@ class PipelineVersionDetail(object):
 
         self._id = None
         self._version = None
+        self._default = None
         self._pipeline = None
         self._description = None
         self._labels = None
@@ -102,6 +106,7 @@ class PipelineVersionDetail(object):
         if id is not None:
             self.id = id
         self.version = version
+        self.default = default
         self.pipeline = pipeline
         if description is not None:
             self.description = description
@@ -179,6 +184,31 @@ class PipelineVersionDetail(object):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")
 
         self._version = version
+
+    @property
+    def default(self):
+        """
+        Gets the default of this PipelineVersionDetail
+
+        :return: the default of this PipelineVersionDetail
+        :rtype: bool
+        """
+
+        return self._default
+
+    @default.setter
+    def default(self, default):
+        """
+        Sets the default of this PipelineVersionDetail
+
+        :param default: the default of this PipelineVersionDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (default is not None and not isinstance(default, bool)):
+            raise ValueError("Parameter `default` must be a boolean")
+
+        self._default = default
 
     @property
     def pipeline(self):

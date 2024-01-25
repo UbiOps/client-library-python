@@ -872,6 +872,8 @@ class Metrics(object):
             - str labels:
             - bool custom:
             - bool exact_match:
+            - int limit:
+            - int offset:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -883,7 +885,7 @@ class Metrics(object):
         """
 
         method_name = "time_series_search"
-        optional_params = ["metric", "labels", "custom", "exact_match"]
+        optional_params = ["metric", "labels", "custom", "exact_match", "limit", "offset"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -914,6 +916,12 @@ class Metrics(object):
         if self.api_client.client_side_validation and "exact_match" in kwargs and kwargs["exact_match"] is not None:
             if not isinstance(kwargs["exact_match"], bool):
                 raise ApiValueError(f"Parameter `exact_match` must be a boolean when calling `{method_name}`")
+        if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
+            if not isinstance(kwargs["limit"], int):
+                raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
+        if self.api_client.client_side_validation and "offset" in kwargs and kwargs["offset"] is not None:
+            if not isinstance(kwargs["offset"], int):
+                raise ApiValueError(f"Parameter `offset` must be an integer when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -933,6 +941,10 @@ class Metrics(object):
             query_params.append(("custom", kwargs["custom"]))
         if "exact_match" in kwargs and kwargs["exact_match"] is not None:
             query_params.append(("exact_match", kwargs["exact_match"]))
+        if "limit" in kwargs and kwargs["limit"] is not None:
+            query_params.append(("limit", kwargs["limit"]))
+        if "offset" in kwargs and kwargs["offset"] is not None:
+            query_params.append(("offset", kwargs["offset"]))
 
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(["application/json"])

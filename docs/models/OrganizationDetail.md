@@ -8,6 +8,5 @@ Name | Type | Notes
 **creation_date** | **datetime** | [optional] [readonly] 
 **subscription** | **str** | 
 **status** | **str** | 
-**subscription_self_service** | **bool** | [optional] 
 
 

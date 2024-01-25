@@ -6,6 +6,7 @@ Name | Type | Notes
 **id** | **str** | [optional] [readonly] 
 **deployment** | **str** | 
 **version** | **str** | 
+**default** | **bool** | [optional] 
 **description** | **str** | [optional] 
 **environment** | **str** | [optional] 
 **environment_display_name** | **str** | [optional] 

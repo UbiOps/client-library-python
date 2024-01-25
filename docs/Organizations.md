@@ -659,8 +659,6 @@ Details of the organization
 
 - `subscription`: Name of the subscription of the organization
 
-- `subscription_self_service`: Boolean indicating if the organization subscription is self service
-
 ## Response Examples
 
 ```
@@ -668,8 +666,7 @@ Details of the organization
   "id": "abe2e406-fae5-4bcf-a3bc-956d756e4ecb",
   "name": "test-organization",
   "creation_date": "2020-03-25T15:43:46.101877Z",
-  "subscription": "free",
-  "subscription_self_service": true
+  "subscription": "free"
 }
 ```
 

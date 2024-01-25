@@ -1662,6 +1662,7 @@ Details of the created version
 - `id`: Unique identifier for the deployment version (UUID)
 - `deployment`: Deployment name to which the version is associated
 - `version`: Version name
+- `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
 - `environment`: Environment of the version
 - `environment_display_name`: Human readable name of the environment
@@ -1691,6 +1692,7 @@ Details of the created version
   "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
   "deployment": "deployment-1",
   "version": "version-1",
+  "default": true,
   "description": "",
   "environment": "python3-8",
   "environment_display_name": "Python 3.8",
@@ -1875,6 +1877,7 @@ Details of a version
 - `id`: Unique identifier for the version (UUID)
 - `deployment`: Deployment name to which the version is associated
 - `version`: Version name
+- `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
 - `environment`: Environment of the version
 - `environment_display_name`: Human readable name of the environment
@@ -1910,6 +1913,7 @@ Details of a version
   "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
   "deployment": "deployment-1",
   "version": "version-1",
+  "default": true,
   "description": "",
   "environment": "python3-7",
   "environment_display_name": "Python 3.7",
@@ -2025,6 +2029,7 @@ A list of details of the versions
 - `id`: Unique identifier for the deployment version (UUID)
 - `deployment`: Deployment name to which the version is associated
 - `version`: Version name
+- `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
 - `environment`: Environment of the version
 - `environment_display_name`: Human readable name of the environment
@@ -2058,6 +2063,7 @@ A list of details of the versions
     "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
     "deployment": "deployment-1",
     "version": "version-1",
+    "default": true,
     "description": "",
     "environment": "python3-8",
     "environment_display_name": "Python 3.8",
@@ -2086,6 +2092,7 @@ A list of details of the versions
     "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
     "deployment": "deployment-1",
     "version": "version-2",
+    "default": false,
     "description": "",
     "environment": "r4-0",
     "environment_display_name": "R 4.0",
@@ -2237,6 +2244,7 @@ Details of the updated version
 - `id`: Unique identifier for the deployment version (UUID)
 - `deployment`: Deployment name to which the version is associated
 - `version`: Version name
+- `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
 - `environment`: Environment of the version
 - `environment_display_name`: Human readable name of the environment
@@ -2269,6 +2277,7 @@ Details of the updated version
   "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
   "deployment": "deployment-1",
   "version": "version-1",
+  "default": true,
   "description": "",
   "environment": "python3-8",
   "environment_display_name": "Python 3.8",

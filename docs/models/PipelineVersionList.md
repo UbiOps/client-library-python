@@ -5,6 +5,7 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** | [optional] [readonly] 
 **version** | **str** | 
+**default** | **bool** | [optional] 
 **pipeline** | **str** | 
 **description** | **str** | [optional] 
 **labels** | **dict(str, str)** | [optional] 

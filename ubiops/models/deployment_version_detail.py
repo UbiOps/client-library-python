@@ -31,6 +31,7 @@ class DeploymentVersionDetail(object):
         "id": "str",
         "deployment": "str",
         "version": "str",
+        "default": "bool",
         "description": "str",
         "environment": "str",
         "environment_display_name": "str",
@@ -61,6 +62,7 @@ class DeploymentVersionDetail(object):
         "id": "id",
         "deployment": "deployment",
         "version": "version",
+        "default": "default",
         "description": "description",
         "environment": "environment",
         "environment_display_name": "environment_display_name",
@@ -92,6 +94,7 @@ class DeploymentVersionDetail(object):
         id=None,
         deployment=None,
         version=None,
+        default=None,
         description=None,
         environment=None,
         environment_display_name=None,
@@ -129,6 +132,7 @@ class DeploymentVersionDetail(object):
         self._id = None
         self._deployment = None
         self._version = None
+        self._default = None
         self._description = None
         self._environment = None
         self._environment_display_name = None
@@ -159,6 +163,7 @@ class DeploymentVersionDetail(object):
             self.id = id
         self.deployment = deployment
         self.version = version
+        self.default = default
         if description is not None:
             self.description = description
         if environment is not None:
@@ -289,6 +294,31 @@ class DeploymentVersionDetail(object):
             raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")
 
         self._version = version
+
+    @property
+    def default(self):
+        """
+        Gets the default of this DeploymentVersionDetail
+
+        :return: the default of this DeploymentVersionDetail
+        :rtype: bool
+        """
+
+        return self._default
+
+    @default.setter
+    def default(self, default):
+        """
+        Sets the default of this DeploymentVersionDetail
+
+        :param default: the default of this DeploymentVersionDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (default is not None and not isinstance(default, bool)):
+            raise ValueError("Parameter `default` must be a boolean")
+
+        self._default = default
 
     @property
     def description(self):
