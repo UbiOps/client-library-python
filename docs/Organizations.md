@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**organizations_resource_usage**](./Organizations.md#organizations_resource_usage) | **GET** /organizations/{organization_name}/resources | Get resource usage
 [**organizations_update**](./Organizations.md#organizations_update) | **PATCH** /organizations/{organization_name} | Update details of an organization
 [**organizations_usage_get**](./Organizations.md#organizations_usage_get) | **GET** /organizations/{organization_name}/usage | Get organization usage
+[**vouchers_get**](./Organizations.md#vouchers_get) | **GET** /vouchers/{code} | Get voucher
 
 
 # **organization_users_create**
@@ -29,7 +30,6 @@ The user can later be assigned roles in the projects defined in the scope the or
 ### Required Parameters
 
 - `email`: Email of the user
-
 - `admin`: Boolean value indicating whether the user is added as an admin of the organization or not
 
 ## Request Examples
@@ -45,13 +45,9 @@ The user can later be assigned roles in the projects defined in the scope the or
 Details of the added user
 
 - `id`: Unique identifier for the user (UUID)
-
 - `email`: Email of the user
-
 - `name`: Name of the user
-
 - `surname`: Surname of the user
-
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
 
 ## Response Examples
@@ -217,13 +213,9 @@ Get the details of a user in an organization. The user making the request must b
 Details of the user
 
 - `id`: Unique identifier for the user (UUID)
-
 - `email`: Email of the user
-
 - `name`: Name of the user
-
 - `surname`: Surname of the user
-
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
 
 ## Response Examples
@@ -315,13 +307,9 @@ List users and their details in an organization
 List of details of users
 
 - `id`: Unique identifier for the user (UUID)
-
 - `email`: Email of the user
-
 - `name`: Name of the user
-
 - `surname`: Surname of the user
-
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
 
 ## Response Examples
@@ -432,13 +420,9 @@ It is not possible to change the last admin of an organization to a regular user
 Details of the user
 
 - `id`: Unique identifier for the user (UUID)
-
 - `email`: Email of the user
-
 - `name`: Name of the user
-
 - `surname`: Surname of the user
-
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
 
 ## Response Examples
@@ -532,7 +516,6 @@ Create a new organization. When a user creates an organization, s/he will automa
 ### Required Parameters
 
 - `name`: Name of the organization. The name is globally unique. It can only consist of lowercase letters, numbers and dashes (-), and must start with a lowercase letter.
-
 - `subscription`: Name of the subscription for the organization
 
 ### Optional Parameters
@@ -563,9 +546,7 @@ If you are going to use a subscription other than the free subscription, you sho
 Details of the created organization
 
 - `id`: Unique identifier for the organization (UUID)
-
 - `name`: Name of the organization
-
 - `creation_date`: Date and time the organization was created
 
 ## Response Examples
@@ -652,11 +633,8 @@ Get the details of an organization
 Details of the organization
 
 - `id`: Unique identifier for the organization (UUID)
-
 - `name`: Name of the organization
-
 - `creation_date`: Time the organization was created
-
 - `subscription`: Name of the subscription of the organization
 
 ## Response Examples
@@ -744,9 +722,7 @@ List all organizations where the user making the request is a member
 A list of details of the organizations
 
 - `id`: Unique identifier for the organization (UUID)
-
 - `name`: Name of the organization
-
 - `creation_date`: Date and time the organization was created
 
 ## Response Examples
@@ -837,6 +813,7 @@ A list containing the number of
 - pipeline_versions
 - buckets
 - environments
+
 currently used by the organization.
 
 ## Response Examples
@@ -961,11 +938,8 @@ To delete the end date of the current subscription, give the 'subscription_end_d
 Details of the organization
 
 - `id`: Unique identifier for the organization (UUID)
-
 - `name`: Name of the organization
-
 - `creation_date`: Time the organization was created
-
 - `subscription`: Name of the subscription
 
 ## Response Examples
@@ -1079,7 +1053,7 @@ When **start_date** and **end_date** are given, this month period is used, e.g. 
       "start_date": "2019-08-01T00:00:00Z",
       "end_date": "2019-09-01T00:00:00Z",
       "value": 600
-    } 
+    }
   ],
   "data_projects": [
     {
@@ -1179,6 +1153,88 @@ Name | Type | Notes
 ### Return type
 
 [**OrganizationUsage**](./models/OrganizationUsage.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **vouchers_get**
+> Voucher vouchers_get(code)
+
+Get voucher
+
+## Description
+Get the description of a voucher from its code
+
+### Response Structure
+
+- `description`: Description of the voucher
+
+## Response Examples
+
+```
+{
+  "description": "Voucher for workshop with GPUs"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    code = 'code_example' # str
+
+    # Get voucher
+    api_response = core_api.vouchers_get(code)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    code = 'code_example' # str
+
+    # Get voucher
+    api_response = core_api.vouchers_get(code)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **code** | **str** | 
+
+### Return type
+
+[**Voucher**](./models/Voucher.md)
 
 ### Authorization
 

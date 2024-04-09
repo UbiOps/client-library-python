@@ -41,6 +41,7 @@ from ubiops.models.deployment_update import DeploymentUpdate
 from ubiops.models.deployment_version_create import DeploymentVersionCreate
 from ubiops.models.deployment_version_detail import DeploymentVersionDetail
 from ubiops.models.deployment_version_list import DeploymentVersionList
+from ubiops.models.deployment_version_port import DeploymentVersionPort
 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
 from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
@@ -64,8 +65,10 @@ from ubiops.models.export_list import ExportList
 from ubiops.models.expression_evaluate import ExpressionEvaluate
 from ubiops.models.expression_evaluate_response import ExpressionEvaluateResponse
 from ubiops.models.expression_input_field_create import ExpressionInputFieldCreate
+from ubiops.models.file_complete_multipart_upload import FileCompleteMultipartUpload
 from ubiops.models.file_detail import FileDetail
 from ubiops.models.file_item import FileItem
+from ubiops.models.file_multipart_upload import FileMultipartUpload
 from ubiops.models.file_upload_response import FileUploadResponse
 from ubiops.models.import_detail import ImportDetail
 from ubiops.models.import_list import ImportList
@@ -156,6 +159,7 @@ from ubiops.models.time_series_data_point_list import TimeSeriesDataPointList
 from ubiops.models.time_series_search import TimeSeriesSearch
 from ubiops.models.user_pending_create import UserPendingCreate
 from ubiops.models.user_pending_detail import UserPendingDetail
+from ubiops.models.voucher import Voucher
 from ubiops.models.webhook_create import WebhookCreate
 from ubiops.models.webhook_detail import WebhookDetail
 from ubiops.models.webhook_header import WebhookHeader

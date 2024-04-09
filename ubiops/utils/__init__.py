@@ -1,4 +1,5 @@
 from .file_operations import download_file, handle_file_input, UbiOpsFile, upload_file
+from .metrics.metric_client import MetricClient
 from .run_local import run_local
 from .validate import validate_requirements_file, validate_yaml_file
 from .wait_for import (

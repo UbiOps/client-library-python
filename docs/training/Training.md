@@ -688,7 +688,7 @@ The details of the experiment
 [[Back to top]](#)
 
 # **experiment_runs_create**
-> ExperimentRunCreateResponse experiment_runs_create(project_name, experiment_name, data)
+> ExperimentRunCreateResponse experiment_runs_create(project_name, experiment_name, data, timeout=None)
 
 Create an experiment run
 
@@ -700,9 +700,15 @@ Helper function to create an experiment run
 - `training_code`: A reference to a location containing the training code. Can be an UbiOps file uri, directory or file
 
 ### Optional Parameters
+
 - `description`: Description of the experiment run
 - `training_data`: A reference to a location containing the training data. Can be an UbiOps file uri, directory or file
 - `parameters`: Dictionary containing key/value pairs with training parameters
+
+These parameters should be given as query parameters:
+
+- `timeout`: Timeout for the run in seconds. The maximum allowed value is 172800 (48 hours) and the default value is
+    14400 (4 hours).
 
 ## Request Examples
 
@@ -757,6 +763,7 @@ Details of the created run
 
     project_name = 'project_name_example' # str
     experiment_name = 'experiment_name_example' # str
+    timeout = 56 # int (optional)
 
     # Create run
     api_response = training.experiment_runs_create(
@@ -765,7 +772,8 @@ Details of the created run
         data=ubiops.ExperimentRunCreate(
             name="my-run",
             training_code="./train.py"
-        )
+        ),
+        timeout=timeout
     )
     print(api_response)
 
@@ -788,6 +796,7 @@ Details of the created run
 
     project_name = 'project_name_example' # str
     experiment_name = 'experiment_name_example' # str
+    timeout = 56 # int (optional)
 
     # Create run
     api_response = training.experiment_runs_create(
@@ -796,7 +805,8 @@ Details of the created run
         data=ubiops.ExperimentRunCreate(
             name="my-run",
             training_code="./train.py"
-        )
+        ),
+        timeout=timeout
     )
     print(api_response)
 

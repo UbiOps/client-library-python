@@ -105,7 +105,9 @@ class Training(object):
         except ApiException as e:
             if e.status == 404:
                 raise ApiException(
-                    status=e.status, reason="Not Found", body=f"Environment {environment_name} not found"
+                    status=e.status,
+                    reason="Not Found",
+                    body=f"Environment {environment_name} not found",
                 )
             else:
                 raise
@@ -123,7 +125,11 @@ class Training(object):
             self.core_api.buckets_get(project_name=project_name, bucket_name=bucket)
         except ApiException as e:
             if e.status == 404:
-                raise ApiException(status=e.status, reason="Not Found", body=f"Bucket {bucket} not found")
+                raise ApiException(
+                    status=e.status,
+                    reason="Not Found",
+                    body=f"Bucket {bucket} not found",
+                )
             else:
                 raise
 
@@ -146,13 +152,17 @@ class Training(object):
 
             if training_template_deployment is None:
                 raise ApiException(
-                    status=500, reason="Internal Error", body="Could not obtain a template training deployment"
+                    status=500,
+                    reason="Internal Error",
+                    body="Could not obtain a template training deployment",
                 )
 
             return training_template_deployment_id, training_template_deployment
         except (AttributeError, KeyError):
             raise ApiException(
-                status=500, reason="Internal Error", body="Could not obtain a template training deployment"
+                status=500,
+                reason="Internal Error",
+                body="Could not obtain a template training deployment",
             )
 
     def _get_default_bucket(self, project_name, experiment_name):
@@ -165,7 +175,9 @@ class Training(object):
 
         try:
             env_vars = self.core_api.deployment_version_environment_variables_list(
-                project_name=project_name, deployment_name=self.training_deployment_name, version=experiment_name
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
             )
             for env_var in env_vars:
                 if env_var.name == DEFAULT_TRAINING_BUCKET_NAME:
@@ -187,7 +199,9 @@ class Training(object):
 
         try:
             env_vars = self.core_api.deployment_version_environment_variables_list(
-                project_name=project_name, deployment_name=self.training_deployment_name, version=experiment_name
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
             )
             for env_var in env_vars:
                 if env_var.name == DEFAULT_TRAINING_BUCKET_NAME:
@@ -197,7 +211,9 @@ class Training(object):
                         version=experiment_name,
                         id=env_var.id,
                         data=ubiops.EnvironmentVariableCreate(
-                            name=DEFAULT_TRAINING_BUCKET_NAME, value=bucket_name, secret=False
+                            name=DEFAULT_TRAINING_BUCKET_NAME,
+                            value=bucket_name,
+                            secret=False,
                         ),
                     )
                     return
@@ -289,7 +305,9 @@ class Training(object):
                     deployment_name=self.training_deployment_name,
                     version=data.name,
                     data=ubiops.EnvironmentVariableCreate(
-                        name=DEFAULT_TRAINING_BUCKET_NAME, value=data.default_bucket, secret=False
+                        name=DEFAULT_TRAINING_BUCKET_NAME,
+                        value=data.default_bucket,
+                        secret=False,
                     ),
                     **kwargs,
                 )
@@ -318,7 +336,10 @@ class Training(object):
 
         try:
             deployment_version = self.core_api.deployment_versions_get(
-                project_name=project_name, deployment_name=self.training_deployment_name, version=data.name, **kwargs
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=data.name,
+                **kwargs,
             )
         except ApiException as e:
             raise self.wrap_exception(e)
@@ -391,7 +412,9 @@ class Training(object):
         from ubiops.training.experiment_detail import ExperimentDetail
 
         return ExperimentDetail(
-            name=deployment_version.version, default_bucket=default_bucket, **deployment_version.to_dict()
+            name=deployment_version.version,
+            default_bucket=default_bucket,
+            **deployment_version.to_dict(),
         )
 
     def experiments_list(self, project_name, **kwargs):
@@ -412,7 +435,9 @@ class Training(object):
 
         try:
             deployment_versions = self.core_api.deployment_versions_list(
-                project_name=project_name, deployment_name=self.training_deployment_name, **kwargs
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                **kwargs,
             )
         except ApiException as e:
             raise self.wrap_exception(e)
@@ -456,7 +481,9 @@ class Training(object):
         if data.default_bucket:
             self._verify_bucket_exists(project_name=project_name, bucket=data.default_bucket)
             self._update_default_bucket(
-                project_name=project_name, experiment_name=experiment_name, bucket_name=data.default_bucket
+                project_name=project_name,
+                experiment_name=experiment_name,
+                bucket_name=data.default_bucket,
             )
 
         version_template = ubiops.DeploymentVersionUpdate(version=data.name, **data.to_dict())
@@ -475,7 +502,9 @@ class Training(object):
         from ubiops.training.experiment_detail import ExperimentDetail
 
         return ExperimentDetail(
-            name=deployment_version.version, default_bucket=data.default_bucket, **deployment_version.to_dict()
+            name=deployment_version.version,
+            default_bucket=data.default_bucket,
+            **deployment_version.to_dict(),
         )
 
     def experiment_runs_create(self, project_name, experiment_name, data, **kwargs):
@@ -485,6 +514,8 @@ class Training(object):
         :param str project_name: the name of the project (required)
         :param str experiment_name: the name of the experiment (required)
         :param ExperimentRunCreate data: the details of the experiment run (required)
+        :param kwargs:
+            - int timeout
 
         :return: ExperimentRunCreateResponse
         """
@@ -555,7 +586,7 @@ class Training(object):
                         "description": data.description,
                         "training_code": data.training_code,
                         "training_data": data.training_data,
-                        "parameters": data.parameters if data.parameters is not None else {},
+                        "parameters": (data.parameters if data.parameters is not None else {}),
                     }
                 ],
                 **kwargs,
@@ -563,10 +594,13 @@ class Training(object):
         except ApiException as e:
             raise self.wrap_exception(e)
 
-        from ubiops.training.experiment_run_create_response import ExperimentRunCreateResponse
+        from ubiops.training.experiment_run_create_response import (
+            ExperimentRunCreateResponse,
+        )
 
         return ExperimentRunCreateResponse(
-            experiment=deployment_version_request.version, **deployment_version_request.to_dict()
+            experiment=deployment_version_request.version,
+            **deployment_version_request.to_dict(),
         )
 
     def experiment_runs_delete(self, project_name, experiment_name, run_id, **kwargs):
@@ -727,7 +761,9 @@ class Training(object):
         except ApiException as e:
             raise self.wrap_exception(e)
 
-        from ubiops.training.experiment_run_update_response import ExperimentRunUpdateResponse
+        from ubiops.training.experiment_run_update_response import (
+            ExperimentRunUpdateResponse,
+        )
 
         return ExperimentRunUpdateResponse(experiment=request.version, **request.to_dict())
 
@@ -754,7 +790,9 @@ class Training(object):
         if experiment_name is not None and not isinstance(experiment_name, str):
             raise ApiValueError("Parameter `experiment_name` must be a string")
         if data is not None:
-            from ubiops.models.environment_variable_create import EnvironmentVariableCreate
+            from ubiops.models.environment_variable_create import (
+                EnvironmentVariableCreate,
+            )
 
             if isinstance(data, dict):
                 data = EnvironmentVariableCreate(**data)
@@ -900,7 +938,9 @@ class Training(object):
         if id is not None and not isinstance(id, str):
             raise ApiValueError("Parameter `id` must be a string")
         if data is not None:
-            from ubiops.models.environment_variable_create import EnvironmentVariableCreate
+            from ubiops.models.environment_variable_create import (
+                EnvironmentVariableCreate,
+            )
 
             if isinstance(data, dict):
                 data = EnvironmentVariableCreate(**data)

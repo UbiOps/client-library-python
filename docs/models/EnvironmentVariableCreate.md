@@ -4,7 +4,7 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **name** | **str** | 
-**value** | **str** | [optional] 
+**value** | **str** | 
 **secret** | **bool** | 
 
 

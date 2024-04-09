@@ -9,10 +9,12 @@ Method | HTTP request | Description
 [**buckets_get**](./Files.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket
 [**buckets_list**](./Files.md#buckets_list) | **GET** /projects/{project_name}/buckets | List buckets
 [**buckets_update**](./Files.md#buckets_update) | **PATCH** /projects/{project_name}/buckets/{bucket_name} | Update a bucket
+[**files_complete_multipart_upload**](./Files.md#files_complete_multipart_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file}/complete-multipart-upload | Complete multipart upload
 [**files_delete**](./Files.md#files_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Delete a file
 [**files_download**](./Files.md#files_download) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file}/download | Download a file
 [**files_get**](./Files.md#files_get) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Get a file
 [**files_list**](./Files.md#files_list) | **GET** /projects/{project_name}/buckets/{bucket_name}/files | List files
+[**files_start_multipart_upload**](./Files.md#files_start_multipart_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file}/start-multipart-upload | Start multipart upload
 [**files_upload**](./Files.md#files_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Upload a file
 
 
@@ -32,14 +34,14 @@ Create a bucket in a project
 
 - `provider`: Provider of the bucket. It can be 'ubiops', 'google_cloud_storage', 'amazon_s3' or 'azure_blob_storage'. The default is **ubiops**.
 - `credentials`: A dictionary for credentials to connect to the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:
-  - For Amazon S3, provide the fields `access_key` and `secret_key`.
-  - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.
-  - For Google Cloud Storage, provide the field `json_key_file`.
+    - For Amazon S3, provide the fields `access_key` and `secret_key`.
+    - For Azure Blob Storage, provide the field `connection_string` in the format: *DefaultEndpointsProtocol=https;AccountName=<account-name>;AccountKey=<account-key>;EndpointSuffix=core.windows.net*.
+    - For Google Cloud Storage, provide the field `json_key_file`.
 - `configuration`: A dictionary for additional configuration details for the bucket. It is only required for providers other than *ubiops*. Each provider requires a different set of fields:
-  - For Amazon S3, provide the fields `bucket` and `prefix`. One of the fields `region` or `endpoint_url` needs to be provided. The fields `signature_version`, `verify` and `use_ssl` are optional.
-  - For Azure Blob Storage, provide the fields `container` and `prefix`.
-  - For Google Cloud Storage, provide the fields `bucket` and `prefix`.
-  UbiOps always makes sure that the prefix ends with a '/'.
+    - For Amazon S3, provide the fields `bucket` and `prefix`. One of the fields `region` or `endpoint_url` needs to be provided. The fields `signature_version`, `verify` and `use_ssl` are optional.
+    - For Azure Blob Storage, provide the fields `container` and `prefix`.
+    - For Google Cloud Storage, provide the fields `bucket` and `prefix`.
+    UbiOps always makes sure that the prefix ends with a '/'.
 - `description`: Description of the bucket
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week). Pass `null` to keep them forever.
@@ -404,7 +406,7 @@ A list of details of the buckets in the project
     core_api = ubiops.CoreApi()
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List buckets
     api_response = core_api.buckets_list(project_name, labels=labels)
@@ -428,7 +430,7 @@ A list of details of the buckets in the project
     core_api = ubiops.CoreApi(api_client)
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List buckets
     api_response = core_api.buckets_list(project_name, labels=labels)
@@ -577,6 +579,119 @@ Name | Type | Notes
 ### Return type
 
 [**BucketDetail**](./models/BucketDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **files_complete_multipart_upload**
+> FileMultipartUpload files_complete_multipart_upload(project_name, bucket_name, file, data)
+
+Complete multipart upload
+
+## Description
+Complete a multipart upload for a file
+
+### Request Structure
+- `parts`: A list of parts that were uploaded
+
+## Request Examples
+
+```
+{
+  "parts": [
+    {
+      "ETag": "etag-2",
+      "PartNumber": 1
+    },
+    {
+      "ETag": "etag-2",
+      "PartNumber": 2
+    }
+  ]
+}
+```
+
+### Response Structure
+
+- `upload_id`: ID of the uploaded for the file
+- `provider`: Provider of the bucket where the file will be uploaded
+
+## Response Examples
+
+```
+{
+  "upload_id": "upload-id",
+  "provider": "google_cloud_storage"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+    data = ubiops.FileCompleteMultipartUpload() # FileCompleteMultipartUpload
+
+    # Complete multipart upload
+    api_response = core_api.files_complete_multipart_upload(project_name, bucket_name, file, data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+    data = ubiops.FileCompleteMultipartUpload() # FileCompleteMultipartUpload
+
+    # Complete multipart upload
+    api_response = core_api.files_complete_multipart_upload(project_name, bucket_name, file, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **file** | **str** | 
+ **data** | [**FileCompleteMultipartUpload**](./models/FileCompleteMultipartUpload.md) | 
+
+### Return type
+
+[**FileMultipartUpload**](./models/FileMultipartUpload.md)
 
 ### Authorization
 
@@ -964,8 +1079,101 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
+# **files_start_multipart_upload**
+> FileMultipartUpload files_start_multipart_upload(project_name, bucket_name, file, data=data)
+
+Start multipart upload
+
+## Description
+Start a multipart upload for a file
+
+### Response Structure
+
+- `upload_id`: ID of the upload for the file
+- `provider`: Provider of the bucket where the file will be uploaded
+
+## Response Examples
+
+```
+{
+  "upload_id": "upload-id",
+  "provider": "google_cloud_storage"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+    data = None # empty dict or None (optional)
+
+    # Start multipart upload
+    api_response = core_api.files_start_multipart_upload(project_name, bucket_name, file, data=data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    bucket_name = 'bucket_name_example' # str
+    file = 'file_example' # str
+    data = None # empty dict or None (optional)
+
+    # Start multipart upload
+    api_response = core_api.files_start_multipart_upload(project_name, bucket_name, file, data=data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **bucket_name** | **str** | 
+ **file** | **str** | 
+ **data** | **empty dict or None** | [optional] 
+
+### Return type
+
+[**FileMultipartUpload**](./models/FileMultipartUpload.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
 # **files_upload**
-> FileUploadResponse files_upload(project_name, bucket_name, file, data=data)
+> FileUploadResponse files_upload(project_name, bucket_name, file, upload_id=upload_id, part_number=part_number, data=data)
 
 Upload a file
 
@@ -975,6 +1183,11 @@ Generate a signed url to upload a file. Request body should be an empty dictiona
 Note: When using the url generated by this endpoint for Azure Blob Storage, the following headers must be added to the upload request to Azure Blob Storage:
 - `x-ms-version`: '2020-04-08'
 - `x-ms-blob-type`: 'BlockBlob'
+
+### Optional Parameters
+
+- `upload_id`: ID of the upload for the file. It should be used with multipart uploads.
+- `part_number`: Part number of the upload. It should be used with multipart uploads.
 
 ### Response Structure
 
@@ -1004,10 +1217,12 @@ Note: When using the url generated by this endpoint for Azure Blob Storage, the 
     project_name = 'project_name_example' # str
     bucket_name = 'bucket_name_example' # str
     file = 'file_example' # str
-    data = None # object (optional)
+    upload_id = 'upload_id_example' # str (optional)
+    part_number = 'part_number_example' # str (optional)
+    data = None # empty dict or None (optional)
 
     # Upload a file
-    api_response = core_api.files_upload(project_name, bucket_name, file, data=data)
+    api_response = core_api.files_upload(project_name, bucket_name, file, upload_id=upload_id, part_number=part_number, data=data)
     print(api_response)
 
     # Close the connection
@@ -1030,10 +1245,12 @@ Note: When using the url generated by this endpoint for Azure Blob Storage, the 
     project_name = 'project_name_example' # str
     bucket_name = 'bucket_name_example' # str
     file = 'file_example' # str
-    data = None # object (optional)
+    upload_id = 'upload_id_example' # str (optional)
+    part_number = 'part_number_example' # str (optional)
+    data = None # empty dict or None (optional)
 
     # Upload a file
-    api_response = core_api.files_upload(project_name, bucket_name, file, data=data)
+    api_response = core_api.files_upload(project_name, bucket_name, file, upload_id=upload_id, part_number=part_number, data=data)
     print(api_response)
 
     # Close the connection
@@ -1049,7 +1266,9 @@ Name | Type | Notes
  **project_name** | **str** | 
  **bucket_name** | **str** | 
  **file** | **str** | 
- **data** | **object** | [optional] 
+ **upload_id** | **str** | [optional] 
+ **part_number** | **str** | [optional] 
+ **data** | **empty dict or None** | [optional] 
 
 ### Return type
 

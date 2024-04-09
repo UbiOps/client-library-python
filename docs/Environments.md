@@ -876,7 +876,7 @@ Details of the created build
     project_name = 'project_name_example' # str
     environment_name = 'environment_name_example' # str
     revision_id = 'revision_id_example' # str
-    data = None # object (optional)
+    data = None # empty dict or None (optional)
 
     # Rebuild revision
     api_response = core_api.environment_revisions_rebuild(project_name, environment_name, revision_id, data=data)
@@ -902,7 +902,7 @@ Details of the created build
     project_name = 'project_name_example' # str
     environment_name = 'environment_name_example' # str
     revision_id = 'revision_id_example' # str
-    data = None # object (optional)
+    data = None # empty dict or None (optional)
 
     # Rebuild revision
     api_response = core_api.environment_revisions_rebuild(project_name, environment_name, revision_id, data=data)
@@ -921,7 +921,7 @@ Name | Type | Notes
  **project_name** | **str** | 
  **environment_name** | **str** | 
  **revision_id** | **str** | 
- **data** | **object** | [optional] 
+ **data** | **empty dict or None** | [optional] 
 
 ### Return type
 
@@ -1353,7 +1353,7 @@ A list of details of the environments
     core_api = ubiops.CoreApi()
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
     environment_type = 'environment_type_example' # str (optional)
 
     # List environments
@@ -1378,7 +1378,7 @@ A list of details of the environments
     core_api = ubiops.CoreApi(api_client)
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
     environment_type = 'environment_type_example' # str (optional)
 
     # List environments

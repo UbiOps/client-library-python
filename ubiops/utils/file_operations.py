@@ -1,17 +1,29 @@
+import base64
 import logging
+import math
 import requests
 import tqdm
 
+from contextlib import nullcontext
 from os import path, stat
 from shutil import make_archive
 from tqdm.utils import CallbackIOWrapper
 
 from ubiops import CoreApi
 from ubiops.api_client import ApiClient
-from ubiops.exceptions import ApiConnectionError, ApiException, ApiRequestError, ApiTimeoutError
+from ubiops.exceptions import (
+    ApiConnectionError,
+    ApiException,
+    ApiRequestError,
+    ApiTimeoutError,
+)
+from ubiops.models import FileCompleteMultipartUpload
 
 
 logger = logging.getLogger("FileOperations")
+
+MULTIPART_CHUNK_SIZE = 1024 * 1024 * 1024 * 1  # 1 GB
+MULTIPART_MIN_SIZE = 1024 * 1024 * 1024 * 4  # 4 GB
 
 
 class UbiOpsFile:
@@ -104,7 +116,14 @@ class UbiOpsFile:
         return f"ubiops-file://{self._bucket}/{self._file}"
 
 
-def upload_file(client, project_name, file_path, bucket_name="default", file_name=None, _progress_bar=True):
+def upload_file(
+    client,
+    project_name,
+    file_path,
+    bucket_name="default",
+    file_name=None,
+    _progress_bar=True,
+):
     """
     Upload a file to a bucket
 
@@ -126,33 +145,40 @@ def upload_file(client, project_name, file_path, bucket_name="default", file_nam
     file_name = path.basename(file_path) if file_name is None else file_name
     file_size = stat(file_path).st_size
 
-    response = core_api.files_upload(project_name=project_name, bucket_name=bucket_name, file=file_name)
-
-    headers = {"Content-Disposition": "multipart/form-data"}
+    general_headers = {"Content-Disposition": "multipart/form-data"}
 
     # Azure requires custom headers in the request
-    if response.provider == "azure_blob_storage":
-        headers["x-ms-version"] = "2020-04-08"
-        headers["x-ms-blob-type"] = "BlockBlob"
+    azure_headers = {
+        "Content-Disposition": "multipart/form-data",
+        "x-ms-version": "2020-04-08",
+        "x-ms-blob-type": "BlockBlob",
+    }
 
-    with open(file_path, "rb") as filestream:
+    def _read_chunk(file_object, chunk_size=MULTIPART_CHUNK_SIZE):
+        """
+        Lazy function (generator) to read a file piece by piece
+        """
+
+        while True:
+            data = file_object.read(chunk_size)
+            if not data:
+                break
+            yield data
+
+    def _upload_chunk(url, upload_headers, data):
+        """
+        Upload a chunk of data via a PUT request to a signed url
+        """
+
         try:
-            if _progress_bar:
-                with tqdm.tqdm(
-                    total=file_size,
-                    unit="B",
-                    unit_scale=True,
-                    unit_divisor=1024,
-                    miniters=1,
-                    desc=f"Uploading {file_name}",
-                ) as bar:
-                    file_wrapper = CallbackIOWrapper(bar.update, filestream, "read")
-                    response = requests.put(url=response.url, headers=headers, data=file_wrapper)
-            else:
-                response = requests.put(url=response.url, headers=headers, data=filestream)
+            put_response = requests.put(url=url, headers=upload_headers, data=data)
 
         except requests.exceptions.ConnectionError as e:
-            raise ApiConnectionError(status=502, reason="Connection Error", body=f"Failed to connect to bucket\n{e}")
+            raise ApiConnectionError(
+                status=502,
+                reason="Connection Error",
+                body=f"Failed to connect to bucket\n{e}",
+            )
 
         except requests.exceptions.Timeout:
             raise ApiTimeoutError(status=504, reason="Connection Timeout", body="Failed to upload file")
@@ -160,8 +186,84 @@ def upload_file(client, project_name, file_path, bucket_name="default", file_nam
         except requests.exceptions.RequestException as e:
             raise ApiRequestError(status=502, reason="Upload Error", body=f"Failed to upload file\n{e}")
 
-        if not 200 <= response.status_code <= 299:
-            raise ApiRequestError(requests_resp=response)
+        if not 200 <= put_response.status_code <= 299:
+            raise ApiRequestError(requests_resp=put_response)
+
+        return put_response
+
+    # Initiate context manager without progress bar
+    cm = nullcontext()
+
+    # Small file < 4 GB
+    if file_size < MULTIPART_MIN_SIZE:
+        if _progress_bar:
+            cm = tqdm.tqdm(
+                total=file_size,
+                unit="B",
+                unit_scale=True,
+                unit_divisor=1024,
+                miniters=1,
+                desc=f"Uploading {file_name}",
+            )
+
+        response = core_api.files_upload(project_name=project_name, bucket_name=bucket_name, file=file_name)
+        headers = azure_headers if response.provider == "azure_blob_storage" else general_headers
+
+        with cm as bar:
+            with open(file_path, "rb") as filestream:
+                if bar:
+                    file_wrapper = CallbackIOWrapper(bar.update, filestream, "read")
+                    _upload_chunk(url=response.url, upload_headers=headers, data=file_wrapper)
+                else:
+                    _upload_chunk(url=response.url, upload_headers=headers, data=filestream)
+
+    # Big file: use multipart file upload
+    else:
+        if _progress_bar:
+            cm = tqdm.tqdm(
+                total=math.ceil(file_size / MULTIPART_CHUNK_SIZE),
+                desc=f"Uploading {file_name}",
+            )
+
+        start_response = core_api.files_start_multipart_upload(
+            project_name=project_name, bucket_name=bucket_name, file=file_name
+        )
+        is_azure = start_response.provider == "azure_blob_storage"
+
+        parts = []
+        with cm as bar:
+            with open(file_path, "rb") as filestream:
+                part_number = 1
+                for chunk in _read_chunk(file_object=filestream):
+                    if is_azure:
+                        block_id = base64.b64encode(f"{file_name}_{part_number}".encode()).decode()
+                        signed_url = core_api.files_upload(
+                            project_name=project_name, bucket_name=bucket_name, file=file_name, upload_id=block_id
+                        )
+                        _upload_chunk(url=signed_url.url, upload_headers=azure_headers, data=chunk)
+                        parts.append({"BlockId": block_id})
+                    else:
+                        signed_url = core_api.files_upload(
+                            project_name=project_name,
+                            bucket_name=bucket_name,
+                            file=file_name,
+                            upload_id=start_response.upload_id,
+                            part_number=str(part_number),
+                        )
+                        upload_response = _upload_chunk(url=signed_url.url, upload_headers=general_headers, data=chunk)
+                        parts.append({"ETag": upload_response.headers["ETag"], "PartNumber": part_number})
+
+                    part_number += 1
+
+                    if bar:
+                        bar.update()
+
+        core_api.files_complete_multipart_upload(
+            project_name=project_name,
+            bucket_name=bucket_name,
+            file=file_name,
+            data=FileCompleteMultipartUpload(upload_id=start_response.upload_id, parts=parts),
+        )
 
     return f"ubiops-file://{bucket_name}/{file_name}"
 
@@ -209,7 +311,11 @@ def download_file(
         response = requests.get(url=response.url, stream=stream)
 
     except requests.exceptions.ConnectionError as e:
-        raise ApiConnectionError(status=502, reason="Connection Error", body=f"Failed to connect to bucket\n{e}")
+        raise ApiConnectionError(
+            status=502,
+            reason="Connection Error",
+            body=f"Failed to connect to bucket\n{e}",
+        )
 
     except requests.exceptions.Timeout:
         raise ApiTimeoutError(status=504, reason="Connection Timeout", body="Failed to download file")
@@ -246,7 +352,13 @@ def download_file(
 
 
 def handle_file_input(
-    client, project_name, file, bucket_name="default", file_prefix=None, file_name=None, _progress_bar=True
+    client,
+    project_name,
+    file,
+    bucket_name="default",
+    file_prefix=None,
+    file_name=None,
+    _progress_bar=True,
 ):
     """
     Handle file input:
@@ -277,7 +389,11 @@ def handle_file_input(
         core_api = CoreApi(client)
 
         try:
-            core_api.files_get(project_name=project_name, bucket_name=ubiops_file.bucket, file=ubiops_file.file)
+            core_api.files_get(
+                project_name=project_name,
+                bucket_name=ubiops_file.bucket,
+                file=ubiops_file.file,
+            )
 
         except ApiException as e:
             if e.status == 404:
@@ -315,5 +431,7 @@ def handle_file_input(
         )
 
     raise ApiException(
-        status=400, reason="Invalid", body=f"File {file} is not a ubiops-file:// or local directory or local file"
+        status=400,
+        reason="Invalid",
+        body=f"File {file} is not a ubiops-file:// or local directory or local file",
     )

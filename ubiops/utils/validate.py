@@ -3,7 +3,11 @@ import logging
 import yaml
 
 from .exceptions import ValidateError, ValidateSkip, ValidateWarning
-from .validators import validate_requirement_line, validate_yaml_apt, validate_yaml_env_vars
+from .validators import (
+    validate_requirement_line,
+    validate_yaml_apt,
+    validate_yaml_env_vars,
+)
 
 
 logger = logging.getLogger("Validate")

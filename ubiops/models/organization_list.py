@@ -27,11 +27,11 @@ class OrganizationList(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime"}
+    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime", "status": "str"}
 
-    attribute_map = {"id": "id", "name": "name", "creation_date": "creation_date"}
+    attribute_map = {"id": "id", "name": "name", "creation_date": "creation_date", "status": "status"}
 
-    def __init__(self, id=None, name=None, creation_date=None, **kwargs):
+    def __init__(self, id=None, name=None, creation_date=None, status=None, **kwargs):
         """
         OrganizationList - a model defined in OpenAPI
         """
@@ -43,6 +43,7 @@ class OrganizationList(object):
         self._id = None
         self._name = None
         self._creation_date = None
+        self._status = None
         self.discriminator = None
 
         if id is not None:
@@ -50,6 +51,7 @@ class OrganizationList(object):
         self.name = name
         if creation_date is not None:
             self.creation_date = creation_date
+        self.status = status
 
     @property
     def id(self):
@@ -129,6 +131,36 @@ class OrganizationList(object):
         """
 
         self._creation_date = creation_date
+
+    @property
+    def status(self):
+        """
+        Gets the status of this OrganizationList
+
+        :return: the status of this OrganizationList
+        :rtype: str
+        """
+
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this OrganizationList
+
+        :param status: the status of this OrganizationList
+        :type: str
+        """
+
+        if self.client_side_validation and status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")
+        if self.client_side_validation and (status is not None and not isinstance(status, str)):
+            raise ValueError("Parameter `status` must be a string")
+
+        if self.client_side_validation and (status is not None and len(status) < 1):
+            raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")
+
+        self._status = status
 
     def to_dict(self):
         """

@@ -27,11 +27,16 @@ class OrganizationCreate(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"name": "str", "subscription": "str", "subscription_end_date": "date"}
+    openapi_types = {"name": "str", "subscription": "str", "subscription_end_date": "date", "voucher": "str"}
 
-    attribute_map = {"name": "name", "subscription": "subscription", "subscription_end_date": "subscription_end_date"}
+    attribute_map = {
+        "name": "name",
+        "subscription": "subscription",
+        "subscription_end_date": "subscription_end_date",
+        "voucher": "voucher",
+    }
 
-    def __init__(self, name=None, subscription=None, subscription_end_date=None, **kwargs):
+    def __init__(self, name=None, subscription=None, subscription_end_date=None, voucher=None, **kwargs):
         """
         OrganizationCreate - a model defined in OpenAPI
         """
@@ -43,11 +48,15 @@ class OrganizationCreate(object):
         self._name = None
         self._subscription = None
         self._subscription_end_date = None
+        self._voucher = None
         self.discriminator = None
 
         self.name = name
-        self.subscription = subscription
+        if subscription is not None:
+            self.subscription = subscription
         self.subscription_end_date = subscription_end_date
+        if voucher is not None:
+            self.voucher = voucher
 
     @property
     def name(self):
@@ -101,8 +110,6 @@ class OrganizationCreate(object):
         :type: str
         """
 
-        if self.client_side_validation and subscription is None:
-            raise ValueError("Invalid value for `subscription`, must not be `None`")
         if self.client_side_validation and (subscription is not None and not isinstance(subscription, str)):
             raise ValueError("Parameter `subscription` must be a string")
 
@@ -132,6 +139,34 @@ class OrganizationCreate(object):
         """
 
         self._subscription_end_date = subscription_end_date
+
+    @property
+    def voucher(self):
+        """
+        Gets the voucher of this OrganizationCreate
+
+        :return: the voucher of this OrganizationCreate
+        :rtype: str
+        """
+
+        return self._voucher
+
+    @voucher.setter
+    def voucher(self, voucher):
+        """
+        Sets the voucher of this OrganizationCreate
+
+        :param voucher: the voucher of this OrganizationCreate
+        :type: str
+        """
+
+        if self.client_side_validation and (voucher is not None and not isinstance(voucher, str)):
+            raise ValueError("Parameter `voucher` must be a string")
+
+        if self.client_side_validation and (voucher is not None and len(voucher) < 1):
+            raise ValueError("Invalid value for `voucher`, length must be greater than or equal to `1`")
+
+        self._voucher = voucher
 
     def to_dict(self):
         """
