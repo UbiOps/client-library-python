@@ -53,6 +53,7 @@ class DeploymentVersionDetail(object):
         "maximum_queue_size_batch": "int",
         "static_ip": "bool",
         "restart_request_interruption": "bool",
+        "ports": "list[DeploymentVersionPort]",
         "last_file_upload": "datetime",
         "has_request_method": "bool",
         "has_requests_method": "bool",
@@ -84,6 +85,7 @@ class DeploymentVersionDetail(object):
         "maximum_queue_size_batch": "maximum_queue_size_batch",
         "static_ip": "static_ip",
         "restart_request_interruption": "restart_request_interruption",
+        "ports": "ports",
         "last_file_upload": "last_file_upload",
         "has_request_method": "has_request_method",
         "has_requests_method": "has_requests_method",
@@ -116,6 +118,7 @@ class DeploymentVersionDetail(object):
         maximum_queue_size_batch=None,
         static_ip=None,
         restart_request_interruption=None,
+        ports=None,
         last_file_upload=None,
         has_request_method=None,
         has_requests_method=None,
@@ -154,6 +157,7 @@ class DeploymentVersionDetail(object):
         self._maximum_queue_size_batch = None
         self._static_ip = None
         self._restart_request_interruption = None
+        self._ports = None
         self._last_file_upload = None
         self._has_request_method = None
         self._has_requests_method = None
@@ -204,6 +208,8 @@ class DeploymentVersionDetail(object):
             self.static_ip = static_ip
         if restart_request_interruption is not None:
             self.restart_request_interruption = restart_request_interruption
+        if ports is not None:
+            self.ports = ports
         self.last_file_upload = last_file_upload
         self.has_request_method = has_request_method
         self.has_requests_method = has_requests_method
@@ -873,6 +879,35 @@ class DeploymentVersionDetail(object):
             raise ValueError("Parameter `restart_request_interruption` must be a boolean")
 
         self._restart_request_interruption = restart_request_interruption
+
+    @property
+    def ports(self):
+        """
+        Gets the ports of this DeploymentVersionDetail
+
+        :return: the ports of this DeploymentVersionDetail
+        :rtype: list[DeploymentVersionPort]
+        """
+
+        return self._ports
+
+    @ports.setter
+    def ports(self, ports):
+        """
+        Sets the ports of this DeploymentVersionDetail
+
+        :param ports: the ports of this DeploymentVersionDetail
+        :type: list[DeploymentVersionPort]
+        """
+
+        if self.client_side_validation and (ports is not None and not isinstance(ports, list)):
+            raise ValueError("Parameter `ports` must be a list")
+        if self.client_side_validation and ports is not None:
+            from ubiops.models.deployment_version_port import DeploymentVersionPort
+
+            ports = [DeploymentVersionPort(**item) if isinstance(item, dict) else item for item in ports]
+
+        self._ports = ports
 
     @property
     def last_file_upload(self):

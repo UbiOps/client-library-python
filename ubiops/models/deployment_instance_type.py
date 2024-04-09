@@ -37,6 +37,7 @@ class DeploymentInstanceType(object):
         "storage_allocation": "int",
         "credit_rate": "float",
         "accelerator": "bool",
+        "dedicated_node": "bool",
     }
 
     attribute_map = {
@@ -49,6 +50,7 @@ class DeploymentInstanceType(object):
         "storage_allocation": "storage_allocation",
         "credit_rate": "credit_rate",
         "accelerator": "accelerator",
+        "dedicated_node": "dedicated_node",
     }
 
     def __init__(
@@ -62,6 +64,7 @@ class DeploymentInstanceType(object):
         storage_allocation=None,
         credit_rate=None,
         accelerator=None,
+        dedicated_node=None,
         **kwargs,
     ):
         """
@@ -81,6 +84,7 @@ class DeploymentInstanceType(object):
         self._storage_allocation = None
         self._credit_rate = None
         self._accelerator = None
+        self._dedicated_node = None
         self.discriminator = None
 
         if id is not None:
@@ -99,6 +103,8 @@ class DeploymentInstanceType(object):
             self.credit_rate = credit_rate
         if accelerator is not None:
             self.accelerator = accelerator
+        if dedicated_node is not None:
+            self.dedicated_node = dedicated_node
 
     @property
     def id(self):
@@ -334,6 +340,31 @@ class DeploymentInstanceType(object):
             raise ValueError("Parameter `accelerator` must be a boolean")
 
         self._accelerator = accelerator
+
+    @property
+    def dedicated_node(self):
+        """
+        Gets the dedicated_node of this DeploymentInstanceType
+
+        :return: the dedicated_node of this DeploymentInstanceType
+        :rtype: bool
+        """
+
+        return self._dedicated_node
+
+    @dedicated_node.setter
+    def dedicated_node(self, dedicated_node):
+        """
+        Sets the dedicated_node of this DeploymentInstanceType
+
+        :param dedicated_node: the dedicated_node of this DeploymentInstanceType
+        :type: bool
+        """
+
+        if self.client_side_validation and (dedicated_node is not None and not isinstance(dedicated_node, bool)):
+            raise ValueError("Parameter `dedicated_node` must be a boolean")
+
+        self._dedicated_node = dedicated_node
 
     def to_dict(self):
         """

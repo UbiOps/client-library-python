@@ -1604,7 +1604,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times.
 - `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version.
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.
-
 - `description`: Description for the version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
@@ -2133,7 +2132,7 @@ A list of details of the versions
 
     project_name = 'project_name_example' # str
     deployment_name = 'deployment_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List deployment versions
     api_response = core_api.deployment_versions_list(project_name, deployment_name, labels=labels)
@@ -2158,7 +2157,7 @@ A list of details of the versions
 
     project_name = 'project_name_example' # str
     deployment_name = 'deployment_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List deployment versions
     api_response = core_api.deployment_versions_list(project_name, deployment_name, labels=labels)
@@ -2387,6 +2386,7 @@ Create deployments
 Create a deployment by defining the input/output type and input/output fields. In case of **plain** type of input or output, input and output fields should not be given or passed as an empty list.
 
 Possible data types for the input and output fields are:
+
 - **int**: integer
 - **string**: string
 - **double**: double precision floating point
@@ -2399,6 +2399,7 @@ Possible data types for the input and output fields are:
 - **array_file**: an array of files
 
 Possible widgets for the input fields are:
+
 - **textbox**: textbox
 - **numberbox**: numberbox
 - **slider**: slider
@@ -2409,6 +2410,7 @@ Possible widgets for the input fields are:
 - **image_preview**: image upload with preview
 
 Possible widgets for the output fields are:
+
 - **textbox**: textbox
 - **button**: download button
 - **image_preview**: image preview
@@ -2942,7 +2944,7 @@ A list of details of the deployments in the project
     core_api = ubiops.CoreApi()
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List deployments
     api_response = core_api.deployments_list(project_name, labels=labels)
@@ -2966,7 +2968,7 @@ A list of details of the deployments in the project
     core_api = ubiops.CoreApi(api_client)
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List deployments
     api_response = core_api.deployments_list(project_name, labels=labels)
@@ -3682,7 +3684,6 @@ Get the list of all available template deployments
 ### Response Structure
 
 - `id`: Unique identifier for the template deployment (UUID)
-
 - `details`: A dictionary containing all the required fields to create a deployment and a deployment version for the template deployment
 
 ## Response Examples

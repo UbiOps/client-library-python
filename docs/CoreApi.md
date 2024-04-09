@@ -75,10 +75,12 @@ Method | HTTP request | Description
 [**buckets_get**](./Files.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket
 [**buckets_list**](./Files.md#buckets_list) | **GET** /projects/{project_name}/buckets | List buckets
 [**buckets_update**](./Files.md#buckets_update) | **PATCH** /projects/{project_name}/buckets/{bucket_name} | Update a bucket
+[**files_complete_multipart_upload**](./Files.md#files_complete_multipart_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file}/complete-multipart-upload | Complete multipart upload
 [**files_delete**](./Files.md#files_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Delete a file
 [**files_download**](./Files.md#files_download) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file}/download | Download a file
 [**files_get**](./Files.md#files_get) | **GET** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Get a file
 [**files_list**](./Files.md#files_list) | **GET** /projects/{project_name}/buckets/{bucket_name}/files | List files
+[**files_start_multipart_upload**](./Files.md#files_start_multipart_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file}/start-multipart-upload | Start multipart upload
 [**files_upload**](./Files.md#files_upload) | **POST** /projects/{project_name}/buckets/{bucket_name}/files/{file} | Upload a file
 [**exports_create**](./ImportsAndExports.md#exports_create) | **POST** /projects/{project_name}/exports | Create an export
 [**exports_delete**](./ImportsAndExports.md#exports_delete) | **DELETE** /projects/{project_name}/exports/{export_id} | Delete an export
@@ -117,6 +119,7 @@ Method | HTTP request | Description
 [**organizations_resource_usage**](./Organizations.md#organizations_resource_usage) | **GET** /organizations/{organization_name}/resources | Get resource usage
 [**organizations_update**](./Organizations.md#organizations_update) | **PATCH** /organizations/{organization_name} | Update details of an organization
 [**organizations_usage_get**](./Organizations.md#organizations_usage_get) | **GET** /organizations/{organization_name}/usage | Get organization usage
+[**vouchers_get**](./Organizations.md#vouchers_get) | **GET** /vouchers/{code} | Get voucher
 [**batch_pipeline_requests_create**](./PipelineRequests.md#batch_pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/batch | Create a batch pipeline request
 [**batch_pipeline_version_requests_create**](./PipelineRequests.md#batch_pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch | Create a batch pipeline version request
 [**pipeline_requests_batch_delete**](./PipelineRequests.md#pipeline_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/delete | Delete multiple pipeline requests

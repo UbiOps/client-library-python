@@ -7,5 +7,6 @@ Name | Type | Notes
 **password** | **str** | 
 **name** | **str** | [optional] 
 **surname** | **str** | [optional] 
+**phone** | **str** | [optional] 
 
 

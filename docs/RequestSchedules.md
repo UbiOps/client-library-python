@@ -411,7 +411,7 @@ A list of details of all request schedules in a project
     core_api = ubiops.CoreApi()
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List request schedules
     api_response = core_api.request_schedules_list(project_name, labels=labels)
@@ -435,7 +435,7 @@ A list of details of all request schedules in a project
     core_api = ubiops.CoreApi(api_client)
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List request schedules
     api_response = core_api.request_schedules_list(project_name, labels=labels)

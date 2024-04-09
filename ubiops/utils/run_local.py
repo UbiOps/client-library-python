@@ -184,24 +184,35 @@ def run_local(deployment_directory, data, init_context=None, request_context=Non
     # Create module from spec and initialize it
     module_from_spec = _create_module_from_spec(deployment_directory=deployment_directory)
     deployment_instance = _create_deployment_instance(
-        module_from_spec=module_from_spec, deployment_directory=deployment_directory, context=init_context
+        module_from_spec=module_from_spec,
+        deployment_directory=deployment_directory,
+        context=init_context,
     )
 
     # Return the result
     if hasattr(deployment_instance, "request") and not isinstance(data, list):
         # 'request' function and data is a single item
         return _create_request(
-            deployment_instance=deployment_instance, request_function="request", data=data, context=request_context
+            deployment_instance=deployment_instance,
+            request_function="request",
+            data=data,
+            context=request_context,
         )
     elif hasattr(deployment_instance, "requests") and isinstance(data, list):
         # 'requests' function and data is a list
         return _create_request(
-            deployment_instance=deployment_instance, request_function="requests", data=data, context=request_context
+            deployment_instance=deployment_instance,
+            request_function="requests",
+            data=data,
+            context=request_context,
         )
     elif hasattr(deployment_instance, "requests") and not isinstance(data, list):
         # 'requests' function and data is NOT a list -> make it a list
         return _create_request(
-            deployment_instance=deployment_instance, request_function="requests", data=[data], context=request_context
+            deployment_instance=deployment_instance,
+            request_function="requests",
+            data=[data],
+            context=request_context,
         )
     elif hasattr(deployment_instance, "request") and isinstance(data, list):
         # 'request' function and data is a list -> loop over the items in the list

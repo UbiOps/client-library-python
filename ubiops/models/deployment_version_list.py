@@ -53,6 +53,7 @@ class DeploymentVersionList(object):
         "maximum_queue_size_batch": "int",
         "static_ip": "bool",
         "restart_request_interruption": "bool",
+        "ports": "list[DeploymentVersionPort]",
     }
 
     attribute_map = {
@@ -81,6 +82,7 @@ class DeploymentVersionList(object):
         "maximum_queue_size_batch": "maximum_queue_size_batch",
         "static_ip": "static_ip",
         "restart_request_interruption": "restart_request_interruption",
+        "ports": "ports",
     }
 
     def __init__(
@@ -110,6 +112,7 @@ class DeploymentVersionList(object):
         maximum_queue_size_batch=None,
         static_ip=None,
         restart_request_interruption=None,
+        ports=None,
         **kwargs,
     ):
         """
@@ -145,6 +148,7 @@ class DeploymentVersionList(object):
         self._maximum_queue_size_batch = None
         self._static_ip = None
         self._restart_request_interruption = None
+        self._ports = None
         self.discriminator = None
 
         if id is not None:
@@ -192,6 +196,8 @@ class DeploymentVersionList(object):
             self.static_ip = static_ip
         if restart_request_interruption is not None:
             self.restart_request_interruption = restart_request_interruption
+        if ports is not None:
+            self.ports = ports
 
     @property
     def id(self):
@@ -858,6 +864,35 @@ class DeploymentVersionList(object):
             raise ValueError("Parameter `restart_request_interruption` must be a boolean")
 
         self._restart_request_interruption = restart_request_interruption
+
+    @property
+    def ports(self):
+        """
+        Gets the ports of this DeploymentVersionList
+
+        :return: the ports of this DeploymentVersionList
+        :rtype: list[DeploymentVersionPort]
+        """
+
+        return self._ports
+
+    @ports.setter
+    def ports(self, ports):
+        """
+        Sets the ports of this DeploymentVersionList
+
+        :param ports: the ports of this DeploymentVersionList
+        :type: list[DeploymentVersionPort]
+        """
+
+        if self.client_side_validation and (ports is not None and not isinstance(ports, list)):
+            raise ValueError("Parameter `ports` must be a list")
+        if self.client_side_validation and ports is not None:
+            from ubiops.models.deployment_version_port import DeploymentVersionPort
+
+            ports = [DeploymentVersionPort(**item) if isinstance(item, dict) else item for item in ports]
+
+        self._ports = ports
 
     def to_dict(self):
         """

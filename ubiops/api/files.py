@@ -473,6 +473,112 @@ class Files(object):
             progress_bar=kwargs.get("_progress_bar", False),
         )
 
+    def files_complete_multipart_upload_with_http_info(self, project_name, bucket_name, file, data, **kwargs):
+        """
+        Complete multipart upload
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = Files.files_complete_multipart_upload_with_http_info(
+                project_name, bucket_name, file, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param FileCompleteMultipartUpload data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(FileMultipartUpload, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "files_complete_multipart_upload"
+        optional_params = []
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and bucket_name is None:
+            raise ApiValueError(f"Missing the required parameter `bucket_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and file is None:
+            raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
+        if self.api_client.client_side_validation and data is None:
+            raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(bucket_name, str):
+                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(file, str):
+                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if isinstance(data, dict):
+                from ubiops.models.file_complete_multipart_upload import FileCompleteMultipartUpload
+
+                data = FileCompleteMultipartUpload(**data)
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["bucket_name"] = bucket_name
+        path_params["file"] = file
+
+        body_params = data
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # HTTP header `Content-Type`
+        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
+
+        url = "/projects/{project_name}/buckets/{bucket_name}/files/{file}/complete-multipart-upload"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "POST",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="FileMultipartUpload",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
     def files_delete_with_http_info(self, project_name, bucket_name, file, **kwargs):
         """
         Delete a file
@@ -864,14 +970,14 @@ class Files(object):
             progress_bar=kwargs.get("_progress_bar", False),
         )
 
-    def files_upload_with_http_info(self, project_name, bucket_name, file, **kwargs):
+    def files_start_multipart_upload_with_http_info(self, project_name, bucket_name, file, **kwargs):
         """
-        Upload a file
+        Start multipart upload
 
         This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
         pass async_req=True.
 
-        >>> thread = Files.files_upload_with_http_info(
+        >>> thread = Files.files_start_multipart_upload_with_http_info(
                 project_name, bucket_name, file, async_req=True
             )
         >>> result = thread.get()
@@ -887,11 +993,11 @@ class Files(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(FileUploadResponse, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(FileMultipartUpload, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
-        method_name = "files_upload"
+        method_name = "files_start_multipart_upload"
         optional_params = ["data"]
         additional_params = [
             "async_req",
@@ -933,6 +1039,119 @@ class Files(object):
         path_params["project_name"] = project_name
         path_params["bucket_name"] = bucket_name
         path_params["file"] = file
+
+        if "data" in kwargs:
+            body_params = kwargs["data"]
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # HTTP header `Content-Type`
+        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
+
+        url = "/projects/{project_name}/buckets/{bucket_name}/files/{file}/start-multipart-upload"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "POST",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="FileMultipartUpload",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
+    def files_upload_with_http_info(self, project_name, bucket_name, file, **kwargs):
+        """
+        Upload a file
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = Files.files_upload_with_http_info(
+                project_name, bucket_name, file, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param kwargs:
+            - str upload_id:
+            - str part_number:
+            - object data:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(FileUploadResponse, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "files_upload"
+        optional_params = ["upload_id", "part_number", "data"]
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and bucket_name is None:
+            raise ApiValueError(f"Missing the required parameter `bucket_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and file is None:
+            raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(bucket_name, str):
+                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(file, str):
+                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "upload_id" in kwargs and kwargs["upload_id"] is not None:
+            if not isinstance(kwargs["upload_id"], str):
+                raise ApiValueError(f"Parameter `upload_id` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "part_number" in kwargs and kwargs["part_number"] is not None:
+            if not isinstance(kwargs["part_number"], str):
+                raise ApiValueError(f"Parameter `part_number` must be a string when calling `{method_name}`")
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["bucket_name"] = bucket_name
+        path_params["file"] = file
+
+        if "upload_id" in kwargs and kwargs["upload_id"] is not None:
+            query_params.append(("upload_id", kwargs["upload_id"]))
+        if "part_number" in kwargs and kwargs["part_number"] is not None:
+            query_params.append(("part_number", kwargs["part_number"]))
 
         if "data" in kwargs:
             body_params = kwargs["data"]

@@ -7,7 +7,9 @@
 """
 
 from ubiops.training.constants import DEFAULT_TRAINING_DEPLOYMENT_NAME
-from ubiops.models.deployment_request_update_response import DeploymentRequestUpdateResponse
+from ubiops.models.deployment_request_update_response import (
+    DeploymentRequestUpdateResponse,
+)
 
 
 class ExperimentRunUpdateResponse(DeploymentRequestUpdateResponse):

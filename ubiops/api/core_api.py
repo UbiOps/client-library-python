@@ -2287,6 +2287,38 @@ class CoreApi(object):
 
         return self.files.buckets_update_with_http_info(project_name, bucket_name, data, **kwargs)
 
+    def files_complete_multipart_upload(self, project_name, bucket_name, file, data, **kwargs):
+        """
+        Complete multipart upload
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.files_complete_multipart_upload(
+                project_name, bucket_name, file, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param FileCompleteMultipartUpload data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(FileMultipartUpload, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.files.files_complete_multipart_upload_with_http_info(
+            project_name, bucket_name, file, data, **kwargs
+        )
+
     def files_delete(self, project_name, bucket_name, file, **kwargs):
         """
         Delete a file
@@ -2406,6 +2438,36 @@ class CoreApi(object):
 
         return self.files.files_list_with_http_info(project_name, bucket_name, **kwargs)
 
+    def files_start_multipart_upload(self, project_name, bucket_name, file, **kwargs):
+        """
+        Start multipart upload
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.files_start_multipart_upload(
+                project_name, bucket_name, file, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str bucket_name: (required)
+        :param str file: (required)
+        :param kwargs:
+            - object data:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(FileMultipartUpload, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.files.files_start_multipart_upload_with_http_info(project_name, bucket_name, file, **kwargs)
+
     def files_upload(self, project_name, bucket_name, file, **kwargs):
         """
         Upload a file
@@ -2421,6 +2483,8 @@ class CoreApi(object):
         :param str bucket_name: (required)
         :param str file: (required)
         :param kwargs:
+            - str upload_id:
+            - str part_number:
             - object data:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
@@ -3486,6 +3550,33 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.organizations.organizations_usage_get_with_http_info(organization_name, **kwargs)
+
+    def vouchers_get(self, code, **kwargs):
+        """
+        Get voucher
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.vouchers_get(
+                code, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str code: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(Voucher, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.organizations.vouchers_get_with_http_info(code, **kwargs)
 
     def batch_pipeline_requests_create(self, project_name, pipeline_name, data, **kwargs):
         """

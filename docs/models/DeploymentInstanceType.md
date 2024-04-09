@@ -12,5 +12,6 @@ Name | Type | Notes
 **storage_allocation** | **int** | [optional] [readonly] 
 **credit_rate** | **float** | [optional] 
 **accelerator** | **bool** | [optional] 
+**dedicated_node** | **bool** | [optional] 
 
 

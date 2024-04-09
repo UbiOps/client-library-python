@@ -27,11 +27,11 @@ class UserPendingDetail(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"email": "str", "name": "str", "surname": "str"}
+    openapi_types = {"email": "str", "name": "str", "surname": "str", "phone": "str"}
 
-    attribute_map = {"email": "email", "name": "name", "surname": "surname"}
+    attribute_map = {"email": "email", "name": "name", "surname": "surname", "phone": "phone"}
 
-    def __init__(self, email=None, name=None, surname=None, **kwargs):
+    def __init__(self, email=None, name=None, surname=None, phone=None, **kwargs):
         """
         UserPendingDetail - a model defined in OpenAPI
         """
@@ -43,11 +43,13 @@ class UserPendingDetail(object):
         self._email = None
         self._name = None
         self._surname = None
+        self._phone = None
         self.discriminator = None
 
         self.email = email
         self.name = name
         self.surname = surname
+        self.phone = phone
 
     @property
     def email(self):
@@ -136,6 +138,34 @@ class UserPendingDetail(object):
             raise ValueError("Invalid value for `surname`, length must be less than or equal to `256`")
 
         self._surname = surname
+
+    @property
+    def phone(self):
+        """
+        Gets the phone of this UserPendingDetail
+
+        :return: the phone of this UserPendingDetail
+        :rtype: str
+        """
+
+        return self._phone
+
+    @phone.setter
+    def phone(self, phone):
+        """
+        Sets the phone of this UserPendingDetail
+
+        :param phone: the phone of this UserPendingDetail
+        :type: str
+        """
+
+        if self.client_side_validation and (phone is not None and not isinstance(phone, str)):
+            raise ValueError("Parameter `phone` must be a string")
+
+        if self.client_side_validation and (phone is not None and len(phone) > 17):
+            raise ValueError("Invalid value for `phone`, length must be less than or equal to `17`")
+
+        self._phone = phone
 
     def to_dict(self):
         """

@@ -26,7 +26,6 @@ The token is **ONLY** returned on creation and will not be accessible afterwards
 ### Optional Parameters
 
 - `name`: Name of the service user
-
 - `expiry_date`: Date when the service user account expires (UTC). If null is passed, the account will never expire.
 
 ## Request Examples
@@ -49,15 +48,10 @@ The token is **ONLY** returned on creation and will not be accessible afterwards
 Details of the created service user
 
 - `id`: Unique identifier for the service user (UUID)
-
-- `email`: Email of the service user 
-
-- `token`: The API token for the created service user 
-
+- `email`: Email of the service user
+- `token`: The API token for the created service user
 - `name`: Name of the service user
-
 - `creation_date`: Date when the service user was created
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -221,13 +215,9 @@ Retrieve details of a service user
 Details of the service user
 
 - `id`: Unique identifier for the service user (UUID)
-
-- `email`: Email of the service user 
-
+- `email`: Email of the service user
 - `name`: Name of the service user
-
 - `creation_date`: Date when the service user was created
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -319,13 +309,9 @@ List service users defined in a project
 List of details of the service users:
 
 - `id`: Unique identifier for the service user (UUID)
-
 - `email`: Email of the service user
-
 - `name`: Name of the service user
-
 - `creation_date`: Date when the service user was created
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples
@@ -447,7 +433,7 @@ Details of the new token for the service user
 
     project_name = 'project_name_example' # str
     service_user_id = 'service_user_id_example' # str
-    data = None # object (optional)
+    data = None # empty dict or None (optional)
 
     # Reset the token of a service user
     api_response = core_api.service_users_token(project_name, service_user_id, data=data)
@@ -472,7 +458,7 @@ Details of the new token for the service user
 
     project_name = 'project_name_example' # str
     service_user_id = 'service_user_id_example' # str
-    data = None # object (optional)
+    data = None # empty dict or None (optional)
 
     # Reset the token of a service user
     api_response = core_api.service_users_token(project_name, service_user_id, data=data)
@@ -490,7 +476,7 @@ Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
  **service_user_id** | **str** | 
- **data** | **object** | [optional] 
+ **data** | **empty dict or None** | [optional] 
 
 ### Return type
 
@@ -516,7 +502,6 @@ It is not possible to update a service user whose expiry date has been reached.
 ### Optional Parameters
 
 - `name`: Name of the service user
-
 - `expiry_date`: Date when the service user account will expire (UTC). If null is passed, the account will never expire.
 
 ## Request Examples
@@ -539,13 +524,9 @@ It is not possible to update a service user whose expiry date has been reached.
 Details of the updated service user
 
 - `id`: Unique identifier for the service user (UUID)
-
-- `email`: Email of the service user 
-
+- `email`: Email of the service user
 - `name`: Name of the service user
-
 - `creation_date`: Date when the service user was created
-
 - `expiry_date`: Date when the service user account will expire (UTC)
 
 ## Response Examples

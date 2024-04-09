@@ -18,50 +18,47 @@ Method to insert metrics.
 
 ### Example
 
-Example with explicitly creating an api_client.
+- Use system environment variables
+    ```python
+    from ubiops.utils.metrics import MetricClient
 
-```python
-import ubiops
+    # Set environment variables (these are set automatically for you when running inside UbiOps)
+    # - INT_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - INT_API_URL: "https://api.ubiops.com/v2.1"
 
-from ubiops.utils.metrics import MetricClient
-configuration = ubiops.Configuration()
-# Configure API token authorization
-configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
+    project_name = 'project_name_example' # str
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
-# Enter a context with an instance of the API client
-api_client = ubiops.ApiClient(configuration)
+    metric_client = MetricClient(project_name=project_name)
+    metric_client.start()
 
-project_name = 'project_name_example' # str
+    metric_client.log_metric(metric_name="custom.metric", labels={"test": "test"}, value=1.0)
 
-metric_client = MetricClient(project_name=project_name, api_client=api_client)
-metric_client.start()
+    metric_client.stop()
+    ```
 
-metric_client.log_metric(metric_name="custom.metric", labels={"test": "test"}, value=1.0)
+- Use authorization parameters
+    ```python
+    import ubiops
+    from ubiops.utils.metrics import MetricClient
 
-metric_client.stop()
-```
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
 
-Example using with environment variables
+    # Defining host is optional and default to https://api.ubiops.com/v2.1
+    configuration.host = "https://api.ubiops.com/v2.1"
+    # Enter a context with an instance of the API client
+    api_client = ubiops.ApiClient(configuration)
 
-```python
-import os
+    project_name = 'project_name_example' # str
 
-from ubiops.utils.metrics import MetricClient
+    metric_client = MetricClient(project_name=project_name, api_client=api_client)
+    metric_client.start()
 
-os.environ["INT_API_URL"] = 'https://api.ubiops.com/v2.1'
-os.environ["INT_API_TOKEN"] = 'Token <YOUR_API_TOKEN>'
+    metric_client.log_metric(metric_name="custom.metric", labels={"test": "test"}, value=1.0)
 
-project_name = 'project_name_example' # str
-
-metric_client = MetricClient(project_name=project_name)
-metric_client.start()
-
-metric_client.log_metric(metric_name="custom.metric", labels={"test": "test"}, value=1.0)
-
-metric_client.stop()
-```
+    metric_client.stop()
+    ```
 
 ### Parameters
 

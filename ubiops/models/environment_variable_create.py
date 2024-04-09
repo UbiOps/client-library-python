@@ -46,8 +46,7 @@ class EnvironmentVariableCreate(object):
         self.discriminator = None
 
         self.name = name
-        if value is not None:
-            self.value = value
+        self.value = value
         self.secret = secret
 
     @property
@@ -102,6 +101,8 @@ class EnvironmentVariableCreate(object):
         :type: str
         """
 
+        if self.client_side_validation and value is None:
+            raise ValueError("Invalid value for `value`, must not be `None`")
         if self.client_side_validation and (value is not None and not isinstance(value, str)):
             raise ValueError("Parameter `value` must be a string")
 

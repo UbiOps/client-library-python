@@ -15,7 +15,14 @@ SUCCESS_STATUSES = ["available", "completed", "confirmation", "success"]
 FAILED_STATUSES = ["failed", "cancelled"]
 
 
-def _wait_for(client, retrieve_method, retrieve_kwargs, object_name="Deployment version", timeout=1800, quiet=False):
+def _wait_for(
+    client,
+    retrieve_method,
+    retrieve_kwargs,
+    object_name="Deployment version",
+    timeout=1800,
+    quiet=False,
+):
     """
     Wait for base method. Prints status updates with dots if quiet=False.
 
@@ -159,12 +166,17 @@ def _wait_for_logs(
 
             if time() - last_retrieve_time > NO_LOGS_MESSAGE_SECONDS:
                 print(
-                    "No logs have been received for the last %.0f seconds" % (time() - last_retrieve_time), flush=True
+                    "No logs have been received for the last %.0f seconds" % (time() - last_retrieve_time),
+                    flush=True,
                 )
 
             # Handle timeout
             if time() - start_time > timeout:
-                raise ApiException(status=504, reason=f"{object_name} Timeout", body="Timeout was reached")
+                raise ApiException(
+                    status=504,
+                    reason=f"{object_name} Timeout",
+                    body="Timeout was reached",
+                )
 
             sleep(3)
 
@@ -284,7 +296,12 @@ def _wait_for_logs_deployment_request(
 
 
 def _wait_for_logs_pipeline_request(
-    client, project_name, retrieve_method, retrieve_kwargs, object_name="Pipeline request", timeout=1800
+    client,
+    project_name,
+    retrieve_method,
+    retrieve_kwargs,
+    object_name="Pipeline request",
+    timeout=1800,
 ):
     """
     Wait for a pipeline request to be completed and stream logs while waiting
@@ -336,7 +353,10 @@ def _wait_for_logs_pipeline_request(
                     deployment_name=request.deployment,
                     request_id=request.id,
                     retrieve_method="deployment_version_requests_get",
-                    retrieve_kwargs={**object_retrieve_kwargs, "deployment_name": request.deployment},
+                    retrieve_kwargs={
+                        **object_retrieve_kwargs,
+                        "deployment_name": request.deployment,
+                    },
                     object_name=object_request_name,
                     timeout=timeout,
                 )
@@ -347,7 +367,10 @@ def _wait_for_logs_pipeline_request(
                     client=client,
                     project_name=project_name,
                     retrieve_method="pipeline_version_requests_get",
-                    retrieve_kwargs={**object_retrieve_kwargs, "pipeline_name": request.pipeline},
+                    retrieve_kwargs={
+                        **object_retrieve_kwargs,
+                        "pipeline_name": request.pipeline,
+                    },
                     object_name=object_request_name,
                     timeout=timeout,
                 )
@@ -364,7 +387,14 @@ def _wait_for_logs_pipeline_request(
 
 
 def wait_for_deployment_version(
-    client, project_name, deployment_name, version, revision_id=None, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    deployment_name,
+    version,
+    revision_id=None,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for a deployment version to be ready: wait for the environment build and deployment revision to complete
@@ -399,7 +429,13 @@ def wait_for_deployment_version(
 
 
 def wait_for_experiment(
-    client, project_name, experiment_name, revision_id=None, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    experiment_name,
+    revision_id=None,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for an experiment to be ready
@@ -459,7 +495,11 @@ def wait_for_environment(client, project_name, environment_name, timeout=1800, q
         return
 
     if not environment.latest_build or not environment.latest_revision:
-        raise ApiException(status=404, reason="Not Found", body=f"No build found for environment {environment_name}")
+        raise ApiException(
+            status=404,
+            reason="Not Found",
+            body=f"No build found for environment {environment_name}",
+        )
 
     retrieve_method = "environment_builds_get"
     retrieve_kwargs = {
@@ -474,7 +514,10 @@ def wait_for_environment(client, project_name, environment_name, timeout=1800, q
             _wait_for_logs(
                 client=client,
                 project_name=project_name,
-                filters={"environment_name": environment_name, "environment_build_id": environment.latest_build},
+                filters={
+                    "environment_name": environment_name,
+                    "environment_build_id": environment.latest_build,
+                },
                 retrieve_method=retrieve_method,
                 retrieve_kwargs=retrieve_kwargs,
                 object_name="Environment",
@@ -495,7 +538,14 @@ def wait_for_environment(client, project_name, environment_name, timeout=1800, q
 
 
 def wait_for_revision(
-    client, project_name, deployment_name, version, revision_id, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    deployment_name,
+    version,
+    revision_id,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for a deployment revision to be ready
@@ -554,7 +604,13 @@ def wait_for_revision(
 
 
 def wait_for_deployment_request(
-    client, project_name, deployment_name, request_id, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    deployment_name,
+    request_id,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for a deployment request to be completed
@@ -607,7 +663,14 @@ def wait_for_deployment_request(
 
 
 def wait_for_deployment_version_request(
-    client, project_name, deployment_name, version, request_id, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    deployment_name,
+    version,
+    request_id,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for a deployment version request to be completed
@@ -662,7 +725,13 @@ def wait_for_deployment_version_request(
 
 
 def wait_for_experiment_run(
-    client, project_name, experiment_name, run_id, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    experiment_name,
+    run_id,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for an experiment run to be completed
@@ -716,7 +785,13 @@ def wait_for_experiment_run(
 
 
 def wait_for_pipeline_request(
-    client, project_name, pipeline_name, request_id, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    pipeline_name,
+    request_id,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for a pipeline request to be completed
@@ -767,7 +842,14 @@ def wait_for_pipeline_request(
 
 
 def wait_for_pipeline_version_request(
-    client, project_name, pipeline_name, version, request_id, timeout=1800, quiet=False, stream_logs=False
+    client,
+    project_name,
+    pipeline_name,
+    version,
+    request_id,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
 ):
     """
     Wait for a pipeline version request to be completed

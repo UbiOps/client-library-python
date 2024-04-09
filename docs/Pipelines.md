@@ -577,7 +577,7 @@ A pipeline version with operators
       "reference_name": "one-to-many",
       "reference_type": "operator",
       "configuration": {
-        "batch_size": 10,
+        "batch_size": null,
         "input_fields": [{"name": "output", "data_type": "int"}],
         "output_fields": [{"name": "output", "data_type": "int"}]
       }
@@ -1218,7 +1218,7 @@ A list of details of the versions of the pipeline
 
     project_name = 'project_name_example' # str
     pipeline_name = 'pipeline_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List pipeline versions
     api_response = core_api.pipeline_versions_list(project_name, pipeline_name, labels=labels)
@@ -1243,7 +1243,7 @@ A list of details of the versions of the pipeline
 
     project_name = 'project_name_example' # str
     pipeline_name = 'pipeline_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List pipeline versions
     api_response = core_api.pipeline_versions_list(project_name, pipeline_name, labels=labels)
@@ -2331,7 +2331,7 @@ A list of details of the pipelines in the project
     core_api = ubiops.CoreApi()
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List pipelines
     api_response = core_api.pipelines_list(project_name, labels=labels)
@@ -2355,7 +2355,7 @@ A list of details of the pipelines in the project
     core_api = ubiops.CoreApi(api_client)
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List pipelines
     api_response = core_api.pipelines_list(project_name, labels=labels)

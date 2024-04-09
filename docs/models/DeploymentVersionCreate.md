@@ -19,5 +19,6 @@ Name | Type | Notes
 **maximum_queue_size_batch** | **int** | [optional] 
 **static_ip** | **bool** | [optional] [default to False]
 **restart_request_interruption** | **bool** | [optional] [default to False]
+**ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional] 
 
 

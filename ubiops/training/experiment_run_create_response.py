@@ -8,12 +8,24 @@
 
 
 from ubiops.training.constants import DEFAULT_TRAINING_DEPLOYMENT_NAME
-from ubiops.models.deployment_request_batch_create_response import DeploymentRequestBatchCreateResponse
+from ubiops.models.deployment_request_batch_create_response import (
+    DeploymentRequestBatchCreateResponse,
+)
 
 
 class ExperimentRunCreateResponse(DeploymentRequestBatchCreateResponse):
-    openapi_types = {"id": "str", "experiment": "str", "status": "str", "time_created": "datetime"}
-    attribute_map = {"id": "id", "experiment": "experiment", "status": "status", "time_created": "time_created"}
+    openapi_types = {
+        "id": "str",
+        "experiment": "str",
+        "status": "str",
+        "time_created": "datetime",
+    }
+    attribute_map = {
+        "id": "id",
+        "experiment": "experiment",
+        "status": "status",
+        "time_created": "time_created",
+    }
 
     def __init__(self, id=None, experiment=None, status=None, time_created=None, **kwargs):
         """

@@ -664,7 +664,7 @@ A list of details of the webhooks in the project
     core_api = ubiops.CoreApi()
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
     object_type = 'object_type_example' # str (optional)
     event = 'event_example' # str (optional)
 
@@ -690,7 +690,7 @@ A list of details of the webhooks in the project
     core_api = ubiops.CoreApi(api_client)
 
     project_name = 'project_name_example' # str
-    labels = 'labels_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
     object_type = 'object_type_example' # str (optional)
     event = 'event_example' # str (optional)
 

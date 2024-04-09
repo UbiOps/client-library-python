@@ -27,17 +27,17 @@ class OrganizationDetail(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime", "subscription": "str", "status": "str"}
+    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime", "status": "str", "subscription": "str"}
 
     attribute_map = {
         "id": "id",
         "name": "name",
         "creation_date": "creation_date",
-        "subscription": "subscription",
         "status": "status",
+        "subscription": "subscription",
     }
 
-    def __init__(self, id=None, name=None, creation_date=None, subscription=None, status=None, **kwargs):
+    def __init__(self, id=None, name=None, creation_date=None, status=None, subscription=None, **kwargs):
         """
         OrganizationDetail - a model defined in OpenAPI
         """
@@ -49,8 +49,8 @@ class OrganizationDetail(object):
         self._id = None
         self._name = None
         self._creation_date = None
-        self._subscription = None
         self._status = None
+        self._subscription = None
         self.discriminator = None
 
         if id is not None:
@@ -58,8 +58,8 @@ class OrganizationDetail(object):
         self.name = name
         if creation_date is not None:
             self.creation_date = creation_date
-        self.subscription = subscription
         self.status = status
+        self.subscription = subscription
 
     @property
     def id(self):
@@ -141,36 +141,6 @@ class OrganizationDetail(object):
         self._creation_date = creation_date
 
     @property
-    def subscription(self):
-        """
-        Gets the subscription of this OrganizationDetail
-
-        :return: the subscription of this OrganizationDetail
-        :rtype: str
-        """
-
-        return self._subscription
-
-    @subscription.setter
-    def subscription(self, subscription):
-        """
-        Sets the subscription of this OrganizationDetail
-
-        :param subscription: the subscription of this OrganizationDetail
-        :type: str
-        """
-
-        if self.client_side_validation and subscription is None:
-            raise ValueError("Invalid value for `subscription`, must not be `None`")
-        if self.client_side_validation and (subscription is not None and not isinstance(subscription, str)):
-            raise ValueError("Parameter `subscription` must be a string")
-
-        if self.client_side_validation and (subscription is not None and len(subscription) < 1):
-            raise ValueError("Invalid value for `subscription`, length must be greater than or equal to `1`")
-
-        self._subscription = subscription
-
-    @property
     def status(self):
         """
         Gets the status of this OrganizationDetail
@@ -199,6 +169,36 @@ class OrganizationDetail(object):
             raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")
 
         self._status = status
+
+    @property
+    def subscription(self):
+        """
+        Gets the subscription of this OrganizationDetail
+
+        :return: the subscription of this OrganizationDetail
+        :rtype: str
+        """
+
+        return self._subscription
+
+    @subscription.setter
+    def subscription(self, subscription):
+        """
+        Sets the subscription of this OrganizationDetail
+
+        :param subscription: the subscription of this OrganizationDetail
+        :type: str
+        """
+
+        if self.client_side_validation and subscription is None:
+            raise ValueError("Invalid value for `subscription`, must not be `None`")
+        if self.client_side_validation and (subscription is not None and not isinstance(subscription, str)):
+            raise ValueError("Parameter `subscription` must be a string")
+
+        if self.client_side_validation and (subscription is not None and len(subscription) < 1):
+            raise ValueError("Invalid value for `subscription`, length must be greater than or equal to `1`")
+
+        self._subscription = subscription
 
     def to_dict(self):
         """

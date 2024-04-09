@@ -79,7 +79,9 @@ def train(training_data, parameters, context):
     )
 
     model.compile(
-        optimizer="adam", loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=["accuracy"]
+        optimizer="adam",
+        loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
+        metrics=["accuracy"],
     )
 
     history = model.fit(train_ds, validation_data=val_ds, epochs=nr_epochs)

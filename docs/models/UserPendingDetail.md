@@ -6,5 +6,6 @@ Name | Type | Notes
 **email** | **str** | 
 **name** | **str** | [optional] 
 **surname** | **str** | [optional] 
+**phone** | **str** | [optional] 
 
 
