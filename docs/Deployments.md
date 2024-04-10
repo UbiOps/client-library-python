@@ -1617,6 +1617,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.
+- `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`.
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -1655,6 +1656,19 @@ If the time that a request takes does not matter, keep the default values.
 }
 ```
 
+```
+{
+  "version": "version-1",
+  "ports": [
+    {
+      "public_port": 2222,
+      "deployment_port": 2222,
+      "protocol": "tcp"
+    }
+  ]
+}
+```
+
 ### Response Structure
 Details of the created version
 
@@ -1683,6 +1697,7 @@ Details of the created version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
+- `ports`: A list of ports to open up in the deployment
 
 ## Response Examples
 
@@ -1714,7 +1729,8 @@ Details of the created version
   "maximum_queue_size_express": 100,
   "maximum_queue_size_batch": 100000,
   "static_ip": false,
-  "restart_request_interruption": false
+  "restart_request_interruption": false,
+  "ports": []
 }
 ```
 
@@ -1904,6 +1920,7 @@ Details of a version
 - `has_requests_method`: Whether the latest build of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
+- `ports`: A list of ports to open up in the deployment
 
 ## Response Examples
 
@@ -1938,7 +1955,8 @@ Details of a version
   "has_request_method": true,
   "has_requests_method": false,
   "static_ip": false,
-  "restart_request_interruption": false
+  "restart_request_interruption": false,
+  "ports": []
 }
 ```
 
@@ -2053,6 +2071,7 @@ A list of details of the versions
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
+- `ports`: A list of ports to open up in the deployment
 
 ## Response Examples
 
@@ -2085,7 +2104,8 @@ A list of details of the versions
     "maximum_queue_size_express": 100,
     "maximum_queue_size_batch": 100000,
     "static_ip": false,
-    "restart_request_interruption": false
+    "restart_request_interruption": false,
+    "ports": []
   },
   {
     "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
@@ -2114,7 +2134,8 @@ A list of details of the versions
     "maximum_queue_size_express": 100,
     "maximum_queue_size_batch": 100000,
     "static_ip": true,
-    "restart_request_interruption": false
+    "restart_request_interruption": false,
+    "ports": []
   }
 ]
 ```
@@ -2218,6 +2239,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `environment`: New environment for the version. It can be either a base or a custom environment.
+- `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. The new ports will replace the existing value for ports.
 
 ## Request Examples
 
@@ -2268,6 +2290,7 @@ Details of the updated version
 - `has_requests_method`: Whether the latest build of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
+- `ports`: A list of ports to open up in the deployment
 
 ## Response Examples
 
@@ -2302,7 +2325,8 @@ Details of the updated version
   "has_request_method": true,
   "has_requests_method": false,
   "static_ip": false,
-  "restart_request_interruption": false
+  "restart_request_interruption": false,
+  "ports": []
 }
 ```
 
