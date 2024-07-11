@@ -34,6 +34,7 @@ class ExportList(object):
         "status": "str",
         "error_message": "str",
         "size": "int",
+        "description": "str",
     }
 
     attribute_map = {
@@ -43,10 +44,19 @@ class ExportList(object):
         "status": "status",
         "error_message": "error_message",
         "size": "size",
+        "description": "description",
     }
 
     def __init__(
-        self, id=None, exported_by=None, creation_date=None, status="pending", error_message=None, size=None, **kwargs
+        self,
+        id=None,
+        exported_by=None,
+        creation_date=None,
+        status="pending",
+        error_message=None,
+        size=None,
+        description=None,
+        **kwargs,
     ):
         """
         ExportList - a model defined in OpenAPI
@@ -62,6 +72,7 @@ class ExportList(object):
         self._status = None
         self._error_message = None
         self._size = None
+        self._description = None
         self.discriminator = None
 
         if id is not None:
@@ -74,6 +85,7 @@ class ExportList(object):
             self.status = status
         self.error_message = error_message
         self.size = size
+        self.description = description
 
     @property
     def id(self):
@@ -224,6 +236,34 @@ class ExportList(object):
             raise ValueError("Parameter `size` must be an integer")
 
         self._size = size
+
+    @property
+    def description(self):
+        """
+        Gets the description of this ExportList
+
+        :return: the description of this ExportList
+        :rtype: str
+        """
+
+        return self._description
+
+    @description.setter
+    def description(self, description):
+        """
+        Sets the description of this ExportList
+
+        :param description: the description of this ExportList
+        :type: str
+        """
+
+        if self.client_side_validation and (description is not None and not isinstance(description, str)):
+            raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
+        self._description = description
 
     def to_dict(self):
         """

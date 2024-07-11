@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**name** | **str** | 
-**permissions** | **list[str]** | 
+**name** | **str** |
+**permissions** | **list[str]** |
 
 

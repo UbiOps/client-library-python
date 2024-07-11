@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**user_id** | **str** | 
+**user_id** | **str** |
 
 

@@ -36,6 +36,8 @@ class PipelineRequestOperatorRequest(object):
         "success": "bool",
         "error_message": "str",
         "sequence_id": "str",
+        "input_size": "int",
+        "output_size": "int",
     }
 
     attribute_map = {
@@ -46,6 +48,8 @@ class PipelineRequestOperatorRequest(object):
         "success": "success",
         "error_message": "error_message",
         "sequence_id": "sequence_id",
+        "input_size": "input_size",
+        "output_size": "output_size",
     }
 
     def __init__(
@@ -57,6 +61,8 @@ class PipelineRequestOperatorRequest(object):
         success=None,
         error_message=None,
         sequence_id=None,
+        input_size=None,
+        output_size=None,
         **kwargs,
     ):
         """
@@ -74,6 +80,8 @@ class PipelineRequestOperatorRequest(object):
         self._success = None
         self._error_message = None
         self._sequence_id = None
+        self._input_size = None
+        self._output_size = None
         self.discriminator = None
 
         self.id = id
@@ -83,6 +91,8 @@ class PipelineRequestOperatorRequest(object):
         self.success = success
         self.error_message = error_message
         self.sequence_id = sequence_id
+        self.input_size = input_size
+        self.output_size = output_size
 
     @property
     def id(self):
@@ -275,6 +285,56 @@ class PipelineRequestOperatorRequest(object):
             raise ValueError("Parameter `sequence_id` must be a string")
 
         self._sequence_id = sequence_id
+
+    @property
+    def input_size(self):
+        """
+        Gets the input_size of this PipelineRequestOperatorRequest
+
+        :return: the input_size of this PipelineRequestOperatorRequest
+        :rtype: int
+        """
+
+        return self._input_size
+
+    @input_size.setter
+    def input_size(self, input_size):
+        """
+        Sets the input_size of this PipelineRequestOperatorRequest
+
+        :param input_size: the input_size of this PipelineRequestOperatorRequest
+        :type: int
+        """
+
+        if self.client_side_validation and (input_size is not None and not isinstance(input_size, int)):
+            raise ValueError("Parameter `input_size` must be an integer")
+
+        self._input_size = input_size
+
+    @property
+    def output_size(self):
+        """
+        Gets the output_size of this PipelineRequestOperatorRequest
+
+        :return: the output_size of this PipelineRequestOperatorRequest
+        :rtype: int
+        """
+
+        return self._output_size
+
+    @output_size.setter
+    def output_size(self, output_size):
+        """
+        Sets the output_size of this PipelineRequestOperatorRequest
+
+        :param output_size: the output_size of this PipelineRequestOperatorRequest
+        :type: int
+        """
+
+        if self.client_side_validation and (output_size is not None and not isinstance(output_size, int)):
+            raise ValueError("Parameter `output_size` must be an integer")
+
+        self._output_size = output_size
 
     def to_dict(self):
         """

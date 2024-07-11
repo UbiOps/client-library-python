@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**token** | **str** | 
+**token** | **str** |
 
 

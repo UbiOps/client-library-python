@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**name** | **str** | 
-**contacts** | [**list[NotificationGroupContact]**](NotificationGroupContact.md) | 
+**name** | **str** |
+**contacts** | [**list[NotificationGroupContact]**](NotificationGroupContact.md) |
 
 

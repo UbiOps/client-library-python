@@ -32,6 +32,7 @@ class ExportCreate(object):
         "pipelines": "dict(str, object)",
         "environment_variables": "dict(str, object)",
         "environments": "dict(str, object)",
+        "description": "str",
     }
 
     attribute_map = {
@@ -39,9 +40,18 @@ class ExportCreate(object):
         "pipelines": "pipelines",
         "environment_variables": "environment_variables",
         "environments": "environments",
+        "description": "description",
     }
 
-    def __init__(self, deployments=None, pipelines=None, environment_variables=None, environments=None, **kwargs):
+    def __init__(
+        self,
+        deployments=None,
+        pipelines=None,
+        environment_variables=None,
+        environments=None,
+        description=None,
+        **kwargs,
+    ):
         """
         ExportCreate - a model defined in OpenAPI
         """
@@ -54,6 +64,7 @@ class ExportCreate(object):
         self._pipelines = None
         self._environment_variables = None
         self._environments = None
+        self._description = None
         self.discriminator = None
 
         if deployments is not None:
@@ -64,6 +75,7 @@ class ExportCreate(object):
             self.environment_variables = environment_variables
         if environments is not None:
             self.environments = environments
+        self.description = description
 
     @property
     def deployments(self):
@@ -166,6 +178,34 @@ class ExportCreate(object):
             raise ValueError("Parameter `environments` must be a dictionary")
 
         self._environments = environments
+
+    @property
+    def description(self):
+        """
+        Gets the description of this ExportCreate
+
+        :return: the description of this ExportCreate
+        :rtype: str
+        """
+
+        return self._description
+
+    @description.setter
+    def description(self, description):
+        """
+        Sets the description of this ExportCreate
+
+        :param description: the description of this ExportCreate
+        :type: str
+        """
+
+        if self.client_side_validation and (description is not None and not isinstance(description, str)):
+            raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
+        self._description = description
 
     def to_dict(self):
         """

@@ -33,7 +33,7 @@ Create a custom metric. The name must start with *custom.*.
 
 - `description`: Description of the metric
 - `unit`: Unit of the metric
-- `labels`: A list of labels that can be used to get data points containing the metric. For example, if the metric is defined for a deployment version and can be queried later with the ID of the deployment version, the labels list should contain 'deployment_version_id'.
+- `labels`: A list of labels that can be used to get data points containing the metric. For example, if the metric is defined for a deployment version and will be queried later with the ID of the deployment version, the labels list should contain 'deployment_version_id'.
 
 ## Request Examples
 
@@ -445,7 +445,7 @@ Update a metric. Only custom metrics can be updated.
 - `name`: Name of the metric
 - `description`: Description of the metric
 - `unit`: Unit of the metric
-- `labels`: A list of labels that can be used to get data points containing the metric. For example, if the metric is defined for a deployment version and can be queried later with the ID of the deployment version, the labels list should contain 'deployment_version_id'.
+- `labels`: A list of labels that can be used to get data points containing the metric. For example, if the metric is defined for a deployment version and will be queried later with the ID of the deployment version, the labels list should contain 'deployment_version_id'.
 
 ## Request Examples
 
@@ -757,7 +757,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **time_series_data_list**
-> TimeSeriesDataList time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels)
+> TimeSeriesDataList time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
 
 List time series data
 
@@ -799,8 +799,32 @@ Available metrics for pipelines:
 
 ### Optional Parameters
 
-- `aggregation_period`: Time period in seconds in which data points are grouped. It defaults to the highest resolution possible given the provided date range.
+- `aggregation_period`: Time period in seconds in which data points are grouped. It defaults to the highest resolution possible given the provided date range. Available values are: 60, 300, 900, 3600, 7200, 21600 and 86400.
+Start and end dates are adjusted according to the aggregation period. For example, if aggregation period is 3600, start date is rounded down to the previous full hour and end date is rounded up to the next full hour.
 - `labels`: Comma-separated values for labels to filter on data points. It must be in the format: key-1:value-1,key-2:value-2.
+
+## Request Examples
+With aggregation period 60, to get the credits usage of a deployment version per minute
+
+```
+{
+  "metric": "deployments.credits",
+  "start_date": "2024-05-01T10:00:00Z",
+  "end_date": "2024-05-01T10:30:12Z",
+  "labels": "deployment_version_id:dbcc9de3-1dcb-48ad-8197-3b2ac99f5e94"
+}
+```
+
+With aggregation period 3600, to get the credits usage of a deployment version per hour
+
+```
+{
+  "metric": "deployments.credits",
+  "start_date": "2024-05-01T10:00:00Z",
+  "end_date": "2024-05-01T16:30:12Z",
+  "labels": "deployment_version_id:dbcc9de3-1dcb-48ad-8197-3b2ac99f5e94"
+}
+```
 
 ### Response Structure
 
@@ -858,9 +882,10 @@ Available metrics for pipelines:
     end_date = 'end_date_example' # str (optional)
     aggregation_period = 56 # int (optional)
     labels = "label1:value1,label2:value2" # str (optional)
+    unit_period = 56 # int (optional)
 
     # List time series data
-    api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels)
+    api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
     print(api_response)
 
     # Close the connection
@@ -886,9 +911,10 @@ Available metrics for pipelines:
     end_date = 'end_date_example' # str (optional)
     aggregation_period = 56 # int (optional)
     labels = "label1:value1,label2:value2" # str (optional)
+    unit_period = 56 # int (optional)
 
     # List time series data
-    api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels)
+    api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
     print(api_response)
 
     # Close the connection
@@ -907,6 +933,7 @@ Name | Type | Notes
  **end_date** | **str** | [optional] 
  **aggregation_period** | **int** | [optional] 
  **labels** | **str** | [optional] 
+ **unit_period** | **int** | [optional] 
 
 ### Return type
 

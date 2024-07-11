@@ -34,6 +34,7 @@ class ExportDetail(object):
         "status": "str",
         "error_message": "str",
         "size": "int",
+        "description": "str",
         "deployments": "dict(str, object)",
         "pipelines": "dict(str, object)",
         "environment_variables": "dict(str, object)",
@@ -47,6 +48,7 @@ class ExportDetail(object):
         "status": "status",
         "error_message": "error_message",
         "size": "size",
+        "description": "description",
         "deployments": "deployments",
         "pipelines": "pipelines",
         "environment_variables": "environment_variables",
@@ -61,6 +63,7 @@ class ExportDetail(object):
         status="pending",
         error_message=None,
         size=None,
+        description=None,
         deployments=None,
         pipelines=None,
         environment_variables=None,
@@ -81,6 +84,7 @@ class ExportDetail(object):
         self._status = None
         self._error_message = None
         self._size = None
+        self._description = None
         self._deployments = None
         self._pipelines = None
         self._environment_variables = None
@@ -97,6 +101,7 @@ class ExportDetail(object):
             self.status = status
         self.error_message = error_message
         self.size = size
+        self.description = description
         if deployments is not None:
             self.deployments = deployments
         if pipelines is not None:
@@ -255,6 +260,34 @@ class ExportDetail(object):
             raise ValueError("Parameter `size` must be an integer")
 
         self._size = size
+
+    @property
+    def description(self):
+        """
+        Gets the description of this ExportDetail
+
+        :return: the description of this ExportDetail
+        :rtype: str
+        """
+
+        return self._description
+
+    @description.setter
+    def description(self, description):
+        """
+        Sets the description of this ExportDetail
+
+        :param description: the description of this ExportDetail
+        :type: str
+        """
+
+        if self.client_side_validation and (description is not None and not isinstance(description, str)):
+            raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
+        self._description = description
 
     @property
     def deployments(self):

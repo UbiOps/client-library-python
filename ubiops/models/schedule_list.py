@@ -102,8 +102,7 @@ class ScheduleList(object):
             self.object_type = object_type
         if object_name is not None:
             self.object_name = object_name
-        if version is not None:
-            self.version = version
+        self.version = version
         if schedule is not None:
             self.schedule = schedule
         self.request_data = request_data

@@ -90,8 +90,7 @@ class ScheduleCreate(object):
         self.name = name
         self.object_type = object_type
         self.object_name = object_name
-        if version is not None:
-            self.version = version
+        self.version = version
         self.schedule = schedule
         self.request_data = request_data
         if timeout is not None:

@@ -11,7 +11,9 @@
 | **status**                       | **str**            | [optional] [readonly] |
 | **active_revision**              | **str**            | [optional] [readonly] |
 | **latest_revision**              | **str**            | [optional] [readonly] |
-| **instance_type**                | **str**            |                       |
+| **instance_type**                | **str**            | [optional] [readonly] |
+| **instance_type_group_id**       | **str**            | [optional] [readonly] |
+| **instance_type_group_name**     | **str**            | [optional] [readonly] |
 | **maximum_instances**            | **int**            | [optional]            |
 | **minimum_instances**            | **int**            | [optional]            |
 | **maximum_idle_time**            | **int**            | [optional]            |

@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**success** | **bool** | 
-**revision** | **str** | 
-**build** | **str** | 
+**success** | **bool** |
+**revision** | **str** |
+**build** | **str** |
 
 

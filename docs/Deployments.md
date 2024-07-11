@@ -1584,7 +1584,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_versions_create**
-> DeploymentVersionList deployment_versions_create(project_name, deployment_name, data)
+> DeploymentVersionDetail deployment_versions_create(project_name, deployment_name, data)
 
 Create deployment versions
 
@@ -1600,9 +1600,11 @@ Provide the parameter 'default_notification_group' as the name of a notification
 ### Optional Parameters
 
 - `environment`: Environment of the version. It can be either a base or a custom environment.
-- `instance_type`: Reserved instance type for the version. This value determines the allocation of memory to the version: it should be enough to encompass the deployment file and all requirements that need to be installed. The default value is 2048mb. The minimum and maximum values are 256mb and 16384mb respectively.
-- `maximum_instances`: Upper bound of number of versions running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times.
-- `minimum_instances`: Lower bound of number of versions running. The default value is 0. Set this value greater than 0 to always have a always running version.
+- `instance_type`: [DEPRECATED] The reserved instance type for the version
+- `instance_type_group_id`: ID of the instance type group for the version
+- `instance_type_group_name`: Name of the instance type group for the version. If there are multiple groups with the same name in the project, the first group found will be used.
+- `maximum_instances`: Upper bound of number of instances running. The default value is 5. *Indicator of resource capacity:* if many deployment requests need to be handled in a short time, this number can be set higher to avoid long waiting times.
+- `minimum_instances`: Lower bound of number of instances running. The default value is 0. Set this value greater than 0 to always have a always running version.
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.
 - `description`: Description for the version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
@@ -1635,15 +1637,15 @@ If the time that a request takes does not matter, keep the default values.
 {
   "version": "version-1",
   "environment": "r4-0",
-  "instance_type": "512mb"
+  "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7"
 }
 ```
 
 
 ```
   "version": "version-1",
-  "environment": "python3-6-cuda",
-  "instance_type": "16384mb_t4",
+  "environment": "python3-8-cuda",
+  "instance_type_group_id": "6e7f011c-829e-43f9-b7cf-7f9283699777",
   "maximum_instances": 1
 ```
 
@@ -1663,7 +1665,7 @@ If the time that a request takes does not matter, keep the default values.
     {
       "public_port": 2222,
       "deployment_port": 2222,
-      "protocol": "tcp"
+      "protocol": "tcp
     }
   ]
 }
@@ -1682,12 +1684,15 @@ Details of the created version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet.
 - `latest_revision`: UUID of the latest revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet.
-- `instance_type`: The reserved instance type for the version
-- `maximum_instances`: Upper bound of number of versions running
-- `minimum_instances`: Lower bound of number of versions running
+- `instance_type`: [DEPRECATED] The reserved instance type for the version
+- `instance_type_group_id`: ID of the instance type group for the version
+- `instance_type_group_name`: Name of the instance type group for the version
+- `maximum_instances`: Upper bound of number of instances running
+- `minimum_instances`: Lower bound of number of instances running
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the version was created
+- `last_file_upload`: The date when a deployment file was last uploaded for the version
 - `last_updated`: The date when the version was last updated
 - `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
 - `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
@@ -1695,6 +1700,8 @@ Details of the created version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `has_request_method`: Whether the latest revision of the version has a 'request' method
+- `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
@@ -1714,6 +1721,8 @@ Details of the created version
   "active_revision": null,
   "latest_revision": null,
   "instance_type": "512mb",
+  "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7",
+  "instance_type_group_name": "512mb",
   "maximum_instances": 5,
   "minimum_instances": 0,
   "maximum_idle_time": 10,
@@ -1722,12 +1731,15 @@ Details of the created version
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-05-12T16:23:15.456812Z",
+  "last_file_upload": null,
   "monitoring": "notification-group-1",
   "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
   "maximum_queue_size_batch": 100000,
+  "has_request_method": null,
+  "has_requests_method": null,
   "static_ip": false,
   "restart_request_interruption": false,
   "ports": []
@@ -1794,7 +1806,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**DeploymentVersionList**](./models/DeploymentVersionList.md)
+[**DeploymentVersionDetail**](./models/DeploymentVersionDetail.md)
 
 ### Authorization
 
@@ -1899,9 +1911,11 @@ Details of a version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None.
 - `latest_revision`: UUID of the latest build of the version. If no deployment files have been uploaded yet, it is None.
-- `instance_type`: The reserved instance type for the version
-- `maximum_instances`: Upper bound of number of deployment pods running in parallel
-- `minimum_instances`: Lower bound of number of deployment pods running in parallel
+- `instance_type`: [DEPRECATED] The reserved instance type for the version
+- `instance_type_group_id`: ID of the instance type group for the version
+- `instance_type_group_name`: Name of the instance type group for the version
+- `maximum_instances`: Upper bound of number of instances running
+- `minimum_instances`: Lower bound of number of instances running
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the version was created
@@ -1916,8 +1930,8 @@ Details of a version
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
-- `has_request_method`: Whether the latest build of the version has a 'request' method
-- `has_requests_method`: Whether the latest build of the version has a 'requests' method
+- `has_request_method`: Whether the latest revision of the version has a 'request' method
+- `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
@@ -1931,12 +1945,14 @@ Details of a version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-7",
+  "environment": "python3-8",
   "environment_display_name": "Python 3.7",
   "status": "available",
   "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "instance_type": "512mb",
+  "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7",
+  "instance_type_group_name": "512mb",
   "maximum_instances": 4,
   "minimum_instances": 1,
   "maximum_idle_time": 10,
@@ -2053,9 +2069,8 @@ A list of details of the versions
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None.
 - `latest_revision`: UUID of the latest revision of the version. If no deployment files have been uploaded yet, it is None.
-- `instance_type`: The reserved instance type for the version
-- `maximum_instances`: Upper bound of number of versions running
-- `minimum_instances`: Lower bound of number of versions running
+- `maximum_instances`: Upper bound of number of instances running
+- `minimum_instances`: Lower bound of number of instances running
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the version was created
@@ -2088,7 +2103,6 @@ A list of details of the versions
     "status": "available",
     "active_revision": "da27ef7c-aa3f-4963-a815-6ebf1865638e",
     "latest_revision": "0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75",
-    "instance_type": "512mb",
     "maximum_instances": 4,
     "minimum_instances": 1,
     "maximum_idle_time": 10,
@@ -2118,7 +2132,6 @@ A list of details of the versions
     "status": "available",
     "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
     "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
-    "instance_type": "256mb",
     "maximum_instances": 5,
     "minimum_instances": 0,
     "maximum_idle_time": 10,
@@ -2221,9 +2234,11 @@ Provide the parameter 'default_notification_group' as the name of a notification
 ### Optional Parameters
 
 - `version`: New name for the version
-- `instance_type`: New instance type for the version
-- `maximum_instances`: New upper bound of number of versions running
-- `minimum_instances`: New lower bound of number of versions running
+- `instance_type`: [DEPRECATED] New instance type for the version
+- `instance_type_group_id`: ID of the new instance type group for the version
+- `instance_type_group_name`: Name of the new instance type group for the version. If there are multiple groups with the same name in the project, the first group found will be used.
+- `maximum_instances`: New upper bound of number of instances running
+- `minimum_instances`: New lower bound of number of instances running
 - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped
 - `description`: New description for the version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels.
@@ -2252,7 +2267,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 
 ```
 {
-  "instance_type": "512mb",
+  "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7",
   "maximum_instances": 4,
   "minimum_instances": 1,
   "monitoring": "notification-group-1"
@@ -2272,9 +2287,11 @@ Details of the updated version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None.
 - `latest_revision`: UUID of the latest build of the version. If no deployment files have been uploaded yet, it is None.
-- `instance_type`: The reserved instance type for the version
-- `maximum_instances`: Upper bound of number of versions running
-- `minimum_instances`: Lower bound of number of versions running
+- `instance_type`: [DEPRECATED] The reserved instance type for the version
+- `instance_type_group_id`: ID of the instance type group for the version
+- `instance_type_group_name`: Name of the instance type group for the version
+- `maximum_instances`: Upper bound of number of instances running
+- `minimum_instances`: Lower bound of number of instances running
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the version was created
@@ -2286,8 +2303,8 @@ Details of the updated version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
 - `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
-- `has_request_method`: Whether the latest build of the version has a 'request' method
-- `has_requests_method`: Whether the latest build of the version has a 'requests' method
+- `has_request_method`: Whether the latest revision of the version has a 'request' method
+- `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
@@ -2307,6 +2324,8 @@ Details of the updated version
   "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "instance_type": "512mb",
+  "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7",
+  "instance_type_group_name": "512mb",
   "maximum_instances": 4,
   "minimum_instances": 1,
   "maximum_idle_time": 10,
@@ -3738,12 +3757,12 @@ Get the list of all available template deployments
       "description": "",
       "version": {
         "name": "v2",
-        "environment": "python3-7",
+        "environment": "python3-11",
         "description": "",
         "labels": {
           "template": "True"
         },
-        "instance_type": "2048mb",
+        "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7",
         "maximum_idle_time": "300",
         "maximum_instances": "1",
         "minimum_instances": "0",

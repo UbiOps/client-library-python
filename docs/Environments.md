@@ -957,7 +957,7 @@ Create a custom environment
 ```
 {
   "name": "python3-8-custom",
-  "base_environment": "python3.8"
+  "base_environment": "python3-8"
 }
 ```
 
@@ -966,7 +966,7 @@ Create a custom environment
 {
   "name": "python3-8-custom-1",
   "display_name": "Custom Python 3.8",
-  "base_environment": "python3.8"
+  "base_environment": "python3-8"
 }
 ```
 
@@ -995,7 +995,7 @@ Details of the created environment
   "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
   "name": "python3-8-custom",
   "display_name": "Custom Python 3.8",
-  "base_environment": "python3.8",
+  "base_environment": "python3-8",
   "project": "project-1",
   "creation_date": "2023-03-01T08:32:14.876451Z",
   "last_updated": "2023-03-01T08:32:14.876451Z",
@@ -1184,7 +1184,7 @@ Details of an environment
   "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
   "name": "python3-8-custom",
   "display_name": "Custom Python 3.8",
-  "base_environment": "python3.8",
+  "base_environment": "python3-8",
   "project": "project-1",
   "creation_date": "2023-03-01T08:32:14.876451Z",
   "last_updated": "2023-03-01T10:52:23.124784Z",
@@ -1324,7 +1324,7 @@ A list of details of the environments
     "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
     "name": "python3-8-custom",
     "display_name": "Custom Python 3.8",
-    "base_environment": "python3.8",
+    "base_environment": "python3-8",
     "project": "project-1",
     "creation_date": "2023-03-02T12:15:43.124751Z",
     "last_updated": "2023-03-03T13:14:23.865421Z",
@@ -1461,7 +1461,7 @@ Details of the updated environment
   "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
   "name": "new-python3-8-custom",
   "display_name": "Custom Python 3.8",
-  "base_environment": "python3.8",
+  "base_environment": "python3-8",
   "project": "project-1",
   "creation_date": "2023-03-01T08:32:14.876451Z",
   "last_updated": "2023-03-01T10:52:23.124784Z",

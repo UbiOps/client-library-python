@@ -435,7 +435,7 @@ A list of dictionaries containing the details of the retrieved pipeline requests
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the pipeline request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
@@ -445,6 +445,10 @@ A list of dictionaries containing the details of the retrieved pipeline requests
 - `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
 - `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `pipeline_timeout`: Timeout of the pipeline request in seconds
+- `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -454,8 +458,8 @@ A list of dictionaries containing the details of the retrieved pipeline requests
     "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
     "pipeline": "pipeline-1",
     "version": "v1",
-    "status": "pending",
-    "success": false,
+    "status": "completed",
+    "success": null,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": "2020-03-28T20:00:42.241+00:00",
@@ -469,8 +473,11 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "deployment": "deployment-1",
         "version": "v1",
         "sequence_id": "16699092560130860",
+        "status": "completed",
         "success": true,
-        "error_message": null
+        "error_message": null,
+        "input_size": 10,
+        "output_size": 10
       }
     ],
     "operator_requests": [
@@ -479,8 +486,11 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "pipeline_object": "function-1",
         "operator": "function",
         "sequence_id": "16699092560130861",
+        "status": "completed",
         "success": true,
-        "error_message": null
+        "error_message": null,
+        "input_size": 10,
+        "output_size": 10
       }
     ],
     "pipeline_requests": [
@@ -490,24 +500,31 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "pipeline": "pipeline-1",
         "version": "v1",
         "sequence_id": "16699092560130890",
+        "status": "completed",
         "success": true,
-        "error_message": null
+        "error_message": null,
+        "input_size": 10,
+        "output_size": 10
       }
     ],
     "result": {
       "output_field": 23.5
     },
-    "error_message": null
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": 21
   },
   {
     "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
     "pipeline": "pipeline-1",
     "version": "v1",
-    "status": "pending",
-    "success": false,
+    "status": "processing",
+    "success": null,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_completed": null,
     "request_data": {
       "input_field": 23.5
     },
@@ -516,13 +533,23 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "id": "5fa86ad1-7949-48f5-8e2c-210cce78f427",
         "pipeline_object": "deployment-1-v1-object",
         "deployment": "deployment-1",
-        "version": "v1"
+        "version": "v1",
+        "sequence_id": "16699092560130860",
+        "status": "processing",
+        "success": null,
+        "error_message": null,
+        "input_size": 10,
+        "output_size": null
       }
     ],
-    "result": {
-      "output_field": 23.5
-    },
-    "error_message": null
+    "operator_requests": [],
+    "pipeline_requests": [],
+    "result": null,
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": null
   }
 ]
 ```
@@ -633,29 +660,38 @@ example-plain-data
 - `id`: Unique identifier for the pipeline request
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request is made
-- `success`: A boolean value that indicates whether the pipeline request was successful
+- `status`: Status of the pipeline request. It can be 'completed' or 'failed'.
+- `success`: [DEPRECATED] A boolean value that indicates whether the pipeline request was successful. This field is deprecated, use 'status' instead.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `deployment_requests`: A list of dictionaries containing the results of the deployment requests made for the version objects in the pipeline. The dictionaries contain the following fields:
+- `deployment_requests`: A list of dictionaries containing the results of the deployment requests made for the deployment objects in the pipeline. The dictionaries contain the following fields:
     - `id`: Unique identifier for the deployment request
     - `pipeline_object`: Name of the object in the pipeline
     - `deployment`: Name of the deployment the request was made to
     - `version`: Name of the version the request was made to
-    - `success`: A boolean value that indicates whether the deployment request was successful
+    - `status`: Status of the request. It can be 'completed' or 'failed'.
+    - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
     - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `operator_requests`: A list of dictionaries containing the results of the operator requests made for the version objects in the pipeline. The dictionaries contain the following fields:
+    - `sequence_id`: The sequence id based on creation date and index of bulk creation, used for sorting
+- `operator_requests`: A list of dictionaries containing the results of the operator requests made for the operator objects in the pipeline. The dictionaries contain the following fields:
     - `id`: Unique identifier for the operator request
     - `pipeline_object`: Name of the object in the pipeline
     - `operator`: Name of the operator the request was made to
-    - `success`: A boolean value that indicates whether the operator request was successful
+    - `status`: Status of the request. It can be 'completed' or 'failed'.
+    - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
     - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `pipeline_requests`: A list of dictionaries containing the results of the sub-pipeline requests made for the version objects in the pipeline. The dictionaries contain the following fields:
+    - `sequence_id`: The sequence id based on creation date and index of bulk creation, used for sorting
+- `pipeline_requests`: A list of dictionaries containing the results of the sub-pipeline requests made for the sub-pipeline objects in the pipeline. The dictionaries contain the following fields:
     - `id`: Unique identifier for the sub-pipeline request
     - `pipeline_object`: Name of the object in the pipeline
     - `pipeline`: Name of the sub-pipeline the request was made to
     - `version`: Name of the version the request was made to
-    - `success`: A boolean value that indicates whether the sub-pipeline request was successful
+    - `status`: Status of the request. It can be 'completed' or 'failed'.
+    - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
     - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+    - `sequence_id`: The sequence id based on creation date and index of bulk creation, used for sorting
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
+- `pipeline_timeout`: Timeout of the pipeline request in seconds
+- `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 
 ## Response Examples
 
@@ -664,6 +700,7 @@ example-plain-data
   "id": "286f771b-6617-4985-ab49-12ed720e62b1",
   "pipeline": "pipeline-1",
   "version": "v1",
+  "status": "failed",
   "success": false,
   "error_message": "Error while processing a deployment request",
   "deployment_requests": [
@@ -673,6 +710,7 @@ example-plain-data
       "deployment": "deployment-1",
       "version": "v1",
       "sequence_id": "16699092560130860",
+      "status": "completed",
       "success": true,
       "error_message": null
     },
@@ -682,6 +720,7 @@ example-plain-data
       "deployment": "deployment-2",
       "version": "v1",
       "sequence_id": "16699092560130861",
+      "status": "failed",
       "success": false,
       "error_message": "Invalid message format"
     }
@@ -692,6 +731,7 @@ example-plain-data
       "pipeline_object": "function-1",
       "operator": "function",
       "sequence_id": "16699092560130860",
+      "status": "completed",
       "success": true,
       "error_message": null
     }
@@ -703,6 +743,7 @@ example-plain-data
       "pipeline": "pipeline-1",
       "version": "v1",
       "sequence_id": "16699092560130890",
+      "status": "completed",
       "success": true,
       "error_message": null
     },
@@ -712,13 +753,16 @@ example-plain-data
       "pipeline": "pipeline-2",
       "version": "v1",
       "sequence_id": "16699092560130891",
+      "status": "failed",
       "success": false,
       "error_message": "Invalid message format"
     }
   ],
   "result": {
     "output_field": 23.5
-  }
+  },
+  "pipeline_timeout": 300,
+  "deployment_timeout": 300
 }
 ```
 
@@ -890,7 +934,7 @@ A dictionary containing the details of the pipeline request with the following f
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the pipeline request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
@@ -900,11 +944,16 @@ A dictionary containing the details of the pipeline request with the following f
 - `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+- `pipeline_timeout`: Timeout of the pipeline request in seconds
+- `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
     - the pipeline (and version) names if the request is directly made to the pipeline
+    - the pipeline request id if the request is part of another pipeline request
     - the request schedule name if the request is created via a request schedule
+    - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -913,8 +962,8 @@ A dictionary containing the details of the pipeline request with the following f
   "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
   "pipeline": "pipeline-1",
   "version": "v1",
-  "status": "pending",
-  "success": true,
+  "status": "completed",
+  "success": null,
   "time_created": "2020-03-28T20:00:26.613+00:00",
   "time_started": "2020-03-28T20:00:41.276+00:00",
   "time_completed": "2020-03-28T20:00:42.241+00:00",
@@ -928,8 +977,11 @@ A dictionary containing the details of the pipeline request with the following f
       "deployment": "deployment-1",
       "version": "v1",
       "sequence_id": "16699092560130860",
+      "status": "completed",
       "success": true,
-      "error_message": null
+      "error_message": null,
+      "input_size": 10,
+      "output_size": 10
     }
   ],
   "operator_requests": [
@@ -938,8 +990,11 @@ A dictionary containing the details of the pipeline request with the following f
       "pipeline_object": "function-1",
       "operator": "function",
       "sequence_id": "16699092560130861",
+      "status": "completed",
       "success": true,
-      "error_message": null
+      "error_message": null,
+      "input_size": 10,
+      "output_size": 10
     }
   ],
   "pipeline_requests": [
@@ -949,20 +1004,27 @@ A dictionary containing the details of the pipeline request with the following f
       "pipeline": "pipeline-1",
       "version": "v1",
       "sequence_id": "1669909256013090",
+      "status": "completed",
       "success": true,
-      "error_message": null
+      "error_message": null,
+      "input_size": 10,
+      "output_size": 10
     }
   ],
   "result": {
     "output_field": 23.5
   },
   "error_message": null,
-  "created_by": "my.example.user@ubiops.com",
+  "pipeline_timeout": 300,
+  "deployment_timeout": 300,
   "notification_group": "notification-group-1",
   "origin": {
     "pipeline": "pipeline-1",
-    "pipeline"_version": "v1"
-  }
+    "pipeline_version": "v1",
+    "created_by": "my.example.user@ubiops.com"
+  },
+  "input_size": 20,
+  "output_size": 21
 }
 ```
 
@@ -1049,7 +1111,7 @@ List all requests for the default version of a pipeline
 The following parameters should be given as query parameters:
 
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the pipeline request was successful
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
 - `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
@@ -1067,10 +1129,12 @@ A list of dictionaries containing the details of the pipeline requests with the 
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request
-- `success`: A boolean value that indicates whether the pipeline request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1081,10 +1145,12 @@ A list of dictionaries containing the details of the pipeline requests with the 
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_started": null,
+    "time_completed": null,
+    "input_size": 10,
+    "output_size": null
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -1094,7 +1160,9 @@ A list of dictionaries containing the details of the pipeline requests with the 
     "success": true,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -1108,10 +1176,12 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "completed",
-    "success": false,
+    "success": true,
     "time_created": "2020-03-28T20:00:43.613+00:00",
     "time_started": "2020-03-28T20:00:50.276+00:00",
-    "time_completed": "2020-03-28T20:00:55.241+00:00"
+    "time_completed": "2020-03-28T20:00:55.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -1121,7 +1191,9 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "success": true,
     "time_created": "2020-03-28T21:12:45.613+00:00",
     "time_started": "2020-03-28T21:13:00.276+00:00",
-    "time_completed": "2020-03-28T21:13:05.241+00:00"
+    "time_completed": "2020-03-28T21:13:05.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -1241,13 +1313,15 @@ A dictionary containing the details of the operator request with the following f
 - `object`: Name of the pipeline version object for which the request was made
 - `operator`: Name of the pipeline operator for which the request was made
 - `status`: Status of the request. Can be 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the request was successful
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
 - `request_data`: A dictionary containing the data that was sent when the request was created
 - `result`: Request result value. NULL if the request failed.
 - `error_message`: An error message explaining why the request has failed
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1270,7 +1344,9 @@ A dictionary containing the details of the operator request with the following f
   "result": {
     "output": 23.5
   },
-  "error_message": ""
+  "error_message": "",
+  "input_size": 20,
+  "output_size": 15
 }
 ```
 
@@ -1460,14 +1536,20 @@ A list of dictionaries containing the details of the retrieved pipeline requests
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the pipeline request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
 - `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
 - `deployment_requests`: A list of requests to the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
+- `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `pipeline_timeout`: Timeout of the pipeline request in seconds
+- `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1477,8 +1559,8 @@ A list of dictionaries containing the details of the retrieved pipeline requests
     "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
     "pipeline": "pipeline-1",
     "version": "v1",
-    "status": "pending",
-    "success": false,
+    "status": "completed",
+    "success": null,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": "2020-03-28T20:00:42.241+00:00",
@@ -1490,23 +1572,60 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "id": "4b9c8a81-b3ef-437a-8d35-187490eda3e4",
         "pipeline_object": "deployment-1-v1-object",
         "deployment": "deployment-1",
-        "version": "v1"
+        "version": "v1",
+        "sequence_id": "16699092560130860",
+        "status": "completed",
+        "success": true,
+        "error_message": null,
+        "input_size": 10,
+        "output_size": 10
+      }
+    ],
+    "operator_requests": [
+      {
+        "id": "bd6d6ce5-ba9d-4c91-af61-0cf16f1f5452",
+        "pipeline_object": "function-1",
+        "operator": "function",
+        "sequence_id": "16699092560130861",
+        "status": "completed",
+        "success": true,
+        "error_message": null,
+        "input_size": 10,
+        "output_size": 10
+      }
+    ],
+    "pipeline_requests": [
+      {
+        "id": "73d673b3-79e0-466e-af44-d841087a5c15",
+        "pipeline_object": "sub-pipeline-1-v1-object",
+        "pipeline": "pipeline-1",
+        "version": "v1",
+        "sequence_id": "16699092560130890",
+        "status": "completed",
+        "success": true,
+        "error_message": null,
+        "input_size": 10,
+        "output_size": 10
       }
     ],
     "result": {
       "output_field": 23.5
     },
-    "error_message": null
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": 21
   },
   {
     "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
     "pipeline": "pipeline-1",
     "version": "v1",
-    "status": "pending",
-    "success": false,
+    "status": "processing",
+    "success": null,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_completed": null,
     "request_data": {
       "input_field": 23.5
     },
@@ -1515,13 +1634,23 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "id": "5fa86ad1-7949-48f5-8e2c-210cce78f427",
         "pipeline_object": "deployment-1-v1-object",
         "deployment": "deployment-1",
-        "version": "v1"
+        "version": "v1",
+        "sequence_id": "16699092560130850",
+        "status": "processing",
+        "success": null,
+        "error_message": null,
+        "input_size": 10,
+        "output_size": null
       }
     ],
-    "result": {
-      "output_field": 23.5
-    },
-    "error_message": null
+    "operator_requests": [],
+    "pipeline_requests": [],
+    "result": null,
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": null
   }
 ]
 ```
@@ -1635,16 +1764,38 @@ example-plain-data
 - `id`: Unique identifier for the pipeline request
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request is made
-- `success`: A boolean value that indicates whether the pipeline request was successful
+- `status`: Status of the pipeline request. It can be 'completed' or 'failed'.
+- `success`: [DEPRECATED] A boolean value that indicates whether the pipeline request was successful. This field is deprecated, use 'status' instead.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `deployment_requests`: A list of dictionaries containing the results of the deployment requests made for the version objects in the pipeline. The dictionaries contain the following fields:
+- `deployment_requests`: A list of dictionaries containing the results of the deployment requests made for the deployment objects in the pipeline. The dictionaries contain the following fields:
     - `id`: Unique identifier for the deployment request
     - `pipeline_object`: Name of the object in the pipeline
     - `deployment`: Name of the deployment the request was made to
     - `version`: Name of the version the request was made to
-    - `success`: A boolean value that indicates whether the deployment request was successful
+    - `status`: Status of the request. It can be 'completed' or 'failed'.
+    - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
     - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+    - `sequence_id`: The sequence id based on creation date and index of bulk creation, used for sorting
+- `operator_requests`: A list of dictionaries containing the results of the operator requests made for the operator objects in the pipeline. The dictionaries contain the following fields:
+    - `id`: Unique identifier for the operator request
+    - `pipeline_object`: Name of the object in the pipeline
+    - `operator`: Name of the operator the request was made to
+    - `status`: Status of the request. It can be 'completed' or 'failed'.
+    - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+    - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+    - `sequence_id`: The sequence id based on creation date and index of bulk creation, used for sorting
+- `pipeline_requests`: A list of dictionaries containing the results of the sub-pipeline requests made for the sub-pipeline objects in the pipeline. The dictionaries contain the following fields:
+    - `id`: Unique identifier for the sub-pipeline request
+    - `pipeline_object`: Name of the object in the pipeline
+    - `pipeline`: Name of the sub-pipeline the request was made to
+    - `version`: Name of the version the request was made to
+    - `status`: Status of the request. It can be 'completed' or 'failed'.
+    - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+    - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+    - `sequence_id`: The sequence id based on creation date and index of bulk creation, used for sorting
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
+- `pipeline_timeout`: Timeout of the pipeline request in seconds
+- `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 
 ## Response Examples
 
@@ -1654,25 +1805,69 @@ example-plain-data
   "project": "project-1",
   "pipeline": "pipeline-1",
   "version": "v1",
+  "status": "failed",
   "success": false,
   "error_message": "Error while processing a deployment request",
   "deployment_requests": [
     {
       "id": "a7524614-bdb7-41e1-b4c1-653bb72c30b4",
       "pipeline_object": "deployment-object-1",
+      "deployment": "deployment-1",
+      "version": "v1",
+      "sequence_id": "16699092560130860",
+      "status": "completed",
       "success": true,
       "error_message": null
     },
     {
       "id": "fe322c50-58f8-4e67-b7d6-cba14273874e",
       "pipeline_object": "deployment-object-2",
+      "deployment": "deployment-2",
+      "version": "v1",
+      "sequence_id": "16699092560130861",
+      "status": "failed",
+      "success": false,
+      "error_message": "Invalid message format"
+    }
+  ],
+  "operator_requests": [
+    {
+      "id": "bd6d6ce5-ba9d-4c91-af61-0cf16f1f5452",
+      "pipeline_object": "function-1",
+      "operator": "function",
+      "sequence_id": "16699092560130860",
+      "status": "completed",
+      "success": true,
+      "error_message": null
+    }
+  ],
+  "pipeline_requests": [
+    {
+      "id": "dd307a3e-6eb0-4a55-981b-52e277529df1",
+      "pipeline_object": "sub-pipeline-object-1",
+      "pipeline": "pipeline-1",
+      "version": "v1",
+      "sequence_id": "16699092560130890",
+      "status": "completed",
+      "success": true,
+      "error_message": null
+    },
+    {
+      "id": "411aa6f8-7706-45e7-9438-892e399947a1",
+      "pipeline_object": "sub-pipeline-object-2",
+      "pipeline": "pipeline-2",
+      "version": "v1",
+      "sequence_id": "16699092560130891",
+      "status": "failed",
       "success": false,
       "error_message": "Invalid message format"
     }
   ],
   "result": {
     "output_field": 23.5
-  }
+  },
+  "pipeline_timeout": 300,
+  "deployment_timeout": 300
 }
 ```
 
@@ -1850,16 +2045,26 @@ A dictionary containing the details of the pipeline version request with the fol
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the pipeline version request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
 - `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
 - `deployment_requests`: A list of requests of the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
+- `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 - `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+- `pipeline_timeout`: Timeout of the pipeline request in seconds
+- `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
+- `origin`: A dictionary containing the information on where the request originated from. It contains:
+    - the pipeline (and version) names if the request is directly made to the pipeline
+    - the pipeline request id if the request is part of another pipeline request
+    - the request schedule name if the request is created via a request schedule
+    - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1868,8 +2073,8 @@ A dictionary containing the details of the pipeline version request with the fol
   "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
   "pipeline": "pipeline-1",
   "version": "v1",
-  "status": "pending",
-  "success": true,
+  "status": "completed",
+  "success": null,
   "time_created": "2020-03-28T20:00:26.613+00:00",
   "time_started": "2020-03-28T20:00:41.276+00:00",
   "time_completed": "2020-03-28T20:00:42.241+00:00",
@@ -1881,15 +2086,56 @@ A dictionary containing the details of the pipeline version request with the fol
       "id": "4b9c8a81-b3ef-437a-8d35-187490eda3e4",
       "pipeline_object": "deployment-1-v1-object",
       "deployment": "deployment-1",
-      "version": "v1"
+      "version": "v1",
+      "sequence_id": "16699092560130860",
+      "status": "completed",
+      "success": true,
+      "error_message": null,
+       "input_size": 10,
+      "output_size": 10
+    }
+  ],
+  "operator_requests": [
+    {
+      "id": "bd6d6ce5-ba9d-4c91-af61-0cf16f1f5452",
+      "pipeline_object": "function-1",
+      "operator": "function",
+      "sequence_id": "16699092560130861",
+      "status": "completed",
+      "success": true,
+      "error_message": null,
+      "input_size": 10,
+      "output_size": 10
+    }
+  ],
+  "pipeline_requests": [
+    {
+      "id": "a152612e-b5d1-4f44-a04b-fe4a26849b02",
+      "pipeline_object": "sub-pipeline-1-v1-object",
+      "pipeline": "pipeline-1",
+      "version": "v1",
+      "sequence_id": "1669909256013090",
+      "status": "completed",
+      "success": true,
+      "error_message": null,
+      "input_size": 10,
+      "output_size": 10
     }
   ],
   "result": {
     "output_field": 23.5
   },
   "error_message": null,
-  "created_by": "my.example.user@ubiops.com",
-  "notification_group": "notification-group-1"
+  "pipeline_timeout": 300,
+  "deployment_timeout": 300,
+  "notification_group": "notification-group-1",
+  "origin": {
+    "pipeline": "pipeline-1",
+    "pipeline_version": "v1",
+    "created_by": "my.example.user@ubiops.com"
+  },
+  "input_size": 20,
+  "output_size": 21
 }
 ```
 
@@ -1979,7 +2225,7 @@ List all requests for a pipeline version
 The following parameters should be given as query parameters:
 
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: A boolean value that indicates whether the pipeline version request was successful
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
 - `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
@@ -1997,10 +2243,12 @@ A list of dictionaries containing the details of the pipeline version requests w
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request
-- `success`: A boolean value that indicates whether the pipeline version request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -2011,10 +2259,12 @@ A list of dictionaries containing the details of the pipeline version requests w
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_started": null,
+    "time_completed": null,
+    "input_size": 10,
+    "output_size": null
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -2024,7 +2274,9 @@ A list of dictionaries containing the details of the pipeline version requests w
     "success": true,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -2038,10 +2290,12 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "completed",
-    "success": false,
+    "success": true,
     "time_created": "2020-03-28T20:00:43.613+00:00",
     "time_started": "2020-03-28T20:00:50.276+00:00",
-    "time_completed": "2020-03-28T20:00:55.241+00:00"
+    "time_completed": "2020-03-28T20:00:55.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -2051,7 +2305,9 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "success": true,
     "time_created": "2020-03-28T21:12:45.613+00:00",
     "time_started": "2020-03-28T21:13:00.276+00:00",
-    "time_completed": "2020-03-28T21:13:05.241+00:00"
+    "time_completed": "2020-03-28T21:13:05.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```

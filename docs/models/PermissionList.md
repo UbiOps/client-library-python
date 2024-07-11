@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**name** | **str** | [optional] [readonly] 
+**name** | **str** | [optional] [readonly]
 
 

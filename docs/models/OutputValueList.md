@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**name** | **str** | 
-**value** | **str** or **dict(str, str)** | 
+**name** | **str** |
+**value** | **str** or **dict(str, str)** |
 
 

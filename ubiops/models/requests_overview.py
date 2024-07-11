@@ -38,6 +38,8 @@ class RequestsOverview(object):
         "time_created": "datetime",
         "time_started": "datetime",
         "time_completed": "datetime",
+        "input_size": "int",
+        "output_size": "int",
     }
 
     attribute_map = {
@@ -50,6 +52,8 @@ class RequestsOverview(object):
         "time_created": "time_created",
         "time_started": "time_started",
         "time_completed": "time_completed",
+        "input_size": "input_size",
+        "output_size": "output_size",
     }
 
     def __init__(
@@ -63,6 +67,8 @@ class RequestsOverview(object):
         time_created=None,
         time_started=None,
         time_completed=None,
+        input_size=None,
+        output_size=None,
         **kwargs,
     ):
         """
@@ -82,6 +88,8 @@ class RequestsOverview(object):
         self._time_created = None
         self._time_started = None
         self._time_completed = None
+        self._input_size = None
+        self._output_size = None
         self.discriminator = None
 
         self.id = id
@@ -93,6 +101,8 @@ class RequestsOverview(object):
         self.time_created = time_created
         self.time_started = time_started
         self.time_completed = time_completed
+        self.input_size = input_size
+        self.output_size = output_size
 
     @property
     def id(self):
@@ -324,6 +334,56 @@ class RequestsOverview(object):
         """
 
         self._time_completed = time_completed
+
+    @property
+    def input_size(self):
+        """
+        Gets the input_size of this RequestsOverview
+
+        :return: the input_size of this RequestsOverview
+        :rtype: int
+        """
+
+        return self._input_size
+
+    @input_size.setter
+    def input_size(self, input_size):
+        """
+        Sets the input_size of this RequestsOverview
+
+        :param input_size: the input_size of this RequestsOverview
+        :type: int
+        """
+
+        if self.client_side_validation and (input_size is not None and not isinstance(input_size, int)):
+            raise ValueError("Parameter `input_size` must be an integer")
+
+        self._input_size = input_size
+
+    @property
+    def output_size(self):
+        """
+        Gets the output_size of this RequestsOverview
+
+        :return: the output_size of this RequestsOverview
+        :rtype: int
+        """
+
+        return self._output_size
+
+    @output_size.setter
+    def output_size(self, output_size):
+        """
+        Sets the output_size of this RequestsOverview
+
+        :param output_size: the output_size of this RequestsOverview
+        :type: int
+        """
+
+        if self.client_side_validation and (output_size is not None and not isinstance(output_size, int)):
+            raise ValueError("Parameter `output_size` must be an integer")
+
+        self._output_size = output_size
 
     def to_dict(self):
         """
