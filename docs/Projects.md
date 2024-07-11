@@ -4,7 +4,6 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**instance_types_list**](./Projects.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**project_audit_events_list**](./Projects.md#project_audit_events_list) | **GET** /projects/{project_name}/audit | List audit events in a project
 [**project_environment_variables_create**](./Projects.md#project_environment_variables_create) | **POST** /projects/{project_name}/environment-variables | Create project environment variable
 [**project_environment_variables_delete**](./Projects.md#project_environment_variables_delete) | **DELETE** /projects/{project_name}/environment-variables/{id} | Delete project environment variable
@@ -26,107 +25,6 @@ Method | HTTP request | Description
 [**projects_usage_get**](./Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
 [**quotas_list**](./Projects.md#quotas_list) | **GET** /projects/{project_name}/quotas | List quotas
 
-
-# **instance_types_list**
-> list[DeploymentInstanceType] instance_types_list(project_name)
-
-List instance types
-
-## Description
-Get list of available deployment instance types for a project
-
-### Response Structure
-Details of the instance type
-
-- `id`: Unique identifier for the instance type (UUID)
-- `name`: Name of the deployment instance type
-- `display_name`: Readable name of the deployment instance type
-- `memory_allocation`: Integer indicating memory allocation for this instance type (Mi)
-- `cpu_allocation`: Float indicating vCPU allocation for this instance type
-- `gpu_allocation`: Integer indicating number of GPU cores for this instance type
-- `storage_allocation`: Integer indicating the maximum storage that can be used by this instance type (MB)
-- `credit_rate`: Credits used per hour for this instance type
-- `dedicated_node`: A boolean indicating whether an entire node is dedicated to this instance type
-
-## Response Examples
-
-```
-[
-  {
-    "id": "abe2e406-fae5-4bcf-a3bc-956d756e4ecb",
-    "name": "512mb",
-    "display_name": "512 MB",
-    "memory_allocation": 512,
-    "cpu_allocation": 0.125,
-    "gpu_allocation": 0,
-    "storage_allocation": 2048,
-    "credit_rate": 0.5,
-    "dedicated_node": false
-  }
-]
-```
-
-### Example
-
-- Use system environment variables
-    ```python
-    import ubiops
-
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
-
-    project_name = 'project_name_example' # str
-
-    # List instance types
-    api_response = core_api.instance_types_list(project_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-
-    # List instance types
-    api_response = core_api.instance_types_list(project_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
-
-### Return type
-
-[**list[DeploymentInstanceType]**](./models/DeploymentInstanceType.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
 
 # **project_audit_events_list**
 > list[AuditList] project_audit_events_list(project_name, action=action, limit=limit, offset=offset)
@@ -765,7 +663,7 @@ List the deployment/pipeline requests of the given project
 ### Optional Parameters
 
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
 - `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
@@ -783,10 +681,12 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
 - `pipeline`: Name of the pipeline the request was made to (Optional: in case it's a pipeline request. Else NULL)
 - `version`: Name of the version the request was made to
 - `status`: Status of the request
-- `success`: A boolean value that indicates whether the deployment/pipeline request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -798,10 +698,12 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
     "pipeline": null,
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_started": null,
+    "time_completed": null,
+    "input_size": 10,
+    "output_size": null
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -812,7 +714,9 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
     "success": true,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -2267,7 +2171,7 @@ List the quotas defined for a project. Project members can see quotas.
     "quota": 62
   },
   {
-    "resource": "gpu_standard",
+    "resource": "accelerator_standard",
     "quota": 0
   }
 ]

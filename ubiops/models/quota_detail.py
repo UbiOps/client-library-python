@@ -27,11 +27,11 @@ class QuotaDetail(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"quota": "float", "resource": "str"}
+    openapi_types = {"resource": "str", "quota": "float"}
 
-    attribute_map = {"quota": "quota", "resource": "resource"}
+    attribute_map = {"resource": "resource", "quota": "quota"}
 
-    def __init__(self, quota=None, resource=None, **kwargs):
+    def __init__(self, resource=None, quota=None, **kwargs):
         """
         QuotaDetail - a model defined in OpenAPI
         """
@@ -40,37 +40,12 @@ class QuotaDetail(object):
         if "local_vars_configuration" in kwargs and kwargs["local_vars_configuration"] is not None:
             self.client_side_validation = kwargs["local_vars_configuration"].client_side_validation
 
-        self._quota = None
         self._resource = None
+        self._quota = None
         self.discriminator = None
 
-        self.quota = quota
         self.resource = resource
-
-    @property
-    def quota(self):
-        """
-        Gets the quota of this QuotaDetail
-
-        :return: the quota of this QuotaDetail
-        :rtype: float
-        """
-
-        return self._quota
-
-    @quota.setter
-    def quota(self, quota):
-        """
-        Sets the quota of this QuotaDetail
-
-        :param quota: the quota of this QuotaDetail
-        :type: float
-        """
-
-        if self.client_side_validation and (quota is not None and not isinstance(quota, (int, float))):
-            raise ValueError("Parameter `quota` must be a float")
-
-        self._quota = quota
+        self.quota = quota
 
     @property
     def resource(self):
@@ -101,6 +76,33 @@ class QuotaDetail(object):
             raise ValueError("Invalid value for `resource`, length must be greater than or equal to `1`")
 
         self._resource = resource
+
+    @property
+    def quota(self):
+        """
+        Gets the quota of this QuotaDetail
+
+        :return: the quota of this QuotaDetail
+        :rtype: float
+        """
+
+        return self._quota
+
+    @quota.setter
+    def quota(self, quota):
+        """
+        Sets the quota of this QuotaDetail
+
+        :param quota: the quota of this QuotaDetail
+        :type: float
+        """
+
+        if self.client_side_validation and quota is None:
+            raise ValueError("Invalid value for `quota`, must not be `None`")
+        if self.client_side_validation and (quota is not None and not isinstance(quota, (int, float))):
+            raise ValueError("Parameter `quota` must be a float")
+
+        self._quota = quota
 
     def to_dict(self):
         """

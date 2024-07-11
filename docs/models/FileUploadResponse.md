@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**url** | **str** | 
-**provider** | **str** | 
+**url** | **str** |
+**provider** | **str** |
 
 

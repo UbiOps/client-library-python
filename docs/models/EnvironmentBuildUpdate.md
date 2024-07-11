@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**status** | **str** | 
+**status** | **str** |
 
 

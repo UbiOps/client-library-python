@@ -4,11 +4,6 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**blobs_create**](./Blobs.md#blobs_create) | **POST** /projects/{project_name}/blobs | Upload a blob
-[**blobs_delete**](./Blobs.md#blobs_delete) | **DELETE** /projects/{project_name}/blobs/{blob_id} | Delete a blob
-[**blobs_get**](./Blobs.md#blobs_get) | **GET** /projects/{project_name}/blobs/{blob_id} | Get a blob
-[**blobs_list**](./Blobs.md#blobs_list) | **GET** /projects/{project_name}/blobs | List blobs
-[**blobs_update**](./Blobs.md#blobs_update) | **PUT** /projects/{project_name}/blobs/{blob_id} | Update a blob
 [**batch_deployment_requests_create**](./DeploymentRequests.md#batch_deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/batch | Create a batch deployment request
 [**batch_deployment_version_requests_create**](./DeploymentRequests.md#batch_deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/batch | Create a batch deployment version request
 [**deployment_requests_batch_delete**](./DeploymentRequests.md#deployment_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/delete | Delete multiple deployment requests
@@ -93,6 +88,17 @@ Method | HTTP request | Description
 [**imports_get**](./ImportsAndExports.md#imports_get) | **GET** /projects/{project_name}/imports/{import_id} | Get an import
 [**imports_list**](./ImportsAndExports.md#imports_list) | **GET** /projects/{project_name}/imports | List imports
 [**imports_update**](./ImportsAndExports.md#imports_update) | **PATCH** /projects/{project_name}/imports/{import_id} | Confirm an import
+[**instance_events_list**](./Instances.md#instance_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id}/events | List events for instances
+[**instance_type_groups_create**](./Instances.md#instance_type_groups_create) | **POST** /projects/{project_name}/instance-type-groups | Create instance type group
+[**instance_type_groups_delete**](./Instances.md#instance_type_groups_delete) | **DELETE** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Delete instance type group
+[**instance_type_groups_get**](./Instances.md#instance_type_groups_get) | **GET** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Get instance type group
+[**instance_type_groups_list**](./Instances.md#instance_type_groups_list) | **GET** /projects/{project_name}/instance-type-groups | List instance type groups
+[**instance_type_groups_update**](./Instances.md#instance_type_groups_update) | **PATCH** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Update instance type group
+[**instance_types_list**](./Instances.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
+[**instances_get**](./Instances.md#instances_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Get instance for deployment versions
+[**instances_list**](./Instances.md#instances_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances | List instances for deployment versions
+[**project_instances_get**](./Instances.md#project_instances_get) | **GET** /projects/{project_name}/instances/{instance_id} | Get instance for projects
+[**project_instances_list**](./Instances.md#project_instances_list) | **GET** /projects/{project_name}/instances | List instances for projects
 [**metrics_create**](./Metrics.md#metrics_create) | **POST** /projects/{project_name}/metrics | Create metrics
 [**metrics_delete**](./Metrics.md#metrics_delete) | **DELETE** /projects/{project_name}/metrics/{metric_name} | Delete metric
 [**metrics_get**](./Metrics.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric_name} | Get metric
@@ -148,7 +154,6 @@ Method | HTTP request | Description
 [**pipelines_get**](./Pipelines.md#pipelines_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name} | Get details of a pipeline
 [**pipelines_list**](./Pipelines.md#pipelines_list) | **GET** /projects/{project_name}/pipelines | List pipelines
 [**pipelines_update**](./Pipelines.md#pipelines_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name} | Update a pipeline
-[**instance_types_list**](./Projects.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**project_audit_events_list**](./Projects.md#project_audit_events_list) | **GET** /projects/{project_name}/audit | List audit events in a project
 [**project_environment_variables_create**](./Projects.md#project_environment_variables_create) | **POST** /projects/{project_name}/environment-variables | Create project environment variable
 [**project_environment_variables_delete**](./Projects.md#project_environment_variables_delete) | **DELETE** /projects/{project_name}/environment-variables/{id} | Delete project environment variable

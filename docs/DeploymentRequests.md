@@ -434,13 +434,16 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
 - `request_data`: A dictionary containing the data that was sent when the request was created
 - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `retries`: Number of times that the request has been retried
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -451,30 +454,36 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-29T08:09:10.729+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "request_data": {
       "input": 82.2
     },
     "result": null,
-    "error_message": null
+    "error_message": null,
+    "retries": 0,
+    "input_size": 14,
+    "output_size": null
   },
   {
     "id": "85711124-54db-4794-b83d-24492247c6e1",
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-06-25T09:37:17.765+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "request_data": {
       "input": 52.4
     },
     "result": null,
-    "error_message": null
+    "error_message": null,
+    "retries": 1,
+    "input_size": 14,
+    "output_size": null
   }
 ]
 ```
@@ -608,9 +617,11 @@ Details of the created deployment request
 - `id`: Unique identifier for the deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
-- `success`: A boolean value that indicates whether the deployment request was successful
+- `status`: Status of the request. It can be 'completed' or 'failed'.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `result`: Deployment request result value. NULL if the request failed.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `timeout`: Timeout of the request in seconds
 
 ## Response Examples
 A failed deployment request
@@ -620,9 +631,11 @@ A failed deployment request
   "id": "85ae32a7-fe3a-4a55-be27-9db88ae68501",
   "deployment": "deployment-1",
   "version": "v1",
+  "status": "failed",
   "success": false,
   "result": None,
   "error_message": "Asset ID not supported"
+  "timeout": 300
 }
 ```
 
@@ -633,12 +646,14 @@ A successful deployment request
   "id": "ffce45da-1562-419a-89a0-0a0837e55392",
   "deployment": "deployment-1",
   "version": "v2",
+  "status": "completed",
   "success": true,
   "result": {
     "output-field-1": "2.1369",
     "output-field-2": "5.5832",
   },
-  "error_message": null
+  "error_message": null,
+  "timeout": 300
 }
 ```
 
@@ -807,19 +822,22 @@ A dictionary containing the details of the deployment request with the following
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
 - `request_data`: A dictionary containing the data that was sent when the request was created
 - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
     - the deployment (and version) names if the request is directly made to the deployment
     - the pipeline (and version) names if the request is part of a pipeline request
     - the request schedule name if the request is created via a request schedule
+    - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+- `retries`: Number of times that the request has been retried
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -829,21 +847,24 @@ A dictionary containing the details of the deployment request with the following
   "deployment": "deployment-1",
   "version": "v1",
   "status": "pending",
-  "success": false,
+  "success": null,
   "time_created": "2020-03-29T08:09:10.729+00:00",
-  "time_started": "2020-03-28T20:00:41.276+00:00",
-  "time_completed": "2020-03-28T20:00:42.241+00:00",
+  "time_started": null,
+  "time_completed": null,
   "request_data": {
     "input": 82.3
   },
   "result": null,
   "error_message": null,
-  "created_by": "my.example.user@ubiops.com",
   "notification_group": "notification-group-1",
   "origin": {
     "deployment": "deployment-1",
-    "deployment_version": "v1"
-  }
+    "deployment_version": "v1",
+    "created_by": "my.example.user@ubiops.com"
+  },
+  "retries": 0,
+  "input_size": 14,
+  "output_size": null
 }
 ```
 
@@ -930,7 +951,7 @@ List all requests for the default version of a deployment
 The following parameters should be given as query parameters:
 
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
 - `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
@@ -949,10 +970,12 @@ A list of dictionaries containing the details of the deployment requests with th
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request
-- `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -963,10 +986,12 @@ A list of dictionaries containing the details of the deployment requests with th
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_started": null,
+    "time_completed": null,
+    "input_size": 10,
+    "output_size": null
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -976,7 +1001,9 @@ A list of dictionaries containing the details of the deployment requests with th
     "success": true,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -990,10 +1017,12 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "deployment": "deployment-1",
     "version": "v1",
     "status": "completed",
-    "success": false,
+    "success": true,
     "time_created": "2020-03-28T20:00:43.613+00:00",
     "time_started": "2020-03-28T20:00:50.276+00:00",
-    "time_completed": "2020-03-28T20:00:55.241+00:00"
+    "time_completed": "2020-03-28T20:00:55.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -1003,7 +1032,9 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "success": true,
     "time_created": "2020-03-28T21:12:45.613+00:00",
     "time_started": "2020-03-28T21:13:00.276+00:00",
-    "time_completed": "2020-03-28T21:13:05.241+00:00"
+    "time_completed": "2020-03-28T21:13:05.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -1307,7 +1338,7 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
@@ -1315,6 +1346,8 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `retries`: Number of times that the request has been retried
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1325,32 +1358,36 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-29T08:09:10.729+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "request_data": {
       "input": 82.2
     },
     "result": null,
     "error_message": null,
-    "retries": 0
+    "retries": 0,
+    "input_size": 14,
+    "output_size": null
   },
   {
     "id": "85711124-54db-4794-b83d-24492247c6e1",
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-06-25T09:37:17.765+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "request_data": {
       "input": 52.4
     },
     "result": null,
     "error_message": null,
-    "retries": 1
+    "retries": 1,
+    "input_size": 14,
+    "output_size": null
   }
 ]
 ```
@@ -1487,9 +1524,11 @@ Details of the created deployment request
 - `id`: Unique identifier for the deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
-- `success`: A boolean value that indicates whether the deployment request was successful
+- `status`: Status of the request. It can be 'completed' or 'failed'.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `result`: Deployment request result value. NULL if the request failed.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `timeout`: Timeout of the request in seconds
 
 ## Response Examples
 A failed deployment request
@@ -1499,9 +1538,11 @@ A failed deployment request
   "id": "85ae32a7-fe3a-4a55-be27-9db88ae68501",
   "deployment": "deployment-1",
   "version": "v1",
+  "status": "failed",
   "success": false,
   "result": None,
-  "error_message": "Asset ID not supported"
+  "error_message": "Asset ID not supported",
+  "timeout": 300
 }
 ```
 
@@ -1512,12 +1553,14 @@ A successful deployment request
   "id": "ffce45da-1562-419a-89a0-0a0837e55392",
   "deployment": "deployment-1",
   "version": "v2",
+  "status": "completed",
   "success": true,
   "result": {
     "output-field-1": "2.1369",
     "output-field-2": "5.5832",
   },
-  "error_message": None
+  "error_message": None,
+  "timeout": 300
 }
 ```
 
@@ -1692,16 +1735,22 @@ A dictionary containing the details of the deployment request with the following
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
 - `request_data`: A dictionary containing the data that was sent when the request was created
 - `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `created_by`: The email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
+- `origin`: A dictionary containing the information on where the request originated from. It contains:
+  - the deployment (and version) names if the request is directly made to the deployment
+  - the pipeline (and version) names if the request is part of a pipeline request
+  - the request schedule name if the request is created via a request schedule
+  - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `retries`: Number of times that the request has been retried
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1711,18 +1760,24 @@ A dictionary containing the details of the deployment request with the following
   "deployment": "deployment-1",
   "version": "v1",
   "status": "pending",
-  "success": false,
+  "success": null,
   "time_created": "2020-03-29T08:09:10.729+00:00",
-  "time_started": "2020-03-28T20:00:41.276+00:00",
-  "time_completed": "2020-03-28T20:00:42.241+00:00",
+  "time_started": null,
+  "time_completed": null,
   "request_data": {
     "input": 82.3
   },
   "result": null,
   "error_message": null,
-  "created_by": "my.example.user@ubiops.com",
   "notification_group": "notification-group-1",
-  "retries": 0
+  "origin": {
+    "deployment": "deployment-1",
+    "deployment_version": "v1",
+    "created_by": "my.example.user@ubiops.com"
+  },
+  "retries": 0,
+  "input_size": 14,
+  "output_size": null
 }
 ```
 
@@ -1812,7 +1867,7 @@ List all requests for a deployment version
 The following parameters should be given as query parameters:
 
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: A boolean value that indicates whether the deployment request was successful
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
 - `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
@@ -1831,10 +1886,12 @@ A list of dictionaries containing the details of the deployment requests with th
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request
-- `success`: A boolean value that indicates whether the deployment request was successful. NULL if the request is not yet finished.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
 - `time_created`: Server time that the request was made (current time)
 - `time_started`: Server time that the processing of the request was started
 - `time_completed`: Server time that the processing of the request was completed
+- `input_size`: Size of the request data
+- `output_size`: Size of the result
 
 ## Response Examples
 
@@ -1845,10 +1902,12 @@ A list of dictionaries containing the details of the deployment requests with th
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": false,
+    "success": null,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_started": null,
+    "time_completed": null,
+    "input_size": 10,
+    "output_size": null
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -1858,7 +1917,9 @@ A list of dictionaries containing the details of the deployment requests with th
     "success": true,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00"
+    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```
@@ -1872,10 +1933,12 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "deployment": "deployment-1",
     "version": "v1",
     "status": "completed",
-    "success": false,
+    "success": true,
     "time_created": "2020-03-28T20:00:43.613+00:00",
     "time_started": "2020-03-28T20:00:50.276+00:00",
-    "time_completed": "2020-03-28T20:00:55.241+00:00"
+    "time_completed": "2020-03-28T20:00:55.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
@@ -1885,7 +1948,9 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     "success": true,
     "time_created": "2020-03-28T21:12:45.613+00:00",
     "time_started": "2020-03-28T21:13:00.276+00:00",
-    "time_completed": "2020-03-28T21:13:05.241+00:00"
+    "time_completed": "2020-03-28T21:13:05.241+00:00",
+    "input_size": 10,
+    "output_size": 10
   }
 ]
 ```

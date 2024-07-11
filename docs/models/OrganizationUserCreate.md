@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**email** | **str** | 
+**email** | **str** |
 **admin** | **bool** | [optional] [default to False]
 
 

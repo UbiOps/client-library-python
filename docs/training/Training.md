@@ -36,7 +36,9 @@ Helper function to create a training experiment
 ### Optional Parameters
 - `default_bucket`: In which bucket to store the in- and output artifacts of the training experiment
 - `description`: Description of the experiment
-- `instance_type`: The instance type to allocate for this experiment
+- `instance_type`: [DEPRECATED] The instance type to allocate for this experiment
+- `instance_type_group_id`: ID of the instance type group for this experiment
+- `instance_type_group_name`: Name of the instance type group for this experiment
 - `request_retention_time`: The request retention time for this experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
@@ -54,7 +56,7 @@ Helper function to create a training experiment
   "name": "my-experiment",
   "description": "A training experiment",
   "environment": "python3-8",
-  "instance_type": "4096mb",
+  "instance_type_group_name": "4096 MB + 1 vCPU",
   "default_bucket": "default",
   "labels": {
     "type": "pytorch"
@@ -70,9 +72,11 @@ Details of the created experiment
 - `environment`: Environment of the experiment
 - `environment_display_name`: Human readable name of the environment
 - `status`: The status of the experiment 
-- `active_revision`: UUID of the active revision of the experiment
-- `latest_revision`: UUID of the latest revision of the experiment
+- `active_revision`: ID of the active revision of the experiment
+- `latest_revision`: ID of the latest revision of the experiment
 - `instance_type`: The instance type for the experiment
+- `instance_type_group_id`: ID of the instance type group for the experiment
+- `instance_type_group_name`: Name of the instance type group for the experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the experiment was created
 - `last_updated`: The date when the experiment was last updated
@@ -89,6 +93,8 @@ Details of the created experiment
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "instance_type": "4069mb",
+  "instance_type_group_id": "f5b474c2-09b5-476f-86b8-fc869d8e2c47",
+  "instance_type_group_name": "4096 MB + 1 vCPU",
   "labels": {
     "type": "pytorch"
   },
@@ -115,7 +121,7 @@ Details of the created experiment
         project_name=project_name,
         data=ubiops.ExperimentCreate(
             name=experiment_name,
-            instance_type='4069mb',
+            instance_type_group_name='4096 MB + 1 vCPU',
             description='A training experiment',
             environment='python3-8',
             default_bucket='default',
@@ -149,7 +155,7 @@ Details of the created experiment
         project_name=project_name,
         data=ubiops.ExperimentCreate(
             name=experiment_name,
-            instance_type='4069mb',
+            instance_type_group_name='4096 MB + 1 vCPU',
             description='A training experiment',
             environment='python3-8',
             default_bucket='default',
@@ -270,6 +276,8 @@ Get the details of an experiment
 - `active_revision`: UUID of the active revision of the experiment
 - `latest_revision`: UUID of the latest revision of the experiment
 - `instance_type`: The instance type for the experiment
+- `instance_type_group_id`: ID of the instance type group for the experiment
+- `instance_type_group_name`: Name of the instance type group for the experiment
 - `maximum_instances`: Upper bound of number of experiment pods running in parallel
 - `minimum_instances`: Lower bound of number of experiment pods running in parallel
 - `maximum_idle_time`: Maximum time in seconds a experiment stays idle before it is stopped
@@ -299,13 +307,15 @@ Get the details of an experiment
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
   "default_notification_group": None,
-  "description": "An experiment with Python 3.7",
-  "environment": "python3-7",
-  "environment_display_name": "Python 3.7",
+  "description": "An experiment with Python 3.8",
+  "environment": "python3-8",
+  "environment_display_name": "Python 3.8",
   "has_request_method": True,
   "has_requests_method": False,
   "id": "49d7d195-2296-43c0-8eab-84b0acd6e5bc",
   "instance_type": "2048mb",
+  "instance_type_group_id": "de6dd3d6-cee7-422b-a04d-1ae9756f824b",
+  "instance_type_group_name": "2048 MB + 0.5 vCPU",
   "labels": {},
   "last_updated": 2021-06-15T10:12:11.554682Z,
   "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
@@ -406,7 +416,6 @@ A list of details of the experiments
 - `status`: The status of the experiment 
 - `active_revision`: UUID of the active revision of the experiment
 - `latest_revision`: UUID of the latest revision of the experiment
-- `instance_type`: The instance type for the experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the experiment was created
 - `last_updated`: The date when the experiment was last updated
@@ -423,7 +432,6 @@ A list of details of the experiments
     "status": "available",
     "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
     "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
-    "instance_type": "4069mb",
     "labels": {
       "type": "pytorch"
     },
@@ -433,12 +441,11 @@ A list of details of the experiments
   {
     "id": "536b4b33-b1db-4446-b07c-986806478654",
     "name": "experiment_name_example_2",
-    "environment": "python3-7",
+    "environment": "python3-8",
     "environment_display_name": "Python 3.7",
     "status": "available",
     "active_revision": "cd2244a7-5953-4d31-add8-e88cf5f4bb30",
     "latest_revision": "cd2244a7-5953-4d31-add8-e88cf5f4bb30",
-    "instance_type": "16384mb",
     "labels": {
       "type": "tensorflow"
     },
@@ -522,6 +529,8 @@ Helper function to update a training experiment
 - `default_bucket`: New default bucket for the experiment
 - `description`: New description for the experiment
 - `instance_type`: New instance type for the experiment
+- `instance_type_group_id`: ID of the instance type group for the experiment
+- `instance_type_group_name`: Name of the instance type group for the experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels.
 
 ## Request Examples
@@ -537,8 +546,8 @@ Helper function to update a training experiment
 {
   "name": "my-experiment-new-name",
   "description": "My new description",
-  "environment": "python3.7",
-  "instance_type": "4096mb",
+  "environment": "python3.8",
+  "instance_type_group_name": "4096 MB + 1 vCPU",
   "default_bucket": "default",
   "labels": {
     "type": "pytorch"
@@ -555,9 +564,11 @@ The details of the experiment
 - `environment`: Environment of the experiment
 - `environment_display_name`: Human readable name of the environment
 - `status`: The status of the experiment
-- `active_revision`: UUID of the active revision of the experiment
-- `latest_revision`: UUID of the latest revision of the experiment
+- `active_revision`: ID of the active revision of the experiment
+- `latest_revision`: ID of the latest revision of the experiment
 - `instance_type`: The reserved instance type for the experiment
+- `instance_type_group_id`: ID of the instance type group for the experiment
+- `instance_type_group_name`: Name of the instance type group for the experiment
 - `maximum_instances`: Upper bound of number of experiment pods running in parallel
 - `minimum_instances`: Lower bound of number of experiment pods running in parallel
 - `maximum_idle_time`: Maximum time in seconds a experiment stays idle before it is stopped
@@ -588,12 +599,14 @@ The details of the experiment
   "default_bucket": "default",
   "default_notification_group": None,
   "description": "An experiment with Python 3.7",
-  "environment": "python3-7",
+  "environment": "python3-8",
   "environment_display_name": "Python 3.7",
   "has_request_method": True,
   "has_requests_method": False,
   "id": "49d7d195-2296-43c0-8eab-84b0acd6e5bc",
   "instance_type": "2048mb",
+  "instance_type_group_id": "de6dd3d6-cee7-422b-a04d-1ae9756f824b",
+  "instance_type_group_name": "2048 MB + 0.5 vCPU",
   "labels": {},
   "last_updated": 2021-06-15T10:12:11.554682Z,
   "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",

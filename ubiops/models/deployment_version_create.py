@@ -31,6 +31,8 @@ class DeploymentVersionCreate(object):
         "version": "str",
         "environment": "str",
         "instance_type": "str",
+        "instance_type_group_id": "str",
+        "instance_type_group_name": "str",
         "maximum_instances": "int",
         "minimum_instances": "int",
         "maximum_idle_time": "int",
@@ -51,6 +53,8 @@ class DeploymentVersionCreate(object):
         "version": "version",
         "environment": "environment",
         "instance_type": "instance_type",
+        "instance_type_group_id": "instance_type_group_id",
+        "instance_type_group_name": "instance_type_group_name",
         "maximum_instances": "maximum_instances",
         "minimum_instances": "minimum_instances",
         "maximum_idle_time": "maximum_idle_time",
@@ -72,6 +76,8 @@ class DeploymentVersionCreate(object):
         version=None,
         environment="python3-10",
         instance_type=None,
+        instance_type_group_id=None,
+        instance_type_group_name=None,
         maximum_instances=None,
         minimum_instances=None,
         maximum_idle_time=None,
@@ -99,6 +105,8 @@ class DeploymentVersionCreate(object):
         self._version = None
         self._environment = None
         self._instance_type = None
+        self._instance_type_group_id = None
+        self._instance_type_group_name = None
         self._maximum_instances = None
         self._minimum_instances = None
         self._maximum_idle_time = None
@@ -120,6 +128,10 @@ class DeploymentVersionCreate(object):
             self.environment = environment
         if instance_type is not None:
             self.instance_type = instance_type
+        if instance_type_group_id is not None:
+            self.instance_type_group_id = instance_type_group_id
+        if instance_type_group_name is not None:
+            self.instance_type_group_name = instance_type_group_name
         if maximum_instances is not None:
             self.maximum_instances = maximum_instances
         if minimum_instances is not None:
@@ -232,6 +244,65 @@ class DeploymentVersionCreate(object):
             raise ValueError("Invalid value for `instance_type`, length must be greater than or equal to `1`")
 
         self._instance_type = instance_type
+
+    @property
+    def instance_type_group_id(self):
+        """
+        Gets the instance_type_group_id of this DeploymentVersionCreate
+
+        :return: the instance_type_group_id of this DeploymentVersionCreate
+        :rtype: str
+        """
+
+        return self._instance_type_group_id
+
+    @instance_type_group_id.setter
+    def instance_type_group_id(self, instance_type_group_id):
+        """
+        Sets the instance_type_group_id of this DeploymentVersionCreate
+
+        :param instance_type_group_id: the instance_type_group_id of this DeploymentVersionCreate
+        :type: str
+        """
+
+        if self.client_side_validation and (
+            instance_type_group_id is not None and not isinstance(instance_type_group_id, str)
+        ):
+            raise ValueError("Parameter `instance_type_group_id` must be a string")
+
+        self._instance_type_group_id = instance_type_group_id
+
+    @property
+    def instance_type_group_name(self):
+        """
+        Gets the instance_type_group_name of this DeploymentVersionCreate
+
+        :return: the instance_type_group_name of this DeploymentVersionCreate
+        :rtype: str
+        """
+
+        return self._instance_type_group_name
+
+    @instance_type_group_name.setter
+    def instance_type_group_name(self, instance_type_group_name):
+        """
+        Sets the instance_type_group_name of this DeploymentVersionCreate
+
+        :param instance_type_group_name: the instance_type_group_name of this DeploymentVersionCreate
+        :type: str
+        """
+
+        if self.client_side_validation and (
+            instance_type_group_name is not None and not isinstance(instance_type_group_name, str)
+        ):
+            raise ValueError("Parameter `instance_type_group_name` must be a string")
+
+        if self.client_side_validation and (instance_type_group_name is not None and len(instance_type_group_name) < 1):
+            raise ValueError(
+                "Invalid value for `instance_type_group_name`, length must be greater than or equal to `1`"
+            )
+
+        self._instance_type_group_name = instance_type_group_name
 
     @property
     def maximum_instances(self):

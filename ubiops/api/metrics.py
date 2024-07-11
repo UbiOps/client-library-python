@@ -676,6 +676,7 @@ class Metrics(object):
             - str end_date:
             - int aggregation_period:
             - str labels:
+            - int unit_period:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -687,7 +688,7 @@ class Metrics(object):
         """
 
         method_name = "time_series_data_list"
-        optional_params = ["metric", "start_date", "end_date", "aggregation_period", "labels"]
+        optional_params = ["metric", "start_date", "end_date", "aggregation_period", "labels", "unit_period"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -725,6 +726,9 @@ class Metrics(object):
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
                 raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "unit_period" in kwargs and kwargs["unit_period"] is not None:
+            if not isinstance(kwargs["unit_period"], int):
+                raise ApiValueError(f"Parameter `unit_period` must be an integer when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -746,6 +750,8 @@ class Metrics(object):
             query_params.append(("aggregation_period", kwargs["aggregation_period"]))
         if "labels" in kwargs and kwargs["labels"] is not None:
             query_params.append(("labels", kwargs["labels"]))
+        if "unit_period" in kwargs and kwargs["unit_period"] is not None:
+            query_params.append(("unit_period", kwargs["unit_period"]))
 
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(["application/json"])

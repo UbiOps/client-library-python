@@ -1,0 +1,9 @@
+# InstanceTypeCreate
+
+## Properties
+Name | Type | Notes
+------------ | ------------- | -------------
+**id** | **str** | [optional]
+**priority** | **int** | [optional]
+
+

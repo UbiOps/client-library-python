@@ -278,6 +278,8 @@ class Training(object):
             version=data.name,
             environment=data.environment,
             instance_type=data.instance_type,
+            instance_type_group_id=data.instance_type_group_id,
+            instance_type_group_name=data.instance_type_group_name,
             maximum_instances=10,
             minimum_instances=0,
             description=data.description,

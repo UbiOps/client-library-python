@@ -3,13 +3,13 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** | 
-**deployment** | **str** | [optional] 
-**version** | **str** | [optional] 
-**status** | **str** | 
-**success** | **bool** | 
-**result** | **str** or **dict(str, str)** | [optional] 
-**error_message** | **str** | [optional] 
-**timeout** | **int** | [optional] 
+**id** | **str** |
+**deployment** | **str** | [optional]
+**version** | **str** | [optional]
+**status** | **str** |
+**success** | **bool** | [deprecated]
+**result** | **str** or **dict(str, str)** | [optional]
+**error_message** | **str** | [optional]
+**timeout** | **int** | [optional]
 
 

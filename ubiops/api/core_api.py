@@ -14,12 +14,12 @@ import warnings  # noqa: F401
 
 from ubiops.api_client import ApiClient
 
-from ubiops.api.blobs import Blobs
 from ubiops.api.deployment_requests import DeploymentRequests
 from ubiops.api.deployments import Deployments
 from ubiops.api.environments import Environments
 from ubiops.api.files import Files
 from ubiops.api.imports_and_exports import ImportsAndExports
+from ubiops.api.instances import Instances
 from ubiops.api.metrics import Metrics
 from ubiops.api.monitoring import Monitoring
 from ubiops.api.organizations import Organizations
@@ -47,12 +47,12 @@ class CoreApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        self.blobs = Blobs(api_client=api_client)
         self.deployment_requests = DeploymentRequests(api_client=api_client)
         self.deployments = Deployments(api_client=api_client)
         self.environments = Environments(api_client=api_client)
         self.files = Files(api_client=api_client)
         self.imports_and_exports = ImportsAndExports(api_client=api_client)
+        self.instances = Instances(api_client=api_client)
         self.metrics = Metrics(api_client=api_client)
         self.monitoring = Monitoring(api_client=api_client)
         self.organizations = Organizations(api_client=api_client)
@@ -65,180 +65,6 @@ class CoreApi(object):
         self.status = Status(api_client=api_client)
         self.user = User(api_client=api_client)
         self.webhooks = Webhooks(api_client=api_client)
-
-    def blobs_create(self, project_name, file, **kwargs):
-        """
-        Upload a blob
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.blobs_create(
-                project_name, file, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param file file: (required)
-        :param kwargs:
-            - int blob_ttl:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(BlobList, status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        warnings.warn(
-            "blobs_create is deprecated and will stop working after May 2024. Use files instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        return self.blobs.blobs_create_with_http_info(project_name, file, **kwargs)
-
-    def blobs_delete(self, project_name, blob_id, **kwargs):
-        """
-        Delete a blob
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.blobs_delete(
-                project_name, blob_id, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param str blob_id: (required)
-        :param kwargs:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: None
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        warnings.warn(
-            "blobs_delete is deprecated and will stop working after May 2024. Use files instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        return self.blobs.blobs_delete_with_http_info(project_name, blob_id, **kwargs)
-
-    def blobs_get(self, project_name, blob_id, **kwargs):
-        """
-        Get a blob
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.blobs_get(
-                project_name, blob_id, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param str blob_id: (required)
-        :param kwargs:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if True, the file will be downloaded in a folder, which can be defined by
-                api_client.configuration.temp_folder_path. Default is False.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(file, status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        warnings.warn(
-            "blobs_get is deprecated and will stop working after May 2024. Use files instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        return self.blobs.blobs_get_with_http_info(project_name, blob_id, **kwargs)
-
-    def blobs_list(self, project_name, **kwargs):
-        """
-        List blobs
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.blobs_list(
-                project_name, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param kwargs:
-            - int range:
-            - str creation_date:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(list[BlobList], status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        warnings.warn(
-            "blobs_list is deprecated and will stop working after May 2024. Use files instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        return self.blobs.blobs_list_with_http_info(project_name, **kwargs)
-
-    def blobs_update(self, project_name, blob_id, file, **kwargs):
-        """
-        Update a blob
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.blobs_update(
-                project_name, blob_id, file, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param str blob_id: (required)
-        :param file file: (required)
-        :param kwargs:
-            - int blob_ttl:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(BlobList, status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        warnings.warn(
-            "blobs_update is deprecated and will stop working after May 2024. Use files instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        return self.blobs.blobs_update_with_http_info(project_name, blob_id, file, **kwargs)
 
     def batch_deployment_requests_create(self, project_name, deployment_name, data, **kwargs):
         """
@@ -1238,7 +1064,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(DeploymentVersionList, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(DeploymentVersionDetail, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -2812,6 +2638,335 @@ class CoreApi(object):
 
         return self.imports_and_exports.imports_update_with_http_info(project_name, import_id, data, **kwargs)
 
+    def instance_events_list(self, project_name, deployment_name, instance_id, version, **kwargs):
+        """
+        List events for instances
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_events_list(
+                project_name, deployment_name, instance_id, version, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param str instance_id: (required)
+        :param str version: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceEventPaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_events_list_with_http_info(
+            project_name, deployment_name, instance_id, version, **kwargs
+        )
+
+    def instance_type_groups_create(self, project_name, data, **kwargs):
+        """
+        Create instance type group
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_type_groups_create(
+                project_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param InstanceTypeGroupCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeGroupList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_type_groups_create_with_http_info(project_name, data, **kwargs)
+
+    def instance_type_groups_delete(self, project_name, instance_type_group_id, **kwargs):
+        """
+        Delete instance type group
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_type_groups_delete(
+                project_name, instance_type_group_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_type_group_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_type_groups_delete_with_http_info(project_name, instance_type_group_id, **kwargs)
+
+    def instance_type_groups_get(self, project_name, instance_type_group_id, **kwargs):
+        """
+        Get instance type group
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_type_groups_get(
+                project_name, instance_type_group_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_type_group_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeGroupList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_type_groups_get_with_http_info(project_name, instance_type_group_id, **kwargs)
+
+    def instance_type_groups_list(self, project_name, **kwargs):
+        """
+        List instance type groups
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_type_groups_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeGroupListPaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_type_groups_list_with_http_info(project_name, **kwargs)
+
+    def instance_type_groups_update(self, project_name, instance_type_group_id, data, **kwargs):
+        """
+        Update instance type group
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_type_groups_update(
+                project_name, instance_type_group_id, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_type_group_id: (required)
+        :param InstanceTypeGroupCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeGroupList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_type_groups_update_with_http_info(
+            project_name, instance_type_group_id, data, **kwargs
+        )
+
+    def instance_types_list(self, project_name, **kwargs):
+        """
+        List instance types
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_types_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeListPaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_types_list_with_http_info(project_name, **kwargs)
+
+    def instances_get(self, project_name, deployment_name, instance_id, version, **kwargs):
+        """
+        Get instance for deployment versions
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instances_get(
+                project_name, deployment_name, instance_id, version, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param str instance_id: (required)
+        :param str version: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instances_get_with_http_info(
+            project_name, deployment_name, instance_id, version, **kwargs
+        )
+
+    def instances_list(self, project_name, deployment_name, version, **kwargs):
+        """
+        List instances for deployment versions
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instances_list(
+                project_name, deployment_name, version, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param str version: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceListPaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instances_list_with_http_info(project_name, deployment_name, version, **kwargs)
+
+    def project_instances_get(self, project_name, instance_id, **kwargs):
+        """
+        Get instance for projects
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.project_instances_get(
+                project_name, instance_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.project_instances_get_with_http_info(project_name, instance_id, **kwargs)
+
+    def project_instances_list(self, project_name, **kwargs):
+        """
+        List instances for projects
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.project_instances_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ProjectInstanceListPaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.project_instances_list_with_http_info(project_name, **kwargs)
+
     def metrics_create(self, project_name, data, **kwargs):
         """
         Create metrics
@@ -3027,6 +3182,7 @@ class CoreApi(object):
             - str end_date:
             - int aggregation_period:
             - str labels:
+            - int unit_period:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4454,33 +4610,6 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.pipelines.pipelines_update_with_http_info(project_name, pipeline_name, data, **kwargs)
-
-    def instance_types_list(self, project_name, **kwargs):
-        """
-        List instance types
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.instance_types_list(
-                project_name, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param kwargs:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(list[DeploymentInstanceType], status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """
-
-        kwargs["_return_http_data_only"] = True
-
-        return self.projects.instance_types_list_with_http_info(project_name, **kwargs)
 
     def project_audit_events_list(self, project_name, **kwargs):
         """

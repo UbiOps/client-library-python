@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.4.1"
+__version__ = "4.5.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -53,17 +53,16 @@ from ubiops.models.attachment_sources_list import AttachmentSourcesList
 from ubiops.models.attachments_create import AttachmentsCreate
 from ubiops.models.attachments_list import AttachmentsList
 from ubiops.models.audit_list import AuditList
-from ubiops.models.blob_list import BlobList
 from ubiops.models.bucket_create import BucketCreate
 from ubiops.models.bucket_detail import BucketDetail
 from ubiops.models.bucket_list import BucketList
 from ubiops.models.bucket_update import BucketUpdate
 from ubiops.models.build_list import BuildList
+from ubiops.models.cluster import Cluster
 from ubiops.models.deployment_create import DeploymentCreate
 from ubiops.models.deployment_create_response import DeploymentCreateResponse
 from ubiops.models.deployment_detail import DeploymentDetail
 from ubiops.models.deployment_input_field_create import DeploymentInputFieldCreate
-from ubiops.models.deployment_instance_type import DeploymentInstanceType
 from ubiops.models.deployment_list import DeploymentList
 from ubiops.models.deployment_output_field_create import DeploymentOutputFieldCreate
 from ubiops.models.deployment_request_batch_create_response import DeploymentRequestBatchCreateResponse
@@ -115,11 +114,26 @@ from ubiops.models.input_output_field_base import InputOutputFieldBase
 from ubiops.models.input_output_field_detail import InputOutputFieldDetail
 from ubiops.models.input_output_field_list import InputOutputFieldList
 from ubiops.models.input_output_widget_list import InputOutputWidgetList
+from ubiops.models.instance_detail import InstanceDetail
+from ubiops.models.instance_event import InstanceEvent
+from ubiops.models.instance_event_paginated import InstanceEventPaginated
+from ubiops.models.instance_list import InstanceList
+from ubiops.models.instance_list_paginated import InstanceListPaginated
+from ubiops.models.instance_type import InstanceType
+from ubiops.models.instance_type_create import InstanceTypeCreate
+from ubiops.models.instance_type_group_create import InstanceTypeGroupCreate
+from ubiops.models.instance_type_group_list import InstanceTypeGroupList
+from ubiops.models.instance_type_group_list_paginated import InstanceTypeGroupListPaginated
+from ubiops.models.instance_type_item import InstanceTypeItem
+from ubiops.models.instance_type_list import InstanceTypeList
+from ubiops.models.instance_type_list_paginated import InstanceTypeListPaginated
 from ubiops.models.logs import Logs
 from ubiops.models.logs_create import LogsCreate
 from ubiops.models.metric_create import MetricCreate
 from ubiops.models.metric_detail import MetricDetail
 from ubiops.models.metric_update import MetricUpdate
+from ubiops.models.node import Node
+from ubiops.models.node_pool import NodePool
 from ubiops.models.notification_group_contact import NotificationGroupContact
 from ubiops.models.notification_group_create import NotificationGroupCreate
 from ubiops.models.notification_group_list import NotificationGroupList
@@ -162,6 +176,8 @@ from ubiops.models.pipeline_version_update import PipelineVersionUpdate
 from ubiops.models.project_create import ProjectCreate
 from ubiops.models.project_deployment_version_usage import ProjectDeploymentVersionUsage
 from ubiops.models.project_detail import ProjectDetail
+from ubiops.models.project_instance_list import ProjectInstanceList
+from ubiops.models.project_instance_list_paginated import ProjectInstanceListPaginated
 from ubiops.models.project_list import ProjectList
 from ubiops.models.project_resource_usage import ProjectResourceUsage
 from ubiops.models.project_update import ProjectUpdate

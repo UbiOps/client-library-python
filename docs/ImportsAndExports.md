@@ -1016,7 +1016,7 @@ Confirm (and update) an import by selecting the objects in the import
           "zip": "deployments/deployment_deployment-1/versions/deployment_deployment-1_version_v1.zip",
           "description": "",
           "labels": {},
-          "environment": "python3-7",
+          "environment": "python3-8",
           "maximum_idle_time": 300,
           "maximum_instances": 5,
           "instance_type": "256mb",

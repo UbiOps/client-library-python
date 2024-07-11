@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**result** | **str** or **dict(str, str)** | [optional] 
+**result** | **str** or **dict(str, str)** | [optional]
 
 

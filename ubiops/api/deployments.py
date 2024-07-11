@@ -1456,7 +1456,7 @@ class Deployments(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(DeploymentVersionList, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(DeploymentVersionDetail, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -1522,7 +1522,7 @@ class Deployments(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="DeploymentVersionList",
+            response_type="DeploymentVersionDetail",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),

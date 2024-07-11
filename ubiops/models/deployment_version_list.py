@@ -38,7 +38,6 @@ class DeploymentVersionList(object):
         "status": "str",
         "active_revision": "str",
         "latest_revision": "str",
-        "instance_type": "str",
         "maximum_instances": "int",
         "minimum_instances": "int",
         "maximum_idle_time": "int",
@@ -54,6 +53,7 @@ class DeploymentVersionList(object):
         "static_ip": "bool",
         "restart_request_interruption": "bool",
         "ports": "list[DeploymentVersionPort]",
+        "instance_type": "str",
     }
 
     attribute_map = {
@@ -67,7 +67,6 @@ class DeploymentVersionList(object):
         "status": "status",
         "active_revision": "active_revision",
         "latest_revision": "latest_revision",
-        "instance_type": "instance_type",
         "maximum_instances": "maximum_instances",
         "minimum_instances": "minimum_instances",
         "maximum_idle_time": "maximum_idle_time",
@@ -83,6 +82,7 @@ class DeploymentVersionList(object):
         "static_ip": "static_ip",
         "restart_request_interruption": "restart_request_interruption",
         "ports": "ports",
+        "instance_type": "instance_type",
     }
 
     def __init__(
@@ -97,7 +97,6 @@ class DeploymentVersionList(object):
         status=None,
         active_revision=None,
         latest_revision=None,
-        instance_type=None,
         maximum_instances=None,
         minimum_instances=None,
         maximum_idle_time=None,
@@ -113,6 +112,7 @@ class DeploymentVersionList(object):
         static_ip=None,
         restart_request_interruption=None,
         ports=None,
+        instance_type=None,
         **kwargs,
     ):
         """
@@ -133,7 +133,6 @@ class DeploymentVersionList(object):
         self._status = None
         self._active_revision = None
         self._latest_revision = None
-        self._instance_type = None
         self._maximum_instances = None
         self._minimum_instances = None
         self._maximum_idle_time = None
@@ -149,6 +148,7 @@ class DeploymentVersionList(object):
         self._static_ip = None
         self._restart_request_interruption = None
         self._ports = None
+        self._instance_type = None
         self.discriminator = None
 
         if id is not None:
@@ -168,7 +168,6 @@ class DeploymentVersionList(object):
             self.active_revision = active_revision
         if latest_revision is not None:
             self.latest_revision = latest_revision
-        self.instance_type = instance_type
         if maximum_instances is not None:
             self.maximum_instances = maximum_instances
         if minimum_instances is not None:
@@ -198,6 +197,8 @@ class DeploymentVersionList(object):
             self.restart_request_interruption = restart_request_interruption
         if ports is not None:
             self.ports = ports
+        if instance_type is not None:
+            self.instance_type = instance_type
 
     @property
     def id(self):
@@ -473,36 +474,6 @@ class DeploymentVersionList(object):
             raise ValueError("Parameter `latest_revision` must be a string")
 
         self._latest_revision = latest_revision
-
-    @property
-    def instance_type(self):
-        """
-        Gets the instance_type of this DeploymentVersionList
-
-        :return: the instance_type of this DeploymentVersionList
-        :rtype: str
-        """
-
-        return self._instance_type
-
-    @instance_type.setter
-    def instance_type(self, instance_type):
-        """
-        Sets the instance_type of this DeploymentVersionList
-
-        :param instance_type: the instance_type of this DeploymentVersionList
-        :type: str
-        """
-
-        if self.client_side_validation and instance_type is None:
-            raise ValueError("Invalid value for `instance_type`, must not be `None`")
-        if self.client_side_validation and (instance_type is not None and not isinstance(instance_type, str)):
-            raise ValueError("Parameter `instance_type` must be a string")
-
-        if self.client_side_validation and (instance_type is not None and len(instance_type) < 1):
-            raise ValueError("Invalid value for `instance_type`, length must be greater than or equal to `1`")
-
-        self._instance_type = instance_type
 
     @property
     def maximum_instances(self):
@@ -893,6 +864,31 @@ class DeploymentVersionList(object):
             ports = [DeploymentVersionPort(**item) if isinstance(item, dict) else item for item in ports]
 
         self._ports = ports
+
+    @property
+    def instance_type(self):
+        """
+        Gets the instance_type of this DeploymentVersionList
+
+        :return: the instance_type of this DeploymentVersionList
+        :rtype: str
+        """
+
+        return self._instance_type
+
+    @instance_type.setter
+    def instance_type(self, instance_type):
+        """
+        Sets the instance_type of this DeploymentVersionList
+
+        :param instance_type: the instance_type of this DeploymentVersionList
+        :type: str
+        """
+
+        if self.client_side_validation and (instance_type is not None and not isinstance(instance_type, str)):
+            raise ValueError("Parameter `instance_type` must be a string")
+
+        self._instance_type = instance_type
 
     def to_dict(self):
         """

@@ -22,10 +22,9 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
         "time_completed": "datetime",
         "error_message": "str",
         "retries": "int",
+        "timeout": "int",
         "request_data": "object",
         "result": "object",
-        "notification_group": "str",
-        "origin": "dict(str, str)",
     }
 
     attribute_map = {
@@ -38,10 +37,9 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
         "time_completed": "time_completed",
         "error_message": "error_message",
         "retries": "retries",
+        "timeout": "timeout",
         "request_data": "request_data",
         "result": "result",
-        "notification_group": "notification_group",
-        "origin": "origin",
     }
 
     def __init__(
@@ -55,10 +53,9 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
         time_completed=None,
         error_message=None,
         retries=None,
+        timeout=None,
         request_data=None,
         result=None,
-        notification_group=None,
-        origin=None,
         **kwargs,
     ):
         """
@@ -78,10 +75,9 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
             time_completed=time_completed,
             error_message=error_message,
             retries=retries,
+            timeout=timeout,
             request_data=request_data,
             result=result,
-            notification_group=notification_group,
-            origin=origin,
             **kwargs,
         )
 
