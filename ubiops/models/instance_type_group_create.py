@@ -45,7 +45,8 @@ class InstanceTypeGroupCreate(object):
         self.discriminator = None
 
         self.name = name
-        self.instance_types = instance_types
+        if instance_types is not None:
+            self.instance_types = instance_types
 
     @property
     def name(self):
@@ -99,8 +100,6 @@ class InstanceTypeGroupCreate(object):
         :type: list[InstanceTypeCreate]
         """
 
-        if self.client_side_validation and instance_types is None:
-            raise ValueError("Invalid value for `instance_types`, must not be `None`")
         if self.client_side_validation and (instance_types is not None and not isinstance(instance_types, list)):
             raise ValueError("Parameter `instance_types` must be a list")
         if self.client_side_validation and instance_types is not None:

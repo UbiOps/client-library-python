@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.5.0"
+__version__ = "4.5.1"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi

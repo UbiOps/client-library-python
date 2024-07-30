@@ -27,11 +27,11 @@ class InstanceTypeCreate(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "priority": "int"}
+    openapi_types = {"id": "str", "priority": "int", "schedule_timeout": "int"}
 
-    attribute_map = {"id": "id", "priority": "priority"}
+    attribute_map = {"id": "id", "priority": "priority", "schedule_timeout": "schedule_timeout"}
 
-    def __init__(self, id=None, priority=None, **kwargs):
+    def __init__(self, id=None, priority=None, schedule_timeout=None, **kwargs):
         """
         InstanceTypeCreate - a model defined in OpenAPI
         """
@@ -42,12 +42,15 @@ class InstanceTypeCreate(object):
 
         self._id = None
         self._priority = None
+        self._schedule_timeout = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
         if priority is not None:
             self.priority = priority
+        if schedule_timeout is not None:
+            self.schedule_timeout = schedule_timeout
 
     @property
     def id(self):
@@ -101,6 +104,31 @@ class InstanceTypeCreate(object):
             raise ValueError("Parameter `priority` must be an integer")
 
         self._priority = priority
+
+    @property
+    def schedule_timeout(self):
+        """
+        Gets the schedule_timeout of this InstanceTypeCreate
+
+        :return: the schedule_timeout of this InstanceTypeCreate
+        :rtype: int
+        """
+
+        return self._schedule_timeout
+
+    @schedule_timeout.setter
+    def schedule_timeout(self, schedule_timeout):
+        """
+        Sets the schedule_timeout of this InstanceTypeCreate
+
+        :param schedule_timeout: the schedule_timeout of this InstanceTypeCreate
+        :type: int
+        """
+
+        if self.client_side_validation and (schedule_timeout is not None and not isinstance(schedule_timeout, int)):
+            raise ValueError("Parameter `schedule_timeout` must be an integer")
+
+        self._schedule_timeout = schedule_timeout
 
     def to_dict(self):
         """
