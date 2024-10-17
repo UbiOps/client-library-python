@@ -54,6 +54,7 @@ class DeploymentVersionDetail(object):
         "restart_request_interruption": "bool",
         "ports": "list[DeploymentVersionPort]",
         "instance_type": "str",
+        "scaling_strategy": "str",
         "instance_type_group_id": "str",
         "instance_type_group_name": "str",
         "last_file_upload": "datetime",
@@ -88,6 +89,7 @@ class DeploymentVersionDetail(object):
         "restart_request_interruption": "restart_request_interruption",
         "ports": "ports",
         "instance_type": "instance_type",
+        "scaling_strategy": "scaling_strategy",
         "instance_type_group_id": "instance_type_group_id",
         "instance_type_group_name": "instance_type_group_name",
         "last_file_upload": "last_file_upload",
@@ -123,6 +125,7 @@ class DeploymentVersionDetail(object):
         restart_request_interruption=None,
         ports=None,
         instance_type=None,
+        scaling_strategy=None,
         instance_type_group_id=None,
         instance_type_group_name=None,
         last_file_upload=None,
@@ -164,6 +167,7 @@ class DeploymentVersionDetail(object):
         self._restart_request_interruption = None
         self._ports = None
         self._instance_type = None
+        self._scaling_strategy = None
         self._instance_type_group_id = None
         self._instance_type_group_name = None
         self._last_file_upload = None
@@ -219,6 +223,7 @@ class DeploymentVersionDetail(object):
             self.ports = ports
         if instance_type is not None:
             self.instance_type = instance_type
+        self.scaling_strategy = scaling_strategy
         if instance_type_group_id is not None:
             self.instance_type_group_id = instance_type_group_id
         if instance_type_group_name is not None:
@@ -916,6 +921,36 @@ class DeploymentVersionDetail(object):
             raise ValueError("Parameter `instance_type` must be a string")
 
         self._instance_type = instance_type
+
+    @property
+    def scaling_strategy(self):
+        """
+        Gets the scaling_strategy of this DeploymentVersionDetail
+
+        :return: the scaling_strategy of this DeploymentVersionDetail
+        :rtype: str
+        """
+
+        return self._scaling_strategy
+
+    @scaling_strategy.setter
+    def scaling_strategy(self, scaling_strategy):
+        """
+        Sets the scaling_strategy of this DeploymentVersionDetail
+
+        :param scaling_strategy: the scaling_strategy of this DeploymentVersionDetail
+        :type: str
+        """
+
+        if self.client_side_validation and scaling_strategy is None:
+            raise ValueError("Invalid value for `scaling_strategy`, must not be `None`")
+        if self.client_side_validation and (scaling_strategy is not None and not isinstance(scaling_strategy, str)):
+            raise ValueError("Parameter `scaling_strategy` must be a string")
+
+        if self.client_side_validation and (scaling_strategy is not None and len(scaling_strategy) < 1):
+            raise ValueError("Invalid value for `scaling_strategy`, length must be greater than or equal to `1`")
+
+        self._scaling_strategy = scaling_strategy
 
     @property
     def instance_type_group_id(self):

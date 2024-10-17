@@ -321,7 +321,7 @@ class OperatorRequestDetail(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )

@@ -47,6 +47,7 @@ class DeploymentVersionUpdate(object):
         "static_ip": "bool",
         "restart_request_interruption": "bool",
         "ports": "list[DeploymentVersionPort]",
+        "scaling_strategy": "str",
     }
 
     attribute_map = {
@@ -69,6 +70,7 @@ class DeploymentVersionUpdate(object):
         "static_ip": "static_ip",
         "restart_request_interruption": "restart_request_interruption",
         "ports": "ports",
+        "scaling_strategy": "scaling_strategy",
     }
 
     def __init__(
@@ -92,6 +94,7 @@ class DeploymentVersionUpdate(object):
         static_ip=None,
         restart_request_interruption=None,
         ports=None,
+        scaling_strategy=None,
         **kwargs,
     ):
         """
@@ -121,6 +124,7 @@ class DeploymentVersionUpdate(object):
         self._static_ip = None
         self._restart_request_interruption = None
         self._ports = None
+        self._scaling_strategy = None
         self.discriminator = None
 
         if version is not None:
@@ -159,6 +163,8 @@ class DeploymentVersionUpdate(object):
             self.restart_request_interruption = restart_request_interruption
         if ports is not None:
             self.ports = ports
+        if scaling_strategy is not None:
+            self.scaling_strategy = scaling_strategy
 
     @property
     def version(self):
@@ -678,6 +684,31 @@ class DeploymentVersionUpdate(object):
             ports = [DeploymentVersionPort(**item) if isinstance(item, dict) else item for item in ports]
 
         self._ports = ports
+
+    @property
+    def scaling_strategy(self):
+        """
+        Gets the scaling_strategy of this DeploymentVersionUpdate
+
+        :return: the scaling_strategy of this DeploymentVersionUpdate
+        :rtype: str
+        """
+
+        return self._scaling_strategy
+
+    @scaling_strategy.setter
+    def scaling_strategy(self, scaling_strategy):
+        """
+        Sets the scaling_strategy of this DeploymentVersionUpdate
+
+        :param scaling_strategy: the scaling_strategy of this DeploymentVersionUpdate
+        :type: str
+        """
+
+        if self.client_side_validation and (scaling_strategy is not None and not isinstance(scaling_strategy, str)):
+            raise ValueError("Parameter `scaling_strategy` must be a string")
+
+        self._scaling_strategy = scaling_strategy
 
     def to_dict(self):
         """

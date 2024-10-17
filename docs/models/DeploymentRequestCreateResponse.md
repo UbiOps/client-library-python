@@ -7,7 +7,7 @@ Name | Type | Notes
 **deployment** | **str** | [optional]
 **version** | **str** | [optional]
 **status** | **str** |
-**success** | **bool** | [deprecated]
+**success** | **bool** | [optional] [deprecated]
 **result** | **str** or **dict(str, str)** | [optional]
 **error_message** | **str** | [optional]
 **timeout** | **int** | [optional]

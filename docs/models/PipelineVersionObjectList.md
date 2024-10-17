@@ -11,6 +11,7 @@ Name | Type | Notes
 **input_type** | **str** | [optional]
 **output_type** | **str** | [optional]
 **configuration** | [**PipelineVersionObjectConfigurationList**](PipelineVersionObjectConfigurationList.md) | [optional]
+**metadata** | **dict(str, str)** | [optional]
 **input_fields** | [**list[InputOutputFieldBase]**](InputOutputFieldBase.md) | [optional]
 **output_fields** | [**list[InputOutputFieldBase]**](InputOutputFieldBase.md) | [optional]
 

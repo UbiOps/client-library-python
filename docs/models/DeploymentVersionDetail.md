@@ -29,6 +29,7 @@ Name | Type | Notes
 **restart_request_interruption** | **bool** | [optional]
 **ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional]
 **instance_type** | **str** | [optional] [readonly]
+**scaling_strategy** | **str** |
 **instance_type_group_id** | **str** | [optional] [readonly]
 **instance_type_group_name** | **str** | [optional] [readonly]
 **last_file_upload** | **datetime** | [optional] [readonly]

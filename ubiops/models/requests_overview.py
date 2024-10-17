@@ -11,7 +11,6 @@
 
 
 import pprint
-import warnings
 
 
 class RequestsOverview(object):
@@ -34,7 +33,6 @@ class RequestsOverview(object):
         "pipeline": "str",
         "version": "str",
         "status": "str",
-        "success": "bool",
         "time_created": "datetime",
         "time_started": "datetime",
         "time_completed": "datetime",
@@ -48,7 +46,6 @@ class RequestsOverview(object):
         "pipeline": "pipeline",
         "version": "version",
         "status": "status",
-        "success": "success",
         "time_created": "time_created",
         "time_started": "time_started",
         "time_completed": "time_completed",
@@ -63,7 +60,6 @@ class RequestsOverview(object):
         pipeline=None,
         version=None,
         status=None,
-        success=None,
         time_created=None,
         time_started=None,
         time_completed=None,
@@ -84,7 +80,6 @@ class RequestsOverview(object):
         self._pipeline = None
         self._version = None
         self._status = None
-        self._success = None
         self._time_created = None
         self._time_started = None
         self._time_completed = None
@@ -97,7 +92,6 @@ class RequestsOverview(object):
         self.pipeline = pipeline
         self.version = version
         self.status = status
-        self.success = success
         self.time_created = time_created
         self.time_started = time_started
         self.time_completed = time_completed
@@ -235,36 +229,6 @@ class RequestsOverview(object):
             raise ValueError("Parameter `status` must be a string")
 
         self._status = status
-
-    @property
-    def success(self):
-        """
-        Gets the success of this RequestsOverview
-
-        :return: the success of this RequestsOverview
-        :rtype: bool
-        """
-        warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
-            category=DeprecationWarning,
-            stacklevel=2,
-        )
-
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this RequestsOverview
-
-        :param success: the success of this RequestsOverview
-        :type: bool
-        """
-
-        if self.client_side_validation and (success is not None and not isinstance(success, bool)):
-            raise ValueError("Parameter `success` must be a boolean")
-
-        self._success = success
 
     @property
     def time_created(self):

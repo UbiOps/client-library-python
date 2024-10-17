@@ -22,5 +22,6 @@ Name | Type | Notes
 **static_ip** | **bool** | [optional]
 **restart_request_interruption** | **bool** | [optional]
 **ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional]
+**scaling_strategy** | **str** | [optional]
 
 

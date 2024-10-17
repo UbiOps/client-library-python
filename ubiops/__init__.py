@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.5.1"
+__version__ = "4.6.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -30,7 +30,6 @@ from ubiops.training.experiment_run_create_response import ExperimentRunCreateRe
 from ubiops.training.experiment_run_detail import ExperimentRunDetail
 from ubiops.training.experiment_run_list import ExperimentRunList
 from ubiops.training.experiment_run_update import ExperimentRunUpdate
-from ubiops.training.experiment_run_update_response import ExperimentRunUpdateResponse
 
 # import ApiClient
 from ubiops.api_client import ApiClient
@@ -66,21 +65,17 @@ from ubiops.models.deployment_input_field_create import DeploymentInputFieldCrea
 from ubiops.models.deployment_list import DeploymentList
 from ubiops.models.deployment_output_field_create import DeploymentOutputFieldCreate
 from ubiops.models.deployment_request_batch_create_response import DeploymentRequestBatchCreateResponse
-from ubiops.models.deployment_request_batch_detail import DeploymentRequestBatchDetail
 from ubiops.models.deployment_request_create_response import DeploymentRequestCreateResponse
+from ubiops.models.deployment_request_detail import DeploymentRequestDetail
 from ubiops.models.deployment_request_list import DeploymentRequestList
 from ubiops.models.deployment_request_single_detail import DeploymentRequestSingleDetail
 from ubiops.models.deployment_request_update import DeploymentRequestUpdate
-from ubiops.models.deployment_request_update_response import DeploymentRequestUpdateResponse
 from ubiops.models.deployment_update import DeploymentUpdate
 from ubiops.models.deployment_version_create import DeploymentVersionCreate
 from ubiops.models.deployment_version_detail import DeploymentVersionDetail
 from ubiops.models.deployment_version_list import DeploymentVersionList
 from ubiops.models.deployment_version_port import DeploymentVersionPort
 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
-from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
-from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
-from ubiops.models.direct_pipeline_request_pipeline_request import DirectPipelineRequestPipelineRequest
 from ubiops.models.environment_build_dependency import EnvironmentBuildDependency
 from ubiops.models.environment_build_list import EnvironmentBuildList
 from ubiops.models.environment_build_update import EnvironmentBuildUpdate
@@ -124,6 +119,8 @@ from ubiops.models.instance_type_create import InstanceTypeCreate
 from ubiops.models.instance_type_group_create import InstanceTypeGroupCreate
 from ubiops.models.instance_type_group_list import InstanceTypeGroupList
 from ubiops.models.instance_type_group_list_paginated import InstanceTypeGroupListPaginated
+from ubiops.models.instance_type_group_usage import InstanceTypeGroupUsage
+from ubiops.models.instance_type_group_usage_paginated import InstanceTypeGroupUsagePaginated
 from ubiops.models.instance_type_item import InstanceTypeItem
 from ubiops.models.instance_type_list import InstanceTypeList
 from ubiops.models.instance_type_list_paginated import InstanceTypeListPaginated
@@ -165,6 +162,7 @@ from ubiops.models.pipeline_request_list import PipelineRequestList
 from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
 from ubiops.models.pipeline_request_pipeline_request import PipelineRequestPipelineRequest
 from ubiops.models.pipeline_request_single_detail import PipelineRequestSingleDetail
+from ubiops.models.pipeline_request_update import PipelineRequestUpdate
 from ubiops.models.pipeline_update import PipelineUpdate
 from ubiops.models.pipeline_version_create import PipelineVersionCreate
 from ubiops.models.pipeline_version_detail import PipelineVersionDetail

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**instance_type_groups_get**](./Instances.md#instance_type_groups_get) | **GET** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Get instance type group
 [**instance_type_groups_list**](./Instances.md#instance_type_groups_list) | **GET** /projects/{project_name}/instance-type-groups | List instance type groups
 [**instance_type_groups_update**](./Instances.md#instance_type_groups_update) | **PATCH** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Update instance type group
+[**instance_type_groups_usage**](./Instances.md#instance_type_groups_usage) | **GET** /projects/{project_name}/instance-type-groups/{instance_type_group_id}/usage | List usage of instance type group
 [**instance_types_list**](./Instances.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**instances_get**](./Instances.md#instances_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Get instance for deployment versions
 [**instances_list**](./Instances.md#instances_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances | List instances for deployment versions
@@ -881,6 +882,115 @@ Name | Type | Notes
 ### Return type
 
 [**InstanceTypeGroupList**](./models/InstanceTypeGroupList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **instance_type_groups_usage**
+> InstanceTypeGroupUsagePaginated instance_type_groups_usage(project_name, instance_type_group_id, cursor=cursor, limit=limit)
+
+List usage of instance type group
+
+## Description
+List the deployment versions used by an instance type group
+
+### Response Structure
+A list of details of the deployment versions
+
+- `id`: Unique identifier for the deployment version (UUID)
+- `deployment`: Deployment name to which the version is associated
+- `version`: Version name
+- `instance_type_group_id`: ID of the instance type group
+- `instance_type_group_name`: Name of the instance type group
+
+## Response Examples
+
+```
+[
+  {
+    "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
+    "deployment": "deployment-1",
+    "version": "version-1",
+    "instance_type_group_id": "67615c94-547e-48f2-87a2-f57aca2921c5",
+    "instance_type_group_name": "256 MB + 0.0625 vCPU"
+  },
+  {
+    "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
+    "deployment": "deployment-1",
+    "version": "version-2",
+    "instance_type_group_id": "67615c94-547e-48f2-87a2-f57aca2921c5",
+    "instance_type_group_name": "256 MB + 0.0625 vCPU"
+  }
+]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    instance_type_group_id = 'instance_type_group_id_example' # str
+    cursor = 'cursor_example' # str (optional)
+    limit = 56 # int (optional)
+
+    # List usage of instance type group
+    api_response = core_api.instance_type_groups_usage(project_name, instance_type_group_id, cursor=cursor, limit=limit)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    instance_type_group_id = 'instance_type_group_id_example' # str
+    cursor = 'cursor_example' # str (optional)
+    limit = 56 # int (optional)
+
+    # List usage of instance type group
+    api_response = core_api.instance_type_groups_usage(project_name, instance_type_group_id, cursor=cursor, limit=limit)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **instance_type_group_id** | **str** | 
+ **cursor** | **str** | [optional] 
+ **limit** | **int** | [optional] 
+
+### Return type
+
+[**InstanceTypeGroupUsagePaginated**](./models/InstanceTypeGroupUsagePaginated.md)
 
 ### Authorization
 

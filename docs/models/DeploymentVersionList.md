@@ -29,5 +29,6 @@ Name | Type | Notes
 **restart_request_interruption** | **bool** | [optional]
 **ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional]
 **instance_type** | **str** | [optional] [readonly]
+**scaling_strategy** | **str** |
 
 

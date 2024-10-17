@@ -22,6 +22,5 @@ from .experiment_run_create_response import ExperimentRunCreateResponse
 from .experiment_run_detail import ExperimentRunDetail
 from .experiment_run_list import ExperimentRunList
 from .experiment_run_update import ExperimentRunUpdate
-from .experiment_run_update_response import ExperimentRunUpdateResponse
 
 import ubiops.training.constants

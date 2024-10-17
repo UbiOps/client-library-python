@@ -39,14 +39,14 @@ class PipelineRequestDetail(object):
         "time_completed": "datetime",
         "request_data": "object",
         "result": "object",
-        "deployment_requests": "list[PipelineRequestDeploymentRequest]",
-        "operator_requests": "list[PipelineRequestOperatorRequest]",
-        "pipeline_requests": "list[PipelineRequestPipelineRequest]",
         "error_message": "str",
         "pipeline_timeout": "int",
         "deployment_timeout": "int",
         "input_size": "int",
         "output_size": "int",
+        "deployment_requests": "list[PipelineRequestDeploymentRequest]",
+        "operator_requests": "list[PipelineRequestOperatorRequest]",
+        "pipeline_requests": "list[PipelineRequestPipelineRequest]",
     }
 
     attribute_map = {
@@ -60,14 +60,14 @@ class PipelineRequestDetail(object):
         "time_completed": "time_completed",
         "request_data": "request_data",
         "result": "result",
-        "deployment_requests": "deployment_requests",
-        "operator_requests": "operator_requests",
-        "pipeline_requests": "pipeline_requests",
         "error_message": "error_message",
         "pipeline_timeout": "pipeline_timeout",
         "deployment_timeout": "deployment_timeout",
         "input_size": "input_size",
         "output_size": "output_size",
+        "deployment_requests": "deployment_requests",
+        "operator_requests": "operator_requests",
+        "pipeline_requests": "pipeline_requests",
     }
 
     def __init__(
@@ -82,14 +82,14 @@ class PipelineRequestDetail(object):
         time_completed=None,
         request_data=None,
         result=None,
-        deployment_requests=None,
-        operator_requests=None,
-        pipeline_requests=None,
         error_message=None,
         pipeline_timeout=None,
         deployment_timeout=None,
         input_size=None,
         output_size=None,
+        deployment_requests=None,
+        operator_requests=None,
+        pipeline_requests=None,
         **kwargs,
     ):
         """
@@ -110,14 +110,14 @@ class PipelineRequestDetail(object):
         self._time_completed = None
         self._request_data = None
         self._result = None
-        self._deployment_requests = None
-        self._operator_requests = None
-        self._pipeline_requests = None
         self._error_message = None
         self._pipeline_timeout = None
         self._deployment_timeout = None
         self._input_size = None
         self._output_size = None
+        self._deployment_requests = None
+        self._operator_requests = None
+        self._pipeline_requests = None
         self.discriminator = None
 
         self.id = id
@@ -130,14 +130,14 @@ class PipelineRequestDetail(object):
         self.time_completed = time_completed
         self.request_data = request_data
         self.result = result
-        self.deployment_requests = deployment_requests
-        self.operator_requests = operator_requests
-        self.pipeline_requests = pipeline_requests
         self.error_message = error_message
         self.pipeline_timeout = pipeline_timeout
         self.deployment_timeout = deployment_timeout
         self.input_size = input_size
         self.output_size = output_size
+        self.deployment_requests = deployment_requests
+        self.operator_requests = operator_requests
+        self.pipeline_requests = pipeline_requests
 
     @property
     def id(self):
@@ -255,7 +255,7 @@ class PipelineRequestDetail(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )
@@ -390,102 +390,6 @@ class PipelineRequestDetail(object):
         self._result = result
 
     @property
-    def deployment_requests(self):
-        """
-        Gets the deployment_requests of this PipelineRequestDetail
-
-        :return: the deployment_requests of this PipelineRequestDetail
-        :rtype: list[PipelineRequestDeploymentRequest]
-        """
-
-        return self._deployment_requests
-
-    @deployment_requests.setter
-    def deployment_requests(self, deployment_requests):
-        """
-        Sets the deployment_requests of this PipelineRequestDetail
-
-        :param deployment_requests: the deployment_requests of this PipelineRequestDetail
-        :type: list[PipelineRequestDeploymentRequest]
-        """
-
-        if self.client_side_validation and (
-            deployment_requests is not None and not isinstance(deployment_requests, list)
-        ):
-            raise ValueError("Parameter `deployment_requests` must be a list")
-        if self.client_side_validation and deployment_requests is not None:
-            from ubiops.models.pipeline_request_deployment_request import PipelineRequestDeploymentRequest
-
-            deployment_requests = [
-                PipelineRequestDeploymentRequest(**item) if isinstance(item, dict) else item
-                for item in deployment_requests
-            ]
-
-        self._deployment_requests = deployment_requests
-
-    @property
-    def operator_requests(self):
-        """
-        Gets the operator_requests of this PipelineRequestDetail
-
-        :return: the operator_requests of this PipelineRequestDetail
-        :rtype: list[PipelineRequestOperatorRequest]
-        """
-
-        return self._operator_requests
-
-    @operator_requests.setter
-    def operator_requests(self, operator_requests):
-        """
-        Sets the operator_requests of this PipelineRequestDetail
-
-        :param operator_requests: the operator_requests of this PipelineRequestDetail
-        :type: list[PipelineRequestOperatorRequest]
-        """
-
-        if self.client_side_validation and (operator_requests is not None and not isinstance(operator_requests, list)):
-            raise ValueError("Parameter `operator_requests` must be a list")
-        if self.client_side_validation and operator_requests is not None:
-            from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
-
-            operator_requests = [
-                PipelineRequestOperatorRequest(**item) if isinstance(item, dict) else item for item in operator_requests
-            ]
-
-        self._operator_requests = operator_requests
-
-    @property
-    def pipeline_requests(self):
-        """
-        Gets the pipeline_requests of this PipelineRequestDetail
-
-        :return: the pipeline_requests of this PipelineRequestDetail
-        :rtype: list[PipelineRequestPipelineRequest]
-        """
-
-        return self._pipeline_requests
-
-    @pipeline_requests.setter
-    def pipeline_requests(self, pipeline_requests):
-        """
-        Sets the pipeline_requests of this PipelineRequestDetail
-
-        :param pipeline_requests: the pipeline_requests of this PipelineRequestDetail
-        :type: list[PipelineRequestPipelineRequest]
-        """
-
-        if self.client_side_validation and (pipeline_requests is not None and not isinstance(pipeline_requests, list)):
-            raise ValueError("Parameter `pipeline_requests` must be a list")
-        if self.client_side_validation and pipeline_requests is not None:
-            from ubiops.models.pipeline_request_pipeline_request import PipelineRequestPipelineRequest
-
-            pipeline_requests = [
-                PipelineRequestPipelineRequest(**item) if isinstance(item, dict) else item for item in pipeline_requests
-            ]
-
-        self._pipeline_requests = pipeline_requests
-
-    @property
     def error_message(self):
         """
         Gets the error_message of this PipelineRequestDetail
@@ -609,6 +513,102 @@ class PipelineRequestDetail(object):
             raise ValueError("Parameter `output_size` must be an integer")
 
         self._output_size = output_size
+
+    @property
+    def deployment_requests(self):
+        """
+        Gets the deployment_requests of this PipelineRequestDetail
+
+        :return: the deployment_requests of this PipelineRequestDetail
+        :rtype: list[PipelineRequestDeploymentRequest]
+        """
+
+        return self._deployment_requests
+
+    @deployment_requests.setter
+    def deployment_requests(self, deployment_requests):
+        """
+        Sets the deployment_requests of this PipelineRequestDetail
+
+        :param deployment_requests: the deployment_requests of this PipelineRequestDetail
+        :type: list[PipelineRequestDeploymentRequest]
+        """
+
+        if self.client_side_validation and (
+            deployment_requests is not None and not isinstance(deployment_requests, list)
+        ):
+            raise ValueError("Parameter `deployment_requests` must be a list")
+        if self.client_side_validation and deployment_requests is not None:
+            from ubiops.models.pipeline_request_deployment_request import PipelineRequestDeploymentRequest
+
+            deployment_requests = [
+                PipelineRequestDeploymentRequest(**item) if isinstance(item, dict) else item
+                for item in deployment_requests
+            ]
+
+        self._deployment_requests = deployment_requests
+
+    @property
+    def operator_requests(self):
+        """
+        Gets the operator_requests of this PipelineRequestDetail
+
+        :return: the operator_requests of this PipelineRequestDetail
+        :rtype: list[PipelineRequestOperatorRequest]
+        """
+
+        return self._operator_requests
+
+    @operator_requests.setter
+    def operator_requests(self, operator_requests):
+        """
+        Sets the operator_requests of this PipelineRequestDetail
+
+        :param operator_requests: the operator_requests of this PipelineRequestDetail
+        :type: list[PipelineRequestOperatorRequest]
+        """
+
+        if self.client_side_validation and (operator_requests is not None and not isinstance(operator_requests, list)):
+            raise ValueError("Parameter `operator_requests` must be a list")
+        if self.client_side_validation and operator_requests is not None:
+            from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
+
+            operator_requests = [
+                PipelineRequestOperatorRequest(**item) if isinstance(item, dict) else item for item in operator_requests
+            ]
+
+        self._operator_requests = operator_requests
+
+    @property
+    def pipeline_requests(self):
+        """
+        Gets the pipeline_requests of this PipelineRequestDetail
+
+        :return: the pipeline_requests of this PipelineRequestDetail
+        :rtype: list[PipelineRequestPipelineRequest]
+        """
+
+        return self._pipeline_requests
+
+    @pipeline_requests.setter
+    def pipeline_requests(self, pipeline_requests):
+        """
+        Sets the pipeline_requests of this PipelineRequestDetail
+
+        :param pipeline_requests: the pipeline_requests of this PipelineRequestDetail
+        :type: list[PipelineRequestPipelineRequest]
+        """
+
+        if self.client_side_validation and (pipeline_requests is not None and not isinstance(pipeline_requests, list)):
+            raise ValueError("Parameter `pipeline_requests` must be a list")
+        if self.client_side_validation and pipeline_requests is not None:
+            from ubiops.models.pipeline_request_pipeline_request import PipelineRequestPipelineRequest
+
+            pipeline_requests = [
+                PipelineRequestPipelineRequest(**item) if isinstance(item, dict) else item for item in pipeline_requests
+            ]
+
+        self._pipeline_requests = pipeline_requests
 
     def to_dict(self):
         """

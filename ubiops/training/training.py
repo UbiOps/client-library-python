@@ -752,7 +752,7 @@ class Training(object):
                 raise ApiValueError("Parameter `data` must be an instance of ExperimentRunUpdate")
 
         try:
-            request = self.core_api.deployment_version_requests_update(
+            return self.core_api.deployment_version_requests_update(
                 project_name=project_name,
                 deployment_name=self.training_deployment_name,
                 version=experiment_name,
@@ -762,12 +762,6 @@ class Training(object):
             )
         except ApiException as e:
             raise self.wrap_exception(e)
-
-        from ubiops.training.experiment_run_update_response import (
-            ExperimentRunUpdateResponse,
-        )
-
-        return ExperimentRunUpdateResponse(experiment=request.version, **request.to_dict())
 
     def experiment_environment_variables_create(self, project_name, experiment_name, data, **kwargs):
         """

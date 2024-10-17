@@ -33,6 +33,7 @@ class PipelineVersionObjectCreate(object):
         "reference_name": "str",
         "version": "str",
         "configuration": "dict(str, str)",
+        "metadata": "dict(str, str)",
     }
 
     attribute_map = {
@@ -41,10 +42,18 @@ class PipelineVersionObjectCreate(object):
         "reference_name": "reference_name",
         "version": "version",
         "configuration": "configuration",
+        "metadata": "metadata",
     }
 
     def __init__(
-        self, name=None, reference_type="deployment", reference_name=None, version=None, configuration=None, **kwargs
+        self,
+        name=None,
+        reference_type="deployment",
+        reference_name=None,
+        version=None,
+        configuration=None,
+        metadata=None,
+        **kwargs,
     ):
         """
         PipelineVersionObjectCreate - a model defined in OpenAPI
@@ -59,6 +68,7 @@ class PipelineVersionObjectCreate(object):
         self._reference_name = None
         self._version = None
         self._configuration = None
+        self._metadata = None
         self.discriminator = None
 
         self.name = name
@@ -67,6 +77,7 @@ class PipelineVersionObjectCreate(object):
         self.reference_name = reference_name
         self.version = version
         self.configuration = configuration
+        self.metadata = metadata
 
     @property
     def name(self):
@@ -205,6 +216,31 @@ class PipelineVersionObjectCreate(object):
             raise ValueError("Parameter `configuration` must be a dictionary")
 
         self._configuration = configuration
+
+    @property
+    def metadata(self):
+        """
+        Gets the metadata of this PipelineVersionObjectCreate
+
+        :return: the metadata of this PipelineVersionObjectCreate
+        :rtype: dict(str, str)
+        """
+
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """
+        Sets the metadata of this PipelineVersionObjectCreate
+
+        :param metadata: the metadata of this PipelineVersionObjectCreate
+        :type: dict(str, str)
+        """
+
+        if self.client_side_validation and (metadata is not None and not isinstance(metadata, dict)):
+            raise ValueError("Parameter `metadata` must be a dictionary")
+
+        self._metadata = metadata
 
     def to_dict(self):
         """

@@ -32,9 +32,9 @@ class PipelineRequestCreateResponse(object):
         "id": "str",
         "pipeline": "str",
         "version": "str",
-        "deployment_requests": "list[DirectPipelineRequestDeploymentRequest]",
-        "operator_requests": "list[DirectPipelineRequestOperatorRequest]",
-        "pipeline_requests": "list[DirectPipelineRequestPipelineRequest]",
+        "deployment_requests": "list[PipelineRequestDeploymentRequest]",
+        "operator_requests": "list[PipelineRequestOperatorRequest]",
+        "pipeline_requests": "list[PipelineRequestPipelineRequest]",
         "result": "object",
         "status": "str",
         "success": "bool",
@@ -195,7 +195,7 @@ class PipelineRequestCreateResponse(object):
         Gets the deployment_requests of this PipelineRequestCreateResponse
 
         :return: the deployment_requests of this PipelineRequestCreateResponse
-        :rtype: list[DirectPipelineRequestDeploymentRequest]
+        :rtype: list[PipelineRequestDeploymentRequest]
         """
 
         return self._deployment_requests
@@ -206,7 +206,7 @@ class PipelineRequestCreateResponse(object):
         Sets the deployment_requests of this PipelineRequestCreateResponse
 
         :param deployment_requests: the deployment_requests of this PipelineRequestCreateResponse
-        :type: list[DirectPipelineRequestDeploymentRequest]
+        :type: list[PipelineRequestDeploymentRequest]
         """
 
         if self.client_side_validation and (
@@ -214,10 +214,10 @@ class PipelineRequestCreateResponse(object):
         ):
             raise ValueError("Parameter `deployment_requests` must be a list")
         if self.client_side_validation and deployment_requests is not None:
-            from ubiops.models.direct_pipeline_request_deployment_request import DirectPipelineRequestDeploymentRequest
+            from ubiops.models.pipeline_request_deployment_request import PipelineRequestDeploymentRequest
 
             deployment_requests = [
-                DirectPipelineRequestDeploymentRequest(**item) if isinstance(item, dict) else item
+                PipelineRequestDeploymentRequest(**item) if isinstance(item, dict) else item
                 for item in deployment_requests
             ]
 
@@ -229,7 +229,7 @@ class PipelineRequestCreateResponse(object):
         Gets the operator_requests of this PipelineRequestCreateResponse
 
         :return: the operator_requests of this PipelineRequestCreateResponse
-        :rtype: list[DirectPipelineRequestOperatorRequest]
+        :rtype: list[PipelineRequestOperatorRequest]
         """
 
         return self._operator_requests
@@ -240,17 +240,16 @@ class PipelineRequestCreateResponse(object):
         Sets the operator_requests of this PipelineRequestCreateResponse
 
         :param operator_requests: the operator_requests of this PipelineRequestCreateResponse
-        :type: list[DirectPipelineRequestOperatorRequest]
+        :type: list[PipelineRequestOperatorRequest]
         """
 
         if self.client_side_validation and (operator_requests is not None and not isinstance(operator_requests, list)):
             raise ValueError("Parameter `operator_requests` must be a list")
         if self.client_side_validation and operator_requests is not None:
-            from ubiops.models.direct_pipeline_request_operator_request import DirectPipelineRequestOperatorRequest
+            from ubiops.models.pipeline_request_operator_request import PipelineRequestOperatorRequest
 
             operator_requests = [
-                DirectPipelineRequestOperatorRequest(**item) if isinstance(item, dict) else item
-                for item in operator_requests
+                PipelineRequestOperatorRequest(**item) if isinstance(item, dict) else item for item in operator_requests
             ]
 
         self._operator_requests = operator_requests
@@ -261,7 +260,7 @@ class PipelineRequestCreateResponse(object):
         Gets the pipeline_requests of this PipelineRequestCreateResponse
 
         :return: the pipeline_requests of this PipelineRequestCreateResponse
-        :rtype: list[DirectPipelineRequestPipelineRequest]
+        :rtype: list[PipelineRequestPipelineRequest]
         """
 
         return self._pipeline_requests
@@ -272,17 +271,16 @@ class PipelineRequestCreateResponse(object):
         Sets the pipeline_requests of this PipelineRequestCreateResponse
 
         :param pipeline_requests: the pipeline_requests of this PipelineRequestCreateResponse
-        :type: list[DirectPipelineRequestPipelineRequest]
+        :type: list[PipelineRequestPipelineRequest]
         """
 
         if self.client_side_validation and (pipeline_requests is not None and not isinstance(pipeline_requests, list)):
             raise ValueError("Parameter `pipeline_requests` must be a list")
         if self.client_side_validation and pipeline_requests is not None:
-            from ubiops.models.direct_pipeline_request_pipeline_request import DirectPipelineRequestPipelineRequest
+            from ubiops.models.pipeline_request_pipeline_request import PipelineRequestPipelineRequest
 
             pipeline_requests = [
-                DirectPipelineRequestPipelineRequest(**item) if isinstance(item, dict) else item
-                for item in pipeline_requests
+                PipelineRequestPipelineRequest(**item) if isinstance(item, dict) else item for item in pipeline_requests
             ]
 
         self._pipeline_requests = pipeline_requests
@@ -345,7 +343,7 @@ class PipelineRequestCreateResponse(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )

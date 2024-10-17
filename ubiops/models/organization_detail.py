@@ -27,17 +27,34 @@ class OrganizationDetail(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime", "status": "str", "subscription": "str"}
+    openapi_types = {
+        "id": "str",
+        "name": "str",
+        "creation_date": "datetime",
+        "status": "str",
+        "two_factor_authentication_forced": "bool",
+        "subscription": "str",
+    }
 
     attribute_map = {
         "id": "id",
         "name": "name",
         "creation_date": "creation_date",
         "status": "status",
+        "two_factor_authentication_forced": "two_factor_authentication_forced",
         "subscription": "subscription",
     }
 
-    def __init__(self, id=None, name=None, creation_date=None, status=None, subscription=None, **kwargs):
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        creation_date=None,
+        status=None,
+        two_factor_authentication_forced=None,
+        subscription=None,
+        **kwargs,
+    ):
         """
         OrganizationDetail - a model defined in OpenAPI
         """
@@ -50,6 +67,7 @@ class OrganizationDetail(object):
         self._name = None
         self._creation_date = None
         self._status = None
+        self._two_factor_authentication_forced = None
         self._subscription = None
         self.discriminator = None
 
@@ -59,6 +77,8 @@ class OrganizationDetail(object):
         if creation_date is not None:
             self.creation_date = creation_date
         self.status = status
+        if two_factor_authentication_forced is not None:
+            self.two_factor_authentication_forced = two_factor_authentication_forced
         self.subscription = subscription
 
     @property
@@ -169,6 +189,33 @@ class OrganizationDetail(object):
             raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")
 
         self._status = status
+
+    @property
+    def two_factor_authentication_forced(self):
+        """
+        Gets the two_factor_authentication_forced of this OrganizationDetail
+
+        :return: the two_factor_authentication_forced of this OrganizationDetail
+        :rtype: bool
+        """
+
+        return self._two_factor_authentication_forced
+
+    @two_factor_authentication_forced.setter
+    def two_factor_authentication_forced(self, two_factor_authentication_forced):
+        """
+        Sets the two_factor_authentication_forced of this OrganizationDetail
+
+        :param two_factor_authentication_forced: the two_factor_authentication_forced of this OrganizationDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            two_factor_authentication_forced is not None and not isinstance(two_factor_authentication_forced, bool)
+        ):
+            raise ValueError("Parameter `two_factor_authentication_forced` must be a boolean")
+
+        self._two_factor_authentication_forced = two_factor_authentication_forced
 
     @property
     def subscription(self):

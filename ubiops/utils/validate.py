@@ -1,16 +1,52 @@
 import logging
-
+import re
 import yaml
 
+from schema import Schema, And, Optional, SchemaError
+
 from .exceptions import ValidateError, ValidateSkip, ValidateWarning
-from .validators import (
-    validate_requirement_line,
-    validate_yaml_apt,
-    validate_yaml_env_vars,
-)
+from .validators import validate_requirement_line
 
 
 logger = logging.getLogger("Validate")
+
+regex_env_var = re.compile(r"^[A-Z_][A-Z0-9_]*=.*$")
+regex_url = re.compile(r"^(http|https)\:\/\/.*$")
+
+ubiops_config_schema = Schema(
+    {
+        Optional("environment_variables"): [
+            And(
+                str,
+                regex_env_var.match,
+                error="Environment variable definition must be in format 'VAR_NAME=Value'",
+            )
+        ],
+        Optional("apt"): {
+            Optional("keys"): {
+                Optional("urls"): [
+                    And(
+                        str,
+                        regex_url.match,
+                        error="Key URL must be in format 'https://example.com/path'",
+                    )
+                ],
+                Optional("items"): [And(str, lambda x: len(x) > 0, error="Item must be a non-empty string")],
+            },
+            Optional("sources"): {
+                Optional("urls"): [
+                    And(
+                        str,
+                        regex_url.match,
+                        error="Source URL must be in format 'https://example.com/path'",
+                    )
+                ],
+                Optional("items"): [And(str, lambda x: len(x) > 0, error="Item must be a non-empty string")],
+            },
+            "packages": [And(str, lambda x: len(x) > 0, error="Package must be a non-empty string")],
+        },
+    }
+)
 
 
 def validate_requirements_file(file_path):
@@ -58,35 +94,15 @@ def validate_yaml_file(file_path):
     :param str file_path: path to ubiops.yaml file
     """
 
-    with open(file_path) as config_file:
+    with open(file_path, encoding="utf-8") as config_file:
         try:
             config = yaml.safe_load(config_file)
-        except yaml.YAMLError:
-            logger.error("Invalid yaml file, can't continue validation")
+            ubiops_config_schema.validate({} if config is None else config)
+        except yaml.YAMLError as e:
+            logger.error(f"Invalid yaml file, can't continue validation: {e}")
+            return False
+        except SchemaError as e:
+            logger.error(f"Invalid ubiops.yaml file schema: {e.code}")
             return False
 
-        if not isinstance(config, dict):
-            logger.error("ubiops.yaml must contain a dictionary, can't continue validation")
-            return False
-
-        if not all(item in ["environment_variables", "apt"] for item in config):
-            logger.error("ubiops.yaml file must contain environment_variables and/or apt, can't continue validation")
-            return False
-
-        return_value = True
-
-        # Validate provided environment variables
-        try:
-            validate_yaml_env_vars(config)
-        except ValidateError as e:
-            logger.error(e)
-            return_value = False
-
-        # Validate provided apt packages
-        try:
-            validate_yaml_apt(config)
-        except ValidateError as e:
-            logger.error(e)
-            return_value = False
-
-    return return_value
+    return True

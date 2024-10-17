@@ -32,6 +32,7 @@ class OrganizationUpdate(object):
         "subscription": "str",
         "subscription_end_date": "date",
         "subscription_start_date": "date",
+        "two_factor_authentication_forced": "bool",
     }
 
     attribute_map = {
@@ -39,10 +40,17 @@ class OrganizationUpdate(object):
         "subscription": "subscription",
         "subscription_end_date": "subscription_end_date",
         "subscription_start_date": "subscription_start_date",
+        "two_factor_authentication_forced": "two_factor_authentication_forced",
     }
 
     def __init__(
-        self, name=None, subscription=None, subscription_end_date=None, subscription_start_date=None, **kwargs
+        self,
+        name=None,
+        subscription=None,
+        subscription_end_date=None,
+        subscription_start_date=None,
+        two_factor_authentication_forced=None,
+        **kwargs,
     ):
         """
         OrganizationUpdate - a model defined in OpenAPI
@@ -56,6 +64,7 @@ class OrganizationUpdate(object):
         self._subscription = None
         self._subscription_end_date = None
         self._subscription_start_date = None
+        self._two_factor_authentication_forced = None
         self.discriminator = None
 
         if name is not None:
@@ -64,6 +73,8 @@ class OrganizationUpdate(object):
             self.subscription = subscription
         self.subscription_end_date = subscription_end_date
         self.subscription_start_date = subscription_start_date
+        if two_factor_authentication_forced is not None:
+            self.two_factor_authentication_forced = two_factor_authentication_forced
 
     @property
     def name(self):
@@ -164,6 +175,33 @@ class OrganizationUpdate(object):
         """
 
         self._subscription_start_date = subscription_start_date
+
+    @property
+    def two_factor_authentication_forced(self):
+        """
+        Gets the two_factor_authentication_forced of this OrganizationUpdate
+
+        :return: the two_factor_authentication_forced of this OrganizationUpdate
+        :rtype: bool
+        """
+
+        return self._two_factor_authentication_forced
+
+    @two_factor_authentication_forced.setter
+    def two_factor_authentication_forced(self, two_factor_authentication_forced):
+        """
+        Sets the two_factor_authentication_forced of this OrganizationUpdate
+
+        :param two_factor_authentication_forced: the two_factor_authentication_forced of this OrganizationUpdate
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            two_factor_authentication_forced is not None and not isinstance(two_factor_authentication_forced, bool)
+        ):
+            raise ValueError("Parameter `two_factor_authentication_forced` must be a boolean")
+
+        self._two_factor_authentication_forced = two_factor_authentication_forced
 
     def to_dict(self):
         """

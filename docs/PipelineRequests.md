@@ -6,23 +6,27 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**batch_pipeline_requests_create**](./PipelineRequests.md#batch_pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/batch | Create a batch pipeline request
 [**batch_pipeline_version_requests_create**](./PipelineRequests.md#batch_pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch | Create a batch pipeline version request
+[**pipeline_requests_batch_cancel**](./PipelineRequests.md#pipeline_requests_batch_cancel) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/cancel | Cancel multiple pipeline requests
 [**pipeline_requests_batch_delete**](./PipelineRequests.md#pipeline_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/delete | Delete multiple pipeline requests
 [**pipeline_requests_batch_get**](./PipelineRequests.md#pipeline_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/collect | Retrieve multiple pipeline requests
 [**pipeline_requests_create**](./PipelineRequests.md#pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests | Create a pipeline request
 [**pipeline_requests_delete**](./PipelineRequests.md#pipeline_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Delete a pipeline request
 [**pipeline_requests_get**](./PipelineRequests.md#pipeline_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Get a pipeline request
 [**pipeline_requests_list**](./PipelineRequests.md#pipeline_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests | List pipeline requests
+[**pipeline_requests_update**](./PipelineRequests.md#pipeline_requests_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Update a pipeline request
 [**pipeline_version_object_requests_get**](./PipelineRequests.md#pipeline_version_object_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id} | Get an operator request
+[**pipeline_version_requests_batch_cancel**](./PipelineRequests.md#pipeline_version_requests_batch_cancel) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/cancel | Cancel multiple pipeline version requests
 [**pipeline_version_requests_batch_delete**](./PipelineRequests.md#pipeline_version_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete | Delete multiple pipeline version requests
 [**pipeline_version_requests_batch_get**](./PipelineRequests.md#pipeline_version_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect | Retrieve multiple pipeline version requests
 [**pipeline_version_requests_create**](./PipelineRequests.md#pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | Create a pipeline version request
 [**pipeline_version_requests_delete**](./PipelineRequests.md#pipeline_version_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Delete a pipeline version request
 [**pipeline_version_requests_get**](./PipelineRequests.md#pipeline_version_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Get a pipeline version request
 [**pipeline_version_requests_list**](./PipelineRequests.md#pipeline_version_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | List pipeline version requests
+[**pipeline_version_requests_update**](./PipelineRequests.md#pipeline_version_requests_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Update a pipeline version request
 
 
 # **batch_pipeline_requests_create**
-> list[PipelineRequestBatchCreateResponse] batch_pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout, notification_group=notification_group)
+> list[PipelineRequestBatchCreateResponse] batch_pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout)
 
 Create a batch pipeline request
 
@@ -40,7 +44,6 @@ These parameters should be given as query parameters
 
 - `timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
 The deployment request timeouts default to 14400 seconds for deployments in the pipeline.
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 
 ## Request Examples
 Multiple structured batch pipeline requests
@@ -113,10 +116,9 @@ A list of dictionaries containing the details of the created pipeline requests w
     pipeline_name = 'pipeline_name_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch pipeline request
-    api_response = core_api.batch_pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -140,10 +142,9 @@ A list of dictionaries containing the details of the created pipeline requests w
     pipeline_name = 'pipeline_name_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch pipeline request
-    api_response = core_api.batch_pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -160,7 +161,6 @@ Name | Type | Notes
  **pipeline_name** | **str** | 
  **data** | **list[str or dict()]** | 
  **timeout** | **int** | [optional] 
- **notification_group** | **str** | [optional] 
 
 ### Return type
 
@@ -173,7 +173,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **batch_pipeline_version_requests_create**
-> list[PipelineRequestBatchCreateResponse] batch_pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout, notification_group=notification_group)
+> list[PipelineRequestBatchCreateResponse] batch_pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout)
 
 Create a batch pipeline version request
 
@@ -191,7 +191,6 @@ These parameters should be given as query parameters
 
 - `timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
 The deployment request timeouts default to 14400 seconds for deployments in the pipeline.
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 
 ## Request Examples
 Multiple structured batch pipeline requests
@@ -265,10 +264,9 @@ A list of dictionaries containing the details of the created pipeline version re
     version = 'version_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch pipeline version request
-    api_response = core_api.batch_pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -293,10 +291,9 @@ A list of dictionaries containing the details of the created pipeline version re
     version = 'version_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch pipeline version request
-    api_response = core_api.batch_pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -314,11 +311,100 @@ Name | Type | Notes
  **version** | **str** | 
  **data** | **list[str or dict()]** | 
  **timeout** | **int** | [optional] 
- **notification_group** | **str** | [optional] 
 
 ### Return type
 
 [**list[PipelineRequestBatchCreateResponse]**](./models/PipelineRequestBatchCreateResponse.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **pipeline_requests_batch_cancel**
+> object pipeline_requests_batch_cancel(project_name, pipeline_name, data, status=status)
+
+Cancel multiple pipeline requests
+
+## Description
+Cancel multiple pipeline requests for the default version of a pipeline. A maximum of 250 pipeline requests can be cancelled with this method.
+
+To cancel all pending or processing requests, use the query parameter `status`, with the value 'pending' or 'processing', with an empty request body.
+
+### Required Parameters
+A list of ids for the requests
+
+## Request Examples
+
+```
+["2521378e-263e-4e2e-85e9-a96254b36536", "69eca481-8576-49e8-8e20-ea56f2005bcb"]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Cancel multiple pipeline requests
+    api_response = core_api.pipeline_requests_batch_cancel(project_name, pipeline_name, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Cancel multiple pipeline requests
+    api_response = core_api.pipeline_requests_batch_cancel(project_name, pipeline_name, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **pipeline_name** | **str** | 
+ **data** | **list[str]** | 
+ **status** | **str** | [optional] 
+
+### Return type
+
+**object**
 
 ### Authorization
 
@@ -436,19 +522,19 @@ A list of dictionaries containing the details of the retrieved pipeline requests
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
 - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
-- `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
-- `deployment_requests`: A list of requests to the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
-- `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
-- `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `request_data`: Input of the request
+- `result`: Output of the request
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `pipeline_timeout`: Timeout of the pipeline request in seconds
 - `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `deployment_requests`: A list of requests to the deployments in the pipeline. With the request ids provided in this list, it's possible to collect the results of the deployment requests separately.
+- `operator_requests`: A list of requests of the operators in the pipeline. With the request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 
 ## Response Examples
 
@@ -459,13 +545,17 @@ A list of dictionaries containing the details of the retrieved pipeline requests
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "completed",
-    "success": null,
+    "success": true,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": "2020-03-28T20:00:42.241+00:00",
-    "request_data": {
-      "input_field": 23.5
-    },
+    "request_data": {"input_field": 23.5},
+    "result": {"output_field": 23.5},
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": 21,
     "deployment_requests": [
       {
         "id": "4b9c8a81-b3ef-437a-8d35-187490eda3e4",
@@ -506,28 +596,24 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "input_size": 10,
         "output_size": 10
       }
-    ],
-    "result": {
-      "output_field": 23.5
-    },
-    "error_message": null,
-    "pipeline_timeout": 300,
-    "deployment_timeout": 300,
-    "input_size": 20,
-    "output_size": 21
+    ]
   },
   {
     "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "processing",
-    "success": null,
+    "success": false,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": null,
-    "request_data": {
-      "input_field": 23.5
-    },
+    "request_data": {"input_field": 23.5},
+    "result": null,
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": null,
     "deployment_requests": [
       {
         "id": "5fa86ad1-7949-48f5-8e2c-210cce78f427",
@@ -536,20 +622,14 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "version": "v1",
         "sequence_id": "16699092560130860",
         "status": "processing",
-        "success": null,
+        "success": false,
         "error_message": null,
         "input_size": 10,
         "output_size": null
       }
     ],
     "operator_requests": [],
-    "pipeline_requests": [],
-    "result": null,
-    "error_message": null,
-    "pipeline_timeout": 300,
-    "deployment_timeout": 300,
-    "input_size": 20,
-    "output_size": null
+    "pipeline_requests": []
   }
 ]
 ```
@@ -661,7 +741,7 @@ example-plain-data
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request is made
 - `status`: Status of the pipeline request. It can be 'completed' or 'failed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the pipeline request was successful. This field is deprecated, use 'status' instead.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `deployment_requests`: A list of dictionaries containing the results of the deployment requests made for the deployment objects in the pipeline. The dictionaries contain the following fields:
     - `id`: Unique identifier for the deployment request
@@ -758,9 +838,7 @@ example-plain-data
       "error_message": "Invalid message format"
     }
   ],
-  "result": {
-    "output_field": 23.5
-  },
+  "result": {"output_field": 23.5},
   "pipeline_timeout": 300,
   "deployment_timeout": 300
 }
@@ -846,7 +924,7 @@ Name | Type | Notes
 Delete a pipeline request
 
 ## Description
-Delete a request for the default version of a pipeline. This action deletes all the deployment requests in the pipeline.
+Delete a request for the default version of a pipeline. This action deletes all the subrequests in the pipeline.
 
 ### Example
 
@@ -920,12 +998,12 @@ void (empty response body)
 Get a pipeline request
 
 ## Description
-Get a request for the default version of a pipeline. With this method, the result of the request may be retrieved.
+Get the details of a request for the default version of a pipeline
 
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.
+- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
 
 ### Response Structure
 A dictionary containing the details of the pipeline request with the following fields:
@@ -934,26 +1012,22 @@ A dictionary containing the details of the pipeline request with the following f
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
-- `deployment_requests`: A list of requests of the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
-- `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
-- `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
-- `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `request_data`: Input of the request
+- `result`: Output of the request
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `pipeline_timeout`: Timeout of the pipeline request in seconds
 - `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - the pipeline (and version) names if the request is directly made to the pipeline
-    - the pipeline request id if the request is part of another pipeline request
-    - the request schedule name if the request is created via a request schedule
     - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `deployment_requests`: A list of requests of the deployments in the pipeline. With the request ids provided in this list, it's possible to collect the results of the deployment requests separately.
+- `operator_requests`: A list of requests of the operators in the pipeline. With the request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 
 ## Response Examples
 
@@ -963,13 +1037,20 @@ A dictionary containing the details of the pipeline request with the following f
   "pipeline": "pipeline-1",
   "version": "v1",
   "status": "completed",
-  "success": null,
+  "success": true,
   "time_created": "2020-03-28T20:00:26.613+00:00",
   "time_started": "2020-03-28T20:00:41.276+00:00",
   "time_completed": "2020-03-28T20:00:42.241+00:00",
-  "request_data": {
-    "input_field": 23.5
+  "request_data": {"input_field": 23.5},
+  "result": {"output_field": 23.5},
+  "error_message": null,
+  "pipeline_timeout": 300,
+  "deployment_timeout": 300,
+  "origin": {
+    "created_by": "my.example.user@ubiops.com"
   },
+  "input_size": 20,
+  "output_size": 21,
   "deployment_requests": [
     {
       "id": "4b9c8a81-b3ef-437a-8d35-187490eda3e4",
@@ -1004,27 +1085,13 @@ A dictionary containing the details of the pipeline request with the following f
       "pipeline": "pipeline-1",
       "version": "v1",
       "sequence_id": "1669909256013090",
-      "status": "completed",
-      "success": true,
+      "status": "true",
+      "success": false,
       "error_message": null,
       "input_size": 10,
       "output_size": 10
     }
-  ],
-  "result": {
-    "output_field": 23.5
-  },
-  "error_message": null,
-  "pipeline_timeout": 300,
-  "deployment_timeout": 300,
-  "notification_group": "notification-group-1",
-  "origin": {
-    "pipeline": "pipeline-1",
-    "pipeline_version": "v1",
-    "created_by": "my.example.user@ubiops.com"
-  },
-  "input_size": 20,
-  "output_size": 21
+  ]
 }
 ```
 
@@ -1100,7 +1167,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **pipeline_requests_list**
-> list[PipelineRequestList] pipeline_requests_list(project_name, pipeline_name, status=status, success=success, limit=limit, offset=offset, sort=sort, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+> list[PipelineRequestList] pipeline_requests_list(project_name, pipeline_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 
 List pipeline requests
 
@@ -1110,12 +1177,9 @@ List all requests for the default version of a pipeline
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-- `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
-- `request_schedule`: The name of a request schedule that created requests
 - `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
 - `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request
 - `search_id`: A string to search inside request ids. It will filter all request ids that contain this string
@@ -1129,10 +1193,10 @@ A list of dictionaries containing the details of the pipeline requests with the 
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -1145,7 +1209,7 @@ A list of dictionaries containing the details of the pipeline requests with the 
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": null,
     "time_completed": null,
@@ -1156,13 +1220,13 @@ A list of dictionaries containing the details of the pipeline requests with the 
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
     "pipeline": "pipeline-1",
     "version": "v1",
-    "status": "completed",
-    "success": true,
+    "status": "pending",
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "input_size": 10,
-    "output_size": 10
+    "output_size": null
   }
 ]
 ```
@@ -1212,17 +1276,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     project_name = 'project_name_example' # str
     pipeline_name = 'pipeline_name_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List pipeline requests
-    api_response = core_api.pipeline_requests_list(project_name, pipeline_name, status=status, success=success, limit=limit, offset=offset, sort=sort, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.pipeline_requests_list(project_name, pipeline_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -1245,17 +1306,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     project_name = 'project_name_example' # str
     pipeline_name = 'pipeline_name_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List pipeline requests
-    api_response = core_api.pipeline_requests_list(project_name, pipeline_name, status=status, success=success, limit=limit, offset=offset, sort=sort, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.pipeline_requests_list(project_name, pipeline_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -1271,11 +1329,8 @@ Name | Type | Notes
  **project_name** | **str** | 
  **pipeline_name** | **str** | 
  **status** | **str** | [optional] 
- **success** | **bool** | [optional] 
  **limit** | **int** | [optional] 
  **offset** | **int** | [optional] 
- **sort** | **str** | [optional] 
- **request_schedule** | **str** | [optional] 
  **start_date** | **str** | [optional] 
  **end_date** | **str** | [optional] 
  **search_id** | **str** | [optional] 
@@ -1290,8 +1345,99 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
+# **pipeline_requests_update**
+> object pipeline_requests_update(project_name, pipeline_name, request_id, data)
+
+Update a pipeline request
+
+## Description
+Cancel a pipeline request for the default version of a pipeline
+
+### Required Parameters
+
+- `status`: Status that the request will be updated to. It can only be `cancelled`.
+
+## Request Examples
+
+```
+{
+"status": "cancelled"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    request_id = 'request_id_example' # str
+    data = ubiops.PipelineRequestUpdate() # PipelineRequestUpdate
+
+    # Update a pipeline request
+    api_response = core_api.pipeline_requests_update(project_name, pipeline_name, request_id, data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    request_id = 'request_id_example' # str
+    data = ubiops.PipelineRequestUpdate() # PipelineRequestUpdate
+
+    # Update a pipeline request
+    api_response = core_api.pipeline_requests_update(project_name, pipeline_name, request_id, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **pipeline_name** | **str** | 
+ **request_id** | **str** | 
+ **data** | [**PipelineRequestUpdate**](./models/PipelineRequestUpdate.md) | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
 # **pipeline_version_object_requests_get**
-> OperatorRequestDetail pipeline_version_object_requests_get(project_name, pipeline_name, request_id, version, metadata_only=metadata_only)
+> OperatorRequestDetail pipeline_version_object_requests_get(project_name, pipeline_name, request_id, version, metadata_only=metadata_only, pipeline_request_id=pipeline_request_id, pipeline_object_id=pipeline_object_id)
 
 Get an operator request
 
@@ -1301,7 +1447,9 @@ Get a request for an operator object of a version of a pipeline. With this metho
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.
+- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
+- `pipeline_request_id`: ID of pipeline request to which the operator request belongs
+- `pipeline_object_id`: ID of pipeline object for which the operator request is created
 
 ### Response Structure
 A dictionary containing the details of the operator request with the following fields:
@@ -1314,9 +1462,9 @@ A dictionary containing the details of the operator request with the following f
 - `operator`: Name of the pipeline operator for which the request was made
 - `status`: Status of the request. Can be 'failed' or 'completed'.
 - `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
 - `request_data`: A dictionary containing the data that was sent when the request was created
 - `result`: Request result value. NULL if the request failed.
 - `error_message`: An error message explaining why the request has failed
@@ -1338,12 +1486,8 @@ A dictionary containing the details of the operator request with the following f
   "time_created": "2020-03-28T20:00:26.613+00:00",
   "time_started": "2020-03-28T20:00:41.276+00:00",
   "time_completed": "2020-03-28T20:00:42.241+00:00",
-  "request_data": {
-    "input_field": 23.5
-  },
-  "result": {
-    "output": 23.5
-  },
+  "request_data": {"input_field": 23.5},
+  "result": {"output": 23.5},
   "error_message": "",
   "input_size": 20,
   "output_size": 15
@@ -1366,9 +1510,11 @@ A dictionary containing the details of the operator request with the following f
     request_id = 'request_id_example' # str
     version = 'version_example' # str
     metadata_only = True # bool (optional)
+    pipeline_request_id = 'pipeline_request_id_example' # str (optional)
+    pipeline_object_id = 'pipeline_object_id_example' # str (optional)
 
     # Get an operator request
-    api_response = core_api.pipeline_version_object_requests_get(project_name, pipeline_name, request_id, version, metadata_only=metadata_only)
+    api_response = core_api.pipeline_version_object_requests_get(project_name, pipeline_name, request_id, version, metadata_only=metadata_only, pipeline_request_id=pipeline_request_id, pipeline_object_id=pipeline_object_id)
     print(api_response)
 
     # Close the connection
@@ -1393,9 +1539,11 @@ A dictionary containing the details of the operator request with the following f
     request_id = 'request_id_example' # str
     version = 'version_example' # str
     metadata_only = True # bool (optional)
+    pipeline_request_id = 'pipeline_request_id_example' # str (optional)
+    pipeline_object_id = 'pipeline_object_id_example' # str (optional)
 
     # Get an operator request
-    api_response = core_api.pipeline_version_object_requests_get(project_name, pipeline_name, request_id, version, metadata_only=metadata_only)
+    api_response = core_api.pipeline_version_object_requests_get(project_name, pipeline_name, request_id, version, metadata_only=metadata_only, pipeline_request_id=pipeline_request_id, pipeline_object_id=pipeline_object_id)
     print(api_response)
 
     # Close the connection
@@ -1413,10 +1561,105 @@ Name | Type | Notes
  **request_id** | **str** | 
  **version** | **str** | 
  **metadata_only** | **bool** | [optional] 
+ **pipeline_request_id** | **str** | [optional] 
+ **pipeline_object_id** | **str** | [optional] 
 
 ### Return type
 
 [**OperatorRequestDetail**](./models/OperatorRequestDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **pipeline_version_requests_batch_cancel**
+> object pipeline_version_requests_batch_cancel(project_name, pipeline_name, version, data, status=status)
+
+Cancel multiple pipeline version requests
+
+## Description
+Cancel multiple requests for a pipeline version. A maximum of 250 pipeline requests can be deleted with this method.
+
+To cancel all pending or processing requests, use the query parameter `status`, with the value 'pending' or 'processing', with an empty request body.
+
+### Required Parameters
+A list of ids for the requests
+
+## Request Examples
+
+```
+["2521378e-263e-4e2e-85e9-a96254b36536", "69eca481-8576-49e8-8e20-ea56f2005bcb"]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    version = 'version_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Cancel multiple pipeline version requests
+    api_response = core_api.pipeline_version_requests_batch_cancel(project_name, pipeline_name, version, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    version = 'version_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Cancel multiple pipeline version requests
+    api_response = core_api.pipeline_version_requests_batch_cancel(project_name, pipeline_name, version, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **pipeline_name** | **str** | 
+ **version** | **str** | 
+ **data** | **list[str]** | 
+ **status** | **str** | [optional] 
+
+### Return type
+
+**object**
 
 ### Authorization
 
@@ -1536,20 +1779,20 @@ A list of dictionaries containing the details of the retrieved pipeline requests
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
-- `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
-- `deployment_requests`: A list of requests to the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
-- `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
-- `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `request_data`: Input of the request
+- `result`: Output of the request
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `pipeline_timeout`: Timeout of the pipeline request in seconds
 - `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `deployment_requests`: A list of requests to the deployments in the pipeline. With the request ids provided in this list, it's possible to collect the results of the deployment requests separately.
+- `operator_requests`: A list of requests of the operators in the pipeline. With the request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests to the sub-pipelines in the pipeline. With the request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 
 ## Response Examples
 
@@ -1560,13 +1803,17 @@ A list of dictionaries containing the details of the retrieved pipeline requests
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "completed",
-    "success": null,
+    "success": true,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": "2020-03-28T20:00:42.241+00:00",
-    "request_data": {
-      "input_field": 23.5
-    },
+    "request_data": {"input_field": 23.5},
+    "result": {"output_field": 23.5},
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": 21,
     "deployment_requests": [
       {
         "id": "4b9c8a81-b3ef-437a-8d35-187490eda3e4",
@@ -1607,50 +1854,40 @@ A list of dictionaries containing the details of the retrieved pipeline requests
         "input_size": 10,
         "output_size": 10
       }
-    ],
-    "result": {
-      "output_field": 23.5
-    },
-    "error_message": null,
-    "pipeline_timeout": 300,
-    "deployment_timeout": 300,
-    "input_size": 20,
-    "output_size": 21
+    ]
   },
   {
     "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "processing",
-    "success": null,
+    "success": false,
     "time_created": "2020-063-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": null,
-    "request_data": {
-      "input_field": 23.5
-    },
+    "request_data": {"input_field": 23.5},
+    "result": null,
+    "error_message": null,
+    "pipeline_timeout": 300,
+    "deployment_timeout": 300,
+    "input_size": 20,
+    "output_size": null,
     "deployment_requests": [
       {
         "id": "5fa86ad1-7949-48f5-8e2c-210cce78f427",
         "pipeline_object": "deployment-1-v1-object",
         "deployment": "deployment-1",
         "version": "v1",
-        "sequence_id": "16699092560130850",
+        "sequence_id": "16699092560130860",
         "status": "processing",
-        "success": null,
+        "success": false,
         "error_message": null,
         "input_size": 10,
         "output_size": null
       }
     ],
     "operator_requests": [],
-    "pipeline_requests": [],
-    "result": null,
-    "error_message": null,
-    "pipeline_timeout": 300,
-    "deployment_timeout": 300,
-    "input_size": 20,
-    "output_size": null
+    "pipeline_requests": []
   }
 ]
 ```
@@ -1765,7 +2002,7 @@ example-plain-data
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request is made
 - `status`: Status of the pipeline request. It can be 'completed' or 'failed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the pipeline request was successful. This field is deprecated, use 'status' instead.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `deployment_requests`: A list of dictionaries containing the results of the deployment requests made for the deployment objects in the pipeline. The dictionaries contain the following fields:
     - `id`: Unique identifier for the deployment request
@@ -1863,9 +2100,7 @@ example-plain-data
       "error_message": "Invalid message format"
     }
   ],
-  "result": {
-    "output_field": 23.5
-  },
+  "result": {"output_field": 23.5},
   "pipeline_timeout": 300,
   "deployment_timeout": 300
 }
@@ -1954,7 +2189,7 @@ Name | Type | Notes
 Delete a pipeline version request
 
 ## Description
-Delete a request for a pipeline version. This action deletes all the deployment requests in the pipeline.
+Delete a request for a pipeline version. This action deletes all the subrequests in the pipeline.
 
 ### Example
 
@@ -2031,40 +2266,36 @@ void (empty response body)
 Get a pipeline version request
 
 ## Description
-Get a request for a pipeline version. With this method, the result of a request may be retrieved.
+Get the details of a request for a pipeline version
 
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.
+- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
 
 ### Response Structure
-A dictionary containing the details of the pipeline version request with the following fields:
+A dictionary containing the details of the pipeline request with the following fields:
 
-- `id`: Unique identifier for the pipeline version request
+- `id`: Unique identifier for the pipeline request
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary (structured input type) or string (plain input type) containing the data that was sent when the request was created
-- `deployment_requests`: A list of requests of the deployments in the pipeline. With the deployment request ids provided in this list, it's possible to collect the results of the deployment requests separately.
-- `operator_requests`: A list of requests of the operators in the pipeline. With the operator request ids provided in this list, it's possible to collect the results of the operator requests separately.
-- `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the sub-pipeline request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
-- `result`: A dictionary (structured output type) or string (plain output type) containing the data connected to the pipeline end
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `request_data`: Input of the request
+- `result`: Output of the request
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `pipeline_timeout`: Timeout of the pipeline request in seconds
 - `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - the pipeline (and version) names if the request is directly made to the pipeline
-    - the pipeline request id if the request is part of another pipeline request
-    - the request schedule name if the request is created via a request schedule
     - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `deployment_requests`: A list of requests of the deployments in the pipeline. With the request ids provided in this list, it's possible to collect the results of the deployment requests separately.
+- `operator_requests`: A list of requests of the operators in the pipeline. With the request ids provided in this list, it's possible to collect the results of the operator requests separately.
+- `pipeline_requests`: A list of requests of the sub-pipelines in the pipeline. With the request ids provided in this list, it's possible to collect the results of the sub-pipeline requests separately.
 
 ## Response Examples
 
@@ -2074,13 +2305,20 @@ A dictionary containing the details of the pipeline version request with the fol
   "pipeline": "pipeline-1",
   "version": "v1",
   "status": "completed",
-  "success": null,
+  "success": true,
   "time_created": "2020-03-28T20:00:26.613+00:00",
   "time_started": "2020-03-28T20:00:41.276+00:00",
   "time_completed": "2020-03-28T20:00:42.241+00:00",
-  "request_data": {
-    "input_field": 23.5
+  "request_data": {"input_field": 23.5},
+  "result": {"output_field": 23.5},
+  "error_message": null,
+  "pipeline_timeout": 300,
+  "deployment_timeout": 300,
+  "origin": {
+    "created_by": "my.example.user@ubiops.com"
   },
+  "input_size": 20,
+  "output_size": 21,
   "deployment_requests": [
     {
       "id": "4b9c8a81-b3ef-437a-8d35-187490eda3e4",
@@ -2091,7 +2329,7 @@ A dictionary containing the details of the pipeline version request with the fol
       "status": "completed",
       "success": true,
       "error_message": null,
-       "input_size": 10,
+      "input_size": 10,
       "output_size": 10
     }
   ],
@@ -2121,21 +2359,7 @@ A dictionary containing the details of the pipeline version request with the fol
       "input_size": 10,
       "output_size": 10
     }
-  ],
-  "result": {
-    "output_field": 23.5
-  },
-  "error_message": null,
-  "pipeline_timeout": 300,
-  "deployment_timeout": 300,
-  "notification_group": "notification-group-1",
-  "origin": {
-    "pipeline": "pipeline-1",
-    "pipeline_version": "v1",
-    "created_by": "my.example.user@ubiops.com"
-  },
-  "input_size": 20,
-  "output_size": 21
+  ]
 }
 ```
 
@@ -2214,7 +2438,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **pipeline_version_requests_list**
-> list[PipelineRequestList] pipeline_version_requests_list(project_name, pipeline_name, version, status=status, success=success, limit=limit, offset=offset, sort=sort, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+> list[PipelineRequestList] pipeline_version_requests_list(project_name, pipeline_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 
 List pipeline version requests
 
@@ -2224,12 +2448,9 @@ List all requests for a pipeline version
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed' or 'completed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
 - `limit`: The maximum number of requests given back, default is 50
 - `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-- `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
-- `request_schedule`: The name of a request schedule that created requests
 - `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
 - `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request
 - `search_id`: A string to search inside request ids. It will filter all request ids that contain this string
@@ -2243,10 +2464,10 @@ A list of dictionaries containing the details of the pipeline version requests w
 - `pipeline`: Name of the pipeline for which the request is made
 - `version`: Name of the pipeline version for which the request was made
 - `status`: Status of the request
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -2259,7 +2480,7 @@ A list of dictionaries containing the details of the pipeline version requests w
     "pipeline": "pipeline-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": null,
     "time_completed": null,
@@ -2270,13 +2491,13 @@ A list of dictionaries containing the details of the pipeline version requests w
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
     "pipeline": "pipeline-1",
     "version": "v1",
-    "status": "completed",
-    "success": true,
+    "status": "pending",
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "input_size": 10,
-    "output_size": 10
+    "output_size": null
   }
 ]
 ```
@@ -2327,17 +2548,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     pipeline_name = 'pipeline_name_example' # str
     version = 'version_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List pipeline version requests
-    api_response = core_api.pipeline_version_requests_list(project_name, pipeline_name, version, status=status, success=success, limit=limit, offset=offset, sort=sort, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.pipeline_version_requests_list(project_name, pipeline_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -2361,17 +2579,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     pipeline_name = 'pipeline_name_example' # str
     version = 'version_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List pipeline version requests
-    api_response = core_api.pipeline_version_requests_list(project_name, pipeline_name, version, status=status, success=success, limit=limit, offset=offset, sort=sort, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.pipeline_version_requests_list(project_name, pipeline_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -2388,11 +2603,8 @@ Name | Type | Notes
  **pipeline_name** | **str** | 
  **version** | **str** | 
  **status** | **str** | [optional] 
- **success** | **bool** | [optional] 
  **limit** | **int** | [optional] 
  **offset** | **int** | [optional] 
- **sort** | **str** | [optional] 
- **request_schedule** | **str** | [optional] 
  **start_date** | **str** | [optional] 
  **end_date** | **str** | [optional] 
  **search_id** | **str** | [optional] 
@@ -2400,6 +2612,100 @@ Name | Type | Notes
 ### Return type
 
 [**list[PipelineRequestList]**](./models/PipelineRequestList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **pipeline_version_requests_update**
+> object pipeline_version_requests_update(project_name, pipeline_name, request_id, version, data)
+
+Update a pipeline version request
+
+## Description
+Cancel a pipeline request for a pipeline version
+
+### Required Parameters
+
+- `status`: Status that the request will be updated to. It can only be `cancelled`.
+
+## Request Examples
+
+```
+{
+"status": "cancelled"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    request_id = 'request_id_example' # str
+    version = 'version_example' # str
+    data = ubiops.PipelineRequestUpdate() # PipelineRequestUpdate
+
+    # Update a pipeline version request
+    api_response = core_api.pipeline_version_requests_update(project_name, pipeline_name, request_id, version, data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    pipeline_name = 'pipeline_name_example' # str
+    request_id = 'request_id_example' # str
+    version = 'version_example' # str
+    data = ubiops.PipelineRequestUpdate() # PipelineRequestUpdate
+
+    # Update a pipeline version request
+    api_response = core_api.pipeline_version_requests_update(project_name, pipeline_name, request_id, version, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **pipeline_name** | **str** | 
+ **request_id** | **str** | 
+ **version** | **str** | 
+ **data** | [**PipelineRequestUpdate**](./models/PipelineRequestUpdate.md) | 
+
+### Return type
+
+**object**
 
 ### Authorization
 

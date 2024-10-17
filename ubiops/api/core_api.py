@@ -82,7 +82,6 @@ class CoreApi(object):
         :param list[object] data: (required)
         :param kwargs:
             - int timeout:
-            - str notification_group:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -116,7 +115,6 @@ class CoreApi(object):
         :param list[object] data: (required)
         :param kwargs:
             - int timeout:
-            - str notification_group:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -131,6 +129,38 @@ class CoreApi(object):
 
         return self.deployment_requests.batch_deployment_version_requests_create_with_http_info(
             project_name, deployment_name, version, data, **kwargs
+        )
+
+    def deployment_requests_batch_cancel(self, project_name, deployment_name, data, **kwargs):
+        """
+        Cancel multiple deployment requests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.deployment_requests_batch_cancel(
+                project_name, deployment_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param list[str] data: (required)
+        :param kwargs:
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.deployment_requests.deployment_requests_batch_cancel_with_http_info(
+            project_name, deployment_name, data, **kwargs
         )
 
     def deployment_requests_batch_delete(self, project_name, deployment_name, data, **kwargs):
@@ -185,7 +215,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[DeploymentRequestBatchDetail], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[DeploymentRequestDetail], status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -305,12 +335,8 @@ class CoreApi(object):
         :param str deployment_name: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - bool pipeline:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -350,7 +376,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(DeploymentRequestUpdateResponse, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -358,6 +384,39 @@ class CoreApi(object):
 
         return self.deployment_requests.deployment_requests_update_with_http_info(
             project_name, deployment_name, request_id, data, **kwargs
+        )
+
+    def deployment_version_requests_batch_cancel(self, project_name, deployment_name, version, data, **kwargs):
+        """
+        Delete multiple deployment version requests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.deployment_version_requests_batch_cancel(
+                project_name, deployment_name, version, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param str version: (required)
+        :param list[str] data: (required)
+        :param kwargs:
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.deployment_requests.deployment_version_requests_batch_cancel_with_http_info(
+            project_name, deployment_name, version, data, **kwargs
         )
 
     def deployment_version_requests_batch_delete(self, project_name, deployment_name, version, data, **kwargs):
@@ -414,7 +473,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[DeploymentRequestBatchDetail], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[DeploymentRequestDetail], status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -538,12 +597,8 @@ class CoreApi(object):
         :param str version: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - bool pipeline:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -586,7 +641,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(DeploymentRequestUpdateResponse, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -2816,6 +2871,36 @@ class CoreApi(object):
             project_name, instance_type_group_id, data, **kwargs
         )
 
+    def instance_type_groups_usage(self, project_name, instance_type_group_id, **kwargs):
+        """
+        List usage of instance type group
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.instance_type_groups_usage(
+                project_name, instance_type_group_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_type_group_id: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeGroupUsagePaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.instances.instance_type_groups_usage_with_http_info(project_name, instance_type_group_id, **kwargs)
+
     def instance_types_list(self, project_name, **kwargs):
         """
         List instance types
@@ -3750,7 +3835,6 @@ class CoreApi(object):
         :param list[object] data: (required)
         :param kwargs:
             - int timeout:
-            - str notification_group:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -3784,7 +3868,6 @@ class CoreApi(object):
         :param list[object] data: (required)
         :param kwargs:
             - int timeout:
-            - str notification_group:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -3799,6 +3882,38 @@ class CoreApi(object):
 
         return self.pipeline_requests.batch_pipeline_version_requests_create_with_http_info(
             project_name, pipeline_name, version, data, **kwargs
+        )
+
+    def pipeline_requests_batch_cancel(self, project_name, pipeline_name, data, **kwargs):
+        """
+        Cancel multiple pipeline requests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.pipeline_requests_batch_cancel(
+                project_name, pipeline_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str pipeline_name: (required)
+        :param list[str] data: (required)
+        :param kwargs:
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.pipeline_requests.pipeline_requests_batch_cancel_with_http_info(
+            project_name, pipeline_name, data, **kwargs
         )
 
     def pipeline_requests_batch_delete(self, project_name, pipeline_name, data, **kwargs):
@@ -3974,11 +4089,8 @@ class CoreApi(object):
         :param str pipeline_name: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -3995,6 +4107,38 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.pipeline_requests.pipeline_requests_list_with_http_info(project_name, pipeline_name, **kwargs)
+
+    def pipeline_requests_update(self, project_name, pipeline_name, request_id, data, **kwargs):
+        """
+        Update a pipeline request
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.pipeline_requests_update(
+                project_name, pipeline_name, request_id, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str pipeline_name: (required)
+        :param str request_id: (required)
+        :param PipelineRequestUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.pipeline_requests.pipeline_requests_update_with_http_info(
+            project_name, pipeline_name, request_id, data, **kwargs
+        )
 
     def pipeline_version_object_requests_get(self, project_name, pipeline_name, request_id, version, **kwargs):
         """
@@ -4013,6 +4157,8 @@ class CoreApi(object):
         :param str version: (required)
         :param kwargs:
             - bool metadata_only:
+            - str pipeline_request_id:
+            - str pipeline_object_id:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4027,6 +4173,39 @@ class CoreApi(object):
 
         return self.pipeline_requests.pipeline_version_object_requests_get_with_http_info(
             project_name, pipeline_name, request_id, version, **kwargs
+        )
+
+    def pipeline_version_requests_batch_cancel(self, project_name, pipeline_name, version, data, **kwargs):
+        """
+        Cancel multiple pipeline version requests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.pipeline_version_requests_batch_cancel(
+                project_name, pipeline_name, version, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str pipeline_name: (required)
+        :param str version: (required)
+        :param list[str] data: (required)
+        :param kwargs:
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.pipeline_requests.pipeline_version_requests_batch_cancel_with_http_info(
+            project_name, pipeline_name, version, data, **kwargs
         )
 
     def pipeline_version_requests_batch_delete(self, project_name, pipeline_name, version, data, **kwargs):
@@ -4208,11 +4387,8 @@ class CoreApi(object):
         :param str version: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -4230,6 +4406,39 @@ class CoreApi(object):
 
         return self.pipeline_requests.pipeline_version_requests_list_with_http_info(
             project_name, pipeline_name, version, **kwargs
+        )
+
+    def pipeline_version_requests_update(self, project_name, pipeline_name, request_id, version, data, **kwargs):
+        """
+        Update a pipeline version request
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.pipeline_version_requests_update(
+                project_name, pipeline_name, request_id, version, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str pipeline_name: (required)
+        :param str request_id: (required)
+        :param str version: (required)
+        :param PipelineRequestUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.pipeline_requests.pipeline_version_requests_update_with_http_info(
+            project_name, pipeline_name, request_id, version, data, **kwargs
         )
 
     def expressions_evaluate(self, data, **kwargs):
@@ -4796,12 +5005,8 @@ class CoreApi(object):
         :param str object_type: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - bool pipeline:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:

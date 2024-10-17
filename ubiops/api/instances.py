@@ -592,6 +592,105 @@ class Instances(object):
             progress_bar=kwargs.get("_progress_bar", False),
         )
 
+    def instance_type_groups_usage_with_http_info(self, project_name, instance_type_group_id, **kwargs):
+        """
+        List usage of instance type group
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = Instances.instance_type_groups_usage_with_http_info(
+                project_name, instance_type_group_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_type_group_id: (required)
+        :param kwargs:
+            - str cursor: The pagination cursor value.
+            - int limit: Number of results to return per page.
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceTypeGroupUsagePaginated, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "instance_type_groups_usage"
+        optional_params = ["cursor", "limit"]
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and instance_type_group_id is None:
+            raise ApiValueError(f"Missing the required parameter `instance_type_group_id` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(instance_type_group_id, str):
+                raise ApiValueError(f"Parameter `instance_type_group_id` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
+            if not isinstance(kwargs["cursor"], str):
+                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
+            if not isinstance(kwargs["limit"], int):
+                raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["instance_type_group_id"] = instance_type_group_id
+
+        if "cursor" in kwargs and kwargs["cursor"] is not None:
+            query_params.append(("cursor", kwargs["cursor"]))
+        if "limit" in kwargs and kwargs["limit"] is not None:
+            query_params.append(("limit", kwargs["limit"]))
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        url = "/projects/{project_name}/instance-type-groups/{instance_type_group_id}/usage"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "GET",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="InstanceTypeGroupUsagePaginated",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
     def instance_types_list_with_http_info(self, project_name, **kwargs):
         """
         List instance types

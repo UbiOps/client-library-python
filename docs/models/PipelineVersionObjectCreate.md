@@ -8,5 +8,6 @@ Name | Type | Notes
 **reference_name** | **str** |
 **version** | **str** | [optional]
 **configuration** | **dict(str, str)** | [optional]
+**metadata** | **dict(str, str)** | [optional]
 
 

@@ -8,21 +8,21 @@
 
 
 from ubiops.training.constants import DEFAULT_TRAINING_DEPLOYMENT_NAME
-from ubiops.models.deployment_request_batch_detail import DeploymentRequestBatchDetail
+from ubiops.models.deployment_request_detail import DeploymentRequestDetail
 
 
-class ExperimentRunDetail(DeploymentRequestBatchDetail):
+class ExperimentRunDetail(DeploymentRequestDetail):
     openapi_types = {
         "id": "str",
         "experiment": "str",
         "status": "str",
-        "success": "bool",
         "time_created": "datetime",
         "time_started": "datetime",
         "time_completed": "datetime",
         "error_message": "str",
-        "retries": "int",
         "timeout": "int",
+        "input_size": "int",
+        "output_size": "int",
         "request_data": "object",
         "result": "object",
     }
@@ -31,13 +31,13 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
         "id": "id",
         "experiment": "experiment",
         "status": "status",
-        "success": "success",
         "time_created": "time_created",
         "time_started": "time_started",
         "time_completed": "time_completed",
         "error_message": "error_message",
-        "retries": "retries",
         "timeout": "timeout",
+        "input_size": "input_size",
+        "output_size": "output_size",
         "request_data": "request_data",
         "result": "result",
     }
@@ -47,13 +47,13 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
         id=None,
         experiment=None,
         status=None,
-        success=None,
         time_created=None,
         time_started=None,
         time_completed=None,
         error_message=None,
-        retries=None,
         timeout=None,
+        input_size=None,
+        output_size=None,
         request_data=None,
         result=None,
         **kwargs,
@@ -69,13 +69,13 @@ class ExperimentRunDetail(DeploymentRequestBatchDetail):
             deployment=kwargs.pop("deployment", DEFAULT_TRAINING_DEPLOYMENT_NAME),
             version=experiment,  # Convert experiment to version
             status=status,
-            success=success,
             time_created=time_created,
             time_started=time_started,
             time_completed=time_completed,
             error_message=error_message,
-            retries=retries,
             timeout=timeout,
+            input_size=input_size,
+            output_size=output_size,
             request_data=request_data,
             result=result,
             **kwargs,

@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ubiops"
-VERSION = "4.5.1"
+VERSION = "4.6.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -33,6 +33,7 @@ REQUIRES = [
     "pyyaml < 7.0",
     "requests >= 2.25.1,<3.0",
     "requests_toolbelt == 1.0.0",
+    "schema == 0.7.7",
     "tqdm >= 4.64.1",
 ]
 

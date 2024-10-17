@@ -1,4 +1,4 @@
-# DeploymentRequestUpdate
+# PipelineRequestUpdate
 
 ## Properties
 Name | Type | Notes
