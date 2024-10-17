@@ -1620,6 +1620,9 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.
 - `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`.
+- `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
+    - `default` - scales up directly with incoming requests, ideal for long requests
+    - `moderate` - optimized scaling, less aggressive and saves costs, ideal for short requests
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -1705,6 +1708,7 @@ Details of the created version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
+- `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 
 ## Response Examples
 
@@ -1742,7 +1746,8 @@ Details of the created version
   "has_requests_method": null,
   "static_ip": false,
   "restart_request_interruption": false,
-  "ports": []
+  "ports": [],
+  "scaling_strategy": "default"
 }
 ```
 
@@ -1935,6 +1940,7 @@ Details of a version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
+- `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 
 ## Response Examples
 
@@ -1972,7 +1978,8 @@ Details of a version
   "has_requests_method": false,
   "static_ip": false,
   "restart_request_interruption": false,
-  "ports": []
+  "ports": [],
+  "scaling_strategy": "moderate"
 }
 ```
 
@@ -2087,6 +2094,7 @@ A list of details of the versions
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
+- `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*.
 
 ## Response Examples
 
@@ -2119,7 +2127,8 @@ A list of details of the versions
     "maximum_queue_size_batch": 100000,
     "static_ip": false,
     "restart_request_interruption": false,
-    "ports": []
+    "ports": [],
+    "scaling_strategy": "default"
   },
   {
     "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
@@ -2148,7 +2157,8 @@ A list of details of the versions
     "maximum_queue_size_batch": 100000,
     "static_ip": true,
     "restart_request_interruption": false,
-    "ports": []
+    "ports": [],
+    "scaling_strategy": "moderate"
   }
 ]
 ```
@@ -2255,6 +2265,9 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `environment`: New environment for the version. It can be either a base or a custom environment.
 - `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. The new ports will replace the existing value for ports.
+- `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
+    - `default` - scales up directly with incoming requests, ideal for long requests
+    - `moderate` - optimized scaling, less aggressive and saves costs, ideal for short requests
 
 ## Request Examples
 
@@ -2308,6 +2321,7 @@ Details of the updated version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
+- `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 
 ## Response Examples
 
@@ -2345,7 +2359,8 @@ Details of the updated version
   "has_requests_method": false,
   "static_ip": false,
   "restart_request_interruption": false,
-  "ports": []
+  "ports": [],
+  "scaling_strategy: "moderate"
 }
 ```
 

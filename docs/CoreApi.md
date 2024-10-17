@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**batch_deployment_requests_create**](./DeploymentRequests.md#batch_deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/batch | Create a batch deployment request
 [**batch_deployment_version_requests_create**](./DeploymentRequests.md#batch_deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/batch | Create a batch deployment version request
+[**deployment_requests_batch_cancel**](./DeploymentRequests.md#deployment_requests_batch_cancel) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/cancel | Cancel multiple deployment requests
 [**deployment_requests_batch_delete**](./DeploymentRequests.md#deployment_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/delete | Delete multiple deployment requests
 [**deployment_requests_batch_get**](./DeploymentRequests.md#deployment_requests_batch_get) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/collect | Retrieve multiple deployment requests
 [**deployment_requests_create**](./DeploymentRequests.md#deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests | Create a direct deployment request
@@ -13,6 +14,7 @@ Method | HTTP request | Description
 [**deployment_requests_get**](./DeploymentRequests.md#deployment_requests_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Get a deployment request
 [**deployment_requests_list**](./DeploymentRequests.md#deployment_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests | List deployment requests
 [**deployment_requests_update**](./DeploymentRequests.md#deployment_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Update a deployment request
+[**deployment_version_requests_batch_cancel**](./DeploymentRequests.md#deployment_version_requests_batch_cancel) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/cancel | Delete multiple deployment version requests
 [**deployment_version_requests_batch_delete**](./DeploymentRequests.md#deployment_version_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/delete | Delete multiple deployment version requests
 [**deployment_version_requests_batch_get**](./DeploymentRequests.md#deployment_version_requests_batch_get) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/collect | Retrieve multiple deployment version requests
 [**deployment_version_requests_create**](./DeploymentRequests.md#deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | Create a direct deployment version request
@@ -94,6 +96,7 @@ Method | HTTP request | Description
 [**instance_type_groups_get**](./Instances.md#instance_type_groups_get) | **GET** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Get instance type group
 [**instance_type_groups_list**](./Instances.md#instance_type_groups_list) | **GET** /projects/{project_name}/instance-type-groups | List instance type groups
 [**instance_type_groups_update**](./Instances.md#instance_type_groups_update) | **PATCH** /projects/{project_name}/instance-type-groups/{instance_type_group_id} | Update instance type group
+[**instance_type_groups_usage**](./Instances.md#instance_type_groups_usage) | **GET** /projects/{project_name}/instance-type-groups/{instance_type_group_id}/usage | List usage of instance type group
 [**instance_types_list**](./Instances.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**instances_get**](./Instances.md#instances_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Get instance for deployment versions
 [**instances_list**](./Instances.md#instances_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances | List instances for deployment versions
@@ -128,19 +131,23 @@ Method | HTTP request | Description
 [**vouchers_get**](./Organizations.md#vouchers_get) | **GET** /vouchers/{code} | Get voucher
 [**batch_pipeline_requests_create**](./PipelineRequests.md#batch_pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/batch | Create a batch pipeline request
 [**batch_pipeline_version_requests_create**](./PipelineRequests.md#batch_pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/batch | Create a batch pipeline version request
+[**pipeline_requests_batch_cancel**](./PipelineRequests.md#pipeline_requests_batch_cancel) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/cancel | Cancel multiple pipeline requests
 [**pipeline_requests_batch_delete**](./PipelineRequests.md#pipeline_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/delete | Delete multiple pipeline requests
 [**pipeline_requests_batch_get**](./PipelineRequests.md#pipeline_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests/collect | Retrieve multiple pipeline requests
 [**pipeline_requests_create**](./PipelineRequests.md#pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests | Create a pipeline request
 [**pipeline_requests_delete**](./PipelineRequests.md#pipeline_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Delete a pipeline request
 [**pipeline_requests_get**](./PipelineRequests.md#pipeline_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Get a pipeline request
 [**pipeline_requests_list**](./PipelineRequests.md#pipeline_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests | List pipeline requests
+[**pipeline_requests_update**](./PipelineRequests.md#pipeline_requests_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Update a pipeline request
 [**pipeline_version_object_requests_get**](./PipelineRequests.md#pipeline_version_object_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id} | Get an operator request
+[**pipeline_version_requests_batch_cancel**](./PipelineRequests.md#pipeline_version_requests_batch_cancel) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/cancel | Cancel multiple pipeline version requests
 [**pipeline_version_requests_batch_delete**](./PipelineRequests.md#pipeline_version_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete | Delete multiple pipeline version requests
 [**pipeline_version_requests_batch_get**](./PipelineRequests.md#pipeline_version_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect | Retrieve multiple pipeline version requests
 [**pipeline_version_requests_create**](./PipelineRequests.md#pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | Create a pipeline version request
 [**pipeline_version_requests_delete**](./PipelineRequests.md#pipeline_version_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Delete a pipeline version request
 [**pipeline_version_requests_get**](./PipelineRequests.md#pipeline_version_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Get a pipeline version request
 [**pipeline_version_requests_list**](./PipelineRequests.md#pipeline_version_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | List pipeline version requests
+[**pipeline_version_requests_update**](./PipelineRequests.md#pipeline_version_requests_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Update a pipeline version request
 [**expressions_evaluate**](./Pipelines.md#expressions_evaluate) | **POST** /expressions/evaluate | Evaluate expression
 [**pipeline_audit_events_list**](./Pipelines.md#pipeline_audit_events_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/audit | List audit events for a pipeline
 [**pipeline_version_object_environment_variables_list**](./Pipelines.md#pipeline_version_object_environment_variables_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/objects/{name}/environment-variables | List pipeline object environment variables

@@ -177,9 +177,6 @@ class PipelineRequestPipelineRequest(object):
         if self.client_side_validation and (pipeline is not None and not isinstance(pipeline, str)):
             raise ValueError("Parameter `pipeline` must be a string")
 
-        if self.client_side_validation and (pipeline is not None and len(pipeline) < 1):
-            raise ValueError("Invalid value for `pipeline`, length must be greater than or equal to `1`")
-
         self._pipeline = pipeline
 
     @property
@@ -204,9 +201,6 @@ class PipelineRequestPipelineRequest(object):
 
         if self.client_side_validation and (version is not None and not isinstance(version, str)):
             raise ValueError("Parameter `version` must be a string")
-
-        if self.client_side_validation and (version is not None and len(version) < 1):
-            raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")
 
         self._version = version
 
@@ -246,7 +240,7 @@ class PipelineRequestPipelineRequest(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )

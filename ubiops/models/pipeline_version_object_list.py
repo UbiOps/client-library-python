@@ -36,6 +36,7 @@ class PipelineVersionObjectList(object):
         "input_type": "str",
         "output_type": "str",
         "configuration": "PipelineVersionObjectConfigurationList",
+        "metadata": "dict(str, str)",
         "input_fields": "list[InputOutputFieldBase]",
         "output_fields": "list[InputOutputFieldBase]",
     }
@@ -49,6 +50,7 @@ class PipelineVersionObjectList(object):
         "input_type": "input_type",
         "output_type": "output_type",
         "configuration": "configuration",
+        "metadata": "metadata",
         "input_fields": "input_fields",
         "output_fields": "output_fields",
     }
@@ -63,6 +65,7 @@ class PipelineVersionObjectList(object):
         input_type=None,
         output_type=None,
         configuration=None,
+        metadata=None,
         input_fields=None,
         output_fields=None,
         **kwargs,
@@ -83,6 +86,7 @@ class PipelineVersionObjectList(object):
         self._input_type = None
         self._output_type = None
         self._configuration = None
+        self._metadata = None
         self._input_fields = None
         self._output_fields = None
         self.discriminator = None
@@ -96,6 +100,7 @@ class PipelineVersionObjectList(object):
         self.input_type = input_type
         self.output_type = output_type
         self.configuration = configuration
+        self.metadata = metadata
         self.input_fields = input_fields
         self.output_fields = output_fields
 
@@ -324,6 +329,31 @@ class PipelineVersionObjectList(object):
                 configuration = PipelineVersionObjectConfigurationList(**configuration)
 
         self._configuration = configuration
+
+    @property
+    def metadata(self):
+        """
+        Gets the metadata of this PipelineVersionObjectList
+
+        :return: the metadata of this PipelineVersionObjectList
+        :rtype: dict(str, str)
+        """
+
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """
+        Sets the metadata of this PipelineVersionObjectList
+
+        :param metadata: the metadata of this PipelineVersionObjectList
+        :type: dict(str, str)
+        """
+
+        if self.client_side_validation and (metadata is not None and not isinstance(metadata, dict)):
+            raise ValueError("Parameter `metadata` must be a dictionary")
+
+        self._metadata = metadata
 
     @property
     def input_fields(self):

@@ -649,7 +649,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **project_requests_list**
-> list[RequestsOverview] project_requests_list(project_name, object_type, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+> list[RequestsOverview] project_requests_list(project_name, object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 
 List requests in project
 
@@ -662,29 +662,24 @@ List the deployment/pipeline requests of the given project
 
 ### Optional Parameters
 
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
-- `limit`: The maximum number of requests given back, default is 50
-- `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-- `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
-- `pipeline`: A boolean value that indicates whether the deployment request was part of a pipeline request
-- `request_schedule`: The name of a request schedule that created requests
-- `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-- `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-- `search_id`: A string to search inside request ids. It will filter all request ids that contain this string
+- `status`: Status of the request, one of the following 'failed', 'completed' or 'cancelled', defaults to 'completed'
+- `limit`: The maximum number of requests given back, defaults to 50
+- `offset`: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+- `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+- `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+- `search_id`: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
 
 ### Response Structure
-A list of dictionaries containing the metadata of the deployment/pipeline requests with the following fields:
+A list of dictionaries containing the details of the deployment/pipeline requests with the following fields:
 
-- `id`: The UUID of the object
-- `deployment`: Name of the deployment the request was made to (Optional: in case it's a deployment request. Else NULL)
-- `pipeline`: Name of the pipeline the request was made to (Optional: in case it's a pipeline request. Else NULL)
+- `id`: Unique identifier for the request
+- `deployment`: Name of the deployment the request was made to. If the request wasn't made to a deployment, it's set to null.
+- `pipeline`: Name of the pipeline the request was made to. If the request wasn't made to a pipeline, it's set to null.
 - `version`: Name of the version the request was made to
 - `status`: Status of the request
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -697,21 +692,19 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
     "deployment": "deployment-1",
     "pipeline": null,
     "version": "v1",
-    "status": "pending",
-    "success": null,
+    "status": "completed",
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": null,
-    "time_completed": null,
+    "time_started": "2020-03-28T20:01:33.123+00:00",
+    "time_completed": "2020-03-28T20:03:12.985+00:00",
     "input_size": 10,
     "output_size": null
   },
   {
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
-    "deployment": null,
-    "pipeline": "pipeline-1",
+    "deployment": "deployment-1",
+    "pipeline": null,
     "version": "v1",
     "status": "completed",
-    "success": true,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": "2020-03-28T20:00:41.276+00:00",
     "time_completed": "2020-03-28T20:00:42.241+00:00",
@@ -735,18 +728,14 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
     project_name = 'project_name_example' # str
     object_type = 'object_type_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    pipeline = True # bool (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List requests in project
-    api_response = core_api.project_requests_list(project_name, object_type, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.project_requests_list(project_name, object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -769,18 +758,14 @@ A list of dictionaries containing the metadata of the deployment/pipeline reques
     project_name = 'project_name_example' # str
     object_type = 'object_type_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    pipeline = True # bool (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List requests in project
-    api_response = core_api.project_requests_list(project_name, object_type, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.project_requests_list(project_name, object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -796,12 +781,8 @@ Name | Type | Notes
  **project_name** | **str** | 
  **object_type** | **str** | 
  **status** | **str** | [optional] 
- **success** | **bool** | [optional] 
  **limit** | **int** | [optional] 
  **offset** | **int** | [optional] 
- **sort** | **str** | [optional] 
- **pipeline** | **bool** | [optional] 
- **request_schedule** | **str** | [optional] 
  **start_date** | **str** | [optional] 
  **end_date** | **str** | [optional] 
  **search_id** | **str** | [optional] 
@@ -1594,6 +1575,7 @@ Retrieve the logs of all objects in a project, including deployments, pipelines 
     - `deployment_name`: name of a deployment
     - `deployment_version`: name of a deployment version. If this field is present in the request, deployment_name must also be given. The deployment versions are only meaningful in combination with the deployments they are defined for.
     - `deployment_version_revision_id`: the UUID of a deployment version revision. It does not have to be given in combination with the deployment and version name.
+    - `instance_id`: the UUID of an instance. It does not have to be given in combination with the deployment and version name.
     - `environment_name`: name of an environment
     - `environment_build_id`: the UUID of an environment build. It does not have to be given in combination with the environment name.
     - `pipeline_name`: name of a pipeline

@@ -27,11 +27,25 @@ class OrganizationList(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "name": "str", "creation_date": "datetime", "status": "str"}
+    openapi_types = {
+        "id": "str",
+        "name": "str",
+        "creation_date": "datetime",
+        "status": "str",
+        "two_factor_authentication_forced": "bool",
+    }
 
-    attribute_map = {"id": "id", "name": "name", "creation_date": "creation_date", "status": "status"}
+    attribute_map = {
+        "id": "id",
+        "name": "name",
+        "creation_date": "creation_date",
+        "status": "status",
+        "two_factor_authentication_forced": "two_factor_authentication_forced",
+    }
 
-    def __init__(self, id=None, name=None, creation_date=None, status=None, **kwargs):
+    def __init__(
+        self, id=None, name=None, creation_date=None, status=None, two_factor_authentication_forced=None, **kwargs
+    ):
         """
         OrganizationList - a model defined in OpenAPI
         """
@@ -44,6 +58,7 @@ class OrganizationList(object):
         self._name = None
         self._creation_date = None
         self._status = None
+        self._two_factor_authentication_forced = None
         self.discriminator = None
 
         if id is not None:
@@ -52,6 +67,8 @@ class OrganizationList(object):
         if creation_date is not None:
             self.creation_date = creation_date
         self.status = status
+        if two_factor_authentication_forced is not None:
+            self.two_factor_authentication_forced = two_factor_authentication_forced
 
     @property
     def id(self):
@@ -161,6 +178,33 @@ class OrganizationList(object):
             raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")
 
         self._status = status
+
+    @property
+    def two_factor_authentication_forced(self):
+        """
+        Gets the two_factor_authentication_forced of this OrganizationList
+
+        :return: the two_factor_authentication_forced of this OrganizationList
+        :rtype: bool
+        """
+
+        return self._two_factor_authentication_forced
+
+    @two_factor_authentication_forced.setter
+    def two_factor_authentication_forced(self, two_factor_authentication_forced):
+        """
+        Sets the two_factor_authentication_forced of this OrganizationList
+
+        :param two_factor_authentication_forced: the two_factor_authentication_forced of this OrganizationList
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            two_factor_authentication_forced is not None and not isinstance(two_factor_authentication_forced, bool)
+        ):
+            raise ValueError("Parameter `two_factor_authentication_forced` must be a boolean")
+
+        self._two_factor_authentication_forced = two_factor_authentication_forced
 
     def to_dict(self):
         """

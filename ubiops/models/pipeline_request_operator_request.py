@@ -172,9 +172,6 @@ class PipelineRequestOperatorRequest(object):
         if self.client_side_validation and (operator is not None and not isinstance(operator, str)):
             raise ValueError("Parameter `operator` must be a string")
 
-        if self.client_side_validation and (operator is not None and len(operator) < 1):
-            raise ValueError("Invalid value for `operator`, length must be greater than or equal to `1`")
-
         self._operator = operator
 
     @property
@@ -213,7 +210,7 @@ class PipelineRequestOperatorRequest(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )

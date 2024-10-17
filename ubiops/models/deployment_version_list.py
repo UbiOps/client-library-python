@@ -54,6 +54,7 @@ class DeploymentVersionList(object):
         "restart_request_interruption": "bool",
         "ports": "list[DeploymentVersionPort]",
         "instance_type": "str",
+        "scaling_strategy": "str",
     }
 
     attribute_map = {
@@ -83,6 +84,7 @@ class DeploymentVersionList(object):
         "restart_request_interruption": "restart_request_interruption",
         "ports": "ports",
         "instance_type": "instance_type",
+        "scaling_strategy": "scaling_strategy",
     }
 
     def __init__(
@@ -113,6 +115,7 @@ class DeploymentVersionList(object):
         restart_request_interruption=None,
         ports=None,
         instance_type=None,
+        scaling_strategy=None,
         **kwargs,
     ):
         """
@@ -149,6 +152,7 @@ class DeploymentVersionList(object):
         self._restart_request_interruption = None
         self._ports = None
         self._instance_type = None
+        self._scaling_strategy = None
         self.discriminator = None
 
         if id is not None:
@@ -199,6 +203,7 @@ class DeploymentVersionList(object):
             self.ports = ports
         if instance_type is not None:
             self.instance_type = instance_type
+        self.scaling_strategy = scaling_strategy
 
     @property
     def id(self):
@@ -889,6 +894,36 @@ class DeploymentVersionList(object):
             raise ValueError("Parameter `instance_type` must be a string")
 
         self._instance_type = instance_type
+
+    @property
+    def scaling_strategy(self):
+        """
+        Gets the scaling_strategy of this DeploymentVersionList
+
+        :return: the scaling_strategy of this DeploymentVersionList
+        :rtype: str
+        """
+
+        return self._scaling_strategy
+
+    @scaling_strategy.setter
+    def scaling_strategy(self, scaling_strategy):
+        """
+        Sets the scaling_strategy of this DeploymentVersionList
+
+        :param scaling_strategy: the scaling_strategy of this DeploymentVersionList
+        :type: str
+        """
+
+        if self.client_side_validation and scaling_strategy is None:
+            raise ValueError("Invalid value for `scaling_strategy`, must not be `None`")
+        if self.client_side_validation and (scaling_strategy is not None and not isinstance(scaling_strategy, str)):
+            raise ValueError("Parameter `scaling_strategy` must be a string")
+
+        if self.client_side_validation and (scaling_strategy is not None and len(scaling_strategy) < 1):
+            raise ValueError("Invalid value for `scaling_strategy`, length must be greater than or equal to `1`")
+
+        self._scaling_strategy = scaling_strategy
 
     def to_dict(self):
         """

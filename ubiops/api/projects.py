@@ -580,12 +580,8 @@ class Projects(object):
         :param str object_type: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - bool pipeline:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -600,18 +596,7 @@ class Projects(object):
         """
 
         method_name = "project_requests_list"
-        optional_params = [
-            "status",
-            "success",
-            "limit",
-            "offset",
-            "sort",
-            "pipeline",
-            "request_schedule",
-            "start_date",
-            "end_date",
-            "search_id",
-        ]
+        optional_params = ["status", "limit", "offset", "start_date", "end_date", "search_id"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -638,28 +623,12 @@ class Projects(object):
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
                 raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
-        if self.api_client.client_side_validation and "success" in kwargs and kwargs["success"] is not None:
-            if not isinstance(kwargs["success"], bool):
-                raise ApiValueError(f"Parameter `success` must be a boolean when calling `{method_name}`")
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "offset" in kwargs and kwargs["offset"] is not None:
             if not isinstance(kwargs["offset"], int):
                 raise ApiValueError(f"Parameter `offset` must be an integer when calling `{method_name}`")
-        if self.api_client.client_side_validation and "sort" in kwargs and kwargs["sort"] is not None:
-            if not isinstance(kwargs["sort"], str):
-                raise ApiValueError(f"Parameter `sort` must be a string when calling `{method_name}`")
-        if self.api_client.client_side_validation and "pipeline" in kwargs and kwargs["pipeline"] is not None:
-            if not isinstance(kwargs["pipeline"], bool):
-                raise ApiValueError(f"Parameter `pipeline` must be a boolean when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "request_schedule" in kwargs
-            and kwargs["request_schedule"] is not None
-        ):
-            if not isinstance(kwargs["request_schedule"], str):
-                raise ApiValueError(f"Parameter `request_schedule` must be a string when calling `{method_name}`")
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
                 raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
@@ -684,18 +653,10 @@ class Projects(object):
             query_params.append(("object_type", object_type))
         if "status" in kwargs and kwargs["status"] is not None:
             query_params.append(("status", kwargs["status"]))
-        if "success" in kwargs and kwargs["success"] is not None:
-            query_params.append(("success", kwargs["success"]))
         if "limit" in kwargs and kwargs["limit"] is not None:
             query_params.append(("limit", kwargs["limit"]))
         if "offset" in kwargs and kwargs["offset"] is not None:
             query_params.append(("offset", kwargs["offset"]))
-        if "sort" in kwargs and kwargs["sort"] is not None:
-            query_params.append(("sort", kwargs["sort"]))
-        if "pipeline" in kwargs and kwargs["pipeline"] is not None:
-            query_params.append(("pipeline", kwargs["pipeline"]))
-        if "request_schedule" in kwargs and kwargs["request_schedule"] is not None:
-            query_params.append(("request_schedule", kwargs["request_schedule"]))
         if "start_date" in kwargs and kwargs["start_date"] is not None:
             query_params.append(("start_date", kwargs["start_date"]))
         if "end_date" in kwargs and kwargs["end_date"] is not None:

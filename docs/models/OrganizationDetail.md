@@ -7,6 +7,7 @@ Name | Type | Notes
 **name** | **str** |
 **creation_date** | **datetime** | [optional] [readonly]
 **status** | **str** |
+**two_factor_authentication_forced** | **bool** | [optional]
 **subscription** | **str** |
 
 

@@ -26,7 +26,11 @@ Test a webhook
 - `url`: Callback url to send event payloads to
 - `object_type`: Type of object for which the webhook will be tested. It can be either 'deployment' or 'pipeline'.
 - `object_name`: Name of deployment or pipeline for which the webhook will be tested
-- `event`: Event that triggers the webhook
+- `event`: Event that triggers the webhook. Depending on the selected *object_type*, it can be one of the following:
+    - `deployment_request_started` or `pipeline_request_started`: triggers when a request starts
+    - `deployment_request_completed` or `pipeline_request_completed`: triggers when a request completes successfully
+    - `deployment_request_failed` or `pipeline_request_failed`: triggers when a request fails
+    - `deployment_request_finished` or `pipeline_request_finished`: triggers when a request is finished (cancelled, successful or failed)
 
 ### Optional Parameters
 
@@ -255,7 +259,11 @@ Create a webhook
 - `url`: Callback url to send event payloads to
 - `object_type`: Type of object for which the webhook will be created. It can be either 'deployment' or 'pipeline'.
 - `object_name`: Name of deployment or pipeline for which the webhook will be created
-- `event`: Event that triggers the webhook
+- `event`: Event that triggers the webhook. Depending on the selected *object_type*, it can be one of the following:
+    - `deployment_request_started` or `pipeline_request_started`: triggers when a request starts
+    - `deployment_request_completed` or `pipeline_request_completed`: triggers when a request completes successfully
+    - `deployment_request_failed` or `pipeline_request_failed`: triggers when a request fails
+    - `deployment_request_finished` or `pipeline_request_finished`: triggers when a request is finished (cancelled, successful or failed)
 
 ### Optional Parameters
 
@@ -738,7 +746,11 @@ Update a webhook
 - `headers`: Request headers to use when calling the webhook. Use *value* None to not update the values of protected headers.
 - `description`: Description of the webhook
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
-- `event`: Event that triggers the webhook
+- `event`: Event that triggers the webhook. Depending on the selected *object_type*, it can be one of the following:
+    - `deployment_request_started` or `pipeline_request_started`: triggers when a request starts
+    - `deployment_request_completed` or `pipeline_request_completed`: triggers when a request completes successfully
+    - `deployment_request_failed` or `pipeline_request_failed`: triggers when a request fails
+    - `deployment_request_finished` or `pipeline_request_finished`: triggers when a request is finished (cancelled, successful or failed)
 - `timeout`: Timeout in seconds on the call to webhook
 - `enabled`: Boolean value indicating whether the webhook is enabled or disabled
 - `retry`: Boolean value indicating whether the calls to webhook should be retried if they fail

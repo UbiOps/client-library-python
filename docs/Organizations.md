@@ -522,6 +522,7 @@ Create a new organization. When a user creates an organization, s/he will automa
 
 - `subscription_end_date`: End date of the subscription. The subscription will be cancelled on this date. A 'free' subscription cannot have a custom end_date as this subscription is always valid for a year.
 If you are going to use a subscription other than the free subscription, you should provide the end date.
+- `two_factor_authentication_forced`: Whether 2FA should be enforced on the organization users, defaults to False
 
 ## Request Examples
 
@@ -548,6 +549,8 @@ Details of the created organization
 - `id`: Unique identifier for the organization (UUID)
 - `name`: Name of the organization
 - `creation_date`: Date and time the organization was created
+- `status`: Status of the organization
+- `two_factor_authentication_forced`: Whether 2FA is enforced on the organization users
 
 ## Response Examples
 
@@ -555,7 +558,9 @@ Details of the created organization
 {
   "id": "abe2e406-fae5-4bcf-a3bc-956d756e4ecb",
   "name": "test-organization",
-  "creation_date": "2020-03-25T15:43:46.101877Z"
+  "creation_date": "2020-03-25T15:43:46.101877Z",
+  "status": "active",
+  "two_factor_authentication_forced": false
 }
 ```
 
@@ -636,6 +641,8 @@ Details of the organization
 - `name`: Name of the organization
 - `creation_date`: Time the organization was created
 - `subscription`: Name of the subscription of the organization
+- `status`: Status of the organization
+- `two_factor_authentication_forced`: Whether 2FA is enforced on the organization users
 
 ## Response Examples
 
@@ -644,7 +651,9 @@ Details of the organization
   "id": "abe2e406-fae5-4bcf-a3bc-956d756e4ecb",
   "name": "test-organization",
   "creation_date": "2020-03-25T15:43:46.101877Z",
-  "subscription": "free"
+  "subscription": "free",
+  "status": "active",
+  "two_factor_authentication_forced": false
 }
 ```
 
@@ -724,6 +733,8 @@ A list of details of the organizations
 - `id`: Unique identifier for the organization (UUID)
 - `name`: Name of the organization
 - `creation_date`: Date and time the organization was created
+- `status`: Status of the organization
+- `two_factor_authentication_forced`: Whether 2FA is enforced on the organization users
 
 ## Response Examples
 
@@ -732,7 +743,9 @@ A list of details of the organizations
   {
     "id": "45a1f903-4146-4f15-be4a-302455cd6f7e",
     "name": "organization-name",
-    "creation_date": "2020-03-23T11:47:15.436240Z"
+    "creation_date": "2020-03-23T11:47:15.436240Z",
+    "status": "active",
+    "two_factor_authentication_forced": false
   }
 ]
 ```
@@ -908,6 +921,7 @@ To delete the end date of the current subscription, give the 'subscription_end_d
 - `subscription`: New subscription
 - `subscription_end_date`: End date of the new subscription. The required format is `YYYY-MM-DD`. The subscription will be cancelled on this date. If you are going to update the subscription plan of the organization to a subscription other than free, you have to provide the end date.
 - `subscription_start_date`: Start date of the new subscription. The required format is `YYYY-MM-DD`. The subscription will start from the provided date. If you are going to update the subscription of the organization or schedule a subscription for a time in future, you have to provide the start date.
+- `two_factor_authentication_forced`: Whether 2FA should be enforced on the organization users
 
 ## Request Examples
 
@@ -941,6 +955,8 @@ Details of the organization
 - `name`: Name of the organization
 - `creation_date`: Time the organization was created
 - `subscription`: Name of the subscription
+- `status`: Status of the organization
+- `two_factor_authentication_forced`: Whether 2FA is enforced on the organization users
 
 ## Response Examples
 
@@ -949,7 +965,9 @@ Details of the organization
   "id": "abe2e406-fae5-4bcf-a3bc-956d756e4ecb",
   "name": "test-organization",
   "creation_date": "2020-03-25T15:43:46.101877Z",
-  "subscription": "free"
+  "subscription": "free",
+  "status": "active",
+  "two_factor_authentication_forced": false
 }
 ```
 

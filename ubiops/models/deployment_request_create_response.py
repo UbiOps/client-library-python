@@ -202,7 +202,7 @@ class DeploymentRequestCreateResponse(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )
@@ -218,8 +218,6 @@ class DeploymentRequestCreateResponse(object):
         :type: bool
         """
 
-        if self.client_side_validation and success is None:
-            raise ValueError("Invalid value for `success`, must not be `None`")
         if self.client_side_validation and (success is not None and not isinstance(success, bool)):
             raise ValueError("Parameter `success` must be a boolean")
 

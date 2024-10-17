@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**batch_deployment_requests_create**](./DeploymentRequests.md#batch_deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/batch | Create a batch deployment request
 [**batch_deployment_version_requests_create**](./DeploymentRequests.md#batch_deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/batch | Create a batch deployment version request
+[**deployment_requests_batch_cancel**](./DeploymentRequests.md#deployment_requests_batch_cancel) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/cancel | Cancel multiple deployment requests
 [**deployment_requests_batch_delete**](./DeploymentRequests.md#deployment_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/delete | Delete multiple deployment requests
 [**deployment_requests_batch_get**](./DeploymentRequests.md#deployment_requests_batch_get) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests/collect | Retrieve multiple deployment requests
 [**deployment_requests_create**](./DeploymentRequests.md#deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests | Create a direct deployment request
@@ -13,6 +14,7 @@ Method | HTTP request | Description
 [**deployment_requests_get**](./DeploymentRequests.md#deployment_requests_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Get a deployment request
 [**deployment_requests_list**](./DeploymentRequests.md#deployment_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests | List deployment requests
 [**deployment_requests_update**](./DeploymentRequests.md#deployment_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Update a deployment request
+[**deployment_version_requests_batch_cancel**](./DeploymentRequests.md#deployment_version_requests_batch_cancel) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/cancel | Delete multiple deployment version requests
 [**deployment_version_requests_batch_delete**](./DeploymentRequests.md#deployment_version_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/delete | Delete multiple deployment version requests
 [**deployment_version_requests_batch_get**](./DeploymentRequests.md#deployment_version_requests_batch_get) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/collect | Retrieve multiple deployment version requests
 [**deployment_version_requests_create**](./DeploymentRequests.md#deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | Create a direct deployment version request
@@ -23,7 +25,7 @@ Method | HTTP request | Description
 
 
 # **batch_deployment_requests_create**
-> list[DeploymentRequestBatchCreateResponse] batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout, notification_group=notification_group)
+> list[DeploymentRequestBatchCreateResponse] batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
 
 Create a batch deployment request
 
@@ -40,7 +42,6 @@ In case of plain input deployment: A list of strings. It is also possible to sen
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 
 ## Request Examples
 Multiple structured batch deployment requests
@@ -113,10 +114,9 @@ A list of dictionaries containing the details of the created deployment requests
     deployment_name = 'deployment_name_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch deployment request
-    api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -140,10 +140,9 @@ A list of dictionaries containing the details of the created deployment requests
     deployment_name = 'deployment_name_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch deployment request
-    api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -160,7 +159,6 @@ Name | Type | Notes
  **deployment_name** | **str** | 
  **data** | **list[str or dict()]** | 
  **timeout** | **int** | [optional] 
- **notification_group** | **str** | [optional] 
 
 ### Return type
 
@@ -173,7 +171,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **batch_deployment_version_requests_create**
-> list[DeploymentRequestBatchCreateResponse] batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, notification_group=notification_group)
+> list[DeploymentRequestBatchCreateResponse] batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
 
 Create a batch deployment version request
 
@@ -264,10 +262,9 @@ A list of dictionaries containing the details of the created deployment requests
     version = 'version_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch deployment version request
-    api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -292,10 +289,9 @@ A list of dictionaries containing the details of the created deployment requests
     version = 'version_example' # str
     data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
     timeout = 56 # int (optional)
-    notification_group = 'notification_group_example' # str (optional)
 
     # Create a batch deployment version request
-    api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, notification_group=notification_group)
+    api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
     print(api_response)
 
     # Close the connection
@@ -313,11 +309,100 @@ Name | Type | Notes
  **version** | **str** | 
  **data** | **list[str or dict()]** | 
  **timeout** | **int** | [optional] 
- **notification_group** | **str** | [optional] 
 
 ### Return type
 
 [**list[DeploymentRequestBatchCreateResponse]**](./models/DeploymentRequestBatchCreateResponse.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **deployment_requests_batch_cancel**
+> object deployment_requests_batch_cancel(project_name, deployment_name, data, status=status)
+
+Cancel multiple deployment requests
+
+## Description
+Cancel multiple deployment requests for the default version of a deployment. A maximum of 250 deployment requests can be cancelled with this method.
+
+To cancel all pending or processing requests, use the query parameter `status`, with the value 'pending' or 'processing', with an empty request body.
+
+### Required Parameters
+A list of ids for the requests
+
+## Request Examples
+
+```
+["2f909aeb-5c7e-4974-970d-cd0a6a073aca", "85711124-54db-4794-b83d-24492247c6e1"]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Cancel multiple deployment requests
+    api_response = core_api.deployment_requests_batch_cancel(project_name, deployment_name, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Cancel multiple deployment requests
+    api_response = core_api.deployment_requests_batch_cancel(project_name, deployment_name, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **data** | **list[str]** | 
+ **status** | **str** | [optional] 
+
+### Return type
+
+**object**
 
 ### Authorization
 
@@ -411,7 +496,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_requests_batch_get**
-> list[DeploymentRequestBatchDetail] deployment_requests_batch_get(project_name, deployment_name, data)
+> list[DeploymentRequestDetail] deployment_requests_batch_get(project_name, deployment_name, data)
 
 Retrieve multiple deployment requests
 
@@ -433,15 +518,15 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `id`: Unique identifier for the deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary containing the data that was sent when the request was created
-- `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `retries`: Number of times that the request has been retried
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `timeout`: Timeout in seconds for the request
+- `request_data`: Input of the request
+- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -454,16 +539,14 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-03-29T08:09:10.729+00:00",
     "time_started": null,
     "time_completed": null,
-    "request_data": {
-      "input": 82.2
-    },
+    "timeout": 300,
+    "request_data": {"input": 82.2},
     "result": null,
     "error_message": null,
-    "retries": 0,
     "input_size": 14,
     "output_size": null
   },
@@ -472,16 +555,14 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-06-25T09:37:17.765+00:00",
+    "timeout": 300,
     "time_started": null,
     "time_completed": null,
-    "request_data": {
-      "input": 52.4
-    },
+    "request_data": {"input": 52.4},
     "result": null,
     "error_message": null,
-    "retries": 1,
     "input_size": 14,
     "output_size": null
   }
@@ -548,7 +629,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**list[DeploymentRequestBatchDetail]**](./models/DeploymentRequestBatchDetail.md)
+[**list[DeploymentRequestDetail]**](./models/DeploymentRequestDetail.md)
 
 ### Authorization
 
@@ -618,7 +699,7 @@ Details of the created deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request. It can be 'completed' or 'failed'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
 - `result`: Deployment request result value. NULL if the request failed.
 - `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
 - `timeout`: Timeout of the request in seconds
@@ -808,12 +889,11 @@ void (empty response body)
 Get a deployment request
 
 ## Description
-Get a request of the default version of a deployment. With this method, the result of a request may be retrieved.
+Get the details of a request for the default version of a deployment
 
 ### Optional Parameters
-The following parameters should be given as query parameters:
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.
+- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
 
 ### Response Structure
 A dictionary containing the details of the deployment request with the following fields:
@@ -821,21 +901,17 @@ A dictionary containing the details of the deployment request with the following
 - `id`: Unique identifier for the deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary containing the data that was sent when the request was created
-- `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `timeout`: Timeout in seconds for the request
+- `request_data`: Input of the request
+- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - the deployment (and version) names if the request is directly made to the deployment
-    - the pipeline (and version) names if the request is part of a pipeline request
-    - the request schedule name if the request is created via a request schedule
-    - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
-- `retries`: Number of times that the request has been retried
+    - `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -847,22 +923,17 @@ A dictionary containing the details of the deployment request with the following
   "deployment": "deployment-1",
   "version": "v1",
   "status": "pending",
-  "success": null,
+  "success": false,
   "time_created": "2020-03-29T08:09:10.729+00:00",
   "time_started": null,
   "time_completed": null,
-  "request_data": {
-    "input": 82.3
-  },
+  "timeout": 300,
+  "request_data": {"input": 82.3},
   "result": null,
   "error_message": null,
-  "notification_group": "notification-group-1",
   "origin": {
-    "deployment": "deployment-1",
-    "deployment_version": "v1",
     "created_by": "my.example.user@ubiops.com"
   },
-  "retries": 0,
   "input_size": 14,
   "output_size": null
 }
@@ -940,7 +1011,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_requests_list**
-> list[DeploymentRequestList] deployment_requests_list(project_name, deployment_name, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+> list[DeploymentRequestList] deployment_requests_list(project_name, deployment_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 
 List deployment requests
 
@@ -948,18 +1019,13 @@ List deployment requests
 List all requests for the default version of a deployment
 
 ### Optional Parameters
-The following parameters should be given as query parameters:
 
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
-- `limit`: The maximum number of requests given back, default is 50
-- `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-- `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
-- `pipeline`: A boolean value that indicates whether the deployment request was part of a pipeline request
-- `request_schedule`: The name of a request schedule that created requests
-- `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-- `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-- `search_id`: A string to search inside request ids. It will filter all request ids that contain this string
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
+- `limit`: The maximum number of requests given back, defaults to 50
+- `offset`: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+- `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+- `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+- `search_id`: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
 
 If no start or end date is provided, the most recent requests are returned.
 
@@ -970,10 +1036,10 @@ A list of dictionaries containing the details of the deployment requests with th
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -986,7 +1052,7 @@ A list of dictionaries containing the details of the deployment requests with th
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": null,
     "time_completed": null,
@@ -997,44 +1063,13 @@ A list of dictionaries containing the details of the deployment requests with th
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
     "deployment": "deployment-1",
     "version": "v1",
-    "status": "completed",
-    "success": true,
+    "status": "pending",
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "input_size": 10,
-    "output_size": 10
-  }
-]
-```
-
-With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00:00":
-
-```
-[
-  {
-    "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
-    "deployment": "deployment-1",
-    "version": "v1",
-    "status": "completed",
-    "success": true,
-    "time_created": "2020-03-28T20:00:43.613+00:00",
-    "time_started": "2020-03-28T20:00:50.276+00:00",
-    "time_completed": "2020-03-28T20:00:55.241+00:00",
-    "input_size": 10,
-    "output_size": 10
-  },
-  {
-    "id": "2521378e-263e-4e2e-85e9-a96254b36536",
-    "deployment": "deployment-1",
-    "version": "v1",
-    "status": "completed",
-    "success": true,
-    "time_created": "2020-03-28T21:12:45.613+00:00",
-    "time_started": "2020-03-28T21:13:00.276+00:00",
-    "time_completed": "2020-03-28T21:13:05.241+00:00",
-    "input_size": 10,
-    "output_size": 10
+    "output_size": null
   }
 ]
 ```
@@ -1053,18 +1088,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     project_name = 'project_name_example' # str
     deployment_name = 'deployment_name_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    pipeline = True # bool (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List deployment requests
-    api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -1087,18 +1118,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     project_name = 'project_name_example' # str
     deployment_name = 'deployment_name_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    pipeline = True # bool (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List deployment requests
-    api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -1114,12 +1141,8 @@ Name | Type | Notes
  **project_name** | **str** | 
  **deployment_name** | **str** | 
  **status** | **str** | [optional] 
- **success** | **bool** | [optional] 
  **limit** | **int** | [optional] 
  **offset** | **int** | [optional] 
- **sort** | **str** | [optional] 
- **pipeline** | **bool** | [optional] 
- **request_schedule** | **str** | [optional] 
  **start_date** | **str** | [optional] 
  **end_date** | **str** | [optional] 
  **search_id** | **str** | [optional] 
@@ -1135,19 +1158,18 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_requests_update**
-> DeploymentRequestUpdateResponse deployment_requests_update(project_name, deployment_name, request_id, data)
+> object deployment_requests_update(project_name, deployment_name, request_id, data)
 
 Update a deployment request
 
 ## Description
-Update a deployment request for the default version of a deployment. It is possible to **cancel** a request by giving `cancelled` in the status field.
+Cancel a deployment request for the default version of a deployment
 
 ### Required Parameters
 
 - `status`: Status that the request will be updated to. It can only be `cancelled`.
 
 ## Request Examples
-
 
 ```
 {
@@ -1218,7 +1240,100 @@ Name | Type | Notes
 
 ### Return type
 
-[**DeploymentRequestUpdateResponse**](./models/DeploymentRequestUpdateResponse.md)
+**object**
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **deployment_version_requests_batch_cancel**
+> object deployment_version_requests_batch_cancel(project_name, deployment_name, version, data, status=status)
+
+Delete multiple deployment version requests
+
+## Description
+Cancel multiple deployment requests for a deployment version. A maximum of 250 deployment requests can be deleted with this method.
+
+To cancel all pending or processing requests, use the query parameter `status`, with the value 'pending' or 'processing', with an empty request body.
+
+### Required Parameters
+A list of ids for the requests
+
+## Request Examples
+
+```
+["2f909aeb-5c7e-4974-970d-cd0a6a073aca", "85711124-54db-4794-b83d-24492247c6e1"]
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    version = 'version_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Delete multiple deployment version requests
+    api_response = core_api.deployment_version_requests_batch_cancel(project_name, deployment_name, version, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    version = 'version_example' # str
+    data = ['request_id_1', 'request_id_2'] # list[str]
+    status = 'status_example' # str (optional)
+
+    # Delete multiple deployment version requests
+    api_response = core_api.deployment_version_requests_batch_cancel(project_name, deployment_name, version, data, status=status)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **version** | **str** | 
+ **data** | **list[str]** | 
+ **status** | **str** | [optional] 
+
+### Return type
+
+**object**
 
 ### Authorization
 
@@ -1315,7 +1430,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_version_requests_batch_get**
-> list[DeploymentRequestBatchDetail] deployment_version_requests_batch_get(project_name, deployment_name, version, data)
+> list[DeploymentRequestDetail] deployment_version_requests_batch_get(project_name, deployment_name, version, data)
 
 Retrieve multiple deployment version requests
 
@@ -1337,15 +1452,15 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `id`: Unique identifier for the deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary containing the data that was sent when the request was created
-- `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `retries`: Number of times that the request has been retried
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `timeout`: Timeout in seconds for the request
+- `request_data`: Input of the request
+- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -1358,16 +1473,14 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-03-29T08:09:10.729+00:00",
     "time_started": null,
     "time_completed": null,
-    "request_data": {
-      "input": 82.2
-    },
+    "timeout": 300,
+    "request_data": {"input": 82.2},
     "result": null,
     "error_message": null,
-    "retries": 0,
     "input_size": 14,
     "output_size": null
   },
@@ -1376,16 +1489,14 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-06-25T09:37:17.765+00:00",
     "time_started": null,
     "time_completed": null,
-    "request_data": {
-      "input": 52.4
-    },
+    "timeout": 300,
+    "request_data": {"input": 52.4},
     "result": null,
     "error_message": null,
-    "retries": 1,
     "input_size": 14,
     "output_size": null
   }
@@ -1455,7 +1566,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**list[DeploymentRequestBatchDetail]**](./models/DeploymentRequestBatchDetail.md)
+[**list[DeploymentRequestDetail]**](./models/DeploymentRequestDetail.md)
 
 ### Authorization
 
@@ -1721,12 +1832,11 @@ void (empty response body)
 Get a deployment version request
 
 ## Description
-Get a request for a deployment version. With this method, the result of a request may be retrieved.
+Get the details of a request for a deployment version
 
 ### Optional Parameters
-The following parameters should be given as query parameters:
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result. The default value is False.
+- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
 
 ### Response Structure
 A dictionary containing the details of the deployment request with the following fields:
@@ -1734,21 +1844,17 @@ A dictionary containing the details of the deployment request with the following
 - `id`: Unique identifier for the deployment request
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
-- `request_data`: A dictionary containing the data that was sent when the request was created
-- `result`: Deployment request result value. NULL if the request is 'pending', 'processing' or 'failed'.
-- `error_message`: An error message explaining why the request has failed. NULL if the request was successful.
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
+- `timeout`: Timeout in seconds for the request
+- `request_data`: Input of the request
+- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-  - the deployment (and version) names if the request is directly made to the deployment
-  - the pipeline (and version) names if the request is part of a pipeline request
-  - the request schedule name if the request is created via a request schedule
-  - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
-- `retries`: Number of times that the request has been retried
+    - `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -1760,22 +1866,17 @@ A dictionary containing the details of the deployment request with the following
   "deployment": "deployment-1",
   "version": "v1",
   "status": "pending",
-  "success": null,
+  "success": false,
   "time_created": "2020-03-29T08:09:10.729+00:00",
   "time_started": null,
   "time_completed": null,
-  "request_data": {
-    "input": 82.3
-  },
+  "timeout": 300,
+  "request_data": {"input": 82.3},
   "result": null,
   "error_message": null,
-  "notification_group": "notification-group-1",
   "origin": {
-    "deployment": "deployment-1",
-    "deployment_version": "v1",
     "created_by": "my.example.user@ubiops.com"
   },
-  "retries": 0,
   "input_size": 14,
   "output_size": null
 }
@@ -1856,7 +1957,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_version_requests_list**
-> list[DeploymentRequestList] deployment_version_requests_list(project_name, deployment_name, version, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+> list[DeploymentRequestList] deployment_version_requests_list(project_name, deployment_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 
 List deployment version requests
 
@@ -1864,18 +1965,13 @@ List deployment version requests
 List all requests for a deployment version
 
 ### Optional Parameters
-The following parameters should be given as query parameters:
 
-- `status`: Status of the request. Can be 'pending', 'processing', 'failed', 'completed', 'cancelled' or 'cancelled_pending'.
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
-- `limit`: The maximum number of requests given back, default is 50
-- `offset`: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-- `sort`: Direction of sorting according to the creation date of the request, can be 'asc' or 'desc'. The default sorting is done in descending order.
-- `pipeline`: A boolean value that indicates whether the deployment request was part of a pipeline request
-- `request_schedule`: The name of a request schedule that created requests
-- `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-- `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-- `search_id`: A string to search inside request ids. It will filter all request ids that contain this string
+- `status`: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
+- `limit`: The maximum number of requests given back, defaults to 50
+- `offset`: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+- `start_date`: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+- `end_date`: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+- `search_id`: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
 
 If no start or end date is provided, the most recent requests are returned.
 
@@ -1886,10 +1982,10 @@ A list of dictionaries containing the details of the deployment requests with th
 - `deployment`: Name of the deployment the request was made to
 - `version`: Name of the version the request was made to
 - `status`: Status of the request
-- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. NULL if the request is not yet finished. This field is deprecated, use 'status' instead.
-- `time_created`: Server time that the request was made (current time)
-- `time_started`: Server time that the processing of the request was started
-- `time_completed`: Server time that the processing of the request was completed
+- `success`: [DEPRECATED] A boolean value that indicates whether the request was successful. This field is deprecated, use 'status' instead.
+- `time_created`: Datetime when the request is created
+- `time_started`: Datetime when the request starts to be processed
+- `time_completed`: Datetime when the request is completed
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 
@@ -1902,7 +1998,7 @@ A list of dictionaries containing the details of the deployment requests with th
     "deployment": "deployment-1",
     "version": "v1",
     "status": "pending",
-    "success": null,
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
     "time_started": null,
     "time_completed": null,
@@ -1913,44 +2009,13 @@ A list of dictionaries containing the details of the deployment requests with th
     "id": "2521378e-263e-4e2e-85e9-a96254b36536",
     "deployment": "deployment-1",
     "version": "v1",
-    "status": "completed",
-    "success": true,
+    "status": "pending",
+    "success": false,
     "time_created": "2020-03-28T20:00:26.613+00:00",
-    "time_started": "2020-03-28T20:00:41.276+00:00",
-    "time_completed": "2020-03-28T20:00:42.241+00:00",
+    "time_started": null,
+    "time_completed": null,
     "input_size": 10,
-    "output_size": 10
-  }
-]
-```
-
-With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00:00":
-
-```
-[
-  {
-    "id": "69eca481-8576-49e8-8e20-ea56f2005bcb",
-    "deployment": "deployment-1",
-    "version": "v1",
-    "status": "completed",
-    "success": true,
-    "time_created": "2020-03-28T20:00:43.613+00:00",
-    "time_started": "2020-03-28T20:00:50.276+00:00",
-    "time_completed": "2020-03-28T20:00:55.241+00:00",
-    "input_size": 10,
-    "output_size": 10
-  },
-  {
-    "id": "2521378e-263e-4e2e-85e9-a96254b36536",
-    "deployment": "deployment-1",
-    "version": "v1",
-    "status": "completed",
-    "success": true,
-    "time_created": "2020-03-28T21:12:45.613+00:00",
-    "time_started": "2020-03-28T21:13:00.276+00:00",
-    "time_completed": "2020-03-28T21:13:05.241+00:00",
-    "input_size": 10,
-    "output_size": 10
+    "output_size": null
   }
 ]
 ```
@@ -1970,18 +2035,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     deployment_name = 'deployment_name_example' # str
     version = 'version_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    pipeline = True # bool (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List deployment version requests
-    api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -2005,18 +2066,14 @@ With start_date="2020-03-28T20:00:26+00:00" and end_date="2020-03-28T22:00:26+00
     deployment_name = 'deployment_name_example' # str
     version = 'version_example' # str
     status = 'status_example' # str (optional)
-    success = True # bool (optional)
     limit = 56 # int (optional)
     offset = 56 # int (optional)
-    sort = 'sort_example' # str (optional)
-    pipeline = True # bool (optional)
-    request_schedule = 'request_schedule_example' # str (optional)
     start_date = 'start_date_example' # str (optional)
     end_date = 'end_date_example' # str (optional)
     search_id = 'search_id_example' # str (optional)
 
     # List deployment version requests
-    api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, success=success, limit=limit, offset=offset, sort=sort, pipeline=pipeline, request_schedule=request_schedule, start_date=start_date, end_date=end_date, search_id=search_id)
+    api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
     print(api_response)
 
     # Close the connection
@@ -2033,12 +2090,8 @@ Name | Type | Notes
  **deployment_name** | **str** | 
  **version** | **str** | 
  **status** | **str** | [optional] 
- **success** | **bool** | [optional] 
  **limit** | **int** | [optional] 
  **offset** | **int** | [optional] 
- **sort** | **str** | [optional] 
- **pipeline** | **bool** | [optional] 
- **request_schedule** | **str** | [optional] 
  **start_date** | **str** | [optional] 
  **end_date** | **str** | [optional] 
  **search_id** | **str** | [optional] 
@@ -2054,19 +2107,18 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_version_requests_update**
-> DeploymentRequestUpdateResponse deployment_version_requests_update(project_name, deployment_name, request_id, version, data)
+> object deployment_version_requests_update(project_name, deployment_name, request_id, version, data)
 
 Update a deployment version request
 
 ## Description
-Update a deployment request for a deployment version. It is possible to **cancel** a request by giving `cancelled` in the status field.
+Cancel a deployment request for the default version of a deployment
 
 ### Required Parameters
 
 - `status`: Status that the request will be updated to. It can only be `cancelled`.
 
 ## Request Examples
-
 
 ```
 {
@@ -2140,7 +2192,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**DeploymentRequestUpdateResponse**](./models/DeploymentRequestUpdateResponse.md)
+**object**
 
 ### Authorization
 

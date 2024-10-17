@@ -44,7 +44,6 @@ class DeploymentRequests(object):
         :param list[object] data: (required)
         :param kwargs:
             - int timeout:
-            - str notification_group:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -56,7 +55,7 @@ class DeploymentRequests(object):
         """
 
         method_name = "batch_deployment_requests_create"
-        optional_params = ["timeout", "notification_group"]
+        optional_params = ["timeout"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -88,13 +87,6 @@ class DeploymentRequests(object):
         if self.api_client.client_side_validation and "timeout" in kwargs and kwargs["timeout"] is not None:
             if not isinstance(kwargs["timeout"], int):
                 raise ApiValueError(f"Parameter `timeout` must be an integer when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "notification_group" in kwargs
-            and kwargs["notification_group"] is not None
-        ):
-            if not isinstance(kwargs["notification_group"], str):
-                raise ApiValueError(f"Parameter `notification_group` must be a string when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -109,8 +101,6 @@ class DeploymentRequests(object):
 
         if "timeout" in kwargs and kwargs["timeout"] is not None:
             query_params.append(("timeout", kwargs["timeout"]))
-        if "notification_group" in kwargs and kwargs["notification_group"] is not None:
-            query_params.append(("notification_group", kwargs["notification_group"]))
 
         body_params = data
 
@@ -164,7 +154,6 @@ class DeploymentRequests(object):
         :param list[object] data: (required)
         :param kwargs:
             - int timeout:
-            - str notification_group:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -176,7 +165,7 @@ class DeploymentRequests(object):
         """
 
         method_name = "batch_deployment_version_requests_create"
-        optional_params = ["timeout", "notification_group"]
+        optional_params = ["timeout"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -213,13 +202,6 @@ class DeploymentRequests(object):
         if self.api_client.client_side_validation and "timeout" in kwargs and kwargs["timeout"] is not None:
             if not isinstance(kwargs["timeout"], int):
                 raise ApiValueError(f"Parameter `timeout` must be an integer when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "notification_group" in kwargs
-            and kwargs["notification_group"] is not None
-        ):
-            if not isinstance(kwargs["notification_group"], str):
-                raise ApiValueError(f"Parameter `notification_group` must be a string when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -235,8 +217,6 @@ class DeploymentRequests(object):
 
         if "timeout" in kwargs and kwargs["timeout"] is not None:
             query_params.append(("timeout", kwargs["timeout"]))
-        if "notification_group" in kwargs and kwargs["notification_group"] is not None:
-            query_params.append(("notification_group", kwargs["notification_group"]))
 
         body_params = data
 
@@ -260,6 +240,110 @@ class DeploymentRequests(object):
             post_params=form_params,
             files=files,
             response_type="list[DeploymentRequestBatchCreateResponse]",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
+    def deployment_requests_batch_cancel_with_http_info(self, project_name, deployment_name, data, **kwargs):
+        """
+        Cancel multiple deployment requests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = DeploymentRequests.deployment_requests_batch_cancel_with_http_info(
+                project_name, deployment_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param list[str] data: (required)
+        :param kwargs:
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "deployment_requests_batch_cancel"
+        optional_params = ["status"]
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and deployment_name is None:
+            raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and data is None:
+            raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(deployment_name, str):
+                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(data, list):
+                raise ApiValueError(f"Parameter `data` must be a list when calling `{method_name}`")
+        if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
+            if not isinstance(kwargs["status"], str):
+                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["deployment_name"] = deployment_name
+
+        if "status" in kwargs and kwargs["status"] is not None:
+            query_params.append(("status", kwargs["status"]))
+
+        body_params = data
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # HTTP header `Content-Type`
+        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
+
+        url = "/projects/{project_name}/deployments/{deployment_name}/requests/cancel"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "POST",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="object",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -389,7 +473,7 @@ class DeploymentRequests(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[DeploymentRequestBatchDetail], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[DeploymentRequestDetail], status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -453,7 +537,7 @@ class DeploymentRequests(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="list[DeploymentRequestBatchDetail]",
+            response_type="list[DeploymentRequestDetail]",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -774,12 +858,8 @@ class DeploymentRequests(object):
         :param str deployment_name: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - bool pipeline:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -794,18 +874,7 @@ class DeploymentRequests(object):
         """
 
         method_name = "deployment_requests_list"
-        optional_params = [
-            "status",
-            "success",
-            "limit",
-            "offset",
-            "sort",
-            "pipeline",
-            "request_schedule",
-            "start_date",
-            "end_date",
-            "search_id",
-        ]
+        optional_params = ["status", "limit", "offset", "start_date", "end_date", "search_id"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -832,28 +901,12 @@ class DeploymentRequests(object):
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
                 raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
-        if self.api_client.client_side_validation and "success" in kwargs and kwargs["success"] is not None:
-            if not isinstance(kwargs["success"], bool):
-                raise ApiValueError(f"Parameter `success` must be a boolean when calling `{method_name}`")
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "offset" in kwargs and kwargs["offset"] is not None:
             if not isinstance(kwargs["offset"], int):
                 raise ApiValueError(f"Parameter `offset` must be an integer when calling `{method_name}`")
-        if self.api_client.client_side_validation and "sort" in kwargs and kwargs["sort"] is not None:
-            if not isinstance(kwargs["sort"], str):
-                raise ApiValueError(f"Parameter `sort` must be a string when calling `{method_name}`")
-        if self.api_client.client_side_validation and "pipeline" in kwargs and kwargs["pipeline"] is not None:
-            if not isinstance(kwargs["pipeline"], bool):
-                raise ApiValueError(f"Parameter `pipeline` must be a boolean when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "request_schedule" in kwargs
-            and kwargs["request_schedule"] is not None
-        ):
-            if not isinstance(kwargs["request_schedule"], str):
-                raise ApiValueError(f"Parameter `request_schedule` must be a string when calling `{method_name}`")
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
                 raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
@@ -877,18 +930,10 @@ class DeploymentRequests(object):
 
         if "status" in kwargs and kwargs["status"] is not None:
             query_params.append(("status", kwargs["status"]))
-        if "success" in kwargs and kwargs["success"] is not None:
-            query_params.append(("success", kwargs["success"]))
         if "limit" in kwargs and kwargs["limit"] is not None:
             query_params.append(("limit", kwargs["limit"]))
         if "offset" in kwargs and kwargs["offset"] is not None:
             query_params.append(("offset", kwargs["offset"]))
-        if "sort" in kwargs and kwargs["sort"] is not None:
-            query_params.append(("sort", kwargs["sort"]))
-        if "pipeline" in kwargs and kwargs["pipeline"] is not None:
-            query_params.append(("pipeline", kwargs["pipeline"]))
-        if "request_schedule" in kwargs and kwargs["request_schedule"] is not None:
-            query_params.append(("request_schedule", kwargs["request_schedule"]))
         if "start_date" in kwargs and kwargs["start_date"] is not None:
             query_params.append(("start_date", kwargs["start_date"]))
         if "end_date" in kwargs and kwargs["end_date"] is not None:
@@ -943,7 +988,7 @@ class DeploymentRequests(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(DeploymentRequestUpdateResponse, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -1015,7 +1060,120 @@ class DeploymentRequests(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="DeploymentRequestUpdateResponse",
+            response_type="object",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
+    def deployment_version_requests_batch_cancel_with_http_info(
+        self, project_name, deployment_name, version, data, **kwargs
+    ):
+        """
+        Delete multiple deployment version requests
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = DeploymentRequests.deployment_version_requests_batch_cancel_with_http_info(
+                project_name, deployment_name, version, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param str version: (required)
+        :param list[str] data: (required)
+        :param kwargs:
+            - str status:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "deployment_version_requests_batch_cancel"
+        optional_params = ["status"]
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and deployment_name is None:
+            raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and version is None:
+            raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
+        if self.api_client.client_side_validation and data is None:
+            raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(deployment_name, str):
+                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(version, str):
+                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(data, list):
+                raise ApiValueError(f"Parameter `data` must be a list when calling `{method_name}`")
+        if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
+            if not isinstance(kwargs["status"], str):
+                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["deployment_name"] = deployment_name
+        path_params["version"] = version
+
+        if "status" in kwargs and kwargs["status"] is not None:
+            query_params.append(("status", kwargs["status"]))
+
+        body_params = data
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # HTTP header `Content-Type`
+        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
+
+        url = "/projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/cancel"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "POST",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="object",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -1157,7 +1315,7 @@ class DeploymentRequests(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[DeploymentRequestBatchDetail], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[DeploymentRequestDetail], status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -1227,7 +1385,7 @@ class DeploymentRequests(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="list[DeploymentRequestBatchDetail]",
+            response_type="list[DeploymentRequestDetail]",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -1574,12 +1732,8 @@ class DeploymentRequests(object):
         :param str version: (required)
         :param kwargs:
             - str status:
-            - bool success:
             - int limit:
             - int offset:
-            - str sort:
-            - bool pipeline:
-            - str request_schedule:
             - str start_date:
             - str end_date:
             - str search_id:
@@ -1594,18 +1748,7 @@ class DeploymentRequests(object):
         """
 
         method_name = "deployment_version_requests_list"
-        optional_params = [
-            "status",
-            "success",
-            "limit",
-            "offset",
-            "sort",
-            "pipeline",
-            "request_schedule",
-            "start_date",
-            "end_date",
-            "search_id",
-        ]
+        optional_params = ["status", "limit", "offset", "start_date", "end_date", "search_id"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -1637,28 +1780,12 @@ class DeploymentRequests(object):
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
                 raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
-        if self.api_client.client_side_validation and "success" in kwargs and kwargs["success"] is not None:
-            if not isinstance(kwargs["success"], bool):
-                raise ApiValueError(f"Parameter `success` must be a boolean when calling `{method_name}`")
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "offset" in kwargs and kwargs["offset"] is not None:
             if not isinstance(kwargs["offset"], int):
                 raise ApiValueError(f"Parameter `offset` must be an integer when calling `{method_name}`")
-        if self.api_client.client_side_validation and "sort" in kwargs and kwargs["sort"] is not None:
-            if not isinstance(kwargs["sort"], str):
-                raise ApiValueError(f"Parameter `sort` must be a string when calling `{method_name}`")
-        if self.api_client.client_side_validation and "pipeline" in kwargs and kwargs["pipeline"] is not None:
-            if not isinstance(kwargs["pipeline"], bool):
-                raise ApiValueError(f"Parameter `pipeline` must be a boolean when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "request_schedule" in kwargs
-            and kwargs["request_schedule"] is not None
-        ):
-            if not isinstance(kwargs["request_schedule"], str):
-                raise ApiValueError(f"Parameter `request_schedule` must be a string when calling `{method_name}`")
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
                 raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
@@ -1683,18 +1810,10 @@ class DeploymentRequests(object):
 
         if "status" in kwargs and kwargs["status"] is not None:
             query_params.append(("status", kwargs["status"]))
-        if "success" in kwargs and kwargs["success"] is not None:
-            query_params.append(("success", kwargs["success"]))
         if "limit" in kwargs and kwargs["limit"] is not None:
             query_params.append(("limit", kwargs["limit"]))
         if "offset" in kwargs and kwargs["offset"] is not None:
             query_params.append(("offset", kwargs["offset"]))
-        if "sort" in kwargs and kwargs["sort"] is not None:
-            query_params.append(("sort", kwargs["sort"]))
-        if "pipeline" in kwargs and kwargs["pipeline"] is not None:
-            query_params.append(("pipeline", kwargs["pipeline"]))
-        if "request_schedule" in kwargs and kwargs["request_schedule"] is not None:
-            query_params.append(("request_schedule", kwargs["request_schedule"]))
         if "start_date" in kwargs and kwargs["start_date"] is not None:
             query_params.append(("start_date", kwargs["start_date"]))
         if "end_date" in kwargs and kwargs["end_date"] is not None:
@@ -1752,7 +1871,7 @@ class DeploymentRequests(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(DeploymentRequestUpdateResponse, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """
 
@@ -1830,7 +1949,7 @@ class DeploymentRequests(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="DeploymentRequestUpdateResponse",
+            response_type="object",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),

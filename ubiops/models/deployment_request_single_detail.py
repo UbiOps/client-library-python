@@ -38,13 +38,11 @@ class DeploymentRequestSingleDetail(object):
         "time_started": "datetime",
         "time_completed": "datetime",
         "error_message": "str",
-        "retries": "int",
         "timeout": "int",
         "input_size": "int",
         "output_size": "int",
         "request_data": "object",
         "result": "object",
-        "notification_group": "str",
         "origin": "dict(str, str)",
     }
 
@@ -58,13 +56,11 @@ class DeploymentRequestSingleDetail(object):
         "time_started": "time_started",
         "time_completed": "time_completed",
         "error_message": "error_message",
-        "retries": "retries",
         "timeout": "timeout",
         "input_size": "input_size",
         "output_size": "output_size",
         "request_data": "request_data",
         "result": "result",
-        "notification_group": "notification_group",
         "origin": "origin",
     }
 
@@ -79,13 +75,11 @@ class DeploymentRequestSingleDetail(object):
         time_started=None,
         time_completed=None,
         error_message=None,
-        retries=None,
         timeout=None,
         input_size=None,
         output_size=None,
         request_data=None,
         result=None,
-        notification_group=None,
         origin=None,
         **kwargs,
     ):
@@ -106,13 +100,11 @@ class DeploymentRequestSingleDetail(object):
         self._time_started = None
         self._time_completed = None
         self._error_message = None
-        self._retries = None
         self._timeout = None
         self._input_size = None
         self._output_size = None
         self._request_data = None
         self._result = None
-        self._notification_group = None
         self._origin = None
         self.discriminator = None
 
@@ -125,14 +117,11 @@ class DeploymentRequestSingleDetail(object):
         self.time_started = time_started
         self.time_completed = time_completed
         self.error_message = error_message
-        if retries is not None:
-            self.retries = retries
         self.timeout = timeout
         self.input_size = input_size
         self.output_size = output_size
         self.request_data = request_data
         self.result = result
-        self.notification_group = notification_group
         self.origin = origin
 
     @property
@@ -251,7 +240,7 @@ class DeploymentRequestSingleDetail(object):
         :rtype: bool
         """
         warnings.warn(
-            message="success is deprecated and will be removed after October 2024. Use status instead.",
+            message="success is deprecated and will be removed in a future version. Use status instead.",
             category=DeprecationWarning,
             stacklevel=2,
         )
@@ -365,31 +354,6 @@ class DeploymentRequestSingleDetail(object):
             raise ValueError("Parameter `error_message` must be a string")
 
         self._error_message = error_message
-
-    @property
-    def retries(self):
-        """
-        Gets the retries of this DeploymentRequestSingleDetail
-
-        :return: the retries of this DeploymentRequestSingleDetail
-        :rtype: int
-        """
-
-        return self._retries
-
-    @retries.setter
-    def retries(self, retries):
-        """
-        Sets the retries of this DeploymentRequestSingleDetail
-
-        :param retries: the retries of this DeploymentRequestSingleDetail
-        :type: int
-        """
-
-        if self.client_side_validation and (retries is not None and not isinstance(retries, int)):
-            raise ValueError("Parameter `retries` must be an integer")
-
-        self._retries = retries
 
     @property
     def timeout(self):
@@ -509,31 +473,6 @@ class DeploymentRequestSingleDetail(object):
         """
 
         self._result = result
-
-    @property
-    def notification_group(self):
-        """
-        Gets the notification_group of this DeploymentRequestSingleDetail
-
-        :return: the notification_group of this DeploymentRequestSingleDetail
-        :rtype: str
-        """
-
-        return self._notification_group
-
-    @notification_group.setter
-    def notification_group(self, notification_group):
-        """
-        Sets the notification_group of this DeploymentRequestSingleDetail
-
-        :param notification_group: the notification_group of this DeploymentRequestSingleDetail
-        :type: str
-        """
-
-        if self.client_side_validation and (notification_group is not None and not isinstance(notification_group, str)):
-            raise ValueError("Parameter `notification_group` must be a string")
-
-        self._notification_group = notification_group
 
     @property
     def origin(self):
