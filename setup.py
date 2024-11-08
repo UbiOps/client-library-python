@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ubiops"
-VERSION = "4.6.0"
+VERSION = "4.6.1"
 # To install the library, run the following
 #
 # python setup.py install
