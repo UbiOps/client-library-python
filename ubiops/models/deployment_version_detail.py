@@ -942,8 +942,6 @@ class DeploymentVersionDetail(object):
         :type: str
         """
 
-        if self.client_side_validation and scaling_strategy is None:
-            raise ValueError("Invalid value for `scaling_strategy`, must not be `None`")
         if self.client_side_validation and (scaling_strategy is not None and not isinstance(scaling_strategy, str)):
             raise ValueError("Parameter `scaling_strategy` must be a string")
 
