@@ -564,8 +564,8 @@ class PipelineRequests(object):
         :param str pipeline_name: (required)
         :param object data: (required)
         :param kwargs:
+            - int timeout:
             - int pipeline_timeout:
-            - int deployment_timeout:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -577,7 +577,7 @@ class PipelineRequests(object):
         """
 
         method_name = "pipeline_requests_create"
-        optional_params = ["pipeline_timeout", "deployment_timeout"]
+        optional_params = ["timeout", "pipeline_timeout"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -603,6 +603,9 @@ class PipelineRequests(object):
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
                 raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "timeout" in kwargs and kwargs["timeout"] is not None:
+            if not isinstance(kwargs["timeout"], int):
+                raise ApiValueError(f"Parameter `timeout` must be an integer when calling `{method_name}`")
         if (
             self.api_client.client_side_validation
             and "pipeline_timeout" in kwargs
@@ -610,13 +613,6 @@ class PipelineRequests(object):
         ):
             if not isinstance(kwargs["pipeline_timeout"], int):
                 raise ApiValueError(f"Parameter `pipeline_timeout` must be an integer when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "deployment_timeout" in kwargs
-            and kwargs["deployment_timeout"] is not None
-        ):
-            if not isinstance(kwargs["deployment_timeout"], int):
-                raise ApiValueError(f"Parameter `deployment_timeout` must be an integer when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -629,10 +625,10 @@ class PipelineRequests(object):
         path_params["project_name"] = project_name
         path_params["pipeline_name"] = pipeline_name
 
+        if "timeout" in kwargs and kwargs["timeout"] is not None:
+            query_params.append(("timeout", kwargs["timeout"]))
         if "pipeline_timeout" in kwargs and kwargs["pipeline_timeout"] is not None:
             query_params.append(("pipeline_timeout", kwargs["pipeline_timeout"]))
-        if "deployment_timeout" in kwargs and kwargs["deployment_timeout"] is not None:
-            query_params.append(("deployment_timeout", kwargs["deployment_timeout"]))
 
         body_params = data
 
@@ -1554,8 +1550,8 @@ class PipelineRequests(object):
         :param str version: (required)
         :param object data: (required)
         :param kwargs:
+            - int timeout:
             - int pipeline_timeout:
-            - int deployment_timeout:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1567,7 +1563,7 @@ class PipelineRequests(object):
         """
 
         method_name = "pipeline_version_requests_create"
-        optional_params = ["pipeline_timeout", "deployment_timeout"]
+        optional_params = ["timeout", "pipeline_timeout"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -1598,6 +1594,9 @@ class PipelineRequests(object):
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
                 raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation and "timeout" in kwargs and kwargs["timeout"] is not None:
+            if not isinstance(kwargs["timeout"], int):
+                raise ApiValueError(f"Parameter `timeout` must be an integer when calling `{method_name}`")
         if (
             self.api_client.client_side_validation
             and "pipeline_timeout" in kwargs
@@ -1605,13 +1604,6 @@ class PipelineRequests(object):
         ):
             if not isinstance(kwargs["pipeline_timeout"], int):
                 raise ApiValueError(f"Parameter `pipeline_timeout` must be an integer when calling `{method_name}`")
-        if (
-            self.api_client.client_side_validation
-            and "deployment_timeout" in kwargs
-            and kwargs["deployment_timeout"] is not None
-        ):
-            if not isinstance(kwargs["deployment_timeout"], int):
-                raise ApiValueError(f"Parameter `deployment_timeout` must be an integer when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -1625,10 +1617,10 @@ class PipelineRequests(object):
         path_params["pipeline_name"] = pipeline_name
         path_params["version"] = version
 
+        if "timeout" in kwargs and kwargs["timeout"] is not None:
+            query_params.append(("timeout", kwargs["timeout"]))
         if "pipeline_timeout" in kwargs and kwargs["pipeline_timeout"] is not None:
             query_params.append(("pipeline_timeout", kwargs["pipeline_timeout"]))
-        if "deployment_timeout" in kwargs and kwargs["deployment_timeout"] is not None:
-            query_params.append(("deployment_timeout", kwargs["deployment_timeout"]))
 
         body_params = data
 

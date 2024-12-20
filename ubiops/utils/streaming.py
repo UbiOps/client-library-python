@@ -4,17 +4,17 @@ import requests
 from ubiops.exceptions import UbiOpsException
 
 
-def stream_deployment_request(
-    client, project_name, deployment_name, version=None, data=None, timeout=30, full_response=False
+def stream_request(
+    client, project_name, reference_type, reference_name, version=None, data=None, timeout=30, full_response=False
 ):
     """
-    Create a streaming request to a deployment version
+    Create a streaming request to a deployment or pipeline version
 
     :param ubiops.ApiClient client: a preconfigured UbiOps client
     :param str project_name: the name of the project
-    :param str deployment_name: the name of the deployment
-    :param str version: the name of the deployment version. If not provided, requests are made to the default version
-        of the deployment.
+    :param str reference_type: type of the reference, either deployment or pipeline
+    :param str reference_name: the name of the deployment or pipeline
+    :param str version: the name of the version. If not provided, requests are made to the default version.
     :param str|dict|list[dict] data: request data
     :param int timeout: timeout for the request
     :param bool full_response: whether to return the full response of the request
@@ -32,11 +32,11 @@ def stream_deployment_request(
         data = json.dumps(data)
     else:
         raise UbiOpsException(
-            "Input data must be of type dict or list for structured deployments and of type string"
-            "for plain deployments"
+            f"Input data must be of type dict or list for structured {reference_type}s and of type string for plain "
+            f"{reference_type}s"
         )
 
-    url = f"{client.configuration.host}/projects/{project_name}/deployments/{deployment_name}"
+    url = f"{client.configuration.host}/projects/{project_name}/{reference_type}s/{reference_name}"
     if version:
         url += f"/versions/{version}"
 
@@ -74,3 +74,61 @@ def stream_deployment_request(
 
                 if full_response:
                     yield line
+
+
+def stream_deployment_request(
+    client, project_name, deployment_name, version=None, data=None, timeout=30, full_response=False
+):
+    """
+    Create a streaming request to a deployment version
+
+    :param ubiops.ApiClient client: a preconfigured UbiOps client
+    :param str project_name: the name of the project
+    :param str deployment_name: the name of the deployment
+    :param str version: the name of the deployment version. If not provided, requests are made to the default version
+        of the deployment.
+    :param str|dict|list[dict] data: request data
+    :param int timeout: timeout for the request
+    :param bool full_response: whether to return the full response of the request
+    :return: partial results of the request and, if requested, the full response at the end of the request
+    """
+
+    return stream_request(
+        client=client,
+        project_name=project_name,
+        reference_type="deployment",
+        reference_name=deployment_name,
+        version=version,
+        data=data,
+        timeout=timeout,
+        full_response=full_response,
+    )
+
+
+def stream_pipeline_request(
+    client, project_name, pipeline_name, version=None, data=None, timeout=30, full_response=False
+):
+    """
+    Create a streaming request to a pipeline version
+
+    :param ubiops.ApiClient client: a preconfigured UbiOps client
+    :param str project_name: the name of the project
+    :param str pipeline_name: the name of the pipeline
+    :param str version: the name of the pipeline version. If not provided, requests are made to the default version
+        of the pipeline.
+    :param str|dict|list[dict] data: request data
+    :param int timeout: timeout for the request
+    :param bool full_response: whether to return the full response of the request
+    :return: partial results of the request and, if requested, the full response at the end of the request
+    """
+
+    return stream_request(
+        client=client,
+        project_name=project_name,
+        reference_type="pipeline",
+        reference_name=pipeline_name,
+        version=version,
+        data=data,
+        timeout=timeout,
+        full_response=full_response,
+    )
