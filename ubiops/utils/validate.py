@@ -98,6 +98,12 @@ def validate_yaml_file(file_path):
         try:
             config = yaml.safe_load(config_file)
             ubiops_config_schema.validate({} if config is None else config)
+        except yaml.MarkedYAMLError as e:
+            if e.problem is not None and "\\t" in e.problem and e.problem_mark is not None:
+                logger.error(f"Tab characters are invalid for indentation in line {e.problem_mark.line}")
+            else:
+                logger.error(f"Invalid yaml file, can't continue validation: {e}")
+            return False
         except yaml.YAMLError as e:
             logger.error(f"Invalid yaml file, can't continue validation: {e}")
             return False

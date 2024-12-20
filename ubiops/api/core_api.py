@@ -3993,8 +3993,8 @@ class CoreApi(object):
         :param str pipeline_name: (required)
         :param object data: (required)
         :param kwargs:
+            - int timeout:
             - int pipeline_timeout:
-            - int deployment_timeout:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4006,6 +4006,14 @@ class CoreApi(object):
         """
 
         kwargs["_return_http_data_only"] = True
+
+        if "pipeline_timeout" in kwargs and kwargs["pipeline_timeout"] is not None:
+            warnings.warn(
+                message="'pipeline_timeout' is deprecated and will be removed in a future version."
+                " Use 'timeout' instead.",
+                category=DeprecationWarning,
+                stacklevel=2,
+            )
 
         return self.pipeline_requests.pipeline_requests_create_with_http_info(
             project_name, pipeline_name, data, **kwargs
@@ -4288,8 +4296,8 @@ class CoreApi(object):
         :param str version: (required)
         :param object data: (required)
         :param kwargs:
+            - int timeout:
             - int pipeline_timeout:
-            - int deployment_timeout:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4301,6 +4309,14 @@ class CoreApi(object):
         """
 
         kwargs["_return_http_data_only"] = True
+
+        if "pipeline_timeout" in kwargs and kwargs["pipeline_timeout"] is not None:
+            warnings.warn(
+                message="'pipeline_timeout' is deprecated and will be removed in a future version."
+                " Use 'timeout' instead.",
+                category=DeprecationWarning,
+                stacklevel=2,
+            )
 
         return self.pipeline_requests.pipeline_version_requests_create_with_http_info(
             project_name, pipeline_name, version, data, **kwargs

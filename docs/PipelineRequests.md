@@ -43,7 +43,7 @@ In case of plain input pipeline: A list of strings. It is also possible to send 
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
-The deployment request timeouts default to 14400 seconds for deployments in the pipeline.
+The deployment request timeouts are calculated at each step with the remaining timeout for the pipeline request.
 
 ## Request Examples
 Multiple structured batch pipeline requests
@@ -190,7 +190,7 @@ In case of plain input pipeline: A list of strings. It is also possible to send 
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
-The deployment request timeouts default to 14400 seconds for deployments in the pipeline.
+The deployment request timeouts are calculated at each step with the remaining timeout for the pipeline request.
 
 ## Request Examples
 Multiple structured batch pipeline requests
@@ -703,12 +703,12 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **pipeline_requests_create**
-> PipelineRequestCreateResponse pipeline_requests_create(project_name, pipeline_name, data, pipeline_timeout=pipeline_timeout, deployment_timeout=deployment_timeout)
+> PipelineRequestCreateResponse pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout, pipeline_timeout=pipeline_timeout)
 
 Create a pipeline request
 
 ## Description
-Make a direct request to the default version of a pipeline. This method returns all the results of the deployment/operator/sub-pipeline requests made within the pipeline version.
+Make a direct request to the default version of a pipeline. This method returns the request ids for each pipeline object, with which the result can be retrieved separately.
 
 ### Required Parameters
 The input for the request. In case of a structured pipeline, this is a dictionary which contains the input fields of the pipeline as keys. In case of a plain pipeline, give a string or list of strings.
@@ -716,8 +716,8 @@ The input for the request. In case of a structured pipeline, this is a dictionar
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `pipeline_timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 7200 (2 hours) and the default value is 3600 (1 hour).
-- `deployment_timeout`: Timeout for each deployment request in the pipeline in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300  (5 minutes).
+- `timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 7200 (2 hours) and the default value is 3600 (1 hour).
+The deployment request timeouts are calculated at each step with the remaining timeout for the pipeline request.
 
 ## Request Examples
 A structured pipeline request
@@ -858,11 +858,11 @@ example-plain-data
     project_name = 'project_name_example' # str
     pipeline_name = 'pipeline_name_example' # str
     data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+    timeout = 56 # int (optional)
     pipeline_timeout = 56 # int (optional)
-    deployment_timeout = 56 # int (optional)
 
     # Create a pipeline request
-    api_response = core_api.pipeline_requests_create(project_name, pipeline_name, data, pipeline_timeout=pipeline_timeout, deployment_timeout=deployment_timeout)
+    api_response = core_api.pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout, pipeline_timeout=pipeline_timeout)
     print(api_response)
 
     # Close the connection
@@ -885,11 +885,11 @@ example-plain-data
     project_name = 'project_name_example' # str
     pipeline_name = 'pipeline_name_example' # str
     data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+    timeout = 56 # int (optional)
     pipeline_timeout = 56 # int (optional)
-    deployment_timeout = 56 # int (optional)
 
     # Create a pipeline request
-    api_response = core_api.pipeline_requests_create(project_name, pipeline_name, data, pipeline_timeout=pipeline_timeout, deployment_timeout=deployment_timeout)
+    api_response = core_api.pipeline_requests_create(project_name, pipeline_name, data, timeout=timeout, pipeline_timeout=pipeline_timeout)
     print(api_response)
 
     # Close the connection
@@ -905,8 +905,8 @@ Name | Type | Notes
  **project_name** | **str** | 
  **pipeline_name** | **str** | 
  **data** | **str or dict()** | 
+ **timeout** | **int** | [optional] 
  **pipeline_timeout** | **int** | [optional] 
- **deployment_timeout** | **int** | [optional] 
 
 ### Return type
 
@@ -1964,12 +1964,12 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **pipeline_version_requests_create**
-> PipelineRequestCreateResponse pipeline_version_requests_create(project_name, pipeline_name, version, data, pipeline_timeout=pipeline_timeout, deployment_timeout=deployment_timeout)
+> PipelineRequestCreateResponse pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout, pipeline_timeout=pipeline_timeout)
 
 Create a pipeline version request
 
 ## Description
-Make a direct request to a pipeline version. This method returns all the results of the deployment requests made within the pipeline version.
+Make a direct request to a pipeline version. This method returns the request ids for each pipeline object, with which the result can be retrieved separately.
 
 ### Required Parameters
 The input for the request. In case of a structured pipeline, this is a dictionary which contains the input fields of the pipeline as keys. In case of a plain pipeline, give a string or list of strings.
@@ -1977,8 +1977,8 @@ The input for the request. In case of a structured pipeline, this is a dictionar
 ### Optional Parameters
 The following parameters should be given as query parameters:
 
-- `pipeline_timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 7200 (2 hours) and the default value is 3600 (1 hour).
-- `deployment_timeout`: Timeout for each deployment request in the pipeline in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).
+- `timeout`: Timeout for the entire pipeline request in seconds. The maximum allowed value is 7200 (2 hours) and the default value is 3600 (1 hour).
+The deployment request timeouts are calculated at each step with the remaining timeout for the pipeline request.
 
 ## Request Examples
 A structured pipeline request
@@ -2121,11 +2121,11 @@ example-plain-data
     pipeline_name = 'pipeline_name_example' # str
     version = 'version_example' # str
     data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+    timeout = 56 # int (optional)
     pipeline_timeout = 56 # int (optional)
-    deployment_timeout = 56 # int (optional)
 
     # Create a pipeline version request
-    api_response = core_api.pipeline_version_requests_create(project_name, pipeline_name, version, data, pipeline_timeout=pipeline_timeout, deployment_timeout=deployment_timeout)
+    api_response = core_api.pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout, pipeline_timeout=pipeline_timeout)
     print(api_response)
 
     # Close the connection
@@ -2149,11 +2149,11 @@ example-plain-data
     pipeline_name = 'pipeline_name_example' # str
     version = 'version_example' # str
     data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+    timeout = 56 # int (optional)
     pipeline_timeout = 56 # int (optional)
-    deployment_timeout = 56 # int (optional)
 
     # Create a pipeline version request
-    api_response = core_api.pipeline_version_requests_create(project_name, pipeline_name, version, data, pipeline_timeout=pipeline_timeout, deployment_timeout=deployment_timeout)
+    api_response = core_api.pipeline_version_requests_create(project_name, pipeline_name, version, data, timeout=timeout, pipeline_timeout=pipeline_timeout)
     print(api_response)
 
     # Close the connection
@@ -2170,8 +2170,8 @@ Name | Type | Notes
  **pipeline_name** | **str** | 
  **version** | **str** | 
  **data** | **str or dict()** | 
+ **timeout** | **int** | [optional] 
  **pipeline_timeout** | **int** | [optional] 
- **deployment_timeout** | **int** | [optional] 
 
 ### Return type
 

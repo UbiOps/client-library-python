@@ -1,0 +1,29 @@
+[project]
+name = "ubiops"
+version = "4.7.0"
+description = "UbiOps"
+authors = [{name = "UbiOps"}]
+readme = "README_pypi.md"
+requires-python = ">=3.7"
+license = {text = "Apache 2.0"}
+dependencies = [
+    "certifi>=14.05.14",
+    "python-dateutil>=2.5.3",
+    "pyyaml<7.0",
+    "requests>=2.25.1,<3.0",
+    "requests_toolbelt==1.0.0",
+    "schema==0.7.7",
+    "tqdm>=4.64.1",
+]
+keywords = ["OpenAPI", "OpenAPI-Generator", "UbiOps"]
+
+[project.urls]
+Repository = "https://github.com/UbiOps/client-library-python.git"
+
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = {find = {exclude = ["test", "tests"]}}
+include-package-data = true

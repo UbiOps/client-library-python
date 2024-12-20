@@ -1,11 +1,13 @@
 import base64
 import logging
 import math
+import os
 import requests
 import tqdm
 
 from contextlib import nullcontext
-from os import path, stat
+from multiprocessing.pool import ThreadPool
+from os import path, stat, makedirs
 from shutil import make_archive
 from tqdm.utils import CallbackIOWrapper
 
@@ -16,6 +18,8 @@ from ubiops.exceptions import (
     ApiException,
     ApiRequestError,
     ApiTimeoutError,
+    ApiValueError,
+    ApiTypeError,
 )
 from ubiops.models import FileCompleteMultipartUpload
 
@@ -137,7 +141,19 @@ def upload_file(
     """
 
     if not isinstance(client, ApiClient):
-        raise AssertionError("Provided client is not of type ubiops.ApiClient")
+        raise ApiTypeError("Provided client is not of type ubiops.ApiClient")
+
+    if not (isinstance(project_name, str) and project_name):
+        raise ApiValueError("project_name must be a non-empty string")
+
+    if not (isinstance(file_path, str) and path.isfile(file_path)):
+        raise ApiValueError("file_path must be a valid file")
+
+    if not (isinstance(bucket_name, str) and bucket_name):
+        raise ApiValueError("bucket_name must be a non-empty string")
+
+    if file_name is not None and not isinstance(file_name, str):
+        raise ApiValueError("file_name must be a string")
 
     core_api = CoreApi(client)
 
@@ -268,6 +284,100 @@ def upload_file(
     return f"ubiops-file://{bucket_name}/{file_name}"
 
 
+def upload_files(
+    client,
+    project_name,
+    file_paths,
+    bucket_name="default",
+    file_prefix=None,
+    parallel_uploads=5,
+    _progress_bar=True,
+):
+    """
+    Upload multiple files or directories to a bucket.
+    If a directory path is provided, all files in the directory and its subdirectories will be uploaded preserving the
+    directory structure.
+
+    :param ubiops.ApiClient client: a preconfigured UbiOps client
+    :param str project_name: the name of the project
+    :param list[str] file_paths: list of file or directory paths to upload
+    :param str bucket_name: the name of the bucket to upload the files to
+    :param str|None file_prefix: optional prefix to add to all uploaded files in the bucket
+    :param int parallel_uploads: the number of parallel uploads
+    :param bool _progress_bar: whether to show a TQDM progress bar
+    :return: list of uploaded file URIs
+    """
+
+    if not isinstance(client, ApiClient):
+        raise ApiTypeError("Provided client is not of type ubiops.ApiClient")
+
+    if not (isinstance(project_name, str) and project_name):
+        raise ApiValueError("project_name must be a non-empty string")
+
+    if not isinstance(file_paths, list):
+        raise ApiValueError("file_paths must be a list of strings")
+
+    if not (isinstance(bucket_name, str) and bucket_name):
+        raise ApiValueError("bucket_name must be a non-empty string")
+
+    if not isinstance(parallel_uploads, int) or parallel_uploads <= 0:
+        raise ApiValueError("parallel_uploads must be a positive integer")
+
+    if len(file_paths) == 0:
+        return
+
+    # Validate all paths are files
+    invalid_files = [f for f in file_paths if not path.isfile(f) and not path.isdir(f)]
+    if invalid_files:
+        raise ValueError(f"The following paths are not valid files or directories: {invalid_files}")
+
+    # Prepare upload tasks
+    upload_tasks = []
+
+    for item_to_upload in file_paths:
+        if path.isfile(item_to_upload):
+            bucket_file_name = path.basename(item_to_upload)
+            if file_prefix:
+                bucket_file_name = f"{file_prefix}{bucket_file_name}"
+
+            upload_tasks.append((item_to_upload, bucket_file_name))
+
+        if path.isdir(item_to_upload):
+            for root, _, files in os.walk(item_to_upload):
+                for file in files:
+                    file_path = path.join(root, file)
+                    bucket_file_name = path.relpath(file_path, item_to_upload)
+
+                    # Add the file with its relative path as prefix
+                    if file_prefix:
+                        bucket_file_name = f"{file_prefix}{bucket_file_name}"
+
+                    upload_tasks.append((file_path, bucket_file_name))
+
+    def upload_single_file(file_tuple):
+        """
+        Upload a single file to the bucket
+        It's a separate function to be used in ThreadPool
+
+        :param tuple file_tuple: tuple of (file_path, bucket_file_name)
+        """
+
+        return upload_file(
+            client=client,
+            project_name=project_name,
+            file_path=file_tuple[0],
+            bucket_name=bucket_name,
+            file_name=file_tuple[1],
+            _progress_bar=_progress_bar,
+        )
+
+    # Use ThreadPool for parallel uploads
+    with ThreadPool(parallel_uploads) as pool:
+        results = pool.map(upload_single_file, upload_tasks)
+
+    return results
+
+
 def download_file(
     client,
     project_name,
@@ -294,10 +404,20 @@ def download_file(
     :param bool _progress_bar: whether to show a TQDM progress bar
     """
 
-    assert (bucket_name and file_name) or file_uri, "Please, use either bucket_name and file_name or file_uri"
-    assert not (bucket_name and file_name and file_uri), (
-        "Please, use either bucket_name and file_name or file_uri, " "not both"
-    )
+    if not isinstance(client, ApiClient):
+        raise ApiTypeError("Provided client is not of type ubiops.ApiClient")
+
+    if not (isinstance(project_name, str) and project_name):
+        raise ApiValueError("project_name must be a non-empty string")
+
+    if not (bucket_name and file_name) and not file_uri:
+        raise ApiValueError("Please, use either bucket_name and file_name or file_uri")
+
+    if bucket_name and file_name and file_uri:
+        raise ApiValueError("Please, use either bucket_name and file_name or file_uri, not both")
+
+    if not isinstance(chunk_size, int) or chunk_size <= 0:
+        raise ApiValueError("chunk_size must be a positive integer")
 
     core_api = CoreApi(client)
 
@@ -351,6 +471,94 @@ def download_file(
                 filestream.write(chunk)
 
 
+def download_files(
+    client,
+    project_name,
+    bucket_name="default",
+    prefix=None,
+    output_path=".",
+    stream=True,
+    chunk_size=8192,
+    parallel_downloads=5,
+    _progress_bar=True,
+):
+    """
+    Download all files from a bucket or files with a given prefix into given directory.
+
+    :param ubiops.ApiClient client: a preconfigured Ubiops client
+    :param str project_name: the name of the project
+    :param str bucket_name: the name of the bucket
+    :param str|None prefix: the prefix to filter files in the bucket
+    :param str output_path: the directory location to download the files to
+    :param bool stream: whether to download the files streaming or not
+    :param int chunk_size: if streaming enabled, the size for each chunk
+    :param int parallel_downloads: the number of parallel downloads
+    :param bool _progress_bar: whether to show a TQDM progress bar
+    """
+
+    if not isinstance(client, ApiClient):
+        raise ApiTypeError("Provided client is not of type ubiops.ApiClient")
+
+    if not (isinstance(project_name, str) and project_name):
+        raise ApiValueError("project_name must be a non-empty string")
+
+    if not (isinstance(bucket_name, str) and bucket_name):
+        raise ApiValueError("bucket_name must be a non-empty string")
+
+    if not path.isdir(output_path):
+        raise ApiValueError("Output path must be a directory")
+
+    if not isinstance(chunk_size, int) or chunk_size <= 0:
+        raise ApiValueError("chunk_size must be a positive integer")
+
+    if not isinstance(parallel_downloads, int) or parallel_downloads <= 0:
+        raise ApiValueError("parallel_downloads must be a positive integer")
+
+    core_api = CoreApi(client)
+
+    continuation_token = None
+    files = []
+
+    while True:
+        file_list = core_api.files_list(
+            project_name=project_name,
+            bucket_name=bucket_name,
+            prefix=prefix,
+            continuation_token=continuation_token,
+        )
+        files.extend(file_list.files)
+
+        continuation_token = file_list.continuation_token
+        if not continuation_token:
+            break
+
+    def download_file_wrapper(file_item):
+        """
+        Download a single file
+        It's a separate function to be used in ThreadPool
+
+        :param ubiops.models.FileItem file_item: the file item to download
+        """
+        file_dir = path.dirname(file_item.file)
+        makedirs(path.join(output_path, file_dir), exist_ok=True)
+
+        file_output_path = path.join(output_path, file_item.file)
+
+        download_file(
+            client=client,
+            project_name=project_name,
+            bucket_name=bucket_name,
+            file_name=file_item.file,
+            output_path=file_output_path,
+            stream=stream,
+            chunk_size=chunk_size,
+            _progress_bar=_progress_bar,
+        )
+
+    with ThreadPool(parallel_downloads) as pool:
+        pool.map(download_file_wrapper, files)
+
+
 def handle_file_input(
     client,
     project_name,
@@ -377,8 +585,23 @@ def handle_file_input(
     :param bool _progress_bar: whether to show a TQDM progress bar
     """
 
+    if not isinstance(client, ApiClient):
+        raise ApiTypeError("Provided client is not of type ubiops.ApiClient")
+
+    if not (isinstance(project_name, str) and project_name):
+        raise ApiValueError("project_name must be a non-empty string")
+
     if not isinstance(file, str):
-        raise ApiException(status=400, reason="Invalid", body=f"File {file} is not a string")
+        raise ApiValueError(f"File {file} is not a string")
+
+    if not (isinstance(bucket_name, str) and bucket_name):
+        raise ApiValueError("bucket_name must be a non-empty string")
+
+    if file_prefix is not None and not isinstance(file_prefix, str):
+        raise ApiValueError("file_prefix must be a string")
+
+    if file_name is not None and not isinstance(file_name, str):
+        raise ApiValueError("file_name must be a string")
 
     try:
         ubiops_file = UbiOpsFile.from_uri(file)
