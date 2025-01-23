@@ -31,7 +31,7 @@ class OrganizationUserUpdate(object):
 
     attribute_map = {"admin": "admin"}
 
-    def __init__(self, admin=False, **kwargs):
+    def __init__(self, admin=None, **kwargs):
         """
         OrganizationUserUpdate - a model defined in OpenAPI
         """

@@ -60,7 +60,7 @@ class ExportDetail(object):
         id=None,
         exported_by=None,
         creation_date=None,
-        status="pending",
+        status=None,
         error_message=None,
         size=None,
         description=None,

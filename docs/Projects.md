@@ -1576,6 +1576,7 @@ Retrieve the logs of all objects in a project, including deployments, pipelines 
     - `deployment_version`: name of a deployment version. If this field is present in the request, deployment_name must also be given. The deployment versions are only meaningful in combination with the deployments they are defined for.
     - `deployment_version_revision_id`: the UUID of a deployment version revision. It does not have to be given in combination with the deployment and version name.
     - `instance_id`: the UUID of an instance. It does not have to be given in combination with the deployment and version name.
+    - `process_id`: id of the process in the deployment instance. It does not have to be given in combination with the deployment and version name.
     - `environment_name`: name of an environment
     - `environment_build_id`: the UUID of an environment build. It does not have to be given in combination with the environment name.
     - `pipeline_name`: name of a pipeline

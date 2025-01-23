@@ -31,7 +31,7 @@ class OrganizationUserCreate(object):
 
     attribute_map = {"email": "email", "admin": "admin"}
 
-    def __init__(self, email=None, admin=False, **kwargs):
+    def __init__(self, email=None, admin=None, **kwargs):
         """
         OrganizationUserCreate - a model defined in OpenAPI
         """

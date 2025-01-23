@@ -14,4 +14,3 @@
 | **retries**            | **int**                       | [optional] |
 | **request_data**       | **str** or **dict(str, str)** | [optional] |
 | **result**             | **str** or **dict(str, str)** | [optional] |
-| **notification_group** | **str**                       | [optional] |

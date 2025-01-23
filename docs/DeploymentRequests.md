@@ -188,7 +188,6 @@ In case of plain input deployment: A list of strings. It is also possible to sen
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the request is completed
 
 ## Request Examples
 Multiple structured batch deployment requests

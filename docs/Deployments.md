@@ -1590,8 +1590,6 @@ Create deployment versions
 
 ## Description
 Create a version for a deployment. The first version of a deployment is set as default.
-Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version.
-Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.
 
 ### Required Parameters
 
@@ -1608,8 +1606,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `maximum_idle_time`: Maximum time in seconds a version stays idle before it is stopped. The default value is 300, the minimum value is 10 (300 for GPU deployments) and the maximum value is 3600. A high value means that the version stays available longer. Sending requests to a running version means that it will be already initialized and thus take a shorter timer.
 - `description`: Description for the version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the version. It defaults to 604800 seconds (1 week).
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -1623,6 +1619,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
     - `default` - scales up directly with incoming requests, ideal for long requests
     - `moderate` - optimized scaling, less aggressive and saves costs, ideal for short requests
+- `instance_processes`: Number of processes that are started in each instance, defaults to 1
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -1657,7 +1654,6 @@ If the time that a request takes does not matter, keep the default values.
   "version": "version-1",
   "maximum_instances": 4,
   "minimum_instances": 1,
-  "monitoring": "notification-group-1"
 }
 ```
 
@@ -1697,8 +1693,6 @@ Details of the created version
 - `creation_date`: The date when the version was created
 - `last_file_upload`: The date when a deployment file was last uploaded for the version
 - `last_updated`: The date when the version was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
@@ -1709,6 +1703,7 @@ Details of the created version
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
+- `instance_processes`: Number of processes that are started in each instance
 
 ## Response Examples
 
@@ -1736,8 +1731,6 @@ Details of the created version
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-05-12T16:23:15.456812Z",
   "last_file_upload": null,
-  "monitoring": "notification-group-1",
-  "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
@@ -1747,7 +1740,8 @@ Details of the created version
   "static_ip": false,
   "restart_request_interruption": false,
   "ports": [],
-  "scaling_strategy": "default"
+  "scaling_strategy": "default",
+  "instance_processes": 1
 }
 ```
 
@@ -1926,8 +1920,6 @@ Details of a version
 - `creation_date`: The date when the version was created
 - `last_updated`: The date when the version was last updated
 - `last_file_upload`: The date when a deployment file was last uploaded for the version
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -1941,6 +1933,7 @@ Details of a version
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
+- `instance_processes`: Number of processes that are started in each instance
 
 ## Response Examples
 
@@ -1968,8 +1961,6 @@ Details of a version
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
   "last_file_uploaded": "2020-06-21T09:03:01.875391Z",
-  "monitoring": "notification-group-1",
-  "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
@@ -1979,7 +1970,8 @@ Details of a version
   "static_ip": false,
   "restart_request_interruption": false,
   "ports": [],
-  "scaling_strategy": "moderate"
+  "scaling_strategy": "moderate",
+  "instance_processes": 1
 }
 ```
 
@@ -2082,8 +2074,6 @@ A list of details of the versions
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the version was created
 - `last_updated`: The date when the version was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -2095,6 +2085,7 @@ A list of details of the versions
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*.
+- `instance_processes`: Number of processes that are started in each instance
 
 ## Response Examples
 
@@ -2119,8 +2110,6 @@ A list of details of the versions
     },
     "creation_date": "2020-06-18T08:32:14.876451Z",
     "last_updated": "2020-06-19T10:52:23.124784Z",
-    "monitoring": "notification-group-1",
-    "default_notification_group": null,
     "request_retention_time": 604800,
     "request_retention_mode": "full",
     "maximum_queue_size_express": 100,
@@ -2128,7 +2117,8 @@ A list of details of the versions
     "static_ip": false,
     "restart_request_interruption": false,
     "ports": [],
-    "scaling_strategy": "default"
+    "scaling_strategy": "default",
+    "instance_processes": 1
   },
   {
     "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
@@ -2149,8 +2139,6 @@ A list of details of the versions
     },
     "creation_date": "2020-05-12T16:23:15.456812Z",
     "last_updated": "2020-06-22T18:04:76.123754Z",
-    "monitoring": "notification-group-2",
-    "default_notification_group": "notification-group-2",
     "request_retention_time": 86400,
     "request_retention_mode": "metadata",
     "maximum_queue_size_express": 100,
@@ -2158,7 +2146,8 @@ A list of details of the versions
     "static_ip": true,
     "restart_request_interruption": false,
     "ports": [],
-    "scaling_strategy": "moderate"
+    "scaling_strategy": "moderate",
+    "instance_processes": 1
   }
 ]
 ```
@@ -2238,8 +2227,6 @@ Update deployment version
 
 ## Description
 Update a version of a deployment in a project. All necessary fields are validated again. When updating labels, the labels will replace the existing value for labels.
-Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version.
-Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.
 
 ### Optional Parameters
 
@@ -2252,8 +2239,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `maximum_idle_time`: New maximum time in seconds a version stays idle before it is stopped
 - `description`: New description for the version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels.
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -2268,6 +2253,7 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
     - `default` - scales up directly with incoming requests, ideal for long requests
     - `moderate` - optimized scaling, less aggressive and saves costs, ideal for short requests
+- `instance_processes`: Number of processes that are started in each instance
 
 ## Request Examples
 
@@ -2283,7 +2269,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
   "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7",
   "maximum_instances": 4,
   "minimum_instances": 1,
-  "monitoring": "notification-group-1"
 }
 ```
 
@@ -2310,8 +2295,6 @@ Details of the updated version
 - `creation_date`: The date when the version was created
 - `last_updated`: The date when the version was last updated
 - `last_file_upload`: The date when a deployment file was last uploaded for the version
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
 - `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
@@ -2322,6 +2305,7 @@ Details of the updated version
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
+- `instance_processes`: Number of processes that are started in each instance
 
 ## Response Examples
 
@@ -2349,8 +2333,6 @@ Details of the updated version
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-23T18:04:76.123754Z",
   "last_file_uploaded": "2020-06-21T09:03:01.875391Z",
-  "monitoring": "notification-group-1",
-  "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "maximum_queue_size_express": 100,
@@ -2360,7 +2342,8 @@ Details of the updated version
   "static_ip": false,
   "restart_request_interruption": false,
   "ports": [],
-  "scaling_strategy: "moderate"
+  "scaling_strategy: "moderate",
+  "instance_processes": 1
 }
 ```
 

@@ -48,7 +48,7 @@ class PipelineVersionObjectCreate(object):
     def __init__(
         self,
         name=None,
-        reference_type="deployment",
+        reference_type=None,
         reference_name=None,
         version=None,
         configuration=None,

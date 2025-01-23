@@ -58,7 +58,7 @@ class ImportDetail(object):
         id=None,
         imported_by=None,
         creation_date=None,
-        status="pending",
+        status=None,
         error_message=None,
         size=None,
         deployments=None,

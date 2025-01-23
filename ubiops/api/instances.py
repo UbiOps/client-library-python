@@ -995,6 +995,119 @@ class Instances(object):
             progress_bar=kwargs.get("_progress_bar", False),
         )
 
+    def instances_update_with_http_info(self, project_name, deployment_name, instance_id, version, data, **kwargs):
+        """
+        Update instance for deployment versions
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = Instances.instances_update_with_http_info(
+                project_name, deployment_name, instance_id, version, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str deployment_name: (required)
+        :param str instance_id: (required)
+        :param str version: (required)
+        :param InstanceUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "instances_update"
+        optional_params = []
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and deployment_name is None:
+            raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and instance_id is None:
+            raise ApiValueError(f"Missing the required parameter `instance_id` when calling `{method_name}`")
+        if self.api_client.client_side_validation and version is None:
+            raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
+        if self.api_client.client_side_validation and data is None:
+            raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(deployment_name, str):
+                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(instance_id, str):
+                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(version, str):
+                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if isinstance(data, dict):
+                from ubiops.models.instance_update import InstanceUpdate
+
+                data = InstanceUpdate(**data)
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["deployment_name"] = deployment_name
+        path_params["instance_id"] = instance_id
+        path_params["version"] = version
+
+        body_params = data
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # HTTP header `Content-Type`
+        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
+
+        url = "/projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id}"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "PATCH",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="InstanceDetail",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
     def project_instances_get_with_http_info(self, project_name, instance_id, **kwargs):
         """
         Get instance for projects
@@ -1169,6 +1282,105 @@ class Instances(object):
             post_params=form_params,
             files=files,
             response_type="ProjectInstanceListPaginated",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
+    def project_instances_update_with_http_info(self, project_name, instance_id, data, **kwargs):
+        """
+        Update instance for projects
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = Instances.project_instances_update_with_http_info(
+                project_name, instance_id, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str instance_id: (required)
+        :param InstanceUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(InstanceDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "project_instances_update"
+        optional_params = []
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation and instance_id is None:
+            raise ApiValueError(f"Missing the required parameter `instance_id` when calling `{method_name}`")
+        if self.api_client.client_side_validation and data is None:
+            raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(instance_id, str):
+                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if isinstance(data, dict):
+                from ubiops.models.instance_update import InstanceUpdate
+
+                data = InstanceUpdate(**data)
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+        path_params["instance_id"] = instance_id
+
+        body_params = data
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # HTTP header `Content-Type`
+        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
+
+        url = "/projects/{project_name}/instances/{instance_id}"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "PATCH",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="InstanceDetail",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),

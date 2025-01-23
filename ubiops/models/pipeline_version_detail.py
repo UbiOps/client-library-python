@@ -36,10 +36,8 @@ class PipelineVersionDetail(object):
         "labels": "dict(str, str)",
         "creation_date": "datetime",
         "last_updated": "datetime",
-        "monitoring": "str",
         "request_retention_time": "int",
         "request_retention_mode": "str",
-        "default_notification_group": "str",
         "objects": "list[PipelineVersionObjectList]",
         "attachments": "list[AttachmentsList]",
     }
@@ -53,10 +51,8 @@ class PipelineVersionDetail(object):
         "labels": "labels",
         "creation_date": "creation_date",
         "last_updated": "last_updated",
-        "monitoring": "monitoring",
         "request_retention_time": "request_retention_time",
         "request_retention_mode": "request_retention_mode",
-        "default_notification_group": "default_notification_group",
         "objects": "objects",
         "attachments": "attachments",
     }
@@ -71,10 +67,8 @@ class PipelineVersionDetail(object):
         labels=None,
         creation_date=None,
         last_updated=None,
-        monitoring=None,
         request_retention_time=None,
         request_retention_mode=None,
-        default_notification_group=None,
         objects=None,
         attachments=None,
         **kwargs,
@@ -95,10 +89,8 @@ class PipelineVersionDetail(object):
         self._labels = None
         self._creation_date = None
         self._last_updated = None
-        self._monitoring = None
         self._request_retention_time = None
         self._request_retention_mode = None
-        self._default_notification_group = None
         self._objects = None
         self._attachments = None
         self.discriminator = None
@@ -116,13 +108,9 @@ class PipelineVersionDetail(object):
             self.creation_date = creation_date
         if last_updated is not None:
             self.last_updated = last_updated
-        if monitoring is not None:
-            self.monitoring = monitoring
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time
         self.request_retention_mode = request_retention_mode
-        if default_notification_group is not None:
-            self.default_notification_group = default_notification_group
         if objects is not None:
             self.objects = objects
         if attachments is not None:
@@ -338,31 +326,6 @@ class PipelineVersionDetail(object):
         self._last_updated = last_updated
 
     @property
-    def monitoring(self):
-        """
-        Gets the monitoring of this PipelineVersionDetail
-
-        :return: the monitoring of this PipelineVersionDetail
-        :rtype: str
-        """
-
-        return self._monitoring
-
-    @monitoring.setter
-    def monitoring(self, monitoring):
-        """
-        Sets the monitoring of this PipelineVersionDetail
-
-        :param monitoring: the monitoring of this PipelineVersionDetail
-        :type: str
-        """
-
-        if self.client_side_validation and (monitoring is not None and not isinstance(monitoring, str)):
-            raise ValueError("Parameter `monitoring` must be a string")
-
-        self._monitoring = monitoring
-
-    @property
     def request_retention_time(self):
         """
         Gets the request_retention_time of this PipelineVersionDetail
@@ -420,33 +383,6 @@ class PipelineVersionDetail(object):
             raise ValueError("Invalid value for `request_retention_mode`, length must be greater than or equal to `1`")
 
         self._request_retention_mode = request_retention_mode
-
-    @property
-    def default_notification_group(self):
-        """
-        Gets the default_notification_group of this PipelineVersionDetail
-
-        :return: the default_notification_group of this PipelineVersionDetail
-        :rtype: str
-        """
-
-        return self._default_notification_group
-
-    @default_notification_group.setter
-    def default_notification_group(self, default_notification_group):
-        """
-        Sets the default_notification_group of this PipelineVersionDetail
-
-        :param default_notification_group: the default_notification_group of this PipelineVersionDetail
-        :type: str
-        """
-
-        if self.client_side_validation and (
-            default_notification_group is not None and not isinstance(default_notification_group, str)
-        ):
-            raise ValueError("Parameter `default_notification_group` must be a string")
-
-        self._default_notification_group = default_notification_group
 
     @property
     def objects(self):

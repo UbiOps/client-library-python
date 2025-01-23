@@ -21,8 +21,6 @@ Name | Type | Notes
 **last_updated** | **datetime** | [optional]
 **request_retention_time** | **int** | [optional]
 **request_retention_mode** | **str** |
-**monitoring** | **str** | [optional] [readonly]
-**default_notification_group** | **str** | [optional] [readonly]
 **maximum_queue_size_express** | **int** | [optional]
 **maximum_queue_size_batch** | **int** | [optional]
 **static_ip** | **bool** | [optional]
@@ -30,5 +28,6 @@ Name | Type | Notes
 **ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional]
 **instance_type** | **str** | [optional] [readonly]
 **scaling_strategy** | **str** | [optional]
+**instance_processes** | **int** | [optional]
 
 

@@ -9,7 +9,7 @@ Helper functions for creating streaming pipeline and deployment requests.
 
 # **stream_deployment_request**
 
-> stream_deployment_request(client, project_name, deployment_name, version=None, data=None, timeout=30, full_response=False)
+> stream_deployment_request(client, project_name, deployment_name, version=None, data=None, timeout=3600, full_response=False)
 
 Create a streaming request to a deployment version
 
@@ -35,7 +35,7 @@ project_name = 'project_name_example' # str
 deployment_name = 'deployment_name_example' # str 
 version = 'version_example' # str (optional)
 data = 'data' # str or dict  (optional)
-timeout = 30 # int  (optional)
+timeout = 3600 # int  (optional)
 full_response = False # bool  (optional)
 
 # Create a streaming deployment request
@@ -63,8 +63,12 @@ api_client.close()
 | **deployment_name**  | **str**              |                               |
 | **version**          | **str**              | [optional] [default to None]  |
 | **data**             | **str or dict**      | [optional] [default to ""]    |
-| **timeout**          | **int**              | [optional] [default to 30]    |
+| **timeout**          | **int**              | [optional] [default to 3600]  |
 | **full_response**    | **bool**             | [optional] [default to False] |
+
+### Return type
+
+**str** (partial result) or [**DeploymentRequestCreateResponse**](../models/DeploymentRequestCreateResponse.md) (full response)
 
 ### Authorization
 
@@ -75,7 +79,7 @@ api_client.close()
 
 # **stream_pipeline_request**
 
-> stream_pipeline_request(client, project_name, pipeline_name, version=None, data=None, timeout=30, full_response=False)
+> stream_pipeline_request(client, project_name, pipeline_name, version=None, data=None, timeout=7200, full_response=False)
 
 Create a streaming request to a pipeline version
 
@@ -101,7 +105,7 @@ project_name = 'project_name_example' # str
 pipeline_name = 'pipeline_name_example' # str 
 version = 'version_example' # str (optional)
 data = 'data' # str or dict  (optional)
-timeout = 30 # int  (optional)
+timeout = 7200 # int  (optional)
 full_response = False # bool  (optional)
 
 # Create a streaming pipeline request
@@ -122,15 +126,19 @@ api_client.close()
 
 ### Parameters
 
-| Name              | Type                 | Notes                                              |
-|-------------------|----------------------|----------------------------------------------------|
-| **client**        | **ubiops.ApiClient** |                                                    |
-| **project_name**  | **str**              |                                                    |
-| **pipeline_name** | **str**              |                                                    |
-| **version**       | **str**              | [optional] [default to None]                       |
-| **data**          | **str or dict**      | [optional] [default to ""]                         |
-| **timeout**       | **int**              | [optional] [default to 30]                         |
-| **full_response** | **bool**             | [optional] [default to False]                      |
+| Name              | Type                 | Notes                         |
+|-------------------|----------------------|-------------------------------|
+| **client**        | **ubiops.ApiClient** |                               |
+| **project_name**  | **str**              |                               |
+| **pipeline_name** | **str**              |                               |
+| **version**       | **str**              | [optional] [default to None]  |
+| **data**          | **str or dict**      | [optional] [default to ""]    |
+| **timeout**       | **int**              | [optional] [default to 7200]  |
+| **full_response** | **bool**             | [optional] [default to False] |
+
+### Return type
+
+**str** (partial result) or [**PipelineRequestCreateResponse**](../models/PipelineRequestCreateResponse.md) (full response)
 
 ### Authorization
 

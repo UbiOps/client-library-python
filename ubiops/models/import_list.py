@@ -46,7 +46,7 @@ class ImportList(object):
     }
 
     def __init__(
-        self, id=None, imported_by=None, creation_date=None, status="pending", error_message=None, size=None, **kwargs
+        self, id=None, imported_by=None, creation_date=None, status=None, error_message=None, size=None, **kwargs
     ):
         """
         ImportList - a model defined in OpenAPI

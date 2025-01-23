@@ -2,10 +2,11 @@ import json
 import requests
 
 from ubiops.exceptions import UbiOpsException
+from ubiops.models import DeploymentRequestCreateResponse, PipelineRequestCreateResponse
 
 
 def stream_request(
-    client, project_name, reference_type, reference_name, version=None, data=None, timeout=30, full_response=False
+    client, project_name, reference_type, reference_name, version=None, data=None, timeout=3600, full_response=False
 ):
     """
     Create a streaming request to a deployment or pipeline version
@@ -21,7 +22,7 @@ def stream_request(
     :return: partial results of the request and, if requested, the full response at the end of the request
     """
 
-    headers = {"Accept": "text/event-stream"}
+    headers = {"Accept": "text/event-stream", "User-Agent": client.user_agent}
     if "Authorization" in client.configuration.api_key:
         headers["Authorization"] = client.configuration.get_api_key_with_prefix("Authorization")
 
@@ -67,7 +68,10 @@ def stream_request(
                     raise UbiOpsException(f"Request failed with error message: {error_message}")
 
                 if full_response:
-                    yield line_json
+                    if reference_type == "deployment":
+                        yield DeploymentRequestCreateResponse(**line_json)
+                    else:
+                        yield PipelineRequestCreateResponse(**line_json)
 
             except json.JSONDecodeError as e:
                 print(f"Error decoding the the full response JSON: {e}")
@@ -77,7 +81,7 @@ def stream_request(
 
 
 def stream_deployment_request(
-    client, project_name, deployment_name, version=None, data=None, timeout=30, full_response=False
+    client, project_name, deployment_name, version=None, data=None, timeout=3600, full_response=False
 ):
     """
     Create a streaming request to a deployment version
@@ -106,7 +110,7 @@ def stream_deployment_request(
 
 
 def stream_pipeline_request(
-    client, project_name, pipeline_name, version=None, data=None, timeout=30, full_response=False
+    client, project_name, pipeline_name, version=None, data=None, timeout=7200, full_response=False
 ):
     """
     Create a streaming request to a pipeline version

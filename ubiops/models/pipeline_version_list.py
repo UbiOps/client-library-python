@@ -36,10 +36,8 @@ class PipelineVersionList(object):
         "labels": "dict(str, str)",
         "creation_date": "datetime",
         "last_updated": "datetime",
-        "monitoring": "str",
         "request_retention_time": "int",
         "request_retention_mode": "str",
-        "default_notification_group": "str",
     }
 
     attribute_map = {
@@ -51,10 +49,8 @@ class PipelineVersionList(object):
         "labels": "labels",
         "creation_date": "creation_date",
         "last_updated": "last_updated",
-        "monitoring": "monitoring",
         "request_retention_time": "request_retention_time",
         "request_retention_mode": "request_retention_mode",
-        "default_notification_group": "default_notification_group",
     }
 
     def __init__(
@@ -67,10 +63,8 @@ class PipelineVersionList(object):
         labels=None,
         creation_date=None,
         last_updated=None,
-        monitoring=None,
         request_retention_time=None,
         request_retention_mode=None,
-        default_notification_group=None,
         **kwargs,
     ):
         """
@@ -89,10 +83,8 @@ class PipelineVersionList(object):
         self._labels = None
         self._creation_date = None
         self._last_updated = None
-        self._monitoring = None
         self._request_retention_time = None
         self._request_retention_mode = None
-        self._default_notification_group = None
         self.discriminator = None
 
         if id is not None:
@@ -108,13 +100,9 @@ class PipelineVersionList(object):
             self.creation_date = creation_date
         if last_updated is not None:
             self.last_updated = last_updated
-        if monitoring is not None:
-            self.monitoring = monitoring
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time
         self.request_retention_mode = request_retention_mode
-        if default_notification_group is not None:
-            self.default_notification_group = default_notification_group
 
     @property
     def id(self):
@@ -326,31 +314,6 @@ class PipelineVersionList(object):
         self._last_updated = last_updated
 
     @property
-    def monitoring(self):
-        """
-        Gets the monitoring of this PipelineVersionList
-
-        :return: the monitoring of this PipelineVersionList
-        :rtype: str
-        """
-
-        return self._monitoring
-
-    @monitoring.setter
-    def monitoring(self, monitoring):
-        """
-        Sets the monitoring of this PipelineVersionList
-
-        :param monitoring: the monitoring of this PipelineVersionList
-        :type: str
-        """
-
-        if self.client_side_validation and (monitoring is not None and not isinstance(monitoring, str)):
-            raise ValueError("Parameter `monitoring` must be a string")
-
-        self._monitoring = monitoring
-
-    @property
     def request_retention_time(self):
         """
         Gets the request_retention_time of this PipelineVersionList
@@ -408,33 +371,6 @@ class PipelineVersionList(object):
             raise ValueError("Invalid value for `request_retention_mode`, length must be greater than or equal to `1`")
 
         self._request_retention_mode = request_retention_mode
-
-    @property
-    def default_notification_group(self):
-        """
-        Gets the default_notification_group of this PipelineVersionList
-
-        :return: the default_notification_group of this PipelineVersionList
-        :rtype: str
-        """
-
-        return self._default_notification_group
-
-    @default_notification_group.setter
-    def default_notification_group(self, default_notification_group):
-        """
-        Sets the default_notification_group of this PipelineVersionList
-
-        :param default_notification_group: the default_notification_group of this PipelineVersionList
-        :type: str
-        """
-
-        if self.client_side_validation and (
-            default_notification_group is not None and not isinstance(default_notification_group, str)
-        ):
-            raise ValueError("Parameter `default_notification_group` must be a string")
-
-        self._default_notification_group = default_notification_group
 
     def to_dict(self):
         """

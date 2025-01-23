@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**admin** | **bool** | [optional] [default to False]
+**admin** | **bool** | [optional]
 
 

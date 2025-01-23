@@ -100,8 +100,10 @@ Method | HTTP request | Description
 [**instance_types_list**](./Instances.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**instances_get**](./Instances.md#instances_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Get instance for deployment versions
 [**instances_list**](./Instances.md#instances_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances | List instances for deployment versions
+[**instances_update**](./Instances.md#instances_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Update instance for deployment versions
 [**project_instances_get**](./Instances.md#project_instances_get) | **GET** /projects/{project_name}/instances/{instance_id} | Get instance for projects
 [**project_instances_list**](./Instances.md#project_instances_list) | **GET** /projects/{project_name}/instances | List instances for projects
+[**project_instances_update**](./Instances.md#project_instances_update) | **PATCH** /projects/{project_name}/instances/{instance_id} | Update instance for projects
 [**metrics_create**](./Metrics.md#metrics_create) | **POST** /projects/{project_name}/metrics | Create metrics
 [**metrics_delete**](./Metrics.md#metrics_delete) | **DELETE** /projects/{project_name}/metrics/{metric_name} | Delete metric
 [**metrics_get**](./Metrics.md#metrics_get) | **GET** /projects/{project_name}/metrics/{metric_name} | Get metric
@@ -112,11 +114,6 @@ Method | HTTP request | Description
 [**time_series_data_list**](./Metrics.md#time_series_data_list) | **GET** /projects/{project_name}/time-series/data | List time series data
 [**time_series_delete**](./Metrics.md#time_series_delete) | **DELETE** /projects/{project_name}/time-series/{time_series_id} | Delete time series
 [**time_series_search**](./Metrics.md#time_series_search) | **GET** /projects/{project_name}/time-series/search | Search time series
-[**notification_groups_create**](./Monitoring.md#notification_groups_create) | **POST** /projects/{project_name}/monitoring/notification-groups | Create notification groups
-[**notification_groups_delete**](./Monitoring.md#notification_groups_delete) | **DELETE** /projects/{project_name}/monitoring/notification-groups/{notification_group_name} | Delete notification group
-[**notification_groups_get**](./Monitoring.md#notification_groups_get) | **GET** /projects/{project_name}/monitoring/notification-groups/{notification_group_name} | Get notification group
-[**notification_groups_list**](./Monitoring.md#notification_groups_list) | **GET** /projects/{project_name}/monitoring/notification-groups | List notification groups
-[**notification_groups_update**](./Monitoring.md#notification_groups_update) | **PATCH** /projects/{project_name}/monitoring/notification-groups/{notification_group_name} | Update notification group
 [**organization_users_create**](./Organizations.md#organization_users_create) | **POST** /organizations/{organization_name}/users | Add a user to an organization
 [**organization_users_delete**](./Organizations.md#organization_users_delete) | **DELETE** /organizations/{organization_name}/users/{user_id} | Delete a user from an organization
 [**organization_users_get**](./Organizations.md#organization_users_get) | **GET** /organizations/{organization_name}/users/{user_id} | Get details of a user in an organization
