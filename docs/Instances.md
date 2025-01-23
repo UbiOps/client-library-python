@@ -14,8 +14,10 @@ Method | HTTP request | Description
 [**instance_types_list**](./Instances.md#instance_types_list) | **GET** /projects/{project_name}/instance-types | List instance types
 [**instances_get**](./Instances.md#instances_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Get instance for deployment versions
 [**instances_list**](./Instances.md#instances_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances | List instances for deployment versions
+[**instances_update**](./Instances.md#instances_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/instances/{instance_id} | Update instance for deployment versions
 [**project_instances_get**](./Instances.md#project_instances_get) | **GET** /projects/{project_name}/instances/{instance_id} | Get instance for projects
 [**project_instances_list**](./Instances.md#project_instances_list) | **GET** /projects/{project_name}/instances | List instances for projects
+[**project_instances_update**](./Instances.md#project_instances_update) | **PATCH** /projects/{project_name}/instances/{instance_id} | Update instance for projects
 
 
 # **instance_events_list**
@@ -1365,6 +1367,123 @@ Name | Type | Notes
 
 [[Back to top]](#)
 
+# **instances_update**
+> InstanceDetail instances_update(project_name, deployment_name, instance_id, version, data)
+
+Update instance for deployment versions
+
+## Description
+Update an instance running for a deployment version
+
+### Required Parameters
+
+- `status`: New status for the instance. It can only be 'stopped'.
+
+### Response Structure
+
+- `id`: Unique identifier for the instance (UUID)
+- `status`: Status of the instance. It can be one of the following: pending, initialising, running, stopping.
+- `time_created`: The date when the instance was created
+- `time_updated`: The date when the instance was last updated
+- `instance_type`: A dictionary containing instance type details of the instance. If the instance has no instance type yet, it is null.
+  - `cluster`: A dictionary containing the cluster details of the node pool
+    - `type`: Type of the cluster
+- `deployment`: Name of the deployment for which the instance is running for
+- `version`: Name of the version for which the instance is running for
+
+## Response Examples
+
+```
+{
+  "id": "33a0541a-11a5-44f7-8722-b7428d1faf80",
+  "status": "stopping",
+  "time_created": "2024-05-01T08:32:14.876451Z",
+  "time_updated": "2024-05-01T08:32:14.876451Z",
+  "instance_type": null,
+  "node": {
+    "ipv4_address": null,
+    "ipv6_address": null
+  },
+  "node_pool": null,
+  "deployment": "deployment-1",
+  "version": "v1"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    instance_id = 'instance_id_example' # str
+    version = 'version_example' # str
+    data = ubiops.InstanceUpdate() # InstanceUpdate
+
+    # Update instance for deployment versions
+    api_response = core_api.instances_update(project_name, deployment_name, instance_id, version, data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    deployment_name = 'deployment_name_example' # str
+    instance_id = 'instance_id_example' # str
+    version = 'version_example' # str
+    data = ubiops.InstanceUpdate() # InstanceUpdate
+
+    # Update instance for deployment versions
+    api_response = core_api.instances_update(project_name, deployment_name, instance_id, version, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **instance_id** | **str** | 
+ **version** | **str** | 
+ **data** | [**InstanceUpdate**](./models/InstanceUpdate.md) | 
+
+### Return type
+
+[**InstanceDetail**](./models/InstanceDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
 # **project_instances_get**
 > InstanceDetail project_instances_get(project_name, instance_id)
 
@@ -1599,6 +1718,124 @@ Name | Type | Notes
 ### Return type
 
 [**ProjectInstanceListPaginated**](./models/ProjectInstanceListPaginated.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **project_instances_update**
+> InstanceDetail project_instances_update(project_name, instance_id, data)
+
+Update instance for projects
+
+## Description
+Update an instance running in a project
+
+### Required Parameters
+
+- `status`: New status for the instance. It can only be 'stopped'.
+
+### Response Structure
+
+- `id`: Unique identifier for the instance (UUID)
+- `status`: Status of the instance. It can be one of the following: pending, initialising, running, stopping.
+- `time_created`: The date when the instance was created
+- `time_updated`: The date when the instance was last updated
+- `instance_type`: A dictionary containing instance type details of the instance. If the instance has no instance type yet, it is null.
+  - `id`: UUID of the instance type
+  - `name`: Name of the instance type
+  - `display_name`: Display name of the instance type
+- `node`: A dictionary containing the node details of the instance
+  - `ipv4_address`: IPv4 address of the node
+  - `ipv6_address`: IPv6 address of the node
+- `node_pool`: A dictionary containing the node pool details of the instance. If the instance has no node pool yet, it is null.
+  - `cluster`: A dictionary containing the cluster details of the node pool
+    - `type`: Type of the cluster
+- `deployment`: Name of the deployment for which the instance is running for
+- `version`: Name of the version for which the instance is running for
+
+## Response Examples
+
+```
+{
+  "id": "33a0541a-11a5-44f7-8722-b7428d1faf80",
+  "status": "stopping",
+  "time_created": "2024-05-01T08:32:14.876451Z",
+  "time_updated": "2024-05-01T08:32:14.876451Z",
+  "instance_type": null,
+  "node": {
+    "ipv4_address": null,
+    "ipv6_address": null
+  },
+  "node_pool": null,
+  "deployment": "deployment-1",
+  "version": "v1"
+}
+```
+
+### Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    project_name = 'project_name_example' # str
+    instance_id = 'instance_id_example' # str
+    data = ubiops.InstanceUpdate() # InstanceUpdate
+
+    # Update instance for projects
+    api_response = core_api.project_instances_update(project_name, instance_id, data)
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    project_name = 'project_name_example' # str
+    instance_id = 'instance_id_example' # str
+    data = ubiops.InstanceUpdate() # InstanceUpdate
+
+    # Update instance for projects
+    api_response = core_api.project_instances_update(project_name, instance_id, data)
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```
+
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **instance_id** | **str** | 
+ **data** | [**InstanceUpdate**](./models/InstanceUpdate.md) | 
+
+### Return type
+
+[**InstanceDetail**](./models/InstanceDetail.md)
 
 ### Authorization
 

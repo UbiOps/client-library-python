@@ -284,8 +284,6 @@ Get the details of an experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the experiment was created
 - `last_updated`: The date when the experiment was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when runs for the experiment fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when runs for the experiment are completed
 - `request_retention_time`: Number of seconds to store runs of the experiment
 - `request_retention_mode`: Mode of retention for runs to the experiment. It can be one of the following:
     - *none* - the runs will not be stored
@@ -306,7 +304,6 @@ Get the details of an experiment
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
-  "default_notification_group": None,
   "description": "An experiment with Python 3.8",
   "environment": "python3-8",
   "environment_display_name": "Python 3.8",
@@ -324,7 +321,6 @@ Get the details of an experiment
   "maximum_queue_size_batch": 100000,
   "maximum_queue_size_express": 100,
   "minimum_instances": 0,
-  "monitoring": None,
   "name": "training-experiment",
   "request_retention_mode": "full",
   "request_retention_time": 31536000,
@@ -575,8 +571,6 @@ The details of the experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the experiment was created
 - `last_updated`: The date when the experiment was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when runs for the experiment fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when runs for the experiment are completed
 - `request_retention_time`: Number of seconds to store runs of the experiment
 - `request_retention_mode`: Mode of retention for runs to the experiment. It can be one of the following:
     - *none* - the runs will not be stored
@@ -597,7 +591,6 @@ The details of the experiment
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
-  "default_notification_group": None,
   "description": "An experiment with Python 3.7",
   "environment": "python3-8",
   "environment_display_name": "Python 3.7",
@@ -615,7 +608,6 @@ The details of the experiment
   "maximum_queue_size_batch": 100000,
   "maximum_queue_size_express": 100,
   "minimum_instances": 0,
-  "monitoring": None,
   "name": "training-experiment",
   "request_retention_mode": "full",
   "request_retention_time": 31536000,
@@ -949,7 +941,6 @@ Get the details of an experiment run
 - `retries`: Number of times that the run has been retried
 - `request_data`: A dictionary containing the data that was sent when the run was created
 - `result`: Run result. NULL if the run is 'pending', 'processing' or 'failed'.
-- `notification_group`: Name of a notification group to send notifications (e.g., emails) when the run is completed
 - `origin`: A dictionary containing the information on where the run originated from. It contains:
   - `created_by` field indicating the user that created the run
 
@@ -979,7 +970,6 @@ Get the details of an experiment run
     "metadata": None,
     "metrics": {"accuracy": 1.0, "loss": 0.0}
   },
-  "notification_group": None,
   "origin": {
     "created_by": "my.example.user@ubiops.com",
   }
@@ -1002,7 +992,6 @@ Get the details of an experiment run
     "training_code": "ubiops-file://default/training_code.zip",
   },
   "result": None,
-  "notification_group": None,
   "origin": {
     "created_by": "my.example.user@ubiops.com",
   }

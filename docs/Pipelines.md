@@ -368,8 +368,6 @@ Create pipeline versions
 
 ## Description
 Create a version for a pipeline. The first version of a pipeline is set as default.
-Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version.
-Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.
 
 ### Required Parameters
 
@@ -379,8 +377,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
 
 - `description`: Description of the pipeline version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the pipeline version. It defaults to 604800 seconds (1 week).
 - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -410,7 +406,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
   "labels": {
     "type": "production"
   },
-  "monitoring": "notification-group-1",
   "request_retention_time": 604800,
   "request_retention_mode": "full"
 }
@@ -723,8 +718,6 @@ Details of the created pipeline version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the pipeline version was created
 - `last_updated`: The date when the pipeline version was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the pipeline version
 - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*.
 - `objects`: List of pipeline version objects
@@ -744,8 +737,6 @@ Details of the created pipeline version
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
-  "monitoring": "notification-group-1",
-  "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [],
@@ -766,7 +757,6 @@ Details of the created pipeline version
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
-  "monitoring": ["test@example.com"],
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [
@@ -974,8 +964,6 @@ Details of the pipeline version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the pipeline version was created
 - `last_updated`: The date when the pipeline version was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the pipeline version
 - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -998,8 +986,6 @@ Details of the pipeline version
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
-  "monitoring": "notification-group-1",
-  "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [],
@@ -1020,7 +1006,6 @@ Details of the pipeline version
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
-  "monitoring": ["test@example.com"],
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [
@@ -1158,8 +1143,6 @@ A list of details of the versions of the pipeline
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the pipeline version was created
 - `last_updated`: The date when the pipeline version was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the pipeline version
 - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -1181,8 +1164,6 @@ A list of details of the versions of the pipeline
     },
     "creation_date": "2020-05-12T16:23:15.456812Z",
     "last_updated": "2020-06-22T18:04:76.123754Z",
-    "monitoring": "notification-group-1",
-    "default_notification_group": null,
     "request_retention_time": 604800,
     "request_retention_mode": "full"
   },
@@ -1197,8 +1178,6 @@ A list of details of the versions of the pipeline
     },
     "creation_date": "2020-05-12T16:23:15.456812Z",
     "last_updated": "2020-06-22T18:04:76.123754Z",
-    "monitoring": "notification-group-2",
-    "default_notification_group": "notification-group-2",
     "request_retention_time": 86400,
     "request_retention_mode": "metadata"
   }
@@ -1280,8 +1259,6 @@ Update pipeline version
 
 ## Description
 Update a pipeline version. When updating labels, the labels will replace the existing value for labels.
-Provide the parameter 'monitoring' as the name of a notification group to send monitoring notifications to. A notification will be sent in the case of a failed/recovered request. Pass `null` to switch off monitoring notifications for this version.
-Provide the parameter 'default_notification_group' as the name of a notification group to send notifications when requests for the version are completed. Pass `null` to switch off request notifications for this version.
 
 **Attention:** *In case either the `objects` or `attachments` parameter is null or an empty list, all of the objects or attachments of the pipeline will be removed.*
 
@@ -1290,8 +1267,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
 - `version`: Name of the version of the pipeline
 - `description`: Description of the pipeline version
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the pipeline version
 - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following:
     - *none* - the requests will not be stored
@@ -1314,7 +1289,6 @@ Provide the parameter 'default_notification_group' as the name of a notification
   "labels": {
     "type": "production"
   },
-  "monitoring": "notification-group-1"
 }
 ```
 
@@ -1327,7 +1301,6 @@ Updating a pipeline version with new objects and attachments
   "labels": {
     "type": "production"
   },
-  "monitoring": ["test@example.com"],
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [
@@ -1366,7 +1339,6 @@ Updating a pipeline version by removing objects and attachments
   "labels": {
     "type": "production"
   },
-  "monitoring": ["test@example.com"],
   "objects": null,
   "attachments": null
 }
@@ -1644,8 +1616,6 @@ Details of the created pipeline
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `creation_date`: The date when the pipeline version was created
 - `last_updated`: The date when the pipeline version was last updated
-- `monitoring`: Name of a notification group which contains contacts to send notifications when requests for the version fail and recover
-- `default_notification_group`: Name of a notification group which contains contacts to send notifications when requests for the version are completed
 - `request_retention_time`: Number of seconds to store requests to the pipeline version
 - `request_retention_mode`: Mode of request retention for requests to the pipeline version. It can be one of the following: *none*, *metadata* or *full*.
 - `objects`: List of pipeline version objects
@@ -1665,8 +1635,6 @@ Details of the created pipeline
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
-  "monitoring": "notification-group-1",
-  "default_notification_group": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [],
@@ -1687,7 +1655,6 @@ Details of the created pipeline
   },
   "creation_date": "2020-05-12T16:23:15.456812Z",
   "last_updated": "2020-06-22T18:04:76.123754Z",
-  "monitoring": ["test@example.com"],
   "request_retention_time": 604800,
   "request_retention_mode": "full",
   "objects": [

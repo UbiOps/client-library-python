@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.7.0"
+__version__ = "4.8.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -124,6 +124,7 @@ from ubiops.models.instance_type_group_usage_paginated import InstanceTypeGroupU
 from ubiops.models.instance_type_item import InstanceTypeItem
 from ubiops.models.instance_type_list import InstanceTypeList
 from ubiops.models.instance_type_list_paginated import InstanceTypeListPaginated
+from ubiops.models.instance_update import InstanceUpdate
 from ubiops.models.logs import Logs
 from ubiops.models.logs_create import LogsCreate
 from ubiops.models.metric_create import MetricCreate
@@ -131,10 +132,6 @@ from ubiops.models.metric_detail import MetricDetail
 from ubiops.models.metric_update import MetricUpdate
 from ubiops.models.node import Node
 from ubiops.models.node_pool import NodePool
-from ubiops.models.notification_group_contact import NotificationGroupContact
-from ubiops.models.notification_group_create import NotificationGroupCreate
-from ubiops.models.notification_group_list import NotificationGroupList
-from ubiops.models.notification_group_update import NotificationGroupUpdate
 from ubiops.models.operator_request_detail import OperatorRequestDetail
 from ubiops.models.organization_create import OrganizationCreate
 from ubiops.models.organization_detail import OrganizationDetail

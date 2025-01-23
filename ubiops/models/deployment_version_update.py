@@ -38,16 +38,15 @@ class DeploymentVersionUpdate(object):
         "maximum_idle_time": "int",
         "description": "str",
         "labels": "dict(str, str)",
-        "monitoring": "str",
         "request_retention_time": "int",
         "request_retention_mode": "str",
-        "default_notification_group": "str",
         "maximum_queue_size_express": "int",
         "maximum_queue_size_batch": "int",
         "static_ip": "bool",
         "restart_request_interruption": "bool",
         "ports": "list[DeploymentVersionPort]",
         "scaling_strategy": "str",
+        "instance_processes": "int",
     }
 
     attribute_map = {
@@ -61,16 +60,15 @@ class DeploymentVersionUpdate(object):
         "maximum_idle_time": "maximum_idle_time",
         "description": "description",
         "labels": "labels",
-        "monitoring": "monitoring",
         "request_retention_time": "request_retention_time",
         "request_retention_mode": "request_retention_mode",
-        "default_notification_group": "default_notification_group",
         "maximum_queue_size_express": "maximum_queue_size_express",
         "maximum_queue_size_batch": "maximum_queue_size_batch",
         "static_ip": "static_ip",
         "restart_request_interruption": "restart_request_interruption",
         "ports": "ports",
         "scaling_strategy": "scaling_strategy",
+        "instance_processes": "instance_processes",
     }
 
     def __init__(
@@ -85,16 +83,15 @@ class DeploymentVersionUpdate(object):
         maximum_idle_time=None,
         description=None,
         labels=None,
-        monitoring=None,
         request_retention_time=None,
         request_retention_mode=None,
-        default_notification_group=None,
         maximum_queue_size_express=None,
         maximum_queue_size_batch=None,
         static_ip=None,
         restart_request_interruption=None,
         ports=None,
         scaling_strategy=None,
+        instance_processes=None,
         **kwargs,
     ):
         """
@@ -115,16 +112,15 @@ class DeploymentVersionUpdate(object):
         self._maximum_idle_time = None
         self._description = None
         self._labels = None
-        self._monitoring = None
         self._request_retention_time = None
         self._request_retention_mode = None
-        self._default_notification_group = None
         self._maximum_queue_size_express = None
         self._maximum_queue_size_batch = None
         self._static_ip = None
         self._restart_request_interruption = None
         self._ports = None
         self._scaling_strategy = None
+        self._instance_processes = None
         self.discriminator = None
 
         if version is not None:
@@ -147,12 +143,10 @@ class DeploymentVersionUpdate(object):
             self.description = description
         if labels is not None:
             self.labels = labels
-        self.monitoring = monitoring
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time
         if request_retention_mode is not None:
             self.request_retention_mode = request_retention_mode
-        self.default_notification_group = default_notification_group
         if maximum_queue_size_express is not None:
             self.maximum_queue_size_express = maximum_queue_size_express
         if maximum_queue_size_batch is not None:
@@ -165,6 +159,8 @@ class DeploymentVersionUpdate(object):
             self.ports = ports
         if scaling_strategy is not None:
             self.scaling_strategy = scaling_strategy
+        if instance_processes is not None:
+            self.instance_processes = instance_processes
 
     @property
     def version(self):
@@ -435,34 +431,6 @@ class DeploymentVersionUpdate(object):
         self._labels = labels
 
     @property
-    def monitoring(self):
-        """
-        Gets the monitoring of this DeploymentVersionUpdate
-
-        :return: the monitoring of this DeploymentVersionUpdate
-        :rtype: str
-        """
-
-        return self._monitoring
-
-    @monitoring.setter
-    def monitoring(self, monitoring):
-        """
-        Sets the monitoring of this DeploymentVersionUpdate
-
-        :param monitoring: the monitoring of this DeploymentVersionUpdate
-        :type: str
-        """
-
-        if self.client_side_validation and (monitoring is not None and not isinstance(monitoring, str)):
-            raise ValueError("Parameter `monitoring` must be a string")
-
-        if self.client_side_validation and (monitoring is not None and len(monitoring) < 1):
-            raise ValueError("Invalid value for `monitoring`, length must be greater than or equal to `1`")
-
-        self._monitoring = monitoring
-
-    @property
     def request_retention_time(self):
         """
         Gets the request_retention_time of this DeploymentVersionUpdate
@@ -515,40 +483,6 @@ class DeploymentVersionUpdate(object):
             raise ValueError("Parameter `request_retention_mode` must be a string")
 
         self._request_retention_mode = request_retention_mode
-
-    @property
-    def default_notification_group(self):
-        """
-        Gets the default_notification_group of this DeploymentVersionUpdate
-
-        :return: the default_notification_group of this DeploymentVersionUpdate
-        :rtype: str
-        """
-
-        return self._default_notification_group
-
-    @default_notification_group.setter
-    def default_notification_group(self, default_notification_group):
-        """
-        Sets the default_notification_group of this DeploymentVersionUpdate
-
-        :param default_notification_group: the default_notification_group of this DeploymentVersionUpdate
-        :type: str
-        """
-
-        if self.client_side_validation and (
-            default_notification_group is not None and not isinstance(default_notification_group, str)
-        ):
-            raise ValueError("Parameter `default_notification_group` must be a string")
-
-        if self.client_side_validation and (
-            default_notification_group is not None and len(default_notification_group) < 1
-        ):
-            raise ValueError(
-                "Invalid value for `default_notification_group`, length must be greater than or equal to `1`"
-            )
-
-        self._default_notification_group = default_notification_group
 
     @property
     def maximum_queue_size_express(self):
@@ -709,6 +643,31 @@ class DeploymentVersionUpdate(object):
             raise ValueError("Parameter `scaling_strategy` must be a string")
 
         self._scaling_strategy = scaling_strategy
+
+    @property
+    def instance_processes(self):
+        """
+        Gets the instance_processes of this DeploymentVersionUpdate
+
+        :return: the instance_processes of this DeploymentVersionUpdate
+        :rtype: int
+        """
+
+        return self._instance_processes
+
+    @instance_processes.setter
+    def instance_processes(self, instance_processes):
+        """
+        Sets the instance_processes of this DeploymentVersionUpdate
+
+        :param instance_processes: the instance_processes of this DeploymentVersionUpdate
+        :type: int
+        """
+
+        if self.client_side_validation and (instance_processes is not None and not isinstance(instance_processes, int)):
+            raise ValueError("Parameter `instance_processes` must be an integer")
+
+        self._instance_processes = instance_processes
 
     def to_dict(self):
         """

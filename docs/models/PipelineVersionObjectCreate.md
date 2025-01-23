@@ -4,7 +4,7 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **name** | **str** |
-**reference_type** | **str** | [optional] [default to 'deployment']
+**reference_type** | **str** | [optional]
 **reference_name** | **str** |
 **version** | **str** | [optional]
 **configuration** | **dict(str, str)** | [optional]

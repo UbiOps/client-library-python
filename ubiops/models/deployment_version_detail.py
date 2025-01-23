@@ -46,8 +46,6 @@ class DeploymentVersionDetail(object):
         "last_updated": "datetime",
         "request_retention_time": "int",
         "request_retention_mode": "str",
-        "monitoring": "str",
-        "default_notification_group": "str",
         "maximum_queue_size_express": "int",
         "maximum_queue_size_batch": "int",
         "static_ip": "bool",
@@ -55,6 +53,7 @@ class DeploymentVersionDetail(object):
         "ports": "list[DeploymentVersionPort]",
         "instance_type": "str",
         "scaling_strategy": "str",
+        "instance_processes": "int",
         "instance_type_group_id": "str",
         "instance_type_group_name": "str",
         "last_file_upload": "datetime",
@@ -81,8 +80,6 @@ class DeploymentVersionDetail(object):
         "last_updated": "last_updated",
         "request_retention_time": "request_retention_time",
         "request_retention_mode": "request_retention_mode",
-        "monitoring": "monitoring",
-        "default_notification_group": "default_notification_group",
         "maximum_queue_size_express": "maximum_queue_size_express",
         "maximum_queue_size_batch": "maximum_queue_size_batch",
         "static_ip": "static_ip",
@@ -90,6 +87,7 @@ class DeploymentVersionDetail(object):
         "ports": "ports",
         "instance_type": "instance_type",
         "scaling_strategy": "scaling_strategy",
+        "instance_processes": "instance_processes",
         "instance_type_group_id": "instance_type_group_id",
         "instance_type_group_name": "instance_type_group_name",
         "last_file_upload": "last_file_upload",
@@ -117,8 +115,6 @@ class DeploymentVersionDetail(object):
         last_updated=None,
         request_retention_time=None,
         request_retention_mode=None,
-        monitoring=None,
-        default_notification_group=None,
         maximum_queue_size_express=None,
         maximum_queue_size_batch=None,
         static_ip=None,
@@ -126,6 +122,7 @@ class DeploymentVersionDetail(object):
         ports=None,
         instance_type=None,
         scaling_strategy=None,
+        instance_processes=None,
         instance_type_group_id=None,
         instance_type_group_name=None,
         last_file_upload=None,
@@ -159,8 +156,6 @@ class DeploymentVersionDetail(object):
         self._last_updated = None
         self._request_retention_time = None
         self._request_retention_mode = None
-        self._monitoring = None
-        self._default_notification_group = None
         self._maximum_queue_size_express = None
         self._maximum_queue_size_batch = None
         self._static_ip = None
@@ -168,6 +163,7 @@ class DeploymentVersionDetail(object):
         self._ports = None
         self._instance_type = None
         self._scaling_strategy = None
+        self._instance_processes = None
         self._instance_type_group_id = None
         self._instance_type_group_name = None
         self._last_file_upload = None
@@ -207,10 +203,6 @@ class DeploymentVersionDetail(object):
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time
         self.request_retention_mode = request_retention_mode
-        if monitoring is not None:
-            self.monitoring = monitoring
-        if default_notification_group is not None:
-            self.default_notification_group = default_notification_group
         if maximum_queue_size_express is not None:
             self.maximum_queue_size_express = maximum_queue_size_express
         if maximum_queue_size_batch is not None:
@@ -224,6 +216,8 @@ class DeploymentVersionDetail(object):
         if instance_type is not None:
             self.instance_type = instance_type
         self.scaling_strategy = scaling_strategy
+        if instance_processes is not None:
+            self.instance_processes = instance_processes
         if instance_type_group_id is not None:
             self.instance_type_group_id = instance_type_group_id
         if instance_type_group_name is not None:
@@ -711,58 +705,6 @@ class DeploymentVersionDetail(object):
         self._request_retention_mode = request_retention_mode
 
     @property
-    def monitoring(self):
-        """
-        Gets the monitoring of this DeploymentVersionDetail
-
-        :return: the monitoring of this DeploymentVersionDetail
-        :rtype: str
-        """
-
-        return self._monitoring
-
-    @monitoring.setter
-    def monitoring(self, monitoring):
-        """
-        Sets the monitoring of this DeploymentVersionDetail
-
-        :param monitoring: the monitoring of this DeploymentVersionDetail
-        :type: str
-        """
-
-        if self.client_side_validation and (monitoring is not None and not isinstance(monitoring, str)):
-            raise ValueError("Parameter `monitoring` must be a string")
-
-        self._monitoring = monitoring
-
-    @property
-    def default_notification_group(self):
-        """
-        Gets the default_notification_group of this DeploymentVersionDetail
-
-        :return: the default_notification_group of this DeploymentVersionDetail
-        :rtype: str
-        """
-
-        return self._default_notification_group
-
-    @default_notification_group.setter
-    def default_notification_group(self, default_notification_group):
-        """
-        Sets the default_notification_group of this DeploymentVersionDetail
-
-        :param default_notification_group: the default_notification_group of this DeploymentVersionDetail
-        :type: str
-        """
-
-        if self.client_side_validation and (
-            default_notification_group is not None and not isinstance(default_notification_group, str)
-        ):
-            raise ValueError("Parameter `default_notification_group` must be a string")
-
-        self._default_notification_group = default_notification_group
-
-    @property
     def maximum_queue_size_express(self):
         """
         Gets the maximum_queue_size_express of this DeploymentVersionDetail
@@ -949,6 +891,31 @@ class DeploymentVersionDetail(object):
             raise ValueError("Invalid value for `scaling_strategy`, length must be greater than or equal to `1`")
 
         self._scaling_strategy = scaling_strategy
+
+    @property
+    def instance_processes(self):
+        """
+        Gets the instance_processes of this DeploymentVersionDetail
+
+        :return: the instance_processes of this DeploymentVersionDetail
+        :rtype: int
+        """
+
+        return self._instance_processes
+
+    @instance_processes.setter
+    def instance_processes(self, instance_processes):
+        """
+        Sets the instance_processes of this DeploymentVersionDetail
+
+        :param instance_processes: the instance_processes of this DeploymentVersionDetail
+        :type: int
+        """
+
+        if self.client_side_validation and (instance_processes is not None and not isinstance(instance_processes, int)):
+            raise ValueError("Parameter `instance_processes` must be an integer")
+
+        self._instance_processes = instance_processes
 
     @property
     def instance_type_group_id(self):

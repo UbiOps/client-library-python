@@ -1,9 +1,8 @@
-# OrganizationUserCreate
+# InstanceUpdate
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**email** | **str** |
-**admin** | **bool** | [optional]
+**status** | **str** |
 
 
