@@ -147,6 +147,9 @@ class PipelineUpdate(object):
         if self.client_side_validation and (description is not None and not isinstance(description, str)):
             raise ValueError("Parameter `description` must be a string")
 
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
         self._description = description
 
     @property

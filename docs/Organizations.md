@@ -643,6 +643,7 @@ Details of the organization
 - `subscription`: Name of the subscription of the organization
 - `status`: Status of the organization
 - `two_factor_authentication_forced`: Whether 2FA is enforced on the organization users
+- `overage_usage`: Whether overage credits usage is enabled for the organization
 
 ## Response Examples
 
@@ -653,7 +654,8 @@ Details of the organization
   "creation_date": "2020-03-25T15:43:46.101877Z",
   "subscription": "free",
   "status": "active",
-  "two_factor_authentication_forced": false
+  "two_factor_authentication_forced": false,
+  "overage_usage": false
 }
 ```
 
@@ -957,6 +959,7 @@ Details of the organization
 - `subscription`: Name of the subscription
 - `status`: Status of the organization
 - `two_factor_authentication_forced`: Whether 2FA is enforced on the organization users
+- `overage_usage`: Whether overage credits usage is enabled for the organization
 
 ## Response Examples
 
@@ -967,7 +970,8 @@ Details of the organization
   "creation_date": "2020-03-25T15:43:46.101877Z",
   "subscription": "free",
   "status": "active",
-  "two_factor_authentication_forced": false
+  "two_factor_authentication_forced": false,
+  "overage_usage": false
 }
 ```
 

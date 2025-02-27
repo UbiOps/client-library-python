@@ -34,6 +34,7 @@ class OrganizationDetail(object):
         "status": "str",
         "two_factor_authentication_forced": "bool",
         "subscription": "str",
+        "overage_usage": "bool",
     }
 
     attribute_map = {
@@ -43,6 +44,7 @@ class OrganizationDetail(object):
         "status": "status",
         "two_factor_authentication_forced": "two_factor_authentication_forced",
         "subscription": "subscription",
+        "overage_usage": "overage_usage",
     }
 
     def __init__(
@@ -53,6 +55,7 @@ class OrganizationDetail(object):
         status=None,
         two_factor_authentication_forced=None,
         subscription=None,
+        overage_usage=None,
         **kwargs,
     ):
         """
@@ -69,6 +72,7 @@ class OrganizationDetail(object):
         self._status = None
         self._two_factor_authentication_forced = None
         self._subscription = None
+        self._overage_usage = None
         self.discriminator = None
 
         if id is not None:
@@ -80,6 +84,8 @@ class OrganizationDetail(object):
         if two_factor_authentication_forced is not None:
             self.two_factor_authentication_forced = two_factor_authentication_forced
         self.subscription = subscription
+        if overage_usage is not None:
+            self.overage_usage = overage_usage
 
     @property
     def id(self):
@@ -246,6 +252,31 @@ class OrganizationDetail(object):
             raise ValueError("Invalid value for `subscription`, length must be greater than or equal to `1`")
 
         self._subscription = subscription
+
+    @property
+    def overage_usage(self):
+        """
+        Gets the overage_usage of this OrganizationDetail
+
+        :return: the overage_usage of this OrganizationDetail
+        :rtype: bool
+        """
+
+        return self._overage_usage
+
+    @overage_usage.setter
+    def overage_usage(self, overage_usage):
+        """
+        Sets the overage_usage of this OrganizationDetail
+
+        :param overage_usage: the overage_usage of this OrganizationDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (overage_usage is not None and not isinstance(overage_usage, bool)):
+            raise ValueError("Parameter `overage_usage` must be a boolean")
+
+        self._overage_usage = overage_usage
 
     def to_dict(self):
         """

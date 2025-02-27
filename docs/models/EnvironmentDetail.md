@@ -18,6 +18,8 @@ Name | Type | Notes
 **implicit** | **bool** | [optional]
 **hidden** | **bool** | [optional]
 **deprecated** | **bool** | [optional]
+**system** | **bool** | [optional]
+**supports_request_format** | **bool** | [optional]
 **active_revision** | **str** | [optional] [readonly]
 **active_build** | **str** | [optional] [readonly]
 **latest_revision** | **str** | [optional] [readonly]

@@ -11,5 +11,6 @@ Name | Type | Notes
 **error_message** | **str** | [optional]
 **has_request_method** | **bool** | [optional]
 **has_requests_method** | **bool** | [optional]
+**empty** | **bool** | [optional]
 
 

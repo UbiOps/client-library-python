@@ -30,6 +30,7 @@ class DeploymentDetail(object):
     openapi_types = {
         "id": "str",
         "name": "str",
+        "supports_request_format": "bool",
         "project": "str",
         "description": "str",
         "input_type": "str",
@@ -45,6 +46,7 @@ class DeploymentDetail(object):
     attribute_map = {
         "id": "id",
         "name": "name",
+        "supports_request_format": "supports_request_format",
         "project": "project",
         "description": "description",
         "input_type": "input_type",
@@ -61,6 +63,7 @@ class DeploymentDetail(object):
         self,
         id=None,
         name=None,
+        supports_request_format=None,
         project=None,
         description=None,
         input_type=None,
@@ -83,6 +86,7 @@ class DeploymentDetail(object):
 
         self._id = None
         self._name = None
+        self._supports_request_format = None
         self._project = None
         self._description = None
         self._input_type = None
@@ -98,6 +102,8 @@ class DeploymentDetail(object):
         if id is not None:
             self.id = id
         self.name = name
+        if supports_request_format is not None:
+            self.supports_request_format = supports_request_format
         self.project = project
         if description is not None:
             self.description = description
@@ -172,6 +178,33 @@ class DeploymentDetail(object):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")
 
         self._name = name
+
+    @property
+    def supports_request_format(self):
+        """
+        Gets the supports_request_format of this DeploymentDetail
+
+        :return: the supports_request_format of this DeploymentDetail
+        :rtype: bool
+        """
+
+        return self._supports_request_format
+
+    @supports_request_format.setter
+    def supports_request_format(self, supports_request_format):
+        """
+        Sets the supports_request_format of this DeploymentDetail
+
+        :param supports_request_format: the supports_request_format of this DeploymentDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            supports_request_format is not None and not isinstance(supports_request_format, bool)
+        ):
+            raise ValueError("Parameter `supports_request_format` must be a boolean")
+
+        self._supports_request_format = supports_request_format
 
     @property
     def project(self):
@@ -251,8 +284,6 @@ class DeploymentDetail(object):
         :type: str
         """
 
-        if self.client_side_validation and input_type is None:
-            raise ValueError("Invalid value for `input_type`, must not be `None`")
         if self.client_side_validation and (input_type is not None and not isinstance(input_type, str)):
             raise ValueError("Parameter `input_type` must be a string")
 
@@ -281,8 +312,6 @@ class DeploymentDetail(object):
         :type: str
         """
 
-        if self.client_side_validation and output_type is None:
-            raise ValueError("Invalid value for `output_type`, must not be `None`")
         if self.client_side_validation and (output_type is not None and not isinstance(output_type, str)):
             raise ValueError("Parameter `output_type` must be a string")
 

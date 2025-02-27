@@ -97,7 +97,10 @@ def _wait_for_logs(
     :param float|None timeout: the maximum time to wait
     """
 
-    initial_date = datetime.datetime.utcnow().isoformat(timespec="milliseconds") if start_date is None else start_date
+    initial_date = start_date
+    if start_date is None:
+        initial_date = datetime.datetime.now(tz=datetime.timezone.utc).isoformat(timespec="milliseconds")
+
     date = initial_date
     last_retrieve_time = time()
     log_id = None
@@ -185,6 +188,69 @@ def _wait_for_logs(
                 break
 
 
+def _wait_for_deployment_version_status(
+    client,
+    project_name,
+    deployment_name,
+    version,
+    start_date,
+    timeout=1800,
+    quiet=False,
+    stream_logs=False,
+    object_name="Deployment version",
+):
+    """
+    Wait for a deployment version to be ready: wait for the status of the deployment version to be available. Use this
+    as fallback for when you don't have the permission to retrieve the status of the environment.
+
+    :param ubiops.ApiClient client: a preconfigured UbiOps client
+    :param str project_name: the name of the project
+    :param str deployment_name: the name of the deployment
+    :param str version: the version of the deployment
+    :param str start_date: start date for retrieving logs in iso-format
+    :param float timeout: the maximum time to wait
+    :param bool quiet: whether to suppress informational messages
+    :param bool stream_logs: Whether to stream logs while waiting, only used when quiet=False. When set to True, we will
+        wait 20 seconds longer than the environment and deployment revision were first seen as completed to make sure
+        all logs are retrieved. Logs will be shown starting from environment last update time and deployment revision
+        creation time.
+    :param str object_name: reference name for the version object, used to print success message
+    """
+
+    retrieve_method = "deployment_versions_get"
+    retrieve_kwargs = {
+        "project_name": project_name,
+        "deployment_name": deployment_name,
+        "version": version,
+    }
+    try:
+        if stream_logs and not quiet:
+            _wait_for_logs(
+                client=client,
+                project_name=project_name,
+                filters={
+                    "deployment_name": deployment_name,
+                    "deployment_version": version,
+                },
+                retrieve_method=retrieve_method,
+                retrieve_kwargs=retrieve_kwargs,
+                object_name=object_name,
+                start_date=start_date,
+                timeout=timeout,
+            )
+        else:
+            _wait_for(
+                client=client,
+                retrieve_method=retrieve_method,
+                retrieve_kwargs=retrieve_kwargs,
+                object_name=object_name,
+                timeout=timeout,
+                quiet=quiet,
+            )
+    except KeyboardInterrupt:
+        pass
+
+
 def _wait_for_deployment_version(
     client,
     project_name,
@@ -225,14 +291,31 @@ def _wait_for_deployment_version(
     if not revision_id:
         revision_id = version_data.latest_revision
 
-    wait_for_environment(
-        client=client,
-        project_name=project_name,
-        environment_name=version_data.environment,
-        timeout=timeout,
-        quiet=quiet,
-        stream_logs=stream_logs,
-    )
+    try:
+        wait_for_environment(
+            client=client,
+            project_name=project_name,
+            environment_name=version_data.environment,
+            timeout=timeout,
+            quiet=quiet,
+            stream_logs=stream_logs,
+        )
+    except ApiException as e:
+        if e.status == 403:
+            # In case you don't have permission to retrieve the environment status, use the deployment version status
+            _wait_for_deployment_version_status(
+                client=client,
+                project_name=project_name,
+                deployment_name=deployment_name,
+                version=version,
+                start_date=version_data.last_updated.isoformat(timespec="milliseconds"),
+                timeout=timeout,
+                quiet=quiet,
+                stream_logs=stream_logs,
+                object_name="Deployment version",
+            )
+        else:
+            raise
 
     elapsed_time = time() - start_time
 
@@ -488,8 +571,8 @@ def wait_for_environment(client, project_name, environment_name, timeout=1800, q
     # Get the environment details
     environment = CoreApi(client).environments_get(project_name=project_name, environment_name=environment_name)
 
-    if environment.base_environment is None:
-        # Environment is a base environment, it doesn't need to build
+    if environment.system:
+        # Environment is a system base environment, it doesn't need to build
         if not quiet:
             print("Environment: success", flush=True)
         return

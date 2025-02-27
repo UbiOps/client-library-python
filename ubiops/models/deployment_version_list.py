@@ -182,7 +182,8 @@ class DeploymentVersionList(object):
             self.last_updated = last_updated
         if request_retention_time is not None:
             self.request_retention_time = request_retention_time
-        self.request_retention_mode = request_retention_mode
+        if request_retention_mode is not None:
+            self.request_retention_mode = request_retention_mode
         if maximum_queue_size_express is not None:
             self.maximum_queue_size_express = maximum_queue_size_express
         if maximum_queue_size_batch is not None:
@@ -665,8 +666,6 @@ class DeploymentVersionList(object):
         :type: str
         """
 
-        if self.client_side_validation and request_retention_mode is None:
-            raise ValueError("Invalid value for `request_retention_mode`, must not be `None`")
         if self.client_side_validation and (
             request_retention_mode is not None and not isinstance(request_retention_mode, str)
         ):

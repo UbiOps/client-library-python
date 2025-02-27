@@ -43,6 +43,8 @@ class EnvironmentList(object):
         "implicit": "bool",
         "hidden": "bool",
         "deprecated": "bool",
+        "system": "bool",
+        "supports_request_format": "bool",
     }
 
     attribute_map = {
@@ -61,6 +63,8 @@ class EnvironmentList(object):
         "implicit": "implicit",
         "hidden": "hidden",
         "deprecated": "deprecated",
+        "system": "system",
+        "supports_request_format": "supports_request_format",
     }
 
     def __init__(
@@ -80,6 +84,8 @@ class EnvironmentList(object):
         implicit=None,
         hidden=None,
         deprecated=None,
+        system=None,
+        supports_request_format=None,
         **kwargs,
     ):
         """
@@ -105,6 +111,8 @@ class EnvironmentList(object):
         self._implicit = None
         self._hidden = None
         self._deprecated = None
+        self._system = None
+        self._supports_request_format = None
         self.discriminator = None
 
         if id is not None:
@@ -135,6 +143,10 @@ class EnvironmentList(object):
             self.hidden = hidden
         if deprecated is not None:
             self.deprecated = deprecated
+        if system is not None:
+            self.system = system
+        if supports_request_format is not None:
+            self.supports_request_format = supports_request_format
 
     @property
     def id(self):
@@ -519,6 +531,58 @@ class EnvironmentList(object):
             raise ValueError("Parameter `deprecated` must be a boolean")
 
         self._deprecated = deprecated
+
+    @property
+    def system(self):
+        """
+        Gets the system of this EnvironmentList
+
+        :return: the system of this EnvironmentList
+        :rtype: bool
+        """
+
+        return self._system
+
+    @system.setter
+    def system(self, system):
+        """
+        Sets the system of this EnvironmentList
+
+        :param system: the system of this EnvironmentList
+        :type: bool
+        """
+
+        if self.client_side_validation and (system is not None and not isinstance(system, bool)):
+            raise ValueError("Parameter `system` must be a boolean")
+
+        self._system = system
+
+    @property
+    def supports_request_format(self):
+        """
+        Gets the supports_request_format of this EnvironmentList
+
+        :return: the supports_request_format of this EnvironmentList
+        :rtype: bool
+        """
+
+        return self._supports_request_format
+
+    @supports_request_format.setter
+    def supports_request_format(self, supports_request_format):
+        """
+        Sets the supports_request_format of this EnvironmentList
+
+        :param supports_request_format: the supports_request_format of this EnvironmentList
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            supports_request_format is not None and not isinstance(supports_request_format, bool)
+        ):
+            raise ValueError("Parameter `supports_request_format` must be a boolean")
+
+        self._supports_request_format = supports_request_format
 
     def to_dict(self):
         """

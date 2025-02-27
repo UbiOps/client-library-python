@@ -951,6 +951,7 @@ Create a custom environment
 - `display_name`: Display name of the environment. If not set, 'name' is used instead.
 - `description`: Description for the environment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
+- `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Request Examples
 
@@ -987,6 +988,7 @@ Details of the created environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
 
@@ -1007,7 +1009,8 @@ Details of the created environment
   "status": "active",
   "implicit": false,
   "deprecated": false,
-  "hidden": false
+  "hidden": false,
+  "supports_request_format": true
 }
 ```
 
@@ -1176,6 +1179,7 @@ Details of an environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
 
@@ -1197,6 +1201,7 @@ Details of an environment
   "implicit": false,
   "deprecated": false,
   "hidden": false,
+  "supports_request_format": true,
   "active_revision": "8760570f-6eda-470b-99af-bde810d418d8",
   "active_build": "e3021050-b9ac-4b8e-89f4-adb9e7c9aba6",
   "latest_revision": "8760570f-6eda-470b-99af-bde810d418d8",
@@ -1270,7 +1275,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **environments_list**
-> list[EnvironmentList] environments_list(project_name, labels=labels, environment_type=environment_type)
+> list[EnvironmentList] environments_list(project_name, labels=labels, environment_type=environment_type, supports_request_format=supports_request_format)
 
 List environments
 
@@ -1281,6 +1286,7 @@ Environments can be filtered according to the labels they have by giving labels 
 
 - `labels`: Filter on labels of the environment. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.
 - `environment_type`: Filter on the type of the environment. It can be one of the following: 'base', 'custom' or 'all'. The default value is 'all'.
+- `supports_request_format`: Filter on whether the environment supports the request format
 
 ### Response Structure
 A list of details of the environments
@@ -1299,6 +1305,7 @@ A list of details of the environments
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
 
@@ -1318,7 +1325,8 @@ A list of details of the environments
     "status": "active",
     "implicit": false,
     "deprecated": false,
-    "hidden": false
+    "hidden": false,
+    "supports_request_format": true
   },
   {
     "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
@@ -1336,7 +1344,8 @@ A list of details of the environments
     "status": "active",
     "implicit": false,
     "deprecated": false,
-    "hidden": false
+    "hidden": false,
+    "supports_request_format": true
   }
 ]
 ```
@@ -1355,9 +1364,10 @@ A list of details of the environments
     project_name = 'project_name_example' # str
     labels = "label1:value1,label2:value2" # str (optional)
     environment_type = 'environment_type_example' # str (optional)
+    supports_request_format = True # bool (optional)
 
     # List environments
-    api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type)
+    api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type, supports_request_format=supports_request_format)
     print(api_response)
 
     # Close the connection
@@ -1380,9 +1390,10 @@ A list of details of the environments
     project_name = 'project_name_example' # str
     labels = "label1:value1,label2:value2" # str (optional)
     environment_type = 'environment_type_example' # str (optional)
+    supports_request_format = True # bool (optional)
 
     # List environments
-    api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type)
+    api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type, supports_request_format=supports_request_format)
     print(api_response)
 
     # Close the connection
@@ -1398,6 +1409,7 @@ Name | Type | Notes
  **project_name** | **str** | 
  **labels** | **str** | [optional] 
  **environment_type** | **str** | [optional] 
+ **supports_request_format** | **bool** | [optional] 
 
 ### Return type
 
@@ -1453,6 +1465,7 @@ Details of the updated environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
 
@@ -1474,6 +1487,7 @@ Details of the updated environment
   "implicit": false,
   "deprecated": false,
   "hidden": false,
+  "supports_request_format": true,
   "active_revision": "8760570f-6eda-470b-99af-bde810d418d8",
   "active_build": "e3021050-b9ac-4b8e-89f4-adb9e7c9aba6",
   "latest_revision": "8760570f-6eda-470b-99af-bde810d418d8",
