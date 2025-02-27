@@ -36,6 +36,7 @@ class RevisionList(object):
         "error_message": "str",
         "has_request_method": "bool",
         "has_requests_method": "bool",
+        "empty": "bool",
     }
 
     attribute_map = {
@@ -47,6 +48,7 @@ class RevisionList(object):
         "error_message": "error_message",
         "has_request_method": "has_request_method",
         "has_requests_method": "has_requests_method",
+        "empty": "empty",
     }
 
     def __init__(
@@ -59,6 +61,7 @@ class RevisionList(object):
         error_message=None,
         has_request_method=None,
         has_requests_method=None,
+        empty=None,
         **kwargs,
     ):
         """
@@ -77,6 +80,7 @@ class RevisionList(object):
         self._error_message = None
         self._has_request_method = None
         self._has_requests_method = None
+        self._empty = None
         self.discriminator = None
 
         if id is not None:
@@ -90,6 +94,8 @@ class RevisionList(object):
         self.error_message = error_message
         self.has_request_method = has_request_method
         self.has_requests_method = has_requests_method
+        if empty is not None:
+            self.empty = empty
 
     @property
     def id(self):
@@ -299,6 +305,31 @@ class RevisionList(object):
             raise ValueError("Parameter `has_requests_method` must be a boolean")
 
         self._has_requests_method = has_requests_method
+
+    @property
+    def empty(self):
+        """
+        Gets the empty of this RevisionList
+
+        :return: the empty of this RevisionList
+        :rtype: bool
+        """
+
+        return self._empty
+
+    @empty.setter
+    def empty(self, empty):
+        """
+        Sets the empty of this RevisionList
+
+        :param empty: the empty of this RevisionList
+        :type: bool
+        """
+
+        if self.client_side_validation and (empty is not None and not isinstance(empty, bool)):
+            raise ValueError("Parameter `empty` must be a boolean")
+
+        self._empty = empty
 
     def to_dict(self):
         """

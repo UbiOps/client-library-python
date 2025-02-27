@@ -2459,13 +2459,14 @@ Possible widgets for the output fields are:
 ### Required Parameters
 
 - `name`: Name of the deployment. It is unique within a project.
+
+### Optional Parameters
+
+- `supports_request_format`: A boolean indicating whether the deployment supports the request format
 - `input_type`: Type of the input of the deployment. It can be either structured or plain.
 - `output_type`: Type of the output of the deployment. It can be either structured or plain.
 - `input_fields`: The list of required deployment input fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an input field is unique for a deployment.
 - `output_fields`: The list of required deployment output fields. It must contain the fields: name and data_type, and it may contain the field: widget. The name of an output field is unique for a deployment.
-
-### Optional Parameters
-
 - `description`: Description of the deployment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
@@ -2563,11 +2564,23 @@ A deployment with structured input and output type and field widgets
 }
 ```
 
+A deployment that doesn't support requests in UbiOps format
+```
+{
+  "name": "deployment-1",
+  "supports_request_format": false,
+  "labels": {
+    "type": "app"
+  }
+}
+```
+
 ### Response Structure
 Details of the created deployment
 
 - `id`: Unique identifier for the deployment (UUID)
 - `name`: Name of the deployment
+- `supports_request_format`: A boolean indicating whether the deployment supports the request format
 - `project`: Project name in which the deployment is created
 - `input_type`: Type of the input of the deployment
 - `output_type`: Type of the output of the deployment
@@ -2584,6 +2597,7 @@ Details of the created deployment
 {
   "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
   "name": "deployment-1",
+  "supports_request_format": false,
   "project": "project-1",
   "description": "",
   "input_type": "structured",
@@ -2764,6 +2778,7 @@ Details of a deployment
 
 - `id`: Unique identifier for the deployment (UUID)
 - `name`: Name of the deployment
+- `supports_request_format`: A boolean indicating whether the deployment supports the request format
 - `project`: Project name in which the deployment is defined
 - `input_type`: Type of the input of the deployment
 - `output_type`: Type of the output of the deployment
@@ -2781,6 +2796,7 @@ Details of a deployment
 {
   "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
   "name": "deployment-1",
+  "supports_request_format": false,
   "project": "project-1",
   "description": "",
   "input_type": "structured",
@@ -2879,7 +2895,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployments_list**
-> list[DeploymentList] deployments_list(project_name, labels=labels)
+> list[DeploymentList] deployments_list(project_name, labels=labels, supports_request_format=supports_request_format)
 
 List deployments
 
@@ -2889,12 +2905,14 @@ Deployments can be filtered according to the labels they have by giving labels a
 ### Optional Parameters
 
 - `labels`: Filter on labels of the deployment. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.
+- `supports_request_format`: Filter on whether the deployment supports requests
 
 ### Response Structure
 A list of details of the deployments in the project
 
 - `id`: Unique identifier for the deployment (UUID)
 - `name`: Name of the deployment
+- `supports_request_format`: A boolean indicating whether the deployment supports the request format
 - `project`: Project name in which the deployment is defined
 - `input_type`: Type of the input of the deployment
 - `output_type`: Type of the output of the deployment
@@ -2912,6 +2930,7 @@ A list of details of the deployments in the project
   {
     "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
     "name": "deployment-1",
+    "supports_request_format": true,
     "project": "project-1",
     "description": "Temperature deployment",
     "input_type": "structured",
@@ -2941,6 +2960,7 @@ A list of details of the deployments in the project
   {
     "id": "5f4e942f-d5b8-4d62-99b2-870c15a82127",
     "name": "deployment-2",
+    "supports_request_format": true,
     "project": "project-1",
     "description": "Deployment two",
     "input_type": "structured",
@@ -2961,6 +2981,7 @@ A list of details of the deployments in the project
   {
     "id": "bd3fae9d-aeec-4cf3-8ef0-5f9224d41904",
     "name": "deployment-3",
+    "supports_request_format": true,
     "description": "",
     "project": "project-1",
     "input_type": "plain",
@@ -2986,9 +3007,10 @@ A list of details of the deployments in the project
 
     project_name = 'project_name_example' # str
     labels = "label1:value1,label2:value2" # str (optional)
+    supports_request_format = True # bool (optional)
 
     # List deployments
-    api_response = core_api.deployments_list(project_name, labels=labels)
+    api_response = core_api.deployments_list(project_name, labels=labels, supports_request_format=supports_request_format)
     print(api_response)
 
     # Close the connection
@@ -3010,9 +3032,10 @@ A list of details of the deployments in the project
 
     project_name = 'project_name_example' # str
     labels = "label1:value1,label2:value2" # str (optional)
+    supports_request_format = True # bool (optional)
 
     # List deployments
-    api_response = core_api.deployments_list(project_name, labels=labels)
+    api_response = core_api.deployments_list(project_name, labels=labels, supports_request_format=supports_request_format)
     print(api_response)
 
     # Close the connection
@@ -3027,6 +3050,7 @@ Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
  **labels** | **str** | [optional] 
+ **supports_request_format** | **bool** | [optional] 
 
 ### Return type
 
@@ -3070,6 +3094,7 @@ Details of the updated deployment
 
 - `id`: Unique identifier for the deployment (UUID)
 - `name`: Name of the deployment
+- `supports_request_format`: A boolean indicating whether the deployment supports the request format
 - `project`: Project name in which the deployment is defined
 - `input_type`: Type of the input of the deployment
 - `output_type`: Type of the output of the deployment
@@ -3087,6 +3112,7 @@ Details of the updated deployment
 {
   "id": "903ccd12-81d1-46e1-9ac9-b9d70af118de",
   "name": "new-deployment-name",
+  "supports_request_format": false,
   "project": "project-1",
   "description": "New deployment description",
   "input_type": "structured",

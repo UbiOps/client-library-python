@@ -31,6 +31,7 @@ class EnvironmentCreate(object):
         "name": "str",
         "display_name": "str",
         "base_environment": "str",
+        "supports_request_format": "bool",
         "description": "str",
         "labels": "dict(str, str)",
     }
@@ -39,11 +40,21 @@ class EnvironmentCreate(object):
         "name": "name",
         "display_name": "display_name",
         "base_environment": "base_environment",
+        "supports_request_format": "supports_request_format",
         "description": "description",
         "labels": "labels",
     }
 
-    def __init__(self, name=None, display_name=None, base_environment=None, description=None, labels=None, **kwargs):
+    def __init__(
+        self,
+        name=None,
+        display_name=None,
+        base_environment=None,
+        supports_request_format=None,
+        description=None,
+        labels=None,
+        **kwargs,
+    ):
         """
         EnvironmentCreate - a model defined in OpenAPI
         """
@@ -55,6 +66,7 @@ class EnvironmentCreate(object):
         self._name = None
         self._display_name = None
         self._base_environment = None
+        self._supports_request_format = None
         self._description = None
         self._labels = None
         self.discriminator = None
@@ -63,6 +75,8 @@ class EnvironmentCreate(object):
         if display_name is not None:
             self.display_name = display_name
         self.base_environment = base_environment
+        if supports_request_format is not None:
+            self.supports_request_format = supports_request_format
         if description is not None:
             self.description = description
         if labels is not None:
@@ -148,8 +162,6 @@ class EnvironmentCreate(object):
         :type: str
         """
 
-        if self.client_side_validation and base_environment is None:
-            raise ValueError("Invalid value for `base_environment`, must not be `None`")
         if self.client_side_validation and (base_environment is not None and not isinstance(base_environment, str)):
             raise ValueError("Parameter `base_environment` must be a string")
 
@@ -157,6 +169,33 @@ class EnvironmentCreate(object):
             raise ValueError("Invalid value for `base_environment`, length must be greater than or equal to `1`")
 
         self._base_environment = base_environment
+
+    @property
+    def supports_request_format(self):
+        """
+        Gets the supports_request_format of this EnvironmentCreate
+
+        :return: the supports_request_format of this EnvironmentCreate
+        :rtype: bool
+        """
+
+        return self._supports_request_format
+
+    @supports_request_format.setter
+    def supports_request_format(self, supports_request_format):
+        """
+        Sets the supports_request_format of this EnvironmentCreate
+
+        :param supports_request_format: the supports_request_format of this EnvironmentCreate
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            supports_request_format is not None and not isinstance(supports_request_format, bool)
+        ):
+            raise ValueError("Parameter `supports_request_format` must be a boolean")
+
+        self._supports_request_format = supports_request_format
 
     @property
     def description(self):
@@ -180,6 +219,9 @@ class EnvironmentCreate(object):
 
         if self.client_side_validation and (description is not None and not isinstance(description, str)):
             raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
 
         self._description = description
 

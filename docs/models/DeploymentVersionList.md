@@ -20,7 +20,7 @@ Name | Type | Notes
 **creation_date** | **datetime** | [optional]
 **last_updated** | **datetime** | [optional]
 **request_retention_time** | **int** | [optional]
-**request_retention_mode** | **str** |
+**request_retention_mode** | **str** | [optional]
 **maximum_queue_size_express** | **int** | [optional]
 **maximum_queue_size_batch** | **int** | [optional]
 **static_ip** | **bool** | [optional]

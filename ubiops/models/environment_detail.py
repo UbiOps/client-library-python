@@ -43,6 +43,8 @@ class EnvironmentDetail(object):
         "implicit": "bool",
         "hidden": "bool",
         "deprecated": "bool",
+        "system": "bool",
+        "supports_request_format": "bool",
         "active_revision": "str",
         "active_build": "str",
         "latest_revision": "str",
@@ -65,6 +67,8 @@ class EnvironmentDetail(object):
         "implicit": "implicit",
         "hidden": "hidden",
         "deprecated": "deprecated",
+        "system": "system",
+        "supports_request_format": "supports_request_format",
         "active_revision": "active_revision",
         "active_build": "active_build",
         "latest_revision": "latest_revision",
@@ -88,6 +92,8 @@ class EnvironmentDetail(object):
         implicit=None,
         hidden=None,
         deprecated=None,
+        system=None,
+        supports_request_format=None,
         active_revision=None,
         active_build=None,
         latest_revision=None,
@@ -117,6 +123,8 @@ class EnvironmentDetail(object):
         self._implicit = None
         self._hidden = None
         self._deprecated = None
+        self._system = None
+        self._supports_request_format = None
         self._active_revision = None
         self._active_build = None
         self._latest_revision = None
@@ -151,6 +159,10 @@ class EnvironmentDetail(object):
             self.hidden = hidden
         if deprecated is not None:
             self.deprecated = deprecated
+        if system is not None:
+            self.system = system
+        if supports_request_format is not None:
+            self.supports_request_format = supports_request_format
         if active_revision is not None:
             self.active_revision = active_revision
         if active_build is not None:
@@ -543,6 +555,58 @@ class EnvironmentDetail(object):
             raise ValueError("Parameter `deprecated` must be a boolean")
 
         self._deprecated = deprecated
+
+    @property
+    def system(self):
+        """
+        Gets the system of this EnvironmentDetail
+
+        :return: the system of this EnvironmentDetail
+        :rtype: bool
+        """
+
+        return self._system
+
+    @system.setter
+    def system(self, system):
+        """
+        Sets the system of this EnvironmentDetail
+
+        :param system: the system of this EnvironmentDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (system is not None and not isinstance(system, bool)):
+            raise ValueError("Parameter `system` must be a boolean")
+
+        self._system = system
+
+    @property
+    def supports_request_format(self):
+        """
+        Gets the supports_request_format of this EnvironmentDetail
+
+        :return: the supports_request_format of this EnvironmentDetail
+        :rtype: bool
+        """
+
+        return self._supports_request_format
+
+    @supports_request_format.setter
+    def supports_request_format(self, supports_request_format):
+        """
+        Sets the supports_request_format of this EnvironmentDetail
+
+        :param supports_request_format: the supports_request_format of this EnvironmentDetail
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            supports_request_format is not None and not isinstance(supports_request_format, bool)
+        ):
+            raise ValueError("Parameter `supports_request_format` must be a boolean")
+
+        self._supports_request_format = supports_request_format
 
     @property
     def active_revision(self):

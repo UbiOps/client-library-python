@@ -75,7 +75,8 @@ class ExportCreate(object):
             self.environment_variables = environment_variables
         if environments is not None:
             self.environments = environments
-        self.description = description
+        if description is not None:
+            self.description = description
 
     @property
     def deployments(self):

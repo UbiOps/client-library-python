@@ -30,6 +30,7 @@ class DeploymentCreate(object):
     openapi_types = {
         "name": "str",
         "description": "str",
+        "supports_request_format": "bool",
         "input_type": "str",
         "output_type": "str",
         "input_fields": "list[DeploymentInputFieldCreate]",
@@ -40,6 +41,7 @@ class DeploymentCreate(object):
     attribute_map = {
         "name": "name",
         "description": "description",
+        "supports_request_format": "supports_request_format",
         "input_type": "input_type",
         "output_type": "output_type",
         "input_fields": "input_fields",
@@ -51,6 +53,7 @@ class DeploymentCreate(object):
         self,
         name=None,
         description=None,
+        supports_request_format=None,
         input_type=None,
         output_type=None,
         input_fields=None,
@@ -68,6 +71,7 @@ class DeploymentCreate(object):
 
         self._name = None
         self._description = None
+        self._supports_request_format = None
         self._input_type = None
         self._output_type = None
         self._input_fields = None
@@ -78,6 +82,8 @@ class DeploymentCreate(object):
         self.name = name
         if description is not None:
             self.description = description
+        if supports_request_format is not None:
+            self.supports_request_format = supports_request_format
         self.input_type = input_type
         self.output_type = output_type
         if input_fields is not None:
@@ -142,7 +148,37 @@ class DeploymentCreate(object):
         if self.client_side_validation and (description is not None and not isinstance(description, str)):
             raise ValueError("Parameter `description` must be a string")
 
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
         self._description = description
+
+    @property
+    def supports_request_format(self):
+        """
+        Gets the supports_request_format of this DeploymentCreate
+
+        :return: the supports_request_format of this DeploymentCreate
+        :rtype: bool
+        """
+
+        return self._supports_request_format
+
+    @supports_request_format.setter
+    def supports_request_format(self, supports_request_format):
+        """
+        Sets the supports_request_format of this DeploymentCreate
+
+        :param supports_request_format: the supports_request_format of this DeploymentCreate
+        :type: bool
+        """
+
+        if self.client_side_validation and (
+            supports_request_format is not None and not isinstance(supports_request_format, bool)
+        ):
+            raise ValueError("Parameter `supports_request_format` must be a boolean")
+
+        self._supports_request_format = supports_request_format
 
     @property
     def input_type(self):
@@ -164,8 +200,6 @@ class DeploymentCreate(object):
         :type: str
         """
 
-        if self.client_side_validation and input_type is None:
-            raise ValueError("Invalid value for `input_type`, must not be `None`")
         if self.client_side_validation and (input_type is not None and not isinstance(input_type, str)):
             raise ValueError("Parameter `input_type` must be a string")
 
@@ -191,8 +225,6 @@ class DeploymentCreate(object):
         :type: str
         """
 
-        if self.client_side_validation and output_type is None:
-            raise ValueError("Invalid value for `output_type`, must not be `None`")
         if self.client_side_validation and (output_type is not None and not isinstance(output_type, str)):
             raise ValueError("Parameter `output_type` must be a string")
 

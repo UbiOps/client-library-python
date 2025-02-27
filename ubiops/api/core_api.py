@@ -1344,6 +1344,7 @@ class CoreApi(object):
         :param str project_name: (required)
         :param kwargs:
             - str labels:
+            - bool supports_request_format:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1953,6 +1954,7 @@ class CoreApi(object):
         :param kwargs:
             - str labels:
             - str environment_type:
+            - bool supports_request_format:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.

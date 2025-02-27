@@ -1195,6 +1195,7 @@ class Environments(object):
         :param kwargs:
             - str labels:
             - str environment_type:
+            - bool supports_request_format:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1206,7 +1207,7 @@ class Environments(object):
         """
 
         method_name = "environments_list"
-        optional_params = ["labels", "environment_type"]
+        optional_params = ["labels", "environment_type", "supports_request_format"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -1235,6 +1236,15 @@ class Environments(object):
         ):
             if not isinstance(kwargs["environment_type"], str):
                 raise ApiValueError(f"Parameter `environment_type` must be a string when calling `{method_name}`")
+        if (
+            self.api_client.client_side_validation
+            and "supports_request_format" in kwargs
+            and kwargs["supports_request_format"] is not None
+        ):
+            if not isinstance(kwargs["supports_request_format"], bool):
+                raise ApiValueError(
+                    f"Parameter `supports_request_format` must be a boolean when calling `{method_name}`"
+                )
 
         collection_formats = {}
         path_params = {}
@@ -1250,6 +1260,8 @@ class Environments(object):
             query_params.append(("labels", kwargs["labels"]))
         if "environment_type" in kwargs and kwargs["environment_type"] is not None:
             query_params.append(("environment_type", kwargs["environment_type"]))
+        if "supports_request_format" in kwargs and kwargs["supports_request_format"] is not None:
+            query_params.append(("supports_request_format", kwargs["supports_request_format"]))
 
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(["application/json"])

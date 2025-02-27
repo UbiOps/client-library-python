@@ -101,7 +101,8 @@ class ExportDetail(object):
             self.status = status
         self.error_message = error_message
         self.size = size
-        self.description = description
+        if description is not None:
+            self.description = description
         if deployments is not None:
             self.deployments = deployments
         if pipelines is not None:
