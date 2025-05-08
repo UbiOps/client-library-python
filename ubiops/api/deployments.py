@@ -79,16 +79,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(build_id, str):
-                raise ApiValueError(f"Parameter `build_id` must be a string when calling `{method_name}`")
+                build_id = str(build_id)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -178,13 +178,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation and "action" in kwargs and kwargs["action"] is not None:
             if not isinstance(kwargs["action"], str):
-                raise ApiValueError(f"Parameter `action` must be a string when calling `{method_name}`")
+                kwargs["action"] = str(kwargs["action"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -283,10 +283,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
@@ -382,10 +382,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
@@ -481,13 +481,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
 
         collection_formats = {}
         path_params = {}
@@ -571,13 +571,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
 
         collection_formats = {}
         path_params = {}
@@ -661,10 +661,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
 
         collection_formats = {}
         path_params = {}
@@ -753,13 +753,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
@@ -861,13 +861,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
@@ -969,13 +969,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
@@ -1077,16 +1077,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -1176,16 +1176,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -1275,13 +1275,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -1376,16 +1376,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
@@ -1483,10 +1483,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.deployment_version_create import DeploymentVersionCreate
@@ -1582,13 +1582,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -1672,13 +1672,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -1763,13 +1763,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -1861,13 +1861,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.deployment_version_update import DeploymentVersionUpdate
@@ -1961,7 +1961,7 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.deployment_create import DeploymentCreate
@@ -2053,10 +2053,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
 
         collection_formats = {}
         path_params = {}
@@ -2136,10 +2136,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `deployment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
 
         collection_formats = {}
         path_params = {}
@@ -2221,10 +2221,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
         if (
             self.api_client.client_side_validation
             and "supports_request_format" in kwargs
@@ -2323,10 +2323,10 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.deployment_update import DeploymentUpdate
@@ -2425,16 +2425,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -2526,19 +2526,19 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation and "source_deployment" in kwargs:
             if not isinstance(kwargs["source_deployment"], str):
-                raise ApiValueError(f"Parameter `source_deployment` must be a string when calling `{method_name}`")
+                kwargs["source_deployment"] = str(kwargs["source_deployment"])
         if self.api_client.client_side_validation and "source_version" in kwargs:
             if not isinstance(kwargs["source_version"], str):
-                raise ApiValueError(f"Parameter `source_version` must be a string when calling `{method_name}`")
+                kwargs["source_version"] = str(kwargs["source_version"])
         if (
             self.api_client.client_side_validation
             and "source_deployment" in kwargs
@@ -2660,16 +2660,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -2757,13 +2757,13 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -2856,16 +2856,16 @@ class Deployments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}

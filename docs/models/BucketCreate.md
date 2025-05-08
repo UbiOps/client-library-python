@@ -4,7 +4,7 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **name** | **str** |
-**provider** | **str** |
+**provider** | **str** | [optional]
 **credentials** | **dict(str, str)** | [optional]
 **configuration** | **dict(str, str)** | [optional]
 **ttl** | **int** | [optional]

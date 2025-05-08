@@ -34,6 +34,7 @@ class EnvironmentBuildList(object):
         "status": "str",
         "error_message": "str",
         "trigger": "str",
+        "size": "int",
     }
 
     attribute_map = {
@@ -43,10 +44,19 @@ class EnvironmentBuildList(object):
         "status": "status",
         "error_message": "error_message",
         "trigger": "trigger",
+        "size": "size",
     }
 
     def __init__(
-        self, id=None, revision=None, creation_date=None, status=None, error_message=None, trigger=None, **kwargs
+        self,
+        id=None,
+        revision=None,
+        creation_date=None,
+        status=None,
+        error_message=None,
+        trigger=None,
+        size=None,
+        **kwargs,
     ):
         """
         EnvironmentBuildList - a model defined in OpenAPI
@@ -62,6 +72,7 @@ class EnvironmentBuildList(object):
         self._status = None
         self._error_message = None
         self._trigger = None
+        self._size = None
         self.discriminator = None
 
         if id is not None:
@@ -74,6 +85,7 @@ class EnvironmentBuildList(object):
         self.error_message = error_message
         if trigger is not None:
             self.trigger = trigger
+        self.size = size
 
     @property
     def id(self):
@@ -229,6 +241,31 @@ class EnvironmentBuildList(object):
             raise ValueError("Invalid value for `trigger`, length must be less than or equal to `200`")
 
         self._trigger = trigger
+
+    @property
+    def size(self):
+        """
+        Gets the size of this EnvironmentBuildList
+
+        :return: the size of this EnvironmentBuildList
+        :rtype: int
+        """
+
+        return self._size
+
+    @size.setter
+    def size(self, size):
+        """
+        Sets the size of this EnvironmentBuildList
+
+        :param size: the size of this EnvironmentBuildList
+        :type: int
+        """
+
+        if self.client_side_validation and (size is not None and not isinstance(size, int)):
+            raise ValueError("Parameter `size` must be an integer")
+
+        self._size = size
 
     def to_dict(self):
         """

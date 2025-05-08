@@ -73,7 +73,7 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.export_create import ExportCreate
@@ -165,10 +165,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `export_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(export_id, str):
-                raise ApiValueError(f"Parameter `export_id` must be a string when calling `{method_name}`")
+                export_id = str(export_id)
 
         collection_formats = {}
         path_params = {}
@@ -248,10 +248,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `export_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(export_id, str):
-                raise ApiValueError(f"Parameter `export_id` must be a string when calling `{method_name}`")
+                export_id = str(export_id)
 
         collection_formats = {}
         path_params = {}
@@ -334,10 +334,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `export_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(export_id, str):
-                raise ApiValueError(f"Parameter `export_id` must be a string when calling `{method_name}`")
+                export_id = str(export_id)
 
         collection_formats = {}
         path_params = {}
@@ -418,10 +418,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
-                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+                kwargs["status"] = str(kwargs["status"])
 
         collection_formats = {}
         path_params = {}
@@ -507,10 +507,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "import_link" in kwargs:
             if not isinstance(kwargs["import_link"], str):
-                raise ApiValueError(f"Parameter `import_link` must be a string when calling `{method_name}`")
+                kwargs["import_link"] = str(kwargs["import_link"])
         if self.api_client.client_side_validation and "skip_confirmation" in kwargs:
             if not isinstance(kwargs["skip_confirmation"], bool):
                 raise ApiValueError(f"Parameter `skip_confirmation` must be a boolean when calling `{method_name}`")
@@ -617,10 +617,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `import_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(import_id, str):
-                raise ApiValueError(f"Parameter `import_id` must be a string when calling `{method_name}`")
+                import_id = str(import_id)
 
         collection_formats = {}
         path_params = {}
@@ -700,10 +700,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `import_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(import_id, str):
-                raise ApiValueError(f"Parameter `import_id` must be a string when calling `{method_name}`")
+                import_id = str(import_id)
 
         collection_formats = {}
         path_params = {}
@@ -786,10 +786,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `import_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(import_id, str):
-                raise ApiValueError(f"Parameter `import_id` must be a string when calling `{method_name}`")
+                import_id = str(import_id)
 
         collection_formats = {}
         path_params = {}
@@ -870,10 +870,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
-                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+                kwargs["status"] = str(kwargs["status"])
 
         collection_formats = {}
         path_params = {}
@@ -961,10 +961,10 @@ class ImportsAndExports(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(import_id, str):
-                raise ApiValueError(f"Parameter `import_id` must be a string when calling `{method_name}`")
+                import_id = str(import_id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.import_update import ImportUpdate

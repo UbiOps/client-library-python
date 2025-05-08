@@ -73,7 +73,7 @@ class RequestSchedules(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.schedule_create import ScheduleCreate
@@ -165,10 +165,10 @@ class RequestSchedules(object):
             raise ApiValueError(f"Missing the required parameter `schedule_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(schedule_name, str):
-                raise ApiValueError(f"Parameter `schedule_name` must be a string when calling `{method_name}`")
+                schedule_name = str(schedule_name)
 
         collection_formats = {}
         path_params = {}
@@ -248,10 +248,10 @@ class RequestSchedules(object):
             raise ApiValueError(f"Missing the required parameter `schedule_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(schedule_name, str):
-                raise ApiValueError(f"Parameter `schedule_name` must be a string when calling `{method_name}`")
+                schedule_name = str(schedule_name)
 
         collection_formats = {}
         path_params = {}
@@ -332,10 +332,10 @@ class RequestSchedules(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -423,10 +423,10 @@ class RequestSchedules(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(schedule_name, str):
-                raise ApiValueError(f"Parameter `schedule_name` must be a string when calling `{method_name}`")
+                schedule_name = str(schedule_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.schedule_update import ScheduleUpdate

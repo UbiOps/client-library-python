@@ -81,16 +81,16 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `revision_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(build_id, str):
-                raise ApiValueError(f"Parameter `build_id` must be a string when calling `{method_name}`")
+                build_id = str(build_id)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
 
         collection_formats = {}
         path_params = {}
@@ -181,16 +181,16 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `revision_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(build_id, str):
-                raise ApiValueError(f"Parameter `build_id` must be a string when calling `{method_name}`")
+                build_id = str(build_id)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
 
         collection_formats = {}
         path_params = {}
@@ -278,13 +278,13 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `revision_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
 
         collection_formats = {}
         path_params = {}
@@ -379,16 +379,16 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(build_id, str):
-                raise ApiValueError(f"Parameter `build_id` must be a string when calling `{method_name}`")
+                build_id = str(build_id)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_build_update import EnvironmentBuildUpdate
@@ -486,13 +486,13 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `revision_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
 
         collection_formats = {}
         path_params = {}
@@ -578,13 +578,13 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `environment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation and "source_environment" in kwargs:
             if not isinstance(kwargs["source_environment"], str):
-                raise ApiValueError(f"Parameter `source_environment` must be a string when calling `{method_name}`")
+                kwargs["source_environment"] = str(kwargs["source_environment"])
         if (
             self.api_client.client_side_validation
             and "source_environment" in kwargs
@@ -688,13 +688,13 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `revision_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
 
         collection_formats = {}
         path_params = {}
@@ -778,10 +778,10 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `environment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
 
         collection_formats = {}
         path_params = {}
@@ -868,13 +868,13 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `revision_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if not isinstance(revision_id, str):
-                raise ApiValueError(f"Parameter `revision_id` must be a string when calling `{method_name}`")
+                revision_id = str(revision_id)
 
         collection_formats = {}
         path_params = {}
@@ -964,7 +964,7 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_create import EnvironmentCreate
@@ -1056,10 +1056,10 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `environment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
 
         collection_formats = {}
         path_params = {}
@@ -1139,10 +1139,10 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `environment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
 
         collection_formats = {}
         path_params = {}
@@ -1225,17 +1225,17 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
         if (
             self.api_client.client_side_validation
             and "environment_type" in kwargs
             and kwargs["environment_type"] is not None
         ):
             if not isinstance(kwargs["environment_type"], str):
-                raise ApiValueError(f"Parameter `environment_type` must be a string when calling `{method_name}`")
+                kwargs["environment_type"] = str(kwargs["environment_type"])
         if (
             self.api_client.client_side_validation
             and "supports_request_format" in kwargs
@@ -1336,10 +1336,10 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_update import EnvironmentUpdate
@@ -1433,17 +1433,17 @@ class Environments(object):
             raise ApiValueError(f"Missing the required parameter `environment_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(environment_name, str):
-                raise ApiValueError(f"Parameter `environment_name` must be a string when calling `{method_name}`")
+                environment_name = str(environment_name)
         if (
             self.api_client.client_side_validation
             and "environment_type" in kwargs
             and kwargs["environment_type"] is not None
         ):
             if not isinstance(kwargs["environment_type"], str):
-                raise ApiValueError(f"Parameter `environment_type` must be a string when calling `{method_name}`")
+                kwargs["environment_type"] = str(kwargs["environment_type"])
 
         collection_formats = {}
         path_params = {}

@@ -96,7 +96,6 @@ Assign a role to a user or an object in the scope of a project. This role can be
 
 ### Required Parameters
 
-- `user_id`: Unique identifier for the user (UUID)
 - `role`: Name of the role to be assigned to the user
 - `assignee`: UUID of the user or the name of the object for which the role will be assigned
 - `assignee_type`: Type of the assignee. It can be user or deployment.

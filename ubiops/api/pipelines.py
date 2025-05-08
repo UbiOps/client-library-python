@@ -160,13 +160,13 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `pipeline_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation and "action" in kwargs and kwargs["action"] is not None:
             if not isinstance(kwargs["action"], str):
-                raise ApiValueError(f"Parameter `action` must be a string when calling `{method_name}`")
+                kwargs["action"] = str(kwargs["action"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -270,16 +270,16 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(name, str):
-                raise ApiValueError(f"Parameter `name` must be a string when calling `{method_name}`")
+                name = str(name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -367,10 +367,10 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.pipeline_version_create import PipelineVersionCreate
@@ -466,13 +466,13 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -556,13 +556,13 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -647,13 +647,13 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `pipeline_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -745,13 +745,13 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.pipeline_version_update import PipelineVersionUpdate
@@ -845,7 +845,7 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.pipeline_create import PipelineCreate
@@ -937,10 +937,10 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `pipeline_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
 
         collection_formats = {}
         path_params = {}
@@ -1020,10 +1020,10 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `pipeline_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
 
         collection_formats = {}
         path_params = {}
@@ -1104,10 +1104,10 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -1195,10 +1195,10 @@ class Pipelines(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(pipeline_name, str):
-                raise ApiValueError(f"Parameter `pipeline_name` must be a string when calling `{method_name}`")
+                pipeline_name = str(pipeline_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.pipeline_update import PipelineUpdate
