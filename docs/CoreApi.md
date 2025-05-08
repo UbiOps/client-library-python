@@ -158,6 +158,7 @@ Method | HTTP request | Description
 [**pipelines_get**](./Pipelines.md#pipelines_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name} | Get details of a pipeline
 [**pipelines_list**](./Pipelines.md#pipelines_list) | **GET** /projects/{project_name}/pipelines | List pipelines
 [**pipelines_update**](./Pipelines.md#pipelines_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name} | Update a pipeline
+[**logs_list**](./Projects.md#logs_list) | **GET** /projects/{project_name}/logs | List logs for a project
 [**project_audit_events_list**](./Projects.md#project_audit_events_list) | **GET** /projects/{project_name}/audit | List audit events in a project
 [**project_environment_variables_create**](./Projects.md#project_environment_variables_create) | **POST** /projects/{project_name}/environment-variables | Create project environment variable
 [**project_environment_variables_delete**](./Projects.md#project_environment_variables_delete) | **DELETE** /projects/{project_name}/environment-variables/{id} | Delete project environment variable
@@ -173,7 +174,7 @@ Method | HTTP request | Description
 [**projects_delete**](./Projects.md#projects_delete) | **DELETE** /projects/{project_name} | Delete a project
 [**projects_get**](./Projects.md#projects_get) | **GET** /projects/{project_name} | Get details of a project
 [**projects_list**](./Projects.md#projects_list) | **GET** /projects | List projects
-[**projects_log_list**](./Projects.md#projects_log_list) | **POST** /projects/{project_name}/logs | List logs for a project
+[**projects_log_list**](./Projects.md#projects_log_list) | **POST** /projects/{project_name}/logs | [DEPRECATED] List logs for a project
 [**projects_resource_usage**](./Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
 [**projects_update**](./Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
 [**projects_usage_get**](./Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage

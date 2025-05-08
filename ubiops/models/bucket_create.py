@@ -135,8 +135,6 @@ class BucketCreate(object):
         :type: str
         """
 
-        if self.client_side_validation and provider is None:
-            raise ValueError("Invalid value for `provider`, must not be `None`")
         if self.client_side_validation and (provider is not None and not isinstance(provider, str)):
             raise ValueError("Parameter `provider` must be a string")
 

@@ -4754,6 +4754,37 @@ class CoreApi(object):
 
         return self.pipelines.pipelines_update_with_http_info(project_name, pipeline_name, data, **kwargs)
 
+    def logs_list(self, project_name, **kwargs):
+        """
+        List logs for a project
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.logs_list(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str query:
+            - str start:
+            - str end:
+            - int limit:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[LogList], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.projects.logs_list_with_http_info(project_name, **kwargs)
+
     def project_audit_events_list(self, project_name, **kwargs):
         """
         List audit events in a project
@@ -5180,7 +5211,7 @@ class CoreApi(object):
 
     def projects_log_list(self, project_name, **kwargs):
         """
-        List logs for a project
+        [DEPRECATED] List logs for a project
 
         This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
         async_req=True
@@ -5203,6 +5234,8 @@ class CoreApi(object):
         """
 
         kwargs["_return_http_data_only"] = True
+
+        warnings.warn("projects_log_list is deprecated", DeprecationWarning, stacklevel=2)
 
         return self.projects.projects_log_list_with_http_info(project_name, **kwargs)
 

@@ -73,7 +73,7 @@ class ServiceUsers(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.service_user_create import ServiceUserCreate
@@ -165,10 +165,10 @@ class ServiceUsers(object):
             raise ApiValueError(f"Missing the required parameter `service_user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(service_user_id, str):
-                raise ApiValueError(f"Parameter `service_user_id` must be a string when calling `{method_name}`")
+                service_user_id = str(service_user_id)
 
         collection_formats = {}
         path_params = {}
@@ -248,10 +248,10 @@ class ServiceUsers(object):
             raise ApiValueError(f"Missing the required parameter `service_user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(service_user_id, str):
-                raise ApiValueError(f"Parameter `service_user_id` must be a string when calling `{method_name}`")
+                service_user_id = str(service_user_id)
 
         collection_formats = {}
         path_params = {}
@@ -331,7 +331,7 @@ class ServiceUsers(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
@@ -414,10 +414,10 @@ class ServiceUsers(object):
             raise ApiValueError(f"Missing the required parameter `service_user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(service_user_id, str):
-                raise ApiValueError(f"Parameter `service_user_id` must be a string when calling `{method_name}`")
+                service_user_id = str(service_user_id)
 
         collection_formats = {}
         path_params = {}
@@ -509,10 +509,10 @@ class ServiceUsers(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(service_user_id, str):
-                raise ApiValueError(f"Parameter `service_user_id` must be a string when calling `{method_name}`")
+                service_user_id = str(service_user_id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.service_user_create import ServiceUserCreate

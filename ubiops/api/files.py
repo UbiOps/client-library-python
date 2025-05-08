@@ -73,7 +73,7 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.bucket_create import BucketCreate
@@ -165,10 +165,10 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `bucket_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
 
         collection_formats = {}
         path_params = {}
@@ -248,10 +248,10 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `bucket_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
 
         collection_formats = {}
         path_params = {}
@@ -332,10 +332,10 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -423,10 +423,10 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.bucket_update import BucketUpdate
@@ -525,13 +525,13 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if not isinstance(file, str):
-                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+                file = str(file)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.file_complete_multipart_upload import FileCompleteMultipartUpload
@@ -628,13 +628,13 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if not isinstance(file, str):
-                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+                file = str(file)
 
         collection_formats = {}
         path_params = {}
@@ -718,13 +718,13 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if not isinstance(file, str):
-                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+                file = str(file)
 
         collection_formats = {}
         path_params = {}
@@ -811,13 +811,13 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if not isinstance(file, str):
-                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+                file = str(file)
 
         collection_formats = {}
         path_params = {}
@@ -905,23 +905,23 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `bucket_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation and "prefix" in kwargs and kwargs["prefix"] is not None:
             if not isinstance(kwargs["prefix"], str):
-                raise ApiValueError(f"Parameter `prefix` must be a string when calling `{method_name}`")
+                kwargs["prefix"] = str(kwargs["prefix"])
         if self.api_client.client_side_validation and "delimiter" in kwargs and kwargs["delimiter"] is not None:
             if not isinstance(kwargs["delimiter"], str):
-                raise ApiValueError(f"Parameter `delimiter` must be a string when calling `{method_name}`")
+                kwargs["delimiter"] = str(kwargs["delimiter"])
         if (
             self.api_client.client_side_validation
             and "continuation_token" in kwargs
             and kwargs["continuation_token"] is not None
         ):
             if not isinstance(kwargs["continuation_token"], str):
-                raise ApiValueError(f"Parameter `continuation_token` must be a string when calling `{method_name}`")
+                kwargs["continuation_token"] = str(kwargs["continuation_token"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -1020,13 +1020,13 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if not isinstance(file, str):
-                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+                file = str(file)
 
         collection_formats = {}
         path_params = {}
@@ -1122,19 +1122,19 @@ class Files(object):
             raise ApiValueError(f"Missing the required parameter `file` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(bucket_name, str):
-                raise ApiValueError(f"Parameter `bucket_name` must be a string when calling `{method_name}`")
+                bucket_name = str(bucket_name)
         if self.api_client.client_side_validation:
             if not isinstance(file, str):
-                raise ApiValueError(f"Parameter `file` must be a string when calling `{method_name}`")
+                file = str(file)
         if self.api_client.client_side_validation and "upload_id" in kwargs and kwargs["upload_id"] is not None:
             if not isinstance(kwargs["upload_id"], str):
-                raise ApiValueError(f"Parameter `upload_id` must be a string when calling `{method_name}`")
+                kwargs["upload_id"] = str(kwargs["upload_id"])
         if self.api_client.client_side_validation and "part_number" in kwargs and kwargs["part_number"] is not None:
             if not isinstance(kwargs["part_number"], str):
-                raise ApiValueError(f"Parameter `part_number` must be a string when calling `{method_name}`")
+                kwargs["part_number"] = str(kwargs["part_number"])
 
         collection_formats = {}
         path_params = {}

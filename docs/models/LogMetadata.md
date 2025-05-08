@@ -1,11 +1,8 @@
-# Logs
+# LogMetadata
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** | [optional]
-**log** | **str** | [optional]
-**date** | **str** | [optional]
 **deployment_name** | **str** | [optional]
 **deployment_version** | **str** | [optional]
 **deployment_version_revision_id** | **str** | [optional]

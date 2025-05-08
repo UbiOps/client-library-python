@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "4.9.1"
+__version__ = "4.10.0"
 
 # import CoreApi
 from ubiops.api.core_api import CoreApi
@@ -125,6 +125,8 @@ from ubiops.models.instance_type_item import InstanceTypeItem
 from ubiops.models.instance_type_list import InstanceTypeList
 from ubiops.models.instance_type_list_paginated import InstanceTypeListPaginated
 from ubiops.models.instance_update import InstanceUpdate
+from ubiops.models.log_list import LogList
+from ubiops.models.log_metadata import LogMetadata
 from ubiops.models.logs import Logs
 from ubiops.models.logs_create import LogsCreate
 from ubiops.models.metric_create import MetricCreate

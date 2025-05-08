@@ -30,7 +30,7 @@ class ProjectList(object):
     openapi_types = {
         "id": "str",
         "name": "str",
-        "creation_date": "date",
+        "creation_date": "datetime",
         "advanced_permissions": "bool",
         "credits": "float",
         "organization_name": "str",
@@ -144,7 +144,7 @@ class ProjectList(object):
         Gets the creation_date of this ProjectList
 
         :return: the creation_date of this ProjectList
-        :rtype: date
+        :rtype: datetime
         """
 
         return self._creation_date
@@ -155,7 +155,7 @@ class ProjectList(object):
         Sets the creation_date of this ProjectList
 
         :param creation_date: the creation_date of this ProjectList
-        :type: date
+        :type: datetime
         """
 
         self._creation_date = creation_date

@@ -73,7 +73,7 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.metric_create import MetricCreate
@@ -165,10 +165,10 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `metric_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(metric_name, str):
-                raise ApiValueError(f"Parameter `metric_name` must be a string when calling `{method_name}`")
+                metric_name = str(metric_name)
 
         collection_formats = {}
         path_params = {}
@@ -248,10 +248,10 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `metric_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(metric_name, str):
-                raise ApiValueError(f"Parameter `metric_name` must be a string when calling `{method_name}`")
+                metric_name = str(metric_name)
 
         collection_formats = {}
         path_params = {}
@@ -332,7 +332,7 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "custom" in kwargs and kwargs["custom"] is not None:
             if not isinstance(kwargs["custom"], bool):
                 raise ApiValueError(f"Parameter `custom` must be a boolean when calling `{method_name}`")
@@ -423,10 +423,10 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(metric_name, str):
-                raise ApiValueError(f"Parameter `metric_name` must be a string when calling `{method_name}`")
+                metric_name = str(metric_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.metric_update import MetricUpdate
@@ -519,7 +519,7 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.time_series_data_create import TimeSeriesDataCreate
@@ -611,7 +611,7 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.time_series_data_create import TimeSeriesDataCreate
@@ -706,16 +706,16 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "metric" in kwargs and kwargs["metric"] is not None:
             if not isinstance(kwargs["metric"], str):
-                raise ApiValueError(f"Parameter `metric` must be a string when calling `{method_name}`")
+                kwargs["metric"] = str(kwargs["metric"])
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
-                raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
+                kwargs["start_date"] = str(kwargs["start_date"])
         if self.api_client.client_side_validation and "end_date" in kwargs and kwargs["end_date"] is not None:
             if not isinstance(kwargs["end_date"], str):
-                raise ApiValueError(f"Parameter `end_date` must be a string when calling `{method_name}`")
+                kwargs["end_date"] = str(kwargs["end_date"])
         if (
             self.api_client.client_side_validation
             and "aggregation_period" in kwargs
@@ -725,7 +725,7 @@ class Metrics(object):
                 raise ApiValueError(f"Parameter `aggregation_period` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
         if self.api_client.client_side_validation and "unit_period" in kwargs and kwargs["unit_period"] is not None:
             if not isinstance(kwargs["unit_period"], int):
                 raise ApiValueError(f"Parameter `unit_period` must be an integer when calling `{method_name}`")
@@ -823,10 +823,10 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `time_series_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(time_series_id, str):
-                raise ApiValueError(f"Parameter `time_series_id` must be a string when calling `{method_name}`")
+                time_series_id = str(time_series_id)
 
         collection_formats = {}
         path_params = {}
@@ -909,13 +909,13 @@ class Metrics(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "metric" in kwargs and kwargs["metric"] is not None:
             if not isinstance(kwargs["metric"], str):
-                raise ApiValueError(f"Parameter `metric` must be a string when calling `{method_name}`")
+                kwargs["metric"] = str(kwargs["metric"])
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
         if self.api_client.client_side_validation and "custom" in kwargs and kwargs["custom"] is not None:
             if not isinstance(kwargs["custom"], bool):
                 raise ApiValueError(f"Parameter `custom` must be a boolean when calling `{method_name}`")

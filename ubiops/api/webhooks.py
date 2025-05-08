@@ -73,7 +73,7 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.webhook_test_create import WebhookTestCreate
@@ -165,10 +165,10 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `test_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(test_id, str):
-                raise ApiValueError(f"Parameter `test_id` must be a string when calling `{method_name}`")
+                test_id = str(test_id)
 
         collection_formats = {}
         path_params = {}
@@ -251,7 +251,7 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.webhook_create import WebhookCreate
@@ -343,10 +343,10 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `webhook_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(webhook_name, str):
-                raise ApiValueError(f"Parameter `webhook_name` must be a string when calling `{method_name}`")
+                webhook_name = str(webhook_name)
 
         collection_formats = {}
         path_params = {}
@@ -426,10 +426,10 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `webhook_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(webhook_name, str):
-                raise ApiValueError(f"Parameter `webhook_name` must be a string when calling `{method_name}`")
+                webhook_name = str(webhook_name)
 
         collection_formats = {}
         path_params = {}
@@ -512,16 +512,16 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
             if not isinstance(kwargs["labels"], str):
-                raise ApiValueError(f"Parameter `labels` must be a string when calling `{method_name}`")
+                kwargs["labels"] = str(kwargs["labels"])
         if self.api_client.client_side_validation and "object_type" in kwargs and kwargs["object_type"] is not None:
             if not isinstance(kwargs["object_type"], str):
-                raise ApiValueError(f"Parameter `object_type` must be a string when calling `{method_name}`")
+                kwargs["object_type"] = str(kwargs["object_type"])
         if self.api_client.client_side_validation and "event" in kwargs and kwargs["event"] is not None:
             if not isinstance(kwargs["event"], str):
-                raise ApiValueError(f"Parameter `event` must be a string when calling `{method_name}`")
+                kwargs["event"] = str(kwargs["event"])
 
         collection_formats = {}
         path_params = {}
@@ -613,10 +613,10 @@ class Webhooks(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(webhook_name, str):
-                raise ApiValueError(f"Parameter `webhook_name` must be a string when calling `{method_name}`")
+                webhook_name = str(webhook_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.webhook_update import WebhookUpdate

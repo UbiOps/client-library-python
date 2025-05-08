@@ -9,5 +9,6 @@ Name | Type | Notes
 **status** | **str** | [optional] [readonly]
 **error_message** | **str** | [optional]
 **trigger** | **str** | [optional]
+**size** | **int** | [optional]
 
 

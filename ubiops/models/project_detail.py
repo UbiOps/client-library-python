@@ -30,7 +30,7 @@ class ProjectDetail(object):
     openapi_types = {
         "id": "str",
         "name": "str",
-        "creation_date": "date",
+        "creation_date": "datetime",
         "advanced_permissions": "bool",
         "credits": "float",
         "organization_name": "str",
@@ -162,7 +162,7 @@ class ProjectDetail(object):
         Gets the creation_date of this ProjectDetail
 
         :return: the creation_date of this ProjectDetail
-        :rtype: date
+        :rtype: datetime
         """
 
         return self._creation_date
@@ -173,7 +173,7 @@ class ProjectDetail(object):
         Sets the creation_date of this ProjectDetail
 
         :param creation_date: the creation_date of this ProjectDetail
-        :type: date
+        :type: datetime
         """
 
         self._creation_date = creation_date

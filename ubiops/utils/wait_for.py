@@ -1,5 +1,5 @@
 import datetime
-from time import sleep, time
+import time
 
 from ubiops import CoreApi
 from ubiops.api_client import ApiClient
@@ -34,7 +34,7 @@ def _wait_for(
     """
 
     first_iteration = True
-    start_time = time()
+    start_time = time.time()
     printed_len = 0
 
     while True:
@@ -61,27 +61,27 @@ def _wait_for(
             raise StatusError(f"{object_name}: {obj.status}")
 
         # Handle timeout
-        if time() - start_time > timeout:
+        if time.time() - start_time > timeout:
             raise ApiException(status=504, reason=f"{object_name} Timeout", body="Timeout was reached")
 
         # Wait and print dots
         for _ in range(3):
-            sleep(1)
+            time.sleep(1)
             if not quiet:
                 print(".", end="", flush=True)
 
-        sleep(1)
+        time.sleep(1)
         first_iteration = False
 
 
 def _wait_for_logs(
     client,
     project_name,
-    filters,
+    query,
     retrieve_method,
     retrieve_kwargs,
     object_name="Deployment version",
-    start_date=None,
+    start=None,
     timeout=1800,
 ):
     """
@@ -89,33 +89,27 @@ def _wait_for_logs(
 
     :param ubiops.ApiClient client: a preconfigured UbiOps client
     :param str project_name: the name of the project
-    :param dict filters: the log filters to apply
+    :param str query: the log query to apply
     :param retrieve_method: retrieve method to get status updates
     :param dict retrieve_kwargs: the data to pass to the retrieve method
     :param str object_name: reference name for the object to wait for, used to print messages
-    :param str start_date: Start date for streaming logs in iso format milliseconds. If None, utcnow will be used.
+    :param str start: Start date for streaming logs in iso format nanoseconds. If None, now(UTC) will be used.
     :param float|None timeout: the maximum time to wait
     """
 
-    initial_date = start_date
-    if start_date is None:
-        initial_date = datetime.datetime.now(tz=datetime.timezone.utc).isoformat(timespec="milliseconds")
+    if start is None:
+        start = datetime.datetime.now(tz=datetime.timezone.utc).isoformat(timespec="microseconds")
 
-    date = initial_date
-    last_retrieve_time = time()
-    log_id = None
-
-    start_time = time()
-    completion_time = None
-
-    has_request_filter = "deployment_request_id" in filters
+    retrieve_time = time.time()
+    waiting_start_time = time.time()
+    status_completion_time = None
 
     while True:
         obj = getattr(CoreApi(client), retrieve_method)(**retrieve_kwargs)
 
         # When done, wait a bit longer for logs that arrive later
-        if completion_time:
-            if time() - completion_time > LOGS_COMPLETION_SECONDS:
+        if status_completion_time:
+            if time.time() - status_completion_time > LOGS_COMPLETION_SECONDS:
                 if obj.status in SUCCESS_STATUSES:
                     print(f"{object_name}: {obj.status}", flush=True)
                     return
@@ -123,68 +117,43 @@ def _wait_for_logs(
                     raise StatusError(f"{object_name}: {obj.status}")
 
         elif obj.status in SUCCESS_STATUSES + FAILED_STATUSES:
-            completion_time = time()
-
-        # Filter on request_id=null while request is not picked up yet; so we will show the logs of spinning up
-        # the instance
-        if has_request_filter and obj.status == PENDING_REQUEST_STATUS:
-            data_filters = {**filters, "deployment_request_id": None}
-
-        elif has_request_filter:
-            # Set has_request_filter to False the first time the request is not in pending status anymore, so we will
-            # not change the date/log again
-            has_request_filter = False
-
-            # Ignore the previous log_id that was found with deployment_request_id=None
-            if log_id:
-                date = initial_date
-                log_id = None
-
-            # Unset the deployment_request_id=None filter
-            data_filters = filters
-
-        else:
-            data_filters = filters
+            status_completion_time = time.time()
 
         while True:
-            data = {"filters": data_filters, "date_range": 86400, "limit": 500}
-            if date is not None:
-                data["date"] = date
-            if log_id is not None:
-                data["id"] = log_id
-            logs = CoreApi(api_client=client).projects_log_list(project_name=project_name, data=data)
+            logs = CoreApi(api_client=client).logs_list(
+                project_name=project_name,
+                query=query,
+                start=start,
+                end=time.time_ns(),
+                limit=1000,
+            )
 
             has_logs = False
             for log in logs:
-                if log.id == log_id or not log.log:
+                if not log.log:
                     continue
 
                 has_logs = True
                 print(log.log.strip("\n"), flush=True)  # Remove additional blank lines
 
             if has_logs:
-                date = None
-                log_id = logs[-1].id
-                last_retrieve_time = time()
+                # Add 1 nanosecond to move to the next log
+                start = logs[-1].timestamp + 1
+                retrieve_time = time.time()
 
-            if time() - last_retrieve_time > NO_LOGS_MESSAGE_SECONDS:
+            if time.time() - retrieve_time > NO_LOGS_MESSAGE_SECONDS:
                 print(
-                    "No logs have been received for the last %.0f seconds" % (time() - last_retrieve_time),
-                    flush=True,
+                    "No logs have been received for the last %.0f seconds" % (time.time() - retrieve_time), flush=True
                 )
 
             # Handle timeout
-            if time() - start_time > timeout:
-                raise ApiException(
-                    status=504,
-                    reason=f"{object_name} Timeout",
-                    body="Timeout was reached",
-                )
+            if time.time() - waiting_start_time > timeout:
+                raise ApiException(status=504, reason=f"{object_name} Timeout", body="Timeout was reached")
 
-            sleep(3)
+            time.sleep(3)
 
             if not has_logs:
-                sleep(3)
+                time.sleep(3)
                 break
 
 
@@ -228,14 +197,11 @@ def _wait_for_deployment_version_status(
             _wait_for_logs(
                 client=client,
                 project_name=project_name,
-                filters={
-                    "deployment_name": deployment_name,
-                    "deployment_version": version,
-                },
+                query=f"| deployment_name=`{deployment_name}` and deployment_version=`{version}`",
                 retrieve_method=retrieve_method,
                 retrieve_kwargs=retrieve_kwargs,
                 object_name=object_name,
-                start_date=start_date,
+                start=start_date,
                 timeout=timeout,
             )
         else:
@@ -283,7 +249,7 @@ def _wait_for_deployment_version(
     if not isinstance(client, ApiClient):
         raise AssertionError("Provided client is not of type ubiops.ApiClient")
 
-    start_time = time()
+    start_time = time.time()
     version_data = CoreApi(client).deployment_versions_get(
         project_name=project_name, deployment_name=deployment_name, version=version
     )
@@ -317,7 +283,7 @@ def _wait_for_deployment_version(
         else:
             raise
 
-    elapsed_time = time() - start_time
+    elapsed_time = time.time() - start_time
 
     wait_for_revision(
         client=client,
@@ -365,15 +331,12 @@ def _wait_for_logs_deployment_request(
     _wait_for_logs(
         client=client,
         project_name=project_name,
-        filters={
-            "deployment_name": deployment_name,
-            "deployment_version": request_details.version,
-            "deployment_request_id": request_id,
-        },
+        query=f"| deployment_name=`{deployment_name}` and deployment_version=`{request_details.version}`"
+        f" and deployment_request_id!~`.+` or deployment_request_id=`{request_id}`",
         retrieve_method=retrieve_method,
         retrieve_kwargs=retrieve_kwargs,
         object_name=object_name,
-        start_date=request_details.time_created.isoformat(timespec="milliseconds"),
+        start=request_details.time_created.isoformat(timespec="milliseconds"),
         timeout=timeout,
     )
 
@@ -466,7 +429,7 @@ def _wait_for_logs_pipeline_request(
 
         # We are not waiting for any deployment request in this iteration, just waiting for the pipeline request status
         if not waiting_for_requests:
-            sleep(2)
+            time.sleep(2)
 
 
 def wait_for_deployment_version(
@@ -597,14 +560,11 @@ def wait_for_environment(client, project_name, environment_name, timeout=1800, q
             _wait_for_logs(
                 client=client,
                 project_name=project_name,
-                filters={
-                    "environment_name": environment_name,
-                    "environment_build_id": environment.latest_build,
-                },
+                query=f"| environment_name=`{environment_name}` and environment_build_id=`{environment.latest_build}`",
                 retrieve_method=retrieve_method,
                 retrieve_kwargs=retrieve_kwargs,
                 object_name="Environment",
-                start_date=environment.last_updated.isoformat(timespec="milliseconds"),
+                start=environment.last_updated.isoformat(timespec="milliseconds"),
                 timeout=timeout,
             )
         else:
@@ -662,15 +622,12 @@ def wait_for_revision(
             _wait_for_logs(
                 client=client,
                 project_name=project_name,
-                filters={
-                    "deployment_name": deployment_name,
-                    "deployment_version": version,
-                    "deployment_version_revision_id": revision_id,
-                },
+                query=f"| deployment_name=`{deployment_name}` and deployment_version=`{version}`"
+                f" and deployment_version_revision_id=`{revision_id}`",
                 retrieve_method=retrieve_method,
                 retrieve_kwargs=retrieve_kwargs,
                 object_name="Deployment revision",
-                start_date=request_details.creation_date.isoformat(timespec="milliseconds"),
+                start=request_details.creation_date.isoformat(timespec="milliseconds"),
                 timeout=timeout,
             )
         else:

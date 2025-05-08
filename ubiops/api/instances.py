@@ -81,19 +81,19 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_id, str):
-                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+                instance_id = str(instance_id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
             if not isinstance(kwargs["cursor"], str):
-                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+                kwargs["cursor"] = str(kwargs["cursor"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -186,7 +186,7 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.instance_type_group_create import InstanceTypeGroupCreate
@@ -278,10 +278,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `instance_type_group_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_type_group_id, str):
-                raise ApiValueError(f"Parameter `instance_type_group_id` must be a string when calling `{method_name}`")
+                instance_type_group_id = str(instance_type_group_id)
 
         collection_formats = {}
         path_params = {}
@@ -361,10 +361,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `instance_type_group_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_type_group_id, str):
-                raise ApiValueError(f"Parameter `instance_type_group_id` must be a string when calling `{method_name}`")
+                instance_type_group_id = str(instance_type_group_id)
 
         collection_formats = {}
         path_params = {}
@@ -446,10 +446,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
             if not isinstance(kwargs["cursor"], str):
-                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+                kwargs["cursor"] = str(kwargs["cursor"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -542,10 +542,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_type_group_id, str):
-                raise ApiValueError(f"Parameter `instance_type_group_id` must be a string when calling `{method_name}`")
+                instance_type_group_id = str(instance_type_group_id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.instance_type_group_create import InstanceTypeGroupCreate
@@ -640,13 +640,13 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `instance_type_group_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_type_group_id, str):
-                raise ApiValueError(f"Parameter `instance_type_group_id` must be a string when calling `{method_name}`")
+                instance_type_group_id = str(instance_type_group_id)
         if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
             if not isinstance(kwargs["cursor"], str):
-                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+                kwargs["cursor"] = str(kwargs["cursor"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -736,10 +736,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
             if not isinstance(kwargs["cursor"], str):
-                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+                kwargs["cursor"] = str(kwargs["cursor"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -835,16 +835,16 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_id, str):
-                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+                instance_id = str(instance_id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
 
         collection_formats = {}
         path_params = {}
@@ -935,22 +935,22 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `version` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
             if not isinstance(kwargs["cursor"], str):
-                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+                kwargs["cursor"] = str(kwargs["cursor"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
-                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+                kwargs["status"] = str(kwargs["status"])
 
         collection_formats = {}
         path_params = {}
@@ -1050,16 +1050,16 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(deployment_name, str):
-                raise ApiValueError(f"Parameter `deployment_name` must be a string when calling `{method_name}`")
+                deployment_name = str(deployment_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_id, str):
-                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+                instance_id = str(instance_id)
         if self.api_client.client_side_validation:
             if not isinstance(version, str):
-                raise ApiValueError(f"Parameter `version` must be a string when calling `{method_name}`")
+                version = str(version)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.instance_update import InstanceUpdate
@@ -1154,10 +1154,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `instance_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_id, str):
-                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+                instance_id = str(instance_id)
 
         collection_formats = {}
         path_params = {}
@@ -1240,16 +1240,16 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "cursor" in kwargs and kwargs["cursor"] is not None:
             if not isinstance(kwargs["cursor"], str):
-                raise ApiValueError(f"Parameter `cursor` must be a string when calling `{method_name}`")
+                kwargs["cursor"] = str(kwargs["cursor"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
-                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+                kwargs["status"] = str(kwargs["status"])
 
         collection_formats = {}
         path_params = {}
@@ -1341,10 +1341,10 @@ class Instances(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(instance_id, str):
-                raise ApiValueError(f"Parameter `instance_id` must be a string when calling `{method_name}`")
+                instance_id = str(instance_id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.instance_update import InstanceUpdate

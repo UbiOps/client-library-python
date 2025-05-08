@@ -138,6 +138,7 @@ Details of a build
 - `status`: Status of the build. It can be one of the following: 'queued', 'processing', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
+- `size`: Size of docker image of the environment build in bytes
 
 ## Response Examples
 
@@ -148,7 +149,8 @@ Details of a build
   "creation_date": "2023-01-30T12:27:12.108+00:00",
   "status": "success",
   "error_message": "",
-  "trigger": "Rebuild triggered"
+  "trigger": "Rebuild triggered",
+  "size": 257862432
 }
 ```
 
@@ -240,6 +242,7 @@ A list of details of the builds
 - `status`: Status of the build. It can be one of the following: 'queued', 'processing', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
+- `size`: Size of docker image of the environment build in bytes
 
 ## Response Examples
 
@@ -251,7 +254,8 @@ A list of details of the builds
     "creation_date": "2023-01-23T12:17:11.863+00:00",
     "status": "failed",
     "error_message": "Could not find the requirements file",
-    "trigger": "Environment file upload"
+    "trigger": "Environment file upload",
+    "size": 197280883
   },
   {
     "id": "038ae310-6629-4887-952d-868b6e533b90",
@@ -259,7 +263,8 @@ A list of details of the builds
     "creation_date": "2023-01-29T17:12:43.108+00:00",
     "status": "queued",
     "error_message": "",
-    "trigger": "Environment file upload"
+    "trigger": "Environment file upload",
+    "size": 257862432
   }
 ]
 ```
@@ -361,6 +366,7 @@ Details of the cancelled build
 - `status`: Status of the build. It can be one of the following: 'queued', 'processing', 'success' or 'failed'.
 - `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
 - `trigger`: Action that triggered the build
+- `size`: Size of docker image of the environment build in bytes
 
 ## Response Examples
 
@@ -372,6 +378,7 @@ Details of the cancelled build
   "status": "cancelled",
   "error_message": "",
   "trigger": "Rebuild triggered"
+  "size": 257862432
 }
 ```
 

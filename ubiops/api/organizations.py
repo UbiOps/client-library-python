@@ -73,7 +73,7 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.organization_user_create import OrganizationUserCreate
@@ -165,10 +165,10 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
         if self.api_client.client_side_validation:
             if not isinstance(user_id, str):
-                raise ApiValueError(f"Parameter `user_id` must be a string when calling `{method_name}`")
+                user_id = str(user_id)
 
         collection_formats = {}
         path_params = {}
@@ -248,10 +248,10 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
         if self.api_client.client_side_validation:
             if not isinstance(user_id, str):
-                raise ApiValueError(f"Parameter `user_id` must be a string when calling `{method_name}`")
+                user_id = str(user_id)
 
         collection_formats = {}
         path_params = {}
@@ -331,7 +331,7 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `organization_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
 
         collection_formats = {}
         path_params = {}
@@ -416,10 +416,10 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
         if self.api_client.client_side_validation:
             if not isinstance(user_id, str):
-                raise ApiValueError(f"Parameter `user_id` must be a string when calling `{method_name}`")
+                user_id = str(user_id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.organization_user_update import OrganizationUserUpdate
@@ -593,7 +593,7 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `organization_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
 
         collection_formats = {}
         path_params = {}
@@ -742,7 +742,7 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `organization_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
 
         collection_formats = {}
         path_params = {}
@@ -824,7 +824,7 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.organization_update import OrganizationUpdate
@@ -916,16 +916,16 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `organization_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(organization_name, str):
-                raise ApiValueError(f"Parameter `organization_name` must be a string when calling `{method_name}`")
+                organization_name = str(organization_name)
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
-                raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
+                kwargs["start_date"] = str(kwargs["start_date"])
         if self.api_client.client_side_validation and "end_date" in kwargs and kwargs["end_date"] is not None:
             if not isinstance(kwargs["end_date"], str):
-                raise ApiValueError(f"Parameter `end_date` must be a string when calling `{method_name}`")
+                kwargs["end_date"] = str(kwargs["end_date"])
         if self.api_client.client_side_validation and "interval" in kwargs and kwargs["interval"] is not None:
             if not isinstance(kwargs["interval"], str):
-                raise ApiValueError(f"Parameter `interval` must be a string when calling `{method_name}`")
+                kwargs["interval"] = str(kwargs["interval"])
 
         collection_formats = {}
         path_params = {}
@@ -1011,7 +1011,7 @@ class Organizations(object):
             raise ApiValueError(f"Missing the required parameter `code` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(code, str):
-                raise ApiValueError(f"Parameter `code` must be a string when calling `{method_name}`")
+                code = str(code)
 
         collection_formats = {}
         path_params = {}

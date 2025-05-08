@@ -143,7 +143,7 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.role_assignment_create import RoleAssignmentCreate
@@ -235,10 +235,10 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
 
         collection_formats = {}
         path_params = {}
@@ -318,10 +318,10 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
 
         collection_formats = {}
         path_params = {}
@@ -405,19 +405,19 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "resource" in kwargs and kwargs["resource"] is not None:
             if not isinstance(kwargs["resource"], str):
-                raise ApiValueError(f"Parameter `resource` must be a string when calling `{method_name}`")
+                kwargs["resource"] = str(kwargs["resource"])
         if self.api_client.client_side_validation and "resource_type" in kwargs and kwargs["resource_type"] is not None:
             if not isinstance(kwargs["resource_type"], str):
-                raise ApiValueError(f"Parameter `resource_type` must be a string when calling `{method_name}`")
+                kwargs["resource_type"] = str(kwargs["resource_type"])
         if self.api_client.client_side_validation and "assignee" in kwargs and kwargs["assignee"] is not None:
             if not isinstance(kwargs["assignee"], str):
-                raise ApiValueError(f"Parameter `assignee` must be a string when calling `{method_name}`")
+                kwargs["assignee"] = str(kwargs["assignee"])
         if self.api_client.client_side_validation and "assignee_type" in kwargs and kwargs["assignee_type"] is not None:
             if not isinstance(kwargs["assignee_type"], str):
-                raise ApiValueError(f"Parameter `assignee_type` must be a string when calling `{method_name}`")
+                kwargs["assignee_type"] = str(kwargs["assignee_type"])
 
         collection_formats = {}
         path_params = {}
@@ -508,7 +508,7 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.role_create import RoleCreate
@@ -600,10 +600,10 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `role_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(role_name, str):
-                raise ApiValueError(f"Parameter `role_name` must be a string when calling `{method_name}`")
+                role_name = str(role_name)
 
         collection_formats = {}
         path_params = {}
@@ -683,10 +683,10 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `role_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(role_name, str):
-                raise ApiValueError(f"Parameter `role_name` must be a string when calling `{method_name}`")
+                role_name = str(role_name)
 
         collection_formats = {}
         path_params = {}
@@ -766,7 +766,7 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
@@ -851,10 +851,10 @@ class Roles(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(role_name, str):
-                raise ApiValueError(f"Parameter `role_name` must be a string when calling `{method_name}`")
+                role_name = str(role_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.role_update import RoleUpdate

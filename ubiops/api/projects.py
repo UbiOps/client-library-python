@@ -27,6 +27,110 @@ class Projects(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def logs_list_with_http_info(self, project_name, **kwargs):
+        """
+        List logs for a project
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = Projects.logs_list_with_http_info(
+                project_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param kwargs:
+            - str query:
+            - str start:
+            - str end:
+            - int limit:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[LogList], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """
+
+        method_name = "logs_list"
+        optional_params = ["query", "start", "end", "limit"]
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        if self.api_client.client_side_validation and project_name is None:
+            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
+        if self.api_client.client_side_validation:
+            if not isinstance(project_name, str):
+                project_name = str(project_name)
+        if self.api_client.client_side_validation and "query" in kwargs and kwargs["query"] is not None:
+            if not isinstance(kwargs["query"], str):
+                kwargs["query"] = str(kwargs["query"])
+        if self.api_client.client_side_validation and "start" in kwargs and kwargs["start"] is not None:
+            if not isinstance(kwargs["start"], str):
+                kwargs["start"] = str(kwargs["start"])
+        if self.api_client.client_side_validation and "end" in kwargs and kwargs["end"] is not None:
+            if not isinstance(kwargs["end"], str):
+                kwargs["end"] = str(kwargs["end"])
+        if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
+            if not isinstance(kwargs["limit"], int):
+                raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        path_params["project_name"] = project_name
+
+        if "query" in kwargs and kwargs["query"] is not None:
+            query_params.append(("query", kwargs["query"]))
+        if "start" in kwargs and kwargs["start"] is not None:
+            query_params.append(("start", kwargs["start"]))
+        if "end" in kwargs and kwargs["end"] is not None:
+            query_params.append(("end", kwargs["end"]))
+        if "limit" in kwargs and kwargs["limit"] is not None:
+            query_params.append(("limit", kwargs["limit"]))
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        url = "/projects/{project_name}/logs"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "GET",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="list[LogList]",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )
+
     def project_audit_events_list_with_http_info(self, project_name, **kwargs):
         """
         List audit events in a project
@@ -73,10 +177,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "action" in kwargs and kwargs["action"] is not None:
             if not isinstance(kwargs["action"], str):
-                raise ApiValueError(f"Parameter `action` must be a string when calling `{method_name}`")
+                kwargs["action"] = str(kwargs["action"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -171,7 +275,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
@@ -263,10 +367,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
 
         collection_formats = {}
         path_params = {}
@@ -346,10 +450,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
 
         collection_formats = {}
         path_params = {}
@@ -429,7 +533,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
@@ -514,10 +618,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(id, str):
-                raise ApiValueError(f"Parameter `id` must be a string when calling `{method_name}`")
+                id = str(id)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.environment_variable_create import EnvironmentVariableCreate
@@ -616,13 +720,13 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `object_type` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and object_type is not None:
             if not isinstance(object_type, str):
-                raise ApiValueError(f"Parameter `object_type` must be a string when calling `{method_name}`")
+                object_type = str(object_type)
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
-                raise ApiValueError(f"Parameter `status` must be a string when calling `{method_name}`")
+                kwargs["status"] = str(kwargs["status"])
         if self.api_client.client_side_validation and "limit" in kwargs and kwargs["limit"] is not None:
             if not isinstance(kwargs["limit"], int):
                 raise ApiValueError(f"Parameter `limit` must be an integer when calling `{method_name}`")
@@ -631,13 +735,13 @@ class Projects(object):
                 raise ApiValueError(f"Parameter `offset` must be an integer when calling `{method_name}`")
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
-                raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
+                kwargs["start_date"] = str(kwargs["start_date"])
         if self.api_client.client_side_validation and "end_date" in kwargs and kwargs["end_date"] is not None:
             if not isinstance(kwargs["end_date"], str):
-                raise ApiValueError(f"Parameter `end_date` must be a string when calling `{method_name}`")
+                kwargs["end_date"] = str(kwargs["end_date"])
         if self.api_client.client_side_validation and "search_id" in kwargs and kwargs["search_id"] is not None:
             if not isinstance(kwargs["search_id"], str):
-                raise ApiValueError(f"Parameter `search_id` must be a string when calling `{method_name}`")
+                kwargs["search_id"] = str(kwargs["search_id"])
 
         collection_formats = {}
         path_params = {}
@@ -734,7 +838,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.project_user_create import ProjectUserCreate
@@ -826,10 +930,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(user_id, str):
-                raise ApiValueError(f"Parameter `user_id` must be a string when calling `{method_name}`")
+                user_id = str(user_id)
 
         collection_formats = {}
         path_params = {}
@@ -909,10 +1013,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `user_id` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if not isinstance(user_id, str):
-                raise ApiValueError(f"Parameter `user_id` must be a string when calling `{method_name}`")
+                user_id = str(user_id)
 
         collection_formats = {}
         path_params = {}
@@ -993,10 +1097,10 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "user_type" in kwargs and kwargs["user_type"] is not None:
             if not isinstance(kwargs["user_type"], str):
-                raise ApiValueError(f"Parameter `user_type` must be a string when calling `{method_name}`")
+                kwargs["user_type"] = str(kwargs["user_type"])
 
         collection_formats = {}
         path_params = {}
@@ -1162,7 +1266,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
@@ -1238,7 +1342,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
@@ -1315,7 +1419,7 @@ class Projects(object):
 
         if self.api_client.client_side_validation and "organization" in kwargs and kwargs["organization"] is not None:
             if not isinstance(kwargs["organization"], str):
-                raise ApiValueError(f"Parameter `organization` must be a string when calling `{method_name}`")
+                kwargs["organization"] = str(kwargs["organization"])
 
         collection_formats = {}
         path_params = {}
@@ -1354,7 +1458,7 @@ class Projects(object):
 
     def projects_log_list_with_http_info(self, project_name, **kwargs):
         """
-        List logs for a project
+        [DEPRECATED] List logs for a project
 
         This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
         pass async_req=True.
@@ -1396,7 +1500,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "data" in kwargs:
             if isinstance(kwargs["data"], dict):
                 from ubiops.models.logs_create import LogsCreate
@@ -1486,7 +1590,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
@@ -1568,7 +1672,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `data` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation:
             if isinstance(data, dict):
                 from ubiops.models.project_update import ProjectUpdate
@@ -1660,16 +1764,16 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
         if self.api_client.client_side_validation and "start_date" in kwargs and kwargs["start_date"] is not None:
             if not isinstance(kwargs["start_date"], str):
-                raise ApiValueError(f"Parameter `start_date` must be a string when calling `{method_name}`")
+                kwargs["start_date"] = str(kwargs["start_date"])
         if self.api_client.client_side_validation and "end_date" in kwargs and kwargs["end_date"] is not None:
             if not isinstance(kwargs["end_date"], str):
-                raise ApiValueError(f"Parameter `end_date` must be a string when calling `{method_name}`")
+                kwargs["end_date"] = str(kwargs["end_date"])
         if self.api_client.client_side_validation and "interval" in kwargs and kwargs["interval"] is not None:
             if not isinstance(kwargs["interval"], str):
-                raise ApiValueError(f"Parameter `interval` must be a string when calling `{method_name}`")
+                kwargs["interval"] = str(kwargs["interval"])
 
         collection_formats = {}
         path_params = {}
@@ -1755,7 +1859,7 @@ class Projects(object):
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
-                raise ApiValueError(f"Parameter `project_name` must be a string when calling `{method_name}`")
+                project_name = str(project_name)
 
         collection_formats = {}
         path_params = {}
