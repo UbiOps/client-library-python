@@ -39,7 +39,7 @@ Retrieve the logs of all objects in a project, including deployments, pipelines 
 ### Optional Parameters
 
 
-- `query`: A query string containing information to filter logs on. It may contain line filter expressions and/or label filter expressions as documented by Grafana LogQL. The following labels can be used in label filter expressions:
+- `query`: A query string containing information to filter logs on. It may contain text search and/or label filtering as documented by Grafana LogQL. The following labels can be used for label filtering:
     - `deployment_id`: id of a deployment
     - `deployment_name`: name of a deployment
     - `deployment_version_id`: id of the deployment version
@@ -1453,13 +1453,17 @@ Create a new project with the provided name.
 - `advanced_permissions`: A boolean to enable/disable advanced permissions for the project. It defaults to False.
 - `credits`: Maximum usage of credits, calculated by multiplying the credit rate of a deployment instance type by the number of hours they are running. It defaults to null, meaning that there are no limits.
 - `cors_origins`: List of origins from which the requests are allowed for the project
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Request Examples
 
 ```
 {
   "name": "project-1",
-  "organization_name": "organization-1"
+  "organization_name": "organization-1",
+  "labels": {
+    "type": "project"
+  },
 }
 ```
 
@@ -1475,6 +1479,7 @@ Details of the created project
 - `suspended`: A boolean indicating whether the project is suspended due to going over the credits limit
 - `suspended_reason`: Description explaining why the project is suspended
 - `cors_origins`: List of origins from which the requests are allowed for the project
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
 
@@ -1488,7 +1493,8 @@ Details of the created project
   "credits": null,
   "suspended": false,
   "suspended_reason": null,
-  "cors_origins": []
+  "cors_origins": [],
+  "labels": {}
 }
 ```
 
@@ -1644,6 +1650,7 @@ Details of a project
 - `suspended`: A boolean indicating whether the project is suspended due to going over the credits limit
 - `suspended_reason`: Description explaining why the project is suspended
 - `cors_origins`: List of origins from which the requests are allowed for the project
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
 
@@ -1657,7 +1664,10 @@ Details of a project
   "credits": 10000,
   "suspended": false,
   "suspended_reason": null,
-  "cors_origins": []
+  "cors_origins": [],
+  "labels": {
+    "type": "project"
+  }
 }
 ```
 
@@ -1724,12 +1734,12 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **projects_list**
-> list[ProjectList] projects_list(organization=organization)
+> list[ProjectList] projects_list(organization=organization, labels=labels)
 
 List projects
 
 ## Description
-List all projects to which the user making request has access. The projects in organizations to which the user belongs are shown.
+List all projects to which the user making request has access. The projects in organizations to which the user belongs are shown. Projects can be filtered according to the labels they have by giving labels as a query parameter.
 
 ### Response Structure
 A list of details of the projects
@@ -1740,12 +1750,14 @@ A list of details of the projects
 - `creation_date`: Time the project was created
 - `advanced_permissions`: A boolean to enable/disable advanced permissions for the project
 - `organization_name`: Name of the organization in which the project is created
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ### Optional Parameters
 These parameters should be given as query parameters
 
 
 - `organization`: Name of the organization whose projects should be obtained
+- `labels`: Filter on labels of the project. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,). This parameter should be given as query parameter.
 
 ## Response Examples
 
@@ -1756,14 +1768,20 @@ These parameters should be given as query parameters
     "name": "project-1",
     "creation_date": "2018-10-26",
     "advanced_permissions": false,
-    "organization_name": "organization-1"
+    "organization_name": "organization-1",
+    "labels": {
+      "type": "project"
+    },
   },
   {
     "id": "e6a85cd7-94cc-44cf-9fa0-4b462d5a71ab",
     "name": "project-2",
     "creation_date": "2019-06-20",
     "advanced_permissions": false,
-    "organization_name": "organization-2"
+    "organization_name": "organization-2",
+    "labels": {
+      "foo": "bar"
+    },
   }
 ]
 ```
@@ -1780,9 +1798,10 @@ These parameters should be given as query parameters
     core_api = ubiops.CoreApi()
 
     organization = 'organization_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List projects
-    api_response = core_api.projects_list(organization=organization)
+    api_response = core_api.projects_list(organization=organization, labels=labels)
     print(api_response)
 
     # Close the connection
@@ -1803,9 +1822,10 @@ These parameters should be given as query parameters
     core_api = ubiops.CoreApi(api_client)
 
     organization = 'organization_example' # str (optional)
+    labels = "label1:value1,label2:value2" # str (optional)
 
     # List projects
-    api_response = core_api.projects_list(organization=organization)
+    api_response = core_api.projects_list(organization=organization, labels=labels)
     print(api_response)
 
     # Close the connection
@@ -1819,6 +1839,7 @@ These parameters should be given as query parameters
 Name | Type | Notes
 ------------- | ------------- | -------------
  **organization** | **str** | [optional] 
+ **labels** | **str** | [optional] 
 
 ### Return type
 
@@ -2161,12 +2182,16 @@ Update the name of a single project. The user making the request must have appro
 - `credits`: Maximum usage of credits, calculated by multiplying the credit rate of a deployment instance type by the number of hours they are running
 - `suspend`: A boolean to suspend and activate projects. If the project is already suspended by UbiOps, it is not possible to suspend/activate the project.
 - `cors_origins`: List of origins from which the requests are allowed for the project
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Request Examples
 
 ```
 {
-  "name": "project-name-example"
+  "name": "project-name-example",
+  "labels": {
+    "foo": "bar"
+  }
 }
 ```
 
@@ -2190,6 +2215,7 @@ Details of a project
 - `suspended`: A boolean indicating whether the project is suspended due to going over the credits limit
 - `suspended_reason`: Description explaining why the project is suspended
 - `cors_origins`: List of origins from which the requests are allowed for the project
+- `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 
 ## Response Examples
 
@@ -2203,7 +2229,10 @@ Details of a project
   "credits": 10000,
   "suspended": false,
   "suspended_reason": null,
-  "cors_origins": ["https://test.com"]
+  "cors_origins": ["https://test.com"],
+  "labels": {
+    "foo": "bar"
+  }
 }
 ```
 

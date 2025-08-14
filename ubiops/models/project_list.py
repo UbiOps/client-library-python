@@ -34,6 +34,7 @@ class ProjectList(object):
         "advanced_permissions": "bool",
         "credits": "float",
         "organization_name": "str",
+        "labels": "dict(str, str)",
     }
 
     attribute_map = {
@@ -43,6 +44,7 @@ class ProjectList(object):
         "advanced_permissions": "advanced_permissions",
         "credits": "credits",
         "organization_name": "organization_name",
+        "labels": "labels",
     }
 
     def __init__(
@@ -53,6 +55,7 @@ class ProjectList(object):
         advanced_permissions=None,
         credits=None,
         organization_name=None,
+        labels=None,
         **kwargs,
     ):
         """
@@ -69,6 +72,7 @@ class ProjectList(object):
         self._advanced_permissions = None
         self._credits = None
         self._organization_name = None
+        self._labels = None
         self.discriminator = None
 
         if id is not None:
@@ -80,6 +84,8 @@ class ProjectList(object):
             self.advanced_permissions = advanced_permissions
         self.credits = credits
         self.organization_name = organization_name
+        if labels is not None:
+            self.labels = labels
 
     @property
     def id(self):
@@ -241,6 +247,31 @@ class ProjectList(object):
             raise ValueError("Invalid value for `organization_name`, length must be greater than or equal to `1`")
 
         self._organization_name = organization_name
+
+    @property
+    def labels(self):
+        """
+        Gets the labels of this ProjectList
+
+        :return: the labels of this ProjectList
+        :rtype: dict(str, str)
+        """
+
+        return self._labels
+
+    @labels.setter
+    def labels(self, labels):
+        """
+        Sets the labels of this ProjectList
+
+        :param labels: the labels of this ProjectList
+        :type: dict(str, str)
+        """
+
+        if self.client_side_validation and (labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")
+
+        self._labels = labels
 
     def to_dict(self):
         """

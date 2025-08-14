@@ -30,22 +30,37 @@ class ServiceUserTokenDetail(object):
     openapi_types = {
         "id": "str",
         "email": "str",
-        "token": "str",
         "name": "str",
+        "description": "str",
         "creation_date": "str",
         "expiry_date": "str",
+        "token_last_used": "str",
+        "token": "str",
     }
 
     attribute_map = {
         "id": "id",
         "email": "email",
-        "token": "token",
         "name": "name",
+        "description": "description",
         "creation_date": "creation_date",
         "expiry_date": "expiry_date",
+        "token_last_used": "token_last_used",
+        "token": "token",
     }
 
-    def __init__(self, id=None, email=None, token=None, name=None, creation_date=None, expiry_date=None, **kwargs):
+    def __init__(
+        self,
+        id=None,
+        email=None,
+        name=None,
+        description=None,
+        creation_date=None,
+        expiry_date=None,
+        token_last_used=None,
+        token=None,
+        **kwargs,
+    ):
         """
         ServiceUserTokenDetail - a model defined in OpenAPI
         """
@@ -56,21 +71,26 @@ class ServiceUserTokenDetail(object):
 
         self._id = None
         self._email = None
-        self._token = None
         self._name = None
+        self._description = None
         self._creation_date = None
         self._expiry_date = None
+        self._token_last_used = None
+        self._token = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
         self.email = email
-        if token is not None:
-            self.token = token
         self.name = name
+        self.description = description
         if creation_date is not None:
             self.creation_date = creation_date
         self.expiry_date = expiry_date
+        if token_last_used is not None:
+            self.token_last_used = token_last_used
+        if token is not None:
+            self.token = token
 
     @property
     def id(self):
@@ -130,31 +150,6 @@ class ServiceUserTokenDetail(object):
         self._email = email
 
     @property
-    def token(self):
-        """
-        Gets the token of this ServiceUserTokenDetail
-
-        :return: the token of this ServiceUserTokenDetail
-        :rtype: str
-        """
-
-        return self._token
-
-    @token.setter
-    def token(self, token):
-        """
-        Sets the token of this ServiceUserTokenDetail
-
-        :param token: the token of this ServiceUserTokenDetail
-        :type: str
-        """
-
-        if self.client_side_validation and (token is not None and not isinstance(token, str)):
-            raise ValueError("Parameter `token` must be a string")
-
-        self._token = token
-
-    @property
     def name(self):
         """
         Gets the name of this ServiceUserTokenDetail
@@ -181,6 +176,34 @@ class ServiceUserTokenDetail(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `256`")
 
         self._name = name
+
+    @property
+    def description(self):
+        """
+        Gets the description of this ServiceUserTokenDetail
+
+        :return: the description of this ServiceUserTokenDetail
+        :rtype: str
+        """
+
+        return self._description
+
+    @description.setter
+    def description(self, description):
+        """
+        Sets the description of this ServiceUserTokenDetail
+
+        :param description: the description of this ServiceUserTokenDetail
+        :type: str
+        """
+
+        if self.client_side_validation and (description is not None and not isinstance(description, str)):
+            raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
+        self._description = description
 
     @property
     def creation_date(self):
@@ -234,6 +257,56 @@ class ServiceUserTokenDetail(object):
             raise ValueError("Invalid value for `expiry_date`, length must be greater than or equal to `1`")
 
         self._expiry_date = expiry_date
+
+    @property
+    def token_last_used(self):
+        """
+        Gets the token_last_used of this ServiceUserTokenDetail
+
+        :return: the token_last_used of this ServiceUserTokenDetail
+        :rtype: str
+        """
+
+        return self._token_last_used
+
+    @token_last_used.setter
+    def token_last_used(self, token_last_used):
+        """
+        Sets the token_last_used of this ServiceUserTokenDetail
+
+        :param token_last_used: the token_last_used of this ServiceUserTokenDetail
+        :type: str
+        """
+
+        if self.client_side_validation and (token_last_used is not None and not isinstance(token_last_used, str)):
+            raise ValueError("Parameter `token_last_used` must be a string")
+
+        self._token_last_used = token_last_used
+
+    @property
+    def token(self):
+        """
+        Gets the token of this ServiceUserTokenDetail
+
+        :return: the token of this ServiceUserTokenDetail
+        :rtype: str
+        """
+
+        return self._token
+
+    @token.setter
+    def token(self, token):
+        """
+        Sets the token of this ServiceUserTokenDetail
+
+        :param token: the token of this ServiceUserTokenDetail
+        :type: str
+        """
+
+        if self.client_side_validation and (token is not None and not isinstance(token, str)):
+            raise ValueError("Parameter `token` must be a string")
+
+        self._token = token
 
     def to_dict(self):
         """

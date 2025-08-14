@@ -33,6 +33,7 @@ class ProjectCreate(object):
         "advanced_permissions": "bool",
         "credits": "float",
         "cors_origins": "list[str]",
+        "labels": "dict(str, str)",
     }
 
     attribute_map = {
@@ -41,10 +42,18 @@ class ProjectCreate(object):
         "advanced_permissions": "advanced_permissions",
         "credits": "credits",
         "cors_origins": "cors_origins",
+        "labels": "labels",
     }
 
     def __init__(
-        self, name=None, organization_name=None, advanced_permissions=None, credits=None, cors_origins=None, **kwargs
+        self,
+        name=None,
+        organization_name=None,
+        advanced_permissions=None,
+        credits=None,
+        cors_origins=None,
+        labels=None,
+        **kwargs,
     ):
         """
         ProjectCreate - a model defined in OpenAPI
@@ -59,6 +68,7 @@ class ProjectCreate(object):
         self._advanced_permissions = None
         self._credits = None
         self._cors_origins = None
+        self._labels = None
         self.discriminator = None
 
         self.name = name
@@ -68,6 +78,8 @@ class ProjectCreate(object):
         self.credits = credits
         if cors_origins is not None:
             self.cors_origins = cors_origins
+        if labels is not None:
+            self.labels = labels
 
     @property
     def name(self):
@@ -207,6 +219,31 @@ class ProjectCreate(object):
             raise ValueError("Parameter `cors_origins` must be a list")
 
         self._cors_origins = cors_origins
+
+    @property
+    def labels(self):
+        """
+        Gets the labels of this ProjectCreate
+
+        :return: the labels of this ProjectCreate
+        :rtype: dict(str, str)
+        """
+
+        return self._labels
+
+    @labels.setter
+    def labels(self, labels):
+        """
+        Sets the labels of this ProjectCreate
+
+        :param labels: the labels of this ProjectCreate
+        :type: dict(str, str)
+        """
+
+        if self.client_side_validation and (labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")
+
+        self._labels = labels
 
     def to_dict(self):
         """

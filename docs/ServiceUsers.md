@@ -27,6 +27,7 @@ The token is **ONLY** returned on creation and will not be accessible afterwards
 
 - `name`: Name of the service user
 - `expiry_date`: Date when the service user account expires (UTC). If null is passed, the account will never expire.
+- `description`: Description of the service user
 
 ## Request Examples
 
@@ -40,7 +41,8 @@ The token is **ONLY** returned on creation and will not be accessible afterwards
 ```
 {
   "name": "service-user-1",
-  "expiry_date": "2020-01-01T00:00:00.000Z"
+  "expiry_date": "2020-01-01T00:00:00.000Z",
+  "description": "The first service user"
 }
 ```
 
@@ -51,6 +53,7 @@ Details of the created service user
 - `email`: Email of the service user
 - `token`: The API token for the created service user
 - `name`: Name of the service user
+- `description`: Description of the service user
 - `creation_date`: Date when the service user was created
 - `expiry_date`: Date when the service user account will expire (UTC)
 
@@ -62,6 +65,7 @@ Details of the created service user
   "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
   "token": "e962d9190348af7fa8d233d75cff7385b4335f81",
   "name": "service-user-1",
+  "description": "The first service user",
   "creation_date": "2020-03-24T09:16:27.504+00:00",
   "expiry_date": "2021-03-24T00:00:00.000+00:00"
 }
@@ -217,6 +221,7 @@ Details of the service user
 - `id`: Unique identifier for the service user (UUID)
 - `email`: Email of the service user
 - `name`: Name of the service user
+- `description`: Description of the service user
 - `creation_date`: Date when the service user was created
 - `expiry_date`: Date when the service user account will expire (UTC)
 
@@ -227,6 +232,7 @@ Details of the service user
   "id": "13a9ba27-6888-4528-826e-8e1002eab13d",
   "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
   "name": "new-service-user-name",
+  "description": "Description of the service user"
   "creation_date": "2020-03-26T12:18:43.123+00:00",
   "expiry_date": null
 }
@@ -311,6 +317,7 @@ List of details of the service users:
 - `id`: Unique identifier for the service user (UUID)
 - `email`: Email of the service user
 - `name`: Name of the service user
+- `description`: Description of the service user
 - `creation_date`: Date when the service user was created
 - `expiry_date`: Date when the service user account will expire (UTC)
 
@@ -322,6 +329,7 @@ List of details of the service users:
     "id": "537bca64-5ab6-43eb-a7ef-1638bc30b6ed",
     "email": "537bca64-5ab6-43eb-a7ef-1638bc30b6ed.project1@serviceuser.ubiops.com",
     "name": "service-user-1",
+    "description": "The first service user",
     "creation_date": "2020-03-24T09:16:27.504+00:00",
     "expiry_date": "2021-03-24T00:00:00.000+00:00"
   },
@@ -329,6 +337,7 @@ List of details of the service users:
     "id": "13a9ba27-6888-4528-826e-8e1002eab13d",
     "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
     "name": "service-user-2",
+    "description": "",
     "creation_date": "2020-03-26T12:18:43.123+00:00",
     "expiry_date": null
   }
@@ -503,6 +512,7 @@ It is not possible to update a service user whose expiry date has been reached.
 
 - `name`: Name of the service user
 - `expiry_date`: Date when the service user account will expire (UTC). If null is passed, the account will never expire.
+- `description`: Description of the service user
 
 ## Request Examples
 
@@ -526,6 +536,7 @@ Details of the updated service user
 - `id`: Unique identifier for the service user (UUID)
 - `email`: Email of the service user
 - `name`: Name of the service user
+- `description`: Description of the service user
 - `creation_date`: Date when the service user was created
 - `expiry_date`: Date when the service user account will expire (UTC)
 
@@ -536,6 +547,7 @@ Details of the updated service user
   "id": "13a9ba27-6888-4528-826e-8e1002eab13d",
   "email": "13a9ba27-6888-4528-826e-8e1002eab13d.project1@serviceuser.ubiops.com",
   "name": "new-service-user-name",
+  "description": "Description of the service user",
   "creation_date": "2020-03-26T12:18:43.123+00:00",
   "expiry_date": null
 }

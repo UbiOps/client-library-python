@@ -43,7 +43,7 @@ def train(training_data, parameters, context):
     class_names = train_ds.class_names
     print(f"Found the following class names: {class_names}")
 
-    normalization_layer = tf.keras.layers.experimental.preprocessing.Rescaling(1.0 / 255)
+    normalization_layer = tf.keras.layers.Rescaling(1.0 / 255)
     normalized_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
     image_batch, labels_batch = next(iter(normalized_ds))
 
@@ -56,15 +56,15 @@ def train(training_data, parameters, context):
 
     data_augmentation = tf.keras.Sequential(
         [
-            tf.keras.layers.experimental.preprocessing.RandomFlip("horizontal", input_shape=(img_height, img_width, 3)),
-            tf.keras.layers.experimental.preprocessing.RandomRotation(0.2),
+            tf.keras.layers.RandomFlip("horizontal", input_shape=(img_height, img_width, 3)),
+            tf.keras.layers.RandomRotation(0.2),
         ]
     )
 
     model = tf.keras.Sequential(
         [
             data_augmentation,
-            tf.keras.layers.experimental.preprocessing.Rescaling(1.0 / 255),
+            tf.keras.layers.Rescaling(1.0 / 255),
             tf.keras.layers.Conv2D(32, 3, padding="same", activation="relu"),
             tf.keras.layers.MaxPooling2D(),
             tf.keras.layers.Conv2D(32, 3, padding="same", activation="relu"),
@@ -112,7 +112,7 @@ def train(training_data, parameters, context):
 
     # Return the trained model file and metrics
     # joblib.dump(model, 'model.pkl')
-    tf.keras.models.save_model(model, "./model.h5", save_format="h5")
+    tf.keras.models.save_model(model, "./pokemon.keras")
 
     fin_loss = eval_res[0]
     fin_acc = eval_res[1]
@@ -120,9 +120,9 @@ def train(training_data, parameters, context):
 
     return {
         "artifact": {
-            "file": "model.h5",
+            "file": "pokemon.keras",
             "bucket": os.environ.get("SYS_DEFAULT_BUCKET", "default"),
-            "bucket_file": f"model-1/trained/{run_id}/model.pkl",
+            "bucket_file": f"model-1/trained/{run_id}/pokemon.keras",
         },
         "metrics": json.dumps({"loss": fin_loss, "accuracy": fin_acc}),
         "additional_output_files": [

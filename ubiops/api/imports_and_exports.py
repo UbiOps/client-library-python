@@ -42,6 +42,8 @@ class ImportsAndExports(object):
         :param str project_name: (required)
         :param ExportCreate data: (required)
         :param kwargs:
+            - bool all: If true, all objects will be exported
+            - bool packages: If false, no packages (environment/deployment version revisions) will be exported
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -53,7 +55,7 @@ class ImportsAndExports(object):
         """
 
         method_name = "exports_create"
-        optional_params = []
+        optional_params = ["all", "packages"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -79,6 +81,12 @@ class ImportsAndExports(object):
                 from ubiops.models.export_create import ExportCreate
 
                 data = ExportCreate(**data)
+        if self.api_client.client_side_validation and "all" in kwargs and kwargs["all"] is not None:
+            if not isinstance(kwargs["all"], bool):
+                raise ApiValueError(f"Parameter `all` must be a boolean when calling `{method_name}`")
+        if self.api_client.client_side_validation and "packages" in kwargs and kwargs["packages"] is not None:
+            if not isinstance(kwargs["packages"], bool):
+                raise ApiValueError(f"Parameter `packages` must be a boolean when calling `{method_name}`")
 
         collection_formats = {}
         path_params = {}
@@ -89,6 +97,11 @@ class ImportsAndExports(object):
         body_params = None
 
         path_params["project_name"] = project_name
+
+        if "all" in kwargs and kwargs["all"] is not None:
+            query_params.append(("all", kwargs["all"]))
+        if "packages" in kwargs and kwargs["packages"] is not None:
+            query_params.append(("packages", kwargs["packages"]))
 
         body_params = data
 

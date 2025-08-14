@@ -33,6 +33,7 @@ class ProjectUpdate(object):
         "credits": "float",
         "suspend": "bool",
         "cors_origins": "list[str]",
+        "labels": "dict(str, str)",
     }
 
     attribute_map = {
@@ -41,9 +42,12 @@ class ProjectUpdate(object):
         "credits": "credits",
         "suspend": "suspend",
         "cors_origins": "cors_origins",
+        "labels": "labels",
     }
 
-    def __init__(self, name=None, advanced_permissions=None, credits=None, suspend=None, cors_origins=None, **kwargs):
+    def __init__(
+        self, name=None, advanced_permissions=None, credits=None, suspend=None, cors_origins=None, labels=None, **kwargs
+    ):
         """
         ProjectUpdate - a model defined in OpenAPI
         """
@@ -57,6 +61,7 @@ class ProjectUpdate(object):
         self._credits = None
         self._suspend = None
         self._cors_origins = None
+        self._labels = None
         self.discriminator = None
 
         if name is not None:
@@ -68,6 +73,8 @@ class ProjectUpdate(object):
             self.suspend = suspend
         if cors_origins is not None:
             self.cors_origins = cors_origins
+        if labels is not None:
+            self.labels = labels
 
     @property
     def name(self):
@@ -198,6 +205,31 @@ class ProjectUpdate(object):
             raise ValueError("Parameter `cors_origins` must be a list")
 
         self._cors_origins = cors_origins
+
+    @property
+    def labels(self):
+        """
+        Gets the labels of this ProjectUpdate
+
+        :return: the labels of this ProjectUpdate
+        :rtype: dict(str, str)
+        """
+
+        return self._labels
+
+    @labels.setter
+    def labels(self, labels):
+        """
+        Sets the labels of this ProjectUpdate
+
+        :param labels: the labels of this ProjectUpdate
+        :type: dict(str, str)
+        """
+
+        if self.client_side_validation and (labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")
+
+        self._labels = labels
 
     def to_dict(self):
         """
