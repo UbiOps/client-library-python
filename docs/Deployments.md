@@ -1628,7 +1628,7 @@ If the time that a request takes does not matter, keep the default values.
 ```
 {
   "version": "version-1",
-  "environment": "python3-8"
+  "environment": "python3-12"
 }
 ```
 
@@ -1636,7 +1636,7 @@ If the time that a request takes does not matter, keep the default values.
 ```
 {
   "version": "version-1",
-  "environment": "r4-0",
+  "environment": python3-12",
   "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7"
 }
 ```
@@ -1644,7 +1644,7 @@ If the time that a request takes does not matter, keep the default values.
 
 ```
   "version": "version-1",
-  "environment": "python3-8-cuda",
+  "environment": "python3-12",
   "instance_type_group_id": "6e7f011c-829e-43f9-b7cf-7f9283699777",
   "maximum_instances": 1
 ```
@@ -1714,8 +1714,8 @@ Details of the created version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-8",
-  "environment_display_name": "Python 3.8",
+  "environment": "python3-12",
+  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "status": "unavailable",
   "active_revision": null,
   "latest_revision": null,
@@ -1944,8 +1944,8 @@ Details of a version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-8",
-  "environment_display_name": "Python 3.7",
+  "environment": "python3-12",
+  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "status": "available",
   "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
@@ -2097,8 +2097,8 @@ A list of details of the versions
     "version": "version-1",
     "default": true,
     "description": "",
-    "environment": "python3-8",
-    "environment_display_name": "Python 3.8",
+    "environment": "python3-12",
+    "environment_display_name": "Python 3.12",
     "status": "available",
     "active_revision": "da27ef7c-aa3f-4963-a815-6ebf1865638e",
     "latest_revision": "0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75",
@@ -2316,8 +2316,8 @@ Details of the updated version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-8",
-  "environment_display_name": "Python 3.8",
+  "environment": "python3-12",
+  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "status": "available",
   "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
@@ -2447,7 +2447,6 @@ Possible widgets for the input fields are:
 - **dropdown**: dropdown
 - **switch**: switch
 - **button**: upload button
-- **drawer**: drawer
 - **image_preview**: image upload with preview
 
 Possible widgets for the output fields are:
@@ -2700,7 +2699,7 @@ Name | Type | Notes
 Delete a deployment
 
 ## Description
-Delete a deployment. If any of the versions of the deployment are referenced in a pipeline, the deployment cannot be deleted.
+Delete a deployment. If any of the versions of the deployment are referenced in a request schedule or pipeline, the deployment cannot be deleted.
 
 ### Example
 
@@ -3781,7 +3780,7 @@ Get the list of all available template deployments
       "description": "",
       "version": {
         "name": "v2",
-        "environment": "python3-11",
+        "environment": "python3-12",
         "description": "",
         "labels": {
           "template": "True"

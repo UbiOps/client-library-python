@@ -9,5 +9,6 @@ Name | Type | Notes
 **advanced_permissions** | **bool** | [optional]
 **credits** | **float** | [optional]
 **organization_name** | **str** |
+**labels** | **dict(str, str)** | [optional]
 
 

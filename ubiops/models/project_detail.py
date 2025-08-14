@@ -34,6 +34,7 @@ class ProjectDetail(object):
         "advanced_permissions": "bool",
         "credits": "float",
         "organization_name": "str",
+        "labels": "dict(str, str)",
         "suspended": "bool",
         "suspended_reason": "str",
         "cors_origins": "list[str]",
@@ -46,6 +47,7 @@ class ProjectDetail(object):
         "advanced_permissions": "advanced_permissions",
         "credits": "credits",
         "organization_name": "organization_name",
+        "labels": "labels",
         "suspended": "suspended",
         "suspended_reason": "suspended_reason",
         "cors_origins": "cors_origins",
@@ -59,6 +61,7 @@ class ProjectDetail(object):
         advanced_permissions=None,
         credits=None,
         organization_name=None,
+        labels=None,
         suspended=None,
         suspended_reason=None,
         cors_origins=None,
@@ -78,6 +81,7 @@ class ProjectDetail(object):
         self._advanced_permissions = None
         self._credits = None
         self._organization_name = None
+        self._labels = None
         self._suspended = None
         self._suspended_reason = None
         self._cors_origins = None
@@ -92,6 +96,8 @@ class ProjectDetail(object):
             self.advanced_permissions = advanced_permissions
         self.credits = credits
         self.organization_name = organization_name
+        if labels is not None:
+            self.labels = labels
         if suspended is not None:
             self.suspended = suspended
         if suspended_reason is not None:
@@ -259,6 +265,31 @@ class ProjectDetail(object):
             raise ValueError("Invalid value for `organization_name`, length must be greater than or equal to `1`")
 
         self._organization_name = organization_name
+
+    @property
+    def labels(self):
+        """
+        Gets the labels of this ProjectDetail
+
+        :return: the labels of this ProjectDetail
+        :rtype: dict(str, str)
+        """
+
+        return self._labels
+
+    @labels.setter
+    def labels(self, labels):
+        """
+        Sets the labels of this ProjectDetail
+
+        :param labels: the labels of this ProjectDetail
+        :type: dict(str, str)
+        """
+
+        if self.client_side_validation and (labels is not None and not isinstance(labels, dict)):
+            raise ValueError("Parameter `labels` must be a dictionary")
+
+        self._labels = labels
 
     @property
     def suspended(self):

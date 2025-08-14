@@ -25,7 +25,6 @@ Create a new user with the given details. After creation, an email is send to th
 
 - `name`: Name of the user
 - `surname`: Surname of the user
-- `phone`: Phone number of the user
 
 ## Request Examples
 
@@ -35,7 +34,6 @@ Create a new user with the given details. After creation, an email is send to th
   "password": "secret-password",
   "name": "User name",
   "surname": "User surname",
-  "phone": "+999999999"
 }
 ```
 
@@ -53,7 +51,6 @@ Details of the created user
 - `email`: Email of the user
 - `name`: Name of the user
 - `surname`: Surname of the user
-- `phone`: Phone number of the user
 
 ## Response Examples
 
@@ -62,7 +59,6 @@ Details of the created user
   "email": "test@example.com",
   "name": "User name",
   "surname": "User surname",
-  "phone": "+999999999"
 }
 ```
 

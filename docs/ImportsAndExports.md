@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **exports_create**
-> ExportList exports_create(project_name, data)
+> ExportList exports_create(project_name, data, all=all, packages=packages)
 
 Create an export
 
@@ -31,6 +31,10 @@ Create an export by selecting the objects in the export
 - `pipelines`: Dictionary containing the pipelines to export
 - `environment_variables`: Dictionary containing the project-level environment variables to export
 - `environments`: Dictionary containing the environments to export
+
+The following parameters should be given as query parameter:
+- `all`: If true, all objects will be exported. If false, only the objects specified in the request body will be exported.
+- `packages`: If false, no packages (environment/deployment version revisions) will be exported. If true, all packages will be exported.
 
 ## Request Examples
 
@@ -118,9 +122,11 @@ Details of the created export
 
     project_name = 'project_name_example' # str
     data = ubiops.ExportCreate() # ExportCreate
+    all = True # bool (optional)
+    packages = True # bool (optional)
 
     # Create an export
-    api_response = core_api.exports_create(project_name, data)
+    api_response = core_api.exports_create(project_name, data, all=all, packages=packages)
     print(api_response)
 
     # Close the connection
@@ -142,9 +148,11 @@ Details of the created export
 
     project_name = 'project_name_example' # str
     data = ubiops.ExportCreate() # ExportCreate
+    all = True # bool (optional)
+    packages = True # bool (optional)
 
     # Create an export
-    api_response = core_api.exports_create(project_name, data)
+    api_response = core_api.exports_create(project_name, data, all=all, packages=packages)
     print(api_response)
 
     # Close the connection
@@ -159,6 +167,8 @@ Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
  **data** | [**ExportCreate**](./models/ExportCreate.md) | 
+ **all** | **bool** | [optional] 
+ **packages** | **bool** | [optional] 
 
 ### Return type
 
@@ -1016,7 +1026,7 @@ Confirm (and update) an import by selecting the objects in the import
           "zip": "deployments/deployment_deployment-1/versions/deployment_deployment-1_version_v1.zip",
           "description": "",
           "labels": {},
-          "environment": "python3-8",
+          "environment": "python3-12",
           "maximum_idle_time": 300,
           "maximum_instances": 5,
           "instance_type": "256mb",
@@ -1141,7 +1151,7 @@ Confirm (and update) an import by selecting the objects in the import
         "display_name": "Environment 1",
         "description": "",
         "labels": {},
-        "base_environment": "python3-8"
+        "base_environment": "python3-12"
     }
   }
 }

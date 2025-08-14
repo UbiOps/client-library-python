@@ -8,5 +8,6 @@ Name | Type | Notes
 **advanced_permissions** | **bool** | [optional]
 **credits** | **float** | [optional]
 **cors_origins** | **list[str]** | [optional]
+**labels** | **dict(str, str)** | [optional]
 
 

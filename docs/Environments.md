@@ -660,7 +660,7 @@ Details of a revision
 ```
 {
   "id": "593bac21-7cd2-476a-aee8-ec9fc7f56232",
-  "version": "python3-8-custom",
+  "environment": "python3-12-custom",
   "creation_date": "2023-01-29T17:12:43.108+00:00",
   "created_by": "test@example.com",
   "expired": false
@@ -758,14 +758,14 @@ A list of details of the revisions
 [
   {
     "id": "8760570f-6eda-470b-99af-bde810d418d8",
-    "environment": "python3-8-custom",
+    "environment": "python3-12-custom",
     "creation_date": "2023-01-23T12:17:11.863+00:00",
     "created_by": "UbiOps",
     "expired": false
   },
   {
     "id": "593bac21-7cd2-476a-aee8-ec9fc7f56232",
-    "version": "python3-8-custom",
+    "environment": "python3-12-custom",
     "creation_date": "2023-01-29T17:12:43.108+00:00",
     "created_by": "test@example.com",
     "expired": false
@@ -964,17 +964,17 @@ Create a custom environment
 
 ```
 {
-  "name": "python3-8-custom",
-  "base_environment": "python3-8"
+  "name": "python3-12-custom",
+  "base_environment": "python3-12"
 }
 ```
 
 
 ```
 {
-  "name": "python3-8-custom-1",
-  "display_name": "Custom Python 3.8",
-  "base_environment": "python3-8"
+  "name": "python3-12-custom-1",
+  "display_name": "Custom Python 3.12",
+  "base_environment": "python3-12"
 }
 ```
 
@@ -1002,13 +1002,13 @@ Details of the created environment
 ```
 {
   "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
-  "name": "python3-8-custom",
-  "display_name": "Custom Python 3.8",
-  "base_environment": "python3-8",
+  "name": "python3-12-custom",
+  "display_name": "Custom Python 3.12",
+  "base_environment": "python3-12",
   "project": "project-1",
   "creation_date": "2023-03-01T08:32:14.876451Z",
   "last_updated": "2023-03-01T08:32:14.876451Z",
-  "description": "Custom environment based on Python 3.8",
+  "description": "Custom environment based on Python 3.12",
   "labels": {
     "type": "environment"
   },
@@ -1193,13 +1193,13 @@ Details of an environment
 ```
 {
   "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
-  "name": "python3-8-custom",
-  "display_name": "Custom Python 3.8",
-  "base_environment": "python3-8",
+  "name": "python3-12-custom",
+  "display_name": "Custom Python 3.12",
+  "base_environment": "python3-12",
   "project": "project-1",
   "creation_date": "2023-03-01T08:32:14.876451Z",
   "last_updated": "2023-03-01T10:52:23.124784Z",
-  "description": "Custom environment based on Python 3.8",
+  "description": "Custom environment based on Python 3.12",
   "labels": {
     "type": "environment"
   },
@@ -1320,13 +1320,13 @@ A list of details of the environments
 [
   {
     "id": "1319895f-467b-4732-9804-7de500099233",
-    "name": "python3-8",
-    "display_name": "Python 3.8",
+    "name": "python3-12",
+    "display_name": "Ubuntu 24.04 + Python 3.12",
     "base_environment": null,
     "project": null,
     "creation_date": "2023-03-01T08:32:14.876451Z",
     "last_updated": "2023-03-01T10:52:23.124784Z",
-    "description": "Base environment containing Python 3.8",
+    "description": "Base environment containing Python 3.12",
     "labels": {},
     "gpu_required": false,
     "status": "active",
@@ -1337,13 +1337,13 @@ A list of details of the environments
   },
   {
     "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
-    "name": "python3-8-custom",
-    "display_name": "Custom Python 3.8",
-    "base_environment": "python3-8",
+    "name": "python3-12-custom",
+    "display_name": "Custom Python 3.12",
+    "base_environment": "python3-12",
     "project": "project-1",
     "creation_date": "2023-03-02T12:15:43.124751Z",
     "last_updated": "2023-03-03T13:14:23.865421Z",
-    "description": "Custom environment based on Python 3.8",
+    "description": "Custom environment based on Python 3.12",
     "labels": {
       "type": "environment"
     },
@@ -1447,7 +1447,7 @@ Update an environment. When updating labels, the labels will replace the existin
 
 ```
 {
-  "name": "new-python3-8-custom"
+  "name": "new-python3-12-custom"
 }
 ```
 
@@ -1479,13 +1479,13 @@ Details of the updated environment
 ```
 {
   "id": "3a7d94ca-4df4-4be3-857c-d6b9995cd17a",
-  "name": "new-python3-8-custom",
-  "display_name": "Custom Python 3.8",
-  "base_environment": "python3-8",
+  "name": "new-python3-12-custom",
+  "display_name": "Custom Python 3.12",
+  "base_environment": "python3-12",
   "project": "project-1",
   "creation_date": "2023-03-01T08:32:14.876451Z",
   "last_updated": "2023-03-01T10:52:23.124784Z",
-  "description": "Custom environment based on Python 3.8",
+  "description": "Custom environment based on Python 3.12",
   "labels": {
     "type": "environment"
   },
@@ -1596,16 +1596,16 @@ A list of details of the deployment versions
     "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
     "deployment": "deployment-1",
     "version": "version-1",
-    "environment": "python3-8",
-    "environment_display_name": "Python 3.8",
+    "environment": "python3-12",
+    "environment_display_name": "Ubuntu 24.04 + Python 3.12",
     "status": "available"
   },
   {
     "id": "24f6b80a-08c3-4d52-ac1a-2ea7e70f16a6",
     "deployment": "deployment-1",
     "version": "version-2",
-    "environment": "python3-8",
-    "environment_display_name": "Python 3.8",
+    "environment": "python3-12",
+    "environment_display_name": "Ubuntu 24.04 + Python 3.12",
     "status": "unavailable"
   }
 ]

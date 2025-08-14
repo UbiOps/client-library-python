@@ -27,11 +27,11 @@ class ServiceUserCreate(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"name": "str", "expiry_date": "datetime"}
+    openapi_types = {"name": "str", "expiry_date": "datetime", "description": "str"}
 
-    attribute_map = {"name": "name", "expiry_date": "expiry_date"}
+    attribute_map = {"name": "name", "expiry_date": "expiry_date", "description": "description"}
 
-    def __init__(self, name=None, expiry_date=None, **kwargs):
+    def __init__(self, name=None, expiry_date=None, description=None, **kwargs):
         """
         ServiceUserCreate - a model defined in OpenAPI
         """
@@ -42,11 +42,13 @@ class ServiceUserCreate(object):
 
         self._name = None
         self._expiry_date = None
+        self._description = None
         self.discriminator = None
 
         if name is not None:
             self.name = name
         self.expiry_date = expiry_date
+        self.description = description
 
     @property
     def name(self):
@@ -97,6 +99,34 @@ class ServiceUserCreate(object):
         """
 
         self._expiry_date = expiry_date
+
+    @property
+    def description(self):
+        """
+        Gets the description of this ServiceUserCreate
+
+        :return: the description of this ServiceUserCreate
+        :rtype: str
+        """
+
+        return self._description
+
+    @description.setter
+    def description(self, description):
+        """
+        Sets the description of this ServiceUserCreate
+
+        :param description: the description of this ServiceUserCreate
+        :type: str
+        """
+
+        if self.client_side_validation and (description is not None and not isinstance(description, str)):
+            raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
+        self._description = description
 
     def to_dict(self):
         """

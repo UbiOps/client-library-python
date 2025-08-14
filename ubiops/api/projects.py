@@ -1392,6 +1392,7 @@ class Projects(object):
 
         :param kwargs:
             - str organization:
+            - str labels:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1403,7 +1404,7 @@ class Projects(object):
         """
 
         method_name = "projects_list"
-        optional_params = ["organization"]
+        optional_params = ["organization", "labels"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -1420,6 +1421,9 @@ class Projects(object):
         if self.api_client.client_side_validation and "organization" in kwargs and kwargs["organization"] is not None:
             if not isinstance(kwargs["organization"], str):
                 kwargs["organization"] = str(kwargs["organization"])
+        if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
+            if not isinstance(kwargs["labels"], str):
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -1431,6 +1435,8 @@ class Projects(object):
 
         if "organization" in kwargs and kwargs["organization"] is not None:
             query_params.append(("organization", kwargs["organization"]))
+        if "labels" in kwargs and kwargs["labels"] is not None:
+            query_params.append(("labels", kwargs["labels"]))
 
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(["application/json"])

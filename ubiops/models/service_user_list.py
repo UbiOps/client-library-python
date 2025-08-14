@@ -27,17 +27,37 @@ class ServiceUserList(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "email": "str", "name": "str", "creation_date": "str", "expiry_date": "str"}
+    openapi_types = {
+        "id": "str",
+        "email": "str",
+        "name": "str",
+        "description": "str",
+        "creation_date": "str",
+        "expiry_date": "str",
+        "token_last_used": "str",
+    }
 
     attribute_map = {
         "id": "id",
         "email": "email",
         "name": "name",
+        "description": "description",
         "creation_date": "creation_date",
         "expiry_date": "expiry_date",
+        "token_last_used": "token_last_used",
     }
 
-    def __init__(self, id=None, email=None, name=None, creation_date=None, expiry_date=None, **kwargs):
+    def __init__(
+        self,
+        id=None,
+        email=None,
+        name=None,
+        description=None,
+        creation_date=None,
+        expiry_date=None,
+        token_last_used=None,
+        **kwargs,
+    ):
         """
         ServiceUserList - a model defined in OpenAPI
         """
@@ -49,17 +69,22 @@ class ServiceUserList(object):
         self._id = None
         self._email = None
         self._name = None
+        self._description = None
         self._creation_date = None
         self._expiry_date = None
+        self._token_last_used = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
         self.email = email
         self.name = name
+        self.description = description
         if creation_date is not None:
             self.creation_date = creation_date
         self.expiry_date = expiry_date
+        if token_last_used is not None:
+            self.token_last_used = token_last_used
 
     @property
     def id(self):
@@ -147,6 +172,34 @@ class ServiceUserList(object):
         self._name = name
 
     @property
+    def description(self):
+        """
+        Gets the description of this ServiceUserList
+
+        :return: the description of this ServiceUserList
+        :rtype: str
+        """
+
+        return self._description
+
+    @description.setter
+    def description(self, description):
+        """
+        Sets the description of this ServiceUserList
+
+        :param description: the description of this ServiceUserList
+        :type: str
+        """
+
+        if self.client_side_validation and (description is not None and not isinstance(description, str)):
+            raise ValueError("Parameter `description` must be a string")
+
+        if self.client_side_validation and (description is not None and len(description) > 400):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `400`")
+
+        self._description = description
+
+    @property
     def creation_date(self):
         """
         Gets the creation_date of this ServiceUserList
@@ -198,6 +251,31 @@ class ServiceUserList(object):
             raise ValueError("Invalid value for `expiry_date`, length must be greater than or equal to `1`")
 
         self._expiry_date = expiry_date
+
+    @property
+    def token_last_used(self):
+        """
+        Gets the token_last_used of this ServiceUserList
+
+        :return: the token_last_used of this ServiceUserList
+        :rtype: str
+        """
+
+        return self._token_last_used
+
+    @token_last_used.setter
+    def token_last_used(self, token_last_used):
+        """
+        Sets the token_last_used of this ServiceUserList
+
+        :param token_last_used: the token_last_used of this ServiceUserList
+        :type: str
+        """
+
+        if self.client_side_validation and (token_last_used is not None and not isinstance(token_last_used, str)):
+            raise ValueError("Parameter `token_last_used` must be a string")
+
+        self._token_last_used = token_last_used
 
     def to_dict(self):
         """
