@@ -68,58 +68,20 @@ A list of event details
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+instance_id = 'instance_id_example' # str
+version = 'version_example' # str
+cursor = 'cursor_example' # str (optional)
+limit = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    instance_id = 'instance_id_example' # str
-    version = 'version_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List events for instances
-    api_response = core_api.instance_events_list(project_name, deployment_name, instance_id, version, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    instance_id = 'instance_id_example' # str
-    version = 'version_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List events for instances
-    api_response = core_api.instance_events_list(project_name, deployment_name, instance_id, version, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List events for instances
+api_response = core_api.instance_events_list(project_name, deployment_name, instance_id, version, cursor=cursor, limit=limit)
+print(api_response)
+```
 
 ### Parameters
 
@@ -252,50 +214,16 @@ Create an instance type group in a project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
-
-    # Create instance type group
-    api_response = core_api.instance_type_groups_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
-
-    # Create instance type group
-    api_response = core_api.instance_type_groups_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create instance type group
+api_response = core_api.instance_type_groups_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -325,48 +253,15 @@ Delete an instance type group. If the instance type group is referenced by any d
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+instance_type_group_id = 'instance_type_group_id_example' # str
 
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-
-    # Delete instance type group
-    core_api.instance_type_groups_delete(project_name, instance_type_group_id)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-
-    # Delete instance type group
-    core_api.instance_type_groups_delete(project_name, instance_type_group_id)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete instance type group
+core_api.instance_type_groups_delete(project_name, instance_type_group_id)
+```
 
 ### Parameters
 
@@ -470,50 +365,16 @@ Get the details of an instance type group
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+instance_type_group_id = 'instance_type_group_id_example' # str
 
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-
-    # Get instance type group
-    api_response = core_api.instance_type_groups_get(project_name, instance_type_group_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-
-    # Get instance type group
-    api_response = core_api.instance_type_groups_get(project_name, instance_type_group_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get instance type group
+api_response = core_api.instance_type_groups_get(project_name, instance_type_group_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -651,52 +512,17 @@ A list of instance type groups
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+cursor = 'cursor_example' # str (optional)
+limit = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List instance type groups
-    api_response = core_api.instance_type_groups_list(project_name, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List instance type groups
-    api_response = core_api.instance_type_groups_list(project_name, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List instance type groups
+api_response = core_api.instance_type_groups_list(project_name, cursor=cursor, limit=limit)
+print(api_response)
+```
 
 ### Parameters
 
@@ -825,52 +651,17 @@ Update an instance type group in a project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+instance_type_group_id = 'instance_type_group_id_example' # str
+data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
 
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-    data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
-
-    # Update instance type group
-    api_response = core_api.instance_type_groups_update(project_name, instance_type_group_id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-    data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
-
-    # Update instance type group
-    api_response = core_api.instance_type_groups_update(project_name, instance_type_group_id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update instance type group
+api_response = core_api.instance_type_groups_update(project_name, instance_type_group_id, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -931,54 +722,18 @@ A list of details of the deployment versions
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+instance_type_group_id = 'instance_type_group_id_example' # str
+cursor = 'cursor_example' # str (optional)
+limit = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List usage of instance type group
-    api_response = core_api.instance_type_groups_usage(project_name, instance_type_group_id, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    instance_type_group_id = 'instance_type_group_id_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List usage of instance type group
-    api_response = core_api.instance_type_groups_usage(project_name, instance_type_group_id, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List usage of instance type group
+api_response = core_api.instance_type_groups_usage(project_name, instance_type_group_id, cursor=cursor, limit=limit)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1055,52 +810,17 @@ A list of instance types
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+cursor = 'cursor_example' # str (optional)
+limit = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List instance types
-    api_response = core_api.instance_types_list(project_name, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List instance types
-    api_response = core_api.instance_types_list(project_name, cursor=cursor, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List instance types
+api_response = core_api.instance_types_list(project_name, cursor=cursor, limit=limit)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1169,54 +889,18 @@ Get the details of an instance running for a deployment version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+instance_id = 'instance_id_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    instance_id = 'instance_id_example' # str
-    version = 'version_example' # str
-
-    # Get instance for deployment versions
-    api_response = core_api.instances_get(project_name, deployment_name, instance_id, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    instance_id = 'instance_id_example' # str
-    version = 'version_example' # str
-
-    # Get instance for deployment versions
-    api_response = core_api.instances_get(project_name, deployment_name, instance_id, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get instance for deployment versions
+api_response = core_api.instances_get(project_name, deployment_name, instance_id, version)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1292,58 +976,20 @@ A list of instance details
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+cursor = 'cursor_example' # str (optional)
+limit = 56 # int (optional)
+status = 'status_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-    status = 'status_example' # str (optional)
-
-    # List instances for deployment versions
-    api_response = core_api.instances_list(project_name, deployment_name, version, cursor=cursor, limit=limit, status=status)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-    status = 'status_example' # str (optional)
-
-    # List instances for deployment versions
-    api_response = core_api.instances_list(project_name, deployment_name, version, cursor=cursor, limit=limit, status=status)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List instances for deployment versions
+api_response = core_api.instances_list(project_name, deployment_name, version, cursor=cursor, limit=limit, status=status)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1412,56 +1058,19 @@ Update an instance running for a deployment version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+instance_id = 'instance_id_example' # str
+version = 'version_example' # str
+data = ubiops.InstanceUpdate() # InstanceUpdate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    instance_id = 'instance_id_example' # str
-    version = 'version_example' # str
-    data = ubiops.InstanceUpdate() # InstanceUpdate
-
-    # Update instance for deployment versions
-    api_response = core_api.instances_update(project_name, deployment_name, instance_id, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    instance_id = 'instance_id_example' # str
-    version = 'version_example' # str
-    data = ubiops.InstanceUpdate() # InstanceUpdate
-
-    # Update instance for deployment versions
-    api_response = core_api.instances_update(project_name, deployment_name, instance_id, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update instance for deployment versions
+api_response = core_api.instances_update(project_name, deployment_name, instance_id, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1532,50 +1141,16 @@ Get the details of an instance running in a project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+instance_id = 'instance_id_example' # str
 
-    project_name = 'project_name_example' # str
-    instance_id = 'instance_id_example' # str
-
-    # Get instance for projects
-    api_response = core_api.project_instances_get(project_name, instance_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    instance_id = 'instance_id_example' # str
-
-    # Get instance for projects
-    api_response = core_api.project_instances_get(project_name, instance_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get instance for projects
+api_response = core_api.project_instances_get(project_name, instance_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1656,54 +1231,18 @@ A list of instance details
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+cursor = 'cursor_example' # str (optional)
+limit = 56 # int (optional)
+status = 'status_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-    status = 'status_example' # str (optional)
-
-    # List instances for projects
-    api_response = core_api.project_instances_list(project_name, cursor=cursor, limit=limit, status=status)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    cursor = 'cursor_example' # str (optional)
-    limit = 56 # int (optional)
-    status = 'status_example' # str (optional)
-
-    # List instances for projects
-    api_response = core_api.project_instances_list(project_name, cursor=cursor, limit=limit, status=status)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List instances for projects
+api_response = core_api.project_instances_list(project_name, cursor=cursor, limit=limit, status=status)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1777,52 +1316,17 @@ Update an instance running in a project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+instance_id = 'instance_id_example' # str
+data = ubiops.InstanceUpdate() # InstanceUpdate
 
-    project_name = 'project_name_example' # str
-    instance_id = 'instance_id_example' # str
-    data = ubiops.InstanceUpdate() # InstanceUpdate
-
-    # Update instance for projects
-    api_response = core_api.project_instances_update(project_name, instance_id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    instance_id = 'instance_id_example' # str
-    data = ubiops.InstanceUpdate() # InstanceUpdate
-
-    # Update instance for projects
-    api_response = core_api.project_instances_update(project_name, instance_id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update instance for projects
+api_response = core_api.project_instances_update(project_name, instance_id, data)
+print(api_response)
+```
 
 ### Parameters
 

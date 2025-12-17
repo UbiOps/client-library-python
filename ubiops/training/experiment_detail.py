@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    UbiOps
+UbiOps
 
-    Client Library to interact with the UbiOps API.
+Client Library to interact with the UbiOps API.
 """
 
 from ubiops.models.deployment_version_detail import DeploymentVersionDetail
@@ -30,8 +30,7 @@ class ExperimentDetail(DeploymentVersionDetail):
         "last_updated": "datetime",
         "request_retention_time": "int",
         "request_retention_mode": "str",
-        "maximum_queue_size_express": "int",
-        "maximum_queue_size_batch": "int",
+        "maximum_queue_size": "int",
         "static_ip": "bool",
         "restart_request_interruption": "bool",
         "ports": "list[DeploymentVersionPort]",
@@ -61,8 +60,7 @@ class ExperimentDetail(DeploymentVersionDetail):
         "last_updated": "last_updated",
         "request_retention_time": "request_retention_time",
         "request_retention_mode": "request_retention_mode",
-        "maximum_queue_size_express": "maximum_queue_size_express",
-        "maximum_queue_size_batch": "maximum_queue_size_batch",
+        "maximum_queue_size": "maximum_queue_size",
         "static_ip": "static_ip",
         "restart_request_interruption": "restart_request_interruption",
         "ports": "ports",
@@ -93,8 +91,7 @@ class ExperimentDetail(DeploymentVersionDetail):
         last_updated=None,
         request_retention_time=None,
         request_retention_mode=None,
-        maximum_queue_size_express=None,
-        maximum_queue_size_batch=None,
+        maximum_queue_size=None,
         static_ip=None,
         restart_request_interruption=None,
         ports=None,
@@ -130,8 +127,7 @@ class ExperimentDetail(DeploymentVersionDetail):
             last_updated=last_updated,
             request_retention_time=request_retention_time,
             request_retention_mode=request_retention_mode,
-            maximum_queue_size_express=maximum_queue_size_express,
-            maximum_queue_size_batch=maximum_queue_size_batch,
+            maximum_queue_size=maximum_queue_size,
             ports=ports,
             last_file_upload=last_file_upload,
             has_request_method=has_request_method,

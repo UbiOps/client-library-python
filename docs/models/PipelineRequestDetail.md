@@ -11,8 +11,8 @@ Name | Type | Notes
 **time_created** | **datetime** |
 **time_started** | **datetime** | [optional]
 **time_completed** | **datetime** | [optional]
-**request_data** | **str** or **dict(str, str)** | [optional]
-**result** | **str** or **dict(str, str)** | [optional]
+**request_data** | **str** or **dict(str, str)** | [optional] [deprecated]
+**result** | **str** or **dict(str, str)** | [optional] [deprecated]
 **error_message** | **str** | [optional]
 **pipeline_timeout** | **int** | [optional]
 **deployment_timeout** | **int** | [optional]

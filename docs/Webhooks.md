@@ -70,50 +70,16 @@ Details of the test
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.WebhookTestCreate() # WebhookTestCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.WebhookTestCreate() # WebhookTestCreate
-
-    # Create webhook tests
-    api_response = core_api.webhook_tests_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.WebhookTestCreate() # WebhookTestCreate
-
-    # Create webhook tests
-    api_response = core_api.webhook_tests_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create webhook tests
+api_response = core_api.webhook_tests_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -182,50 +148,16 @@ Failed test
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+test_id = 'test_id_example' # str
 
-    project_name = 'project_name_example' # str
-    test_id = 'test_id_example' # str
-
-    # Get webhook test
-    api_response = core_api.webhook_tests_get(project_name, test_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    test_id = 'test_id_example' # str
-
-    # Get webhook test
-    api_response = core_api.webhook_tests_get(project_name, test_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get webhook test
+api_response = core_api.webhook_tests_get(project_name, test_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -343,50 +275,16 @@ Details of the created webhook
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.WebhookCreate() # WebhookCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.WebhookCreate() # WebhookCreate
-
-    # Create webhooks
-    api_response = core_api.webhooks_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.WebhookCreate() # WebhookCreate
-
-    # Create webhooks
-    api_response = core_api.webhooks_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create webhooks
+api_response = core_api.webhooks_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -416,48 +314,15 @@ Delete a webhook
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+webhook_name = 'webhook_name_example' # str
 
-    project_name = 'project_name_example' # str
-    webhook_name = 'webhook_name_example' # str
-
-    # Delete a webhook
-    core_api.webhooks_delete(project_name, webhook_name)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    webhook_name = 'webhook_name_example' # str
-
-    # Delete a webhook
-    core_api.webhooks_delete(project_name, webhook_name)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a webhook
+core_api.webhooks_delete(project_name, webhook_name)
+```
 
 ### Parameters
 
@@ -528,50 +393,16 @@ Details of a webhook
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+webhook_name = 'webhook_name_example' # str
 
-    project_name = 'project_name_example' # str
-    webhook_name = 'webhook_name_example' # str
-
-    # Get webhook
-    api_response = core_api.webhooks_get(project_name, webhook_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    webhook_name = 'webhook_name_example' # str
-
-    # Get webhook
-    api_response = core_api.webhooks_get(project_name, webhook_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get webhook
+api_response = core_api.webhooks_get(project_name, webhook_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -662,54 +493,18 @@ A list of details of the webhooks in the project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+labels = "label1:value1,label2:value2" # str (optional)
+object_type = 'object_type_example' # str (optional)
+event = 'event_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-    object_type = 'object_type_example' # str (optional)
-    event = 'event_example' # str (optional)
-
-    # List webhooks
-    api_response = core_api.webhooks_list(project_name, labels=labels, object_type=object_type, event=event)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-    object_type = 'object_type_example' # str (optional)
-    event = 'event_example' # str (optional)
-
-    # List webhooks
-    api_response = core_api.webhooks_list(project_name, labels=labels, object_type=object_type, event=event)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List webhooks
+api_response = core_api.webhooks_list(project_name, labels=labels, object_type=object_type, event=event)
+print(api_response)
+```
 
 ### Parameters
 
@@ -807,52 +602,17 @@ Details of a webhook
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+webhook_name = 'webhook_name_example' # str
+data = ubiops.WebhookUpdate() # WebhookUpdate
 
-    project_name = 'project_name_example' # str
-    webhook_name = 'webhook_name_example' # str
-    data = ubiops.WebhookUpdate() # WebhookUpdate
-
-    # Update a webhook
-    api_response = core_api.webhooks_update(project_name, webhook_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    webhook_name = 'webhook_name_example' # str
-    data = ubiops.WebhookUpdate() # WebhookUpdate
-
-    # Update a webhook
-    api_response = core_api.webhooks_update(project_name, webhook_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update a webhook
+api_response = core_api.webhooks_update(project_name, webhook_name, data)
+print(api_response)
+```
 
 ### Parameters
 

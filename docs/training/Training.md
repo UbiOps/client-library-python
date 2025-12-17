@@ -47,7 +47,7 @@ Helper function to create a training experiment
 ```
 {
   "name": "my-experiment",
-  "environment": "python3-8"
+  "environment": "python3-12"
 }
 ```
 
@@ -55,7 +55,7 @@ Helper function to create a training experiment
 {
   "name": "my-experiment",
   "description": "A training experiment",
-  "environment": "python3-8",
+  "environment": "python3-12",
   "instance_type_group_name": "4096 MB + 1 vCPU",
   "default_bucket": "default",
   "labels": {
@@ -71,7 +71,7 @@ Details of the created experiment
 - `name`: Experiment name
 - `environment`: Environment of the experiment
 - `environment_display_name`: Human readable name of the environment
-- `status`: The status of the experiment 
+- `status`: The status of the experiment
 - `active_revision`: ID of the active revision of the experiment
 - `latest_revision`: ID of the latest revision of the experiment
 - `instance_type`: The instance type for the experiment
@@ -87,8 +87,8 @@ Details of the created experiment
 {
   "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
   "name": "training-experiment",
-  "environment": "python3-8",
-  "environment_display_name": "Python 3.8",
+  "environment": "python3-12",
+  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "status": "available",
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
@@ -123,7 +123,7 @@ Details of the created experiment
             name=experiment_name,
             instance_type_group_name='4096 MB + 1 vCPU',
             description='A training experiment',
-            environment='python3-8',
+            environment='python3-12',
             default_bucket='default',
             labels={"type": "pytorch"}
         )
@@ -157,7 +157,7 @@ Details of the created experiment
             name=experiment_name,
             instance_type_group_name='4096 MB + 1 vCPU',
             description='A training experiment',
-            environment='python3-8',
+            environment='python3-12',
             default_bucket='default',
             labels={"type": "pytorch"}
         )
@@ -289,8 +289,7 @@ Get the details of an experiment
     - *none* - the runs will not be stored
     - *metadata* - only the metadata of the runs will be stored
     - *full* - both the metadata and input/output of the runs will be stored
-- `maximum_queue_size_express`: Maximum number of queued express runs for all instances of this experiment
-- `maximum_queue_size_batch`: Maximum number of queued batch runs for all instances of this experiment
+- `maximum_queue_size`: Maximum number of queued runs for all instances of this experiment
 - `has_request_method`: Whether the latest revision of the experiment has a 'request' method
 - `has_requests_method`: Whether the latest revision of the experiment has a 'requests' method
 - `static_ip`: A boolean indicating whether the experiment should get a static IP
@@ -304,9 +303,9 @@ Get the details of an experiment
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
-  "description": "An experiment with Python 3.8",
-  "environment": "python3-8",
-  "environment_display_name": "Python 3.8",
+  "description": "An experiment with Python 3.12",
+  "environment": "python3-12",
+  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "has_request_method": True,
   "has_requests_method": False,
   "id": "49d7d195-2296-43c0-8eab-84b0acd6e5bc",
@@ -318,8 +317,7 @@ Get the details of an experiment
   "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "maximum_idle_time": 300,
   "maximum_instances": 10,
-  "maximum_queue_size_batch": 100000,
-  "maximum_queue_size_express": 100,
+  "maximum_queue_size": 100000,
   "minimum_instances": 0,
   "name": "training-experiment",
   "request_retention_mode": "full",
@@ -409,7 +407,7 @@ A list of details of the experiments
 - `name`: Experiment name
 - `environment`: Environment of the experiment
 - `environment_display_name`: Human readable name of the environment
-- `status`: The status of the experiment 
+- `status`: The status of the experiment
 - `active_revision`: UUID of the active revision of the experiment
 - `latest_revision`: UUID of the latest revision of the experiment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
@@ -423,8 +421,8 @@ A list of details of the experiments
   {
     "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
     "name": "experiment_name_example_1",
-    "environment": "python3-8",
-    "environment_display_name": "Python 3.8",
+    "environment": "python3-12",
+    "environment_display_name": "Ubuntu 24.04 + Python 3.12",
     "status": "available",
     "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
     "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
@@ -437,8 +435,8 @@ A list of details of the experiments
   {
     "id": "536b4b33-b1db-4446-b07c-986806478654",
     "name": "experiment_name_example_2",
-    "environment": "python3-8",
-    "environment_display_name": "Python 3.7",
+    "environment": "python3-13",
+    "environment_display_name": "Ubuntu 24.04 + Python 3.13",
     "status": "available",
     "active_revision": "cd2244a7-5953-4d31-add8-e88cf5f4bb30",
     "latest_revision": "cd2244a7-5953-4d31-add8-e88cf5f4bb30",
@@ -576,8 +574,7 @@ The details of the experiment
     - *none* - the runs will not be stored
     - *metadata* - only the metadata of the runs will be stored
     - *full* - both the metadata and input/output of the runs will be stored
-- `maximum_queue_size_express`: Maximum number of queued express runs for all instances of this experiment
-- `maximum_queue_size_batch`: Maximum number of queued batch runs for all instances of this experiment
+- `maximum_queue_size`: Maximum number of queued runs for all instances of this experiment
 - `has_request_method`: Whether the latest revision of the experiment has a 'request' method
 - `has_requests_method`: Whether the latest revision of the experiment has a 'requests' method
 - `static_ip`: A boolean indicating whether the experiment should get a static IP
@@ -591,9 +588,9 @@ The details of the experiment
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
-  "description": "An experiment with Python 3.7",
-  "environment": "python3-8",
-  "environment_display_name": "Python 3.7",
+  "description": "An experiment with Python 3.13",
+  "environment": "python3-13",
+  "environment_display_name": "Ubuntu 24.04 + Python 3.13",
   "has_request_method": True,
   "has_requests_method": False,
   "id": "49d7d195-2296-43c0-8eab-84b0acd6e5bc",
@@ -605,8 +602,7 @@ The details of the experiment
   "latest_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
   "maximum_idle_time": 300,
   "maximum_instances": 10,
-  "maximum_queue_size_batch": 100000,
-  "maximum_queue_size_express": 100,
+  "maximum_queue_size": 100000,
   "minimum_instances": 0,
   "name": "training-experiment",
   "request_retention_mode": "full",
@@ -825,7 +821,7 @@ Details of the created run
 | Name                | Type                                                | Notes |
 |---------------------|-----------------------------------------------------|-------|
 | **project_name**    | **str**                                             |       |
-| **experiment_name** | **str**                                             |       | 
+| **experiment_name** | **str**                                             |       |
 | **data**            | [**ExperimentRunCreate**](./ExperimentRunCreate.md) |       |
 
 ### Return type
@@ -906,7 +902,7 @@ Helper function to delete an experiment run
 | Name                | Type                                                | Notes |
 |---------------------|-----------------------------------------------------|-------|
 | **project_name**    | **str**                                             |       |
-| **experiment_name** | **str**                                             |       | 
+| **experiment_name** | **str**                                             |       |
 | **run_id**          | **str**                                             |       |
 
 ### Return type
@@ -1061,7 +1057,7 @@ Get the details of an experiment run
 |---------------------|---------|-------|
 | **project_name**    | **str** |       |
 | **experiment_name** | **str** |       |
-| **run_id**          | **str** |       | 
+| **run_id**          | **str** |       |
 
 ### Return type
 

@@ -64,48 +64,15 @@ Details of the created user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+data = ubiops.UserPendingCreate() # UserPendingCreate
 
-    data = ubiops.UserPendingCreate() # UserPendingCreate
-
-    # Create a new user
-    api_response = core_api.user_create(data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    data = ubiops.UserPendingCreate() # UserPendingCreate
-
-    # Create a new user
-    api_response = core_api.user_create(data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create a new user
+api_response = core_api.user_create(data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -134,44 +101,13 @@ Delete the user that makes the request
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
 
-
-    # Delete user
-    core_api.user_delete()
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-
-    # Delete user
-    core_api.user_delete()
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete user
+core_api.user_delete()
+```
 
 ### Parameters
 

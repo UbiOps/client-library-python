@@ -7,6 +7,7 @@ Name | Type | Notes
 **pipelines** | **dict(str, object)** | [optional]
 **environment_variables** | **dict(str, object)** | [optional]
 **environments** | **dict(str, object)** | [optional]
+**services** | **dict(str, object)** | [optional]
 **description** | **str** | [optional]
 
 

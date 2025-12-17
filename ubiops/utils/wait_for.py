@@ -58,6 +58,9 @@ def _wait_for(
         if obj.status in FAILED_STATUSES:
             if not quiet:
                 print(flush=True)  # Close last \r
+
+            if hasattr(obj, "error_message"):
+                raise StatusError(f"{object_name}: {obj.status}: {obj.error_message}")
             raise StatusError(f"{object_name}: {obj.status}")
 
         # Handle timeout
@@ -114,6 +117,8 @@ def _wait_for_logs(
                     print(f"{object_name}: {obj.status}", flush=True)
                     return
                 if obj.status in FAILED_STATUSES:
+                    if hasattr(obj, "error_message"):
+                        raise StatusError(f"{object_name}: {obj.status}: {obj.error_message}")
                     raise StatusError(f"{object_name}: {obj.status}")
 
         elif obj.status in SUCCESS_STATUSES + FAILED_STATUSES:
@@ -143,12 +148,17 @@ def _wait_for_logs(
 
             if time.time() - retrieve_time > NO_LOGS_MESSAGE_SECONDS:
                 print(
-                    "No logs have been received for the last %.0f seconds" % (time.time() - retrieve_time), flush=True
+                    "No logs have been received for the last %.0f seconds" % (time.time() - retrieve_time),
+                    flush=True,
                 )
 
             # Handle timeout
             if time.time() - waiting_start_time > timeout:
-                raise ApiException(status=504, reason=f"{object_name} Timeout", body="Timeout was reached")
+                raise ApiException(
+                    status=504,
+                    reason=f"{object_name} Timeout",
+                    body="Timeout was reached",
+                )
 
             time.sleep(3)
 
@@ -425,6 +435,8 @@ def _wait_for_logs_pipeline_request(
             print(f"{object_name}: {request_details.status}", flush=True)
             return
         if request_details.status in FAILED_STATUSES:
+            if hasattr(request_details, "error_message"):
+                raise StatusError(f"{object_name}: {request_details.status}: {request_details.error_message}")
             raise StatusError(f"{object_name}: {request_details.status}")
 
         # We are not waiting for any deployment request in this iteration, just waiting for the pipeline request status

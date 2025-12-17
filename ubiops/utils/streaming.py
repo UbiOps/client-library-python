@@ -6,7 +6,14 @@ from ubiops.models import DeploymentRequestCreateResponse, PipelineRequestCreate
 
 
 def stream_request(
-    client, project_name, reference_type, reference_name, version=None, data=None, timeout=3600, full_response=False
+    client,
+    project_name,
+    reference_type,
+    reference_name,
+    version=None,
+    data=None,
+    timeout=3600,
+    full_response=False,
 ):
     """
     Create a streaming request to a deployment or pipeline version
@@ -81,7 +88,13 @@ def stream_request(
 
 
 def stream_deployment_request(
-    client, project_name, deployment_name, version=None, data=None, timeout=3600, full_response=False
+    client,
+    project_name,
+    deployment_name,
+    version=None,
+    data=None,
+    timeout=3600,
+    full_response=False,
 ):
     """
     Create a streaming request to a deployment version
@@ -110,7 +123,13 @@ def stream_deployment_request(
 
 
 def stream_pipeline_request(
-    client, project_name, pipeline_name, version=None, data=None, timeout=7200, full_response=False
+    client,
+    project_name,
+    pipeline_name,
+    version=None,
+    data=None,
+    timeout=7200,
+    full_response=False,
 ):
     """
     Create a streaming request to a pipeline version

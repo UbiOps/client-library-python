@@ -7,6 +7,7 @@ from .file_operations import (
     upload_files,
 )
 from .metrics.metric_client import MetricClient
+from .package_operations import zip_dir, files_present_in_dir
 from .run_local import run_local
 from .streaming import stream_deployment_request, stream_pipeline_request
 from .validate import validate_requirements_file, validate_yaml_file

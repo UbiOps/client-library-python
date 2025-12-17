@@ -77,50 +77,16 @@ Details of the created metric
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.MetricCreate() # MetricCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.MetricCreate() # MetricCreate
-
-    # Create metrics
-    api_response = core_api.metrics_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.MetricCreate() # MetricCreate
-
-    # Create metrics
-    api_response = core_api.metrics_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create metrics
+api_response = core_api.metrics_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -150,48 +116,15 @@ Delete a metric. Only custom metrics can be deleted.
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+metric_name = 'metric_name_example' # str
 
-    project_name = 'project_name_example' # str
-    metric_name = 'metric_name_example' # str
-
-    # Delete metric
-    core_api.metrics_delete(project_name, metric_name)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    metric_name = 'metric_name_example' # str
-
-    # Delete metric
-    core_api.metrics_delete(project_name, metric_name)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete metric
+core_api.metrics_delete(project_name, metric_name)
+```
 
 ### Parameters
 
@@ -250,50 +183,16 @@ Details of a metric
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+metric_name = 'metric_name_example' # str
 
-    project_name = 'project_name_example' # str
-    metric_name = 'metric_name_example' # str
-
-    # Get metric
-    api_response = core_api.metrics_get(project_name, metric_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    metric_name = 'metric_name_example' # str
-
-    # Get metric
-    api_response = core_api.metrics_get(project_name, metric_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get metric
+api_response = core_api.metrics_get(project_name, metric_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -369,50 +268,16 @@ A list of details of metrics
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+custom = True # bool (optional)
 
-    project_name = 'project_name_example' # str
-    custom = True # bool (optional)
-
-    # List metrics
-    api_response = core_api.metrics_list(project_name, custom=custom)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    custom = True # bool (optional)
-
-    # List metrics
-    api_response = core_api.metrics_list(project_name, custom=custom)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List metrics
+api_response = core_api.metrics_list(project_name, custom=custom)
+print(api_response)
+```
 
 ### Parameters
 
@@ -486,52 +351,17 @@ Details of the updated metric
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+metric_name = 'metric_name_example' # str
+data = ubiops.MetricUpdate() # MetricUpdate
 
-    project_name = 'project_name_example' # str
-    metric_name = 'metric_name_example' # str
-    data = ubiops.MetricUpdate() # MetricUpdate
-
-    # Update metric
-    api_response = core_api.metrics_update(project_name, metric_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    metric_name = 'metric_name_example' # str
-    data = ubiops.MetricUpdate() # MetricUpdate
-
-    # Update metric
-    api_response = core_api.metrics_update(project_name, metric_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update metric
+api_response = core_api.metrics_update(project_name, metric_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -591,50 +421,16 @@ Aggregate metric data for given date, metrics and labels. Only data up to 2 minu
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.TimeSeriesDataCreate() # TimeSeriesDataCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.TimeSeriesDataCreate() # TimeSeriesDataCreate
-
-    # Aggregate metric data
-    api_response = core_api.time_series_data_aggregate(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.TimeSeriesDataCreate() # TimeSeriesDataCreate
-
-    # Aggregate metric data
-    api_response = core_api.time_series_data_aggregate(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Aggregate metric data
+api_response = core_api.time_series_data_aggregate(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -693,50 +489,16 @@ Insert data points for a metric. Multiple metrics for different types is support
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.TimeSeriesDataCreate() # TimeSeriesDataCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.TimeSeriesDataCreate() # TimeSeriesDataCreate
-
-    # Create metric data
-    api_response = core_api.time_series_data_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.TimeSeriesDataCreate() # TimeSeriesDataCreate
-
-    # Create metric data
-    api_response = core_api.time_series_data_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create metric data
+api_response = core_api.time_series_data_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -773,10 +535,8 @@ Available metrics for deployments:
 - `deployments.output_volume`: Volume of outgoing data in bytes
 - `deployments.network_in`: Volume of inbound data traffic in bytes
 - `deployments.network_out`: Volume of outbound data traffic in bytes
-- `deployments.express_queue_size`: Average number of queued express requests
-- `deployments.batch_queue_size`: Average number of queued batch requests
-- `deployments.express_queue_time`: Average time in seconds for an express request to start processing
-- `deployments.batch_queue_time`: Average time in seconds for a batch request to start processing
+- `deployments.queue_size`: Average number of queued requests
+- `deployments.queue_time`: Average time in seconds for a request to start processing
 - `deployments.memory_utilization`: Average memory used during a request
 - `deployments.instances`: Number of active deployment instances
 - `deployments.credits`: Usage of credits, calculated by multiplying the credit rate of a deployment instance type by the number of hours the deployments are running
@@ -867,60 +627,21 @@ With aggregation period 3600, to get the credits usage of a deployment version p
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+metric = 'metric_example' # str (optional)
+start_date = 'start_date_example' # str (optional)
+end_date = 'end_date_example' # str (optional)
+aggregation_period = 56 # int (optional)
+labels = "label1:value1,label2:value2" # str (optional)
+unit_period = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    metric = 'metric_example' # str (optional)
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    aggregation_period = 56 # int (optional)
-    labels = "label1:value1,label2:value2" # str (optional)
-    unit_period = 56 # int (optional)
-
-    # List time series data
-    api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    metric = 'metric_example' # str (optional)
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    aggregation_period = 56 # int (optional)
-    labels = "label1:value1,label2:value2" # str (optional)
-    unit_period = 56 # int (optional)
-
-    # List time series data
-    api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List time series data
+api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
+print(api_response)
+```
 
 ### Parameters
 
@@ -955,48 +676,15 @@ Delete a time series
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+time_series_id = 'time_series_id_example' # str
 
-    project_name = 'project_name_example' # str
-    time_series_id = 'time_series_id_example' # str
-
-    # Delete time series
-    core_api.time_series_delete(project_name, time_series_id)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    time_series_id = 'time_series_id_example' # str
-
-    # Delete time series
-    core_api.time_series_delete(project_name, time_series_id)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete time series
+core_api.time_series_delete(project_name, time_series_id)
+```
 
 ### Parameters
 
@@ -1057,60 +745,21 @@ A list of time series
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+metric = 'metric_example' # str (optional)
+labels = "label1:value1,label2:value2" # str (optional)
+custom = True # bool (optional)
+exact_match = True # bool (optional)
+limit = 56 # int (optional)
+offset = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    metric = 'metric_example' # str (optional)
-    labels = "label1:value1,label2:value2" # str (optional)
-    custom = True # bool (optional)
-    exact_match = True # bool (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-
-    # Search time series
-    api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match, limit=limit, offset=offset)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    metric = 'metric_example' # str (optional)
-    labels = "label1:value1,label2:value2" # str (optional)
-    custom = True # bool (optional)
-    exact_match = True # bool (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-
-    # Search time series
-    api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match, limit=limit, offset=offset)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Search time series
+api_response = core_api.time_series_search(project_name, metric=metric, labels=labels, custom=custom, exact_match=exact_match, limit=limit, offset=offset)
+print(api_response)
+```
 
 ### Parameters
 

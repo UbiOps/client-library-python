@@ -12,7 +12,9 @@ Method | HTTP request | Description
 [**deployment_requests_create**](./DeploymentRequests.md#deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests | Create a direct deployment request
 [**deployment_requests_delete**](./DeploymentRequests.md#deployment_requests_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Delete a deployment request
 [**deployment_requests_get**](./DeploymentRequests.md#deployment_requests_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Get a deployment request
+[**deployment_requests_input_get**](./DeploymentRequests.md#deployment_requests_input_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id}/input | Get a deployment request input
 [**deployment_requests_list**](./DeploymentRequests.md#deployment_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests | List deployment requests
+[**deployment_requests_output_get**](./DeploymentRequests.md#deployment_requests_output_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id}/output | Get a deployment request output
 [**deployment_requests_update**](./DeploymentRequests.md#deployment_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Update a deployment request
 [**deployment_version_requests_batch_cancel**](./DeploymentRequests.md#deployment_version_requests_batch_cancel) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/cancel | Delete multiple deployment version requests
 [**deployment_version_requests_batch_delete**](./DeploymentRequests.md#deployment_version_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/delete | Delete multiple deployment version requests
@@ -20,9 +22,10 @@ Method | HTTP request | Description
 [**deployment_version_requests_create**](./DeploymentRequests.md#deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | Create a direct deployment version request
 [**deployment_version_requests_delete**](./DeploymentRequests.md#deployment_version_requests_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Delete a deployment version request
 [**deployment_version_requests_get**](./DeploymentRequests.md#deployment_version_requests_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Get a deployment version request
+[**deployment_version_requests_input_get**](./DeploymentRequests.md#deployment_version_requests_input_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id}/input | Get a deployment request input
 [**deployment_version_requests_list**](./DeploymentRequests.md#deployment_version_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | List deployment version requests
+[**deployment_version_requests_output_get**](./DeploymentRequests.md#deployment_version_requests_output_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id}/output | Get a deployment request output
 [**deployment_version_requests_update**](./DeploymentRequests.md#deployment_version_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Update a deployment version request
-[**builds_get**](./Deployments.md#builds_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Get build
 [**deployment_audit_events_list**](./Deployments.md#deployment_audit_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/audit | List audit events for a deployment
 [**deployment_environment_variables_copy**](./Deployments.md#deployment_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/copy-environment-variables | Copy deployment environment variable
 [**deployment_environment_variables_create**](./Deployments.md#deployment_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/environment-variables | Create deployment environment variable
@@ -134,16 +137,22 @@ Method | HTTP request | Description
 [**pipeline_requests_create**](./PipelineRequests.md#pipeline_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/requests | Create a pipeline request
 [**pipeline_requests_delete**](./PipelineRequests.md#pipeline_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Delete a pipeline request
 [**pipeline_requests_get**](./PipelineRequests.md#pipeline_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Get a pipeline request
+[**pipeline_requests_input_get**](./PipelineRequests.md#pipeline_requests_input_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id}/input | Get a pipeline request input
 [**pipeline_requests_list**](./PipelineRequests.md#pipeline_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests | List pipeline requests
+[**pipeline_requests_output_get**](./PipelineRequests.md#pipeline_requests_output_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id}/output | Get a pipeline request output
 [**pipeline_requests_update**](./PipelineRequests.md#pipeline_requests_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/requests/{request_id} | Update a pipeline request
 [**pipeline_version_object_requests_get**](./PipelineRequests.md#pipeline_version_object_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id} | Get an operator request
+[**pipeline_version_object_requests_input_get**](./PipelineRequests.md#pipeline_version_object_requests_input_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id}/input | Get an operator request input
+[**pipeline_version_object_requests_output_get**](./PipelineRequests.md#pipeline_version_object_requests_output_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/object-requests/{request_id}/output | Get an operator request output
 [**pipeline_version_requests_batch_cancel**](./PipelineRequests.md#pipeline_version_requests_batch_cancel) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/cancel | Cancel multiple pipeline version requests
 [**pipeline_version_requests_batch_delete**](./PipelineRequests.md#pipeline_version_requests_batch_delete) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/delete | Delete multiple pipeline version requests
 [**pipeline_version_requests_batch_get**](./PipelineRequests.md#pipeline_version_requests_batch_get) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/collect | Retrieve multiple pipeline version requests
 [**pipeline_version_requests_create**](./PipelineRequests.md#pipeline_version_requests_create) | **POST** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | Create a pipeline version request
 [**pipeline_version_requests_delete**](./PipelineRequests.md#pipeline_version_requests_delete) | **DELETE** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Delete a pipeline version request
 [**pipeline_version_requests_get**](./PipelineRequests.md#pipeline_version_requests_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Get a pipeline version request
+[**pipeline_version_requests_input_get**](./PipelineRequests.md#pipeline_version_requests_input_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id}/input | Get a pipeline request input
 [**pipeline_version_requests_list**](./PipelineRequests.md#pipeline_version_requests_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests | List pipeline version requests
+[**pipeline_version_requests_output_get**](./PipelineRequests.md#pipeline_version_requests_output_get) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id}/output | Get a pipeline request output
 [**pipeline_version_requests_update**](./PipelineRequests.md#pipeline_version_requests_update) | **PATCH** /projects/{project_name}/pipelines/{pipeline_name}/versions/{version}/requests/{request_id} | Update a pipeline version request
 [**expressions_evaluate**](./Pipelines.md#expressions_evaluate) | **POST** /expressions/evaluate | Evaluate expression
 [**pipeline_audit_events_list**](./Pipelines.md#pipeline_audit_events_list) | **GET** /projects/{project_name}/pipelines/{pipeline_name}/audit | List audit events for a pipeline
@@ -200,6 +209,11 @@ Method | HTTP request | Description
 [**service_users_list**](./ServiceUsers.md#service_users_list) | **GET** /projects/{project_name}/service-users | List service users
 [**service_users_token**](./ServiceUsers.md#service_users_token) | **PUT** /projects/{project_name}/service-users/{service_user_id}/token | Reset the token of a service user
 [**service_users_update**](./ServiceUsers.md#service_users_update) | **PATCH** /projects/{project_name}/service-users/{service_user_id} | Update service user details
+[**services_create**](./Services.md#services_create) | **POST** /projects/{project_name}/services | Create service
+[**services_delete**](./Services.md#services_delete) | **DELETE** /projects/{project_name}/services/{service_name} | Delete service
+[**services_get**](./Services.md#services_get) | **GET** /projects/{project_name}/services/{service_name} | Get service
+[**services_list**](./Services.md#services_list) | **GET** /projects/{project_name}/services | List services
+[**services_update**](./Services.md#services_update) | **PATCH** /projects/{project_name}/services/{service_name} | Update service
 [**service_status**](./Status.md#service_status) | **GET** /status | Service status
 [**user_create**](./User.md#user_create) | **POST** /user | Create a new user
 [**user_delete**](./User.md#user_delete) | **DELETE** /user | Delete user
@@ -211,3 +225,41 @@ Method | HTTP request | Description
 [**webhooks_list**](./Webhooks.md#webhooks_list) | **GET** /projects/{project_name}/webhooks | List webhooks
 [**webhooks_update**](./Webhooks.md#webhooks_update) | **PATCH** /projects/{project_name}/webhooks/{webhook_name} | Update a webhook
 
+
+# Example
+
+- Use system environment variables
+    ```python
+    import ubiops
+
+    # Set environment variables
+    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    core_api = ubiops.CoreApi()
+
+    api_response = core_api.service_status()
+    print(api_response)
+
+    # Close the connection
+    core_api.api_client.close()
+    ```
+
+- Use authorization parameters
+    ```python
+    import ubiops
+
+    configuration = ubiops.Configuration()
+    # Configure API token authorization
+    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
+    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+    configuration.host = "https://api.ubiops.com/v2.1"
+
+    api_client = ubiops.ApiClient(configuration)
+    core_api = ubiops.CoreApi(api_client)
+
+    api_response = core_api.service_status()
+    print(api_response)
+
+    # Close the connection
+    api_client.close()
+    ```

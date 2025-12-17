@@ -4,6 +4,9 @@
 Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** |
+**time_created** | **datetime** | [optional]
+**time_started** | **datetime** | [optional]
+**time_completed** | **datetime** | [optional]
 **pipeline_object** | **str** | [optional]
 **deployment** | **str** | [optional]
 **version** | **str** | [optional]

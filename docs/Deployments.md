@@ -4,7 +4,6 @@ All URIs are relative to *https://api.ubiops.com/v2.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**builds_get**](./Deployments.md#builds_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/builds/{build_id} | Get build
 [**deployment_audit_events_list**](./Deployments.md#deployment_audit_events_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/audit | List audit events for a deployment
 [**deployment_environment_variables_copy**](./Deployments.md#deployment_environment_variables_copy) | **POST** /projects/{project_name}/deployments/{deployment_name}/copy-environment-variables | Copy deployment environment variable
 [**deployment_environment_variables_create**](./Deployments.md#deployment_environment_variables_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/environment-variables | Create deployment environment variable
@@ -35,112 +34,6 @@ Method | HTTP request | Description
 [**revisions_rebuild**](./Deployments.md#revisions_rebuild) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/rebuild | Rebuild revision
 [**template_deployments_list**](./Deployments.md#template_deployments_list) | **GET** /template-deployments | List template deployments
 
-
-# **builds_get**
-> BuildList builds_get(project_name, build_id, deployment_name, version)
-
-Get build
-
-## Description
-Retrieve details of a single build of a version
-
-### Response Structure
-A dictionary containing details of the build
-
-- `id`: Unique identifier for the build (UUID)
-- `revision`: UUID of the revision to which the build is linked
-- `creation_date`: The date when the build was created
-- `status`: Status of the build. Can be 'queued', 'building', 'validating', 'success' or 'failed'.
-- `error_message`: Error message which explains why the build has failed. It is empty if the build is successful.
-- `trigger`: Action that triggered the build
-- `has_request_method`: Whether the build has a 'request' method
-- `has_requests_method`: Whether the build has a 'requests' method
-
-## Response Examples
-
-```
-{
-  "id": "49d857fd-39ca-48db-9547-0d5d1a91b62d",
-  "revision": "7ead8a18-c1d2-4751-80d2-d8e0e0e2fed6",
-  "creation_date": "2020-12-23T16:15:11.200+00:00",
-  "status": "building",
-  "error_message": "",
-  "trigger": "Deployment file upload",
-  "has_request_method": true,
-  "has_requests_method": false
-}
-```
-
-### Example
-
-- Use system environment variables
-    ```python
-    import ubiops
-
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
-
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # Get build
-    api_response = core_api.builds_get(project_name, build_id, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # Get build
-    api_response = core_api.builds_get(project_name, build_id, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **build_id** | **str** | 
- **deployment_name** | **str** | 
- **version** | **str** | 
-
-### Return type
-
-[**BuildList**](./models/BuildList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
 
 # **deployment_audit_events_list**
 > list[AuditList] deployment_audit_events_list(project_name, deployment_name, action=action, limit=limit, offset=offset)
@@ -195,56 +88,19 @@ A list of details of the audit events for a deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+action = 'action_example' # str (optional)
+limit = 56 # int (optional)
+offset = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    action = 'action_example' # str (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-
-    # List audit events for a deployment
-    api_response = core_api.deployment_audit_events_list(project_name, deployment_name, action=action, limit=limit, offset=offset)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    action = 'action_example' # str (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-
-    # List audit events for a deployment
-    api_response = core_api.deployment_audit_events_list(project_name, deployment_name, action=action, limit=limit, offset=offset)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List audit events for a deployment
+api_response = core_api.deployment_audit_events_list(project_name, deployment_name, action=action, limit=limit, offset=offset)
+print(api_response)
+```
 
 ### Parameters
 
@@ -344,52 +200,17 @@ A list of the copied variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ubiops.EnvironmentVariableCopy() # EnvironmentVariableCopy
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.EnvironmentVariableCopy() # EnvironmentVariableCopy
-
-    # Copy deployment environment variable
-    api_response = core_api.deployment_environment_variables_copy(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.EnvironmentVariableCopy() # EnvironmentVariableCopy
-
-    # Copy deployment environment variable
-    api_response = core_api.deployment_environment_variables_copy(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Copy deployment environment variable
+api_response = core_api.deployment_environment_variables_copy(project_name, deployment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -455,52 +276,17 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Create deployment environment variable
-    api_response = core_api.deployment_environment_variables_create(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Create deployment environment variable
-    api_response = core_api.deployment_environment_variables_create(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create deployment environment variable
+api_response = core_api.deployment_environment_variables_create(project_name, deployment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -531,50 +317,16 @@ Delete an environment variable of the deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+id = 'id_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-
-    # Delete deployment environment variable
-    core_api.deployment_environment_variables_delete(project_name, deployment_name, id)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-
-    # Delete deployment environment variable
-    core_api.deployment_environment_variables_delete(project_name, deployment_name, id)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete deployment environment variable
+core_api.deployment_environment_variables_delete(project_name, deployment_name, id)
+```
 
 ### Parameters
 
@@ -626,52 +378,17 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+id = 'id_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-
-    # Get deployment environment variable
-    api_response = core_api.deployment_environment_variables_get(project_name, deployment_name, id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-
-    # Get deployment environment variable
-    api_response = core_api.deployment_environment_variables_get(project_name, deployment_name, id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get deployment environment variable
+api_response = core_api.deployment_environment_variables_get(project_name, deployment_name, id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -735,50 +452,16 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-
-    # List deployment environment variables
-    api_response = core_api.deployment_environment_variables_list(project_name, deployment_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-
-    # List deployment environment variables
-    api_response = core_api.deployment_environment_variables_list(project_name, deployment_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List deployment environment variables
+api_response = core_api.deployment_environment_variables_list(project_name, deployment_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -843,54 +526,18 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+id = 'id_example' # str
+data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Update deployment environment variable
-    api_response = core_api.deployment_environment_variables_update(project_name, deployment_name, id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Update deployment environment variable
-    api_response = core_api.deployment_environment_variables_update(project_name, deployment_name, id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update deployment environment variable
+api_response = core_api.deployment_environment_variables_update(project_name, deployment_name, id, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -989,54 +636,18 @@ A list of the copied variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = ubiops.EnvironmentVariableCopy() # EnvironmentVariableCopy
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ubiops.EnvironmentVariableCopy() # EnvironmentVariableCopy
-
-    # Copy deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_copy(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ubiops.EnvironmentVariableCopy() # EnvironmentVariableCopy
-
-    # Copy deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_copy(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Copy deployment version environment variable
+api_response = core_api.deployment_version_environment_variables_copy(project_name, deployment_name, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1103,54 +714,18 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Create deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_create(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Create deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_create(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create deployment version environment variable
+api_response = core_api.deployment_version_environment_variables_create(project_name, deployment_name, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1182,52 +757,17 @@ Delete an environment variable of a deployment version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+id = 'id_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    version = 'version_example' # str
-
-    # Delete deployment version environment variable
-    core_api.deployment_version_environment_variables_delete(project_name, deployment_name, id, version)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    version = 'version_example' # str
-
-    # Delete deployment version environment variable
-    core_api.deployment_version_environment_variables_delete(project_name, deployment_name, id, version)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete deployment version environment variable
+core_api.deployment_version_environment_variables_delete(project_name, deployment_name, id, version)
+```
 
 ### Parameters
 
@@ -1280,54 +820,18 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+id = 'id_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    version = 'version_example' # str
-
-    # Get deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_get(project_name, deployment_name, id, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    version = 'version_example' # str
-
-    # Get deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_get(project_name, deployment_name, id, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get deployment version environment variable
+api_response = core_api.deployment_version_environment_variables_get(project_name, deployment_name, id, version)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1400,52 +904,17 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # List deployment version environment variables
-    api_response = core_api.deployment_version_environment_variables_list(project_name, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # List deployment version environment variables
-    api_response = core_api.deployment_version_environment_variables_list(project_name, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List deployment version environment variables
+api_response = core_api.deployment_version_environment_variables_list(project_name, deployment_name, version)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1511,56 +980,19 @@ A list of variables described by the following fields:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+id = 'id_example' # str
+version = 'version_example' # str
+data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    version = 'version_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Update deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_update(project_name, deployment_name, id, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    id = 'id_example' # str
-    version = 'version_example' # str
-    data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
-
-    # Update deployment version environment variable
-    api_response = core_api.deployment_version_environment_variables_update(project_name, deployment_name, id, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update deployment version environment variable
+api_response = core_api.deployment_version_environment_variables_update(project_name, deployment_name, id, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1611,8 +1043,7 @@ Create a version for a deployment. The first version of a deployment is set as d
     - *none* - the requests will not be stored
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
-- `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
-- `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.
 - `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`.
@@ -1695,8 +1126,7 @@ Details of the created version
 - `last_updated`: The date when the version was last updated
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
-- `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
-- `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `has_request_method`: Whether the latest revision of the version has a 'request' method
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
@@ -1733,8 +1163,7 @@ Details of the created version
   "last_file_upload": null,
   "request_retention_time": 604800,
   "request_retention_mode": "full",
-  "maximum_queue_size_express": 100,
-  "maximum_queue_size_batch": 100000,
+  "maximum_queue_size": 100000,
   "has_request_method": null,
   "has_requests_method": null,
   "static_ip": false,
@@ -1747,52 +1176,17 @@ Details of the created version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ubiops.DeploymentVersionCreate() # DeploymentVersionCreate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.DeploymentVersionCreate() # DeploymentVersionCreate
-
-    # Create deployment versions
-    api_response = core_api.deployment_versions_create(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.DeploymentVersionCreate() # DeploymentVersionCreate
-
-    # Create deployment versions
-    api_response = core_api.deployment_versions_create(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create deployment versions
+api_response = core_api.deployment_versions_create(project_name, deployment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1825,50 +1219,16 @@ Delete a deployment version. The version cannot be deleted if:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # Delete deployment version
-    core_api.deployment_versions_delete(project_name, deployment_name, version)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # Delete deployment version
-    core_api.deployment_versions_delete(project_name, deployment_name, version)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete deployment version
+core_api.deployment_versions_delete(project_name, deployment_name, version)
+```
 
 ### Parameters
 
@@ -1925,8 +1285,7 @@ Details of a version
     - *none* - the requests will not be stored
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
-- `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
-- `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `has_request_method`: Whether the latest revision of the version has a 'request' method
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
@@ -1963,8 +1322,7 @@ Details of a version
   "last_file_uploaded": "2020-06-21T09:03:01.875391Z",
   "request_retention_time": 604800,
   "request_retention_mode": "full",
-  "maximum_queue_size_express": 100,
-  "maximum_queue_size_batch": 100000,
+  "maximum_queue_size": 100000,
   "has_request_method": true,
   "has_requests_method": false,
   "static_ip": false,
@@ -1977,52 +1335,17 @@ Details of a version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # Get deployment version
-    api_response = core_api.deployment_versions_get(project_name, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # Get deployment version
-    api_response = core_api.deployment_versions_get(project_name, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get deployment version
+api_response = core_api.deployment_versions_get(project_name, deployment_name, version)
+print(api_response)
+```
 
 ### Parameters
 
@@ -2079,8 +1402,7 @@ A list of details of the versions
     - *none* - the requests will not be stored
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
-- `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
-- `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: A list of ports to open up in the deployment
@@ -2098,7 +1420,7 @@ A list of details of the versions
     "default": true,
     "description": "",
     "environment": "python3-12",
-    "environment_display_name": "Python 3.12",
+    "environment_display_name": "Ubuntu 24.04 + Python 3.12",
     "status": "available",
     "active_revision": "da27ef7c-aa3f-4963-a815-6ebf1865638e",
     "latest_revision": "0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75",
@@ -2112,8 +1434,7 @@ A list of details of the versions
     "last_updated": "2020-06-19T10:52:23.124784Z",
     "request_retention_time": 604800,
     "request_retention_mode": "full",
-    "maximum_queue_size_express": 100,
-    "maximum_queue_size_batch": 100000,
+    "maximum_queue_size": 100000,
     "static_ip": false,
     "restart_request_interruption": false,
     "ports": [],
@@ -2141,8 +1462,7 @@ A list of details of the versions
     "last_updated": "2020-06-22T18:04:76.123754Z",
     "request_retention_time": 86400,
     "request_retention_mode": "metadata",
-    "maximum_queue_size_express": 100,
-    "maximum_queue_size_batch": 100000,
+    "maximum_queue_size": 100000,
     "static_ip": true,
     "restart_request_interruption": false,
     "ports": [],
@@ -2154,52 +1474,17 @@ A list of details of the versions
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+labels = "label1:value1,label2:value2" # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-
-    # List deployment versions
-    api_response = core_api.deployment_versions_list(project_name, deployment_name, labels=labels)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-
-    # List deployment versions
-    api_response = core_api.deployment_versions_list(project_name, deployment_name, labels=labels)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List deployment versions
+api_response = core_api.deployment_versions_list(project_name, deployment_name, labels=labels)
+print(api_response)
+```
 
 ### Parameters
 
@@ -2244,8 +1529,7 @@ Update a version of a deployment in a project. All necessary fields are validate
     - *none* - the requests will not be stored
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
-- `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
-- `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `environment`: New environment for the version. It can be either a base or a custom environment.
@@ -2297,8 +1581,7 @@ Details of the updated version
 - `last_file_upload`: The date when a deployment file was last uploaded for the version
 - `request_retention_time`: Number of seconds to store requests to the version
 - `request_retention_mode`: Mode of request retention for requests to the version. It can be one of the following: *none*, *metadata* or *full*.
-- `maximum_queue_size_express`: Maximum number of queued express requests for all instances of this deployment version
-- `maximum_queue_size_batch`: Maximum number of queued batch requests for all instances of this deployment version
+- `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `has_request_method`: Whether the latest revision of the version has a 'request' method
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
@@ -2335,8 +1618,7 @@ Details of the updated version
   "last_file_uploaded": "2020-06-21T09:03:01.875391Z",
   "request_retention_time": 604800,
   "request_retention_mode": "full",
-  "maximum_queue_size_express": 100,
-  "maximum_queue_size_batch": 100000,
+  "maximum_queue_size": 100000,
   "has_request_method": true,
   "has_requests_method": false,
   "static_ip": false,
@@ -2349,54 +1631,18 @@ Details of the updated version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = ubiops.DeploymentVersionUpdate() # DeploymentVersionUpdate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ubiops.DeploymentVersionUpdate() # DeploymentVersionUpdate
-
-    # Update deployment version
-    api_response = core_api.deployment_versions_update(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ubiops.DeploymentVersionUpdate() # DeploymentVersionUpdate
-
-    # Update deployment version
-    api_response = core_api.deployment_versions_update(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update deployment version
+api_response = core_api.deployment_versions_update(project_name, deployment_name, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -2630,50 +1876,16 @@ Details of the created deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.DeploymentCreate() # DeploymentCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.DeploymentCreate() # DeploymentCreate
-
-    # Create deployments
-    api_response = core_api.deployments_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.DeploymentCreate() # DeploymentCreate
-
-    # Create deployments
-    api_response = core_api.deployments_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create deployments
+api_response = core_api.deployments_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -2703,48 +1915,15 @@ Delete a deployment. If any of the versions of the deployment are referenced in 
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-
-    # Delete a deployment
-    core_api.deployments_delete(project_name, deployment_name)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-
-    # Delete a deployment
-    core_api.deployments_delete(project_name, deployment_name)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a deployment
+core_api.deployments_delete(project_name, deployment_name)
+```
 
 ### Parameters
 
@@ -2830,50 +2009,16 @@ Details of a deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-
-    # Get details of a deployment
-    api_response = core_api.deployments_get(project_name, deployment_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-
-    # Get details of a deployment
-    api_response = core_api.deployments_get(project_name, deployment_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get details of a deployment
+api_response = core_api.deployments_get(project_name, deployment_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -2995,52 +2140,17 @@ A list of details of the deployments in the project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+labels = "label1:value1,label2:value2" # str (optional)
+supports_request_format = True # bool (optional)
 
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-    supports_request_format = True # bool (optional)
-
-    # List deployments
-    api_response = core_api.deployments_list(project_name, labels=labels, supports_request_format=supports_request_format)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-    supports_request_format = True # bool (optional)
-
-    # List deployments
-    api_response = core_api.deployments_list(project_name, labels=labels, supports_request_format=supports_request_format)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List deployments
+api_response = core_api.deployments_list(project_name, labels=labels, supports_request_format=supports_request_format)
+print(api_response)
+```
 
 ### Parameters
 
@@ -3146,52 +2256,17 @@ Details of the updated deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ubiops.DeploymentUpdate() # DeploymentUpdate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.DeploymentUpdate() # DeploymentUpdate
-
-    # Update a deployment
-    api_response = core_api.deployments_update(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ubiops.DeploymentUpdate() # DeploymentUpdate
-
-    # Update a deployment
-    api_response = core_api.deployments_update(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update a deployment
+api_response = core_api.deployments_update(project_name, deployment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -3226,62 +2301,22 @@ Download the deployment file of a revision of a version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+revision_id = 'revision_id_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    version = 'version_example' # str
+# Download deployment file
+with core_api.revisions_file_download(project_name, deployment_name, revision_id, version) as response:
+    filename = response.getfilename()
+    content = response.read()
 
-    # Download deployment file
-    with core_api.revisions_file_download(project_name, deployment_name, revision_id, version) as response:
-        filename = response.getfilename()
-        content = response.read()
-
-    # Or directly save the file in the current working directory using _preload_content=True
-    # output_path = core_api.revisions_file_download(project_name, deployment_name, revision_id, version, _preload_content=True)
-    
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    version = 'version_example' # str
-
-    # Download deployment file
-    with core_api.revisions_file_download(project_name, deployment_name, revision_id, version) as response:
-        filename = response.getfilename()
-        content = response.read()
-
-    # Or directly save the file in the current working directory using _preload_content=True
-    # output_path = core_api.revisions_file_download(project_name, deployment_name, revision_id, version, _preload_content=True)
-    
-    # Close the connection
-    api_client.close()
-    ```
-
+# Or directly save the file in the current working directory using _preload_content=True
+# output_path = core_api.revisions_file_download(project_name, deployment_name, revision_id, version, _preload_content=True)
+```
 
 ### Parameters
 
@@ -3331,60 +2366,21 @@ Either **file** or **source_deployment** and **source_version** must be provided
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+file = '/path/to/file' # file (optional)
+source_deployment = 'source_deployment_example' # str (optional)
+source_version = 'source_version_example' # str (optional)
+template_deployment_id = 'template_deployment_id_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    file = '/path/to/file' # file (optional)
-    source_deployment = 'source_deployment_example' # str (optional)
-    source_version = 'source_version_example' # str (optional)
-    template_deployment_id = 'template_deployment_id_example' # str (optional)
-
-    # Upload deployment file
-    api_response = core_api.revisions_file_upload(project_name, deployment_name, version, file=file, source_deployment=source_deployment, source_version=source_version, template_deployment_id=template_deployment_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    file = '/path/to/file' # file (optional)
-    source_deployment = 'source_deployment_example' # str (optional)
-    source_version = 'source_version_example' # str (optional)
-    template_deployment_id = 'template_deployment_id_example' # str (optional)
-
-    # Upload deployment file
-    api_response = core_api.revisions_file_upload(project_name, deployment_name, version, file=file, source_deployment=source_deployment, source_version=source_version, template_deployment_id=template_deployment_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Upload deployment file
+api_response = core_api.revisions_file_upload(project_name, deployment_name, version, file=file, source_deployment=source_deployment, source_version=source_version, template_deployment_id=template_deployment_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -3446,54 +2442,18 @@ A dictionary containing details of the revision
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+revision_id = 'revision_id_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    version = 'version_example' # str
-
-    # Get revision
-    api_response = core_api.revisions_get(project_name, deployment_name, revision_id, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    version = 'version_example' # str
-
-    # Get revision
-    api_response = core_api.revisions_get(project_name, deployment_name, revision_id, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get revision
+api_response = core_api.revisions_get(project_name, deployment_name, revision_id, version)
+print(api_response)
+```
 
 ### Parameters
 
@@ -3564,52 +2524,17 @@ A list of details of the revisions
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # List revisions
-    api_response = core_api.revisions_list(project_name, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-
-    # List revisions
-    api_response = core_api.revisions_list(project_name, deployment_name, version)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List revisions
+api_response = core_api.revisions_list(project_name, deployment_name, version)
+print(api_response)
+```
 
 ### Parameters
 
@@ -3667,56 +2592,19 @@ Details of the created revision
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+revision_id = 'revision_id_example' # str
+version = 'version_example' # str
+data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    version = 'version_example' # str
-    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
-
-    # Rebuild revision
-    api_response = core_api.revisions_rebuild(project_name, deployment_name, revision_id, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    version = 'version_example' # str
-    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
-
-    # Rebuild revision
-    api_response = core_api.revisions_rebuild(project_name, deployment_name, revision_id, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Rebuild revision
+api_response = core_api.revisions_rebuild(project_name, deployment_name, revision_id, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -3754,7 +2642,7 @@ Get the list of all available template deployments
 
 ## Response Examples
 
-```	
+```
 [
   {
     "id": "acb0c49a-23f8-4b04-94ed-a9c1a5a0119b",
@@ -3799,46 +2687,14 @@ Get the list of all available template deployments
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
 
-
-    # List template deployments
-    api_response = core_api.template_deployments_list()
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-
-    # List template deployments
-    api_response = core_api.template_deployments_list()
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List template deployments
+api_response = core_api.template_deployments_list()
+print(api_response)
+```
 
 ### Parameters
 

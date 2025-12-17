@@ -245,7 +245,7 @@ sure all logs are retrieved. Logs will be shown from environment creation time o
     environment_template = ubiops.EnvironmentCreate(
       name=environment_name,
       description="Environment Example",
-      base_environment="python3-10"
+      base_environment="python3-12"
     )
     core_api.environments_create(project_name, data=environment_template)
     response = core_api.environment_revisions_file_upload(project_name, environment_name, file='environment.zip')
@@ -281,7 +281,7 @@ sure all logs are retrieved. Logs will be shown from environment creation time o
     environment_template = ubiops.EnvironmentCreate(
       name=environment_name,
       description="Environment Example",
-      base_environment="python3-10"
+      base_environment="python3-12"
     )
     core_api.environments_create(project_name, data=environment_template)
     response = core_api.environment_revisions_file_upload(project_name, environment_name, file='environment.zip')
@@ -351,7 +351,7 @@ sure all logs are retrieved. Logs will be shown from revision creation time onwa
     environment_template = ubiops.EnvironmentCreate(
       name=environment_name,
       description="Environment Example",
-      base_environment="python3-10"
+      base_environment="python3-12"
     )
     core_api.environments_create(project_name, data=environment_template)
     response = core_api.environment_revisions_file_upload(project_name, environment_name, file='environment.zip')
@@ -387,7 +387,7 @@ sure all logs are retrieved. Logs will be shown from revision creation time onwa
     environment_template = ubiops.EnvironmentCreate(
       name=environment_name,
       description="Environment Example",
-      base_environment="python3-10"
+      base_environment="python3-12"
     )
     core_api.environments_create(project_name, data=environment_template)
     response = core_api.environment_revisions_file_upload(project_name, environment_name, file='environment.zip')

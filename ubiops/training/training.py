@@ -274,19 +274,7 @@ class Training(object):
         template_deployment_id, _ = self._get_template_deployment()
 
         # Create a deployment version from the specified environment
-        version_template = ubiops.DeploymentVersionCreate(
-            version=data.name,
-            environment=data.environment,
-            instance_type=data.instance_type,
-            instance_type_group_id=data.instance_type_group_id,
-            instance_type_group_name=data.instance_type_group_name,
-            maximum_instances=10,
-            minimum_instances=0,
-            description=data.description,
-            labels=data.labels,
-            request_retention_mode="full",
-            request_retention_time=31536000,
-        )
+        version_template = ubiops.DeploymentVersionCreate(version=data.name, **data.to_dict())
 
         try:
             # Create a deployment version under the default training deployment
@@ -629,13 +617,16 @@ class Training(object):
         if run_id is not None and not isinstance(run_id, str):
             raise ApiValueError("Parameter `run_id` must be a string")
 
-        return self.core_api.deployment_version_requests_delete(
-            project_name=project_name,
-            deployment_name=self.training_deployment_name,
-            version=experiment_name,
-            request_id=run_id,
-            **kwargs,
-        )
+        try:
+            return self.core_api.deployment_version_requests_delete(
+                project_name=project_name,
+                deployment_name=self.training_deployment_name,
+                version=experiment_name,
+                request_id=run_id,
+                **kwargs,
+            )
+        except ApiException as e:
+            raise self.wrap_exception(e)
 
     def experiment_runs_get(self, project_name, experiment_name, run_id, **kwargs):
         """
@@ -673,7 +664,7 @@ class Training(object):
             raise self.wrap_exception(e)
 
         # Only keep the 'created_by' field in the origin of the request
-        if hasattr(request, "origin") and type(request.origin) == dict and "created_by" in request.origin:
+        if hasattr(request, "origin") and isinstance(request.origin, dict) and "created_by" in request.origin:
             request.origin = {"created_by": request.origin["created_by"]}
 
         from ubiops.training.experiment_run_detail import ExperimentRunDetail

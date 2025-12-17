@@ -14,7 +14,7 @@ class Metric:
     def __init__(self, metric_name, labels, value):
         self.name = metric_name
         self.labels = labels
-        self.timestamp = datetime.datetime.utcnow()
+        self.timestamp = datetime.datetime.now(datetime.UTC)
         self.value = value
 
     @property
