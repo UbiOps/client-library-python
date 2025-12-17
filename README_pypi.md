@@ -47,3 +47,7 @@ Jupyter notebook examples can be found at https://github.com/UbiOps/client-libra
 
 ## License
 Ubiops is available under the Apache 2.0 license.
+
+## Attribution
+This software uses the library [gitignorefile](https://github.com/excitoon/gitignorefile) by Vladimir Chebotarev - see
+[license](https://github.com/UbiOps/client-library-python/blob/master/ubiops/utils/gitignorefile/LICENSE.md).

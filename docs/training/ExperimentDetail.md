@@ -22,8 +22,7 @@
 | **last_updated**                 | **datetime**       | [optional]            |
 | **request_retention_time**       | **int**            | [optional]            |
 | **request_retention_mode**       | **str**            |                       |
-| **maximum_queue_size_express**   | **int**            | [optional]            |
-| **maximum_queue_size_batch**     | **int**            | [optional]            |
+| **maximum_queue_size**           | **int**            | [optional]            |
 | **has_request_method**           | **bool**           | [optional] [readonly] |
 | **has_requests_method**          | **bool**           | [optional] [readonly] |
 | **static_ip**                    | **bool**           | [optional]            |

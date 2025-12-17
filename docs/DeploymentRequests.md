@@ -12,7 +12,9 @@ Method | HTTP request | Description
 [**deployment_requests_create**](./DeploymentRequests.md#deployment_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/requests | Create a direct deployment request
 [**deployment_requests_delete**](./DeploymentRequests.md#deployment_requests_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Delete a deployment request
 [**deployment_requests_get**](./DeploymentRequests.md#deployment_requests_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Get a deployment request
+[**deployment_requests_input_get**](./DeploymentRequests.md#deployment_requests_input_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id}/input | Get a deployment request input
 [**deployment_requests_list**](./DeploymentRequests.md#deployment_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests | List deployment requests
+[**deployment_requests_output_get**](./DeploymentRequests.md#deployment_requests_output_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id}/output | Get a deployment request output
 [**deployment_requests_update**](./DeploymentRequests.md#deployment_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/requests/{request_id} | Update a deployment request
 [**deployment_version_requests_batch_cancel**](./DeploymentRequests.md#deployment_version_requests_batch_cancel) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/cancel | Delete multiple deployment version requests
 [**deployment_version_requests_batch_delete**](./DeploymentRequests.md#deployment_version_requests_batch_delete) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/delete | Delete multiple deployment version requests
@@ -20,12 +22,14 @@ Method | HTTP request | Description
 [**deployment_version_requests_create**](./DeploymentRequests.md#deployment_version_requests_create) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | Create a direct deployment version request
 [**deployment_version_requests_delete**](./DeploymentRequests.md#deployment_version_requests_delete) | **DELETE** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Delete a deployment version request
 [**deployment_version_requests_get**](./DeploymentRequests.md#deployment_version_requests_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Get a deployment version request
+[**deployment_version_requests_input_get**](./DeploymentRequests.md#deployment_version_requests_input_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id}/input | Get a deployment request input
 [**deployment_version_requests_list**](./DeploymentRequests.md#deployment_version_requests_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests | List deployment version requests
+[**deployment_version_requests_output_get**](./DeploymentRequests.md#deployment_version_requests_output_get) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id}/output | Get a deployment request output
 [**deployment_version_requests_update**](./DeploymentRequests.md#deployment_version_requests_update) | **PATCH** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/requests/{request_id} | Update a deployment version request
 
 
 # **batch_deployment_requests_create**
-> list[DeploymentRequestBatchCreateResponse] batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
+> list[DeploymentRequestBatchCreateResponse] batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout, priority=priority)
 
 Create a batch deployment request
 
@@ -42,6 +46,7 @@ In case of plain input deployment: A list of strings. It is also possible to sen
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
+- `priority`: Priority level of the request. O: high priority, 1: standard priority.
 
 ## Request Examples
 Multiple structured batch deployment requests
@@ -101,54 +106,19 @@ A list of dictionaries containing the details of the created deployment requests
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
+timeout = 56 # int (optional)
+priority = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
-    timeout = 56 # int (optional)
-
-    # Create a batch deployment request
-    api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
-    timeout = 56 # int (optional)
-
-    # Create a batch deployment request
-    api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create a batch deployment request
+api_response = core_api.batch_deployment_requests_create(project_name, deployment_name, data, timeout=timeout, priority=priority)
+print(api_response)
+```
 
 ### Parameters
 
@@ -159,6 +129,7 @@ Name | Type | Notes
  **deployment_name** | **str** | 
  **data** | **list[str or dict()]** | 
  **timeout** | **int** | [optional] 
+ **priority** | **int** | [optional] 
 
 ### Return type
 
@@ -171,7 +142,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **batch_deployment_version_requests_create**
-> list[DeploymentRequestBatchCreateResponse] batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
+> list[DeploymentRequestBatchCreateResponse] batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, priority=priority)
 
 Create a batch deployment version request
 
@@ -188,6 +159,7 @@ In case of plain input deployment: A list of strings. It is also possible to sen
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the batch deployment request in seconds. The maximum allowed value is 172800 (48 hours) and the default value is 14400 (4 hours).
+- `priority`: Priority level of the request. O: high priority, 1: standard priority.
 
 ## Request Examples
 Multiple structured batch deployment requests
@@ -247,56 +219,20 @@ A list of dictionaries containing the details of the created deployment requests
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
+timeout = 56 # int (optional)
+priority = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
-    timeout = 56 # int (optional)
-
-    # Create a batch deployment version request
-    api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = [{'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'}] # list[str or dict()]
-    timeout = 56 # int (optional)
-
-    # Create a batch deployment version request
-    api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create a batch deployment version request
+api_response = core_api.batch_deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, priority=priority)
+print(api_response)
+```
 
 ### Parameters
 
@@ -308,6 +244,7 @@ Name | Type | Notes
  **version** | **str** | 
  **data** | **list[str or dict()]** | 
  **timeout** | **int** | [optional] 
+ **priority** | **int** | [optional] 
 
 ### Return type
 
@@ -340,54 +277,18 @@ A list of ids for the requests
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ['request_id_1', 'request_id_2'] # list[str]
+status = 'status_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-    status = 'status_example' # str (optional)
-
-    # Cancel multiple deployment requests
-    api_response = core_api.deployment_requests_batch_cancel(project_name, deployment_name, data, status=status)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-    status = 'status_example' # str (optional)
-
-    # Cancel multiple deployment requests
-    api_response = core_api.deployment_requests_batch_cancel(project_name, deployment_name, data, status=status)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Cancel multiple deployment requests
+api_response = core_api.deployment_requests_batch_cancel(project_name, deployment_name, data, status=status)
+print(api_response)
+```
 
 ### Parameters
 
@@ -428,52 +329,17 @@ A list of ids for the requests
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ['request_id_1', 'request_id_2'] # list[str]
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Delete multiple deployment requests
-    api_response = core_api.deployment_requests_batch_delete(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Delete multiple deployment requests
-    api_response = core_api.deployment_requests_batch_delete(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete multiple deployment requests
+api_response = core_api.deployment_requests_batch_delete(project_name, deployment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -523,11 +389,12 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `time_started`: Datetime when the request starts to be processed
 - `time_completed`: Datetime when the request is completed
 - `timeout`: Timeout in seconds for the request
-- `request_data`: Input of the request
-- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `request_data`: [DEPRECATED] Input of the request. This field is deprecated, use '/input' to download the input data of the request.
+- `result`: [DEPRECATED] Output of the request. It is set to null if the request is in pending/processing/failed statuses. This field is deprecated, use '/output' to download the result of the request.
 - `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `additional_data`: A dictionary containing the additional data about the request
 
 ## Response Examples
 
@@ -547,7 +414,8 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "result": null,
     "error_message": null,
     "input_size": 14,
-    "output_size": null
+    "output_size": null,
+    "additional_data": null
   },
   {
     "id": "85711124-54db-4794-b83d-24492247c6e1",
@@ -563,59 +431,25 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "result": null,
     "error_message": null,
     "input_size": 14,
-    "output_size": null
+    "output_size": null,
+    "additional_data": null
   }
 ]
 ```
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = ['request_id_1', 'request_id_2'] # list[str]
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Retrieve multiple deployment requests
-    api_response = core_api.deployment_requests_batch_get(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Retrieve multiple deployment requests
-    api_response = core_api.deployment_requests_batch_get(project_name, deployment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Retrieve multiple deployment requests
+api_response = core_api.deployment_requests_batch_get(project_name, deployment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -637,7 +471,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_requests_create**
-> DeploymentRequestCreateResponse deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
+> DeploymentRequestCreateResponse deployment_requests_create(project_name, deployment_name, data, timeout=timeout, priority=priority)
 
 Create a direct deployment request
 
@@ -652,6 +486,7 @@ The input for the request. In case of a structured deployment, this is a diction
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).
+- `priority`: Priority level of the request. O: high priority, 1: standard priority.
 
 ## Request Examples
 A structured deployment request
@@ -739,54 +574,19 @@ A successful deployment request
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+timeout = 56 # int (optional)
+priority = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
-    timeout = 56 # int (optional)
-
-    # Create a direct deployment request
-    api_response = core_api.deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
-    timeout = 56 # int (optional)
-
-    # Create a direct deployment request
-    api_response = core_api.deployment_requests_create(project_name, deployment_name, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create a direct deployment request
+api_response = core_api.deployment_requests_create(project_name, deployment_name, data, timeout=timeout, priority=priority)
+print(api_response)
+```
 
 ### Parameters
 
@@ -797,6 +597,7 @@ Name | Type | Notes
  **deployment_name** | **str** | 
  **data** | **str or dict()** | 
  **timeout** | **int** | [optional] 
+ **priority** | **int** | [optional] 
 
 ### Return type
 
@@ -818,50 +619,16 @@ Delete a deployment request for the default version of a deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-
-    # Delete a deployment request
-    core_api.deployment_requests_delete(project_name, deployment_name, request_id)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-
-    # Delete a deployment request
-    core_api.deployment_requests_delete(project_name, deployment_name, request_id)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a deployment request
+core_api.deployment_requests_delete(project_name, deployment_name, request_id)
+```
 
 ### Parameters
 
@@ -892,7 +659,7 @@ Get the details of a request for the default version of a deployment
 
 ### Optional Parameters
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
+- `metadata_only`: [DEPRECATED] A boolean value that indicates whether the response should include the request data and result, defaults to False
 
 ### Response Structure
 A dictionary containing the details of the deployment request with the following fields:
@@ -906,13 +673,14 @@ A dictionary containing the details of the deployment request with the following
 - `time_started`: Datetime when the request starts to be processed
 - `time_completed`: Datetime when the request is completed
 - `timeout`: Timeout in seconds for the request
-- `request_data`: Input of the request
-- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `request_data`: [DEPRECATED] Input of the request. This field is deprecated, use '/input' to download the input data of the request.
+- `result`: [DEPRECATED] Output of the request. It is set to null if the request is in pending/processing/failed statuses. This field is deprecated, use '/output' to download the result of the request.
 - `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
     - `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `additional_data`: A dictionary containing the additional data about the request
 
 ## Response Examples
 
@@ -934,60 +702,25 @@ A dictionary containing the details of the deployment request with the following
     "created_by": "my.example.user@ubiops.com"
   },
   "input_size": 14,
-  "output_size": null
+  "output_size": null,
+  "additional_data": null
 }
 ```
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+metadata_only = True # bool (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    metadata_only = True # bool (optional)
-
-    # Get a deployment request
-    api_response = core_api.deployment_requests_get(project_name, deployment_name, request_id, metadata_only=metadata_only)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    metadata_only = True # bool (optional)
-
-    # Get a deployment request
-    api_response = core_api.deployment_requests_get(project_name, deployment_name, request_id, metadata_only=metadata_only)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get a deployment request
+api_response = core_api.deployment_requests_get(project_name, deployment_name, request_id, metadata_only=metadata_only)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1002,6 +735,62 @@ Name | Type | Notes
 ### Return type
 
 [**DeploymentRequestSingleDetail**](./models/DeploymentRequestSingleDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **deployment_requests_input_get**
+> file deployment_requests_input_get(project_name, deployment_name, request_id)
+
+Get a deployment request input
+
+## Description
+Get the input of a request for the default version of a deployment
+
+### Response Structure
+Input of the deployment request as a file
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+
+# Get a deployment request input
+api_response = core_api.deployment_requests_input_get(project_name, deployment_name, request_id)
+
+# When your deployment supports request format, use:
+result = api_response.json()
+
+# For services, the input type can be anything depending on what your service does.
+# Use .json() for JSON response, .text for plain/text response, or handle the content of a file. Use
+# _request_stream=True to stream the content.
+with core_api.deployment_requests_input_get(project_name, deployment_name, request_id, _request_stream=True) as response:
+    filename = response.getfilename()
+    content = response.read()
+
+# Or directly save the file in the current working directory using _preload_content=True
+# output_path = core_api.deployment_requests_input_get(project_name, deployment_name, request_id, _preload_content=True)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **request_id** | **str** | 
+
+### Return type
+
+**file**
 
 ### Authorization
 
@@ -1075,62 +864,22 @@ A list of dictionaries containing the details of the deployment requests with th
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+status = 'status_example' # str (optional)
+limit = 56 # int (optional)
+offset = 56 # int (optional)
+start_date = 'start_date_example' # str (optional)
+end_date = 'end_date_example' # str (optional)
+search_id = 'search_id_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    status = 'status_example' # str (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    search_id = 'search_id_example' # str (optional)
-
-    # List deployment requests
-    api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    status = 'status_example' # str (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    search_id = 'search_id_example' # str (optional)
-
-    # List deployment requests
-    api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List deployment requests
+api_response = core_api.deployment_requests_list(project_name, deployment_name, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1149,6 +898,62 @@ Name | Type | Notes
 ### Return type
 
 [**list[DeploymentRequestList]**](./models/DeploymentRequestList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **deployment_requests_output_get**
+> file deployment_requests_output_get(project_name, deployment_name, request_id)
+
+Get a deployment request output
+
+## Description
+Get the output of a request for the default version of a deployment
+
+### Response Structure
+Output of the deployment request as a file
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+
+# Get a deployment request output
+api_response = core_api.deployment_requests_output_get(project_name, deployment_name, request_id)
+
+# When your deployment supports request format, use:
+result = api_response.json()
+
+# For services, the output type can be anything depending on what your service does.
+# Use .json() for JSON response, .text for plain/text response, or handle the content of a file. Use
+# _request_stream=True to stream the content.
+with core_api.deployment_requests_output_get(project_name, deployment_name, request_id, _request_stream=True) as response:
+    filename = response.getfilename()
+    content = response.read()
+
+# Or directly save the file in the current working directory using _preload_content=True
+# output_path = core_api.deployment_requests_output_get(project_name, deployment_name, request_id, _preload_content=True)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **request_id** | **str** | 
+
+### Return type
+
+**file**
 
 ### Authorization
 
@@ -1178,54 +983,18 @@ Cancel a deployment request for the default version of a deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+data = ubiops.DeploymentRequestUpdate() # DeploymentRequestUpdate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    data = ubiops.DeploymentRequestUpdate() # DeploymentRequestUpdate
-
-    # Update a deployment request
-    api_response = core_api.deployment_requests_update(project_name, deployment_name, request_id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    data = ubiops.DeploymentRequestUpdate() # DeploymentRequestUpdate
-
-    # Update a deployment request
-    api_response = core_api.deployment_requests_update(project_name, deployment_name, request_id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update a deployment request
+api_response = core_api.deployment_requests_update(project_name, deployment_name, request_id, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1268,56 +1037,19 @@ A list of ids for the requests
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = ['request_id_1', 'request_id_2'] # list[str]
+status = 'status_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-    status = 'status_example' # str (optional)
-
-    # Delete multiple deployment version requests
-    api_response = core_api.deployment_version_requests_batch_cancel(project_name, deployment_name, version, data, status=status)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-    status = 'status_example' # str (optional)
-
-    # Delete multiple deployment version requests
-    api_response = core_api.deployment_version_requests_batch_cancel(project_name, deployment_name, version, data, status=status)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete multiple deployment version requests
+api_response = core_api.deployment_version_requests_batch_cancel(project_name, deployment_name, version, data, status=status)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1359,54 +1091,18 @@ A list of ids for the requests
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = ['request_id_1', 'request_id_2'] # list[str]
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Delete multiple deployment version requests
-    api_response = core_api.deployment_version_requests_batch_delete(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Delete multiple deployment version requests
-    api_response = core_api.deployment_version_requests_batch_delete(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete multiple deployment version requests
+api_response = core_api.deployment_version_requests_batch_delete(project_name, deployment_name, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1457,11 +1153,12 @@ A list of dictionaries containing the details of the retrieved deployment reques
 - `time_started`: Datetime when the request starts to be processed
 - `time_completed`: Datetime when the request is completed
 - `timeout`: Timeout in seconds for the request
-- `request_data`: Input of the request
-- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `request_data`: [DEPRECATED] Input of the request. This field is deprecated, use '/input' to download the input data of the request.
+- `result`: [DEPRECATED] Output of the request. It is set to null if the request is in pending/processing/failed statuses. This field is deprecated, use '/output' to download the result of the request.
 - `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `additional_data`: A dictionary containing the additional data about the request
 
 ## Response Examples
 
@@ -1481,7 +1178,8 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "result": null,
     "error_message": null,
     "input_size": 14,
-    "output_size": null
+    "output_size": null,
+    "additional_data": null
   },
   {
     "id": "85711124-54db-4794-b83d-24492247c6e1",
@@ -1497,61 +1195,26 @@ A list of dictionaries containing the details of the retrieved deployment reques
     "result": null,
     "error_message": null,
     "input_size": 14,
-    "output_size": null
+    "output_size": null,
+    "additional_data": null
   }
 ]
 ```
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = ['request_id_1', 'request_id_2'] # list[str]
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Retrieve multiple deployment version requests
-    api_response = core_api.deployment_version_requests_batch_get(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = ['request_id_1', 'request_id_2'] # list[str]
-
-    # Retrieve multiple deployment version requests
-    api_response = core_api.deployment_version_requests_batch_get(project_name, deployment_name, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Retrieve multiple deployment version requests
+api_response = core_api.deployment_version_requests_batch_get(project_name, deployment_name, version, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1574,7 +1237,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **deployment_version_requests_create**
-> DeploymentRequestCreateResponse deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
+> DeploymentRequestCreateResponse deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, priority=priority)
 
 Create a direct deployment version request
 
@@ -1589,6 +1252,7 @@ The input for the request. In case of a structured deployment, this is a diction
 These parameters should be given as query parameters
 
 - `timeout`: Timeout for the deployment request in seconds. The maximum allowed value is 3600 (1 hour) and the default value is 300 (5 minutes).
+- `priority`: Priority level of the request. O: high priority, 1: standard priority.
 
 ## Request Examples
 A structured deployment request
@@ -1676,56 +1340,20 @@ A successful deployment request
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
+timeout = 56 # int (optional)
+priority = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
-    timeout = 56 # int (optional)
-
-    # Create a direct deployment version request
-    api_response = core_api.deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    data = {'input-field-1': 'input-value-1', 'input-field-2': 'input-value-2'} # str or dict()
-    timeout = 56 # int (optional)
-
-    # Create a direct deployment version request
-    api_response = core_api.deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create a direct deployment version request
+api_response = core_api.deployment_version_requests_create(project_name, deployment_name, version, data, timeout=timeout, priority=priority)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1737,6 +1365,7 @@ Name | Type | Notes
  **version** | **str** | 
  **data** | **str or dict()** | 
  **timeout** | **int** | [optional] 
+ **priority** | **int** | [optional] 
 
 ### Return type
 
@@ -1758,52 +1387,17 @@ Delete a deployment request for a deployment version
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+version = 'version_example' # str
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    version = 'version_example' # str
-
-    # Delete a deployment version request
-    core_api.deployment_version_requests_delete(project_name, deployment_name, request_id, version)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    version = 'version_example' # str
-
-    # Delete a deployment version request
-    core_api.deployment_version_requests_delete(project_name, deployment_name, request_id, version)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a deployment version request
+core_api.deployment_version_requests_delete(project_name, deployment_name, request_id, version)
+```
 
 ### Parameters
 
@@ -1835,7 +1429,7 @@ Get the details of a request for a deployment version
 
 ### Optional Parameters
 
-- `metadata_only`: A boolean value that indicates whether the response should include the request data and result, defaults to False
+- `metadata_only`: [DEPRECATED] A boolean value that indicates whether the response should include the request data and result, defaults to False
 
 ### Response Structure
 A dictionary containing the details of the deployment request with the following fields:
@@ -1849,13 +1443,14 @@ A dictionary containing the details of the deployment request with the following
 - `time_started`: Datetime when the request starts to be processed
 - `time_completed`: Datetime when the request is completed
 - `timeout`: Timeout in seconds for the request
-- `request_data`: Input of the request
-- `result`: Output of the request. It is set to null if the request is in pending/processing/failed statuses.
+- `request_data`: [DEPRECATED] Input of the request. This field is deprecated, use '/input' to download the input data of the request.
+- `result`: [DEPRECATED] Output of the request. It is set to null if the request is in pending/processing/failed statuses. This field is deprecated, use '/output' to download the result of the request.
 - `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
     - `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
+- `additional_data`: A dictionary containing the additional data about the request
 
 ## Response Examples
 
@@ -1877,62 +1472,26 @@ A dictionary containing the details of the deployment request with the following
     "created_by": "my.example.user@ubiops.com"
   },
   "input_size": 14,
-  "output_size": null
+  "output_size": null,
+  "additional_data": null
 }
 ```
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+version = 'version_example' # str
+metadata_only = True # bool (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    version = 'version_example' # str
-    metadata_only = True # bool (optional)
-
-    # Get a deployment version request
-    api_response = core_api.deployment_version_requests_get(project_name, deployment_name, request_id, version, metadata_only=metadata_only)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    version = 'version_example' # str
-    metadata_only = True # bool (optional)
-
-    # Get a deployment version request
-    api_response = core_api.deployment_version_requests_get(project_name, deployment_name, request_id, version, metadata_only=metadata_only)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get a deployment version request
+api_response = core_api.deployment_version_requests_get(project_name, deployment_name, request_id, version, metadata_only=metadata_only)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1948,6 +1507,64 @@ Name | Type | Notes
 ### Return type
 
 [**DeploymentRequestSingleDetail**](./models/DeploymentRequestSingleDetail.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **deployment_version_requests_input_get**
+> file deployment_version_requests_input_get(project_name, deployment_name, request_id, version)
+
+Get a deployment request input
+
+## Description
+Get the input of a request for a deployment version
+
+### Response Structure
+Input of the deployment request as a file
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+version = 'version_example' # str
+
+# Get a deployment request input
+api_response = core_api.deployment_version_requests_input_get(project_name, deployment_name, request_id, version)
+
+# When your deployment supports request format, use:
+result = api_response.json()
+
+# For services, the input type can be anything depending on what your service does.
+# Use .json() for JSON response, .text for plain/text response, or handle the content of a file. Use
+# _request_stream=True to stream the content.
+with core_api.deployment_version_requests_input_get(project_name, deployment_name, request_id, version, _request_stream=True) as response:
+    filename = response.getfilename()
+    content = response.read()
+
+# Or directly save the file in the current working directory using _preload_content=True
+# output_path = core_api.deployment_version_requests_input_get(project_name, deployment_name, request_id, version, _preload_content=True)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **request_id** | **str** | 
+ **version** | **str** | 
+
+### Return type
+
+**file**
 
 ### Authorization
 
@@ -2021,64 +1638,23 @@ A list of dictionaries containing the details of the deployment requests with th
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+version = 'version_example' # str
+status = 'status_example' # str (optional)
+limit = 56 # int (optional)
+offset = 56 # int (optional)
+start_date = 'start_date_example' # str (optional)
+end_date = 'end_date_example' # str (optional)
+search_id = 'search_id_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    status = 'status_example' # str (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    search_id = 'search_id_example' # str (optional)
-
-    # List deployment version requests
-    api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    version = 'version_example' # str
-    status = 'status_example' # str (optional)
-    limit = 56 # int (optional)
-    offset = 56 # int (optional)
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    search_id = 'search_id_example' # str (optional)
-
-    # List deployment version requests
-    api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List deployment version requests
+api_response = core_api.deployment_version_requests_list(project_name, deployment_name, version, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -2098,6 +1674,64 @@ Name | Type | Notes
 ### Return type
 
 [**list[DeploymentRequestList]**](./models/DeploymentRequestList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **deployment_version_requests_output_get**
+> file deployment_version_requests_output_get(project_name, deployment_name, request_id, version)
+
+Get a deployment request output
+
+## Description
+Get the output of a request for a deployment version
+
+### Response Structure
+Output of the deployment request as a file
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+version = 'version_example' # str
+
+# Get a deployment request output
+api_response = core_api.deployment_version_requests_output_get(project_name, deployment_name, request_id, version)
+
+# When your deployment supports request format, use:
+result = api_response.json()
+
+# For services, the output type can be anything depending on what your service does.
+# Use .json() for JSON response, .text for plain/text response, or handle the content of a file. Use
+# _request_stream=True to stream the content.
+with core_api.deployment_version_requests_output_get(project_name, deployment_name, request_id, version, _request_stream=True) as response:
+    filename = response.getfilename()
+    content = response.read()
+
+# Or directly save the file in the current working directory using _preload_content=True
+# output_path = core_api.deployment_version_requests_output_get(project_name, deployment_name, request_id, version, _preload_content=True)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **deployment_name** | **str** | 
+ **request_id** | **str** | 
+ **version** | **str** | 
+
+### Return type
+
+**file**
 
 ### Authorization
 
@@ -2127,56 +1761,19 @@ Cancel a deployment request for the default version of a deployment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+deployment_name = 'deployment_name_example' # str
+request_id = 'request_id_example' # str
+version = 'version_example' # str
+data = ubiops.DeploymentRequestUpdate() # DeploymentRequestUpdate
 
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    version = 'version_example' # str
-    data = ubiops.DeploymentRequestUpdate() # DeploymentRequestUpdate
-
-    # Update a deployment version request
-    api_response = core_api.deployment_version_requests_update(project_name, deployment_name, request_id, version, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    deployment_name = 'deployment_name_example' # str
-    request_id = 'request_id_example' # str
-    version = 'version_example' # str
-    data = ubiops.DeploymentRequestUpdate() # DeploymentRequestUpdate
-
-    # Update a deployment version request
-    api_response = core_api.deployment_version_requests_update(project_name, deployment_name, request_id, version, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update a deployment version request
+api_response = core_api.deployment_version_requests_update(project_name, deployment_name, request_id, version, data)
+print(api_response)
+```
 
 ### Parameters
 

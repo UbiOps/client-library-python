@@ -73,50 +73,16 @@ Details of the created service user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.ServiceUserCreate() # ServiceUserCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.ServiceUserCreate() # ServiceUserCreate
-
-    # Create a new service user
-    api_response = core_api.service_users_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.ServiceUserCreate() # ServiceUserCreate
-
-    # Create a new service user
-    api_response = core_api.service_users_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create a new service user
+api_response = core_api.service_users_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -146,48 +112,15 @@ Delete a service user from a project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+service_user_id = 'service_user_id_example' # str
 
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-
-    # Delete service user
-    core_api.service_users_delete(project_name, service_user_id)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-
-    # Delete service user
-    core_api.service_users_delete(project_name, service_user_id)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete service user
+core_api.service_users_delete(project_name, service_user_id)
+```
 
 ### Parameters
 
@@ -240,50 +173,16 @@ Details of the service user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+service_user_id = 'service_user_id_example' # str
 
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-
-    # Retrieve details of a service user
-    api_response = core_api.service_users_get(project_name, service_user_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-
-    # Retrieve details of a service user
-    api_response = core_api.service_users_get(project_name, service_user_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Retrieve details of a service user
+api_response = core_api.service_users_get(project_name, service_user_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -346,48 +245,15 @@ List of details of the service users:
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
 
-    project_name = 'project_name_example' # str
-
-    # List service users
-    api_response = core_api.service_users_list(project_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-
-    # List service users
-    api_response = core_api.service_users_list(project_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List service users
+api_response = core_api.service_users_list(project_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -431,52 +297,17 @@ Details of the new token for the service user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+service_user_id = 'service_user_id_example' # str
+data = None # empty dict or None (optional)
 
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-    data = None # empty dict or None (optional)
-
-    # Reset the token of a service user
-    api_response = core_api.service_users_token(project_name, service_user_id, data=data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-    data = None # empty dict or None (optional)
-
-    # Reset the token of a service user
-    api_response = core_api.service_users_token(project_name, service_user_id, data=data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Reset the token of a service user
+api_response = core_api.service_users_token(project_name, service_user_id, data=data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -555,52 +386,17 @@ Details of the updated service user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+service_user_id = 'service_user_id_example' # str
+data = ubiops.ServiceUserCreate() # ServiceUserCreate
 
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-    data = ubiops.ServiceUserCreate() # ServiceUserCreate
-
-    # Update service user details
-    api_response = core_api.service_users_update(project_name, service_user_id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    service_user_id = 'service_user_id_example' # str
-    data = ubiops.ServiceUserCreate() # ServiceUserCreate
-
-    # Update service user details
-    api_response = core_api.service_users_update(project_name, service_user_id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update service user details
+api_response = core_api.service_users_update(project_name, service_user_id, data)
+print(api_response)
+```
 
 ### Parameters
 

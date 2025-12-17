@@ -52,54 +52,18 @@ A list of details of the dependency files
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+build_id = 'build_id_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
 
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # List dependency files
-    api_response = core_api.environment_build_dependencies_list(project_name, build_id, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # List dependency files
-    api_response = core_api.environment_build_dependencies_list(project_name, build_id, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List dependency files
+api_response = core_api.environment_build_dependencies_list(project_name, build_id, environment_name, revision_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -156,54 +120,18 @@ Details of a build
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+build_id = 'build_id_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
 
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # Get build
-    api_response = core_api.environment_builds_get(project_name, build_id, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # Get build
-    api_response = core_api.environment_builds_get(project_name, build_id, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get build
+api_response = core_api.environment_builds_get(project_name, build_id, environment_name, revision_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -271,52 +199,17 @@ A list of details of the builds
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # List builds
-    api_response = core_api.environment_builds_list(project_name, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # List builds
-    api_response = core_api.environment_builds_list(project_name, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List builds
+api_response = core_api.environment_builds_list(project_name, environment_name, revision_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -384,56 +277,19 @@ Details of the cancelled build
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+build_id = 'build_id_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
+data = ubiops.EnvironmentBuildUpdate() # EnvironmentBuildUpdate
 
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    data = ubiops.EnvironmentBuildUpdate() # EnvironmentBuildUpdate
-
-    # Update build
-    api_response = core_api.environment_builds_update(project_name, build_id, environment_name, revision_id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    build_id = 'build_id_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    data = ubiops.EnvironmentBuildUpdate() # EnvironmentBuildUpdate
-
-    # Update build
-    api_response = core_api.environment_builds_update(project_name, build_id, environment_name, revision_id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update build
+api_response = core_api.environment_builds_update(project_name, build_id, environment_name, revision_id, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -470,60 +326,21 @@ Download the file of a revision of an environment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
+# Download environment file
+with core_api.environment_revisions_file_download(project_name, environment_name, revision_id) as response:
+    filename = response.getfilename()
+    content = response.read()
 
-    # Download environment file
-    with core_api.environment_revisions_file_download(project_name, environment_name, revision_id) as response:
-        filename = response.getfilename()
-        content = response.read()
-
-    # Or directly save the file in the current working directory using _preload_content=True
-    # output_path = core_api.environment_revisions_file_download(project_name, environment_name, revision_id, _preload_content=True)
-    
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # Download environment file
-    with core_api.environment_revisions_file_download(project_name, environment_name, revision_id) as response:
-        filename = response.getfilename()
-        content = response.read()
-
-    # Or directly save the file in the current working directory using _preload_content=True
-    # output_path = core_api.environment_revisions_file_download(project_name, environment_name, revision_id, _preload_content=True)
-    
-    # Close the connection
-    api_client.close()
-    ```
-
+# Or directly save the file in the current working directory using _preload_content=True
+# output_path = core_api.environment_revisions_file_download(project_name, environment_name, revision_id, _preload_content=True)
+```
 
 ### Parameters
 
@@ -569,54 +386,18 @@ Either **file** or **source_environment** must be provided.
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+file = '/path/to/file' # file (optional)
+source_environment = 'source_environment_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    file = '/path/to/file' # file (optional)
-    source_environment = 'source_environment_example' # str (optional)
-
-    # Upload environment file
-    api_response = core_api.environment_revisions_file_upload(project_name, environment_name, file=file, source_environment=source_environment)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    file = '/path/to/file' # file (optional)
-    source_environment = 'source_environment_example' # str (optional)
-
-    # Upload environment file
-    api_response = core_api.environment_revisions_file_upload(project_name, environment_name, file=file, source_environment=source_environment)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Upload environment file
+api_response = core_api.environment_revisions_file_upload(project_name, environment_name, file=file, source_environment=source_environment)
+print(api_response)
+```
 
 ### Parameters
 
@@ -669,52 +450,17 @@ Details of a revision
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # Get revision
-    api_response = core_api.environment_revisions_get(project_name, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-
-    # Get revision
-    api_response = core_api.environment_revisions_get(project_name, environment_name, revision_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get revision
+api_response = core_api.environment_revisions_get(project_name, environment_name, revision_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -775,50 +521,16 @@ A list of details of the revisions
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-
-    # List revisions
-    api_response = core_api.environment_revisions_list(project_name, environment_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-
-    # List revisions
-    api_response = core_api.environment_revisions_list(project_name, environment_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List revisions
+api_response = core_api.environment_revisions_list(project_name, environment_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -871,54 +583,18 @@ Details of the created build
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+revision_id = 'revision_id_example' # str
+data = None # empty dict or None (optional)
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    data = None # empty dict or None (optional)
-
-    # Rebuild revision
-    api_response = core_api.environment_revisions_rebuild(project_name, environment_name, revision_id, data=data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    revision_id = 'revision_id_example' # str
-    data = None # empty dict or None (optional)
-
-    # Rebuild revision
-    api_response = core_api.environment_revisions_rebuild(project_name, environment_name, revision_id, data=data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Rebuild revision
+api_response = core_api.environment_revisions_rebuild(project_name, environment_name, revision_id, data=data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -946,15 +622,19 @@ Name | Type | Notes
 Create environments
 
 ## Description
-Create a custom environment
+Create a custom environment. Two types of custom environments can be created:
+
+- Custom environment based on a base environment: In this type you must specify a base environment. When creating a revision for this environment, any packages listed in the requirements.txt or ubiops.yaml file will be installed on top of the base environment.
+- Custom environment based on your own Docker image: For this type do not specify a base environment. The custom environment will be the Docker image you upload when creating a revision.
+  - In this case, if you want to use the requests functionality, your Docker image must be based on one of the base environments, and `supports_request_format` must be set to true. If the image only needs to run as-is, without the requests functionality, this field can be set to false.
 
 ### Required Parameters
 
 - `name`: Name of the environment
-- `base_environment`: Base environment name on which this environment is based
 
 ### Optional Parameters
 
+- `base_environment`: Base environment name on which this environment is based
 - `display_name`: Display name of the environment. If not set, 'name' is used instead.
 - `description`: Description for the environment
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
@@ -995,6 +675,7 @@ Details of the created environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `system`: A boolean indicating whether the environment was created by the system
 - `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
@@ -1017,56 +698,23 @@ Details of the created environment
   "implicit": false,
   "deprecated": false,
   "hidden": false,
+  "system": false,
   "supports_request_format": true
 }
 ```
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.EnvironmentCreate() # EnvironmentCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.EnvironmentCreate() # EnvironmentCreate
-
-    # Create environments
-    api_response = core_api.environments_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.EnvironmentCreate() # EnvironmentCreate
-
-    # Create environments
-    api_response = core_api.environments_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create environments
+api_response = core_api.environments_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1096,48 +744,15 @@ Delete an environment. The environment cannot be deleted if it is referenced by 
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-
-    # Delete environment
-    core_api.environments_delete(project_name, environment_name)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-
-    # Delete environment
-    core_api.environments_delete(project_name, environment_name)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete environment
+core_api.environments_delete(project_name, environment_name)
+```
 
 ### Parameters
 
@@ -1186,6 +801,7 @@ Details of an environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `system`: A boolean indicating whether the environment was created by the system
 - `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
@@ -1208,6 +824,7 @@ Details of an environment
   "implicit": false,
   "deprecated": false,
   "hidden": false,
+  "system": false,
   "supports_request_format": true,
   "active_revision": "8760570f-6eda-470b-99af-bde810d418d8",
   "active_build": "e3021050-b9ac-4b8e-89f4-adb9e7c9aba6",
@@ -1218,50 +835,16 @@ Details of an environment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-
-    # Get environment
-    api_response = core_api.environments_get(project_name, environment_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-
-    # Get environment
-    api_response = core_api.environments_get(project_name, environment_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get environment
+api_response = core_api.environments_get(project_name, environment_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1359,54 +942,18 @@ A list of details of the environments
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+labels = "label1:value1,label2:value2" # str (optional)
+environment_type = 'environment_type_example' # str (optional)
+supports_request_format = True # bool (optional)
 
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-    environment_type = 'environment_type_example' # str (optional)
-    supports_request_format = True # bool (optional)
-
-    # List environments
-    api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type, supports_request_format=supports_request_format)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-    environment_type = 'environment_type_example' # str (optional)
-    supports_request_format = True # bool (optional)
-
-    # List environments
-    api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type, supports_request_format=supports_request_format)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List environments
+api_response = core_api.environments_list(project_name, labels=labels, environment_type=environment_type, supports_request_format=supports_request_format)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1472,6 +1019,7 @@ Details of the updated environment
 - `implicit`: A boolean indicating whether the environment is implicitly created
 - `hidden`: A boolean indicating whether the environment is hidden
 - `deprecated`: A boolean indicating whether the environment is deprecated
+- `system`: A boolean indicating whether the environment was created by the system
 - `supports_request_format`: A boolean indicating whether the environment supports the request format
 
 ## Response Examples
@@ -1494,6 +1042,7 @@ Details of the updated environment
   "implicit": false,
   "deprecated": false,
   "hidden": false,
+  "system": false,
   "supports_request_format": true,
   "active_revision": "8760570f-6eda-470b-99af-bde810d418d8",
   "active_build": "e3021050-b9ac-4b8e-89f4-adb9e7c9aba6",
@@ -1504,52 +1053,17 @@ Details of the updated environment
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+data = ubiops.EnvironmentUpdate() # EnvironmentUpdate
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    data = ubiops.EnvironmentUpdate() # EnvironmentUpdate
-
-    # Update environment
-    api_response = core_api.environments_update(project_name, environment_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    data = ubiops.EnvironmentUpdate() # EnvironmentUpdate
-
-    # Update environment
-    api_response = core_api.environments_update(project_name, environment_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update environment
+api_response = core_api.environments_update(project_name, environment_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1613,52 +1127,17 @@ A list of details of the deployment versions
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+environment_type = 'environment_type_example' # str (optional)
 
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    environment_type = 'environment_type_example' # str (optional)
-
-    # List usage of environment
-    api_response = core_api.environments_usage(project_name, environment_name, environment_type=environment_type)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    environment_name = 'environment_name_example' # str
-    environment_type = 'environment_type_example' # str (optional)
-
-    # List usage of environment
-    api_response = core_api.environments_usage(project_name, environment_name, environment_type=environment_type)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List usage of environment
+api_response = core_api.environments_usage(project_name, environment_name, environment_type=environment_type)
+print(api_response)
+```
 
 ### Parameters
 

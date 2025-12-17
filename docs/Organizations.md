@@ -64,50 +64,16 @@ Details of the added user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
+data = ubiops.OrganizationUserCreate() # OrganizationUserCreate
 
-    organization_name = 'organization_name_example' # str
-    data = ubiops.OrganizationUserCreate() # OrganizationUserCreate
-
-    # Add a user to an organization
-    api_response = core_api.organization_users_create(organization_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-    data = ubiops.OrganizationUserCreate() # OrganizationUserCreate
-
-    # Add a user to an organization
-    api_response = core_api.organization_users_create(organization_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Add a user to an organization
+api_response = core_api.organization_users_create(organization_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -140,48 +106,15 @@ It is not possible to delete the last admin of an organization.
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
+user_id = 'user_id_example' # str
 
-    organization_name = 'organization_name_example' # str
-    user_id = 'user_id_example' # str
-
-    # Delete a user from an organization
-    core_api.organization_users_delete(organization_name, user_id)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-    user_id = 'user_id_example' # str
-
-    # Delete a user from an organization
-    core_api.organization_users_delete(organization_name, user_id)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a user from an organization
+core_api.organization_users_delete(organization_name, user_id)
+```
 
 ### Parameters
 
@@ -232,50 +165,16 @@ Details of the user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
+user_id = 'user_id_example' # str
 
-    organization_name = 'organization_name_example' # str
-    user_id = 'user_id_example' # str
-
-    # Get details of a user in an organization
-    api_response = core_api.organization_users_get(organization_name, user_id)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-    user_id = 'user_id_example' # str
-
-    # Get details of a user in an organization
-    api_response = core_api.organization_users_get(organization_name, user_id)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get details of a user in an organization
+api_response = core_api.organization_users_get(organization_name, user_id)
+print(api_response)
+```
 
 ### Parameters
 
@@ -335,48 +234,15 @@ List of details of users
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
 
-    organization_name = 'organization_name_example' # str
-
-    # List the users in an organization
-    api_response = core_api.organization_users_list(organization_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-
-    # List the users in an organization
-    api_response = core_api.organization_users_list(organization_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List the users in an organization
+api_response = core_api.organization_users_list(organization_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -439,52 +305,17 @@ Details of the user
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
+user_id = 'user_id_example' # str
+data = ubiops.OrganizationUserUpdate() # OrganizationUserUpdate
 
-    organization_name = 'organization_name_example' # str
-    user_id = 'user_id_example' # str
-    data = ubiops.OrganizationUserUpdate() # OrganizationUserUpdate
-
-    # Update details of a user in an organization
-    api_response = core_api.organization_users_update(organization_name, user_id, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-    user_id = 'user_id_example' # str
-    data = ubiops.OrganizationUserUpdate() # OrganizationUserUpdate
-
-    # Update details of a user in an organization
-    api_response = core_api.organization_users_update(organization_name, user_id, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update details of a user in an organization
+api_response = core_api.organization_users_update(organization_name, user_id, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -566,48 +397,15 @@ Details of the created organization
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+data = ubiops.OrganizationCreate() # OrganizationCreate
 
-    data = ubiops.OrganizationCreate() # OrganizationCreate
-
-    # Create organizations
-    api_response = core_api.organizations_create(data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    data = ubiops.OrganizationCreate() # OrganizationCreate
-
-    # Create organizations
-    api_response = core_api.organizations_create(data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create organizations
+api_response = core_api.organizations_create(data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -661,48 +459,15 @@ Details of the organization
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
 
-    organization_name = 'organization_name_example' # str
-
-    # Get details of an organization
-    api_response = core_api.organizations_get(organization_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-
-    # Get details of an organization
-    api_response = core_api.organizations_get(organization_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get details of an organization
+api_response = core_api.organizations_get(organization_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -754,46 +519,14 @@ A list of details of the organizations
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
 
-
-    # List organizations
-    api_response = core_api.organizations_list()
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-
-    # List organizations
-    api_response = core_api.organizations_list()
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List organizations
+api_response = core_api.organizations_list()
+print(api_response)
+```
 
 ### Parameters
 
@@ -848,48 +581,15 @@ currently used by the organization.
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
 
-    organization_name = 'organization_name_example' # str
-
-    # Get resource usage
-    api_response = core_api.organizations_resource_usage(organization_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-
-    # Get resource usage
-    api_response = core_api.organizations_resource_usage(organization_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get resource usage
+api_response = core_api.organizations_resource_usage(organization_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -977,50 +677,16 @@ Details of the organization
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
+data = ubiops.OrganizationUpdate() # OrganizationUpdate
 
-    organization_name = 'organization_name_example' # str
-    data = ubiops.OrganizationUpdate() # OrganizationUpdate
-
-    # Update details of an organization
-    api_response = core_api.organizations_update(organization_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-    data = ubiops.OrganizationUpdate() # OrganizationUpdate
-
-    # Update details of an organization
-    api_response = core_api.organizations_update(organization_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update details of an organization
+api_response = core_api.organizations_update(organization_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1113,54 +779,18 @@ When **start_date** and **end_date** are given, this month period is used, e.g. 
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+organization_name = 'organization_name_example' # str
+start_date = 'start_date_example' # str (optional)
+end_date = 'end_date_example' # str (optional)
+interval = 'month' # str (optional) (default to 'month')
 
-    organization_name = 'organization_name_example' # str
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    interval = 'month' # str (optional) (default to 'month')
-
-    # Get organization usage
-    api_response = core_api.organizations_usage_get(organization_name, start_date=start_date, end_date=end_date, interval=interval)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    organization_name = 'organization_name_example' # str
-    start_date = 'start_date_example' # str (optional)
-    end_date = 'end_date_example' # str (optional)
-    interval = 'month' # str (optional) (default to 'month')
-
-    # Get organization usage
-    api_response = core_api.organizations_usage_get(organization_name, start_date=start_date, end_date=end_date, interval=interval)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get organization usage
+api_response = core_api.organizations_usage_get(organization_name, start_date=start_date, end_date=end_date, interval=interval)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1204,48 +834,15 @@ Get the description of a voucher from its code
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+code = 'code_example' # str
 
-    code = 'code_example' # str
-
-    # Get voucher
-    api_response = core_api.vouchers_get(code)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    code = 'code_example' # str
-
-    # Get voucher
-    api_response = core_api.vouchers_get(code)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get voucher
+api_response = core_api.vouchers_get(code)
+print(api_response)
+```
 
 ### Parameters
 

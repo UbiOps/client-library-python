@@ -14,5 +14,6 @@ Name | Type | Notes
 **pipelines** | **dict(str, object)** | [optional] [readonly]
 **environment_variables** | **dict(str, object)** | [optional] [readonly]
 **environments** | **dict(str, object)** | [optional] [readonly]
+**services** | **dict(str, object)** | [optional] [readonly]
 
 

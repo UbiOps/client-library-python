@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    UbiOps
+UbiOps
 
-    Client Library to interact with the UbiOps API
+Client Library to interact with the UbiOps API
 """
 
 

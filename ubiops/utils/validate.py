@@ -31,7 +31,13 @@ ubiops_config_schema = Schema(
                         error="Key URL must be in format 'https://example.com/path'",
                     )
                 ],
-                Optional("items"): [And(str, lambda x: len(x) > 0, error="Item must be a non-empty string")],
+                Optional("items"): [
+                    And(
+                        str,
+                        lambda x: len(x) > 0,
+                        error="Item must be a non-empty string",
+                    )
+                ],
             },
             Optional("sources"): {
                 Optional("urls"): [
@@ -41,9 +47,21 @@ ubiops_config_schema = Schema(
                         error="Source URL must be in format 'https://example.com/path'",
                     )
                 ],
-                Optional("items"): [And(str, lambda x: len(x) > 0, error="Item must be a non-empty string")],
+                Optional("items"): [
+                    And(
+                        str,
+                        lambda x: len(x) > 0,
+                        error="Item must be a non-empty string",
+                    )
+                ],
             },
-            "packages": [And(str, lambda x: len(x) > 0, error="Package must be a non-empty string")],
+            "packages": [
+                And(
+                    str,
+                    lambda x: len(x) > 0,
+                    error="Package must be a non-empty string",
+                )
+            ],
         },
     }
 )

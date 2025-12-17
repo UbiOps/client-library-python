@@ -96,50 +96,16 @@ Details of the created bucket
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+data = ubiops.BucketCreate() # BucketCreate
 
-    project_name = 'project_name_example' # str
-    data = ubiops.BucketCreate() # BucketCreate
-
-    # Create bucket
-    api_response = core_api.buckets_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    data = ubiops.BucketCreate() # BucketCreate
-
-    # Create bucket
-    api_response = core_api.buckets_create(project_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Create bucket
+api_response = core_api.buckets_create(project_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -169,48 +135,15 @@ Delete a bucket. If the bucket provider is UbiOps, the files in the bucket will 
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-
-    # Delete a bucket
-    core_api.buckets_delete(project_name, bucket_name)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-
-    # Delete a bucket
-    core_api.buckets_delete(project_name, bucket_name)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a bucket
+core_api.buckets_delete(project_name, bucket_name)
+```
 
 ### Parameters
 
@@ -275,50 +208,16 @@ Details of a bucket
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-
-    # Get details of a bucket
-    api_response = core_api.buckets_get(project_name, bucket_name)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-
-    # Get details of a bucket
-    api_response = core_api.buckets_get(project_name, bucket_name)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get details of a bucket
+api_response = core_api.buckets_get(project_name, bucket_name)
+print(api_response)
+```
 
 ### Parameters
 
@@ -396,50 +295,16 @@ A list of details of the buckets in the project
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+labels = "label1:value1,label2:value2" # str (optional)
 
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-
-    # List buckets
-    api_response = core_api.buckets_list(project_name, labels=labels)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    labels = "label1:value1,label2:value2" # str (optional)
-
-    # List buckets
-    api_response = core_api.buckets_list(project_name, labels=labels)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List buckets
+api_response = core_api.buckets_list(project_name, labels=labels)
+print(api_response)
+```
 
 ### Parameters
 
@@ -520,52 +385,17 @@ Details of the updated bucket
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+data = ubiops.BucketUpdate() # BucketUpdate
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    data = ubiops.BucketUpdate() # BucketUpdate
-
-    # Update a bucket
-    api_response = core_api.buckets_update(project_name, bucket_name, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    data = ubiops.BucketUpdate() # BucketUpdate
-
-    # Update a bucket
-    api_response = core_api.buckets_update(project_name, bucket_name, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Update a bucket
+api_response = core_api.buckets_update(project_name, bucket_name, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -630,54 +460,18 @@ Complete a multipart upload for a file
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+file = 'file_example' # str
+data = ubiops.FileCompleteMultipartUpload() # FileCompleteMultipartUpload
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-    data = ubiops.FileCompleteMultipartUpload() # FileCompleteMultipartUpload
-
-    # Complete multipart upload
-    api_response = core_api.files_complete_multipart_upload(project_name, bucket_name, file, data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-    data = ubiops.FileCompleteMultipartUpload() # FileCompleteMultipartUpload
-
-    # Complete multipart upload
-    api_response = core_api.files_complete_multipart_upload(project_name, bucket_name, file, data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Complete multipart upload
+api_response = core_api.files_complete_multipart_upload(project_name, bucket_name, file, data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -709,50 +503,16 @@ Delete a file from a bucket
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+file = 'file_example' # str
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-
-    # Delete a file
-    core_api.files_delete(project_name, bucket_name, file)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-
-    # Delete a file
-    core_api.files_delete(project_name, bucket_name, file)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Delete a file
+core_api.files_delete(project_name, bucket_name, file)
+```
 
 ### Parameters
 
@@ -797,52 +557,17 @@ Generate a signed url to download a file. Request body should be an empty dictio
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+file = 'file_example' # str
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-
-    # Download a file
-    api_response = core_api.files_download(project_name, bucket_name, file)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-
-    # Download a file
-    api_response = core_api.files_download(project_name, bucket_name, file)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Download a file
+api_response = core_api.files_download(project_name, bucket_name, file)
+print(api_response)
+```
 
 ### Parameters
 
@@ -889,52 +614,17 @@ Get the details of a file in the bucket
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+file = 'file_example' # str
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-
-    # Get a file
-    api_response = core_api.files_get(project_name, bucket_name, file)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-
-    # Get a file
-    api_response = core_api.files_get(project_name, bucket_name, file)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Get a file
+api_response = core_api.files_get(project_name, bucket_name, file)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1004,58 +694,20 @@ A dictionary containing the details of files and prefixes in the bucket
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+prefix = 'prefix_example' # str (optional)
+delimiter = 'delimiter_example' # str (optional)
+continuation_token = 'continuation_token_example' # str (optional)
+limit = 56 # int (optional)
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    prefix = 'prefix_example' # str (optional)
-    delimiter = 'delimiter_example' # str (optional)
-    continuation_token = 'continuation_token_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List files
-    api_response = core_api.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    prefix = 'prefix_example' # str (optional)
-    delimiter = 'delimiter_example' # str (optional)
-    continuation_token = 'continuation_token_example' # str (optional)
-    limit = 56 # int (optional)
-
-    # List files
-    api_response = core_api.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# List files
+api_response = core_api.files_list(project_name, bucket_name, prefix=prefix, delimiter=delimiter, continuation_token=continuation_token, limit=limit)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1103,54 +755,18 @@ Start a multipart upload for a file
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+file = 'file_example' # str
+data = None # empty dict or None (optional)
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-    data = None # empty dict or None (optional)
-
-    # Start multipart upload
-    api_response = core_api.files_start_multipart_upload(project_name, bucket_name, file, data=data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-    data = None # empty dict or None (optional)
-
-    # Start multipart upload
-    api_response = core_api.files_start_multipart_upload(project_name, bucket_name, file, data=data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Start multipart upload
+api_response = core_api.files_start_multipart_upload(project_name, bucket_name, file, data=data)
+print(api_response)
+```
 
 ### Parameters
 
@@ -1205,58 +821,20 @@ Note: When using the url generated by this endpoint for Azure Blob Storage, the 
 
 ### Example
 
-- Use system environment variables
-    ```python
-    import ubiops
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
-    # Set environment variables
-    # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
-    core_api = ubiops.CoreApi()
+```python
+project_name = 'project_name_example' # str
+bucket_name = 'bucket_name_example' # str
+file = 'file_example' # str
+upload_id = 'upload_id_example' # str (optional)
+part_number = 'part_number_example' # str (optional)
+data = None # empty dict or None (optional)
 
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-    upload_id = 'upload_id_example' # str (optional)
-    part_number = 'part_number_example' # str (optional)
-    data = None # empty dict or None (optional)
-
-    # Upload a file
-    api_response = core_api.files_upload(project_name, bucket_name, file, upload_id=upload_id, part_number=part_number, data=data)
-    print(api_response)
-
-    # Close the connection
-    core_api.api_client.close()
-    ```
-
-- Use authorization parameters
-    ```python
-    import ubiops
-
-    configuration = ubiops.Configuration()
-    # Configure API token authorization
-    configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
-
-    api_client = ubiops.ApiClient(configuration)
-    core_api = ubiops.CoreApi(api_client)
-
-    project_name = 'project_name_example' # str
-    bucket_name = 'bucket_name_example' # str
-    file = 'file_example' # str
-    upload_id = 'upload_id_example' # str (optional)
-    part_number = 'part_number_example' # str (optional)
-    data = None # empty dict or None (optional)
-
-    # Upload a file
-    api_response = core_api.files_upload(project_name, bucket_name, file, upload_id=upload_id, part_number=part_number, data=data)
-    print(api_response)
-
-    # Close the connection
-    api_client.close()
-    ```
-
+# Upload a file
+api_response = core_api.files_upload(project_name, bucket_name, file, upload_id=upload_id, part_number=part_number, data=data)
+print(api_response)
+```
 
 ### Parameters
 

@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    UbiOps
+UbiOps
 
-    Client Library to interact with the UbiOps API.
+Client Library to interact with the UbiOps API.
 """
 
 from ubiops.models.deployment_version_create import DeploymentVersionCreate
@@ -19,6 +19,7 @@ class ExperimentCreate(DeploymentVersionCreate):
         "description": "str",
         "labels": "dict(str, str)",
         "request_retention_time": "int",
+        "request_retention_mode": "str",
         "default_bucket": "str",
     }
 
@@ -31,19 +32,21 @@ class ExperimentCreate(DeploymentVersionCreate):
         "description": "description",
         "labels": "labels",
         "request_retention_time": "request_retention_time",
+        "request_retention_mode": "request_retention_mode",
         "default_bucket": "default_bucket",
     }
 
     def __init__(
         self,
         name=None,
-        environment="python3-8",
+        environment=None,
         instance_type=None,
         instance_type_group_id=None,
         instance_type_group_name=None,
         description=None,
         labels=None,
-        request_retention_time=31536000,
+        request_retention_time=None,
+        request_retention_mode="full",
         default_bucket=None,
         **kwargs,
     ):
@@ -62,6 +65,7 @@ class ExperimentCreate(DeploymentVersionCreate):
             description=description,
             labels=labels,
             request_retention_time=request_retention_time,
+            request_retention_mode=request_retention_mode,
             **kwargs,
         )
 

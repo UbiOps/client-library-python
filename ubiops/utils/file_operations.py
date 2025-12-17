@@ -2,6 +2,7 @@ import base64
 import logging
 import math
 import os
+import pathlib
 import requests
 import tqdm
 
@@ -254,7 +255,10 @@ def upload_file(
                     if is_azure:
                         block_id = base64.b64encode(f"{file_name}_{part_number}".encode()).decode()
                         signed_url = core_api.files_upload(
-                            project_name=project_name, bucket_name=bucket_name, file=file_name, upload_id=block_id
+                            project_name=project_name,
+                            bucket_name=bucket_name,
+                            file=file_name,
+                            upload_id=block_id,
                         )
                         _upload_chunk(url=signed_url.url, upload_headers=azure_headers, data=chunk)
                         parts.append({"BlockId": block_id})
@@ -266,8 +270,17 @@ def upload_file(
                             upload_id=start_response.upload_id,
                             part_number=str(part_number),
                         )
-                        upload_response = _upload_chunk(url=signed_url.url, upload_headers=general_headers, data=chunk)
-                        parts.append({"ETag": upload_response.headers["ETag"], "PartNumber": part_number})
+                        upload_response = _upload_chunk(
+                            url=signed_url.url,
+                            upload_headers=general_headers,
+                            data=chunk,
+                        )
+                        parts.append(
+                            {
+                                "ETag": upload_response.headers["ETag"],
+                                "PartNumber": part_number,
+                            }
+                        )
 
                     part_number += 1
 
@@ -346,7 +359,10 @@ def upload_files(
             for root, _, files in os.walk(item_to_upload):
                 for file in files:
                     file_path = path.join(root, file)
-                    bucket_file_name = path.relpath(file_path, item_to_upload)
+
+                    # Determine the relative path and convert to posix such that Windows backward slashes are converted
+                    # to forward slashes
+                    bucket_file_name = pathlib.Path(path.relpath(file_path, item_to_upload)).as_posix()
 
                     # Add the file with its relative path as prefix
                     if file_prefix:

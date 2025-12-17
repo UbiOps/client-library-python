@@ -1,10 +1,10 @@
 [project]
 name = "ubiops"
-version = "4.11.0"
+version = "4.12.0"
 description = "UbiOps"
 authors = [{name = "UbiOps"}]
 readme = "README_pypi.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = {text = "Apache 2.0"}
 dependencies = [
     "certifi>=14.05.14",

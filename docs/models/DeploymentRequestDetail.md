@@ -11,11 +11,12 @@ Name | Type | Notes
 **time_created** | **datetime** |
 **time_started** | **datetime** | [optional]
 **time_completed** | **datetime** | [optional]
-**error_message** | **str** | [optional]
-**timeout** | **int** | [optional]
 **input_size** | **int** | [optional]
 **output_size** | **int** | [optional]
-**request_data** | **str** or **dict(str, str)** | [optional]
-**result** | **str** or **dict(str, str)** | [optional]
+**error_message** | **str** | [optional]
+**timeout** | **int** | [optional]
+**request_data** | **str** or **dict(str, str)** | [optional] [deprecated]
+**result** | **str** or **dict(str, str)** | [optional] [deprecated]
+**additional_data** | [**AdditionalData**](AdditionalData.md) | [optional]
 
 
