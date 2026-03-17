@@ -42,7 +42,7 @@ class RESTClientObject(object):
             if configuration.ssl_ca_cert:
                 self.verify = configuration.ssl_ca_cert
             else:
-                self.verify = certifi.where()
+                self.verify = True
         else:
             self.verify = False
 
