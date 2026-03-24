@@ -21,5 +21,6 @@ Name | Type | Notes
 **ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional]
 **scaling_strategy** | **str** | [optional]
 **instance_processes** | **int** | [optional]
+**health_check** | [**HealthCheck**](HealthCheck.md) | [optional]
 
 

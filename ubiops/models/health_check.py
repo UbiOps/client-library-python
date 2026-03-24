@@ -27,16 +27,17 @@ class HealthCheck(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"interval": "int", "timeout": "int", "failure_threshold": "int", "path": "str"}
+    openapi_types = {"interval": "int", "timeout": "int", "failure_threshold": "int", "port": "int", "path": "str"}
 
     attribute_map = {
         "interval": "interval",
         "timeout": "timeout",
         "failure_threshold": "failure_threshold",
+        "port": "port",
         "path": "path",
     }
 
-    def __init__(self, interval=None, timeout=None, failure_threshold=None, path=None, **kwargs):
+    def __init__(self, interval=None, timeout=None, failure_threshold=None, port=None, path=None, **kwargs):
         """
         HealthCheck - a model defined in OpenAPI
         """
@@ -48,12 +49,14 @@ class HealthCheck(object):
         self._interval = None
         self._timeout = None
         self._failure_threshold = None
+        self._port = None
         self._path = None
         self.discriminator = None
 
         self.interval = interval
         self.timeout = timeout
         self.failure_threshold = failure_threshold
+        self.port = port
         self.path = path
 
     @property
@@ -130,6 +133,31 @@ class HealthCheck(object):
             raise ValueError("Parameter `failure_threshold` must be an integer")
 
         self._failure_threshold = failure_threshold
+
+    @property
+    def port(self):
+        """
+        Gets the port of this HealthCheck
+
+        :return: the port of this HealthCheck
+        :rtype: int
+        """
+
+        return self._port
+
+    @port.setter
+    def port(self, port):
+        """
+        Sets the port of this HealthCheck
+
+        :param port: the port of this HealthCheck
+        :type: int
+        """
+
+        if self.client_side_validation and (port is not None and not isinstance(port, int)):
+            raise ValueError("Parameter `port` must be an integer")
+
+        self._port = port
 
     @property
     def path(self):

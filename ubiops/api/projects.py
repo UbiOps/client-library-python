@@ -146,8 +146,8 @@ class Projects(object):
         :param str project_name: (required)
         :param kwargs:
             - str action: Type of action. It can be one of: create, update, delete, info.
-            - int limit: The maximum number of audit events given back, default is 50
-            - int offset: The number which forms the starting point of the audit events given back. If offset equals 2, then the first 2 events will be omitted from the list.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -668,7 +668,7 @@ class Projects(object):
             progress_bar=kwargs.get("_progress_bar", False),
         )
 
-    def project_requests_list_with_http_info(self, project_name, object_type, **kwargs):
+    def project_requests_list_with_http_info(self, project_name, **kwargs):
         """
         List requests in project
 
@@ -676,15 +676,15 @@ class Projects(object):
         pass async_req=True.
 
         >>> thread = Projects.project_requests_list_with_http_info(
-                project_name, object_type, async_req=True
+                project_name, async_req=True
             )
         >>> result = thread.get()
 
         :param str project_name: (required)
-        :param str object_type: Type of the object. It can be either deployment or pipeline. (required)
         :param kwargs:
+            - str object_type: Type of the object
             - str status: Status of the request. It can be one of the following 'failed', 'completed' or 'cancelled', defaults to 'completed'.
-            - int limit: The maximum number of requests given back, defaults to 50
+            - int limit: Maximum number of items to return. Default is 50.
             - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
             - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
@@ -700,7 +700,7 @@ class Projects(object):
         """  # noqa: E501
 
         method_name = "project_requests_list"
-        optional_params = ["status", "limit", "offset", "start_date", "end_date", "search_id"]
+        optional_params = ["object_type", "status", "limit", "offset", "start_date", "end_date", "search_id"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -716,14 +716,12 @@ class Projects(object):
 
         if self.api_client.client_side_validation and project_name is None:
             raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
-        if self.api_client.client_side_validation and object_type is None:
-            raise ApiValueError(f"Missing the required parameter `object_type` when calling `{method_name}`")
         if self.api_client.client_side_validation:
             if not isinstance(project_name, str):
                 project_name = str(project_name)
-        if self.api_client.client_side_validation and object_type is not None:
-            if not isinstance(object_type, str):
-                object_type = str(object_type)
+        if self.api_client.client_side_validation and "object_type" in kwargs and kwargs["object_type"] is not None:
+            if not isinstance(kwargs["object_type"], str):
+                kwargs["object_type"] = str(kwargs["object_type"])
         if self.api_client.client_side_validation and "status" in kwargs and kwargs["status"] is not None:
             if not isinstance(kwargs["status"], str):
                 kwargs["status"] = str(kwargs["status"])
@@ -753,8 +751,8 @@ class Projects(object):
 
         path_params["project_name"] = project_name
 
-        if object_type is not None:
-            query_params.append(("object_type", object_type))
+        if "object_type" in kwargs and kwargs["object_type"] is not None:
+            query_params.append(("object_type", kwargs["object_type"]))
         if "status" in kwargs and kwargs["status"] is not None:
             query_params.append(("status", kwargs["status"]))
         if "limit" in kwargs and kwargs["limit"] is not None:
@@ -1067,7 +1065,7 @@ class Projects(object):
 
         :param str project_name: (required)
         :param kwargs:
-            - str user_type: Type of users to filter on.
+            - str user_type: Type of users to filter on
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1391,8 +1389,8 @@ class Projects(object):
         >>> result = thread.get()
 
         :param kwargs:
-            - str organization: Name of the organization whose projects should be obtained
-            - str labels: Filter on labels of the project. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
+            - str organization: Name of the organization
+            - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1452,97 +1450,6 @@ class Projects(object):
             post_params=form_params,
             files=files,
             response_type="list[ProjectList]",
-            auth_settings=["api_key"],
-            async_req=kwargs.get("async_req", False),
-            _return_http_data_only=kwargs.get("_return_http_data_only", True),
-            _preload_content=kwargs.get("_preload_content", True),
-            _request_timeout=kwargs.get("_request_timeout", None),
-            stream=kwargs.get("_request_stream", False),
-            collection_formats=collection_formats,
-            progress_bar=kwargs.get("_progress_bar", False),
-        )
-
-    def projects_log_list_with_http_info(self, project_name, **kwargs):
-        """
-        [DEPRECATED] List logs for a project
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
-        pass async_req=True.
-
-        >>> thread = Projects.projects_log_list_with_http_info(
-                project_name, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param kwargs:
-            - LogsCreate data:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(list[Logs], status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """  # noqa: E501
-
-        method_name = "projects_log_list"
-        optional_params = ["data"]
-        additional_params = [
-            "async_req",
-            "_return_http_data_only",
-            "_preload_content",
-            "_request_timeout",
-            "_request_stream",
-            "_progress_bar",
-        ]
-
-        for key, val in kwargs.items():
-            if key not in optional_params + additional_params:
-                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
-
-        if self.api_client.client_side_validation and project_name is None:
-            raise ApiValueError(f"Missing the required parameter `project_name` when calling `{method_name}`")
-        if self.api_client.client_side_validation:
-            if not isinstance(project_name, str):
-                project_name = str(project_name)
-        if self.api_client.client_side_validation and "data" in kwargs:
-            if isinstance(kwargs["data"], dict):
-                from ubiops.models.logs_create import LogsCreate
-
-                kwargs["data"] = LogsCreate(**kwargs["data"])
-
-        collection_formats = {}
-        path_params = {}
-        query_params = []
-        header_params = {}
-        form_params = []
-        files = {}
-        body_params = None
-
-        path_params["project_name"] = project_name
-
-        if "data" in kwargs:
-            body_params = kwargs["data"]
-
-        # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # HTTP header `Content-Type`
-        header_params["Content-Type"] = self.api_client.select_header_content_type(["application/json"])
-
-        url = "/projects/{project_name}/logs"  # noqa: E501
-        return self.api_client.call_api(
-            url,
-            "POST",
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=files,
-            response_type="list[Logs]",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),

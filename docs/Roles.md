@@ -68,7 +68,7 @@ Assign a role to a user or an object in the scope of a project. This role can be
 - `assignee`: UUID of the user or the name of the object for which the role will be assigned
 - `assignee_type`: Type of the assignee. It can be user or deployment.
 - `resource`: Name of the object for which the role will be assigned
-- `resource_type`: Type of the object for which the role will be assigned. It can be project, deployment, pipeline or bucket.
+- `resource_type`: Type of the object for which the role will be assigned. It can be project, deployment, pipeline, bucket or environment.
 
 **resource and resource_type must be provided together. If neither of them is provided, the role is set on project level.**
 
@@ -101,7 +101,7 @@ Setting the role files-reader on bucket-1 for deployment-1
 {
   "assignee": "deployment-1",
   "assignee_type": "deployment",
-  "role": "file-reader",
+  "role": "files-reader",
   "resource": "bucket-1",
   "resource_type": "bucket"
 }
@@ -136,7 +136,7 @@ Details of the created role assignment
   "id": "e988ddc0-3ef1-42d2-ab30-9f810a5e7063",
   "assignee": "deployment-1",
   "assignee_type": "deployment",
-  "role": "file-reader",
+  "role": "files-reader",
   "resource": "bucket-1",
   "resource_type": "bucket"
 }

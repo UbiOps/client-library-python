@@ -177,3 +177,73 @@ class User(object):
             collection_formats=collection_formats,
             progress_bar=kwargs.get("_progress_bar", False),
         )
+
+    def user_get_with_http_info(self, **kwargs):
+        """
+        Get user details
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please
+        pass async_req=True.
+
+        >>> thread = User.user_get_with_http_info(
+                async_req=True
+            )
+        >>> result = thread.get()
+
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(UserDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        method_name = "user_get"
+        optional_params = []
+        additional_params = [
+            "async_req",
+            "_return_http_data_only",
+            "_preload_content",
+            "_request_timeout",
+            "_request_stream",
+            "_progress_bar",
+        ]
+
+        for key, val in kwargs.items():
+            if key not in optional_params + additional_params:
+                raise ApiTypeError(f"Got an unexpected keyword argument '{key}' to method `{method_name}`")
+
+        collection_formats = {}
+        path_params = {}
+        query_params = []
+        header_params = {}
+        form_params = []
+        files = {}
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        url = "/user"  # noqa: E501
+        return self.api_client.call_api(
+            url,
+            "GET",
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=files,
+            response_type="UserDetail",
+            auth_settings=["api_key"],
+            async_req=kwargs.get("async_req", False),
+            _return_http_data_only=kwargs.get("_return_http_data_only", True),
+            _preload_content=kwargs.get("_preload_content", True),
+            _request_timeout=kwargs.get("_request_timeout", None),
+            stream=kwargs.get("_request_stream", False),
+            collection_formats=collection_formats,
+            progress_bar=kwargs.get("_progress_bar", False),
+        )

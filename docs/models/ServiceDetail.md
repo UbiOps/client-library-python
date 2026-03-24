@@ -16,8 +16,10 @@ Name | Type | Notes
 **authentication_method_token_enabled** | **bool** | [optional]
 **request_logging_excluded_paths** | **str** | [optional]
 **request_logging_excluded_extensions** | **list[str]** | [optional]
-**health_check** | [**HealthCheck**](HealthCheck.md) | [optional]
-**rate_limit_token** | **int** | [optional]
+**rate_limit** | **int** | [optional]
+**rate_limit_user_default** | **int** | [optional]
+**concurrency_limit** | **int** | [optional]
+**concurrency_limit_user_default** | **int** | [optional]
 **endpoint** | **str** | [optional] [readonly]
 
 

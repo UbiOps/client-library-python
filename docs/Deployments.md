@@ -256,7 +256,6 @@ Create an environment variable for the deployment. This variable will be inherit
 ```
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -267,10 +266,10 @@ A list of variables described by the following fields:
 
 ```
 {
-"id": "7c28a2be-507e-4fae-981d-54e94f22dab0",
-"name": "deployment_variable_a",
-"value": "some_value",
-"secret": false
+  "id": "7c28a2be-507e-4fae-981d-54e94f22dab0",
+  "name": "deployment_variable_a",
+  "value": "some_value",
+  "secret": false
 }
 ```
 
@@ -356,7 +355,6 @@ Get deployment environment variable
 Retrieve details of a deployment environment variable. This cannot be used to retrieve details of inherited variables.
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -366,14 +364,12 @@ A list of variables described by the following fields:
 ## Response Examples
 
 ```
-[
-  {
-    "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
-    "name": "database_schema",
-    "value": "public",
-    "secret": false
-  }
-]
+{
+  "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
+  "name": "database_schema",
+  "value": "public",
+  "secret": false
+}
 ```
 
 ### Example
@@ -506,7 +502,6 @@ Update an environment variable for the deployment. This cannot be used to update
 ```
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -694,7 +689,6 @@ Create an environment variable for the deployment version. Variables inherited f
 ```
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -798,7 +792,6 @@ Get deployment version environment variable
 Retrieve details of a deployment version environment variable. This cannot be used to retrieve details of inherited variables.
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -808,14 +801,12 @@ A list of variables described by the following fields:
 ## Response Examples
 
 ```
-[
-  {
-    "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
-    "name": "database_schema",
-    "value": "public",
-    "secret": false
-  }
-]
+{
+  "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
+  "name": "database_schema",
+  "value": "public",
+  "secret": false
+}
 ```
 
 ### Example
@@ -960,7 +951,6 @@ Update an environment variable for the deployment version. This cannot be used t
 ```
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -1046,11 +1036,17 @@ Create a version for a deployment. The first version of a deployment is set as d
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.
-- `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`.
+- `ports`: [DEPRECATED] A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
     - `default` - scales up directly with incoming requests, ideal for long requests
     - `moderate` - optimized scaling, less aggressive and saves costs, ideal for short requests
 - `instance_processes`: Number of processes that are started in each instance, defaults to 1
+- `health_check`: A dictionary containing the health check details - only used when a service is created for this version
+  - `port`: Port for the health check
+  - `path`: Path for the health check, it should start with a `/`
+  - `interval`: (Optional) How often to check the service in seconds
+  - `timeout`: (Optional) The number of seconds after which the health check times out
+  - `failure_threshold`: (Optional) The number of times that the health check can fail before the service is considered failed
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -1091,13 +1087,10 @@ If the time that a request takes does not matter, keep the default values.
 ```
 {
   "version": "version-1",
-  "ports": [
-    {
-      "public_port": 2222,
-      "deployment_port": 2222,
-      "protocol": "tcp
-    }
-  ]
+  "health_check": {
+    "port": 8080,
+    "path": "/status"
+  }
 }
 ```
 
@@ -1131,9 +1124,10 @@ Details of the created version
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
-- `ports`: A list of ports to open up in the deployment
+- `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 - `instance_processes`: Number of processes that are started in each instance
+- `health_check`: A dictionary containing the health check details - only used when a service is created for this version
 
 ## Response Examples
 
@@ -1170,7 +1164,11 @@ Details of the created version
   "restart_request_interruption": false,
   "ports": [],
   "scaling_strategy": "default",
-  "instance_processes": 1
+  "instance_processes": 1,
+  "health_check": {
+    "port": 8080,
+    "path": "/status"
+  }
 }
 ```
 
@@ -1290,9 +1288,10 @@ Details of a version
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
-- `ports`: A list of ports to open up in the deployment
+- `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 - `instance_processes`: Number of processes that are started in each instance
+- `health_check`: A dictionary containing the health check details - only used when a service is created for this version
 
 ## Response Examples
 
@@ -1329,7 +1328,11 @@ Details of a version
   "restart_request_interruption": false,
   "ports": [],
   "scaling_strategy": "moderate",
-  "instance_processes": 1
+  "instance_processes": 1,
+  "health_check": {
+    "port": 8080,
+    "path": "/status"
+  }
 }
 ```
 
@@ -1405,7 +1408,7 @@ A list of details of the versions
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
-- `ports`: A list of ports to open up in the deployment
+- `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*.
 - `instance_processes`: Number of processes that are started in each instance
 
@@ -1533,11 +1536,17 @@ Update a version of a deployment in a project. All necessary fields are validate
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `environment`: New environment for the version. It can be either a base or a custom environment.
-- `ports`: A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. The new ports will replace the existing value for ports.
+- `ports`: [DEPRECATED] A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. The new ports will replace the existing value for ports. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
     - `default` - scales up directly with incoming requests, ideal for long requests
     - `moderate` - optimized scaling, less aggressive and saves costs, ideal for short requests
 - `instance_processes`: Number of processes that are started in each instance
+- `health_check`: A dictionary containing the health check details - only used when a service is created for this version
+  - `port`: Port for the health check
+  - `path`: Path for the health check, it should start with a `/`
+  - `interval`: (Optional) How often to check the service in seconds
+  - `timeout`: (Optional) The number of seconds after which the health check times out
+  - `failure_threshold`: (Optional) The number of times that the health check can fail before the service is considered failed
 
 ## Request Examples
 
@@ -1586,9 +1595,10 @@ Details of the updated version
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
 - `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
-- `ports`: A list of ports to open up in the deployment
+- `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 - `instance_processes`: Number of processes that are started in each instance
+- `health_check`: A dictionary containing the health check details - only used when a service is created for this version
 
 ## Response Examples
 
@@ -1625,7 +1635,11 @@ Details of the updated version
   "restart_request_interruption": false,
   "ports": [],
   "scaling_strategy: "moderate",
-  "instance_processes": 1
+  "instance_processes": 1,
+  "health_check": {
+    "port": 8080,
+    "path": "/status"
+  }
 }
 ```
 

@@ -43,8 +43,8 @@ class Deployments(object):
         :param str deployment_name: (required)
         :param kwargs:
             - str action: Type of action. It can be one of: create, update, delete, info.
-            - int limit: The maximum number of audit events given back, default is 50
-            - int offset: The number which forms the starting point of the audit events given back. If offset equals 2, then the first 2 events will be omitted from the list.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.

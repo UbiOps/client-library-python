@@ -33,5 +33,6 @@ Name | Type | Notes
 **last_file_upload** | **datetime** | [optional] [readonly]
 **has_request_method** | **bool** | [optional] [readonly]
 **has_requests_method** | **bool** | [optional] [readonly]
+**health_check** | [**HealthCheck**](HealthCheck.md) | [optional]
 
 

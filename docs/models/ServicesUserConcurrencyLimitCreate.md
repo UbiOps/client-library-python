@@ -1,10 +1,10 @@
-# RoleList
+# ServicesUserConcurrencyLimitCreate
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** | [optional] [readonly]
-**name** | **str** |
-**default** | **bool** | [optional] [readonly]
+**user_id** | **str** |
+**limit** | **int** |
 
 

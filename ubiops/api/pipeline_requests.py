@@ -979,11 +979,11 @@ class PipelineRequests(object):
         :param str pipeline_name: (required)
         :param kwargs:
             - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, default is 50
-            - int offset: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1304,9 +1304,9 @@ class PipelineRequests(object):
         :param str request_id: (required)
         :param str version: (required)
         :param kwargs:
-            - bool metadata_only: [DEPRECATED] A boolean value that indicates whether the response should include the request data and result, defaults to False.
-            - str pipeline_request_id: ID of pipeline request to which the operator request belongs
-            - str pipeline_object_id: ID of pipeline object for which the operator request is created
+            - bool metadata_only: [DEPRECATED] A boolean value that indicates whether the response should include the request data and result, defaults to False
+            - str pipeline_request_id: ID of the pipeline request
+            - str pipeline_object_id: ID of the pipeline object
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -2397,11 +2397,11 @@ class PipelineRequests(object):
         :param str version: (required)
         :param kwargs:
             - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, default is 50
-            - int offset: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.

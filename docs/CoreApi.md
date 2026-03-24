@@ -64,6 +64,12 @@ Method | HTTP request | Description
 [**environment_revisions_get**](./Environments.md#environment_revisions_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id} | Get revision
 [**environment_revisions_list**](./Environments.md#environment_revisions_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions | List revisions
 [**environment_revisions_rebuild**](./Environments.md#environment_revisions_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/rebuild | Rebuild revision
+[**environment_secrets_copy**](./Environments.md#environment_secrets_copy) | **POST** /projects/{project_name}/environments/{environment_name}/copy-secrets | Copy environment secret
+[**environment_secrets_create**](./Environments.md#environment_secrets_create) | **POST** /projects/{project_name}/environments/{environment_name}/secrets | Create environment secret
+[**environment_secrets_delete**](./Environments.md#environment_secrets_delete) | **DELETE** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Delete environment secret
+[**environment_secrets_get**](./Environments.md#environment_secrets_get) | **GET** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Get environment secret
+[**environment_secrets_list**](./Environments.md#environment_secrets_list) | **GET** /projects/{project_name}/environments/{environment_name}/secrets | List environment secrets
+[**environment_secrets_update**](./Environments.md#environment_secrets_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Update environment secret
 [**environments_create**](./Environments.md#environments_create) | **POST** /projects/{project_name}/environments | Create environments
 [**environments_delete**](./Environments.md#environments_delete) | **DELETE** /projects/{project_name}/environments/{environment_name} | Delete environment
 [**environments_get**](./Environments.md#environments_get) | **GET** /projects/{project_name}/environments/{environment_name} | Get environment
@@ -183,7 +189,6 @@ Method | HTTP request | Description
 [**projects_delete**](./Projects.md#projects_delete) | **DELETE** /projects/{project_name} | Delete a project
 [**projects_get**](./Projects.md#projects_get) | **GET** /projects/{project_name} | Get details of a project
 [**projects_list**](./Projects.md#projects_list) | **GET** /projects | List projects
-[**projects_log_list**](./Projects.md#projects_log_list) | **POST** /projects/{project_name}/logs | [DEPRECATED] List logs for a project
 [**projects_resource_usage**](./Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
 [**projects_update**](./Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
 [**projects_usage_get**](./Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
@@ -213,10 +218,22 @@ Method | HTTP request | Description
 [**services_delete**](./Services.md#services_delete) | **DELETE** /projects/{project_name}/services/{service_name} | Delete service
 [**services_get**](./Services.md#services_get) | **GET** /projects/{project_name}/services/{service_name} | Get service
 [**services_list**](./Services.md#services_list) | **GET** /projects/{project_name}/services | List services
+[**services_status_get**](./Services.md#services_status_get) | **GET** /projects/{project_name}/services/{service_name}/status | Get the service status
 [**services_update**](./Services.md#services_update) | **PATCH** /projects/{project_name}/services/{service_name} | Update service
+[**services_user_concurrency_limit_create**](./Services.md#services_user_concurrency_limit_create) | **POST** /projects/{project_name}/services/{service_name}/user-concurrency-limits | Create services user concurrency limit
+[**services_user_concurrency_limit_delete**](./Services.md#services_user_concurrency_limit_delete) | **DELETE** /projects/{project_name}/services/{service_name}/user-concurrency-limits/{user_id} | Delete services user concurrency limit
+[**services_user_concurrency_limit_get**](./Services.md#services_user_concurrency_limit_get) | **GET** /projects/{project_name}/services/{service_name}/user-concurrency-limits/{user_id} | Get services user concurrency limit
+[**services_user_concurrency_limit_list**](./Services.md#services_user_concurrency_limit_list) | **GET** /projects/{project_name}/services/{service_name}/user-concurrency-limits | List services user concurrency limits
+[**services_user_concurrency_limit_update**](./Services.md#services_user_concurrency_limit_update) | **PATCH** /projects/{project_name}/services/{service_name}/user-concurrency-limits/{user_id} | Update services user concurrency limit
+[**services_user_rate_limit_create**](./Services.md#services_user_rate_limit_create) | **POST** /projects/{project_name}/services/{service_name}/user-rate-limits | Create services user rate limit
+[**services_user_rate_limit_delete**](./Services.md#services_user_rate_limit_delete) | **DELETE** /projects/{project_name}/services/{service_name}/user-rate-limits/{user_id} | Delete services user rate limit
+[**services_user_rate_limit_get**](./Services.md#services_user_rate_limit_get) | **GET** /projects/{project_name}/services/{service_name}/user-rate-limits/{user_id} | Get services user rate limit
+[**services_user_rate_limit_list**](./Services.md#services_user_rate_limit_list) | **GET** /projects/{project_name}/services/{service_name}/user-rate-limits | List services user rate limits
+[**services_user_rate_limit_update**](./Services.md#services_user_rate_limit_update) | **PATCH** /projects/{project_name}/services/{service_name}/user-rate-limits/{user_id} | Update services user rate limit
 [**service_status**](./Status.md#service_status) | **GET** /status | Service status
 [**user_create**](./User.md#user_create) | **POST** /user | Create a new user
 [**user_delete**](./User.md#user_delete) | **DELETE** /user | Delete user
+[**user_get**](./User.md#user_get) | **GET** /user | Get user details
 [**webhook_tests_create**](./Webhooks.md#webhook_tests_create) | **POST** /projects/{project_name}/webhooks-tests | Create webhook tests
 [**webhook_tests_get**](./Webhooks.md#webhook_tests_get) | **GET** /projects/{project_name}/webhooks-tests/{test_id} | Get webhook test
 [**webhooks_create**](./Webhooks.md#webhooks_create) | **POST** /projects/{project_name}/webhooks | Create webhooks

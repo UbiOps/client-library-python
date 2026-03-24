@@ -48,7 +48,7 @@ class Organizations(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(OrganizationUserDetail, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUserList, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -108,7 +108,7 @@ class Organizations(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="OrganizationUserDetail",
+            response_type="OrganizationUserList",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -223,7 +223,7 @@ class Organizations(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(OrganizationUserDetail, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUserList, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -277,7 +277,7 @@ class Organizations(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="OrganizationUserDetail",
+            response_type="OrganizationUserList",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -308,7 +308,7 @@ class Organizations(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[OrganizationUserDetail], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[OrganizationUserList], status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -356,7 +356,7 @@ class Organizations(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="list[OrganizationUserDetail]",
+            response_type="list[OrganizationUserList]",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),
@@ -389,7 +389,7 @@ class Organizations(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(OrganizationUserDetail, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUserList, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -455,7 +455,7 @@ class Organizations(object):
             body=body_params,
             post_params=form_params,
             files=files,
-            response_type="OrganizationUserDetail",
+            response_type="OrganizationUserList",
             auth_settings=["api_key"],
             async_req=kwargs.get("async_req", False),
             _return_http_data_only=kwargs.get("_return_http_data_only", True),

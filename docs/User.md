@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**user_create**](./User.md#user_create) | **POST** /user | Create a new user
 [**user_delete**](./User.md#user_delete) | **DELETE** /user | Delete user
+[**user_get**](./User.md#user_get) | **GET** /user | Get user details
 
 
 # **user_create**
@@ -33,7 +34,7 @@ Create a new user with the given details. After creation, an email is send to th
   "email": "test@example.com",
   "password": "secret-password",
   "name": "User name",
-  "surname": "User surname",
+  "surname": "User surname"
 }
 ```
 
@@ -58,7 +59,7 @@ Details of the created user
 {
   "email": "test@example.com",
   "name": "User name",
-  "surname": "User surname",
+  "surname": "User surname"
 }
 ```
 
@@ -116,6 +117,62 @@ This endpoint does not need any parameter.
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **user_get**
+> UserDetail user_get()
+
+Get user details
+
+## Description
+Get the details of the user that makes the request
+
+### Response Structure
+Details of the user
+
+- `id`: Unique identifier for the user (UUID)
+- `email`: Email of the user
+- `name`: Name of the user
+- `surname`: Surname of the user
+- `registration_date`: Date when the user was registered
+- `authentication`: Authentication method of the user. It can be 'google', 'microsoft' or 'ubiops'.
+
+## Response Examples
+
+```
+{
+  "id": "4740a13a-70ae-4b7a-a461-8231eb2c0594",
+  "email": "test@example.com",
+  "name": "User name",
+  "surname": "User surname",
+  "registration_date": "2020-01-10 10:06:25.632+00:00",
+  "authentication": "ubiops"
+}
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+
+# Get user details
+api_response = core_api.user_get()
+print(api_response)
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserDetail**](./models/UserDetail.md)
 
 ### Authorization
 

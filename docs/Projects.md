@@ -20,7 +20,6 @@ Method | HTTP request | Description
 [**projects_delete**](./Projects.md#projects_delete) | **DELETE** /projects/{project_name} | Delete a project
 [**projects_get**](./Projects.md#projects_get) | **GET** /projects/{project_name} | Get details of a project
 [**projects_list**](./Projects.md#projects_list) | **GET** /projects | List projects
-[**projects_log_list**](./Projects.md#projects_log_list) | **POST** /projects/{project_name}/logs | [DEPRECATED] List logs for a project
 [**projects_resource_usage**](./Projects.md#projects_resource_usage) | **GET** /projects/{project_name}/resources | List resource usage of a project
 [**projects_update**](./Projects.md#projects_update) | **PATCH** /projects/{project_name} | Update a project
 [**projects_usage_get**](./Projects.md#projects_usage_get) | **GET** /projects/{project_name}/usage | Get resource usage
@@ -376,7 +375,6 @@ Create an environment variable for the project. This variable will be inherited 
 ```
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -482,7 +480,6 @@ Get project environment variable
 Retrieve details of a project environment variable.
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -492,14 +489,12 @@ A list of variables described by the following fields:
 ## Response Examples
 
 ```
-[
-  {
-    "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
-    "name": "database_schema",
-    "value": "public",
-    "secret": false
-  }
-]
+{
+  "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
+  "name": "database_schema",
+  "value": "public",
+  "secret": false
+}
 ```
 
 ### Example
@@ -622,7 +617,6 @@ Update an environment variable for the projects
 ```
 
 ### Response Structure
-A list of variables described by the following fields:
 
 - `id`: Unique identifier for the environment variable
 - `name`: Variable name
@@ -674,7 +668,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **project_requests_list**
-> list[RequestsOverview] project_requests_list(project_name, object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
+> list[RequestsOverview] project_requests_list(project_name, object_type=object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 
 List requests in project
 
@@ -745,7 +739,7 @@ Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 
 ```python
 project_name = 'project_name_example' # str
-object_type = 'object_type_example' # str
+object_type = 'object_type_example' # str (optional)
 status = 'status_example' # str (optional)
 limit = 56 # int (optional)
 offset = 56 # int (optional)
@@ -754,7 +748,7 @@ end_date = 'end_date_example' # str (optional)
 search_id = 'search_id_example' # str (optional)
 
 # List requests in project
-api_response = core_api.project_requests_list(project_name, object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
+api_response = core_api.project_requests_list(project_name, object_type=object_type, status=status, limit=limit, offset=offset, start_date=start_date, end_date=end_date, search_id=search_id)
 print(api_response)
 ```
 
@@ -764,7 +758,7 @@ print(api_response)
 Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
- **object_type** | **str** | 
+ **object_type** | **str** | [optional] 
  **status** | **str** | [optional] 
  **limit** | **int** | [optional] 
  **offset** | **int** | [optional] 
@@ -1295,193 +1289,6 @@ Name | Type | Notes
 ### Return type
 
 [**list[ProjectList]**](./models/ProjectList.md)
-
-### Authorization
-
-[API token](https://ubiops.com/docs/organizations/service-users)
-
-[[Back to top]](#)
-
-# **projects_log_list**
-> list[Logs] projects_log_list(project_name, data=data)
-
-[DEPRECATED] List logs for a project
-
-## Description
-This endpoint is deprecated, please use the GET endpoint instead.
-
-Retrieve the logs of all objects in a project, including deployments, pipelines and requests. Using filters you can filter the logs on the objects and information of your choice.
-
-### Optional Parameters
-
-
-- `filters`: A dictionary containing information to filter logs on. It may contain zero or more of the following fields:
-    - `deployment_name`: name of a deployment
-    - `deployment_version`: name of a deployment version. If this field is present in the request, deployment_name must also be given. The deployment versions are only meaningful in combination with the deployments they are defined for.
-    - `deployment_version_revision_id`: the UUID of a deployment version revision. It does not have to be given in combination with the deployment and version name.
-    - `instance_id`: the UUID of an instance. It does not have to be given in combination with the deployment and version name.
-    - `process_id`: id of the process in the deployment instance. It does not have to be given in combination with the deployment and version name.
-    - `environment_name`: name of an environment
-    - `environment_build_id`: the UUID of an environment build. It does not have to be given in combination with the environment name.
-    - `pipeline_name`: name of a pipeline
-    - `pipeline_version`: name of a pipeline version. If this field is present in the request, pipeline_name must also be given. The pipeline versions are only meaningful in combination with the pipelines they are defined for.
-    - `pipeline_object_name`: name of a pipeline object. If this field is present in the request, pipeline_name and pipeline_version must also be given. The pipeline objects are only meaningful in combination with the pipeline versions they are defined in.
-    - `deployment_request_id`: the UUID of a deployment request
-    - `pipeline_request_id`: the UUID of a pipeline request
-    - `webhook_name`: name of a webhook
-    - `system`: whether the log was generated by the system or user code (true / false)
-    - `level`: the level of the log (info / error)
-
-Any combination of filters may be given in the request. For example, if only a deployment_name is provided, all logs for that deployment are returned. These logs can contain information from all the pipelines that deployment is referenced in. If the filters dictionary is empty, all logs for all objects in the project are returned.
-Either `date` or `id` should be provided, as they both refer to a starting point of the logs. If no `date` or `id` is specified, the API will use the current time as a starting point and try to fetch the logs starting from now minus date range seconds into the past.
-
-- `date`: Starting date for the logs. If it is not provided and the `id` parameter is not set, the most recent logs are returned. It should be provided in ISO 8601 format. The results are inclusive of the given date.
-- `id`: identifier for log lines. If specified, it will act as a starting point for the interval in which to query the logs. This can be useful when making multiple queries to obtain consecutive logs.
-
-    It will include the log having the log id equal to the id value in the response, regardless of whether the date_range is positive or negative.
-- `limit`: Limit for the logs response. If specified, it will limit the total number of logs returned from the query to the specified number. Defaults to 1000, the maximum is 5000.
-- `date_range`: The date range parameter sets the interval of time in which to query the logs, specified in seconds. It may be a positive or a negative value.
-
-    If it is positive, logs starting from the specified date / log id (both inclusive) plus date range seconds towards the present time are returned.
-
-    Otherwise, logs starting from the specified date / log id (both inclusive) minus date range seconds towards the past are returned.
-
-    The default value is -21600 (6 hours). The maximum value is -/+ 86400 seconds (24 hours).
-
-## Request Examples
-
-```
-{
-  "filters": {
-    "deployment_name": "deployment-1",
-    "deployment_version": "v1"
-  },
-  "date": "2020-01-01T00:00:00.000000Z"
-}
-```
-
-
-```
-{
-  "filters": {
-    "pipeline_name": "pipeline-1",
-    "pipeline_version": "v1"
-  },
-  "id": "41d7a7c5cd025e3501a00000",
-  "date_range": -100
-}
-```
-
-
-```
-{
-  "filters": {
-    "pipeline_name": "pipeline-1",
-    "pipeline_version": "v1",
-    "deployment_name": "deployment-1",
-    "deployment_version": "v1"
-  },
-  "date": "2020-01-01T00:00:00.000000Z",
-  "date_range": -86400,
-  "limit": 5
-}
-```
-
-### Response Structure
-A list of log details
-
-
-- `id`: Unique id of the log line
-- `log`: Log line text
-- `date`: Time the log line was created
-
-The following fields will be returned on response if they are set for the log line:
-
-- `deployment_name`:  The deployment which the log is related to
-- `deployment_version`:  The deployment version which the log is related to
-- `deployment_version_revision_id`: The UUID of the deployment version revision
-- `environment_name`:  The environment which the log is related to
-- `environment_build_id`: The UUID of the environment build
-- `instance_id`: The UUID of the instance
-- `process_id`: The ID of the instance process
-- `pipeline_name`: The pipeline which the log is related to
-- `pipeline_version`: The pipeline version which the log is related to
-- `pipeline_object_name`: The pipeline object which the log is related to
-- `deployment_request_id`:  The deployment request the log is related to
-- `pipeline_request_id`:  The pipeline request the log is related to
-- `system`:  Whether the log was generated by the system (true / false)
-- `level`: The level of the log (info / error)
-
-## Response Examples
-Logs for a specific deployment and version
-
-```
-[
-  {
-    "id": "5dcad12ba76a2c6e4331f180",
-    "deployment_name": "deployment-1",
-    "deployment_version": "v1",
-    "date": "2020-01-01T00:00:00.000000000Z",
-    "log": "[Info] Prediction result 0.14981"
-  },
-  {
-    "id": "5dcad12ba76a2c6e4331f181",
-    "deployment_name": "deployment-1",
-    "deployment_version": "v1",
-    "deployment_request_id": "ee63f938-ba81-438e-8482-9ac76037895f",
-    "pipeline_name": "pipeline-2",
-    "pipeline_version": "v2",
-    "pipeline_object_name": "deployment-1-v1-object",
-    "pipeline_request_id": "8bb6ed79-8606-4acf-acd2-90507130523c",
-    "date": "2020-01-01T00:00:01.000000Z",
-    "log": "[Error] Deployment call result (failed)"
-  }
-]
-```
-
-Logs for a specific pipeline
-
-```
-[
-  {
-    "id": "5dcad12ba76a2c6e4331f192",
-    "deployment_name": "deployment-2",
-    "deployment_version": "v2",
-    "deployment_request_id": "6ee941d3-9905-49f5-95b4-cd9c4c23bb03",
-    "pipeline_name": "pipeline-1",
-    "pipeline_version": "v1",
-    "pipeline_object_name": "deployment-2-v2-object",
-    "pipeline_request_id": "4f75b10d-6012-47ab-ae68-cc9e69f35841",
-    "date": "2020-01-01T00:00:00.000000Z",
-    "log": "[Info] Deployment call result (success): 0.2316"
-  }
-]
-```
-
-### Example
-
-Initialize [**core_api**](./CoreApi.md#example) using your credentials.
-
-```python
-project_name = 'project_name_example' # str
-data = ubiops.LogsCreate() # LogsCreate (optional)
-
-# [DEPRECATED] List logs for a project
-api_response = core_api.projects_log_list(project_name, data=data)
-print(api_response)
-```
-
-### Parameters
-
-
-Name | Type | Notes
-------------- | ------------- | -------------
- **project_name** | **str** | 
- **data** | [**LogsCreate**](./models/LogsCreate.md) | [optional] 
-
-### Return type
-
-[**list[Logs]**](./models/Logs.md)
 
 ### Authorization
 

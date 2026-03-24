@@ -42,8 +42,8 @@ class ImportsAndExports(object):
         :param str project_name: (required)
         :param ExportCreate data: (required)
         :param kwargs:
-            - bool all: If true, all objects will be exported
-            - bool packages: If false, no packages (environment/deployment version revisions) will be exported
+            - bool all: A boolean indicating whether to export all objects
+            - bool packages: A boolean indicating whether to include deployment/environment packages
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
