@@ -5,7 +5,7 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** | [optional] [readonly]
 **name** | **str** |
-**default** | **str** | [optional] [readonly]
+**default** | **bool** | [optional] [readonly]
 **permissions** | **list[str]** | [optional] [readonly]
 
 

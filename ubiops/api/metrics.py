@@ -302,7 +302,7 @@ class Metrics(object):
 
         :param str project_name: (required)
         :param kwargs:
-            - bool custom: A boolean indicating whether to list default or custom metrics for the project, defaults to False
+            - bool custom: A boolean indicating whether only default or custom metrics should be returned, defaults to False. If this parameter is not provided, both types are returned.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -675,8 +675,8 @@ class Metrics(object):
             - str start_date: Start date for metric data points
             - str end_date: End date for metric data points
             - int aggregation_period: Time period in seconds in which data points are grouped. It defaults to the highest resolution possible given the provided date range. Available values are: 60, 300, 900, 3600, 7200, 21600 and 86400.
+            - int unit_period: The period to aggregate metrics into. Only used for delta metrics. After metric aggregation, the values are given as rate per second. Use this parameter to change the unit. Available values are: 1 (rate per second), 60 (rate per minute), 3600 (rate per hour), and 86400 (rate per day).
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - int unit_period:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -688,7 +688,7 @@ class Metrics(object):
         """  # noqa: E501
 
         method_name = "time_series_data_list"
-        optional_params = ["metric", "start_date", "end_date", "aggregation_period", "labels", "unit_period"]
+        optional_params = ["metric", "start_date", "end_date", "aggregation_period", "unit_period", "labels"]
         additional_params = [
             "async_req",
             "_return_http_data_only",
@@ -723,12 +723,12 @@ class Metrics(object):
         ):
             if not isinstance(kwargs["aggregation_period"], int):
                 raise ApiValueError(f"Parameter `aggregation_period` must be an integer when calling `{method_name}`")
-        if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
-            if not isinstance(kwargs["labels"], str):
-                kwargs["labels"] = str(kwargs["labels"])
         if self.api_client.client_side_validation and "unit_period" in kwargs and kwargs["unit_period"] is not None:
             if not isinstance(kwargs["unit_period"], int):
                 raise ApiValueError(f"Parameter `unit_period` must be an integer when calling `{method_name}`")
+        if self.api_client.client_side_validation and "labels" in kwargs and kwargs["labels"] is not None:
+            if not isinstance(kwargs["labels"], str):
+                kwargs["labels"] = str(kwargs["labels"])
 
         collection_formats = {}
         path_params = {}
@@ -748,10 +748,10 @@ class Metrics(object):
             query_params.append(("end_date", kwargs["end_date"]))
         if "aggregation_period" in kwargs and kwargs["aggregation_period"] is not None:
             query_params.append(("aggregation_period", kwargs["aggregation_period"]))
-        if "labels" in kwargs and kwargs["labels"] is not None:
-            query_params.append(("labels", kwargs["labels"]))
         if "unit_period" in kwargs and kwargs["unit_period"] is not None:
             query_params.append(("unit_period", kwargs["unit_period"]))
+        if "labels" in kwargs and kwargs["labels"] is not None:
+            query_params.append(("labels", kwargs["labels"]))
 
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
@@ -876,10 +876,10 @@ class Metrics(object):
         :param kwargs:
             - str metric: Name of the metric
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - bool custom: A boolean indicating whether only default or custom metrics should be returned. If this parameter is not provided, both types are returned.
+            - bool custom: A boolean indicating whether only default or custom metrics should be returned, defaults to False. If this parameter is not provided, both types are returned.
             - bool exact_match: A boolean indicating whether the provided labels should match exactly or whether matching a subset is allowed. Defaults to false (matching a subset is allowed).
-            - int limit: The maximum number of time series to return. It defaults to 500.
-            - int offset: The number that indicates the starting point of the time series to return. It defaults to 0.
+            - int limit: Maximum number of items to return. Default is 500.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.

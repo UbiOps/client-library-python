@@ -148,7 +148,7 @@ class CoreApi(object):
         :param str deployment_name: (required)
         :param list[str] data: (required)
         :param kwargs:
-            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
+            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -368,8 +368,8 @@ class CoreApi(object):
         :param str project_name: (required)
         :param str deployment_name: (required)
         :param kwargs:
-            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, defaults to 50
+            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
+            - int limit: Maximum number of items to return. Default is 50.
             - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
             - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
@@ -695,7 +695,7 @@ class CoreApi(object):
         :param str version: (required)
         :param kwargs:
             - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, defaults to 50
+            - int limit: Maximum number of items to return. Default is 50.
             - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
             - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
@@ -796,8 +796,8 @@ class CoreApi(object):
         :param str deployment_name: (required)
         :param kwargs:
             - str action: Type of action. It can be one of: create, update, delete, info.
-            - int limit: The maximum number of audit events given back, default is 50
-            - int offset: The number which forms the starting point of the audit events given back. If offset equals 2, then the first 2 events will be omitted from the list.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1951,6 +1951,184 @@ class CoreApi(object):
             project_name, environment_name, revision_id, **kwargs
         )
 
+    def environment_secrets_copy(self, project_name, environment_name, data, **kwargs):
+        """
+        Copy environment secret
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.environment_secrets_copy(
+                project_name, environment_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str environment_name: (required)
+        :param EnvironmentSecretCopy data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[InheritedEnvironmentVariableList], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.environments.environment_secrets_copy_with_http_info(project_name, environment_name, data, **kwargs)
+
+    def environment_secrets_create(self, project_name, environment_name, data, **kwargs):
+        """
+        Create environment secret
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.environment_secrets_create(
+                project_name, environment_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str environment_name: (required)
+        :param EnvironmentVariableCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(EnvironmentVariableList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.environments.environment_secrets_create_with_http_info(
+            project_name, environment_name, data, **kwargs
+        )
+
+    def environment_secrets_delete(self, project_name, environment_name, id, **kwargs):
+        """
+        Delete environment secret
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.environment_secrets_delete(
+                project_name, environment_name, id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str environment_name: (required)
+        :param str id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.environments.environment_secrets_delete_with_http_info(project_name, environment_name, id, **kwargs)
+
+    def environment_secrets_get(self, project_name, environment_name, id, **kwargs):
+        """
+        Get environment secret
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.environment_secrets_get(
+                project_name, environment_name, id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str environment_name: (required)
+        :param str id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(EnvironmentVariableList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.environments.environment_secrets_get_with_http_info(project_name, environment_name, id, **kwargs)
+
+    def environment_secrets_list(self, project_name, environment_name, **kwargs):
+        """
+        List environment secrets
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.environment_secrets_list(
+                project_name, environment_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str environment_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[EnvironmentVariableList], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.environments.environment_secrets_list_with_http_info(project_name, environment_name, **kwargs)
+
+    def environment_secrets_update(self, project_name, environment_name, id, data, **kwargs):
+        """
+        Update environment secret
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.environment_secrets_update(
+                project_name, environment_name, id, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str environment_name: (required)
+        :param str id: (required)
+        :param EnvironmentVariableCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(EnvironmentVariableList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.environments.environment_secrets_update_with_http_info(
+            project_name, environment_name, id, data, **kwargs
+        )
+
     def environments_create(self, project_name, data, **kwargs):
         """
         Create environments
@@ -2050,7 +2228,7 @@ class CoreApi(object):
         :param kwargs:
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
             - str environment_type: Filter on the type of the environment. It can be one of the following: 'base', 'custom' or 'all'. The default value is 'all'.
-            - bool supports_request_format: Filter on whether the environment supports the request format
+            - bool supports_request_format: Filter on whether the deployment supports requests
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -2400,7 +2578,7 @@ class CoreApi(object):
             - str prefix: Prefix to filter files
             - str delimiter: Delimiter used with prefix to emulate hierarchy to filter files
             - str continuation_token: A token that indicates the start point of the returned the files
-            - int limit:
+            - int limit: Maximum number of items to return. Default is 50.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -2460,8 +2638,8 @@ class CoreApi(object):
         :param str bucket_name: (required)
         :param str file: (required)
         :param kwargs:
-            - str upload_id: ID of the upload for the file. It should be used with multipart uploads
-            - str part_number: Part number of the upload. It should be used with multipart uploads
+            - str upload_id: ID of the upload for the file. It should be used with multipart uploads.
+            - str part_number: Part number of the upload. It should be used with multipart uploads.
             - object data:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
@@ -2491,8 +2669,8 @@ class CoreApi(object):
         :param str project_name: (required)
         :param ExportCreate data: (required)
         :param kwargs:
-            - bool all: If true, all objects will be exported
-            - bool packages: If false, no packages (environment/deployment version revisions) will be exported
+            - bool all: A boolean indicating whether to export all objects
+            - bool packages: A boolean indicating whether to include deployment/environment packages
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -3309,7 +3487,7 @@ class CoreApi(object):
 
         :param str project_name: (required)
         :param kwargs:
-            - bool custom: A boolean indicating whether to list default or custom metrics for the project, defaults to False
+            - bool custom: A boolean indicating whether only default or custom metrics should be returned, defaults to False. If this parameter is not provided, both types are returned.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -3426,8 +3604,8 @@ class CoreApi(object):
             - str start_date: Start date for metric data points
             - str end_date: End date for metric data points
             - int aggregation_period: Time period in seconds in which data points are grouped. It defaults to the highest resolution possible given the provided date range. Available values are: 60, 300, 900, 3600, 7200, 21600 and 86400.
+            - int unit_period: The period to aggregate metrics into. Only used for delta metrics. After metric aggregation, the values are given as rate per second. Use this parameter to change the unit. Available values are: 1 (rate per second), 60 (rate per minute), 3600 (rate per hour), and 86400 (rate per day).
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - int unit_period:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -3485,10 +3663,10 @@ class CoreApi(object):
         :param kwargs:
             - str metric: Name of the metric
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - bool custom: A boolean indicating whether only default or custom metrics should be returned. If this parameter is not provided, both types are returned.
+            - bool custom: A boolean indicating whether only default or custom metrics should be returned, defaults to False. If this parameter is not provided, both types are returned.
             - bool exact_match: A boolean indicating whether the provided labels should match exactly or whether matching a subset is allowed. Defaults to false (matching a subset is allowed).
-            - int limit: The maximum number of time series to return. It defaults to 500.
-            - int offset: The number that indicates the starting point of the time series to return. It defaults to 0.
+            - int limit: Maximum number of items to return. Default is 500.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -3523,7 +3701,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(OrganizationUserDetail, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUserList, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -3579,7 +3757,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(OrganizationUserDetail, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUserList, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -3606,7 +3784,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(list[OrganizationUserDetail], status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(list[OrganizationUserList], status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -3635,7 +3813,7 @@ class CoreApi(object):
             - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
                 request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
             - bool async_req: execute request asynchronously
-        :return: tuple(OrganizationUserDetail, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(OrganizationUserList, status_code(int), headers(HTTPHeaderDict))
              If the method is called asynchronously, returns the request thread.
         """  # noqa: E501
 
@@ -4147,11 +4325,11 @@ class CoreApi(object):
         :param str pipeline_name: (required)
         :param kwargs:
             - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, default is 50
-            - int offset: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4245,9 +4423,9 @@ class CoreApi(object):
         :param str request_id: (required)
         :param str version: (required)
         :param kwargs:
-            - bool metadata_only: [DEPRECATED] A boolean value that indicates whether the response should include the request data and result, defaults to False.
-            - str pipeline_request_id: ID of pipeline request to which the operator request belongs
-            - str pipeline_object_id: ID of pipeline object for which the operator request is created
+            - bool metadata_only: [DEPRECATED] A boolean value that indicates whether the response should include the request data and result, defaults to False
+            - str pipeline_request_id: ID of the pipeline request
+            - str pipeline_object_id: ID of the pipeline object
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4581,11 +4759,11 @@ class CoreApi(object):
         :param str version: (required)
         :param kwargs:
             - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, default is 50
-            - int offset: The number which forms the starting point of the requests given back. If offset equals 2, then the first 2 requests will be omitted from the list.
-            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request
-            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
+            - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
+            - str search_id: A string to search inside request ids. It will filter all request ids that contain this string. *Only available* for completed/failed/cancelled requests.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -4709,8 +4887,8 @@ class CoreApi(object):
         :param str pipeline_name: (required)
         :param kwargs:
             - str action: Type of action. It can be one of: create, update, delete, info.
-            - int limit: The maximum number of audit events given back, default is 50
-            - int offset: The number which forms the starting point of the audit events given back. If offset equals 2, then the first 2 events will be omitted from the list.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -5091,8 +5269,8 @@ class CoreApi(object):
         :param str project_name: (required)
         :param kwargs:
             - str action: Type of action. It can be one of: create, update, delete, info.
-            - int limit: The maximum number of audit events given back, default is 50
-            - int offset: The number which forms the starting point of the audit events given back. If offset equals 2, then the first 2 events will be omitted from the list.
+            - int limit: Maximum number of items to return. Default is 50.
+            - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -5247,22 +5425,22 @@ class CoreApi(object):
 
         return self.projects.project_environment_variables_update_with_http_info(project_name, id, data, **kwargs)
 
-    def project_requests_list(self, project_name, object_type, **kwargs):
+    def project_requests_list(self, project_name, **kwargs):
         """
         List requests in project
 
         This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
         async_req=True
         >>> thread = CoreApi.project_requests_list(
-                project_name, object_type, async_req=True
+                project_name, async_req=True
             )
         >>> result = thread.get()
 
         :param str project_name: (required)
-        :param str object_type: Type of the object. It can be either deployment or pipeline. (required)
         :param kwargs:
+            - str object_type: Type of the object
             - str status: Status of the request. It can be one of the following 'failed', 'completed' or 'cancelled', defaults to 'completed'.
-            - int limit: The maximum number of requests given back, defaults to 50
+            - int limit: Maximum number of items to return. Default is 50.
             - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
             - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
@@ -5279,7 +5457,7 @@ class CoreApi(object):
 
         kwargs["_return_http_data_only"] = True
 
-        return self.projects.project_requests_list_with_http_info(project_name, object_type, **kwargs)
+        return self.projects.project_requests_list_with_http_info(project_name, **kwargs)
 
     def project_users_create(self, project_name, data, **kwargs):
         """
@@ -5378,7 +5556,7 @@ class CoreApi(object):
 
         :param str project_name: (required)
         :param kwargs:
-            - str user_type: Type of users to filter on.
+            - str user_type: Type of users to filter on
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -5486,8 +5664,8 @@ class CoreApi(object):
         >>> result = thread.get()
 
         :param kwargs:
-            - str organization: Name of the organization whose projects should be obtained
-            - str labels: Filter on labels of the project. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
+            - str organization: Name of the organization
+            - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -5501,36 +5679,6 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.projects.projects_list_with_http_info(**kwargs)
-
-    def projects_log_list(self, project_name, **kwargs):
-        """
-        [DEPRECATED] List logs for a project
-
-        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
-        async_req=True
-        >>> thread = CoreApi.projects_log_list(
-                project_name, async_req=True
-            )
-        >>> result = thread.get()
-
-        :param str project_name: (required)
-        :param kwargs:
-            - LogsCreate data:
-            - bool _return_http_data_only: response data without head status code and headers
-            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
-                response data. Default is True.
-            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
-                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
-            - bool async_req: execute request asynchronously
-        :return: tuple(list[Logs], status_code(int), headers(HTTPHeaderDict))
-             If the method is called asynchronously, returns the request thread.
-        """  # noqa: E501
-
-        kwargs["_return_http_data_only"] = True
-
-        warnings.warn("projects_log_list is deprecated", DeprecationWarning, stacklevel=2)
-
-        return self.projects.projects_log_list_with_http_info(project_name, **kwargs)
 
     def projects_resource_usage(self, project_name, **kwargs):
         """
@@ -5912,7 +6060,7 @@ class CoreApi(object):
         :param kwargs:
             - str resource: Name of the object on which the assigned roles will be listed
             - str resource_type: Type of the object on which the assigned roles will be listed
-            - str assignee: UUID of the user or the name of the object for which the assigned roles will be liste.
+            - str assignee: UUID of the user or the name of the object for which the assigned roles will be listed
             - str assignee_type: Type of the assignee for which the assigned roles will be listed
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
@@ -6335,7 +6483,7 @@ class CoreApi(object):
         :param str project_name: (required)
         :param kwargs:
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - str deployment_version_ids: Filter on the results based on the used deployment version
+            - str deployment_version_ids: Comma-separated list of deployment version IDs to filter on. If not provided, all deployment versions are included in response.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -6349,6 +6497,34 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.services.services_list_with_http_info(project_name, **kwargs)
+
+    def services_status_get(self, project_name, service_name, **kwargs):
+        """
+        Get the service status
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_status_get(
+                project_name, service_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServiceStatus, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_status_get_with_http_info(project_name, service_name, **kwargs)
 
     def services_update(self, project_name, service_name, data, **kwargs):
         """
@@ -6378,6 +6554,308 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.services.services_update_with_http_info(project_name, service_name, data, **kwargs)
+
+    def services_user_concurrency_limit_create(self, project_name, service_name, data, **kwargs):
+        """
+        Create services user concurrency limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_concurrency_limit_create(
+                project_name, service_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param ServicesUserConcurrencyLimitCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServicesUserConcurrencyLimitList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_concurrency_limit_create_with_http_info(
+            project_name, service_name, data, **kwargs
+        )
+
+    def services_user_concurrency_limit_delete(self, project_name, service_name, user_id, **kwargs):
+        """
+        Delete services user concurrency limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_concurrency_limit_delete(
+                project_name, service_name, user_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param str user_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_concurrency_limit_delete_with_http_info(
+            project_name, service_name, user_id, **kwargs
+        )
+
+    def services_user_concurrency_limit_get(self, project_name, service_name, user_id, **kwargs):
+        """
+        Get services user concurrency limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_concurrency_limit_get(
+                project_name, service_name, user_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param str user_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServicesUserConcurrencyLimitList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_concurrency_limit_get_with_http_info(
+            project_name, service_name, user_id, **kwargs
+        )
+
+    def services_user_concurrency_limit_list(self, project_name, service_name, **kwargs):
+        """
+        List services user concurrency limits
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_concurrency_limit_list(
+                project_name, service_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[ServicesUserConcurrencyLimitList], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_concurrency_limit_list_with_http_info(project_name, service_name, **kwargs)
+
+    def services_user_concurrency_limit_update(self, project_name, service_name, user_id, data, **kwargs):
+        """
+        Update services user concurrency limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_concurrency_limit_update(
+                project_name, service_name, user_id, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param str user_id: (required)
+        :param ServicesUserConcurrencyLimitUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServicesUserConcurrencyLimitList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_concurrency_limit_update_with_http_info(
+            project_name, service_name, user_id, data, **kwargs
+        )
+
+    def services_user_rate_limit_create(self, project_name, service_name, data, **kwargs):
+        """
+        Create services user rate limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_rate_limit_create(
+                project_name, service_name, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param ServicesUserRateLimitCreate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServicesUserRateLimitList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_rate_limit_create_with_http_info(project_name, service_name, data, **kwargs)
+
+    def services_user_rate_limit_delete(self, project_name, service_name, user_id, **kwargs):
+        """
+        Delete services user rate limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_rate_limit_delete(
+                project_name, service_name, user_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param str user_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: None
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_rate_limit_delete_with_http_info(
+            project_name, service_name, user_id, **kwargs
+        )
+
+    def services_user_rate_limit_get(self, project_name, service_name, user_id, **kwargs):
+        """
+        Get services user rate limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_rate_limit_get(
+                project_name, service_name, user_id, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param str user_id: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServicesUserRateLimitList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_rate_limit_get_with_http_info(project_name, service_name, user_id, **kwargs)
+
+    def services_user_rate_limit_list(self, project_name, service_name, **kwargs):
+        """
+        List services user rate limits
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_rate_limit_list(
+                project_name, service_name, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(list[ServicesUserRateLimitList], status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_rate_limit_list_with_http_info(project_name, service_name, **kwargs)
+
+    def services_user_rate_limit_update(self, project_name, service_name, user_id, data, **kwargs):
+        """
+        Update services user rate limit
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.services_user_rate_limit_update(
+                project_name, service_name, user_id, data, async_req=True
+            )
+        >>> result = thread.get()
+
+        :param str project_name: (required)
+        :param str service_name: (required)
+        :param str user_id: (required)
+        :param ServicesUserRateLimitUpdate data: (required)
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(ServicesUserRateLimitList, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.services.services_user_rate_limit_update_with_http_info(
+            project_name, service_name, user_id, data, **kwargs
+        )
 
     def service_status(self, **kwargs):
         """
@@ -6457,6 +6935,32 @@ class CoreApi(object):
         kwargs["_return_http_data_only"] = True
 
         return self.user.user_delete_with_http_info(**kwargs)
+
+    def user_get(self, **kwargs):
+        """
+        Get user details
+
+        This method makes a synchronous HTTP request by default. To make an asynchronous HTTP request, please pass
+        async_req=True
+        >>> thread = CoreApi.user_get(
+                async_req=True
+            )
+        >>> result = thread.get()
+
+        :param kwargs:
+            - bool _return_http_data_only: response data without head status code and headers
+            - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
+                response data. Default is True.
+            - int|tuple _request_timeout: timeout setting for this request. If one number provided, it will be total
+                request timeout. It can also be a pair (tuple) of (connection, read) timeouts.
+            - bool async_req: execute request asynchronously
+        :return: tuple(UserDetail, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously, returns the request thread.
+        """  # noqa: E501
+
+        kwargs["_return_http_data_only"] = True
+
+        return self.user.user_get_with_http_info(**kwargs)
 
     def webhook_tests_create(self, project_name, data, **kwargs):
         """
@@ -6612,7 +7116,7 @@ class CoreApi(object):
         :param str project_name: (required)
         :param kwargs:
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - str object_type: Type of object for which the webhook is created. It can be either 'deployment' or 'pipeline'.
+            - str object_type: Type of the object
             - str event: Event that triggers the webhook
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding

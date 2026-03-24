@@ -278,7 +278,7 @@ class DeploymentRequests(object):
         :param str deployment_name: (required)
         :param list[str] data: (required)
         :param kwargs:
-            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
+            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -968,8 +968,8 @@ class DeploymentRequests(object):
         :param str project_name: (required)
         :param str deployment_name: (required)
         :param kwargs:
-            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, defaults to 50
+            - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
+            - int limit: Maximum number of items to return. Default is 50.
             - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
             - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
@@ -2044,7 +2044,7 @@ class DeploymentRequests(object):
         :param str version: (required)
         :param kwargs:
             - str status: Status of the request, one of the following 'pending', 'processing', 'failed', 'completed' or 'cancelled', defaults to 'completed'. A combination of statuses can also be requested. 'pending' and 'processing' requests cannot be combined with other statuses.
-            - int limit: The maximum number of requests given back, defaults to 50
+            - int limit: Maximum number of items to return. Default is 50.
             - int offset: The number which forms the starting point of the requests given back, defaults to 0. If offset equals 2, then the first 2 requests will be omitted from the list.
             - str start_date: Start date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.
             - str end_date: End date of the interval for which the requests are retrieved, looking at the creation date of the request. *Only available* for completed/failed/cancelled requests.

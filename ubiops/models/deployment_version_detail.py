@@ -58,6 +58,7 @@ class DeploymentVersionDetail(object):
         "last_file_upload": "datetime",
         "has_request_method": "bool",
         "has_requests_method": "bool",
+        "health_check": "HealthCheck",
     }
 
     attribute_map = {
@@ -91,6 +92,7 @@ class DeploymentVersionDetail(object):
         "last_file_upload": "last_file_upload",
         "has_request_method": "has_request_method",
         "has_requests_method": "has_requests_method",
+        "health_check": "health_check",
     }
 
     def __init__(
@@ -125,6 +127,7 @@ class DeploymentVersionDetail(object):
         last_file_upload=None,
         has_request_method=None,
         has_requests_method=None,
+        health_check=None,
         **kwargs,
     ):
         """
@@ -165,6 +168,7 @@ class DeploymentVersionDetail(object):
         self._last_file_upload = None
         self._has_request_method = None
         self._has_requests_method = None
+        self._health_check = None
         self.discriminator = None
 
         if id is not None:
@@ -220,6 +224,7 @@ class DeploymentVersionDetail(object):
         self.last_file_upload = last_file_upload
         self.has_request_method = has_request_method
         self.has_requests_method = has_requests_method
+        self.health_check = health_check
 
     @property
     def id(self):
@@ -1010,6 +1015,34 @@ class DeploymentVersionDetail(object):
             raise ValueError("Parameter `has_requests_method` must be a boolean")
 
         self._has_requests_method = has_requests_method
+
+    @property
+    def health_check(self):
+        """
+        Gets the health_check of this DeploymentVersionDetail
+
+        :return: the health_check of this DeploymentVersionDetail
+        :rtype: HealthCheck
+        """
+
+        return self._health_check
+
+    @health_check.setter
+    def health_check(self, health_check):
+        """
+        Sets the health_check of this DeploymentVersionDetail
+
+        :param health_check: the health_check of this DeploymentVersionDetail
+        :type: HealthCheck
+        """
+
+        if self.client_side_validation and health_check is not None:
+            if isinstance(health_check, dict):
+                from ubiops.models.health_check import HealthCheck
+
+                health_check = HealthCheck(**health_check)
+
+        self._health_check = health_check
 
     def to_dict(self):
         """

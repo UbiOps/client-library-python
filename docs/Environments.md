@@ -13,6 +13,12 @@ Method | HTTP request | Description
 [**environment_revisions_get**](./Environments.md#environment_revisions_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id} | Get revision
 [**environment_revisions_list**](./Environments.md#environment_revisions_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions | List revisions
 [**environment_revisions_rebuild**](./Environments.md#environment_revisions_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/rebuild | Rebuild revision
+[**environment_secrets_copy**](./Environments.md#environment_secrets_copy) | **POST** /projects/{project_name}/environments/{environment_name}/copy-secrets | Copy environment secret
+[**environment_secrets_create**](./Environments.md#environment_secrets_create) | **POST** /projects/{project_name}/environments/{environment_name}/secrets | Create environment secret
+[**environment_secrets_delete**](./Environments.md#environment_secrets_delete) | **DELETE** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Delete environment secret
+[**environment_secrets_get**](./Environments.md#environment_secrets_get) | **GET** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Get environment secret
+[**environment_secrets_list**](./Environments.md#environment_secrets_list) | **GET** /projects/{project_name}/environments/{environment_name}/secrets | List environment secrets
+[**environment_secrets_update**](./Environments.md#environment_secrets_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Update environment secret
 [**environments_create**](./Environments.md#environments_create) | **POST** /projects/{project_name}/environments | Create environments
 [**environments_delete**](./Environments.md#environments_delete) | **DELETE** /projects/{project_name}/environments/{environment_name} | Delete environment
 [**environments_get**](./Environments.md#environments_get) | **GET** /projects/{project_name}/environments/{environment_name} | Get environment
@@ -609,6 +615,392 @@ Name | Type | Notes
 ### Return type
 
 [**EnvironmentBuildList**](./models/EnvironmentBuildList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **environment_secrets_copy**
+> list[InheritedEnvironmentVariableList] environment_secrets_copy(project_name, environment_name, data)
+
+Copy environment secret
+
+## Description
+Copy existing secrets from a source object to the environment. Secrets of the environment with the same name as ones from the source object will be overwritten with the new value. Only the copied secrets are returned.
+
+### Required Parameters
+
+- `source_environment`: The name of the environment from which the secrets will be copied
+
+## Request Examples
+
+
+```
+{
+  "source_environment": "example-environment"
+}
+```
+
+### Response Structure
+A list of the copied secrets described by the following fields:
+
+- `id`: Unique identifier for the secret
+- `name`: Variable name
+- `value`: Variable value (will be null for secret variables)
+- `secret`: Boolean that indicates if this variable contains sensitive information (always true)
+
+## Response Examples
+
+```
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "name": "UV_DEFAULT_INDEX",
+    "value": null,
+    "secret": true,
+  }
+]
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+data = ubiops.EnvironmentSecretCopy() # EnvironmentSecretCopy
+
+# Copy environment secret
+api_response = core_api.environment_secrets_copy(project_name, environment_name, data)
+print(api_response)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **environment_name** | **str** | 
+ **data** | [**EnvironmentSecretCopy**](./models/EnvironmentSecretCopy.md) | 
+
+### Return type
+
+[**list[InheritedEnvironmentVariableList]**](./models/InheritedEnvironmentVariableList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **environment_secrets_create**
+> EnvironmentVariableList environment_secrets_create(project_name, environment_name, data)
+
+Create environment secret
+
+## Description
+Create a secret for the environment.
+
+### Required Parameters
+
+- `name`: The name of the variable. The variable will have this name when accessed from environment build time. The variable name should contain only letters and underscores, and not start or end with an underscore.
+- `value`: The value of the variable as a string. It may be an empty string ("").
+- `secret`: If this variable contains sensitive information. Must be true for environments.
+
+## Request Examples
+
+```
+{
+  "name": "UV_DEFAULT_INDEX",
+  "value": "https://pypi.org/simple",
+  "secret": true
+}
+```
+
+### Response Structure
+
+- `id`: Unique identifier for the secret
+- `name`: Variable name
+- `value`: Variable value (will be null for secret variables)
+- `secret`: Boolean that indicates if this variable contains sensitive information (always true)
+
+## Response Examples
+
+```
+{
+  "id": "7c28a2be-507e-4fae-981d-54e94f22dab0",
+  "name": "UV_DEFAULT_INDEX",
+  "value": null,
+  "secret": true
+}
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
+
+# Create environment secret
+api_response = core_api.environment_secrets_create(project_name, environment_name, data)
+print(api_response)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **environment_name** | **str** | 
+ **data** | [**EnvironmentVariableCreate**](./models/EnvironmentVariableCreate.md) | 
+
+### Return type
+
+[**EnvironmentVariableList**](./models/EnvironmentVariableList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **environment_secrets_delete**
+> environment_secrets_delete(project_name, environment_name, id)
+
+Delete environment secret
+
+## Description
+Delete a secret of the environment
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+id = 'id_example' # str
+
+# Delete environment secret
+core_api.environment_secrets_delete(project_name, environment_name, id)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **environment_name** | **str** | 
+ **id** | **str** | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **environment_secrets_get**
+> EnvironmentVariableList environment_secrets_get(project_name, environment_name, id)
+
+Get environment secret
+
+## Description
+Retrieve details of an environment secret.
+
+### Response Structure
+
+- `id`: Unique identifier for the secret
+- `name`: Variable name
+- `value`: Variable value (will be null for secret variables)
+- `secret`: Boolean that indicates if this variable contains sensitive information (always true)
+
+## Response Examples
+
+```
+{
+  "id": "4c15a27e-25ea-4be0-86c7-f4790389d061",
+  "name": "UV_DEFAULT_INDEX",
+  "value": null,
+  "secret": true
+}
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+id = 'id_example' # str
+
+# Get environment secret
+api_response = core_api.environment_secrets_get(project_name, environment_name, id)
+print(api_response)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **environment_name** | **str** | 
+ **id** | **str** | 
+
+### Return type
+
+[**EnvironmentVariableList**](./models/EnvironmentVariableList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **environment_secrets_list**
+> list[EnvironmentVariableList] environment_secrets_list(project_name, environment_name)
+
+List environment secrets
+
+## Description
+List the secrets defined for the environment.
+
+### Response Structure
+A list of secrets described by the following fields:
+
+- `id`: Unique identifier for the secret
+- `name`: Variable name
+- `value`: Variable value (will be null for secret variables)
+- `secret`: Boolean that indicates if this variable contains sensitive information (always true)
+
+## Response Examples
+
+```
+[
+  {
+    "id": "06c2c8be-507e-4fae-981d-54e94f22dab0",
+    "name": "UV_DEFAULT_INDEX",
+    "value": null,
+    "secret": true
+  }
+]
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+
+# List environment secrets
+api_response = core_api.environment_secrets_list(project_name, environment_name)
+print(api_response)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **environment_name** | **str** | 
+
+### Return type
+
+[**list[EnvironmentVariableList]**](./models/EnvironmentVariableList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **environment_secrets_update**
+> EnvironmentVariableList environment_secrets_update(project_name, environment_name, id, data)
+
+Update environment secret
+
+## Description
+Update a secret for the environment.
+
+### Required Parameters
+
+- `name`: The name of the variable. The variable will have this name when accessed from environment build time. The variable name should contain only letters and underscores, and not start or end with an underscore.
+- `value`: The value of the variable as a string. It may be an empty string ("").
+- `secret`: If this variable contains sensitive information (always true)
+
+## Request Examples
+
+```
+{
+  "name": "UV_DEFAULT_INDEX",
+  "value": "https://pypi.org/simple",
+  "secret": true
+}
+```
+
+### Response Structure
+
+- `id`: Unique identifier for the secret
+- `name`: Variable name
+- `value`: Variable value (will be null for secret variables)
+- `secret`: Boolean that indicates if this variable contains sensitive information (always true)
+
+## Response Examples
+
+```
+{
+  "id": "7c28a2be-507e-4fae-981d-54e94f22dab0",
+  "name": "UV_DEFAULT_INDEX",
+  "value": null,
+  "secret": true
+}
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+environment_name = 'environment_name_example' # str
+id = 'id_example' # str
+data = ubiops.EnvironmentVariableCreate() # EnvironmentVariableCreate
+
+# Update environment secret
+api_response = core_api.environment_secrets_update(project_name, environment_name, id, data)
+print(api_response)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **environment_name** | **str** | 
+ **id** | **str** | 
+ **data** | [**EnvironmentVariableCreate**](./models/EnvironmentVariableCreate.md) | 
+
+### Return type
+
+[**EnvironmentVariableList**](./models/EnvironmentVariableList.md)
 
 ### Authorization
 

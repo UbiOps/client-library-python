@@ -374,7 +374,7 @@ class Roles(object):
         :param kwargs:
             - str resource: Name of the object on which the assigned roles will be listed
             - str resource_type: Type of the object on which the assigned roles will be listed
-            - str assignee: UUID of the user or the name of the object for which the assigned roles will be liste.
+            - str assignee: UUID of the user or the name of the object for which the assigned roles will be listed
             - str assignee_type: Type of the assignee for which the assigned roles will be listed
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding

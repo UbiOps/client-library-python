@@ -873,7 +873,7 @@ class Files(object):
             - str prefix: Prefix to filter files
             - str delimiter: Delimiter used with prefix to emulate hierarchy to filter files
             - str continuation_token: A token that indicates the start point of the returned the files
-            - int limit:
+            - int limit: Maximum number of items to return. Default is 50.
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding
                 response data. Default is True.
@@ -1086,8 +1086,8 @@ class Files(object):
         :param str bucket_name: (required)
         :param str file: (required)
         :param kwargs:
-            - str upload_id: ID of the upload for the file. It should be used with multipart uploads
-            - str part_number: Part number of the upload. It should be used with multipart uploads
+            - str upload_id: ID of the upload for the file. It should be used with multipart uploads.
+            - str part_number: Part number of the upload. It should be used with multipart uploads.
             - object data:
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding

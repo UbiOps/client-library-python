@@ -519,7 +519,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **time_series_data_list**
-> TimeSeriesDataList time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
+> TimeSeriesDataList time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, unit_period=unit_period, labels=labels)
 
 List time series data
 
@@ -561,6 +561,7 @@ Available metrics for pipelines:
 
 - `aggregation_period`: Time period in seconds in which data points are grouped. It defaults to the highest resolution possible given the provided date range. Available values are: 60, 300, 900, 3600, 7200, 21600 and 86400.
 Start and end dates are adjusted according to the aggregation period. For example, if aggregation period is 3600, start date is rounded down to the previous full hour and end date is rounded up to the next full hour.
+- `unit_period`: The period to aggregate metrics into. Only used for delta metrics. After metric aggregation, the values are given as rate per second. Use this parameter to change the unit. Available values are: 1 (rate per second), 60 (rate per minute), 3600 (rate per hour), and 86400 (rate per day).
 - `labels`: Comma-separated values for labels to filter on data points. It must be in the format: key-1:value-1,key-2:value-2.
 
 ## Request Examples
@@ -635,11 +636,11 @@ metric = 'metric_example' # str (optional)
 start_date = 'start_date_example' # str (optional)
 end_date = 'end_date_example' # str (optional)
 aggregation_period = 56 # int (optional)
-labels = "label1:value1,label2:value2" # str (optional)
 unit_period = 56 # int (optional)
+labels = "label1:value1,label2:value2" # str (optional)
 
 # List time series data
-api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, labels=labels, unit_period=unit_period)
+api_response = core_api.time_series_data_list(project_name, metric=metric, start_date=start_date, end_date=end_date, aggregation_period=aggregation_period, unit_period=unit_period, labels=labels)
 print(api_response)
 ```
 
@@ -653,8 +654,8 @@ Name | Type | Notes
  **start_date** | **str** | [optional] 
  **end_date** | **str** | [optional] 
  **aggregation_period** | **int** | [optional] 
- **labels** | **str** | [optional] 
  **unit_period** | **int** | [optional] 
+ **labels** | **str** | [optional] 
 
 ### Return type
 

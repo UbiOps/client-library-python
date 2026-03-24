@@ -27,7 +27,7 @@ class RoleDetailList(object):
       attribute_map (dict): The key is attribute name and the value is json key in definition
     """
 
-    openapi_types = {"id": "str", "name": "str", "default": "str", "permissions": "list[str]"}
+    openapi_types = {"id": "str", "name": "str", "default": "bool", "permissions": "list[str]"}
 
     attribute_map = {"id": "id", "name": "name", "default": "default", "permissions": "permissions"}
 
@@ -117,7 +117,7 @@ class RoleDetailList(object):
         Gets the default of this RoleDetailList
 
         :return: the default of this RoleDetailList
-        :rtype: str
+        :rtype: bool
         """
 
         return self._default
@@ -128,11 +128,11 @@ class RoleDetailList(object):
         Sets the default of this RoleDetailList
 
         :param default: the default of this RoleDetailList
-        :type: str
+        :type: bool
         """
 
-        if self.client_side_validation and (default is not None and not isinstance(default, str)):
-            raise ValueError("Parameter `default` must be a string")
+        if self.client_side_validation and (default is not None and not isinstance(default, bool)):
+            raise ValueError("Parameter `default` must be a boolean")
 
         self._default = default
 

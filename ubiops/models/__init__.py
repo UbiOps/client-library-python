@@ -49,6 +49,7 @@ from ubiops.models.environment_detail import EnvironmentDetail
 from ubiops.models.environment_list import EnvironmentList
 from ubiops.models.environment_revision_create import EnvironmentRevisionCreate
 from ubiops.models.environment_revision_detail import EnvironmentRevisionDetail
+from ubiops.models.environment_secret_copy import EnvironmentSecretCopy
 from ubiops.models.environment_update import EnvironmentUpdate
 from ubiops.models.environment_usage import EnvironmentUsage
 from ubiops.models.environment_variable_copy import EnvironmentVariableCopy
@@ -93,8 +94,6 @@ from ubiops.models.instance_type_list_paginated import InstanceTypeListPaginated
 from ubiops.models.instance_update import InstanceUpdate
 from ubiops.models.log_list import LogList
 from ubiops.models.log_metadata import LogMetadata
-from ubiops.models.logs import Logs
-from ubiops.models.logs_create import LogsCreate
 from ubiops.models.metric_create import MetricCreate
 from ubiops.models.metric_detail import MetricDetail
 from ubiops.models.metric_update import MetricUpdate
@@ -108,7 +107,7 @@ from ubiops.models.organization_project_usage import OrganizationProjectUsage
 from ubiops.models.organization_update import OrganizationUpdate
 from ubiops.models.organization_usage import OrganizationUsage
 from ubiops.models.organization_user_create import OrganizationUserCreate
-from ubiops.models.organization_user_detail import OrganizationUserDetail
+from ubiops.models.organization_user_list import OrganizationUserList
 from ubiops.models.organization_user_update import OrganizationUserUpdate
 from ubiops.models.output_field_widget_create import OutputFieldWidgetCreate
 from ubiops.models.output_value_list import OutputValueList
@@ -164,11 +163,18 @@ from ubiops.models.schedule_update import ScheduleUpdate
 from ubiops.models.service_create import ServiceCreate
 from ubiops.models.service_detail import ServiceDetail
 from ubiops.models.service_list import ServiceList
+from ubiops.models.service_status import ServiceStatus
 from ubiops.models.service_update import ServiceUpdate
 from ubiops.models.service_user_create import ServiceUserCreate
 from ubiops.models.service_user_list import ServiceUserList
 from ubiops.models.service_user_token_detail import ServiceUserTokenDetail
 from ubiops.models.service_user_token_list import ServiceUserTokenList
+from ubiops.models.services_user_concurrency_limit_create import ServicesUserConcurrencyLimitCreate
+from ubiops.models.services_user_concurrency_limit_list import ServicesUserConcurrencyLimitList
+from ubiops.models.services_user_concurrency_limit_update import ServicesUserConcurrencyLimitUpdate
+from ubiops.models.services_user_rate_limit_create import ServicesUserRateLimitCreate
+from ubiops.models.services_user_rate_limit_list import ServicesUserRateLimitList
+from ubiops.models.services_user_rate_limit_update import ServicesUserRateLimitUpdate
 from ubiops.models.status import Status
 from ubiops.models.template_deployment_list import TemplateDeploymentList
 from ubiops.models.time_series_data_create import TimeSeriesDataCreate
@@ -176,6 +182,7 @@ from ubiops.models.time_series_data_list import TimeSeriesDataList
 from ubiops.models.time_series_data_point_create import TimeSeriesDataPointCreate
 from ubiops.models.time_series_data_point_list import TimeSeriesDataPointList
 from ubiops.models.time_series_search import TimeSeriesSearch
+from ubiops.models.user_detail import UserDetail
 from ubiops.models.user_pending_create import UserPendingCreate
 from ubiops.models.user_pending_detail import UserPendingDetail
 from ubiops.models.voucher import Voucher

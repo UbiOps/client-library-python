@@ -46,6 +46,7 @@ class DeploymentVersionCreate(object):
         "ports": "list[DeploymentVersionPort]",
         "scaling_strategy": "str",
         "instance_processes": "int",
+        "health_check": "HealthCheck",
     }
 
     attribute_map = {
@@ -67,6 +68,7 @@ class DeploymentVersionCreate(object):
         "ports": "ports",
         "scaling_strategy": "scaling_strategy",
         "instance_processes": "instance_processes",
+        "health_check": "health_check",
     }
 
     def __init__(
@@ -89,6 +91,7 @@ class DeploymentVersionCreate(object):
         ports=None,
         scaling_strategy=None,
         instance_processes=None,
+        health_check=None,
         **kwargs,
     ):
         """
@@ -117,6 +120,7 @@ class DeploymentVersionCreate(object):
         self._ports = None
         self._scaling_strategy = None
         self._instance_processes = None
+        self._health_check = None
         self.discriminator = None
 
         self.version = version
@@ -154,6 +158,7 @@ class DeploymentVersionCreate(object):
             self.scaling_strategy = scaling_strategy
         if instance_processes is not None:
             self.instance_processes = instance_processes
+        self.health_check = health_check
 
     @property
     def version(self):
@@ -637,6 +642,34 @@ class DeploymentVersionCreate(object):
             raise ValueError("Parameter `instance_processes` must be an integer")
 
         self._instance_processes = instance_processes
+
+    @property
+    def health_check(self):
+        """
+        Gets the health_check of this DeploymentVersionCreate
+
+        :return: the health_check of this DeploymentVersionCreate
+        :rtype: HealthCheck
+        """
+
+        return self._health_check
+
+    @health_check.setter
+    def health_check(self, health_check):
+        """
+        Sets the health_check of this DeploymentVersionCreate
+
+        :param health_check: the health_check of this DeploymentVersionCreate
+        :type: HealthCheck
+        """
+
+        if self.client_side_validation and health_check is not None:
+            if isinstance(health_check, dict):
+                from ubiops.models.health_check import HealthCheck
+
+                health_check = HealthCheck(**health_check)
+
+        self._health_check = health_check
 
     def to_dict(self):
         """

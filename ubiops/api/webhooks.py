@@ -481,7 +481,7 @@ class Webhooks(object):
         :param str project_name: (required)
         :param kwargs:
             - str labels: Filter on the results based on labels. Should be given in the format 'label:label_value'. Separate multiple label-pairs with a comma (,).
-            - str object_type: Type of object for which the webhook is created. It can be either 'deployment' or 'pipeline'.
+            - str object_type: Type of the object
             - str event: Event that triggers the webhook
             - bool _return_http_data_only: response data without head status code and headers
             - bool _preload_content: if False, the requests.Response object will be returned without reading/decoding

@@ -1,10 +1,11 @@
-# RoleList
+# ServicesUserRateLimitList
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
 **id** | **str** | [optional] [readonly]
-**name** | **str** |
-**default** | **bool** | [optional] [readonly]
+**user_id** | **str** |
+**user_email** | **str** |
+**limit** | **int** |
 
 

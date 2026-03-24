@@ -44,7 +44,7 @@ Create a bucket in a project
     UbiOps always makes sure that the prefix ends with a '/'.
 - `description`: Description of the bucket
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
-- `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week). Pass `null` to keep them forever.
+- `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 seconds. Pass `null` to keep them forever.
 
 ## Request Examples
 
@@ -338,7 +338,7 @@ Update a bucket
 - `configuration`: Additional configuration details for the bucket
 - `description`: New description for the bucket
 - `labels`: New dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label. The new labels will replace the existing value for labels.
-- `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 (1 week).
+- `ttl`: Time to live for the files in the bucket. It must be a multiple of 604800 seconds.
 
 ## Request Examples
 

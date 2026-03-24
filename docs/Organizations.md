@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **organization_users_create**
-> OrganizationUserDetail organization_users_create(organization_name, data)
+> OrganizationUserList organization_users_create(organization_name, data)
 
 Add a user to an organization
 
@@ -49,6 +49,7 @@ Details of the added user
 - `name`: Name of the user
 - `surname`: Surname of the user
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
+- `join_date`: Date when the user joined the organization
 
 ## Response Examples
 
@@ -58,7 +59,8 @@ Details of the added user
   "email": "test@example.com",
   "name": "user",
   "surname": "name",
-  "admin": false
+  "admin": false,
+  "join_date": "2026-01-01"
 }
 ```
 
@@ -85,7 +87,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**OrganizationUserDetail**](./models/OrganizationUserDetail.md)
+[**OrganizationUserList**](./models/OrganizationUserList.md)
 
 ### Authorization
 
@@ -135,7 +137,7 @@ void (empty response body)
 [[Back to top]](#)
 
 # **organization_users_get**
-> OrganizationUserDetail organization_users_get(organization_name, user_id)
+> OrganizationUserList organization_users_get(organization_name, user_id)
 
 Get details of a user in an organization
 
@@ -150,6 +152,7 @@ Details of the user
 - `name`: Name of the user
 - `surname`: Surname of the user
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
+- `join_date`: Date when the user joined the organization
 
 ## Response Examples
 
@@ -159,7 +162,8 @@ Details of the user
   "email": "test@example.com",
   "name": "user",
   "surname": "name",
-  "admin": false
+  "admin": false,
+  "join_date": "2026-01-01"
 }
 ```
 
@@ -186,7 +190,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**OrganizationUserDetail**](./models/OrganizationUserDetail.md)
+[**OrganizationUserList**](./models/OrganizationUserList.md)
 
 ### Authorization
 
@@ -195,7 +199,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **organization_users_list**
-> list[OrganizationUserDetail] organization_users_list(organization_name)
+> list[OrganizationUserList] organization_users_list(organization_name)
 
 List the users in an organization
 
@@ -210,6 +214,7 @@ List of details of users
 - `name`: Name of the user
 - `surname`: Surname of the user
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
+- `join_date`: Date when the user joined the organization
 
 ## Response Examples
 
@@ -220,14 +225,16 @@ List of details of users
     "email": "user@example.com",
     "name": "user",
     "surname": "name",
-    "admin": true
+    "admin": true,
+    "join_date": "2026-01-01"
   },
   {
     "id": "abe2e406-fae5-4bcf-a3bc-956d756e4ecb",
     "email": "user2@example.com",
     "name": "user",
     "surname": "name",
-    "admin": false
+    "admin": false,
+    "join_date": "2026-01-01"
   }
 ]
 ```
@@ -253,7 +260,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**list[OrganizationUserDetail]**](./models/OrganizationUserDetail.md)
+[**list[OrganizationUserList]**](./models/OrganizationUserList.md)
 
 ### Authorization
 
@@ -262,7 +269,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **organization_users_update**
-> OrganizationUserDetail organization_users_update(organization_name, user_id, data)
+> OrganizationUserList organization_users_update(organization_name, user_id, data)
 
 Update details of a user in an organization
 
@@ -290,6 +297,7 @@ Details of the user
 - `name`: Name of the user
 - `surname`: Surname of the user
 - `admin`: Boolean value indicating whether the user is an admin of the organization or not
+- `join_date`: Date when the user joined the organization
 
 ## Response Examples
 
@@ -299,7 +307,8 @@ Details of the user
   "email": "test@example.com",
   "name": "user",
   "surname": "name",
-  "admin": true
+  "admin": true,
+  "join_date": "2026-01-01"
 }
 ```
 
@@ -328,7 +337,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**OrganizationUserDetail**](./models/OrganizationUserDetail.md)
+[**OrganizationUserList**](./models/OrganizationUserList.md)
 
 ### Authorization
 

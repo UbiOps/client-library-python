@@ -41,8 +41,10 @@ class ServiceDetail(object):
         "authentication_method_token_enabled": "bool",
         "request_logging_excluded_paths": "str",
         "request_logging_excluded_extensions": "list[str]",
-        "health_check": "HealthCheck",
-        "rate_limit_token": "int",
+        "rate_limit": "int",
+        "rate_limit_user_default": "int",
+        "concurrency_limit": "int",
+        "concurrency_limit_user_default": "int",
         "endpoint": "str",
     }
 
@@ -60,8 +62,10 @@ class ServiceDetail(object):
         "authentication_method_token_enabled": "authentication_method_token_enabled",
         "request_logging_excluded_paths": "request_logging_excluded_paths",
         "request_logging_excluded_extensions": "request_logging_excluded_extensions",
-        "health_check": "health_check",
-        "rate_limit_token": "rate_limit_token",
+        "rate_limit": "rate_limit",
+        "rate_limit_user_default": "rate_limit_user_default",
+        "concurrency_limit": "concurrency_limit",
+        "concurrency_limit_user_default": "concurrency_limit_user_default",
         "endpoint": "endpoint",
     }
 
@@ -80,8 +84,10 @@ class ServiceDetail(object):
         authentication_method_token_enabled=None,
         request_logging_excluded_paths=None,
         request_logging_excluded_extensions=None,
-        health_check=None,
-        rate_limit_token=None,
+        rate_limit=None,
+        rate_limit_user_default=None,
+        concurrency_limit=None,
+        concurrency_limit_user_default=None,
         endpoint=None,
         **kwargs,
     ):
@@ -106,8 +112,10 @@ class ServiceDetail(object):
         self._authentication_method_token_enabled = None
         self._request_logging_excluded_paths = None
         self._request_logging_excluded_extensions = None
-        self._health_check = None
-        self._rate_limit_token = None
+        self._rate_limit = None
+        self._rate_limit_user_default = None
+        self._concurrency_limit = None
+        self._concurrency_limit_user_default = None
         self._endpoint = None
         self.discriminator = None
 
@@ -130,9 +138,10 @@ class ServiceDetail(object):
             self.request_logging_excluded_paths = request_logging_excluded_paths
         if request_logging_excluded_extensions is not None:
             self.request_logging_excluded_extensions = request_logging_excluded_extensions
-        self.health_check = health_check
-        if rate_limit_token is not None:
-            self.rate_limit_token = rate_limit_token
+        self.rate_limit = rate_limit
+        self.rate_limit_user_default = rate_limit_user_default
+        self.concurrency_limit = concurrency_limit
+        self.concurrency_limit_user_default = concurrency_limit_user_default
         self.endpoint = endpoint
 
     @property
@@ -488,57 +497,108 @@ class ServiceDetail(object):
         self._request_logging_excluded_extensions = request_logging_excluded_extensions
 
     @property
-    def health_check(self):
+    def rate_limit(self):
         """
-        Gets the health_check of this ServiceDetail
+        Gets the rate_limit of this ServiceDetail
 
-        :return: the health_check of this ServiceDetail
-        :rtype: HealthCheck
-        """
-
-        return self._health_check
-
-    @health_check.setter
-    def health_check(self, health_check):
-        """
-        Sets the health_check of this ServiceDetail
-
-        :param health_check: the health_check of this ServiceDetail
-        :type: HealthCheck
-        """
-
-        if self.client_side_validation and health_check is not None:
-            if isinstance(health_check, dict):
-                from ubiops.models.health_check import HealthCheck
-
-                health_check = HealthCheck(**health_check)
-
-        self._health_check = health_check
-
-    @property
-    def rate_limit_token(self):
-        """
-        Gets the rate_limit_token of this ServiceDetail
-
-        :return: the rate_limit_token of this ServiceDetail
+        :return: the rate_limit of this ServiceDetail
         :rtype: int
         """
 
-        return self._rate_limit_token
+        return self._rate_limit
 
-    @rate_limit_token.setter
-    def rate_limit_token(self, rate_limit_token):
+    @rate_limit.setter
+    def rate_limit(self, rate_limit):
         """
-        Sets the rate_limit_token of this ServiceDetail
+        Sets the rate_limit of this ServiceDetail
 
-        :param rate_limit_token: the rate_limit_token of this ServiceDetail
+        :param rate_limit: the rate_limit of this ServiceDetail
         :type: int
         """
 
-        if self.client_side_validation and (rate_limit_token is not None and not isinstance(rate_limit_token, int)):
-            raise ValueError("Parameter `rate_limit_token` must be an integer")
+        if self.client_side_validation and (rate_limit is not None and not isinstance(rate_limit, int)):
+            raise ValueError("Parameter `rate_limit` must be an integer")
 
-        self._rate_limit_token = rate_limit_token
+        self._rate_limit = rate_limit
+
+    @property
+    def rate_limit_user_default(self):
+        """
+        Gets the rate_limit_user_default of this ServiceDetail
+
+        :return: the rate_limit_user_default of this ServiceDetail
+        :rtype: int
+        """
+
+        return self._rate_limit_user_default
+
+    @rate_limit_user_default.setter
+    def rate_limit_user_default(self, rate_limit_user_default):
+        """
+        Sets the rate_limit_user_default of this ServiceDetail
+
+        :param rate_limit_user_default: the rate_limit_user_default of this ServiceDetail
+        :type: int
+        """
+
+        if self.client_side_validation and (
+            rate_limit_user_default is not None and not isinstance(rate_limit_user_default, int)
+        ):
+            raise ValueError("Parameter `rate_limit_user_default` must be an integer")
+
+        self._rate_limit_user_default = rate_limit_user_default
+
+    @property
+    def concurrency_limit(self):
+        """
+        Gets the concurrency_limit of this ServiceDetail
+
+        :return: the concurrency_limit of this ServiceDetail
+        :rtype: int
+        """
+
+        return self._concurrency_limit
+
+    @concurrency_limit.setter
+    def concurrency_limit(self, concurrency_limit):
+        """
+        Sets the concurrency_limit of this ServiceDetail
+
+        :param concurrency_limit: the concurrency_limit of this ServiceDetail
+        :type: int
+        """
+
+        if self.client_side_validation and (concurrency_limit is not None and not isinstance(concurrency_limit, int)):
+            raise ValueError("Parameter `concurrency_limit` must be an integer")
+
+        self._concurrency_limit = concurrency_limit
+
+    @property
+    def concurrency_limit_user_default(self):
+        """
+        Gets the concurrency_limit_user_default of this ServiceDetail
+
+        :return: the concurrency_limit_user_default of this ServiceDetail
+        :rtype: int
+        """
+
+        return self._concurrency_limit_user_default
+
+    @concurrency_limit_user_default.setter
+    def concurrency_limit_user_default(self, concurrency_limit_user_default):
+        """
+        Sets the concurrency_limit_user_default of this ServiceDetail
+
+        :param concurrency_limit_user_default: the concurrency_limit_user_default of this ServiceDetail
+        :type: int
+        """
+
+        if self.client_side_validation and (
+            concurrency_limit_user_default is not None and not isinstance(concurrency_limit_user_default, int)
+        ):
+            raise ValueError("Parameter `concurrency_limit_user_default` must be an integer")
+
+        self._concurrency_limit_user_default = concurrency_limit_user_default
 
     @property
     def endpoint(self):

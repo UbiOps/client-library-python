@@ -1,4 +1,4 @@
-# OrganizationUserDetail
+# OrganizationUserList
 
 ## Properties
 Name | Type | Notes
@@ -9,5 +9,6 @@ Name | Type | Notes
 **status** | **str** | [optional] [readonly]
 **surname** | **str** | [optional]
 **admin** | **bool** | [optional]
+**join_date** | **date** | [optional] [readonly]
 
 
