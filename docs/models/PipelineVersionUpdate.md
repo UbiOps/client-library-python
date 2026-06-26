@@ -8,6 +8,7 @@ Name | Type | Notes
 **labels** | **dict(str, str)** | [optional]
 **request_retention_time** | **int** | [optional]
 **request_retention_mode** | **str** | [optional]
+**metadata** | **str** or **dict(str, str)** | [optional]
 **objects** | [**list[PipelineVersionObjectCreate]**](PipelineVersionObjectCreate.md) | [optional]
 **attachments** | [**list[AttachmentsCreate]**](AttachmentsCreate.md) | [optional]
 

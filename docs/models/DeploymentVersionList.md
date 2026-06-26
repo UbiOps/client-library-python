@@ -22,7 +22,6 @@ Name | Type | Notes
 **request_retention_time** | **int** | [optional]
 **request_retention_mode** | **str** | [optional]
 **maximum_queue_size** | **int** | [optional]
-**static_ip** | **bool** | [optional]
 **restart_request_interruption** | **bool** | [optional]
 **ports** | [**list[DeploymentVersionPort]**](DeploymentVersionPort.md) | [optional]
 **instance_type** | **str** | [optional] [readonly]

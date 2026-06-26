@@ -56,6 +56,8 @@ def stream_request(
         data=data if data is not None else "",
         stream=True,
         params={"timeout": timeout},
+        verify=client.rest_client.verify,
+        cert=client.rest_client.cert,
     )
 
     for line in stream_response.iter_lines():

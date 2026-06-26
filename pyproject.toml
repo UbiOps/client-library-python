@@ -1,6 +1,6 @@
 [project]
 name = "ubiops"
-version = "4.13.0"
+version = "4.14.0"
 description = "UbiOps"
 authors = [{name = "UbiOps"}]
 readme = "README_pypi.md"
@@ -27,3 +27,18 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 packages = {find = {exclude = ["test", "tests"]}}
 include-package-data = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # include all pycodestyle errors
+    "F",   # include all pyflakes
+    "W",   # include all pycodestyle warnings
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "E731"]
+"*.ipynb" = ["E501"]

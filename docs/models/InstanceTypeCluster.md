@@ -1,8 +1,8 @@
-# NodePool
+# InstanceTypeCluster
 
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**cluster** | [**Cluster**](Cluster.md) | [optional]
+**type** | **str** |
 
 

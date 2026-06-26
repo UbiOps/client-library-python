@@ -3,13 +3,13 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** |
+**id** | **str** | [optional] [readonly]
 **name** | **str** |
 **deployment** | **str** |
 **version** | **str** | [optional]
 **port** | **int** |
-**time_created** | **datetime** |
-**time_updated** | **datetime** |
+**time_created** | **datetime** | [optional] [readonly]
+**time_updated** | **datetime** | [optional] [readonly]
 **labels** | **dict(str, str)** | [optional]
 **authentication_required** | **bool** | [optional]
 

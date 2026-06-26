@@ -6,13 +6,16 @@ import requests
 from ..exceptions import ValidateError, ValidateSkip, ValidateWarning
 
 
-def validate_requirement_line(index, line):
+def validate_requirement_line(index, line, client=None):
     """
     Validates a single line of the requirements.txt file with data from PyPi.
     Raises exceptions to be handled by the caller if the line isn't perfectly valid.
 
     :param int index: the index of the line in the requirements.txt file
     :param str line: the line to validate
+    :param ubiops.ApiClient client: optional UbiOps client. When provided, its SSL configuration is reused for the
+        pypi.org request (useful behind TLS-intercepting proxies). When None, requests uses its env-var/certifi
+        defaults.
     """
 
     line = get_formatted_line(line, index)
@@ -30,7 +33,7 @@ def validate_requirement_line(index, line):
         raise ValidateError(f"Invalid package name: {line}")
 
     # Check if package exists on pypi and return json if so - package-json used later on
-    package_json = get_package_json_from_pypi(package_name)
+    package_json = get_package_json_from_pypi(package_name, client=client)
 
     # Stop checking if only a package name (with dependencies) is specified
     if search_name.group(1) == line:
@@ -84,16 +87,24 @@ def get_formatted_line(line, index):
     return line
 
 
-def get_package_json_from_pypi(package_name):
+def get_package_json_from_pypi(package_name, client=None):
     """
     Returns the json of the package from pypi or raises exception
 
     :param str package_name: name of the package
+    :param ubiops.ApiClient client: optional UbiOps client. When provided, its SSL configuration is reused for the
+        pypi.org request. When None, requests uses its env-var/certifi defaults.
     """
 
     url = f"https://pypi.org/pypi/{package_name}/json"
+
+    request_kwargs = {}
+    if client is not None:
+        request_kwargs["verify"] = client.rest_client.verify
+        request_kwargs["cert"] = client.rest_client.cert
+
     try:
-        response = requests.get(url)
+        response = requests.get(url, **request_kwargs)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException:

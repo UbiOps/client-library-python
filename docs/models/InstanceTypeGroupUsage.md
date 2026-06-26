@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** |
-**deployment** | **str** | [optional]
-**version** | **str** | [optional]
-**instance_type_group_id** | **str** | [optional]
-**instance_type_group_name** | **str** | [optional]
+**id** | **str** | [optional] [readonly]
+**deployment** | **str** |
+**version** | **str** |
+**instance_type_group_id** | **str** |
+**instance_type_group_name** | **str** |
 
 

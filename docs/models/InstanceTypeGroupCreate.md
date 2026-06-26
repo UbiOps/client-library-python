@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**name** | **str** |
-**instance_types** | [**list[InstanceTypeCreate]**](InstanceTypeCreate.md) | [optional]
+**name** | **str** | [optional]
+**instance_types** | [**list[InstanceTypeItemCreate]**](InstanceTypeItemCreate.md) |
 
 

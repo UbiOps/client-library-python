@@ -43,6 +43,7 @@ Create a service in a project
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
 - `authentication_method_token_enabled`: Whether authentication with a token is enabled
+- `authentication_header_pass_through`: Whether authentication headers should be passed to the service when requests are made
 - `request_logging_excluded_paths`: A regex to exclude paths when storing requests
 - `request_logging_excluded_extensions`: A list of file extensions to exclude when storing requests
 - `rate_limit`: Rate limit per minute for the entire service
@@ -84,6 +85,7 @@ Create a service in a project
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
 - `authentication_method_token_enabled`: Whether authentication with a token is enabled
+- `authentication_header_pass_through`: Whether authentication headers should be passed to the service when requests are made
 - `request_logging_excluded_paths`: A regex to exclude paths when storing requests
 - `request_logging_excluded_extensions`: A list of file extensions to exclude when storing requests
 - `rate_limit`: Rate limit per minute for the entire service
@@ -107,6 +109,7 @@ Create a service in a project
   "labels": {},
   "authentication_required": true,
   "authentication_method_token_enabled": true,
+  "authentication_header_pass_through": false,
   "request_logging_excluded_paths": "(health|status)$",
   "request_logging_excluded_extensions": ["svg", "tar"],
   "rate_limit": 3000,
@@ -207,6 +210,7 @@ Get the details of a service
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
 - `authentication_method_token_enabled`: Whether authentication with a token is enabled
+- `authentication_header_pass_through`: Whether authentication headers should be passed to the service when requests are made
 - `request_logging_excluded_paths`: A regex to exclude paths when storing requests
 - `request_logging_excluded_extensions`: A list of file extensions to exclude when storing requests
 - `rate_limit`: Rate limit per minute for the entire service
@@ -230,6 +234,7 @@ Get the details of a service
   "labels": {},
   "authentication_required": true,
   "authentication_method_token_enabled": true,
+  "authentication_header_pass_through": false,
   "request_logging_excluded_paths": "(health|status)$",
   "request_logging_excluded_extensions": ["svg", "tar"],
   "rate_limit": 3000,
@@ -432,6 +437,7 @@ Update a service in a project
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
 - `authentication_method_token_enabled`: Whether authentication with a token is enabled
+- `authentication_header_pass_through`: Whether authentication headers should be passed to the service when requests are made
 - `request_logging_excluded_paths`: A regex to exclude paths when storing requests
 - `request_logging_excluded_extensions`: A list of file extensions to exclude when storing requests
 - `rate_limit`: Rate limit per minute for the entire service
@@ -473,6 +479,7 @@ Update a service in a project
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
 - `authentication_method_token_enabled`: Whether authentication with a token is enabled
+- `authentication_header_pass_through`: Whether authentication headers should be passed to the service when requests are made
 - `request_logging_excluded_paths`: A regex to exclude paths when storing requests
 - `request_logging_excluded_extensions`: A list of file extensions to exclude when storing requests
 - `rate_limit`: Rate limit per minute for the entire service
@@ -496,6 +503,7 @@ Update a service in a project
   "labels": {},
   "authentication_required": true,
   "authentication_method_token_enabled": true,
+  "authentication_header_pass_through": false,
   "request_logging_excluded_paths": "(health|status)$",
   "request_logging_excluded_extensions": ["svg", "tar"],
   "rate_limit": 3000,

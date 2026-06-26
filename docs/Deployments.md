@@ -1034,7 +1034,6 @@ Create a version for a deployment. The first version of a deployment is set as d
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
-- `static_ip`: A boolean indicating whether the deployment version should get a static IP. It defaults to False.
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption. It defaults to False.
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
@@ -1122,7 +1121,6 @@ Details of the created version
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `has_request_method`: Whether the latest revision of the version has a 'request' method
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
-- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
@@ -1160,7 +1158,6 @@ Details of the created version
   "maximum_queue_size": 100000,
   "has_request_method": null,
   "has_requests_method": null,
-  "static_ip": false,
   "restart_request_interruption": false,
   "ports": [],
   "scaling_strategy": "default",
@@ -1286,7 +1283,6 @@ Details of a version
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `has_request_method`: Whether the latest revision of the version has a 'request' method
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
-- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
@@ -1324,7 +1320,6 @@ Details of a version
   "maximum_queue_size": 100000,
   "has_request_method": true,
   "has_requests_method": false,
-  "static_ip": false,
   "restart_request_interruption": false,
   "ports": [],
   "scaling_strategy": "moderate",
@@ -1406,7 +1401,6 @@ A list of details of the versions
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
-- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*.
@@ -1438,7 +1432,6 @@ A list of details of the versions
     "request_retention_time": 604800,
     "request_retention_mode": "full",
     "maximum_queue_size": 100000,
-    "static_ip": false,
     "restart_request_interruption": false,
     "ports": [],
     "scaling_strategy": "default",
@@ -1466,7 +1459,6 @@ A list of details of the versions
     "request_retention_time": 86400,
     "request_retention_mode": "metadata",
     "maximum_queue_size": 100000,
-    "static_ip": true,
     "restart_request_interruption": false,
     "ports": [],
     "scaling_strategy": "moderate",
@@ -1533,7 +1525,6 @@ Update a version of a deployment in a project. All necessary fields are validate
     - *metadata* - only the metadata of the requests will be stored
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
-- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `environment`: New environment for the version. It can be either a base or a custom environment.
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. The new ports will replace the existing value for ports. Ports are deprecated, use a service instead.
@@ -1593,7 +1584,6 @@ Details of the updated version
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `has_request_method`: Whether the latest revision of the version has a 'request' method
 - `has_requests_method`: Whether the latest revision of the version has a 'requests' method
-- `static_ip`: A boolean indicating whether the deployment version should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
@@ -1631,7 +1621,6 @@ Details of the updated version
   "maximum_queue_size": 100000,
   "has_request_method": true,
   "has_requests_method": false,
-  "static_ip": false,
   "restart_request_interruption": false,
   "ports": [],
   "scaling_strategy: "moderate",
