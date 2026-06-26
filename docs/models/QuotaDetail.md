@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
+**quota** | **float** | [optional]
 **resource** | **str** |
-**quota** | **float** |
 
 

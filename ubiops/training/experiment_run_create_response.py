@@ -6,7 +6,6 @@ UbiOps
 Client Library to interact with the UbiOps API
 """
 
-
 from ubiops.training.constants import DEFAULT_TRAINING_DEPLOYMENT_NAME
 from ubiops.models.deployment_request_batch_create_response import (
     DeploymentRequestBatchCreateResponse,

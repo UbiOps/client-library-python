@@ -3,17 +3,17 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** |
+**id** | **str** | [optional] [readonly]
 **time_created** | **datetime** | [optional]
 **name** | **str** |
 **display_name** | **str** | [optional]
-**cpu** | **float** | [optional]
-**memory** | **float** | [optional]
-**storage** | **float** | [optional]
-**accelerator** | **float** | [optional]
+**cpu** | **float** | [optional] [readonly]
+**memory** | **float** | [optional] [readonly]
+**storage** | **float** | [optional] [readonly]
+**accelerator** | **float** | [optional] [readonly]
 **credit_rate** | **float** | [optional]
 **dedicated_node** | **bool** | [optional]
-**node_pool** | [**NodePool**](NodePool.md) | [optional]
+**node_pool** | [**InstanceTypeNodePool**](InstanceTypeNodePool.md) | [optional]
 **priority** | **int** | [optional]
 **schedule_timeout** | **int** | [optional]
 

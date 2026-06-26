@@ -50,8 +50,7 @@ def _create_module_from_spec(deployment_directory):
         spec.loader.exec_module(module_from_spec)
     except FileNotFoundError:
         raise FileNotFoundError(
-            "Deployment package not found."
-            "Expected to find a file called 'deployment.py' in the deployment directory."
+            "Deployment package not found.Expected to find a file called 'deployment.py' in the deployment directory."
         )
     except Exception as e:
         raise Exception(f"Failed to load deployment package: {e}")

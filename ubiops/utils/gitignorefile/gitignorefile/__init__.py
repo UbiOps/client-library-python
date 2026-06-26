@@ -1,7 +1,5 @@
 """A spec-compliant `.gitignore` parser for Python."""
 
-# flake8: noqa
-
 import os
 import re
 
@@ -188,9 +186,6 @@ def _rule_from_pattern(pattern):
     # and returns an `_IgnoreRule` suitable for matching against files and
     # directories. Patterns which do not match files, such as comments
     # and blank lines, will return `None`.
-
-    # Store the exact pattern for our repr and string functions
-    orig_pattern = pattern
 
     # Early returns follow
     # Discard comments and separators

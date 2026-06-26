@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Notes
 ------------ | ------------- | -------------
-**id** | **str** | [optional]
+**id** | **str** | [optional] [readonly]
 **status** | **str** | [optional] [readonly]
-**time_created** | **datetime** | [optional]
-**time_updated** | **datetime** | [optional]
-**instance_type** | [**InstanceType**](InstanceType.md) |
+**instance_type** | [**InstanceInstanceTypeDetail**](InstanceInstanceTypeDetail.md) |
+**time_created** | **datetime** | [optional] [readonly]
+**time_updated** | **datetime** | [optional] [readonly]
 
 

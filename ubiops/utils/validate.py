@@ -67,19 +67,23 @@ ubiops_config_schema = Schema(
 )
 
 
-def validate_requirements_file(file_path):
+def validate_requirements_file(file_path, client=None):
     """
     Validates the requirements.txt file with data from PyPi. Logs error/warning/info messages. Returns True if the file
     is valid, False if not.
 
     :param str file_path: the path to the requirements.txt file
+    :param ubiops.ApiClient client: optional UbiOps client. When provided, its SSL configuration
+        (verify_ssl / ssl_ca_cert / cert_file / key_file) is reused for the calls to pypi.org. Useful behind
+        TLS-intercepting corporate proxies where pypi.org is re-signed by an internal CA. When None, requests falls
+        back to REQUESTS_CA_BUNDLE / certifi defaults.
     """
 
     return_value = True
     with open(file_path, "r") as f:
         for index, line in enumerate(f):
             try:
-                validate_requirement_line(index=index, line=line)
+                validate_requirement_line(index=index, line=line, client=client)
             except ValidateError as e:
                 logger.error(f"Line {index + 1}, {e}")
                 return_value = False

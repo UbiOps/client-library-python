@@ -292,7 +292,6 @@ Get the details of an experiment
 - `maximum_queue_size`: Maximum number of queued runs for all instances of this experiment
 - `has_request_method`: Whether the latest revision of the experiment has a 'request' method
 - `has_requests_method`: Whether the latest revision of the experiment has a 'requests' method
-- `static_ip`: A boolean indicating whether the experiment should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the runs should be restarted in case of an interruption
 - `default_bucket`: Indicates in which bucket input and output artifacts of the training job will be stored
 
@@ -323,7 +322,6 @@ Get the details of an experiment
   "request_retention_mode": "full",
   "request_retention_time": 31536000,
   "restart_request_interruption": False,
-  "static_ip": False,
   "status": "available"
 }
 ```
@@ -577,7 +575,6 @@ The details of the experiment
 - `maximum_queue_size`: Maximum number of queued runs for all instances of this experiment
 - `has_request_method`: Whether the latest revision of the experiment has a 'request' method
 - `has_requests_method`: Whether the latest revision of the experiment has a 'requests' method
-- `static_ip`: A boolean indicating whether the experiment should get a static IP
 - `restart_request_interruption`: A boolean indicating whether the runs should be restarted in case of an interruption
 - `default_bucket`: Indicates in which bucket input and output artifacts of the training job will be stored
 
@@ -608,7 +605,6 @@ The details of the experiment
   "request_retention_mode": "full",
   "request_retention_time": 31536000,
   "restart_request_interruption": False,
-  "static_ip": False,
   "status": "available"
 }
 ```

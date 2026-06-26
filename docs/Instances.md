@@ -656,7 +656,7 @@ Initialize [**core_api**](./CoreApi.md#example) using your credentials.
 ```python
 project_name = 'project_name_example' # str
 instance_type_group_id = 'instance_type_group_id_example' # str
-data = ubiops.InstanceTypeGroupCreate() # InstanceTypeGroupCreate
+data = ubiops.InstanceTypeGroupUpdate() # InstanceTypeGroupUpdate
 
 # Update instance type group
 api_response = core_api.instance_type_groups_update(project_name, instance_type_group_id, data)
@@ -670,7 +670,7 @@ Name | Type | Notes
 ------------- | ------------- | -------------
  **project_name** | **str** | 
  **instance_type_group_id** | **str** | 
- **data** | [**InstanceTypeGroupCreate**](./models/InstanceTypeGroupCreate.md) | 
+ **data** | [**InstanceTypeGroupUpdate**](./models/InstanceTypeGroupUpdate.md) | 
 
 ### Return type
 
@@ -1014,7 +1014,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **instances_update**
-> InstanceDetail instances_update(project_name, deployment_name, instance_id, version, data)
+> InstanceList instances_update(project_name, deployment_name, instance_id, version, data)
 
 Update instance for deployment versions
 
@@ -1085,7 +1085,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**InstanceDetail**](./models/InstanceDetail.md)
+[**InstanceList**](./models/InstanceList.md)
 
 ### Authorization
 
@@ -1265,7 +1265,7 @@ Name | Type | Notes
 [[Back to top]](#)
 
 # **project_instances_update**
-> InstanceDetail project_instances_update(project_name, instance_id, data)
+> InstanceList project_instances_update(project_name, instance_id, data)
 
 Update instance for projects
 
@@ -1339,7 +1339,7 @@ Name | Type | Notes
 
 ### Return type
 
-[**InstanceDetail**](./models/InstanceDetail.md)
+[**InstanceList**](./models/InstanceList.md)
 
 ### Authorization
 

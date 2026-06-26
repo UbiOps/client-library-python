@@ -188,7 +188,13 @@ def upload_file(
         """
 
         try:
-            put_response = requests.put(url=url, headers=upload_headers, data=data)
+            put_response = requests.put(
+                url=url,
+                headers=upload_headers,
+                data=data,
+                verify=client.rest_client.verify,
+                cert=client.rest_client.cert,
+            )
 
         except requests.exceptions.ConnectionError as e:
             raise ApiConnectionError(
@@ -444,7 +450,12 @@ def download_file(
 
     response = core_api.files_download(project_name=project_name, bucket_name=ubiops_file.bucket, file=ubiops_file.file)
     try:
-        response = requests.get(url=response.url, stream=stream)
+        response = requests.get(
+            url=response.url,
+            stream=stream,
+            verify=client.rest_client.verify,
+            cert=client.rest_client.cert,
+        )
 
     except requests.exceptions.ConnectionError as e:
         raise ApiConnectionError(
