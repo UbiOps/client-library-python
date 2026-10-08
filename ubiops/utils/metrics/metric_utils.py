@@ -14,8 +14,10 @@ class Metric:
     def __init__(self, metric_name, labels, value):
         self.name = metric_name
         self.labels = labels
-        self.timestamp = datetime.datetime.now(datetime.UTC)
         self.value = value
+
+        # Replace datetime.timezone.utc with datetime.UTC when Python 3.10 is no longer supported
+        self.timestamp = datetime.datetime.now(tz=datetime.timezone.utc)
 
     @property
     def name(self):

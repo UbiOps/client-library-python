@@ -8,8 +8,8 @@ Name | Type | Notes
 **version** | **str** |
 **default** | **bool** | [optional]
 **description** | **str** | [optional]
-**environment** | **str** | [optional]
-**environment_display_name** | **str** | [optional]
+**environment_name** | **str** | [optional]
+**environment_tag** | **str** | [optional]
 **status** | **str** | [optional] [readonly]
 **active_revision** | **str** | [optional] [readonly]
 **latest_revision** | **str** | [optional] [readonly]
@@ -33,5 +33,7 @@ Name | Type | Notes
 **has_request_method** | **bool** | [optional] [readonly]
 **has_requests_method** | **bool** | [optional] [readonly]
 **health_check** | [**HealthCheck**](HealthCheck.md) | [optional]
+**command** | **str** or **dict(str, str)** | [optional]
+**args** | **str** or **dict(str, str)** | [optional]
 
 

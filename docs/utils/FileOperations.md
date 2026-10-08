@@ -25,8 +25,8 @@ configuration = ubiops.Configuration()
 # Configure API token authorization
 configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
+# Defining host is optional and default to https://api.ubiops.com/v2
+configuration.host = "https://api.ubiops.com/v2"
 # Enter a context with an instance of the API client
 api_client = ubiops.ApiClient(configuration)
 
@@ -83,8 +83,8 @@ configuration = ubiops.Configuration()
 # Configure API token authorization
 configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
+# Defining host is optional and default to https://api.ubiops.com/v2
+configuration.host = "https://api.ubiops.com/v2"
 # Enter a context with an instance of the API client
 api_client = ubiops.ApiClient(configuration)
 
@@ -147,8 +147,8 @@ configuration = ubiops.Configuration()
 # Configure API token authorization
 configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
+# Defining host is optional and default to https://api.ubiops.com/v2
+configuration.host = "https://api.ubiops.com/v2"
 # Enter a context with an instance of the API client
 api_client = ubiops.ApiClient(configuration)
 
@@ -220,8 +220,8 @@ configuration = ubiops.Configuration()
 # Configure API token authorization
 configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
 
-# Defining host is optional and default to https://api.ubiops.com/v2.1
-configuration.host = "https://api.ubiops.com/v2.1"
+# Defining host is optional and default to https://api.ubiops.com/v2
+configuration.host = "https://api.ubiops.com/v2"
 # Enter a context with an instance of the API client
 api_client = ubiops.ApiClient(configuration)
 

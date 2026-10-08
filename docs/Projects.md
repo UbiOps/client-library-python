@@ -1,6 +1,6 @@
 # Projects
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**project_environment_variables_get**](./Projects.md#project_environment_variables_get) | **GET** /projects/{project_name}/environment-variables/{id} | Get project environment variable
 [**project_environment_variables_list**](./Projects.md#project_environment_variables_list) | **GET** /projects/{project_name}/environment-variables | List project environment variables
 [**project_environment_variables_update**](./Projects.md#project_environment_variables_update) | **PATCH** /projects/{project_name}/environment-variables/{id} | Update project environment variable
+[**project_events_list**](./Projects.md#project_events_list) | **GET** /projects/{project_name}/events | List events in a project
 [**project_requests_list**](./Projects.md#project_requests_list) | **GET** /projects/{project_name}/requests | List requests in project
 [**project_users_create**](./Projects.md#project_users_create) | **POST** /projects/{project_name}/users | Add user to a project
 [**project_users_delete**](./Projects.md#project_users_delete) | **DELETE** /projects/{project_name}/users/{user_id} | Delete user from a project
@@ -660,6 +661,104 @@ Name | Type | Notes
 ### Return type
 
 [**EnvironmentVariableList**](./models/EnvironmentVariableList.md)
+
+### Authorization
+
+[API token](https://ubiops.com/docs/organizations/service-users)
+
+[[Back to top]](#)
+
+# **project_events_list**
+> list[EventList] project_events_list(project_name, object_type=object_type, object_id=object_id, start_time=start_time, end_time=end_time, last_seconds=last_seconds, type=type, limit=limit, offset=offset)
+
+List events in a project
+
+## Description
+List events in a project
+
+### Optional Parameters
+The following parameters can be given as query parameters:
+
+- `object_type`: Type of the object the events belong to. It can be one of: 'deployment_version', 'pipeline_version', 'service', 'environment_tag' or 'node_pool'. Should be given together with `object_id`.
+- `object_id`: ID of the object the events belong to. Should be given together with `object_type`.
+- `start_time`: Start date of the interval for which the events are retrieved
+- `end_time`: End date of the interval for which the events are retrieved
+- `last_seconds`: Only return events from the last given number of seconds, e.g. the ones which happened in the last 5 minutes. Cannot be combined with `start_time` or `end_time`.
+- `type`: Filter on the type of the event
+- `limit`: The maximum number of events given back, default is 50
+- `offset`: The number which forms the starting point of the events given back. If offset equals 2, then the first 2 events will be omitted from the list.
+
+### Response Structure
+A list of details of the events in the project
+
+- `id`: Unique identifier for the event (UUID)
+- `date`: The date when the event occurred
+- `object_type`: Type of the object the event belongs to
+- `object_id`: ID of the object the event belongs to
+- `object_name`: Name of the object the event belongs to, if available. `null` if the object no longer exists.
+- `parent_object_name`: Name of the parent of the object, if the object has a parent. Only relevant for deployment versions, pipeline versions and environment tags.
+- `parent_object_id`: ID of the parent of the object, if the object has a parent. Only relevant for deployment versions, pipeline versions and environment tags.
+- `type`: Type of the event
+- `log_timestamp`: Nanosecond precision timestamp of the corresponding log line
+- `text`: Text describing the event
+
+## Response Examples
+
+```
+[
+  {
+    "id": "54c1ea23-5773-4821-8fd7-1b577cc301bc",
+    "date": "2020-05-23T11:53:02.873+00:00",
+    "object_type": "deployment_version",
+    "object_id": "764e254c-7402-4445-ac79-009d08b21caa",
+    "object_name": "v1",
+    "parent_object_name": "my-deployment",
+    "parent_object_id": "1f9c5e2a-8f3d-4b8a-9e2a-6b7c8d9e0f1a",
+    "type": "instance_out_of_memory",
+    "log_timestamp": 1590228782873000000,
+    "text": "An instance ran out of memory"
+  }
+]
+```
+
+### Example
+
+Initialize [**core_api**](./CoreApi.md#example) using your credentials.
+
+```python
+project_name = 'project_name_example' # str
+object_type = 'object_type_example' # str (optional)
+object_id = 'object_id_example' # str (optional)
+start_time = 'start_time_example' # str (optional)
+end_time = 'end_time_example' # str (optional)
+last_seconds = 56 # int (optional)
+type = 'type_example' # str (optional)
+limit = 56 # int (optional)
+offset = 56 # int (optional)
+
+# List events in a project
+api_response = core_api.project_events_list(project_name, object_type=object_type, object_id=object_id, start_time=start_time, end_time=end_time, last_seconds=last_seconds, type=type, limit=limit, offset=offset)
+print(api_response)
+```
+
+### Parameters
+
+
+Name | Type | Notes
+------------- | ------------- | -------------
+ **project_name** | **str** | 
+ **object_type** | **str** | [optional] 
+ **object_id** | **str** | [optional] 
+ **start_time** | **str** | [optional] 
+ **end_time** | **str** | [optional] 
+ **last_seconds** | **int** | [optional] 
+ **type** | **str** | [optional] 
+ **limit** | **int** | [optional] 
+ **offset** | **int** | [optional] 
+
+### Return type
+
+[**list[EventList]**](./models/EventList.md)
 
 ### Authorization
 

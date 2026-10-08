@@ -47,7 +47,7 @@ Helper function to create a training experiment
 ```
 {
   "name": "my-experiment",
-  "environment": "python3-12"
+  "environment": "ubiops-ubuntu24-04-python3-12"
 }
 ```
 
@@ -55,7 +55,7 @@ Helper function to create a training experiment
 {
   "name": "my-experiment",
   "description": "A training experiment",
-  "environment": "python3-12",
+  "environment": "ubiops-ubuntu24-04-python3-12",
   "instance_type_group_name": "4096 MB + 1 vCPU",
   "default_bucket": "default",
   "labels": {
@@ -87,7 +87,7 @@ Details of the created experiment
 {
   "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
   "name": "training-experiment",
-  "environment": "python3-12",
+  "environment": "ubiops-ubuntu24-04-python3-12",
   "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "status": "available",
   "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
@@ -110,7 +110,7 @@ Details of the created experiment
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -123,7 +123,7 @@ Details of the created experiment
             name=experiment_name,
             instance_type_group_name='4096 MB + 1 vCPU',
             description='A training experiment',
-            environment='python3-12',
+            environment='ubiops-ubuntu24-04-python3-12',
             default_bucket='default',
             labels={"type": "pytorch"}
         )
@@ -141,8 +141,8 @@ Details of the created experiment
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -157,7 +157,7 @@ Details of the created experiment
             name=experiment_name,
             instance_type_group_name='4096 MB + 1 vCPU',
             description='A training experiment',
-            environment='python3-12',
+            environment='ubiops-ubuntu24-04-python3-12',
             default_bucket='default',
             labels={"type": "pytorch"}
         )
@@ -202,7 +202,7 @@ Helper function to delete a training experiment
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -222,8 +222,8 @@ Helper function to delete a training experiment
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -303,7 +303,7 @@ Get the details of an experiment
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
   "description": "An experiment with Python 3.12",
-  "environment": "python3-12",
+  "environment": "ubiops-ubuntu24-04-python3-12",
   "environment_display_name": "Ubuntu 24.04 + Python 3.12",
   "has_request_method": True,
   "has_requests_method": False,
@@ -334,7 +334,7 @@ Get the details of an experiment
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -355,8 +355,8 @@ Get the details of an experiment
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -419,7 +419,7 @@ A list of details of the experiments
   {
     "id": "4ae7d14b-4803-4e16-b96d-3b18caa4b605",
     "name": "experiment_name_example_1",
-    "environment": "python3-12",
+    "environment": "ubiops-ubuntu24-04-python3-12",
     "environment_display_name": "Ubuntu 24.04 + Python 3.12",
     "status": "available",
     "active_revision": "7169cac3-74eb-4189-99d7-322bc71f070b",
@@ -433,7 +433,7 @@ A list of details of the experiments
   {
     "id": "536b4b33-b1db-4446-b07c-986806478654",
     "name": "experiment_name_example_2",
-    "environment": "python3-13",
+    "environment": "ubiops-ubuntu24-04-python3-13",
     "environment_display_name": "Ubuntu 24.04 + Python 3.13",
     "status": "available",
     "active_revision": "cd2244a7-5953-4d31-add8-e88cf5f4bb30",
@@ -454,7 +454,7 @@ A list of details of the experiments
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -474,8 +474,8 @@ A list of details of the experiments
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -586,7 +586,7 @@ The details of the experiment
   "creation_date": "2021-06-15T10:12:11.554682Z",
   "default_bucket": "default",
   "description": "An experiment with Python 3.13",
-  "environment": "python3-13",
+  "environment": "ubiops-ubuntu24-04-python3-13",
   "environment_display_name": "Ubuntu 24.04 + Python 3.13",
   "has_request_method": True,
   "has_requests_method": False,
@@ -617,7 +617,7 @@ The details of the experiment
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -643,8 +643,8 @@ The details of the experiment
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -755,7 +755,7 @@ Details of the created run
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -785,8 +785,8 @@ Details of the created run
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -846,7 +846,7 @@ Helper function to delete an experiment run
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -871,8 +871,8 @@ Helper function to delete an experiment run
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -998,7 +998,7 @@ Get the details of an experiment run
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1024,8 +1024,8 @@ Get the details of an experiment run
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1117,7 +1117,7 @@ A list of details of the experiment runs
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1141,8 +1141,8 @@ A list of details of the experiment runs
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1207,7 +1207,7 @@ Helper function to cancel an experiment run
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1235,8 +1235,8 @@ Helper function to cancel an experiment run
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1331,7 +1331,7 @@ A list of variables described by the following fields:
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1353,8 +1353,8 @@ A list of variables described by the following fields:
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1407,7 +1407,7 @@ Delete an environment variable of a experiment
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1428,8 +1428,8 @@ Delete an environment variable of a experiment
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1499,7 +1499,7 @@ The details of the environment variable:
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1521,8 +1521,8 @@ The details of the environment variable:
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1607,7 +1607,7 @@ A list of variables described by the following fields:
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1628,8 +1628,8 @@ A list of variables described by the following fields:
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)
@@ -1714,7 +1714,7 @@ The details of the environment variable:
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     training = ubiops.Training()
 
     project_name = 'project_name_example' # str
@@ -1737,8 +1737,8 @@ The details of the environment variable:
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     training = ubiops.Training(api_client)

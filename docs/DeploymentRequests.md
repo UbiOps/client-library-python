@@ -1,6 +1,6 @@
 # Deployment_Requests
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,7 +34,7 @@ Method | HTTP request | Description
 Create a batch deployment request
 
 ## Description
-Request multiple predictions from the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods.
+Create a request for the default version of a deployment. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods.
 
 If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.
 
@@ -147,7 +147,7 @@ Name | Type | Notes
 Create a batch deployment version request
 
 ## Description
-Request multiple predictions from a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state).
+Create a request for a deployment version. The request follows an asynchronous method, as the requests are queued in our back-end and can be collected at a later time using the deployment request collect methods. It is only possible to make a request if the deployment version is available.
 
 If one of the requests is faulty, all requests are denied. The maximum number of requests per batch call is 250.
 
@@ -476,7 +476,7 @@ Name | Type | Notes
 Create a direct deployment request
 
 ## Description
-Request a prediction from a deployment. Deployment requests are made for the default version of a deployment.
+Create a request for the default version of a deployment and wait for the result. Deployment requests are made for the default version of a deployment.
 When using the 'requests' function of a deployment a list should be provided as input, see the example below.
 
 ### Required Parameters
@@ -677,7 +677,7 @@ A dictionary containing the details of the deployment request with the following
 - `result`: [DEPRECATED] Output of the request. It is set to null if the request is in pending/processing/failed statuses. This field is deprecated, use '/output' to download the result of the request.
 - `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+    - `user_name`, `user_surname` and `user_email` fields with the details of the user that created the request. All fields are optional. In case the request is created by a service, only the `user_name` field is present with a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 - `additional_data`: A dictionary containing the additional data about the request
@@ -699,7 +699,9 @@ A dictionary containing the details of the deployment request with the following
   "result": null,
   "error_message": null,
   "origin": {
-    "created_by": "my.example.user@ubiops.com"
+    "user_name": "Example",
+    "user_surname": "User",
+    "user_email": "my.example.user@ubiops.com"
   },
   "input_size": 14,
   "output_size": null,
@@ -1242,7 +1244,7 @@ Name | Type | Notes
 Create a direct deployment version request
 
 ## Description
-Request a prediction from a deployment version. It is only possible to make a request if a deployment file is uploaded for that version and the deployment build has succeeded (meaning that the version is in available state).
+Create a request for a deployment version and wait for the result. It is only possible to make a request if the deployment version is available.
 When using the 'requests' function of a deployment a list should be provided as input, see the example below.
 
 ### Required Parameters
@@ -1447,7 +1449,7 @@ A dictionary containing the details of the deployment request with the following
 - `result`: [DEPRECATED] Output of the request. It is set to null if the request is in pending/processing/failed statuses. This field is deprecated, use '/output' to download the result of the request.
 - `error_message`: An error message explaining why the request has failed. It is set to null if the request was successful.
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+    - `user_name`, `user_surname` and `user_email` fields with the details of the user that created the request. All fields are optional. In case the request is created by a service, only the `user_name` field is present with a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 - `additional_data`: A dictionary containing the additional data about the request
@@ -1469,7 +1471,9 @@ A dictionary containing the details of the deployment request with the following
   "result": null,
   "error_message": null,
   "origin": {
-    "created_by": "my.example.user@ubiops.com"
+    "user_name": "Example",
+    "user_surname": "User",
+    "user_email": "my.example.user@ubiops.com"
   },
   "input_size": 14,
   "output_size": null,

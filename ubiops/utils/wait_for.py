@@ -101,6 +101,7 @@ def _wait_for_logs(
     """
 
     if start is None:
+        # Replace datetime.timezone.utc with datetime.UTC when Python 3.10 is no longer supported
         start = datetime.datetime.now(tz=datetime.timezone.utc).isoformat(timespec="microseconds")
 
     retrieve_time = time.time()
@@ -190,9 +191,9 @@ def _wait_for_deployment_version_status(
     :param float timeout: the maximum time to wait
     :param bool quiet: whether to suppress informational messages
     :param bool stream_logs: Whether to stream logs while waiting, only used when quiet=False. When set to True, we will
-        wait 20 seconds longer than the environment and deployment revision were first seen as completed to make sure
-        all logs are retrieved. Logs will be shown starting from environment last update time and deployment revision
-        creation time.
+        wait 20 seconds longer than the environment tag and deployment revision were first seen as completed to make
+        sure all logs are retrieved. Logs will be shown starting from environment tag and deployment revision creation
+        times.
     :param str object_name: reference name for the version object, used to print success message
     """
 
@@ -239,7 +240,7 @@ def _wait_for_deployment_version(
     object_name="Deployment version",
 ):
     """
-    Wait for a deployment version to be ready: wait for the environment build and deployment revision to complete. This
+    Wait for a deployment version to be ready: wait for the environment tag and deployment revision to complete. This
     function is used for both deployment versions and experiments.
 
     :param ubiops.ApiClient client: a preconfigured UbiOps client
@@ -250,9 +251,9 @@ def _wait_for_deployment_version(
     :param float timeout: the maximum time to wait
     :param bool quiet: whether to suppress informational messages
     :param bool stream_logs: Whether to stream logs while waiting, only used when quiet=False. When set to True, we will
-        wait 20 seconds longer than the environment and deployment revision were first seen as completed to make sure
-        all logs are retrieved. Logs will be shown starting from environment last update time and deployment revision
-        creation time.
+        wait 20 seconds longer than the environment tag and deployment revision were first seen as completed to make
+        sure all logs are retrieved. Logs will be shown starting from environment tag and deployment revision creation
+        times.
     :param str object_name: reference name for the version object, used to print success message
     """
 
@@ -271,7 +272,8 @@ def _wait_for_deployment_version(
         wait_for_environment(
             client=client,
             project_name=project_name,
-            environment_name=version_data.environment,
+            environment_name=version_data.environment_name,
+            tag_name=version_data.environment_tag,
             timeout=timeout,
             quiet=quiet,
             stream_logs=stream_logs,
@@ -455,7 +457,7 @@ def wait_for_deployment_version(
     stream_logs=False,
 ):
     """
-    Wait for a deployment version to be ready: wait for the environment build and deployment revision to complete
+    Wait for a deployment version to be ready: wait for the environment tag and deployment revision to complete
 
     :param ubiops.ApiClient client: a preconfigured UbiOps client
     :param str project_name: the name of the project
@@ -465,9 +467,9 @@ def wait_for_deployment_version(
     :param float timeout: the maximum time to wait
     :param bool quiet: whether to suppress informational messages
     :param bool stream_logs: Whether to stream logs while waiting, only used when quiet=False. When set to True, we will
-        wait 20 seconds longer than the environment and deployment revision were first seen as completed to make sure
-        all logs are retrieved. Logs will be shown starting from environment last update time and deployment revision
-        creation time.
+        wait 20 seconds longer than the environment tag and deployment revision were first seen as completed to make
+        sure all logs are retrieved. Logs will be shown starting from environment tag and deployment revision creation
+        times.
     """
 
     try:
@@ -505,9 +507,9 @@ def wait_for_experiment(
     :param float timeout: the maximum time to wait
     :param bool quiet: whether to suppress informational messages
     :param bool stream_logs: Whether to stream logs while waiting, only used when quiet=False. When set to True, we will
-        wait 20 seconds longer than the environment and deployment revision were first seen as completed to make sure
-        all logs are retrieved. Logs will be shown starting from environment last update time and deployment revision
-        creation time.
+        wait 20 seconds longer than the environment tag and deployment revision were first seen as completed to make
+        sure all logs are retrieved. Logs will be shown starting from environment tag and deployment revision creation
+        times.
     """
 
     try:
@@ -526,45 +528,51 @@ def wait_for_experiment(
         pass
 
 
-def wait_for_environment(client, project_name, environment_name, timeout=1800, quiet=False, stream_logs=False):
+def wait_for_environment(
+    client, project_name, environment_name, tag_name=None, timeout=1800, quiet=False, stream_logs=False
+):
     """
-    Wait for an environment to be ready
+    Wait for an environment tag to be ready
 
     :param ubiops.ApiClient client: a preconfigured UbiOps client
     :param str project_name: the name of the project
     :param str environment_name: the name of the environment
+    :param str tag_name: the environment tag
     :param float timeout: the maximum time to wait
     :param bool quiet: whether to suppress informational messages
     :param bool stream_logs: Whether to stream logs while waiting, only used when quiet=False. When set to True, we will
-        wait 20 seconds longer than the environment was first seen as completed to make sure all logs are retrieved.
-        Logs will be shown from environment last_updated time onwards.
+        wait 20 seconds longer than the environment tag was first seen as completed to make sure all logs are retrieved.
+        Logs will be shown from environment tag creation time onwards.
     """
 
     if not isinstance(client, ApiClient):
         raise AssertionError("Provided client is not of type ubiops.ApiClient")
 
     # Get the environment details
-    environment = CoreApi(client).environments_get(project_name=project_name, environment_name=environment_name)
+    api = CoreApi(client)
+    environment = api.environments_get(project_name=project_name, environment_name=environment_name)
+    if tag_name:
+        tag = api.environment_tags_get(project_name=project_name, environment_name=environment_name, tag_name=tag_name)
+    else:
+        tags = api.environment_tags_list(project_name=project_name, environment_name=environment_name)
+        if len(tags) == 0:
+            raise ApiException(
+                status=404,
+                reason="Not Found",
+                body=f"No tag found for environment {environment_name}",
+            )
+        tag = tags[0]
 
     if environment.system:
-        # Environment is a system base environment, it doesn't need to build
         if not quiet:
             print("Environment: success", flush=True)
         return
 
-    if not environment.latest_build or not environment.latest_revision:
-        raise ApiException(
-            status=404,
-            reason="Not Found",
-            body=f"No build found for environment {environment_name}",
-        )
-
-    retrieve_method = "environment_builds_get"
+    retrieve_method = "environment_tags_get"
     retrieve_kwargs = {
         "project_name": project_name,
         "environment_name": environment_name,
-        "revision_id": environment.latest_revision,
-        "build_id": environment.latest_build,
+        "tag_name": tag.name,
     }
 
     try:
@@ -572,7 +580,7 @@ def wait_for_environment(client, project_name, environment_name, timeout=1800, q
             _wait_for_logs(
                 client=client,
                 project_name=project_name,
-                query=f"| environment_name=`{environment_name}` and environment_build_id=`{environment.latest_build}`",
+                query=f"| environment_name=`{environment_name}` and environment_tag=`{tag.name}`",
                 retrieve_method=retrieve_method,
                 retrieve_kwargs=retrieve_kwargs,
                 object_name="Environment",

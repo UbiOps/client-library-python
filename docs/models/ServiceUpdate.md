@@ -18,5 +18,10 @@ Name | Type | Notes
 **rate_limit_user_default** | **int** | [optional]
 **concurrency_limit** | **int** | [optional]
 **concurrency_limit_user_default** | **int** | [optional]
+**type** | **str** | [optional] [readonly]
+**cache_aware_llm_routing** | **bool** | [optional]
+**imported_name** | **str** | [optional]
+**imported_namespace** | **str** | [optional]
+**imported_cluster_domain** | **str** | [optional]
 
 

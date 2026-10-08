@@ -1,6 +1,6 @@
 # Deployments
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -1019,7 +1019,9 @@ Create a version for a deployment. The first version of a deployment is set as d
 
 ### Optional Parameters
 
-- `environment`: Environment of the version. It can be either a base or a custom environment.
+- `environment_name`: Environment of the version
+- `environment_tag`: Environment tag of the version
+- `environment`: [DEPRECATED] Environment of the version
 - `instance_type`: [DEPRECATED] The reserved instance type for the version
 - `instance_type_group_id`: ID of the instance type group for the version
 - `instance_type_group_name`: Name of the instance type group for the version. If there are multiple groups with the same name in the project, the first group found will be used.
@@ -1046,6 +1048,8 @@ Create a version for a deployment. The first version of a deployment is set as d
   - `interval`: (Optional) How often to check the service in seconds
   - `timeout`: (Optional) The number of seconds after which the health check times out
   - `failure_threshold`: (Optional) The number of times that the health check can fail before the service is considered failed
+- `command`: Command to override the default entrypoint of the environment used by the deployment version. Only relevant for deployments that don't support request format.
+- `args`: Arguments to override the default command of the environment used by the deployment version. Only relevant for deployments that dont't support request format.
 
 If the time that a request takes does not matter, keep the default values.
 
@@ -1054,7 +1058,7 @@ If the time that a request takes does not matter, keep the default values.
 ```
 {
   "version": "version-1",
-  "environment": "python3-12"
+  "environment_name": "ubiops-ubuntu24-04-python3-12"
 }
 ```
 
@@ -1062,7 +1066,8 @@ If the time that a request takes does not matter, keep the default values.
 ```
 {
   "version": "version-1",
-  "environment": python3-12",
+  "environment_name": "ubiops-ubuntu24-04-python3-12",
+  "environment_tag": "v1",
   "instance_type_group_id": "530c0878-d73c-4ea5-9f5d-f83bc1eeacd7"
 }
 ```
@@ -1070,7 +1075,8 @@ If the time that a request takes does not matter, keep the default values.
 
 ```
   "version": "version-1",
-  "environment": "python3-12",
+  "environment_name": "ubiops-ubuntu24-04-python3-12",
+  "environment_tag": "v1",
   "instance_type_group_id": "6e7f011c-829e-43f9-b7cf-7f9283699777",
   "maximum_instances": 1
 ```
@@ -1101,8 +1107,8 @@ Details of the created version
 - `version`: Version name
 - `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
-- `environment`: Environment of the version
-- `environment_display_name`: Human readable name of the environment
+- `environment_name`: Environment of the version
+- `environment_tag`: Environment tag of the version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet.
 - `latest_revision`: UUID of the latest revision of the version. It is initialised as None since there are no deployment files uploaded for the version yet.
@@ -1126,6 +1132,8 @@ Details of the created version
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 - `instance_processes`: Number of processes that are started in each instance
 - `health_check`: A dictionary containing the health check details - only used when a service is created for this version
+- `command`: Command used to override the default entrypoint of the environment used by the deployment version
+- `args`: Arguments used to override the default command of the environment used by the deployment version
 
 ## Response Examples
 
@@ -1136,8 +1144,8 @@ Details of the created version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-12",
-  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
+  "environment_name": "ubiops-ubuntu24-04-python3-12",
+  "environment_tag": "v1",
   "status": "unavailable",
   "active_revision": null,
   "latest_revision": null,
@@ -1165,7 +1173,9 @@ Details of the created version
   "health_check": {
     "port": 8080,
     "path": "/status"
-  }
+  },
+  "command": null,
+  "args": null
 }
 ```
 
@@ -1260,11 +1270,11 @@ Details of a version
 - `version`: Version name
 - `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
-- `environment`: Environment of the version
-- `environment_display_name`: Human readable name of the environment
+- `environment_name`: Environment of the version
+- `environment_tag`: Environment tag of the version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None.
-- `latest_revision`: UUID of the latest build of the version. If no deployment files have been uploaded yet, it is None.
+- `latest_revision`: UUID of the latest revision of the version. If no deployment files have been uploaded yet, it is None.
 - `instance_type`: [DEPRECATED] The reserved instance type for the version
 - `instance_type_group_id`: ID of the instance type group for the version
 - `instance_type_group_name`: Name of the instance type group for the version
@@ -1288,6 +1298,8 @@ Details of a version
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 - `instance_processes`: Number of processes that are started in each instance
 - `health_check`: A dictionary containing the health check details - only used when a service is created for this version
+- `command`: Command used to override the default entrypoint of the environment used by the deployment version
+- `args`: Arguments used to override the default command of the environment used by the deployment version
 
 ## Response Examples
 
@@ -1298,8 +1310,8 @@ Details of a version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-12",
-  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
+  "environment_name": "ubiops-ubuntu24-04-python3-12",
+  "environment_tag": "v1",
   "status": "available",
   "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
@@ -1327,7 +1339,9 @@ Details of a version
   "health_check": {
     "port": 8080,
     "path": "/status"
-  }
+  },
+  "command": null,
+  "args": null
 }
 ```
 
@@ -1384,8 +1398,8 @@ A list of details of the versions
 - `version`: Version name
 - `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
-- `environment`: Environment of the version
-- `environment_display_name`: Human readable name of the environment
+- `environment_name`: Environment of the version
+- `environment_tag`: Environment tag of the version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None.
 - `latest_revision`: UUID of the latest revision of the version. If no deployment files have been uploaded yet, it is None.
@@ -1416,8 +1430,8 @@ A list of details of the versions
     "version": "version-1",
     "default": true,
     "description": "",
-    "environment": "python3-12",
-    "environment_display_name": "Ubuntu 24.04 + Python 3.12",
+    "environment_name": "ubiops-ubuntu24-04-python3-12",
+    "environment_tag": "v1",
     "status": "available",
     "active_revision": "da27ef7c-aa3f-4963-a815-6ebf1865638e",
     "latest_revision": "0f4a94c6-ec4c-4d1e-81d7-8f3e40471f75",
@@ -1443,8 +1457,8 @@ A list of details of the versions
     "version": "version-2",
     "default": false,
     "description": "",
-    "environment": "r4-0",
-    "environment_display_name": "R 4.0",
+    "environment_name": "ubiops-ubuntu24-04-python3-13",
+    "environment_tag": "v1",
     "status": "available",
     "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
     "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
@@ -1526,7 +1540,8 @@ Update a version of a deployment in a project. All necessary fields are validate
     - *full* - both the metadata and input/output of the requests will be stored
 - `maximum_queue_size`: Maximum number of queued requests for all instances of this deployment version
 - `restart_request_interruption`: A boolean indicating whether the requests should be restarted in case of an interruption
-- `environment`: New environment for the version. It can be either a base or a custom environment.
+- `environment_name`: Environment of the version
+- `environment_tag`: Environment tag of the version
 - `ports`: [DEPRECATED] A list of ports to open up in the deployment. Each item must be a dictionary containing the fields `public_port`, `deployment_port` and `protocol`. The new ports will replace the existing value for ports. Ports are deprecated, use a service instead.
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following:
     - `default` - scales up directly with incoming requests, ideal for long requests
@@ -1538,6 +1553,8 @@ Update a version of a deployment in a project. All necessary fields are validate
   - `interval`: (Optional) How often to check the service in seconds
   - `timeout`: (Optional) The number of seconds after which the health check times out
   - `failure_threshold`: (Optional) The number of times that the health check can fail before the service is considered failed
+- `command`: Command to override the default entrypoint of the environment used by the deployment version. Only relevant for deployments that don't support request format.
+- `args`: Arguments to override the default command of the environment used by the deployment version. Only relevant for deployments that don't support request format.
 
 ## Request Examples
 
@@ -1564,11 +1581,11 @@ Details of the updated version
 - `version`: Version name
 - `default`: A boolean indicating whether the version is the default version
 - `description`: Description of the version
-- `environment`: Environment of the version
-- `environment_display_name`: Human readable name of the environment
+- `environment_name`: Environment of the version
+- `environment_tag`: Environment tag of the version
 - `status`: The status of the version
 - `active_revision`: UUID of the active revision of the version. If no deployment files have been uploaded yet, it is None.
-- `latest_revision`: UUID of the latest build of the version. If no deployment files have been uploaded yet, it is None.
+- `latest_revision`: UUID of the latest revision of the version. If no deployment files have been uploaded yet, it is None.
 - `instance_type`: [DEPRECATED] The reserved instance type for the version
 - `instance_type_group_id`: ID of the instance type group for the version
 - `instance_type_group_name`: Name of the instance type group for the version
@@ -1589,6 +1606,8 @@ Details of the updated version
 - `scaling_strategy`: Scaling strategy for running instances. It can be one of the following: *default* or *moderate*
 - `instance_processes`: Number of processes that are started in each instance
 - `health_check`: A dictionary containing the health check details - only used when a service is created for this version
+- `command`: Command used to override the default entrypoint of the environment used by the deployment version
+- `args`: Arguments used to override the default command of the environment used by the deployment version
 
 ## Response Examples
 
@@ -1599,8 +1618,8 @@ Details of the updated version
   "version": "version-1",
   "default": true,
   "description": "",
-  "environment": "python3-12",
-  "environment_display_name": "Ubuntu 24.04 + Python 3.12",
+  "environment_name": "ubiops-ubuntu24-04-python3-12",
+  "environment_tag": "v1",
   "status": "available",
   "active_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
   "latest_revision": "a74662be-c938-4104-872a-8be1b85f64ff",
@@ -1628,7 +1647,9 @@ Details of the updated version
   "health_check": {
     "port": 8080,
     "path": "/status"
-  }
+  },
+  "command": null,
+  "args": null
 }
 ```
 
@@ -2365,7 +2386,6 @@ Either **file** or **source_deployment** and **source_version** must be provided
 
 - `success`: Boolean indicating whether the deployment file upload/copy succeeded or not
 - `revision`: UUID of the created revision for the file upload
-- `build`: [DEPRECATED] UUID of the created revision for the file upload
 
 ### Example
 
@@ -2671,7 +2691,7 @@ Get the list of all available template deployments
       "description": "",
       "version": {
         "name": "v2",
-        "environment": "python3-12",
+        "environment": "ubiops-ubuntu24-04-python3-12",
         "description": "",
         "labels": {
           "template": "True"

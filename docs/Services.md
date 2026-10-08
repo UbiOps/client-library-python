@@ -1,6 +1,6 @@
 # Services
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -33,9 +33,9 @@ Create a service in a project
 ### Required Parameters
 
 - `name`: Name of the service
-- `deployment`: Deployment of the service
-- `version`: Version of the service. If not provided, the default version of the deployment is used.
-- `port`: Port in the instances that are exposed
+- `deployment`: Deployment of the service. Only relevant for `standard` services.
+- `version`: Version of the service. If not provided, the default version of the deployment is used. Only relevant for `standard` services.
+- `port`: Usage depends on `type`. For `standard` services it's the target port on the instances of the deployment that the UbiOps-managed service routes traffic to. For `kubernetes_imported` services it's the target port of the already-existing imported Kubernetes Service that traffic is proxied to directly.
 
 ### Optional Parameters
 
@@ -50,6 +50,11 @@ Create a service in a project
 - `rate_limit_user_default`: Default rate limit per minute for the service per user
 - `concurrency_limit`: Concurrency limit for the entire service
 - `concurrency_limit_user_default`: Default concurrency limit for the service per user
+- `type`: Type of the service, either `standard` or `kubernetes_imported`. Defaults to `standard`.
+- `cache_aware_llm_routing`: Whether cache-aware LLM routing should be enabled for this service. Can only be enabled for `standard` services.
+- `imported_name`: Name of the pre-installed Kubernetes Service to import. Only relevant for `kubernetes_imported` services.
+- `imported_namespace`: Namespace of the pre-installed Kubernetes Service to import. Only relevant for `kubernetes_imported` services.
+- `imported_cluster_domain`: Cluster domain of the pre-installed Kubernetes Service to import. Only relevant for `kubernetes_imported` services.
 
 ## Request Examples
 
@@ -68,7 +73,9 @@ Create a service in a project
   "rate_limit": 3000,
   "rate_limit_user_default": 1000,
   "concurrency_limit": 100,
-  "concurrency_limit_user_default": 50
+  "concurrency_limit_user_default": 50,
+  "type": "standard",
+  "cache_aware_llm_routing": false
 }
 ```
 
@@ -76,9 +83,9 @@ Create a service in a project
 
 - `id`: Unique identifier for the service (UUID)
 - `name`: Name of the service
-- `deployment`: Deployment of the service
-- `version`: Version of the service. If null, the default version of the deployment is used.
-- `port`: Deployment port to use
+- `deployment`: Deployment of the service. Only relevant for `standard` services.
+- `version`: Version of the service. If null, the default version of the deployment is used. Only relevant for `standard` services.
+- `port`: Usage depends on `type`. For `standard` services it's the target port on the instances of the deployment that the UbiOps-managed service routes traffic to. For `kubernetes_imported` services it's the target port of the already-existing imported Kubernetes Service that traffic is proxied to directly.
 - `time_created`: The date when the service was created
 - `time_updated`: The date when the service was last updated
 - `description`: Description of the service
@@ -92,6 +99,12 @@ Create a service in a project
 - `rate_limit_user_default`: Default rate limit per minute for the service per user
 - `concurrency_limit`: Concurrency limit for the entire service
 - `concurrency_limit_user_default`: Default concurrency limit for the service per user
+- `type`: Type of the service, either `standard` or `kubernetes_imported`
+- `cache_aware_llm_routing`: Whether cache-aware LLM routing is enabled for this service
+- `imported_name`: Name of the imported Kubernetes Service
+- `imported_namespace`: Namespace of the imported Kubernetes Service
+- `imported_cluster_domain`: Cluster domain of the imported Kubernetes Service
+- `imported_scheme`: Scheme used to reach the imported Kubernetes Service
 - `endpoint`: Service endpoint URL
 
 ## Response Examples
@@ -116,6 +129,12 @@ Create a service in a project
   "rate_limit_user_default": 1000,
   "concurrency_limit": 100,
   "concurrency_limit_user_default": 50,
+  "type": "standard",
+  "cache_aware_llm_routing": false,
+  "imported_name": null,
+  "imported_namespace": null,
+  "imported_cluster_domain": null,
+  "imported_scheme": null,
   "endpoint": "https://4d13288f-9ac1-4dff-85da-fe48238a4dff.services.ubiops.com"
 }
 ```
@@ -201,9 +220,9 @@ Get the details of a service
 
 - `id`: Unique identifier for the service (UUID)
 - `name`: Name of the service
-- `deployment`: Deployment of the service
-- `version`: Version of the service. If null, the default version of the deployment is used.
-- `port`: Deployment port to use
+- `deployment`: Deployment of the service. Only relevant for `standard` services.
+- `version`: Version of the service. If null, the default version of the deployment is used. Only relevant for `standard` services.
+- `port`: Usage depends on `type`. For `standard` services it's the target port on the instances of the deployment that the UbiOps-managed service routes traffic to. For `kubernetes_imported` services it's the target port of the already-existing imported Kubernetes Service that traffic is proxied to directly.
 - `time_created`: The date when the service was created
 - `time_updated`: The date when the service was last updated
 - `description`: Description of the service
@@ -217,6 +236,12 @@ Get the details of a service
 - `rate_limit_user_default`: Default rate limit per minute for the service per user
 - `concurrency_limit`: Concurrency limit for the entire service
 - `concurrency_limit_user_default`: Default concurrency limit for the service per user
+- `type`: Type of the service, either `standard` or `kubernetes_imported`
+- `cache_aware_llm_routing`: Whether cache-aware LLM routing is enabled for this service
+- `imported_name`: Name of the imported Kubernetes Service
+- `imported_namespace`: Namespace of the imported Kubernetes Service
+- `imported_cluster_domain`: Cluster domain of the imported Kubernetes Service
+- `imported_scheme`: Scheme used to reach the imported Kubernetes Service
 - `endpoint`: Service endpoint URL
 
 ## Response Examples
@@ -241,6 +266,12 @@ Get the details of a service
   "rate_limit_user_default": 1000,
   "concurrency_limit": 100,
   "concurrency_limit_user_default": 50,
+  "type": "standard",
+  "cache_aware_llm_routing": false,
+  "imported_name": null,
+  "imported_namespace": null,
+  "imported_cluster_domain": null,
+  "imported_scheme": null,
   "endpoint": "https://4d13288f-9ac1-4dff-85da-fe48238a4dff.services.ubiops.com"
 }
 ```
@@ -294,13 +325,15 @@ A list of services
 
 - `id`: Unique identifier for the service (UUID)
 - `name`: Name of the service
-- `deployment`: Deployment of the service
-- `version`: Version of the service. If null, the default version of the deployment is used.
-- `port`: Port in the instances that are exposed
+- `deployment`: Deployment of the service. Only relevant for `standard` services.
+- `version`: Version of the service. If null, the default version of the deployment is used. Only relevant for `standard` services.
+- `port`: Usage depends on `type`. For `standard` services it's the target port on the instances of the deployment that the UbiOps-managed service routes traffic to. For `kubernetes_imported` services it's the target port of the already-existing imported Kubernetes Service that traffic is proxied to directly.
 - `time_created`: Date when the service was created
 - `time_updated`: Date when the service was last updated
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
+- `type`: Type of the service, either `standard` or `kubernetes_imported`
+- `cache_aware_llm_routing`: Whether cache-aware LLM routing is enabled for this service
 
 ## Response Examples
 
@@ -315,7 +348,9 @@ A list of services
     "time_created": "2025-10-09T12:38:10.060537Z",
     "time_updated": "2025-10-09T12:38:10.060537Z",
     "labels": {},
-    "authentication_required": true
+    "authentication_required": true,
+    "type": "standard",
+    "cache_aware_llm_routing": false
   },
   {
     "id": "3fe73d04-b0d8-4701-acf9-73525591fe1b",
@@ -326,7 +361,9 @@ A list of services
     "time_created": "2025-10-10T08:01:24.010482Z",
     "time_updated": "2025-10-10T08:01:24.010482Z",
     "labels": {"type": "service"},
-    "authentication_required": true
+    "authentication_required": true,
+    "type": "standard",
+    "cache_aware_llm_routing": false
   }
 ]
 ```
@@ -370,7 +407,8 @@ Name | Type | Notes
 Get the service status
 
 ## Description
-Get the status of a service
+Get the status of a service. Not available for services with `type` `kubernetes_imported`, since UbiOps does not manage
+the underlying Kubernetes Service for those.
 
 ### Response Structure
 
@@ -430,9 +468,9 @@ Update a service in a project
 ### Optional Parameters
 
 - `name`: Name of the service
-- `deployment`: Deployment of the service
-- `version`: Version of the service. If null, the default version of the deployment is used.
-- `port`: Port in the instances that are exposed
+- `deployment`: Deployment of the service. Only relevant for `standard` services.
+- `version`: Version of the service. If null, the default version of the deployment is used. Only relevant for `standard` services.
+- `port`: Usage depends on `type`. For `standard` services it's the target port on the instances of the deployment that the UbiOps-managed service routes traffic to. For `kubernetes_imported` services it's the target port of the already-existing imported Kubernetes Service that traffic is proxied to directly.
 - `description`: Description of the service
 - `labels`: Dictionary containing key/value pairs where key indicates the label and value is the corresponding value of that label
 - `authentication_required`: Whether authentication is required on this service
@@ -444,6 +482,11 @@ Update a service in a project
 - `rate_limit_user_default`: Default rate limit per minute for the service per user
 - `concurrency_limit`: Concurrency limit for the entire service
 - `concurrency_limit_user_default`: Default concurrency limit for the service per user
+- `type`: Type of the service, either `standard` or `kubernetes_imported`
+- `cache_aware_llm_routing`: Whether cache-aware LLM routing should be enabled for this service. Can only be enabled for `standard` services.
+- `imported_name`: Name of the pre-installed Kubernetes Service to import. Only relevant for `kubernetes_imported` services.
+- `imported_namespace`: Namespace of the pre-installed Kubernetes Service to import. Only relevant for `kubernetes_imported` services.
+- `imported_cluster_domain`: Cluster domain of the pre-installed Kubernetes Service to import. Only relevant for `kubernetes_imported` services.
 
 ## Request Examples
 
@@ -462,7 +505,8 @@ Update a service in a project
   "rate_limit": 3000,
   "rate_limit_user_default": 1000,
   "concurrency_limit": 100,
-  "concurrency_limit_user_default": 50
+  "concurrency_limit_user_default": 50,
+  "cache_aware_llm_routing": false
 }
 ```
 
@@ -470,9 +514,9 @@ Update a service in a project
 
 - `id`: Unique identifier for the service (UUID)
 - `name`: Name of the service
-- `deployment`: Deployment of the service
-- `version`: Version of the service. If null, the default version of the deployment is used.
-- `port`: Deployment port to use
+- `deployment`: Deployment of the service. Only relevant for `standard` services.
+- `version`: Version of the service. If null, the default version of the deployment is used. Only relevant for `standard` services.
+- `port`: Usage depends on `type`. For `standard` services it's the target port on the instances of the deployment that the UbiOps-managed service routes traffic to. For `kubernetes_imported` services it's the target port of the already-existing imported Kubernetes Service that traffic is proxied to directly.
 - `time_created`: The date when the service was created
 - `time_updated`: The date when the service was last updated
 - `description`: Description of the service
@@ -486,6 +530,12 @@ Update a service in a project
 - `rate_limit_user_default`: Default rate limit per minute for the service per user
 - `concurrency_limit`: Concurrency limit for the entire service
 - `concurrency_limit_user_default`: Default concurrency limit for the service per user
+- `type`: Type of the service, either `standard` or `kubernetes_imported`
+- `cache_aware_llm_routing`: Whether cache-aware LLM routing is enabled for this service
+- `imported_name`: Name of the imported Kubernetes Service
+- `imported_namespace`: Namespace of the imported Kubernetes Service
+- `imported_cluster_domain`: Cluster domain of the imported Kubernetes Service
+- `imported_scheme`: Scheme used to reach the imported Kubernetes Service
 - `endpoint`: Service endpoint URL
 
 ## Response Examples
@@ -510,6 +560,12 @@ Update a service in a project
   "rate_limit_user_default": 1000,
   "concurrency_limit": 100,
   "concurrency_limit_user_default": 50,
+  "type": "standard",
+  "cache_aware_llm_routing": false,
+  "imported_name": null,
+  "imported_namespace": null,
+  "imported_cluster_domain": null,
+  "imported_scheme": null,
   "endpoint": "https://4d13288f-9ac1-4dff-85da-fe48238a4dff.services.ubiops.com"
 }
 ```
