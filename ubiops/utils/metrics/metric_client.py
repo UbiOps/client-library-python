@@ -73,7 +73,7 @@ class MetricClient(threading.Thread):
 
         # Configure API token authorization
         configuration.api_key["Authorization"] = api_token
-        # Defining host is optional and default to "https://api.ubiops.com/v2.1"
+        # Defining host is optional and default to "https://api.ubiops.com/v2"
         configuration.host = api_url
 
         self.api_client = ubiops.ApiClient(configuration=configuration)

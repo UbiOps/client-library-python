@@ -1,6 +1,6 @@
 # Imports_and_Exports
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -83,7 +83,15 @@ The following parameters should be given as query parameter:
     }
   },
   "environments": {
-    "environment-1": {}
+    "environment-1": {
+      "description": "",
+      "labels": {},
+      "tags": {
+        "v1": {
+          "supports_request_format": false
+        }
+      }
+    }
   }
 }
 ```
@@ -675,7 +683,7 @@ Confirm (and update) an import by selecting the objects in the import
           "zip": "deployments/deployment_deployment-1/versions/deployment_deployment-1_version_v1.zip",
           "description": "",
           "labels": {},
-          "environment": "python3-12",
+          "environment": "ubiops-ubuntu24-04-python3-12",
           "maximum_idle_time": 300,
           "maximum_instances": 5,
           "instance_type": "256mb",
@@ -797,10 +805,13 @@ Confirm (and update) an import by selecting the objects in the import
   },
   "environments": {
     "environment-1": {
-        "display_name": "Environment 1",
-        "description": "",
-        "labels": {},
-        "base_environment": "python3-12"
+      "description": "",
+      "labels": {},
+      "tags": {
+        "v1": {
+          "supports_request_format": false
+        }
+      }
     }
   }
 }

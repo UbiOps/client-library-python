@@ -1,6 +1,6 @@
 # Pipeline_Requests
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -823,7 +823,7 @@ A dictionary containing the details of the pipeline request with the following f
 - `pipeline_timeout`: Timeout of the pipeline request in seconds
 - `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+    - `user_name`, `user_surname` and `user_email` fields with the details of the user that created the request. All fields are optional. In case the request is created by a service, only the `user_name` field is present with a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 - `deployment_requests`: A list of requests of the deployments in the pipeline. With the request ids provided in this list, it's possible to collect the results of the deployment requests separately.
@@ -848,7 +848,9 @@ A dictionary containing the details of the pipeline request with the following f
   "pipeline_timeout": 300,
   "deployment_timeout": 300,
   "origin": {
-    "created_by": "my.example.user@ubiops.com"
+    "user_name": "Example",
+    "user_surname": "User",
+    "user_email": "my.example.user@ubiops.com"
   },
   "input_size": 20,
   "output_size": 21,
@@ -1986,7 +1988,7 @@ A dictionary containing the details of the pipeline request with the following f
 - `pipeline_timeout`: Timeout of the pipeline request in seconds
 - `deployment_timeout`: Timeout for each deployment request in this pipeline request in seconds
 - `origin`: A dictionary containing the information on where the request originated from. It contains:
-    - a `created_by` field with the email of the user that created the request. In case the request is created by a service, the field will have a "UbiOps" value.
+    - `user_name`, `user_surname` and `user_email` fields with the details of the user that created the request. All fields are optional. In case the request is created by a service, only the `user_name` field is present with a "UbiOps" value.
 - `input_size`: Size of the request data
 - `output_size`: Size of the result
 - `deployment_requests`: A list of requests of the deployments in the pipeline. With the request ids provided in this list, it's possible to collect the results of the deployment requests separately.
@@ -2011,7 +2013,9 @@ A dictionary containing the details of the pipeline request with the following f
   "pipeline_timeout": 300,
   "deployment_timeout": 300,
   "origin": {
-    "created_by": "my.example.user@ubiops.com"
+    "user_name": "Example",
+    "user_surname": "User",
+    "user_email": "my.example.user@ubiops.com"
   },
   "input_size": 20,
   "output_size": 21,

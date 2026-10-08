@@ -24,7 +24,7 @@ Method to insert metrics.
 
     # Set environment variables (these are set automatically for you when running inside UbiOps)
     # - INT_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - INT_API_URL: "https://api.ubiops.com/v2.1"
+    # - INT_API_URL: "https://api.ubiops.com/v2"
 
     project_name = 'project_name_example' # str
 
@@ -45,8 +45,8 @@ Method to insert metrics.
     # Configure API token authorization
     configuration.api_key['Authorization'] = 'Token <YOUR_API_TOKEN>'
 
-    # Defining host is optional and default to https://api.ubiops.com/v2.1
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to https://api.ubiops.com/v2
+    configuration.host = "https://api.ubiops.com/v2"
     # Enter a context with an instance of the API client
     api_client = ubiops.ApiClient(configuration)
 

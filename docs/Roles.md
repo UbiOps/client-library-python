@@ -1,6 +1,6 @@
 # Roles
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

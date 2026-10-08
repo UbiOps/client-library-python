@@ -5,6 +5,8 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **version** | **str** | [optional]
 **environment** | **str** | [optional]
+**environment_name** | **str** | [optional]
+**environment_tag** | **str** | [optional]
 **instance_type** | **str** | [optional]
 **instance_type_group_id** | **str** | [optional]
 **instance_type_group_name** | **str** | [optional]
@@ -21,5 +23,7 @@ Name | Type | Notes
 **scaling_strategy** | **str** | [optional]
 **instance_processes** | **int** | [optional]
 **health_check** | [**HealthCheck**](HealthCheck.md) | [optional]
+**command** | **str** or **dict(str, str)** | [optional]
+**args** | **str** or **dict(str, str)** | [optional]
 
 

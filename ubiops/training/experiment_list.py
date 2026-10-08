@@ -13,8 +13,8 @@ class ExperimentList(DeploymentVersionList):
     openapi_types = {
         "id": "str",
         "name": "str",
-        "environment": "str",
-        "environment_display_name": "str",
+        "environment_name": "str",
+        "environment_tag": "str",
         "status": "str",
         "active_revision": "str",
         "latest_revision": "str",
@@ -27,8 +27,8 @@ class ExperimentList(DeploymentVersionList):
     attribute_map = {
         "id": "id",
         "name": "name",
-        "environment": "environment",
-        "environment_display_name": "environment_display_name",
+        "environment_name": "environment_name",
+        "environment_tag": "environment_tag",
         "status": "status",
         "active_revision": "active_revision",
         "latest_revision": "latest_revision",
@@ -42,8 +42,8 @@ class ExperimentList(DeploymentVersionList):
         self,
         id=None,
         name=None,
-        environment=None,
-        environment_display_name=None,
+        environment_name=None,
+        environment_tag=None,
         status=None,
         active_revision=None,
         latest_revision=None,
@@ -62,8 +62,8 @@ class ExperimentList(DeploymentVersionList):
         super().__init__(
             id=id,
             version=name,  # Convert name to version
-            environment=environment,
-            environment_display_name=environment_display_name,
+            environment_name=environment_name,
+            environment_tag=environment_tag,
             status=status,
             active_revision=active_revision,
             latest_revision=latest_revision,

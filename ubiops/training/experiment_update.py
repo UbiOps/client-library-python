@@ -12,7 +12,9 @@ from ubiops.models.deployment_version_update import DeploymentVersionUpdate
 class ExperimentUpdate(DeploymentVersionUpdate):
     openapi_types = {
         "name": "str",
-        "environment": "str",
+        "environment": "str",  # deprecated
+        "environment_name": "str",
+        "environment_tag": "str",
         "instance_type": "str",
         "instance_type_group_id": "str",
         "instance_type_group_name": "str",
@@ -23,7 +25,9 @@ class ExperimentUpdate(DeploymentVersionUpdate):
 
     attribute_map = {
         "name": "name",
-        "environment": "environment",
+        "environment": "environment",  # deprecated
+        "environment_name": "environment_name",
+        "environment_tag": "environment_tag",
         "instance_type": "instance_type",
         "instance_type_group_id": "instance_type_group_id",
         "instance_type_group_name": "instance_type_group_name",
@@ -36,6 +40,8 @@ class ExperimentUpdate(DeploymentVersionUpdate):
         self,
         name=None,
         environment=None,
+        environment_name=None,
+        environment_tag=None,
         instance_type=None,
         instance_type_group_id=None,
         instance_type_group_name=None,
@@ -55,6 +61,8 @@ class ExperimentUpdate(DeploymentVersionUpdate):
             version=name,  # Convert name to version
             description=description,
             environment=environment,
+            environment_name=environment_name,
+            environment_tag=environment_tag,
             instance_type=instance_type,
             instance_type_group_id=instance_type_group_id,
             instance_type_group_name=instance_type_group_name,

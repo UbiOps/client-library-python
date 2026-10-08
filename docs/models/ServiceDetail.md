@@ -12,6 +12,8 @@ Name | Type | Notes
 **time_updated** | **datetime** | [optional] [readonly]
 **labels** | **dict(str, str)** | [optional]
 **authentication_required** | **bool** | [optional]
+**type** | **str** | [optional]
+**cache_aware_llm_routing** | **bool** | [optional]
 **description** | **str** | [optional]
 **authentication_method_token_enabled** | **bool** | [optional]
 **authentication_header_pass_through** | **bool** | [optional]
@@ -21,6 +23,10 @@ Name | Type | Notes
 **rate_limit_user_default** | **int** | [optional]
 **concurrency_limit** | **int** | [optional]
 **concurrency_limit_user_default** | **int** | [optional]
+**imported_name** | **str** | [optional]
+**imported_namespace** | **str** | [optional]
+**imported_cluster_domain** | **str** | [optional]
+**imported_scheme** | **str** | [optional]
 **endpoint** | **str** | [optional] [readonly]
 
 

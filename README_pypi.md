@@ -1,5 +1,5 @@
 # ubiops
-Client Library to interact with the [UbiOps](https://ubiops.com) API (v2.1).
+Client Library to interact with the [UbiOps](https://ubiops.com) API (v2).
 
 For more information, please visit [https://ubiops.com/docs/](https://ubiops.com/docs/)
 

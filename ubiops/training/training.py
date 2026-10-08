@@ -267,7 +267,10 @@ class Training(object):
 
         # Check preconditions
         self._verify_deployment_exists(project_name=project_name)
-        self._verify_environment_exists(project_name=project_name, environment_name=data.environment)
+
+        # 'environment' is deprecated. 'environment_name' should be used instead.
+        environment_name = data.environment_name if data.environment_name else data.environment
+        self._verify_environment_exists(project_name=project_name, environment_name=environment_name)
         if data.default_bucket:
             self._verify_bucket_exists(project_name=project_name, bucket=data.default_bucket)
 
@@ -466,8 +469,10 @@ class Training(object):
             elif not isinstance(data, ExperimentUpdate):
                 raise ApiValueError("Parameter `data` must be an instance of ExperimentUpdate")
 
-        if data.environment:
-            self._verify_environment_exists(project_name=project_name, environment_name=data.environment)
+        if data.environment_name or data.environment:
+            # 'environment' is deprecated. 'environment_name' should be used instead.
+            environment_name = data.environment_name if data.environment_name else data.environment
+            self._verify_environment_exists(project_name=project_name, environment_name=environment_name)
         if data.default_bucket:
             self._verify_bucket_exists(project_name=project_name, bucket=data.default_bucket)
             self._update_default_bucket(

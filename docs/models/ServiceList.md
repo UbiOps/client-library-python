@@ -12,5 +12,7 @@ Name | Type | Notes
 **time_updated** | **datetime** | [optional] [readonly]
 **labels** | **dict(str, str)** | [optional]
 **authentication_required** | **bool** | [optional]
+**type** | **str** | [optional]
+**cache_aware_llm_routing** | **bool** | [optional]
 
 

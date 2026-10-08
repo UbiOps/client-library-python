@@ -5,6 +5,30 @@ import zipfile
 from .gitignorefile.gitignorefile import parse as parse_ignore
 
 
+def _get_ignore_function(path_dir, ignore_filename):
+    """
+    Retrieve an ignore function that decides whether a file should be ignored based on what is found in the ignore file
+
+    :param str path_dir: the base directory
+    :param str ignore_filename: the name of the ignore file, which should be located in the root of the base directory
+    """
+
+    has_ignore_file = os.path.isfile(os.path.join(path_dir, ignore_filename)) if ignore_filename else False
+
+    # Initialize 'is_ignored' function. It will be overwritten if a .ubiops-ignore file is present.
+    def is_ignored(_):  # noqa: F811
+        """
+        If no ignore file is present, nothing will be ignored
+        """
+        return False
+
+    if has_ignore_file:
+        # Ignore what we found in the .ubiops-ignore file
+        is_ignored = parse_ignore(os.path.join(path_dir, ignore_filename), path_dir)  # noqa: F811
+
+    return is_ignored
+
+
 def abs_path(path_param):
     """
     Get the absolute path if the path is a relative path
@@ -28,6 +52,70 @@ def default_zip_name(prefix):
     if prefix:
         return f"{prefix}_{datetime_str}.zip"
     return f"{datetime_str}.zip"
+
+
+def list_files(directory, ignore_filename=".ubiops-ignore"):
+    """
+    List files in given directory, excluding files that are in the ignore file
+
+    :param str directory: the directory containing the files
+    :param str ignore_filename: the name of the ignore file
+    """
+
+    if not directory:
+        raise NotADirectoryError("Directory is required.")
+
+    path_dir = abs_path(directory)
+    if not os.path.isdir(path_dir):
+        raise NotADirectoryError(f"Given path {path_dir} is not a directory.")
+
+    is_ignored = _get_ignore_function(path_dir=path_dir, ignore_filename=ignore_filename)
+
+    package_path = str(os.path.join(path_dir, ""))
+    paths = []
+    for root, _, files in os.walk(path_dir):
+        root_subdir = os.path.join("", *root.split(package_path)[1:])
+        for filename in files:
+            source_file = os.path.join(root, filename)
+            if not is_ignored(source_file):
+                # Use 'directory' here such that all file path keep relative to the current working directory
+                paths.append(os.path.join(directory, root_subdir, filename))
+
+    return paths
+
+
+def files_present_in_dir(files, directory, ignore_filename=".ubiops-ignore"):
+    """
+    Check whether at least one of the provided files is present in the directory, excluding files that are in the ignore
+    file.
+
+    :param list[str] files: list of filenames to check for
+    :param str directory: the directory to check in
+    :param str ignore_filename: the name of the ignore file in the directory
+    """
+
+    if not directory:
+        raise NotADirectoryError("Directory is required.")
+
+    path_dir = os.path.abspath(directory)
+    if not os.path.isdir(path_dir):
+        raise NotADirectoryError(f"Given path {path_dir} is not a directory.")
+
+    is_ignored = _get_ignore_function(path_dir=path_dir, ignore_filename=ignore_filename)
+
+    # Whether at least one of the files is present in the directory and not ignored
+    files_present = False
+
+    package_path = str(os.path.join(path_dir, ""))
+    for root, _, filenames in os.walk(path_dir):
+        root_subdir = os.path.join("", *root.split(package_path)[1:])
+        for filename in filenames:
+            source_file = os.path.join(root, filename)
+            if not is_ignored(source_file):
+                if len(root_subdir.split()) == 0 and filename in files:
+                    files_present = True
+
+    return files_present
 
 
 def zip_dir(  # noqa: PLR0913, PLR0917
@@ -57,8 +145,6 @@ def zip_dir(  # noqa: PLR0913, PLR0917
     if not os.path.isdir(path_dir):
         raise NotADirectoryError(f"Given path {path_dir} is not a directory.")
 
-    has_ignore_file = os.path.isfile(os.path.join(path_dir, ignore_filename)) if ignore_filename else False
-
     output_path = abs_path(output_path)
     if os.path.isdir(output_path):
         output_path = os.path.join(output_path, default_zip_name(prefix=prefix))
@@ -70,16 +156,7 @@ def zip_dir(  # noqa: PLR0913, PLR0917
     if not force and os.path.isfile(output_path):
         raise FileExistsError(f"File {output_path} already exists")
 
-    # Initialize 'is_ignored' function. It will be overwritten if a .ubiops-ignore file is present.
-    def is_ignored(_):  # noqa: F811
-        """
-        If no ignore file is present, nothing will be ignored
-        """
-        return False
-
-    if has_ignore_file:
-        # Ignore what we found in the .ubiops-ignore file
-        is_ignored = parse_ignore(os.path.join(path_dir, ignore_filename), path_dir)  # noqa: F811
+    is_ignored = _get_ignore_function(path_dir=path_dir, ignore_filename=ignore_filename)
 
     package_path = str(os.path.join(path_dir, ""))
     with zipfile.ZipFile(output_path, "w") as f:
@@ -92,49 +169,3 @@ def zip_dir(  # noqa: PLR0913, PLR0917
                     f.write(source_file, os.path.join(package_subdir, filename))
 
     return output_path
-
-
-def files_present_in_dir(files, directory, ignore_filename=".ubiops-ignore"):
-    """
-    Check whether at least one of the provided files is present in the directory, excluding files that are in the ignore
-    file.
-
-    :param list[str] files: list of filenames to check for
-    :param str directory: the directory to check in
-    :param str ignore_filename: the name of the ignore file in the directory
-    """
-
-    if not directory:
-        raise NotADirectoryError("Directory is required.")
-
-    path_dir = os.path.abspath(directory)
-
-    if not os.path.isdir(path_dir):
-        raise NotADirectoryError(f"Given path {path_dir} is not a directory.")
-
-    has_ignore_file = os.path.isfile(os.path.join(path_dir, ignore_filename)) if ignore_filename else False
-
-    # Initialize 'is_ignored' function. It will be overwritten if a .ubiops-ignore file is present.
-    def is_ignored(_):  # noqa: F811
-        """
-        If no ignore file is present, nothing will be ignored
-        """
-        return False
-
-    if has_ignore_file:
-        # Ignore what we found in the .ubiops-ignore file
-        is_ignored = parse_ignore(os.path.join(path_dir, ignore_filename), path_dir)  # noqa: F811
-
-    # Whether at least one of the files is present in the directory and not ignored
-    files_present = False
-
-    package_path = str(os.path.join(path_dir, ""))
-    for root, _, filenames in os.walk(path_dir):
-        root_subdir = os.path.join("", *root.split(package_path)[1:])
-        for filename in filenames:
-            source_file = os.path.join(root, filename)
-            if not is_ignored(source_file):
-                if len(root_subdir.split()) == 0 and filename in files:
-                    files_present = True
-
-    return files_present

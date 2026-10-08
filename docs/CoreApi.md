@@ -1,6 +1,6 @@
 # ubiops.CoreApi
 
-All URIs are relative to *https://api.ubiops.com/v2.1*
+All URIs are relative to *https://api.ubiops.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -55,27 +55,27 @@ Method | HTTP request | Description
 [**revisions_list**](./Deployments.md#revisions_list) | **GET** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions | List revisions
 [**revisions_rebuild**](./Deployments.md#revisions_rebuild) | **POST** /projects/{project_name}/deployments/{deployment_name}/versions/{version}/revisions/{revision_id}/rebuild | Rebuild revision
 [**template_deployments_list**](./Deployments.md#template_deployments_list) | **GET** /template-deployments | List template deployments
-[**environment_build_dependencies_list**](./Environments.md#environment_build_dependencies_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id}/dependency-files | List dependency files
-[**environment_builds_get**](./Environments.md#environment_builds_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Get build
-[**environment_builds_list**](./Environments.md#environment_builds_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds | List builds
-[**environment_builds_update**](./Environments.md#environment_builds_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/builds/{build_id} | Update build
-[**environment_revisions_file_download**](./Environments.md#environment_revisions_file_download) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/download | Download environment file
-[**environment_revisions_file_upload**](./Environments.md#environment_revisions_file_upload) | **POST** /projects/{project_name}/environments/{environment_name}/revisions | Upload environment file
-[**environment_revisions_get**](./Environments.md#environment_revisions_get) | **GET** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id} | Get revision
-[**environment_revisions_list**](./Environments.md#environment_revisions_list) | **GET** /projects/{project_name}/environments/{environment_name}/revisions | List revisions
-[**environment_revisions_rebuild**](./Environments.md#environment_revisions_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/revisions/{revision_id}/rebuild | Rebuild revision
-[**environment_secrets_copy**](./Environments.md#environment_secrets_copy) | **POST** /projects/{project_name}/environments/{environment_name}/copy-secrets | Copy environment secret
-[**environment_secrets_create**](./Environments.md#environment_secrets_create) | **POST** /projects/{project_name}/environments/{environment_name}/secrets | Create environment secret
-[**environment_secrets_delete**](./Environments.md#environment_secrets_delete) | **DELETE** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Delete environment secret
-[**environment_secrets_get**](./Environments.md#environment_secrets_get) | **GET** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Get environment secret
-[**environment_secrets_list**](./Environments.md#environment_secrets_list) | **GET** /projects/{project_name}/environments/{environment_name}/secrets | List environment secrets
-[**environment_secrets_update**](./Environments.md#environment_secrets_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/secrets/{id} | Update environment secret
+[**environment_tag_dependencies_list**](./Environments.md#environment_tag_dependencies_list) | **GET** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/dependency-files | List dependency files
+[**environment_tag_secrets_copy**](./Environments.md#environment_tag_secrets_copy) | **POST** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/copy-secrets | Copy tag secret
+[**environment_tag_secrets_create**](./Environments.md#environment_tag_secrets_create) | **POST** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/secrets | Create tag secret
+[**environment_tag_secrets_delete**](./Environments.md#environment_tag_secrets_delete) | **DELETE** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/secrets/{id} | Delete tag secret
+[**environment_tag_secrets_get**](./Environments.md#environment_tag_secrets_get) | **GET** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/secrets/{id} | Get tag secret
+[**environment_tag_secrets_list**](./Environments.md#environment_tag_secrets_list) | **GET** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/secrets | List tag secrets
+[**environment_tag_secrets_update**](./Environments.md#environment_tag_secrets_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/secrets/{id} | Update tag secret
+[**environment_tags_build**](./Environments.md#environment_tags_build) | **POST** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/build | Build tag
+[**environment_tags_create**](./Environments.md#environment_tags_create) | **POST** /projects/{project_name}/environments/{environment_name}/tags | Create tag
+[**environment_tags_delete**](./Environments.md#environment_tags_delete) | **DELETE** /projects/{project_name}/environments/{environment_name}/tags/{tag_name} | Delete tag
+[**environment_tags_download**](./Environments.md#environment_tags_download) | **GET** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/download | Download tag file
+[**environment_tags_get**](./Environments.md#environment_tags_get) | **GET** /projects/{project_name}/environments/{environment_name}/tags/{tag_name} | Get tag
+[**environment_tags_list**](./Environments.md#environment_tags_list) | **GET** /projects/{project_name}/environments/{environment_name}/tags | List tags
+[**environment_tags_rebuild**](./Environments.md#environment_tags_rebuild) | **POST** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/rebuild | Rebuild tag
+[**environment_tags_update**](./Environments.md#environment_tags_update) | **PATCH** /projects/{project_name}/environments/{environment_name}/tags/{tag_name} | Update tag
+[**environment_tags_usage**](./Environments.md#environment_tags_usage) | **GET** /projects/{project_name}/environments/{environment_name}/tags/{tag_name}/usage | List usage of tag
 [**environments_create**](./Environments.md#environments_create) | **POST** /projects/{project_name}/environments | Create environments
 [**environments_delete**](./Environments.md#environments_delete) | **DELETE** /projects/{project_name}/environments/{environment_name} | Delete environment
 [**environments_get**](./Environments.md#environments_get) | **GET** /projects/{project_name}/environments/{environment_name} | Get environment
 [**environments_list**](./Environments.md#environments_list) | **GET** /projects/{project_name}/environments | List environments
 [**environments_update**](./Environments.md#environments_update) | **PATCH** /projects/{project_name}/environments/{environment_name} | Update environment
-[**environments_usage**](./Environments.md#environments_usage) | **GET** /projects/{project_name}/environments/{environment_name}/usage | List usage of environment
 [**buckets_create**](./Files.md#buckets_create) | **POST** /projects/{project_name}/buckets | Create bucket
 [**buckets_delete**](./Files.md#buckets_delete) | **DELETE** /projects/{project_name}/buckets/{bucket_name} | Delete a bucket
 [**buckets_get**](./Files.md#buckets_get) | **GET** /projects/{project_name}/buckets/{bucket_name} | Get details of a bucket
@@ -180,6 +180,7 @@ Method | HTTP request | Description
 [**project_environment_variables_get**](./Projects.md#project_environment_variables_get) | **GET** /projects/{project_name}/environment-variables/{id} | Get project environment variable
 [**project_environment_variables_list**](./Projects.md#project_environment_variables_list) | **GET** /projects/{project_name}/environment-variables | List project environment variables
 [**project_environment_variables_update**](./Projects.md#project_environment_variables_update) | **PATCH** /projects/{project_name}/environment-variables/{id} | Update project environment variable
+[**project_events_list**](./Projects.md#project_events_list) | **GET** /projects/{project_name}/events | List events in a project
 [**project_requests_list**](./Projects.md#project_requests_list) | **GET** /projects/{project_name}/requests | List requests in project
 [**project_users_create**](./Projects.md#project_users_create) | **POST** /projects/{project_name}/users | Add user to a project
 [**project_users_delete**](./Projects.md#project_users_delete) | **DELETE** /projects/{project_name}/users/{user_id} | Delete user from a project
@@ -251,7 +252,7 @@ Method | HTTP request | Description
 
     # Set environment variables
     # - UBIOPS_API_TOKEN: "Token <YOUR_API_TOKEN>"
-    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2.1"
+    # - UBIOPS_API_HOST: optional - default to "https://api.ubiops.com/v2"
     core_api = ubiops.CoreApi()
 
     api_response = core_api.service_status()
@@ -268,8 +269,8 @@ Method | HTTP request | Description
     configuration = ubiops.Configuration()
     # Configure API token authorization
     configuration.api_key['Authorization'] = "Token <YOUR_API_TOKEN>"
-    # Defining host is optional and default to "https://api.ubiops.com/v2.1"
-    configuration.host = "https://api.ubiops.com/v2.1"
+    # Defining host is optional and default to "https://api.ubiops.com/v2"
+    configuration.host = "https://api.ubiops.com/v2"
 
     api_client = ubiops.ApiClient(configuration)
     core_api = ubiops.CoreApi(api_client)

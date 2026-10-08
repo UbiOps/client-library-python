@@ -8,8 +8,8 @@ Name | Type | Notes
 **version** | **str** |
 **default** | **bool** | [optional]
 **description** | **str** | [optional]
-**environment** | **str** | [optional]
-**environment_display_name** | **str** | [optional]
+**environment_name** | **str** | [optional]
+**environment_tag** | **str** | [optional]
 **status** | **str** | [optional] [readonly]
 **active_revision** | **str** | [optional] [readonly]
 **latest_revision** | **str** | [optional] [readonly]
